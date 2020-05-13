@@ -1,0 +1,89 @@
+# identity
+set realname = "Phelipe Teles"
+
+# basic settings
+source "~/.mutt/colors"
+source "~/.mutt/aliases"
+set alias_file = "~/.mutt/aliases"
+set quit = ask-yes
+set pipe_decode
+set wait_key = no
+set ssl_starttls = no
+set ssl_force_tls = yes
+set sendmail = "/usr/bin/msmtp"
+set attribution = "Em %d, %n escreveu:"
+set mailcap_path = "~/.mutt/mailcap"
+auto_view text/html
+alternative_order text/html text/plain text/enriched
+
+# index
+set mark_old = no
+set sort = threads
+set sort_aux = 'reverse-date'
+set pager_index_lines = 10
+
+# pager
+set pager_stop
+set markers = no
+
+# composing email
+set include
+set editor = $EDITOR
+set edit_headers
+set autoedit
+set ispell = "/usr/lib/ispell"
+
+# accounts
+set mbox_type = Maildir
+set folder = "~/Mail"
+
+source "~/.mutt/hotmail" # default account
+
+folder-hook "Gmail" "source ~/.mutt/gmail"
+folder-hook "Hotmail" "source ~/.mutt/hotmail"
+
+macro index <f2> "<sync-mailbox><enter-command>source ~/.mutt/hotmail<enter><change-folder>!<enter>" "change to hotmail"
+macro index <f3> "<sync-mailbox><enter-command>source ~/.mutt/gmail<enter><change-folder>!<enter>" "change to gmail"
+
+# keybindings
+source "~/.mutt/keybindings"
+bind index R group-reply
+bind index <space>  collapse-thread
+
+# formats
+set date_format = "%d/%m/%y"
+set index_format = "%4C │ %Z │ %d │ %-25.25n │ %s"
+set status_format = "——[ %f ]——[ Total: %?M?%M/?%m%?n? New: %n?%?o? Old: %o?%?d? Del: %d?%?F? Flag: %F?%?t? Tag: %t?%?p? Post: %p?%?b? %l? ]—%>—(%P)——[ %v ]——"
+set pager_format = " %n:  %s %* %(%A, %d de %B de %Y) %?e?(%e de %E)? %?X?(📎 %X)?"
+
+# sidebar
+set mail_check_stats = yes
+set sidebar_width = 30
+set sidebar_divider_char = '│'
+set sidebar_format = "%B %* %?N?*? %?S?%S?"
+set sidebar_short_path = yes
+set sidebar_folder_indent
+set sidebar_indent_string="  "
+bind index,pager B sidebar-toggle-visible
+bind index,pager <up> sidebar-prev
+bind index,pager <down> sidebar-next
+bind index,pager <right> sidebar-open
+
+unmailboxes *
+mailboxes Hotmail
+mailboxes +Hotmail/Inbox +Hotmail/Sent +Hotmail/Deleted +Hotmail/Junk +Hotmail/Drafts
+mailboxes Gmail
+mailboxes "+Gmail/INBOX" "+Gmail/[Gmail].E-mails enviados" "+Gmail/[Gmail].Lixeira" "+Gmail/[Gmail].Rascunhos" "+Gmail/[Gmail].Spam" "+Gmail/[Gmail].Com estrela"
+
+# headers
+ignore *
+unignore from: to: cc: date: subject:
+hdr_order from: to: cc: date: subject:
+
+# macros
+macro index,pager <esc>u "<pipe-message>urlscan<Enter>"
+macro index <f1> "!w3m /usr/share/doc/mutt/html/manual.html\n" "show Mutt documentation"
+macro index M "<shell-escape>offlineimap<enter>" "sync offlineimap"
+macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
+
+# vi: ft=neomuttrc nowrap

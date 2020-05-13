@@ -1,0 +1,41 @@
+# basic colors ---------------------------------------------------------
+color normal white default
+color hdrdefault cyan default
+color indicator black brightgreen
+color markers brightred default
+color quoted cyan default
+color quoted1 magenta default
+color quoted2 blue default
+color signature yellow default
+color tree          yellow  default            # arrow in threads (`-->')
+color status        black      brightblue     # menu above and below
+color sidebar_divider brightblue default      # self-explanatory
+color error         red        default        # message line error text
+color tilde         black         default     # vi-like tildes marking blank lines
+color message       white         default
+color markers       magenta  default          # wrapped-line /^\+/ markers
+color attachment    brightgreen  default      # attachment headers
+color search        magenta        default    # search patterns in pager
+
+color index brightwhite default "~N"
+
+color header blue default ^From:
+color header magenta default ^To:
+color header yellow default ^Date
+color header cyan default ^Cc:
+color header green default ^Subject:
+color header white default ^X-TRASH:
+
+# # basic monochrome screen
+mono bold           bold
+mono underline      underline
+mono indicator      reverse
+mono error          bold
+mono header         bold                            "^(From|Subject|Date|To|Cc|Bcc):"
+mono quoted         bold
+
+#  simplified regex for URL & email
+color body		magenta		default	"(ftp|https?|gopher|news|telnet|finger)://[^ \"\t\r\n]+"
+color body		magenta		default	"[-a-z_0-9.]+@[-a-z_0-9.]+"
+
+# vi: ft=neomuttrc ts=4 sw=4 sts=4 et nowrap
