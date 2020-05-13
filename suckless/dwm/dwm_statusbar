@@ -1,0 +1,68 @@
+#!/bin/bash
+
+function get_temp {
+  temp=$(sensors | awk '/Core 0:/ { print $3 }' | sed 's/[+0.]//g')
+  echo " $temp"
+}
+
+function get_date {
+  today=$(date +"%a, %d %b, %R" | sed 's/[^ ]\+/\u&/g' )
+  echo " $today"
+}
+
+function get_volume() {
+  volume=$(amixer get Master | awk '/Mono:/ { print $4 }' | sed 's/[][]//g')
+  echo " $volume"
+}
+
+function get_memory() {
+  mem=$(free | awk '/Mem.:/ { printf("%3.1f", $3/$2*100) }')%
+  echo " $mem"
+}
+
+function get_battery {
+  state=$(acpi | sed -E "s/.* ([A-Za-z]+),.*/\1/")
+  level=$(acpi | sed -E 's/.* ([0-9]+)%.*/\1/')
+
+  if [ $state = "Charging" ]; then
+    state_symbol="+"
+  else
+    state_symbol=""
+  fi
+
+  if [ $level -lt 30 ]; then
+    batt_symbol=""
+  elif [ $level -lt 60 ]; then
+    batt_symbol=""
+  elif [ $level -lt 95 ]; then
+    batt_symbol=""
+  else
+    batt_symbol=""
+  fi
+
+  echo "$batt_symbol $state_symbol$level%"
+
+  if [ $level -lt 15 ] && [ $state = "Discharging" ]; then
+    dunstify -u normal -r 10000 "Bateria baixa: $level"
+  elif [[ $level = 100 && $state = "Charging" ]]; then
+    dunstify -u low "Bateria cheia: $level"
+  fi
+}
+
+function now_playing() {
+  if ps -C cmus > /dev/null; then
+    status=`cmus-remote -Q | awk '/status/ { print $2 }'`
+    if [ $status = "playing" ]; then
+      music=$(cmus-remote -C 'format_print "%a - %t"')
+      echo " $music ⋮"
+    else
+      echo ""; 
+    fi
+  fi
+}
+
+while true
+do
+  xsetroot -name "$(now_playing)  $(get_temp)  $(get_memory)  $(get_battery)  $(get_volume)  $(get_date) ⋮"
+  sleep 30s
+done

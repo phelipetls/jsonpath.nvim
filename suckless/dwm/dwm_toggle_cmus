@@ -1,0 +1,9 @@
+#!/bin/bash
+
+status=`cmus-remote -Q | awk '/status/ { print $2 }'`
+
+if [ $status -eq "playing" ]; then
+    cmus-remote -p
+else
+    cmus-remote -u
+fi

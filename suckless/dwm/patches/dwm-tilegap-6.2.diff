@@ -1,0 +1,73 @@
+From dfea960240ed45a660abc1acba2041318127761f Mon Sep 17 00:00:00 2001
+From: astier <aleksandrs.stier@uni-bielefeld.de>
+Date: Thu, 21 Feb 2019 09:38:38 +0100
+Subject: [PATCH] Add window-gaps for the tile-layout
+
+Adds gaps between windows in the tile-layout. The proposed advantage to some
+other patches which try to accomplish the same goal is that the gap-size between
+master and stack, window and window, and window and screen-edge is the
+same. The gap-size can be configured in the config.h with the
+gappx-variable.
+---
+ config.def.h |  1 +
+ dwm.c        | 23 +++++++++++++----------
+ 2 files changed, 14 insertions(+), 10 deletions(-)
+
+diff --git a/config.def.h b/config.def.h
+index 1c0b587..2ca9e56 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -2,6 +2,7 @@
+ 
+ /* appearance */
+ static const unsigned int borderpx  = 1;        /* border pixel of windows */
++static const unsigned int gappx     = 18;       /* gap pixel between windows */
+ static const unsigned int snap      = 32;       /* snap pixel */
+ static const int showbar            = 1;        /* 0 means no bar */
+ static const int topbar             = 1;        /* 0 means bottom bar */
+diff --git a/dwm.c b/dwm.c
+index 4465af1..c556a2d 100644
+--- a/dwm.c
++++ b/dwm.c
+@@ -1673,26 +1673,29 @@ tagmon(const Arg *arg)
+ void
+ tile(Monitor *m)
+ {
+-	unsigned int i, n, h, mw, my, ty;
++	unsigned int i, n, h, mw, my, ty, ns;
+ 	Client *c;
+ 
+ 	for (n = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), n++);
+ 	if (n == 0)
+ 		return;
+ 
+-	if (n > m->nmaster)
++	if (n > m->nmaster) {
+ 		mw = m->nmaster ? m->ww * m->mfact : 0;
+-	else
++		ns = m->nmaster > 0 ? 2 : 1;
++	} else {
+ 		mw = m->ww;
+-	for (i = my = ty = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), i++)
++		ns = 1;
++	}
++	for(i = 0, my = ty = gappx, c = nexttiled(m->clients); c; c = nexttiled(c->next), i++)
+ 		if (i < m->nmaster) {
+-			h = (m->wh - my) / (MIN(n, m->nmaster) - i);
+-			resize(c, m->wx, m->wy + my, mw - (2*c->bw), h - (2*c->bw), 0);
+-			my += HEIGHT(c);
++			h = (m->wh - my) / (MIN(n, m->nmaster) - i) - gappx;
++			resize(c, m->wx + gappx, m->wy + my, mw - (2*c->bw) - gappx*(5-ns)/2, h - (2*c->bw), False);
++			my += HEIGHT(c) + gappx;
+ 		} else {
+-			h = (m->wh - ty) / (n - i);
+-			resize(c, m->wx + mw, m->wy + ty, m->ww - mw - (2*c->bw), h - (2*c->bw), 0);
+-			ty += HEIGHT(c);
++			h = (m->wh - ty) / (n - i) - gappx;
++			resize(c, m->wx + mw + gappx/ns, m->wy + ty, m->ww - mw - (2*c->bw) - gappx*(5-ns)/2, h - (2*c->bw), False);
++			ty += HEIGHT(c) + gappx;
+ 		}
+ }
+ 
+-- 
+2.20.1

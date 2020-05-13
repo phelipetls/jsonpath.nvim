@@ -1,0 +1,11 @@
+#!/bin/bash
+#this script goes into a file in /usr/share/xsessions
+
+nitrogen --restore &
+~/suckless/dwm/dwm_statusbar &
+redshift &
+xautolock -detectsleep -time 15 -locker slock &
+numlockx &
+nm-applet &
+
+exec dwm

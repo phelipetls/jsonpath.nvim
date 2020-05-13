@@ -1,0 +1,3 @@
+#!/bin/bash
+
+kill `pstree -lp | grep dwm | sed "s/.*sleep(\([0-9]\+\))/\1/"`
