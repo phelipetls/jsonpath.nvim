@@ -1,0 +1,3 @@
+#!/bin/bash
+
+wal --theme | awk '/-/ { print $2 }' | dmenu -i | xargs wal -f

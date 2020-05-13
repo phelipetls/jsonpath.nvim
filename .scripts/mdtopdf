@@ -1,0 +1,3 @@
+#!/bin/bash
+
+pandoc -f markdown -t pdf -o "${1%%.*}.pdf" "$1"
