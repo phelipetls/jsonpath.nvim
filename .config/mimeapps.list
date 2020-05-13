@@ -1,0 +1,7 @@
+[Added Associations]
+image/png=sxiv.desktop;ristretto.desktop;
+text/x-chdr=nvim.desktop;vim.desktop;
+application/x-sh=nvim.desktop;
+
+[Default Applications]
+image/png=sxiv.desktop

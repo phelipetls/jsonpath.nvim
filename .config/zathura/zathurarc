@@ -1,0 +1,16 @@
+set pages-per-row 1
+
+map + zoom in
+map - zoom out
+map = zoom best-fit
+map f zoom width
+
+set adjust-open width
+
+map <C-c> recolor
+set recolor-lightcolor
+
+set synctex true
+set synctex-editor-command "nvr --remote +%{line} %{input}"
+
+set guioptions none
