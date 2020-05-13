@@ -1,0 +1,5 @@
+alias r="ranger"
+alias mv="mv -i"
+alias smci="sudo make clean install"
+alias nvim="NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim"
+alias dot="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"

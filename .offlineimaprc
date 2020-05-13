@@ -1,0 +1,34 @@
+[general]
+accounts = hotmail, gmail
+pythonfile = ~/.get_password_offlineimap
+
+[Account hotmail]
+localrepository = hotmail-local
+remoterepository = hotmail-remote
+
+[Repository hotmail-remote]
+type = IMAP
+remotehost = outlook.office365.com
+remoteuser = phelipe_teles@hotmail.com
+remotepasseval = get_pass("hotmail")
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+
+[Repository hotmail-local]
+type = Maildir
+localfolders = ~/Mail/Hotmail
+
+[Account gmail]
+localrepository = gmail-local
+remoterepository = gmail-remote
+
+[Repository gmail-remote]
+type = Gmail
+remotehost = imap.gmail.com
+remoteuser = telesphelipe@gmail.com
+remotepasseval = get_pass("gmail-mutt")
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+folderfilter = lambda folder: folder in ["INBOX", "[Gmail]/E-mails enviados", "[Gmail]/Lixeira", "[Gmail]/Rascunhos", "[Gmail]/Spam", "[Gmail]/Com estrela"]
+
+[Repository gmail-local]
+type = Maildir
+localfolders = ~/Mail/Gmail

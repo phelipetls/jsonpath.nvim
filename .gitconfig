@@ -1,0 +1,30 @@
+[user]
+    email       = phelipe_teles@hotmail.com
+    name        = phelipe
+[commit]
+    verbose     = true
+[core]
+    editor      = nvim
+[mergetool "nvim"]
+    cmd         = $EDITOR -d $LOCAL $MERGED $REMOTE
+[merge]
+    tool        = nvim
+[rebase]
+    autosquash  = true
+[rerere]
+    enabled     = true
+[alias]
+    co          = checkout
+    st          = status
+    ci          = commit
+    ca          = commit --amend
+    b           = branch
+    l           = log --abbrev-commit --oneline --graph --decorate
+    sw          = switch
+    ctags       = !.git/hooks/ctags
+[credential]
+    helper      = cache
+[credential "https://github.com"]
+    username    = phelipetls
+[init]
+    templatedir = ~/.git_template
