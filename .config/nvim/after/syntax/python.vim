@@ -8,12 +8,10 @@ hi def link pythonfString String
 
 hi pythonBraces ctermfg=6
 syn region pythonInterpolation contained
-      \ matchgroup=Delimiter
+      \ matchgroup=SpecialChar
       \ start=/{/ end=/}/
       \ extend
       \ contains=ALLBUT,pythonDecoratorName,pythonDecorator,pythonFunction,pythonDoctestValue,pythonDoctest
-
-hi link pythonInterpolation SpecialChar
 
 hi link pythonDecorator Comment
 hi link pythonDecoratorName Function
