@@ -30,7 +30,7 @@ Plug 'tommcdo/vim-lion'
 Plug 'markonm/traces.vim'
 Plug 'AndrewRadev/splitjoin.vim'
 
-" HTML
+" html and javascript
 Plug 'mattn/emmet-vim'
 Plug 'mitsuhiko/vim-jinja'
 Plug 'tpope/vim-ragtag'
@@ -75,10 +75,6 @@ set updatetime=2000                 " lower updatetime, used for CursorHold even
 set breakindent                     " keep indentation when lines break
 set breakindentopt=shift:2          " but shift it by 2 spaces
 set linebreak                       " break only at specific characters, :h breakat
-
-set diffopt-=internal
-set diffopt+=algorithm:patience
-set diffopt+=indent-heuristic
 
 if has('nvim')
   set wildoptions=tagfile " keep the horizontal wildmenu in neovim
@@ -135,9 +131,6 @@ let g:user_emmet_leader_key = "<C-c><C-e>"
 "{{{ general mappings
 
 let maplocalleader = "\<space>"
-
-" map to easily escape in terminals
-tnoremap <silent> <esc> <c-\><c-n>
 
 " copy absolute path to clipboard
 nnoremap y<C-p> :let @+=expand("%:p")<CR>
