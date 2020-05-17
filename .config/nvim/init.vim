@@ -4,7 +4,6 @@ call plug#begin()
 
 " appearance
 Plug 'phelipetls/wal.vim'
-Plug 'chriskempson/base16-vim'
 
 " file navigation
 Plug '~/.fzf'
@@ -28,7 +27,6 @@ Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-rsi'
 Plug 'tommcdo/vim-lion'
 Plug 'markonm/traces.vim'
-Plug 'AndrewRadev/splitjoin.vim'
 
 " html and javascript
 Plug 'mattn/emmet-vim'
