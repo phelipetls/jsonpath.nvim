@@ -6,7 +6,6 @@ syn region pythonfString matchgroup=pythonQuotes start=+[fF]\z(['"]\{3}\)+ end="
 
 hi def link pythonfString String
 
-hi pythonBraces ctermfg=6
 syn region pythonInterpolation contained
       \ matchgroup=SpecialChar
       \ start=/{/ end=/}/
