@@ -50,7 +50,6 @@ end
 
 local function set_lsp_config(_)
   vim.api.nvim_command [[setlocal omnifunc=v:lua.vim.lsp.omnifunc]]
-  vim.api.nvim_command [[command! -buffer RenameLSP lua vim.lsp.buf.rename()]]
   vim.api.nvim_command [[nnoremap <buffer><silent> K :lua vim.lsp.buf.hover()<CR>]]
   vim.api.nvim_command [[nnoremap <buffer><silent> gd :lua vim.lsp.buf.definition()<CR>]]
   vim.api.nvim_command [[nnoremap <buffer><silent> [<C-d> :lua vim.lsp.buf.definition()<CR>]]
@@ -58,6 +57,7 @@ local function set_lsp_config(_)
   vim.api.nvim_command [[nnoremap <buffer><silent> g0 :lua vim.lsp.buf.document_symbol()<CR>]]
   vim.api.nvim_command [[nnoremap <buffer><silent> gs :lua vim.lsp.buf.signature_help()<CR>]]
   vim.api.nvim_command [[nnoremap <buffer><silent> gr :lua vim.lsp.buf.references()<CR>]]
+  vim.api.nvim_command [[nnoremap <buffer> gR :lua vim.lsp.buf.rename()<CR>]]
   vim.api.nvim_command [[let b:vsc_completion_command = "\<C-x>\<C-o>"]]
   vim.api.nvim_command [[autocmd! User LspDiagnosticsChanged lua update_diagnostics_loclist()]]
   vim.api.nvim_command [[autocmd! CursorHold <buffer> lua vim.lsp.util.show_line_diagnostics()]]
