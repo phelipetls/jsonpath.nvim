@@ -56,33 +56,33 @@ set wildcharm=<Tab>
 set mouse=nv                        " allow mouse in normal and visual mode
 set clipboard+=unnamedplus          " always use system clipboard
 set splitbelow splitright           " always split window to the right and below
-set ignorecase smartcase            " smart case
+set ignorecase smartcase            " ignore case, except when there is an upper case
 set noswapfile                      " i don't want swap files...
-set noshowcmd nocursorline          " don't show ongoing command nor cursor line
-set nojoinspaces                    " take out spaces when joining lines
+set noshowcmd nocursorline          " don't show incomplete commands nor cursor line
+set nojoinspaces                    " remove spaces when joining lines
 set scrolloff=3                     " when scrolling, keep three lines ahead visible
 set backspace=indent,eol,start      " better backspace behaviour
 set encoding=utf-8                  " set default encoding to utf-8
-set foldmethod=marker               " marker fold method
+set foldmethod=marker
 set laststatus=2                    " always show statusline
 set noshowmode                      " don't show mode
-set tags=.git/tags,tags             " where to look for tags
-set complete-=t                     " when completing, don't search in tags
+set tags=.git/tags,tags             " look for tags file in these directories
+set complete-=t                     " when completing, don't search tags
 set complete-=i                     " neither in included files
-set updatetime=2000                 " lower updatetime, used for CursorHold event
+set updatetime=1000                 " lower updatetime, used for CursorHold event
 set breakindent                     " keep indentation when lines break
 set breakindentopt=shift:2          " but shift it by 2 spaces
 set linebreak                       " break only at specific characters, :h breakat
 
-if has('nvim')
+if has('nvim-0.4.3')
   set wildoptions=tagfile " keep the horizontal wildmenu in neovim
 endif
 
 filetype plugin indent on
 
 " visually show special characters
-set fillchars=fold:-
 set list
+set fillchars=fold:-
 set listchars=tab:»\ ,nbsp:¬,trail:·,extends:›,precedes:‹
 set showbreak=↳\ 
 
@@ -98,8 +98,8 @@ autocmd! FileType * set formatoptions-=c formatoptions-=r formatoptions-=o
 autocmd! VimResized * wincmd =
 autocmd! TabEnter * wincmd =
 
-" tell neovim where python3 is
-" let g:python_host_prog = "/usr/bin/python"
+" tell neovim where python3 is -- this improves startup time
+let g:python_host_prog = "/usr/bin/python"
 let g:loaded_python_provider = 0
 let g:python3_host_prog = "/usr/bin/python3"
 
@@ -109,7 +109,6 @@ autocmd! BufReadPost *
       \   exe "normal g`\"" |
       \ endif
 
-" see https://gist.github.com/romainl/56f0c28ef953ffc157f36cc495947ab3 for improvements
 " use ripgrep as the external grep command
 if executable("rg")
   set grepprg=rg\ --vimgrep\ --no-heading
@@ -122,7 +121,7 @@ packadd cfilter
 " use matchit package
 packadd matchit
 
-" emmet
+" emmet trigger key
 let g:user_emmet_leader_key = "<C-c><C-e>"
 
 "}}}
@@ -139,7 +138,7 @@ nnoremap <silent> <esc> :nohlsearch<cr><esc>
 " go to vimrc file
 nnoremap <silent> <space>ev :edit $MYVIMRC<cr>
 
-" source current file, if it is .vim file
+" source current file, only if it is .vim file
 nnoremap <expr> <space>ss (&ft == "vim" ? ":source %<cr>" : "")
 
 " vertical movement
@@ -165,14 +164,17 @@ nnoremap <silent> <c-right> <c-w><
 nnoremap <silent> <c-down>  <c-w>-
 nnoremap <silent> <c-up>    <c-w>+
 
+" disable arrow keys
 nnoremap <left> <nop>
 nnoremap <right> <nop>
 nnoremap <up> <nop>
 nnoremap <down> <nop>
 
+" re-select region when indenting
 vnoremap <silent> > >gv
 vnoremap <silent> < <gv
 
+" disable key to Ex mode and command-line window (press c_CTRL-F instead)
 nnoremap Q <nop>
 nnoremap q: <nop>
 
@@ -182,7 +184,7 @@ command! Q q
 command! W w
 command! Qall qall
 
-" rename a variable or something
+" mapping to rename the word under the cursor
 nnoremap <silent> <c-n> *Ncgn
 
 " see https://gist.github.com/romainl/d2ad868afd7520519057475bd8e9db0c
@@ -300,7 +302,7 @@ function! CtrlSpace()
   " 'a bunch of stuff ../path/to/file'
   " but not if like this:
   " '<tag>content</'
-  if l:line_until_cursor =~ ".*\\(<\\)\\@<!\/\\f*$"
+  if l:line_until_cursor =~ ".*\\(<\\)\\@1<!\/\\f*$"
     return "\<C-x>\<C-f>"
   " else, call omnicompletion if omnifunc exists
   elseif len(&omnifunc) > 0
@@ -323,6 +325,7 @@ endfunction
 
 inoremap <silent> <Tab> <C-R>=SmartTab()<CR>
 inoremap <silent> <C-Space> <C-R>=CtrlSpace()<CR>
+
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
 
@@ -391,8 +394,10 @@ if exists("$TMUX")
   let g:slime_target = "tmux"
   let g:slime_default_config = {"socket_name": "default", "target_pane": "{last}"}
   let g:slime_dont_ask_default = 1
-else
+elseif has("unix")
   let g:slime_target = "x11"
+else
+  let g:slime_target = "neovim"
 endif
 
 nnoremap <silent> <C-c><C-c> <Plug>SLimeRegionSend
