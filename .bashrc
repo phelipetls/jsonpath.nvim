@@ -123,4 +123,4 @@ export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig/
 eval "$(pandoc --bash-completion)"
 source ~/.tmux/tmux_bash_completion
 
-export LESS="FXR"
+export LESS="FXRM"
