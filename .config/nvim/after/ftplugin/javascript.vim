@@ -26,13 +26,19 @@ endif
 "{{{ surround
 
 let b:surround_{char2nr("c")} = "console.log(\r);"
+let b:surround_{char2nr("e")} = "${\r};"
 
 function! Eatchar(pat)
   let c = nr2char(getchar(0))
   return (c =~ a:pat) ? '' : c
 endfunction
 
+"}}}
+"{{{ abbreviations
+
 iabbr <buffer><silent> clog console.log();<Left><Left><C-R>=Eatchar('\s')<CR>
+iabbr consoel console
+iabbr lenght length
 
 "}}}
 "{{{ path
@@ -167,5 +173,11 @@ endfunction
 nnoremap <silent> <buffer> gf      :call <SID>GF(expand('<cfile>'), 0, 0)<CR>
 nnoremap <silent> <buffer> <C-w>f  :call <SID>GF(expand('<cfile>'), 1, 0)<CR>
 nnoremap <silent> <buffer> <C-w>gf :call <SID>GF(expand('<cfile>'), 1, 1)<CR>
+
+"}}}
+"{{{ console.log word under cursor
+
+nnoremap <buffer> [<C-c> "zyiwOconsole.log(z);<Esc>
+nnoremap <buffer> ]<C-c> "zyiwoconsole.log(z);<Esc>
 
 "}}}
