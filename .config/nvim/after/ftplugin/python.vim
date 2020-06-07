@@ -53,3 +53,9 @@ let b:surround_{char2nr("p")} = "print(\r)"  " surround things with print
 command! -buffer -bang Ipy let g:slime_python_ipython = <bang>1
 
 "}}}
+"{{{ print word under cursor
+
+nnoremap <buffer> ]<C-p> "zyiwoprint(z)<Esc>
+nnoremap <buffer> [<C-p> "zyiwOprint(z)<Esc>
+
+"}}}
