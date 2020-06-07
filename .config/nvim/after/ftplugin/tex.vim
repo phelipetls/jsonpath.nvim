@@ -1,8 +1,9 @@
 "{{{ general settings
 
-" local current directory is the file directory
-lcd %:h
+" minimal syntax highlighting
+let g:tex_fast = ""
 
+" set default tex flavor
 let g:tex_flavor = "latex"
 
 " don't highlight errors
@@ -21,13 +22,15 @@ autocmd! VimLeavePre *.tex silent !latexmk -c %
 " find .bib file
 nnoremap gb :find *.bib<Tab><CR>
 
-" enable proper list formatting
-setlocal formatoptions+=n
-setlocal formatlistpat=^\\\s*\\\\item\\s*
-
 setlocal textwidth=80
 
-setlocal formatprg=latexindent
+compiler tex
+
+"}}}
+"{{{ list formatting
+
+setlocal formatoptions+=n
+setlocal formatlistpat=^\\\s*\\\\item\\s*
 
 "}}}
 "{{{ spell checking
@@ -44,11 +47,11 @@ nnoremap gO :vimgrep /\\[a-z]*section{/j %<CR>:cw 10<CR>
 "{{{ start and stop compilation
 
 if executable("latexmk")
-  compiler latexmk
+  autocmd! VimLeavePre <buffer> lua require'tex'.close_latexmk()
 endif
 
 "}}}
-"{{{ zathura
+"{{{ zathura / vimtex integration
 
 if executable("zathura")
   nnoremap <buffer><silent> <space>op :silent !zathura %<.pdf<CR>
@@ -59,15 +62,11 @@ if executable("zathura")
         \ expand("%:t") . " " .
         \ expand("%:r") . ".pdf"<CR>
 endif
+
 "}}}
 "{{{ navigation
 
 nnoremap <buffer><silent> ]] :call search("\\\\.*section{", 'w')<CR>
 nnoremap <buffer><silent> [[ :call search("\\\\[a-z]*section{", 'wb')<CR>
-
-"}}}
-"{{{ matchit
-
-let b:match_words .= ',\\begin\({[a-z]\+}\).*:\\end\1'
 
 "}}}
