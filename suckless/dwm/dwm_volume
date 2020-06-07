@@ -13,7 +13,7 @@ function send_notification {
     if is_mute ; then
         dunstify -r 9999 -t 2000 -u normal "Mute"
     else
-        dunstify -r 9999 -t 2000 -u normal "Volume: $(get_volume)"
+        dunstify -r 9999 -t 2000 -u normal "Volume: $volume"
     fi
 }
 
