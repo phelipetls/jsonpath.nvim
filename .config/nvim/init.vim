@@ -169,12 +169,6 @@ nnoremap <silent> <c-right> <c-w><
 nnoremap <silent> <c-down>  <c-w>-
 nnoremap <silent> <c-up>    <c-w>+
 
-" disable arrow keys
-nnoremap <left> <nop>
-nnoremap <right> <nop>
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-
 " re-select region when indenting
 vnoremap <silent> > >gv
 vnoremap <silent> < <gv
@@ -191,6 +185,9 @@ command! Qall qall
 
 " mapping to rename the word under the cursor
 nnoremap <silent> <c-n> *Ncgn
+
+" show information about highlight group under cursor
+command! Hi exe 'hi '.synIDattr(synID(line("."), col("."), 0), "name")
 
 " see https://gist.github.com/romainl/d2ad868afd7520519057475bd8e9db0c
 " gq wrapper that:
@@ -209,6 +206,16 @@ endfunction
 
 nmap <silent> gq :let w:gqview = winsaveview()<CR>:set opfunc=Format<CR>g@
 nnoremap <silent> gQ :normal magggqG`a<CR>
+
+" paste linewise without moving cursor
+function! PasteWithoutMoving(command)
+  let w:gpview = winsaveview()
+  execute "normal ".a:command
+  call winrestview(w:gpview)
+endfunction
+
+nnoremap <silent> gP :call PasteWithoutMoving("]P")<CR>
+nnoremap <silent> gp :call PasteWithoutMoving("]p")<CR>
 
 nnoremap <silent> <C-c>' :InlineEdit<CR>
 
@@ -424,9 +431,19 @@ endif
 "}}}
 "{{{ text objects
 
+" 24 simple text objects
+" ----------------------
+" i_ i. i: i, i; i| i/ i\ i* i+ i- i#
+" a_ a. a: a, a; a| a/ a\ a* a+ a- a#
+for char in [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+', '-', '#' ]
+  execute 'xnoremap i' . char . ' :<C-u>normal! T' . char . 'vt' . char . '<CR>'
+  execute 'onoremap i' . char . ' :normal vi' . char . '<CR>'
+  execute 'xnoremap a' . char . ' :<C-u>normal! F' . char . 'vf' . char . '<CR>'
+  execute 'onoremap a' . char . ' :normal va' . char . '<CR>'
+endfor
+
 " line text objects
 " -----------------
-" il al
 xnoremap il g_o^
 onoremap il :<C-u>normal vil<CR>
 xnoremap al $o0
@@ -434,7 +451,6 @@ onoremap al :<C-u>normal val<CR>
 
 " number text object (integer and float)
 " --------------------------------------
-" in
 function! VisualNumber()
   call search('\d\([^0-9\.]\|$\)', 'cW')
   normal v
@@ -445,10 +461,15 @@ onoremap in :<C-u>normal vin<CR>
 
 " square brackets text objects
 " ----------------------------
-" ir ar
 xnoremap ir i[
 xnoremap ar a[
 onoremap ir :normal vi[<CR>
 onoremap ar :normal va[<CR>
+
+" last yanked text object
+" -----------------------
+xnoremap iy `]o`[
+onoremap iy :<C-u>normal vik<CR>
+onoremap ay :<C-u>normal vikV<CR>
 
 "}}}
