@@ -27,9 +27,11 @@ Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-rsi'
 Plug 'tommcdo/vim-lion'
 Plug 'markonm/traces.vim'
+Plug 'AndrewRadev/inline_edit.vim'
 
 " html and javascript
 Plug 'mattn/emmet-vim'
+Plug 'AndrewRadev/tagalong.vim'
 Plug 'mitsuhiko/vim-jinja'
 Plug 'tpope/vim-ragtag'
 Plug 'pangloss/vim-javascript'
@@ -124,6 +126,9 @@ packadd matchit
 " emmet trigger key
 let g:user_emmet_leader_key = "<C-c><C-e>"
 
+" inline-edit config
+let g:inline_edit_autowrite = 1
+
 "}}}
 "{{{ general mappings
 
@@ -204,6 +209,8 @@ endfunction
 
 nmap <silent> gq :let w:gqview = winsaveview()<CR>:set opfunc=Format<CR>g@
 nnoremap <silent> gQ :normal magggqG`a<CR>
+
+nnoremap <silent> <C-c>' :InlineEdit<CR>
 
 "}}}
 "{{{ statusline and tabline
