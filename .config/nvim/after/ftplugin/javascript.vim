@@ -18,8 +18,8 @@ endif
 "}}}
 "{{{ linter
 
-if executable("jshint")
-  compiler jshint
+if executable("eslint")
+  compiler eslint
 endif
 
 "}}}
