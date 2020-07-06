@@ -32,6 +32,9 @@ Plug 'mitsuhiko/vim-jinja'
 Plug 'tpope/vim-ragtag'
 Plug 'pangloss/vim-javascript'
 
+" snippets
+Plug 'henricattoire/aergia'
+
 " LSP
 Plug 'neovim/nvim-lsp'
 
@@ -124,6 +127,10 @@ let g:user_emmet_leader_key = "<C-c><C-e>"
 
 " inline-edit config
 let g:inline_edit_autowrite = 1
+
+" aergia
+let g:aergia_snippets = expand("%:p:h")."/snippets"
+let g:aergia_key = "<c-j>"
 
 "}}}
 "{{{ general mappings
