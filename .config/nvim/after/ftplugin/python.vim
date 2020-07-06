@@ -7,27 +7,37 @@ set softtabstop=4
 "}}}
 "{{{ formatter
 
-if executable("python3")
+if executable("black")
   setlocal formatprg=black\ --quiet\ -\ 2>/dev/null
+endif
 
 "}}}
 "{{{ run
 
+if executable("python3")
   if expand("%:p:t")[:3] == "test"
-    compiler pytest
+    if executable("pytest")
+      compiler pytest
+    else
+      compiler pyunit
+    endif
   else
     compiler flake8
   endif
+endif
 
+if executable("python")
   nnoremap <silent> <F5> :!python3 %<CR>
   vnoremap <silent> <F5> :!python3 %<CR>
-  nnoremap <silent> <F11> :execute "!tmux split-window -v 'python3 -m pdb ". expand("%") ."' &"<CR>
+
+  if executable("tmux")
+    nnoremap <silent> <F11> :execute "!tmux split-window -v 'python3 -m pdb ". expand("%") ."' &"<CR>
+  endif
 
   command! -bang Test if <bang>1 | compiler pyunit | else | compiler pyunit_dir | endif | make!
 
   command! Pytest compiler pytest | make!
   nnoremap <silent> <F8> :Pytest<CR>
-
 endif
 
 "}}}
