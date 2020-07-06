@@ -130,6 +130,8 @@ let g:inline_edit_autowrite = 1
 
 let maplocalleader = "\<space>"
 
+tnoremap <Esc> <C-\><C-n>
+
 " copy absolute path to clipboard
 nnoremap y<C-p> :let @+=expand("%:p")<CR>
 
