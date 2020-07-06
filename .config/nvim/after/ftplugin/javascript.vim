@@ -43,6 +43,8 @@ iabbr lenght length
 "}}}
 "{{{ path
 
+setlocal path+=./views,./routes,./public,./db
+
 " we will need this in several places so let's do it once
 let b:js_node_modules = fnamemodify(finddir('node_modules', '.;'), ':.')
 
