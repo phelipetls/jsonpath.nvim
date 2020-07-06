@@ -2,9 +2,6 @@
 
 call plug#begin()
 
-" appearance
-Plug 'phelipetls/wal.vim'
-
 " file navigation
 Plug '~/.fzf'
 Plug 'junegunn/fzf.vim'
@@ -31,7 +28,6 @@ Plug 'AndrewRadev/inline_edit.vim'
 
 " html and javascript
 Plug 'mattn/emmet-vim'
-Plug 'AndrewRadev/tagalong.vim'
 Plug 'mitsuhiko/vim-jinja'
 Plug 'tpope/vim-ragtag'
 Plug 'pangloss/vim-javascript'
