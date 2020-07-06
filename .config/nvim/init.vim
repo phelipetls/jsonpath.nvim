@@ -215,6 +215,7 @@ endfunction
 nnoremap <silent> gP :call PasteWithoutMoving("]P")<CR>
 nnoremap <silent> gp :call PasteWithoutMoving("]p")<CR>
 
+" inline-edit plugin remapping
 nnoremap <silent> <C-c>' :InlineEdit<CR>
 
 "}}}
@@ -271,12 +272,9 @@ if executable("fzf")
 
   nmap <space>b :Buffers<CR>
   nmap <space>f :Files<CR>
-  nmap <space>g :GFiles<CR>
   nmap <space>h :Help<CR>
   nmap <space>t :Tags<CR>
   nmap <space>r :History<CR>
-  nmap <space>bc :BCommits<CR>
-  nmap <space>cc :Commits<CR>
 endif
 "}}}
 " Netrw {{{2
