@@ -343,8 +343,15 @@ function! SmartTab()
   endif
 endfunction
 
+function! LocalFileCompletion()
+  lcd %:p:h
+  return "\<C-x>\<C-f>"
+  lcd -
+endfunction
+
 inoremap <silent> <Tab> <C-R>=SmartTab()<CR>
 inoremap <silent> <C-Space> <C-R>=CtrlSpace()<CR>
+inoremap <silent> <C-x><C-f> <C-R>=LocalFileCompletion()<CR>
 
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
