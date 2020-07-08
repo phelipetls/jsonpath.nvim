@@ -130,7 +130,10 @@ let g:inline_edit_autowrite = 1
 
 " aergia
 let g:aergia_snippets = expand("%:p:h")."/snippets"
+" let g:aergia_snippets = "~/.config/nvim/snippets"
 let g:aergia_key = "<c-j>"
+
+inoremap <c-x><c-a> <c-r>=aergia#completion#AergiaComplete()<cr>
 
 "}}}
 "{{{ general mappings
