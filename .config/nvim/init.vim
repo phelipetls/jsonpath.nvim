@@ -322,6 +322,11 @@ augroup END
 "}}}
 "{{{ autocompletion config
 
+function LocalFileCompletion()
+    lcd %:p:h
+    return "\<C-x>\<C-f>"
+endfunction
+
 function! CtrlSpace()
   let l:line_until_cursor = strpart(getline('.'), 0, col('.')-1)
   " complete if line until cursor is something like this:
@@ -329,7 +334,7 @@ function! CtrlSpace()
   " but not if like this:
   " '<tag>content</'
   if l:line_until_cursor =~ ".*\\(<\\)\\@1<!\/\\f*$"
-    return "\<C-x>\<C-f>"
+    return LocalFileCompletion()
   " else, call omnicompletion if omnifunc exists
   elseif len(&omnifunc) > 0
     return "\<C-x>\<C-o>"
@@ -349,18 +354,17 @@ function! SmartTab()
   endif
 endfunction
 
-function! LocalFileCompletion()
-  lcd %:p:h
-  return "\<C-x>\<C-f>"
-  lcd -
-endfunction
-
 inoremap <silent> <Tab> <C-R>=SmartTab()<CR>
 inoremap <silent> <C-Space> <C-R>=CtrlSpace()<CR>
 inoremap <silent> <C-x><C-f> <C-R>=LocalFileCompletion()<CR>
 
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
+
+autocmd! CompleteDonePre *
+      \ if complete_info(["mode"]).mode == "files" |
+      \   lcd - |
+      \ endif
 
 set completeopt=menuone,noselect,noinsert
 set shortmess+=c
