@@ -26,6 +26,9 @@ Plug 'tommcdo/vim-lion'
 Plug 'markonm/traces.vim'
 Plug 'AndrewRadev/inline_edit.vim'
 
+" sql
+Plug 'tpope/vim-dadbod'
+
 " html and javascript
 Plug 'mattn/emmet-vim'
 Plug 'mitsuhiko/vim-jinja'
