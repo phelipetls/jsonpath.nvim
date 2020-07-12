@@ -184,6 +184,9 @@ nnoremap <silent> <c-up>    <c-w>+
 vnoremap <silent> > >gv
 vnoremap <silent> < <gv
 
+" select last yanked text
+nnoremap <silent> gy `[v`]
+
 " disable key to Ex mode and command-line window (press c_CTRL-F instead)
 nnoremap Q <nop>
 nnoremap q: <nop>
