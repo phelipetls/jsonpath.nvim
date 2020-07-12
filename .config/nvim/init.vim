@@ -387,8 +387,8 @@ endfunction
 " wrap around when navigating the quickfix list
 nnoremap <silent> ]q :call ListJump("c", "next", "first")<CR>
 nnoremap <silent> [q :call ListJump("c", "previous", "last")<CR>
-nnoremap <silent> ]l :call ListJump("l", "next", "first")<CR>
-nnoremap <silent> [l :call ListJump("l", "previous", "last")<CR>
+nnoremap <silent> ]l :call ListJump("l", "below", "first")<CR>
+nnoremap <silent> [l :call ListJump("l", "above", "last")<CR>
 
 command! Make silent make! | redraw!
 
