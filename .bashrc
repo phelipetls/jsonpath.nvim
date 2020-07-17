@@ -115,6 +115,9 @@ export MANPATH="/usr/local/texlive/2019/texmf-dist/doc/man/:$MANPATH"
 export INFOPATH="/usr/local/texlive/2019/texmf-dist/doc/info/:$INFOPATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 
+export GOPATH=$HOME/go
+export PATH="/usr/local/go/bin:$GOPATH/bin:$PATH"
+
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig/
