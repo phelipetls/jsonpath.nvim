@@ -34,6 +34,7 @@ Plug 'mattn/emmet-vim'
 Plug 'mitsuhiko/vim-jinja'
 Plug 'tpope/vim-ragtag'
 Plug 'pangloss/vim-javascript'
+Plug 'MaxMEllon/vim-jsx-pretty'
 
 " snippets
 Plug 'henricattoire/aergia'
