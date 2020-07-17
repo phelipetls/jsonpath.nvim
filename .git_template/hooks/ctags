@@ -1,8 +1,7 @@
 #!/bin/sh
 set -e
 PATH="/usr/local/bin:$PATH"
-dir="`git rev-parse --git-dir`"
-trap 'rm -f "$dir/$$.tags"' EXIT
+trap 'rm -f "$$.tags"' EXIT
 git ls-files | \
-  ctags --tag-relative -L - -f"$dir/$$.tags" --languages=-sql,json,css
-mv "$dir/$$.tags" "$dir/tags"
+  ctags --tag-relative -L - -f"$$.tags" --languages=-sql,css,json
+mv "$$.tags" "tags"

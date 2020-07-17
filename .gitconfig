@@ -24,4 +24,4 @@
 [credential "https://github.com"]
     username    = phelipetls
 [init]
-    templatedir = ~/.git_template
+    templateDir = ~/.git_template

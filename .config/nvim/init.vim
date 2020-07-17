@@ -71,7 +71,7 @@ set encoding=utf-8                  " set default encoding to utf-8
 set foldmethod=marker
 set laststatus=2                    " always show statusline
 set noshowmode                      " don't show mode
-set tags=.git/tags,tags             " look for tags file in these directories
+set tags=./tags,tags;                       " look for tags file in these directories
 set complete-=t                     " when completing, don't search tags
 set complete-=i                     " neither in included files
 set updatetime=1000                 " lower updatetime, used for CursorHold event
