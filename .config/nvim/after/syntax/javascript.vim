@@ -6,4 +6,5 @@ hi link jsGlobalObjects Ignore
 hi link jsGlobalNodeObjects Ignore
 
 hi link jsxPunct Ignore
+hi link jsxCloseString Ignore
 hi link jsxTagName Statement
