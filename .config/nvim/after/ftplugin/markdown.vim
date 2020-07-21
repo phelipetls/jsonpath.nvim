@@ -16,24 +16,23 @@ endif
 
 " format with markdown github style and atx headers using pandoc
 if executable("pandoc")
-  setlocal formatprg=pandoc\ -f\ markdown_github\ -t\ markdown_github\ --atx-headers
+  setlocal formatprg=pandoc\ -f\ gfm\ -t\ gfm\ --atx-headers
 endif
 
 "}}}
 "{{{ surround
 
-let b:surround_{char2nr("p")} = "```python\r```"
-let b:surround_{char2nr("r")} = "```r\r```"
+let b:surround_{char2nr("p")} = "``` python\r```"
+let b:surround_{char2nr("r")} = "``` r\r```"
 
 "}}}
 "{{{ conceal
 
-setl conceallevel=2
+setl conceallevel=0
 
 "}}}
-"{{{ movement
+"{{{ matchit
 
-nnoremap <silent><buffer> [[ m':call search('^#\{1,5\}\s\+\S', "bW")<CR>
-nnoremap <silent><buffer> ]] m':call search('^#\{1,5\}\s\+\S', "W")<CR>
+let b:match_words = '^```.\+$:^```$'
 
 "}}}
