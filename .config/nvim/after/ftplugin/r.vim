@@ -17,7 +17,7 @@ setlocal define=\\ze[A-Za-z_.]\\+\\s*\\\(<-\\\\|=\\)\\s*function.*
 "{{{ formatter
 
 if executable("Rscript")
-  setlocal formatprg=Rscript\ --slave\ -e\ \"formatR::tidy_source(file(\'stdin\'),arrow=T)\"
+  setlocal formatprg=styler_stdin
 endif
 
 "}}}
