@@ -25,6 +25,7 @@ Plug 'tpope/vim-rsi'
 Plug 'tommcdo/vim-lion'
 Plug 'markonm/traces.vim'
 Plug 'AndrewRadev/inline_edit.vim'
+Plug 'cespare/vim-toml'
 
 " sql
 Plug 'tpope/vim-dadbod'
