@@ -17,7 +17,6 @@ packadd! vim-eunuch
 packadd! vim-abolish
 packadd! vim-rsi
 packadd! vim-lion
-packadd! vim-hugo
 packadd! traces.vim
 packadd! inline_edit.vim
 packadd! vim-toml
@@ -33,6 +32,7 @@ packadd! vim-jinja
 packadd! vim-ragtag
 packadd! vim-javascript
 packadd! vim-jsx-pretty
+packadd! vim-hugo
 
 " snippets
 packadd! aergia

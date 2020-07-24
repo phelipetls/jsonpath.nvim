@@ -22,13 +22,15 @@ if executable("prettier")
 endif
 
 "}}}
-"{{{ emmet
-
-setl omnifunc=emmet#completeTag
-
-"}}}
 "{{{ firefox
 
 nnoremap <silent><buffer> <F5> :silent !firefox --new-window "%"<CR>
+
+"}}}
+"{{{ completion
+
+setl omnifunc=emmet#completeTag
+
+let b:vsc_completion_command="\<C-x>\<C-o>"
 
 "}}}
