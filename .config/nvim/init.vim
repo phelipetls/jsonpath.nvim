@@ -291,6 +291,11 @@ set tabline=%!Tabline()
 
 set path=.,,..
 
+augroup PathForFileTypes
+  au!
+  au Filetype *.js,*.css,*.html set path+=src,static,views,routes,public
+augroup END
+
 nnoremap <space>f :find<space>
 
 " FZF {{{
