@@ -1,56 +1,47 @@
 "{{{ plugins
 
-packadd! cfilter
-packadd! matchit
-packadd! vim-hugo
-
-call plug#begin()
-
 " file navigation
-Plug '~/.fzf'
-Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-vinegar'
-
-" autocompletion
-Plug 'phelipetls/vim-simple-complete'
-
-" git wrapper
-Plug 'tpope/vim-fugitive'
+set rtp+=~/.fzf
+packadd! fzf.vim
+packadd! vim-vinegar
 
 " conveniences
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-speeddating'
-Plug 'tpope/vim-eunuch'
-Plug 'tpope/vim-abolish'
-Plug 'tpope/vim-rsi'
-Plug 'tommcdo/vim-lion'
-Plug 'markonm/traces.vim'
-Plug 'AndrewRadev/inline_edit.vim'
-Plug 'cespare/vim-toml'
+packadd! vim-simple-complete
+packadd! vim-fugitive
+packadd! vim-surround
+packadd! vim-commentary
+packadd! vim-repeat
+packadd! vim-unimpaired
+packadd! vim-speeddating
+packadd! vim-eunuch
+packadd! vim-abolish
+packadd! vim-rsi
+packadd! vim-lion
+packadd! vim-hugo
+packadd! traces.vim
+packadd! inline_edit.vim
+packadd! vim-toml
+packadd! cfilter
+packadd! matchit
 
-" sql
-Plug 'tpope/vim-dadbod'
+" databases
+packadd! vim-dadbod
 
 " html and javascript
-Plug 'mattn/emmet-vim'
-Plug 'mitsuhiko/vim-jinja'
-Plug 'tpope/vim-ragtag'
-Plug 'pangloss/vim-javascript'
-Plug 'MaxMEllon/vim-jsx-pretty'
+packadd! emmet-vim
+packadd! vim-jinja
+packadd! vim-ragtag
+packadd! vim-javascript
+packadd! vim-jsx-pretty
 
 " snippets
-Plug 'henricattoire/aergia'
+packadd! aergia
 
 " LSP
-Plug 'neovim/nvim-lsp'
+packadd! nvim-lsp
 
 " REPL
-Plug 'jpalardy/vim-slime'
-
-call plug#end()
+packadd! vim-slime
 
 "}}}
 "{{{ general settings

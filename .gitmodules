@@ -1,0 +1,78 @@
+[submodule "vim-hugo"]
+	path = .config/nvim/pack/plugins/opt/vim-hugo
+	url = https://github.com/phelipetls/vim-hugo
+[submodule "fzf.vim"]
+	path = .config/nvim/pack/plugins/opt/fzf.vim
+	url = https://github.com/junegunn/fzf.vim
+[submodule "vim-vinegar"]
+	path = .config/nvim/pack/plugins/opt/vim-vinegar
+	url = https://github.com/tpope/vim-vinegar
+[submodule "vim-simple-complete"]
+	path = .config/nvim/pack/plugins/opt/vim-simple-complete
+	url = https://github.com/phelipetls/vim-simple-complete
+[submodule "vim-fugitive"]
+	path = .config/nvim/pack/plugins/opt/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive
+[submodule "vim-surround"]
+	path = .config/nvim/pack/plugins/opt/vim-surround
+	url = https://github.com/tpope/vim-surround
+[submodule "vim-commentary"]
+	path = .config/nvim/pack/plugins/opt/vim-commentary
+	url = https://github.com/tpope/vim-commentary
+[submodule "vim-repeat"]
+	path = .config/nvim/pack/plugins/opt/vim-repeat
+	url = https://github.com/tpope/vim-repeat
+[submodule "vim-unimpaired"]
+	path = .config/nvim/pack/plugins/opt/vim-unimpaired
+	url = https://github.com/tpope/vim-unimpaired
+[submodule "vim-speeddating"]
+	path = .config/nvim/pack/plugins/opt/vim-speeddating
+	url = https://github.com/tpope/vim-speeddating
+[submodule "vim-eunuch"]
+	path = .config/nvim/pack/plugins/opt/vim-eunuch
+	url = https://github.com/tpope/vim-eunuch
+[submodule "vim-abolish"]
+	path = .config/nvim/pack/plugins/opt/vim-abolish
+	url = https://github.com/tpope/vim-abolish
+[submodule "vim-rsi"]
+	path = .config/nvim/pack/plugins/opt/vim-rsi
+	url = https://github.com/tpope/vim-rsi
+[submodule "vim-lion"]
+	path = .config/nvim/pack/plugins/opt/vim-lion
+	url = https://github.com/tommcdo/vim-lion
+[submodule "traces.vim"]
+	path = .config/nvim/pack/plugins/opt/traces.vim
+	url = https://github.com/markonm/traces.vim
+[submodule "inline_edit.vim"]
+	path = .config/nvim/pack/plugins/opt/inline_edit.vim
+	url = https://github.com/AndrewRadev/inline_edit.vim
+[submodule "vim-toml"]
+	path = .config/nvim/pack/plugins/opt/vim-toml
+	url = https://github.com/cespare/vim-toml
+[submodule "vim-dadbod"]
+	path = .config/nvim/pack/plugins/opt/vim-dadbod
+	url = https://github.com/tpope/vim-dadbod
+[submodule "emmet-vim"]
+	path = .config/nvim/pack/plugins/opt/emmet-vim
+	url = https://github.com/mattn/emmet-vim
+[submodule "vim-jinja"]
+	path = .config/nvim/pack/plugins/opt/vim-jinja
+	url = https://github.com/mitsuhiko/vim-jinja
+[submodule "vim-ragtag"]
+	path = .config/nvim/pack/plugins/opt/vim-ragtag
+	url = https://github.com/tpope/vim-ragtag
+[submodule "vim-javascript"]
+	path = .config/nvim/pack/plugins/opt/vim-javascript
+	url = https://github.com/pangloss/vim-javascript
+[submodule "vim-jsx-pretty"]
+	path = .config/nvim/pack/plugins/opt/vim-jsx-pretty
+	url = https://github.com/MaxMEllon/vim-jsx-pretty
+[submodule "aergia"]
+	path = .config/nvim/pack/plugins/opt/aergia
+	url = https://github.com/henricattoire/aergia
+[submodule "nvim-lsp"]
+	path = .config/nvim/pack/plugins/opt/nvim-lsp
+	url = https://github.com/neovim/nvim-lsp
+[submodule "vim-slime"]
+	path = .config/nvim/pack/plugins/opt/vim-slime
+	url = https://github.com/jpalardy/vim-slime
