@@ -1,5 +1,9 @@
 "{{{ plugins
 
+packadd! cfilter
+packadd! matchit
+packadd! vim-hugo
+
 call plug#begin()
 
 " file navigation
@@ -120,12 +124,6 @@ if executable("rg")
   set grepprg=rg\ --vimgrep\ --smart-case\ --no-heading
   set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
-
-" use cfilter package
-packadd cfilter
-
-" use matchit package
-packadd matchit
 
 " emmet trigger key
 let g:user_emmet_leader_key = "<C-c><C-e>"
@@ -249,16 +247,17 @@ nnoremap <silent> <C-c>' :InlineEdit<CR>
 "{{{ statusline and tabline
 
 function! GitHead() abort
-  let l:head = FugitiveHead()
-  if len(l:head) > 0
-    return printf("[%s]", l:head)
+  if exists("*FugitiveHead")
+    let l:head = FugitiveHead()
+    if len(l:head) > 0
+      return printf("[%s]", l:head)
   else
     return ""
   endif
 endfunction
 
 let &g:statusline=' %n:'                      " buffer number
-let &g:statusline.=' %t'                      " abbreviated file name
+let &g:statusline.=' %0.30f'                  " abbreviated file name
 let &g:statusline.=' %{GitHead()}'            " branch of current HEAD commit
 let &g:statusline.=' %m'                      " modified
 let &g:statusline.=' %='                      " jump to other side
@@ -292,19 +291,23 @@ set tabline=%!Tabline()
 
 set path=.,,..
 
+nnoremap <space>f :find<space>
+
 " FZF {{{
+
 if executable("fzf")
   let $FZF_DEFAULT_COMMAND = 'rg --files --color=never --glob "!.git/*"'
   let g:fzf_preview_window = ''
 
-  nmap <space>b :Buffers<CR>
-  nmap <space>f :Files<CR>
-  nmap <space>h :Help<CR>
-  nmap <space>t :Tags<CR>
-  nmap <space>r :History<CR>
+  nnoremap <space>b :Buffers<CR>
+  nnoremap <space>f :Files<CR>
+  nnoremap <space>h :Help<CR>
+  nnoremap <space>t :Tags<CR>
+  nnoremap <space>r :History<CR>
 endif
 "}}}
 " Netrw {{{2
+
 let g:netrw_special_syntax = 1  " highlight special files in netrw
 let g:netrw_sizestyle = "H"  " human-readable file size
 let g:netrw_timefmt = "%b %d %R" " preferred datetime format
@@ -328,6 +331,7 @@ augroup Netrw
   autocmd!
   au FileType netrw setlocal bufhidden=wipe
 augroup END
+
 ""}}}
 
 "}}}
