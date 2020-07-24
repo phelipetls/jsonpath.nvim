@@ -46,6 +46,9 @@ nnoremap gO :vimgrep /\\[a-z]*section{/j %<CR>:cw 10<CR>
 "}}}}
 "{{{ start and stop compilation
 
+nnoremap <space>ll :lua require'tex'.latexmk()<CR>
+nnoremap <space>lc :lua require'tex'.close_latexmk()<CR>
+
 if executable("latexmk")
   autocmd! VimLeavePre <buffer> lua require'tex'.close_latexmk()
 endif
