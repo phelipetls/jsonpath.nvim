@@ -1,1 +1,1 @@
-setlocal path+=layouts,resources,content,archetypes,static,data,_default,partials
+setlocal path+=layouts,resources,content,archetypes,static,data,layouts/_default,layouts/partials,..
