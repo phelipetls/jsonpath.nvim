@@ -235,6 +235,16 @@ nnoremap <silent> gp :call PasteWithoutMoving("]p")<CR>
 " inline-edit plugin remapping
 nnoremap <silent> <C-c>' :InlineEdit<CR>
 
+" highlight yanked region
+if has("nvim-0.5.0")
+  augroup highlight_yank
+      autocmd!
+      autocmd TextYankPost * silent!
+            \ au TextYankPost * silent!
+            \ lua vim.highlight.on_yank {higroup="Search", on_visual=false}
+  augroup END
+endif
+
 "}}}
 "{{{ statusline and tabline
 
