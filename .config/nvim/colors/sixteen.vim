@@ -62,7 +62,7 @@ hi Directory ctermfg=1
 
 hi NonText ctermbg=NONE ctermfg=8
 
-hi Visual ctermbg=7 ctermfg=0
+hi Visual ctermbg=6 ctermfg=0
 hi VisualNOS ctermbg=NONE ctermfg=1
 hi Search ctermbg=8 ctermfg=7
 hi IncSearch ctermbg=1 ctermfg=7 cterm=BOLD
