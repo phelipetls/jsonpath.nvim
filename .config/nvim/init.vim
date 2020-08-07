@@ -139,6 +139,8 @@ let g:aergia_key = "<c-j>"
 
 inoremap <c-x><c-a> <c-r>=aergia#completion#AergiaComplete()<cr>
 
+set diffopt+=algorithm:patience
+
 "}}}
 "{{{ general mappings
 
