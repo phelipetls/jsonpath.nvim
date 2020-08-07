@@ -235,14 +235,14 @@ nmap <silent> gq :let w:gqview = winsaveview()<CR>:set opfunc=Format<CR>g@
 nnoremap <silent> gQ :normal magggqG`a<CR>
 
 " paste linewise without moving cursor
-function! PasteWithoutMoving(command)
+function! DoWithoutMoving(command)
   let w:gpview = winsaveview()
   execute "normal ".a:command
   call winrestview(w:gpview)
 endfunction
 
-nnoremap <silent> gP :call PasteWithoutMoving("]P")<CR>
-nnoremap <silent> gp :call PasteWithoutMoving("]p")<CR>
+nnoremap <silent> gP :call DoWithoutMoving("]P")<CR>
+nnoremap <silent> gp :call DoWithoutMoving("]p")<CR>
 
 " inline-edit plugin remapping
 nnoremap <silent> <C-c>' :InlineEdit<CR>
@@ -305,9 +305,9 @@ set tabline=%!Tabline()
 
 set path=.,,..
 
-augroup PathForFileTypes
+augroup ExpressPath
   au!
-  au Filetype *.js,*.css,*.html set path+=src,static,views,routes,public
+  au Filetype javascript,html set path+=src,static,views,routes,public
 augroup END
 
 nnoremap <space>f :find<space>
