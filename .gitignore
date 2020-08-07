@@ -6,3 +6,7 @@ suckless/st/x.o
 suckless/tabbed/tabbed
 suckless/dmenu/dmenu
 suckless/dmenu/dmenu.o
+.config/nvim/spell/en.utf-8.add
+.config/nvim/spell/en.utf-8.add.spl
+.config/nvim/spell/pt.utf-8.add
+.config/nvim/spell/pt.utf-8.add.spl
