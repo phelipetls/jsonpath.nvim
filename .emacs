@@ -1,5 +1,4 @@
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-(load-theme 'jbeans t)
+(load-theme 'leuven t)
 
 (setq recentf-max-menu-items 25)
 (setq recentf-max-saved-items 25)
