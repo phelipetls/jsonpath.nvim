@@ -50,3 +50,9 @@ xnoremap iv :<C-u>normal ^f:wvt;<CR>
 onoremap iv :<C-u>normal viv<CR>
 
 "}}}
+"{{{ surround
+
+let b:surround_{char2nr("c")} = "\1css rule: \1 {\n\r\n}"
+" let b:surround_{char2nr("c")} = "\1css rule: \1 {\n".repeat(" ", &sw)."\r\n}"
+
+"}}}
