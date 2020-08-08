@@ -160,6 +160,10 @@ nnoremap <silent> <space>ev :edit $MYVIMRC<cr>
 " source current file, only if it is .vim file
 nnoremap <expr> <space>ss (&ft == "vim" ? ":source %<cr>" : "")
 
+" make <c-u> and <c-w> undoable
+inoremap <c-u> <c-g>u<c-u>
+inoremap <c-w> <c-g>u<c-w>
+
 " vertical movement
 nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
 nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
