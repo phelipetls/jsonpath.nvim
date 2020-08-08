@@ -372,7 +372,7 @@ augroup END
 "}}}
 "{{{ autocompletion config
 
-function LocalFileCompletion()
+function! LocalFileCompletion()
     lcd %:p:h
     return "\<C-x>\<C-f>"
 endfunction
