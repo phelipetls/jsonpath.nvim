@@ -206,7 +206,6 @@ nnoremap <silent> gy `[v`]
 
 " disable key to Ex mode and command-line window (press c_CTRL-F instead)
 nnoremap Q <nop>
-nnoremap q: <nop>
 
 " annoying command line typos
 command! E e
