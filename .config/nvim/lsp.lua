@@ -58,7 +58,7 @@ local function set_lsp_config(_)
   vim.api.nvim_command [[nnoremap <buffer><silent> gs :lua vim.lsp.buf.signature_help()<CR>]]
   vim.api.nvim_command [[nnoremap <buffer><silent> gr :lua vim.lsp.buf.references()<CR>]]
   vim.api.nvim_command [[nnoremap <buffer> gR :lua vim.lsp.buf.rename()<CR>]]
-  vim.api.nvim_command [[let b:vsc_completion_command = "\<C-x>\<C-o>"]]
+  vim.api.nvim_command [[let b:completion_command = "\<C-x>\<C-o>"]]
   vim.api.nvim_command [[autocmd! User LspDiagnosticsChanged lua update_diagnostics_loclist()]]
   vim.api.nvim_command [[nnoremap <buffer> <C-S-Space> lua vim.lsp.util.show_line_diagnostics()]]
 end

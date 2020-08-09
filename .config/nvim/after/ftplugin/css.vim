@@ -5,7 +5,7 @@ setlocal softtabstop=2 shiftwidth=2
 "}}}
 "{{{ completion
 
-let b:vsc_completion_command = "\<C-x>\<C-o>"
+let b:completion_command = "\<C-x>\<C-o>"
 
 "}}}
 "{{{ formatter
@@ -56,3 +56,5 @@ let b:surround_{char2nr("c")} = "\1css rule: \1 {\n\r\n}"
 " let b:surround_{char2nr("c")} = "\1css rule: \1 {\n".repeat(" ", &sw)."\r\n}"
 
 "}}}
+
+inoremap <buffer><silent><expr> <CR> getline(".")[col(".")-2] == "{" ? "\<CR>}\<C-o>O" : "\<CR>"

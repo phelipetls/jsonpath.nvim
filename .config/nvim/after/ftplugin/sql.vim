@@ -3,7 +3,7 @@ let g:sql_type_default = 'postgresql'
 setlocal commentstring=--\ %s
 
 setlocal omnifunc=syntaxcomplete#Complete
-let b:vsc_completion_command = "\<C-x>\<C-o>"
+let b:completion_command = "\<C-x>\<C-o>"
 
 setlocal shiftwidth=2 softtabstop=2
 
