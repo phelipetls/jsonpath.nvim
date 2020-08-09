@@ -34,16 +34,4 @@ setl omnifunc=emmet#completeTag
 let b:vsc_completion_command = "\<C-x>\<C-o>"
 let b:vsc_type_complete_length = 1
 
-function! RunEmmetAfterCompletion()
-  if complete_info(["mode"]).mode == "omni" &&
-        \ complete_info(["pum_visible"]).pum_visible &&
-        \ &omnifunc == "emmet#completeTag"
-    call feedkeys("\<C-c>\<C-e>,", "i")
-  endif
-endfunction
-
-inoremap <silent><expr> <space> pumvisible() ? "\<C-y>" : "\<space>"
-
-autocmd! CompleteDonePre *.html call RunEmmetAfterCompletion()
-
 "}}}
