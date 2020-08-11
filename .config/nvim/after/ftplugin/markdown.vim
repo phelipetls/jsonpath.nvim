@@ -28,7 +28,8 @@ endif
 "{{{ surround
 
 let b:surround_{char2nr("p")} = "``` python\r```"
-let b:surround_{char2nr("r")} = "``` r\r```"
+let b:surround_{char2nr("R")} = "``` r\r```"
+let b:surround_{char2nr("l")} = "[\r](\1link: \1)"
 
 "}}}
 "{{{ conceal
@@ -54,5 +55,10 @@ endfunction
 
 xnoremap ic :<C-u>call SelectCodeBlock()<CR>
 onoremap ic :<C-u>normal vic<CR>
+
+"}}}
+"{{{ completion
+
+let b:completion_command = "\<C-n>"
 
 "}}}
