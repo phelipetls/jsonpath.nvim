@@ -38,10 +38,6 @@
 	path = .config/nvim/pack/plugins/opt/vim-speeddating
 	url = https://github.com/tpope/vim-speeddating
 	ignore = dirty
-[submodule "vim-eunuch"]
-	path = .config/nvim/pack/plugins/opt/vim-eunuch
-	url = https://github.com/tpope/vim-eunuch
-	ignore = dirty
 [submodule "vim-abolish"]
 	path = .config/nvim/pack/plugins/opt/vim-abolish
 	url = https://github.com/tpope/vim-abolish

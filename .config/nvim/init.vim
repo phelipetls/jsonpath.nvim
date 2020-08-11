@@ -14,7 +14,6 @@ packadd! vim-commentary
 packadd! vim-repeat
 packadd! vim-unimpaired
 packadd! vim-speeddating
-packadd! vim-eunuch
 packadd! vim-abolish
 packadd! vim-rsi
 packadd! vim-lion
