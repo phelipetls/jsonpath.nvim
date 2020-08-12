@@ -39,16 +39,6 @@ endfunction
 xmap ac :<C-u>call SelectAroundCssRule()<CR>
 omap ac :<C-u>normal vic<CR>
 
-" css property text object
-" --------------------
-xnoremap ip :<C-u>normal ^vf:<CR>
-onoremap ip :<C-u>normal vip<CR>
-
-" css value text object
-" --------------------
-xnoremap iv :<C-u>normal ^f:wvt;<CR>
-onoremap iv :<C-u>normal viv<CR>
-
 "}}}
 "{{{ surround
 
@@ -57,4 +47,4 @@ let b:surround_{char2nr("c")} = "\1css rule: \1 {\n\r\n}"
 
 "}}}
 
-inoremap <buffer><silent><expr> <CR> getline(".")[col(".")-2] == "{" ? "\<CR>}\<C-o>O" : "\<CR>"
+" inoremap <buffer><silent><expr> <CR> getline(".")[col(".")-2] == "{" ? "\<CR>}\<C-o>O" : "\<CR>"
