@@ -430,7 +430,7 @@ nnoremap <silent> [q :call ListJump("c", "previous", "last")<CR>
 nnoremap <silent> ]l :call ListJump("l", "below", "first")<CR>
 nnoremap <silent> [l :call ListJump("l", "above", "last")<CR>
 
-command! Make silent make! | redraw!
+command! Make silent lua require'async_make'.make()
 
 " function to resize quickfix window given a min and max height
 function! ResizeQf(minheight, maxheight)
