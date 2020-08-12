@@ -17,7 +17,7 @@
  '(menu-bar-mode nil)
  '(package-selected-packages
    (quote
-    (markdown-mode company elpy dumb-jump use-package flycheck jbeans-theme ess evil-surround toc-org ox-gfm evil-commentary evil)))
+    (web-mode markdown-mode company elpy dumb-jump use-package flycheck jbeans-theme ess evil-surround toc-org ox-gfm evil-commentary evil)))
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(tool-bar-mode nil))
@@ -81,3 +81,6 @@
       org-edit-src-content-indentation 0)
 
 (setq org-src-fontify-natively t)
+
+(require 'ido)
+(ido-mode t)

@@ -102,3 +102,6 @@
 	path = .config/nvim/pack/plugins/opt/splitjoin.vim
 	url = https://github.com/AndrewRadev/splitjoin.vim
 	ignore = dirty
+[submodule "vim-sneak"]
+	path = .config/nvim/pack/plugins/opt/vim-sneak
+	url = https://github.com/justinmk/vim-sneak
