@@ -143,8 +143,6 @@ set diffopt+=algorithm:patience
 "}}}
 "{{{ general mappings
 
-let maplocalleader = "\<space>"
-
 tnoremap <Esc> <C-\><C-n>
 
 " copy absolute path to clipboard
@@ -166,16 +164,6 @@ inoremap <c-w> <c-g>u<c-w>
 " vertical movement
 nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
 nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
-
-" autoclose braces
-fun! AutoCloseBraces()
-  inoremap <buffer> {<CR> {<CR>}<C-o>O
-endfun
-
-augroup AutoClosePairs
-  au!
-  autocmd FileType javascript,scss,css call AutoCloseBraces()
-augroup END
 
 " Y consistent with C, D etc.
 nnoremap Y y$
