@@ -136,8 +136,6 @@ let g:inline_edit_autowrite = 1
 let g:aergia_snippets = "~/.config/nvim/snippets"
 let g:aergia_key = "<c-j>"
 
-inoremap <c-x><c-a> <c-r>=aergia#completion#AergiaComplete()<cr>
-
 set diffopt+=algorithm:patience
 
 "}}}
@@ -294,11 +292,6 @@ set tabline=%!Tabline()
 "{{{ file navigation
 
 set path=.,,..
-
-augroup ExpressPath
-  au!
-  au Filetype javascript,html set path+=src,static,views,routes,public
-augroup END
 
 nnoremap <space>f :find<space>
 
@@ -528,11 +521,5 @@ xnoremap ir i[
 xnoremap ar a[
 onoremap ir :normal vi[<CR>
 onoremap ar :normal va[<CR>
-
-" last yanked text object
-" -----------------------
-xnoremap iy `]o`[
-onoremap iy :<C-u>normal vik<CR>
-onoremap ay :<C-u>normal vikV<CR>
 
 "}}}

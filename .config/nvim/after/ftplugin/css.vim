@@ -40,11 +40,3 @@ xmap ac :<C-u>call SelectAroundCssRule()<CR>
 omap ac :<C-u>normal vic<CR>
 
 "}}}
-"{{{ surround
-
-let b:surround_{char2nr("c")} = "\1css rule: \1 {\n\r\n}"
-" let b:surround_{char2nr("c")} = "\1css rule: \1 {\n".repeat(" ", &sw)."\r\n}"
-
-"}}}
-
-" inoremap <buffer><silent><expr> <CR> getline(".")[col(".")-2] == "{" ? "\<CR>}\<C-o>O" : "\<CR>"
