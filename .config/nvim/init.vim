@@ -193,10 +193,10 @@ nnoremap <silent> gy `[v`]
 nnoremap Q <nop>
 
 " annoying command line typos
-command! E e
-command! Q q
-command! W w
-command! Qall qall
+command! -bang E e<bang>
+command! -bang Q q<bang>
+command! -bang W w<bang>
+command! -bang Qall qall<bang>
 
 " mapping to rename the word under the cursor
 nnoremap <silent> <c-n> *Ncgn
@@ -244,6 +244,14 @@ if has("nvim-0.5.0")
             \ lua vim.highlight.on_yank {higroup="Search", on_visual=false}
   augroup END
 endif
+
+" open new tmux pane on file's current directory
+nnoremap <silent> <C-w><C-t> :set nomore<CR>:exe '!tmux split-window -v -c '.expand("%:p:h")<CR>:set more<CR>
+nnoremap <silent> <C-w>t :set nomore<CR>:exe '!tmux split-window -v -c '.expand("%:p:h")<CR>:set more<CR>
+
+" format paragraph
+nnoremap <M-q> gwip
+inoremap <M-q> <C-o>gwip
 
 "}}}
 "{{{ statusline and tabline
@@ -523,3 +531,4 @@ onoremap ir :normal vi[<CR>
 onoremap ar :normal va[<CR>
 
 "}}}
+" vi: nowrap
