@@ -106,7 +106,7 @@ let g:python3_host_prog = "/usr/bin/python3"
 
 " when entering a buffer, resume to the position you were when you left it
 autocmd! BufReadPost *
-      \ if line("'\"") > 0 && line("'\"") <= line("$") |
+      \ if line("'\"") > 0 && line("'\"") <= line("$") && &ft !~ "commit" |
       \   exe "normal g`\"" |
       \ endif
 
