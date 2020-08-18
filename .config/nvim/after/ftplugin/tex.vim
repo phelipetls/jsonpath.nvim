@@ -24,7 +24,7 @@ nnoremap gb :find *.bib<Tab><CR>
 
 setlocal textwidth=80
 
-compiler tex
+compiler latexmk
 
 "}}}
 "{{{ list formatting
@@ -57,9 +57,9 @@ endif
 "{{{ zathura / vimtex integration
 
 if executable("zathura")
-  nnoremap <buffer><silent> <space>op :silent !zathura %<.pdf<CR>
+  nnoremap <buffer><silent> <F5> :silent !zathura %<.pdf<CR>
 
-  nnoremap <silent> <space>lv :execute ":silent !zathura --synctex-forward " .
+  nnoremap <buffer><silent> <space>lv :execute ":silent !zathura --synctex-forward " .
         \ line(".") . ":" .
         \ col(".") . ":" .
         \ expand("%:t") . " " .
