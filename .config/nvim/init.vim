@@ -462,6 +462,7 @@ augroup QuickFixSettings
   au FileType qf setlocal nowrap
   au FileType qf call ResizeQf(1, 5) " min, max
   au FileType qf au BufEnter <buffer> nested if winnr("$") == 1 | quit | endif
+  au FileType qf setlocal statusline=%q\ %{w:quickfix_title}\ %=[%l/%L]
 augroup END
 
 "}}}
