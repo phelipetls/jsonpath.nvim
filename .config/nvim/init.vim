@@ -29,7 +29,6 @@ packadd! vim-dadbod
 " html and javascript
 packadd! emmet-vim
 packadd! vim-jinja
-packadd! vim-ragtag
 packadd! vim-javascript
 packadd! vim-jsx-pretty
 packadd! vim-hugo
