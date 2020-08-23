@@ -96,9 +96,11 @@ autocmd! VimResized * wincmd =
 autocmd! TabEnter * wincmd =
 
 " tell neovim where python3 is -- this improves startup time
-let g:python_host_prog = "/usr/bin/python"
-let g:loaded_python_provider = 0
-let g:python3_host_prog = "/usr/bin/python3"
+if has("nvim")
+  let g:python_host_prog = "/usr/bin/python"
+  let g:loaded_python_provider = 0
+  let g:python3_host_prog = "/usr/bin/python3"
+endif
 
 " when entering a buffer, resume to the position you were when you left it
 autocmd! BufReadPost *
@@ -132,6 +134,7 @@ set diffopt+=algorithm:patience
 "}}}
 "{{{ general mappings
 
+" improve esc in terminal
 tnoremap <Esc> <C-\><C-n>
 
 " copy absolute path to clipboard
@@ -213,16 +216,6 @@ endfunction
 nmap <silent> gq :let w:gqview = winsaveview()<CR>:set opfunc=Format<CR>g@
 nnoremap <silent> gQ :normal magggqG`a<CR>
 
-" paste linewise without moving cursor
-function! DoWithoutMoving(command)
-  let w:gpview = winsaveview()
-  execute "normal ".a:command
-  call winrestview(w:gpview)
-endfunction
-
-nnoremap <silent> gP :call DoWithoutMoving("]P")<CR>
-nnoremap <silent> gp :call DoWithoutMoving("]p")<CR>
-
 " inline-edit plugin remapping
 nnoremap <silent> <C-c>' :InlineEdit<CR>
 
@@ -235,10 +228,6 @@ if has("nvim-0.5.0")
             \ lua vim.highlight.on_yank {higroup="Search", on_visual=false}
   augroup END
 endif
-
-" open new tmux pane on file's current directory
-nnoremap <silent> <C-w><C-t> :set nomore<CR>:exe '!tmux split-window -v -c '.expand("%:p:h")<CR>:set more<CR>
-nnoremap <silent> <C-w>t :set nomore<CR>:exe '!tmux split-window -v -c '.expand("%:p:h")<CR>:set more<CR>
 
 " format paragraph
 nnoremap <M-q> gwip
@@ -294,8 +283,6 @@ set path=.,,..
 
 nnoremap <space>f :find<space>
 
-" FZF {{{
-
 if executable("fzf")
   let $FZF_DEFAULT_COMMAND = 'rg --files --color=never --glob "!.git/*"'
   let g:fzf_preview_window = ''
@@ -322,9 +309,6 @@ let g:fzf_colors =
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
 
-"}}}
-" Netrw {{{2
-
 let g:netrw_special_syntax = 1  " highlight special files in netrw
 let g:netrw_sizestyle = "H"  " human-readable file size
 let g:netrw_timefmt = "%b %d %R" " preferred datetime format
@@ -348,8 +332,6 @@ augroup Netrw
   autocmd!
   au FileType netrw setlocal bufhidden=wipe
 augroup END
-
-""}}}
 
 "}}}
 "{{{ autocompletion config
@@ -459,7 +441,6 @@ augroup END
 "}}}
 "{{{ vim-slime
 
-
 if exists("$TMUX")
   let g:slime_target = "tmux"
   let g:slime_default_config = {"socket_name": "default", "target_pane": "{last}"}
@@ -497,13 +478,6 @@ for char in [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+', '-', 
   execute 'xnoremap a' . char . ' :<C-u>normal! F' . char . 'vf' . char . '<CR>'
   execute 'onoremap a' . char . ' :normal va' . char . '<CR>'
 endfor
-
-" line text objects
-" -----------------
-xnoremap il g_o^
-onoremap il :<C-u>normal vil<CR>
-xnoremap al $o0
-onoremap al :<C-u>normal val<CR>
 
 " number text object (integer and float)
 " --------------------------------------
