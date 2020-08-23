@@ -6,9 +6,9 @@ end
 
 local function fill_qflist(lines)
   vim.fn.setqflist({}, "a", {
-    title = vim.bo.makeprg,
+    title = makeprg,
     lines = vim.tbl_filter(has_non_whitespace, lines),
-    efm = vim.bo.errorformat
+    efm = efm
   })
 
   vim.api.nvim_command("doautocmd QuickFixCmdPost")
@@ -25,7 +25,9 @@ local function onread(err, data)
 end
 
 function M.make()
-  local makeprg = vim.bo.makeprg
+  makeprg = vim.api.nvim_buf_get_option(0, "makeprg")
+  efm = vim.api.nvim_buf_get_option(0, "errorformat")
+
   local cmd = vim.fn.expandcmd(makeprg)
   local program, args = string.match(cmd, "([^%s]+)%s(.+)")
 
