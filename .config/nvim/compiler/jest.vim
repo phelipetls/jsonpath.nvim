@@ -1,35 +1,46 @@
 if exists("current_compiler")
   finish
 endif
-let current_compiler = "pytest"
+let current_compiler = "jest"
 
 if exists(":CompilerSet") != 2		" older Vim always used :setlocal
   command -nargs=* CompilerSet setlocal <args>
 endif
 
-CompilerSet makeprg=jest\ --no-cache\ -t\ ./*
-CompilerSet errorformat=%C\ \ \%m,%A\ \ \ \ \ at\ %.%#\ (%f:%l:%c)
+CompilerSet makeprg=jest\ --no-cache
+CompilerSet errorformat=%E%.%#SyntaxError:\ %f:\ %m\ (%l:%c),
+      \%E%.%#●\ %m,
+      \%Z%.%[\ ]at\ %.%#\ (%f:%l:%c),
+      \%C%.%#,
+      \%-G%.%#
 
+" let &efm = '%-G%[%^ ]%.%#,' .
+"       \ '%-G%.%#Test suite failed to run,' .
+"       \ '%E%.%#SyntaxError: %f: %m (%l:%c),' .
+"       \ '%E%.%#● %m,' .
+"       \ '%Z%.%#at %.%# (%f:%l:%c),' .
+"       \ '%C%.%#,' .
+"       \ '%-G%.%#'
 
-  " ● Test suite failed to run
+" FAIL ./sum.test.js
+"   ● adds 1 + 2 to equal 3
 
-  "   ReferenceError: operator_description is not defined
+"     expect(received).toBe(expected) // Object.is equality
 
-  "     18 |   question = question.replace("?", "")
-  "     19 |
-  "   > 20 |   for ([operator_description, math_operator] of Object.entries(OPERATORS)) {
-  "        |         ^
-  "     21 |     question = question.replace(operator_description, math_operator)
-  "     22 |   }
-  "     23 |
+"     Expected: 3
+"     Received: -1
 
-  "     at answer (wordy.js:20:9)
-  "     at Object.<anonymous> (wordy.js:27:13)
-  "     at Object.<anonymous> (wordy.spec.js:1:1)
+"       2 |
+"       3 | test('adds 1 + 2 to equal 3', () => {
+"     > 4 |   expect(sum(1, 2)).toBe(3);
+"         |                     ^
+"       5 | });
+"       6 |
+"       7 |
+
+"       at Object.<anonymous> (sum.test.js:4:21)
 
 " Test Suites: 1 failed, 1 total
-" Tests:       0 total
+" Tests:       1 failed, 1 total
 " Snapshots:   0 total
-" Time:        0.825s
-" Ran all test suites with tests matching "wordy.js".
-
+" Time:        0.664 s
