@@ -89,7 +89,7 @@ set softtabstop=2
 set shiftwidth=2
 
 " don't autocomment on newline
-autocmd! FileType * set formatoptions-=c formatoptions-=r formatoptions-=o
+autocmd! BufEnter * set formatoptions-=cro
 
 " autoresize splits when vim is resized or entering tab
 autocmd! VimResized * wincmd =
@@ -341,7 +341,7 @@ nnoremap <a-L> <Plug>NetrwRefresh
 
 " ignore these files while browsing
 " python
-set wildignore=venv*/,__pycache__/,.pytest_cache/,tags,htmlcov/.coverage
+set wildignore=venv*/,__pycache__/,.pytest_cache/,tags,htmlcov/.coverage,*.pyc
 
 " wipe netrw buffers when closed
 augroup Netrw
@@ -422,7 +422,7 @@ nnoremap <silent> [q :call ListJump("c", "previous", "last")<CR>
 nnoremap <silent> ]l :call ListJump("l", "below", "first")<CR>
 nnoremap <silent> [l :call ListJump("l", "above", "last")<CR>
 
-command! Make silent lua require'async_make'.make()
+command! Make silent make! | redraw!
 
 " function to resize quickfix window given a min and max height
 function! ResizeQf(minheight, maxheight)

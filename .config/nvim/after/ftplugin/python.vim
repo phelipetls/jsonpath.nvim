@@ -15,7 +15,8 @@ endif
 "{{{ run
 
 if executable("python3")
-  if expand("%:p:t")[:3] == "test"
+  let filename = expand("%:p:t")
+  if filename[:3] == "test" || filename[-4:] == "test"
     if executable("pytest")
       compiler pytest
     else
@@ -34,9 +35,9 @@ if executable("python")
     nnoremap <silent> <F11> :execute "!tmux split-window -v 'python3 -m pdb ". expand("%") ."' &"<CR>
   endif
 
-  command! -bang Test if <bang>1 | compiler pyunit | else | compiler pyunit_dir | endif | make!
+  command! -bang Test if <bang>1 | compiler pyunit | else | compiler pyunit_dir | endif | Make
 
-  command! Pytest compiler pytest | make!
+  command! Pytest compiler pytest | Make
   nnoremap <silent> <F8> :Pytest<CR>
 endif
 
@@ -44,7 +45,7 @@ endif
 "{{{ include search
 
 setlocal define=^\\s*\\(class\\\|def\\\)
-setlocal path+=./tests,./templates
+setlocal path+=./tests,./templates,./tests/conftest.py
 
 "}}}
 "{{{ abbreviations
