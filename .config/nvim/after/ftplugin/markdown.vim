@@ -13,7 +13,7 @@ let g:markdown_fenced_languages = ['r', 'python', 'vim', 'js=javascript', 'lua',
 
 " open pdf with the same filename - to use with pandoc
 if executable("zathura")
-  nnoremap <space>op :!zathura %<.pdf<CR>
+  nnoremap <F5> :!zathura %<.pdf<CR>
 endif
 
 "}}}
@@ -27,8 +27,8 @@ endif
 "}}}
 "{{{ surround
 
-let b:surround_{char2nr("p")} = "``` python\r```"
-let b:surround_{char2nr("R")} = "``` r\r```"
+let b:surround_{char2nr("P")} = "```python\n\r\n```"
+let b:surround_{char2nr("R")} = "```r\n\r\n```"
 let b:surround_{char2nr("l")} = "[\r](\1link: \1)"
 
 "}}}

@@ -183,8 +183,3 @@ nnoremap <buffer> [<C-c> "zyiwOconsole.log(z);<Esc>
 nnoremap <buffer> ]<C-c> "zyiwoconsole.log(z);<Esc>
 
 "}}}
-"{{{
-
-call RagtagInit()
-
-"}}}

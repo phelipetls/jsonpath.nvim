@@ -43,7 +43,7 @@ function! RmdExitCode(job_id, data, event) dict
 endfunction
 
 if executable("zathura")
-  nmap <buffer><silent> <space>op :silent !zathura %<.pdf<CR>
+  nmap <buffer><silent> <F5> :silent !zathura %<.pdf<CR>
 endif
 
 "}}}
