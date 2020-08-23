@@ -33,9 +33,6 @@ packadd! vim-javascript
 packadd! vim-jsx-pretty
 packadd! vim-hugo
 
-" snippets
-packadd! aergia
-
 " LSP
 packadd! nvim-lsp
 
@@ -129,11 +126,6 @@ let g:user_emmet_settings = {
 
 " inline-edit config
 let g:inline_edit_autowrite = 1
-
-" aergia
-" let g:aergia_snippets = expand("%:p:h")."/snippets"
-let g:aergia_snippets = "~/.config/nvim/snippets"
-let g:aergia_key = "<c-j>"
 
 set diffopt+=algorithm:patience
 
