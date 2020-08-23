@@ -70,8 +70,6 @@ function _dynamic_prompt() {
 
 PROMPT_COMMAND=_dynamic_prompt
 
-#PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u \[\033[01;33m\]@ \[\033[01;94m\]\W \[\033[01;90m\]\$\[\e[m\] '
-
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
