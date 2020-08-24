@@ -80,9 +80,6 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-# colored GCC warnings and errors
-#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
 # some more ls aliases
 alias ll='ls -alF'
 alias la='ls -A'
@@ -107,22 +104,26 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export PATH="/home/phelipe/.scripts/:$PATH"
-export PATH="/usr/local/texlive/2019/bin/x86_64-linux/:$PATH"
-export PATH="/snap/bin:$PATH"
-export MANPATH="/usr/local/texlive/2019/texmf-dist/doc/man/:$MANPATH"
-export INFOPATH="/usr/local/texlive/2019/texmf-dist/doc/info/:$INFOPATH"
-export PATH="$HOME/.cargo/bin:$PATH"
-
-export GOPATH=$HOME/go
-export PATH="/usr/local/go/bin:$GOPATH/bin:$PATH"
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
-export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig/
-
 # autocompletion
 eval "$(pandoc --bash-completion)"
 source ~/.tmux/tmux_bash_completion
 
+# fzf
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# less config
 export LESS="FXRM"
+
+# path
+export PATH="/usr/local/texlive/2019/bin/x86_64-linux/:$PATH"
+export MANPATH="/usr/local/texlive/2019/texmf-dist/doc/man/:$MANPATH"
+export INFOPATH="/usr/local/texlive/2019/texmf-dist/doc/info/:$INFOPATH"
+
+export PATH="$HOME/.scripts/:$PATH"
+export PATH="/snap/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
+
+export GOPATH="$HOME/go"
+export PATH="/usr/local/go/bin:$GOPATH/bin:$PATH"
+
+export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig/
