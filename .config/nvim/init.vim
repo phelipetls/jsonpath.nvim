@@ -233,6 +233,8 @@ endif
 nnoremap <M-q> gwip
 inoremap <M-q> <C-o>gwip
 
+inoremap <C-x>s <C-o>:-1r ~/.config/nvim/snippets/
+
 "}}}
 "{{{ statusline and tabline
 
