@@ -14,6 +14,8 @@ CompilerSet errorformat=
       \%EE\ \ \ \ \ File\ \"%f\"\\,\ line\ %l,
       \%CE\ \ \ %p^,
       \%ZE\ \ \ %[%^\ ]%\\@=%m,
+      \%Afile\ %f\\,\ line\ %l,
+      \%+ZE\ %mnot\ found,
       \%CE\ %.%#,
       \%A_%\\+\ %o\ _%\\+,
       \%C%f:%l:\ in\ %o,
@@ -22,7 +24,7 @@ CompilerSet errorformat=
       \%EImportError%.%#\'%f\'\.,
       \%CE%\\@!%.%#,
       \%+G%[=]%\\+\ %*\\d\ passed%.%#,
-      \%-G%[%^E!>]%.%#,
+      \%-G%[%^E]%.%#,
       \%-G
 
 function! FixColumnNumber()
