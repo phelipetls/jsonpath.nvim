@@ -9,18 +9,20 @@ endif
 
 CompilerSet makeprg=pytest\ --tb=short\ -s\ -vv\ %
 CompilerSet errorformat=
+      \%-G=%\\+\ ERRORS\ =%\\+,
+      \%-G_%\\+\ ERROR%.%#\ _%\\+,
       \%EE\ \ \ \ \ File\ \"%f\"\\,\ line\ %l,
       \%CE\ \ \ %p^,
       \%ZE\ \ \ %[%^\ ]%\\@=%m,
       \%CE\ %.%#,
       \%A_%\\+\ %o\ _%\\+,
       \%C%f:%l:\ in\ %o,
-      \%ZE\ %\\{3}\ %\\@!%m,
       \%C\ %.%#,
+      \%ZE\ %\\{3}%m,
       \%EImportError%.%#\'%f\'\.,
       \%CE%\\@!%.%#,
       \%+G%[=]%\\+\ %*\\d\ passed%.%#,
-      \%-G%[%^E!>]%\\@=%.%#,
+      \%-G%[%^E!>]%.%#,
       \%-G
 
 function! FixColumnNumber()
