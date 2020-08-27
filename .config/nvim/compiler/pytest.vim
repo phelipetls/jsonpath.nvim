@@ -7,10 +7,8 @@ if exists(":CompilerSet") != 2		" older Vim always used :setlocal
   command -nargs=* CompilerSet setlocal <args>
 endif
 
-CompilerSet makeprg=pytest\ --tb=short\ -s\ -vv\ %
+CompilerSet makeprg=pytest\ --tb=short\ -vv\ %
 CompilerSet errorformat=
-      \%-G=%\\+\ ERRORS\ =%\\+,
-      \%-G_%\\+\ ERROR%.%#\ _%\\+,
       \%EE\ \ \ \ \ File\ \"%f\"\\,\ line\ %l,
       \%CE\ \ \ %p^,
       \%ZE\ \ \ %[%^\ ]%\\@=%m,
@@ -25,6 +23,7 @@ CompilerSet errorformat=
       \%CE%\\@!%.%#,
       \%+G%[=]%\\+\ %*\\d\ passed%.%#,
       \%-G%[%^E]%.%#,
+      \%-GERROR%.%#,
       \%-G
 
 function! FixColumnNumber()
