@@ -237,7 +237,7 @@ inoremap <M-q> <C-o>gwip
 inoremap <C-x>s <C-o>:-1r ~/.config/nvim/snippets/
 
 if exists(":Git")
-  nnoremap <space>gl :Git! l <bar> wincmd L <bar> setl nowrap<CR>
+  nmap <space>gl :Git! l <bar> wincmd L <bar> setl nowrap<CR>
 endif
 
 "}}}
