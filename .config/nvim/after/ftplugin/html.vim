@@ -26,26 +26,3 @@ let b:completion_command = "\<C-x>\<C-o>"
 let b:completion_length = 1
 
 "}}}
-"{{{ close tag
-
-function! CloseTag()
-  let b:old_omnifunc = &l:omnifunc
-  set omnifunc=htmlcomplete#CompleteTags
-  return "\<C-x>\<C-o>\<C-n>\<C-y>"
-endfunction
-
-function! Reindent()
-  if (len(&indentexpr) || &cindent)
-    return "\<C-F>"
-  endif
-  return ""
-endfunction
-
-function! Clean()
-  let &l:omnifunc = b:old_omnifunc
-  return ""
-endfunction
-
-inoremap <silent><buffer> <C-X>/ <Lt>/<C-r>=CloseTag()<CR><C-r>=Reindent()<CR><C-r>=Clean()<CR>
-
-"}}}
