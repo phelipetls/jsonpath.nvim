@@ -93,14 +93,14 @@ nvim_lsp.pyls.setup{
   };
 };
 
-nvim_lsp.tsserver.setup{
-  on_attach = set_lsp_config;
-  root_dir = function(fname)
-    return util.find_package_json_ancestor(fname) or
-           util.find_git_ancestor(fname) or
-           vim.loop.os_homedir()
-  end;
-}
+-- nvim_lsp.tsserver.setup{
+--   on_attach = set_lsp_config;
+--   root_dir = function(fname)
+--     return util.find_package_json_ancestor(fname) or
+--            util.find_git_ancestor(fname) or
+--            vim.loop.os_homedir()
+--   end;
+-- }
 
 if not configs.r_language_server then
   configs.r_language_server = {
