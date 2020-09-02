@@ -30,6 +30,7 @@ packadd! vim-dadbod
 packadd! emmet-vim
 packadd! vim-jinja
 packadd! vim-javascript
+packadd! typescript-vim
 packadd! vim-jsx-pretty
 packadd! vim-hugo
 

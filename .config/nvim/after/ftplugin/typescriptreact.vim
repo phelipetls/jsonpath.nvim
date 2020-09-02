@@ -1,0 +1,1 @@
+set filetype=typescript.tsx
