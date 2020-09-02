@@ -32,7 +32,6 @@ packadd! vim-jinja
 packadd! vim-javascript
 packadd! vim-jsx-pretty
 packadd! vim-hugo
-packadd! vim-vue
 
 " LSP
 packadd! nvim-lsp
