@@ -61,6 +61,25 @@ local function set_lsp_config(_)
   vim.api.nvim_command [[autocmd! User LspDiagnosticsChanged lua update_diagnostics_loclist()]]
 end
 
+
+-- if not configs.pyright then
+--   configs.pyright = {
+--     default_config = {
+--       cmd = {"pyright"};
+--       filetypes = {"python"};
+--       root_dir = function(fname)
+--         return nvim_lsp.util.find_git_ancestor(fname) or vim.loop.os_homedir()
+--       end;
+--       log_level = vim.lsp.protocol.MessageType.Info;
+--       settings = {};
+--     }
+--   }
+-- end
+
+-- nvim_lsp.pyright.setup{
+--   on_attach=set_lsp_config;
+-- }
+
 nvim_lsp.pyls.setup{
   on_attach=set_lsp_config;
   settings = {
