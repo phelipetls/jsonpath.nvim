@@ -20,6 +20,7 @@ endif
 
 if executable("eslint")
   compiler eslint
+  autocmd! BufWritePost <buffer> Make
 endif
 
 "}}}
