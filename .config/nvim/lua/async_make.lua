@@ -49,6 +49,7 @@ function M.make()
 
   if vim.fn.getqflist({title = ''}).title == makeprg then
     vim.fn.setqflist({}, "r")
+    vim.api.nvim_command("cclose")
   else
     vim.fn.setqflist({}, " ")
   end
