@@ -47,6 +47,7 @@ syntax on
 colorscheme sixteen
 
 set nonumber
+set nowrap
 set hidden
 set wildmenu
 set wildmode=full
@@ -81,7 +82,7 @@ filetype plugin indent on
 " visually show special characters
 set list
 set fillchars=fold:-
-set listchars=tab:»\ ,nbsp:¬,trail:·,extends:›,precedes:‹
+set listchars=tab:»\ ,nbsp:¬,trail:·,extends:…,precedes:‹
 set showbreak=↳\ 
 
 " default identation
@@ -234,11 +235,22 @@ endif
 nnoremap <M-q> gwip
 inoremap <M-q> <C-o>gwip
 
-inoremap <C-x>s <C-o>:-1r ~/.config/nvim/snippets/
+" useful registers
+autocmd! BufEnter * let @f=expand("%:t:r")
 
-if exists(":Git")
-  nmap <space>gl :Git! l <bar> wincmd L <bar> setl nowrap<CR>
+nmap <Tab> %
+omap <Tab> %
+xmap <Tab> %
+
+" unmap <C-f> from unimpaired in command mode
+if has("loaded_unimpaired")
+  cunmap <C-f>
 endif
+
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
 
 "}}}
 "{{{ statusline and tabline
@@ -299,6 +311,7 @@ if executable("fzf")
   nnoremap <space>h :Help<CR>
   nnoremap <space>t :Tags<CR>
   nnoremap <space>r :History<CR>
+  nnoremap <space>g :Rg<CR>
 endif
 
 let g:fzf_colors =
@@ -408,8 +421,8 @@ endfunction
 " wrap around when navigating the quickfix list
 nnoremap <silent> ]q :call ListJump("c", "next", "first")<CR>
 nnoremap <silent> [q :call ListJump("c", "previous", "last")<CR>
-nnoremap <silent> ]l :call ListJump("l", "below", "first")<CR>
-nnoremap <silent> [l :call ListJump("l", "above", "last")<CR>
+nnoremap <silent> ]w :call ListJump("l", "next", "first")<CR>
+nnoremap <silent> [w :call ListJump("l", "previous", "last")<CR>
 
 if has("nvim")
   command! Make lua require'async_make'.make()
@@ -441,10 +454,11 @@ nnoremap <silent> <space>m :Make<CR>
 augroup QuickFixSettings
   autocmd!
   au QuickFixCmdPost * cwindow
+  au QuickFixCmdPost * call OpenLocationList()
   au QuickFixCmdPost * execute &ft == "qf" ? "wincmd p" : ""
   au FileType qf wincmd J
   au FileType qf setlocal nowrap
-  au FileType qf call ResizeQf(1, 5) " min, max
+  au FileType qf call ResizeQf(1, 3) " min, max
   au FileType qf au BufEnter <buffer> nested if winnr("$") == 1 | quit | endif
   au FileType qf setlocal statusline=%q\ %{w:quickfix_title}\ %=[%l/%L]
 augroup END
