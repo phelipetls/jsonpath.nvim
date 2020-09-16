@@ -242,6 +242,10 @@ nmap <Tab> %
 omap <Tab> %
 xmap <Tab> %
 
+nmap <S-Tab> [%
+omap <S-Tab> [%
+xmap <S-Tab> [%
+
 " unmap <C-f> from unimpaired in command mode
 if has("loaded_unimpaired")
   cunmap <C-f>
