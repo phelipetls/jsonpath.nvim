@@ -26,3 +26,12 @@ let b:completion_command = "\<C-x>\<C-o>"
 let b:completion_length = 1
 
 "}}}
+"{{{ abbreviations
+
+iabbr <buffer><silent> clog console.log();<Left><Left><C-R>=Eatchar('\s')<CR>
+iabbr consoel console
+iabbr lenght length
+iabbr edf export default function
+iabbr ireact import React from "react";
+
+"}}}
