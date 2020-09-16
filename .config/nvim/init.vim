@@ -252,6 +252,13 @@ nnoremap <down> <nop>
 nnoremap <left> <nop>
 nnoremap <right> <nop>
 
+" function used for abbreviations
+function! Eatchar(pat)
+  let c = nr2char(getchar(0))
+  return (c =~ a:pat) ? '' : c
+endfunction
+
+
 "}}}
 "{{{ statusline and tabline
 

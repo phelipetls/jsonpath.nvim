@@ -29,11 +29,6 @@ endif
 let b:surround_{char2nr("c")} = "console.log(\r);"
 let b:surround_{char2nr("e")} = "${\r};"
 
-function! Eatchar(pat)
-  let c = nr2char(getchar(0))
-  return (c =~ a:pat) ? '' : c
-endfunction
-
 "}}}
 "{{{ abbreviations
 
