@@ -15,7 +15,7 @@ endif
 "}}}
 "{{{ firefox
 
-nnoremap <silent><buffer> <F5> :silent !firefox --new-window "%"<CR>
+nnoremap <silent><buffer> <F5> :silent !firefox --new-window "%" &<CR>
 
 "}}}
 "{{{ completion
