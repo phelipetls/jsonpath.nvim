@@ -71,7 +71,7 @@ bind index,pager <right> sidebar-open
 
 unmailboxes *
 mailboxes Hotmail
-mailboxes +Hotmail/Inbox +Hotmail/Sent +Hotmail/Deleted +Hotmail/Junk +Hotmail/Drafts
+mailboxes +Hotmail/Inbox +Hotmail/Sent +Hotmail/Deleted +Hotmail/Junk +Hotmail/Drafts +Hotmail/Faculdade
 mailboxes Gmail
 mailboxes "+Gmail/INBOX" "+Gmail/[Gmail].E-mails enviados" "+Gmail/[Gmail].Lixeira" "+Gmail/[Gmail].Rascunhos" "+Gmail/[Gmail].Spam" "+Gmail/[Gmail].Com estrela"
 
