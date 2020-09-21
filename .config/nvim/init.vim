@@ -22,6 +22,7 @@ packadd! inline_edit.vim
 packadd! vim-toml
 packadd! cfilter
 packadd! matchit
+packadd! vim-obsession
 
 " databases
 packadd! vim-dadbod

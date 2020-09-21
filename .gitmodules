@@ -105,3 +105,6 @@
 [submodule "vim-vsnip"]
 	path = .config/nvim/pack/plugins/opt/vim-vsnip
 	url = https://github.com/hrsh7th/vim-vsnip
+[submodule "vim-obsession"]
+	path = .config/nvim/pack/plugins/opt/vim-obsession
+	url = https://github.com/tpope/vim-obsession
