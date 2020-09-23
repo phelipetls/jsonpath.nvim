@@ -433,8 +433,8 @@ endfunction
 " wrap around when navigating the quickfix list
 nnoremap <silent> ]q :call ListJump("c", "next", "first")<CR>
 nnoremap <silent> [q :call ListJump("c", "previous", "last")<CR>
-nnoremap <silent> ]w :call ListJump("l", "next", "first")<CR>
-nnoremap <silent> [w :call ListJump("l", "previous", "last")<CR>
+nnoremap <silent> ]l :call ListJump("l", "next", "first")<CR>
+nnoremap <silent> [l :call ListJump("l", "previous", "last")<CR>
 
 if has("nvim")
   command! Make lua require'async_make'.make()
@@ -470,7 +470,7 @@ augroup QuickFixSettings
   au QuickFixCmdPost * execute &ft == "qf" ? "wincmd p" : ""
   au FileType qf wincmd J
   au FileType qf setlocal nowrap
-  au FileType qf call ResizeQf(1, 3) " min, max
+  au FileType qf call ResizeQf(1, 5) " min, max
   au FileType qf au BufEnter <buffer> nested if winnr("$") == 1 | quit | endif
   au FileType qf setlocal statusline=%q\ %{w:quickfix_title}\ %=[%l/%L]
 augroup END
