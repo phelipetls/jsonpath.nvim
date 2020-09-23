@@ -15,6 +15,7 @@ CompilerSet errorformat=
       \%Afile\ %f\\,\ line\ %l,
       \%+ZE\ %mnot\ found,
       \%CE\ %.%#,
+      \%-G_%\\+\ ERROR%.%#\ _%\\+,
       \%A_%\\+\ %o\ _%\\+,
       \%C%f:%l:\ in\ %o,
       \%C\ %.%#,
@@ -23,7 +24,6 @@ CompilerSet errorformat=
       \%CE%\\@!%.%#,
       \%+G%[=]%\\+\ %*\\d\ passed%.%#,
       \%-G%[%^E]%.%#,
-      \%-GERROR%.%#,
       \%-G
 
 function! FixColumnNumber()
@@ -33,7 +33,7 @@ function! FixColumnNumber()
 
   let qflist = getqflist()
   for i in qflist
-    let i.col = i.col - 4
+    let i.col = i.col + 1
   endfor
   call setqflist(qflist)
 endfunction
