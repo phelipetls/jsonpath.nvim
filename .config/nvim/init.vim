@@ -190,9 +190,9 @@ nnoremap <silent> gy `[v`]
 nnoremap Q <nop>
 
 " annoying command line typos
-command! -bang E e<bang>
+command! -bang -complete=file_in_path E e<bang>
+command! -bang -complete=file_in_path W w<bang>
 command! -bang Q q<bang>
-command! -bang W w<bang>
 command! -bang Qall qall<bang>
 
 " mapping to rename the word under the cursor
