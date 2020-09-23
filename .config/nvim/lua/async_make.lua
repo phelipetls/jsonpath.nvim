@@ -1,32 +1,26 @@
 local M = {}
 
-local function has_non_whitespace(str)
-  return str:match("[^%s]")
-end
-
-local function fill_qflist(lines)
+local function fill_qflist(lines, efm)
   vim.fn.setqflist({}, "a", {
     title = makeprg,
-    lines = vim.tbl_filter(has_non_whitespace, lines),
+    lines = lines,
     efm = efm
   })
-
   vim.api.nvim_command("doautocmd QuickFixCmdPost")
 end
 
 local function onread(err, data)
-  if err then
-    local echoerr = "echoerr '%s'"
-    vim.api.nvim_command(echoerr:format(err))
-  elseif data then
-    local lines = vim.split(data, "\n")
-    fill_qflist(lines)
+  if data then
+    local newlines = vim.split(data, "\n")
+    lines[#lines] = lines[#lines] .. newlines[1]
+    vim.list_extend(lines, {unpack(newlines, 2, #newlines)})
   end
 end
 
 function M.make()
-  makeprg = vim.api.nvim_buf_get_option(0, "makeprg")
-  efm = vim.api.nvim_buf_get_option(0, "errorformat")
+  lines = {""}
+  local makeprg = vim.bo.makeprg
+  local efm = vim.bo.errorformat
 
   local cmd = vim.fn.expandcmd(makeprg)
   local program, args = string.match(cmd, "([^%s]+)%s(.+)")
@@ -38,13 +32,15 @@ function M.make()
     args = vim.split(args, ' '),
     stdio = { stdout, stderr }
   },
-  function(code, signal)
+  vim.schedule_wrap(function(code, signal)
     stdout:read_stop()
     stdout:close()
     stderr:read_stop()
     stderr:close()
     handle:close()
-  end
+
+    fill_qflist(lines, efm)
+  end)
   )
 
   if vim.fn.getqflist({title = ''}).title == makeprg then
@@ -54,8 +50,8 @@ function M.make()
     vim.fn.setqflist({}, " ")
   end
 
-  stderr:read_start(vim.schedule_wrap(onread))
   stdout:read_start(vim.schedule_wrap(onread))
+  stderr:read_start(vim.schedule_wrap(onread))
 end
 
 return M
