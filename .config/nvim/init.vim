@@ -201,12 +201,9 @@ nnoremap <silent> <c-n> *Ncgn
 " show information about highlight group under cursor
 command! Hi exe 'hi '.synIDattr(synID(line("."), col("."), 0), "name")
 
-" see https://gist.github.com/romainl/d2ad868afd7520519057475bd8e9db0c
-" gq wrapper that:
-" - tries its best at keeping the cursor in place
-" - tries to handle formatter errors
-function! Format(type, ...)
-  normal! '[v']gq
+function! FormatWithoutMoving(cmd)
+  let w:gqview = winsaveview()
+  execute "normal! ". a:cmd
   if v:shell_error > 0
     silent undo
     redraw
@@ -216,8 +213,8 @@ function! Format(type, ...)
   unlet w:gqview
 endfunction
 
-nmap <silent> gq :let w:gqview = winsaveview()<CR>:set opfunc=Format<CR>g@
-nnoremap <silent> gQ :normal magggqG`a<CR>
+nmap <silent> gq :set opfunc=FormatWithoutMoving("'[v']gq")<CR>g@
+nmap <silent> gQ :call FormatWithoutMoving("gggqG")<CR>
 
 " inline-edit plugin remapping
 nnoremap <silent> <C-c>' :InlineEdit<CR>
