@@ -260,6 +260,7 @@ function! Eatchar(pat)
   return (c =~ a:pat) ? '' : c
 endfunction
 
+nnoremap <c-t> :tabnew<CR>
 
 "}}}
 "{{{ statusline and tabline
