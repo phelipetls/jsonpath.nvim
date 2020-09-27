@@ -1,8 +1,8 @@
 let python_no_doctest_highlight = 1
 let python_no_doctest_code_highlight = 1
 
-syn region pythonfString matchgroup=pythonQuotes start=+[fF]\z(['"]\)+ end="\z1" skip="\\\\\|\\\z1" contains=@Spell,pythonInterpolation
-syn region pythonfString matchgroup=pythonQuotes start=+[fF]\z(['"]\{3}\)+ end="\z1" skip="\\\\\|\\\z1" contains=@Spell,pythonInterpolation,pythonDoctestValue,pythonDoctest
+syn region pythonfString matchgroup=pythonQuotes start=+[fF]\@1<=\z(['"]\)+ end="\z1" skip="\\\\\|\\\z1" contains=@Spell,pythonInterpolation
+syn region pythonfString matchgroup=pythonQuotes start=+[fF]\@1<=\z(['"]\{3}\)+ end="\z1" skip="\\\\\|\\\z1" contains=@Spell,pythonInterpolation,pythonDoctestValue,pythonDoctest
 
 hi def link pythonfString String
 
