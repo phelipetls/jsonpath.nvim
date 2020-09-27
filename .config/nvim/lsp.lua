@@ -1,4 +1,4 @@
--- vim.lsp.stop_client(vim.lsp.buf_get_clients())
+vim.lsp.stop_client(vim.lsp.buf_get_clients())
 
 local nvim_lsp = require'nvim_lsp'
 local util = require'nvim_lsp/util'
@@ -24,9 +24,6 @@ local parse_diagnostics = function(diagnostics)
   return items
 end
 
-vim.lsp.util.buf_diagnostics_signs = function() return end
-vim.lsp.util.buf_diagnostics_virtual_text = function() return end
-
 local close_loclist_if_empty = function()
   local loclist = vim.fn.getloclist(0, { title = 0, size = 0})
 
@@ -48,6 +45,9 @@ update_diagnostics_loclist = function()
   close_loclist_if_empty()
 end
 
+vim.lsp.util.buf_diagnostics_signs = function() return end
+vim.lsp.util.buf_diagnostics_virtual_text = function() return end
+
 local function set_lsp_config(_)
   vim.api.nvim_command [[setlocal omnifunc=v:lua.vim.lsp.omnifunc]]
   vim.api.nvim_command [[nnoremap <buffer><silent> K :lua vim.lsp.buf.hover()<CR>]]
@@ -60,25 +60,6 @@ local function set_lsp_config(_)
   vim.api.nvim_command [[let b:completion_command = "\<C-x>\<C-o>"]]
   vim.api.nvim_command [[autocmd! User LspDiagnosticsChanged lua update_diagnostics_loclist()]]
 end
-
-
--- if not configs.pyright then
---   configs.pyright = {
---     default_config = {
---       cmd = {"pyright"};
---       filetypes = {"python"};
---       root_dir = function(fname)
---         return nvim_lsp.util.find_git_ancestor(fname) or vim.loop.os_homedir()
---       end;
---       log_level = vim.lsp.protocol.MessageType.Info;
---       settings = {};
---     }
---   }
--- end
-
--- nvim_lsp.pyright.setup{
---   on_attach=set_lsp_config;
--- }
 
 nvim_lsp.pyls.setup{
   on_attach=set_lsp_config;

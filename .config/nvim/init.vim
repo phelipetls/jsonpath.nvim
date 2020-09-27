@@ -140,7 +140,7 @@ set diffopt+=algorithm:patience
 " improve esc in terminal
 tnoremap <Esc> <C-\><C-n>
 
-" copy absolute path to clipboard
+" copy current file's absolute path to clipboard
 nnoremap y<C-p> :let @+=expand("%:p")<CR>
 
 " escape also cancels search highlight
@@ -163,7 +163,7 @@ nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
 " Y consistent with C, D etc.
 nnoremap Y y$
 
-" ' is more convenient to jump to a mark exact location
+" ' is more convenient to jump to the exact location of a mark
 nnoremap ' `
 
 " better maps to move between splits
@@ -189,7 +189,7 @@ nnoremap <silent> gy `[v`]
 " disable key to Ex mode and command-line window (press c_CTRL-F instead)
 nnoremap Q <nop>
 
-" annoying command line typos
+" handle annoying command line typos
 command! -bang -complete=file_in_path E e<bang>
 command! -bang -complete=file_in_path W w<bang>
 command! -bang Q q<bang>
@@ -201,6 +201,7 @@ nnoremap <silent> <c-n> *Ncgn
 " show information about highlight group under cursor
 command! Hi exe 'hi '.synIDattr(synID(line("."), col("."), 0), "name")
 
+" functions/mappings to format without moving cursor
 function! FormatWithoutMoving(cmd)
   let w:gqview = winsaveview()
   execute "normal! ". a:cmd
@@ -233,7 +234,7 @@ endif
 nnoremap <M-q> gwip
 inoremap <M-q> <C-o>gwip
 
-" useful registers
+" put the current file name under the f register
 autocmd! BufEnter * let @f=expand("%:t:r")
 
 nmap <Tab> %
@@ -245,10 +246,14 @@ omap <S-Tab> [%
 xmap <S-Tab> [%
 
 " unmap <C-f> from unimpaired in command mode
-if has("loaded_unimpaired")
-  cunmap <C-f>
+if exists("loaded_unimpaired")
+  try
+    cunmap <C-f>
+  catch /E31/
+  endtry
 endif
 
+" unmap the arrow keys
 nnoremap <up> <nop>
 nnoremap <down> <nop>
 nnoremap <left> <nop>
@@ -260,6 +265,7 @@ function! Eatchar(pat)
   return (c =~ a:pat) ? '' : c
 endfunction
 
+" open tab with <C-T>
 nnoremap <c-t> :tabnew<CR>
 
 "}}}
@@ -354,7 +360,6 @@ let g:netrw_fastbrowse = 0
 nnoremap <a-L> <Plug>NetrwRefresh
 
 " ignore these files while browsing
-" python
 set wildignore=venv*/,__pycache__/,.pytest_cache/,tags,htmlcov/.coverage,*.pyc
 
 " wipe netrw buffers when closed
@@ -366,18 +371,29 @@ augroup END
 "}}}
 "{{{ autocompletion config
 
+" when doing file name completion, change cwd to current file's directory
 function! LocalFileCompletion()
     lcd %:p:h
     return "\<C-x>\<C-f>"
 endfunction
 
+" and revert it after the completion is done
+autocmd! CompleteDonePre *
+      \ if complete_info(["mode"]).mode == "files" |
+      \   lcd - |
+      \ endif
+
+inoremap <silent> <C-x><C-f> <C-R>=LocalFileCompletion()<CR>
+
+" overloaded ctrl space functionality
 function! CtrlSpace()
   let l:line_until_cursor = strpart(getline('.'), 0, col('.')-1)
-  " complete if line until cursor is something like this:
-  " 'a bunch of stuff ../path/to/file'
+  " do file name completion if line until cursor is something like this:
+  " 'lorem ipsum ../path/'
+  " 'lorem ipsum ../path/file'
   " but not if like this:
   " '<tag>content</'
-  if l:line_until_cursor =~ ".*\\(<\\)\\@1<!\/\\f*$"
+  if l:line_until_cursor =~ '\(<\)\@1<!/\f*$'
     return LocalFileCompletion()
   " else, call omnicompletion if omnifunc exists
   elseif len(&omnifunc) > 0
@@ -391,7 +407,7 @@ function! SmartTab()
   let l:lastchar = matchstr(getline('.'), '.\%' . col('.') . 'c')
   if pumvisible()
     return "\<C-n>"
-  elseif l:lastchar =~ "\\s" || len(l:lastchar) == 0
+  elseif l:lastchar =~ '\s' || len(l:lastchar) == 0
     return "\<Tab>"
   else
     return CtrlSpace()
@@ -400,15 +416,9 @@ endfunction
 
 inoremap <silent> <Tab> <C-R>=SmartTab()<CR>
 inoremap <silent> <C-Space> <C-R>=CtrlSpace()<CR>
-inoremap <silent> <C-x><C-f> <C-R>=LocalFileCompletion()<CR>
 
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
-
-autocmd! CompleteDonePre *
-      \ if complete_info(["mode"]).mode == "files" |
-      \   lcd - |
-      \ endif
 
 set completeopt=menuone,noselect,noinsert
 set shortmess+=c
@@ -433,6 +443,10 @@ nnoremap <silent> ]q :call ListJump("c", "next", "first")<CR>
 nnoremap <silent> [q :call ListJump("c", "previous", "last")<CR>
 nnoremap <silent> ]l :call ListJump("l", "next", "first")<CR>
 nnoremap <silent> [l :call ListJump("l", "previous", "last")<CR>
+nnoremap <silent> ]w :call ListJump("l", "next", "first")<CR>
+nnoremap <silent> [w :call ListJump("l", "previous", "last")<CR>
+nnoremap <silent> ]g :call ListJump("l", "below", "first")<CR>
+nnoremap <silent> [g :call ListJump("l", "above", "last")<CR>
 
 if has("nvim")
   command! Make lua require'async_make'.make()
