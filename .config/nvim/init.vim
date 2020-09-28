@@ -23,6 +23,7 @@ packadd! vim-toml
 packadd! cfilter
 packadd! matchit
 packadd! vim-obsession
+" packadd! vim-dirgutter
 
 " databases
 packadd! vim-dadbod

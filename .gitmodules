@@ -106,3 +106,6 @@
 	path = .config/nvim/pack/plugins/opt/vim-obsession
 	url = https://github.com/tpope/vim-obsession
 	ignore = dirty
+[submodule "vim-gitgutter"]
+	path = .config/nvim/pack/plugins/opt/vim-dirgutter
+	url = https://github.com/phelipetls/vim-dirgutter
