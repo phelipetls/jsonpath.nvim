@@ -238,6 +238,7 @@ inoremap <M-q> <C-o>gwip
 " put the current file name under the f register
 autocmd! BufEnter * let @f=expand("%:t:r")
 
+" more convenient maps for matchit
 nmap <Tab> %
 omap <Tab> %
 xmap <Tab> %
@@ -247,12 +248,10 @@ omap <S-Tab> [%
 xmap <S-Tab> [%
 
 " unmap <C-f> from unimpaired in command mode
-if exists("loaded_unimpaired")
-  try
-    cunmap <C-f>
-  catch /E31/
-  endtry
-endif
+try
+  cunmap <C-f>
+catch /E31/
+endtry
 
 " unmap the arrow keys
 nnoremap <up> <nop>
@@ -349,6 +348,7 @@ let g:fzf_colors =
 let g:netrw_special_syntax = 1  " highlight special files in netrw
 let g:netrw_sizestyle = "H"  " human-readable file size
 let g:netrw_timefmt = "%b %d %R" " preferred datetime format
+let g:netrw_use_errorwindow = 0 " don't open a separate window to show errors
 
 " don't go to netrw buffer on ctrl-6
 let g:netrw_altfile = 1
@@ -568,6 +568,13 @@ function! Clean()
 endfunction
 
 inoremap <silent> <C-X>/ <Lt>/<C-r>=CloseTag()<CR><C-r>=Reindent()<CR><C-r>=Clean()<CR>
+
+"}}}
+"{{{ netrw signs
+
+function! GetModifiedFiles()
+  execute "!git diff --name-only " . b:netrw_curdir
+endfunction
 
 "}}}
 " vi: nowrap
