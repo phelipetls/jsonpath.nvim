@@ -3,24 +3,24 @@
 setlocal shiftwidth=2 softtabstop=2
 
 "}}}
-"{{{ run
+"{{{ code/test runners
 
-nnoremap <buffer> <F5> :w !node<CR>
-vnoremap <buffer> <F5> :w !node<CR>
+if executable("jest") && match(expand("%:p:t"), "test.js") != -1
+  compiler jest
+elseif executable("eslint")
+  compiler eslint
+endif
+
+if executable("node")
+  nnoremap <buffer> <F5> :w !node<CR>
+  vnoremap <buffer> <F5> :w !node<CR>
+endif
 
 "}}}
 "{{{ formatter
 
 if executable("prettier")
   setlocal formatprg=prettier\ --parser\ typescript
-endif
-
-"}}}
-"{{{ linter
-
-if executable("eslint")
-  compiler eslint
-  autocmd! BufWritePost <buffer> Make
 endif
 
 "}}}

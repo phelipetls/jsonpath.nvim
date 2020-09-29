@@ -12,7 +12,7 @@ if executable("black")
 endif
 
 "}}}
-"{{{ run
+"{{{ code/test runners
 
 if executable("python3")
   let filename = expand("%:p:t")

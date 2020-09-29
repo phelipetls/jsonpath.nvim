@@ -7,40 +7,33 @@ if exists(":CompilerSet") != 2		" older Vim always used :setlocal
   command -nargs=* CompilerSet setlocal <args>
 endif
 
-CompilerSet makeprg=jest\ --no-cache
-CompilerSet errorformat=%E%.%#SyntaxError:\ %f:\ %m\ (%l:%c),
-      \%E%.%#●\ %m,
-      \%Z%.%[\ ]at\ %.%#\ (%f:%l:%c),
+CompilerSet makeprg=npm\ run\ test\ %
+
+CompilerSet errorformat=
+      \%A%.%#●\ %o,
+      \%C\ %\\+at\ %s\ (%f:%l:%c),
+      \%C\ %\\+>\ %l\ \|%m,
       \%C%.%#,
       \%-G%.%#
 
-" let &efm = '%-G%[%^ ]%.%#,' .
-"       \ '%-G%.%#Test suite failed to run,' .
-"       \ '%E%.%#SyntaxError: %f: %m (%l:%c),' .
-"       \ '%E%.%#● %m,' .
-"       \ '%Z%.%#at %.%# (%f:%l:%c),' .
-"       \ '%C%.%#,' .
-"       \ '%-G%.%#'
+" FAIL src/api/utils.test.js
+"   ✓ handling offsetting by days (3ms)
+"   ✓ handling offsetting by months
+"   ✕ handling offsetting by quarters (2ms)
 
-" FAIL ./sum.test.js
-"   ● adds 1 + 2 to equal 3
+"   ● handling offsetting by quarters
 
-"     expect(received).toBe(expected) // Object.is equality
+"     expect(received).toStrictEqual(expected) // deep equality
 
-"     Expected: 3
-"     Received: -1
+"     Expected: 2020-01-01T00:00:00.000Z
+"     Received: 2020-01-01T03:00:00.000Z
 
-"       2 |
-"       3 | test('adds 1 + 2 to equal 3', () => {
-"     > 4 |   expect(sum(1, 2)).toBe(3);
-"         |                     ^
-"       5 | });
-"       6 |
-"       7 |
+"       20 |
+"       21 | test("handling offsetting by quarters", () => {
+"     > 22 |   expect(getDateOffset(DATE, -1, "Trimestral")).toStrictEqual(
+"          |                                                 ^
+"       23 |     new Date("2020-01-01")
+"       24 |   );
+"       25 |
 
-"       at Object.<anonymous> (sum.test.js:4:21)
-
-" Test Suites: 1 failed, 1 total
-" Tests:       1 failed, 1 total
-" Snapshots:   0 total
-" Time:        0.664 s
+"       at Object.<anonymous> (src/api/utils.test.js:22:49)
