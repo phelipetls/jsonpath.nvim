@@ -15,11 +15,11 @@ packadd! vim-repeat
 packadd! vim-unimpaired
 packadd! vim-speeddating
 packadd! vim-abolish
+packadd! vim-obsession
 packadd! traces.vim
 packadd! vim-toml
 packadd! cfilter
 packadd! matchit
-packadd! vim-obsession
 
 " databases
 packadd! vim-dadbod
@@ -151,7 +151,7 @@ nnoremap <silent> <esc> :nohlsearch<cr><esc>
 nnoremap <silent> <space>ev :edit $MYVIMRC<cr>
 
 " source current file, only if it is .vim file
-nnoremap <expr> <space>ss (&ft == "vim" ? ":source %<cr>" : "")
+nnoremap <silent><expr> <space>ss (&ft == "vim" ? ":source %<cr>" : "")
 
 " make <c-u> and <c-w> undoable
 inoremap <c-u> <c-g>u<c-u>
