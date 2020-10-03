@@ -1,7 +1,7 @@
 local M = {}
 
-local function fill_qflist(lines, efm)
-  vim.fn.setqflist({}, "a", {
+local function populate_loclist(lines, efm)
+  vim.fn.setloclist(0, {}, "r", {
     title = makeprg,
     lines = lines,
     efm = efm
@@ -39,16 +39,9 @@ function M.make()
     stderr:close()
     handle:close()
 
-    fill_qflist(lines, efm)
+    populate_loclist(lines, efm)
   end)
   )
-
-  if vim.fn.getqflist({title = ''}).title == makeprg then
-    vim.fn.setqflist({}, "r")
-    vim.api.nvim_command("cclose")
-  else
-    vim.fn.setqflist({}, " ")
-  end
 
   stdout:read_start(vim.schedule_wrap(onread))
   stderr:read_start(vim.schedule_wrap(onread))
