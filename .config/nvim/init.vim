@@ -133,7 +133,11 @@ let g:user_emmet_settings = {
 " inline-edit config
 let g:inline_edit_autowrite = 1
 
+" use patience algorithm for diffing
 set diffopt+=algorithm:patience
+
+" enable lua syntaxh highlighting embedded in vim files
+let g:vimsyn_embed = 'l'
 
 "}}}
 "{{{ general mappings
@@ -433,7 +437,9 @@ function! ListJump(list_type, direction, wrap)
     exe a:list_type . a:direction
   catch /E553/ " wrap around last item
     exe a:list_type . a:wrap
-  catch /E163,E42/
+  catch /E42/
+    return
+  catch /E163/
     return
   endtry
   normal! zz
@@ -442,8 +448,6 @@ endfunction
 " wrap around when navigating the quickfix list
 nnoremap <silent> ]q :call ListJump("c", "next", "first")<CR>
 nnoremap <silent> [q :call ListJump("c", "previous", "last")<CR>
-nnoremap <silent> ]l :call ListJump("l", "next", "first")<CR>
-nnoremap <silent> [l :call ListJump("l", "previous", "last")<CR>
 nnoremap <silent> ]w :call ListJump("l", "next", "first")<CR>
 nnoremap <silent> [w :call ListJump("l", "previous", "last")<CR>
 nnoremap <silent> ]g :call ListJump("l", "below", "first")<CR>
@@ -485,7 +489,7 @@ augroup QuickFixSettings
   au FileType qf setlocal nowrap
   au FileType qf call ResizeQf(1, 5) " min, max
   au FileType qf au BufEnter <buffer> nested if winnr("$") == 1 | quit | endif
-  au FileType qf setlocal statusline=%q\ %{w:quickfix_title}\ %=[%l/%L]
+  au FileType qf setlocal statusline=%q\ %{get(w:,'quickfix_title','')}\ %=[%l/%L]
 augroup END
 
 "}}}
@@ -568,13 +572,6 @@ function! Clean()
 endfunction
 
 inoremap <silent> <C-X>/ <Lt>/<C-r>=CloseTag()<CR><C-r>=Reindent()<CR><C-r>=Clean()<CR>
-
-"}}}
-"{{{ netrw signs
-
-function! GetModifiedFiles()
-  execute "!git diff --name-only " . b:netrw_curdir
-endfunction
 
 "}}}
 " vi: nowrap
