@@ -15,15 +15,11 @@ packadd! vim-repeat
 packadd! vim-unimpaired
 packadd! vim-speeddating
 packadd! vim-abolish
-packadd! vim-rsi
-packadd! vim-lion
 packadd! traces.vim
-packadd! inline_edit.vim
 packadd! vim-toml
 packadd! cfilter
 packadd! matchit
 packadd! vim-obsession
-" packadd! vim-dirgutter
 
 " databases
 packadd! vim-dadbod
@@ -222,9 +218,6 @@ endfunction
 nmap <silent> gq :set opfunc=FormatWithoutMoving("'[v']gq")<CR>g@
 nmap <silent> gQ :call FormatWithoutMoving("gggqG")<CR>
 
-" inline-edit plugin remapping
-nnoremap <silent> <C-c>' :InlineEdit<CR>
-
 " highlight yanked region
 if has("nvim-0.5.0")
   augroup highlight_yank
@@ -268,6 +261,11 @@ function! Eatchar(pat)
   let c = nr2char(getchar(0))
   return (c =~ a:pat) ? '' : c
 endfunction
+
+" vim-rsi mappings that I use
+inoremap <C-A> <C-O>^
+cnoremap <C-A> <Home>
+inoremap <expr> <C-E> col('.')>strlen(getline('.'))<bar><bar>pumvisible()?"\<Lt>C-E>":"\<Lt>End>"
 
 "}}}
 "{{{ statusline and tabline

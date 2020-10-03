@@ -42,21 +42,9 @@
 	path = .config/nvim/pack/plugins/opt/vim-abolish
 	url = https://github.com/tpope/vim-abolish
 	ignore = dirty
-[submodule "vim-rsi"]
-	path = .config/nvim/pack/plugins/opt/vim-rsi
-	url = https://github.com/tpope/vim-rsi
-	ignore = dirty
-[submodule "vim-lion"]
-	path = .config/nvim/pack/plugins/opt/vim-lion
-	url = https://github.com/tommcdo/vim-lion
-	ignore = dirty
 [submodule "traces.vim"]
 	path = .config/nvim/pack/plugins/opt/traces.vim
 	url = https://github.com/markonm/traces.vim
-	ignore = dirty
-[submodule "inline_edit.vim"]
-	path = .config/nvim/pack/plugins/opt/inline_edit.vim
-	url = https://github.com/AndrewRadev/inline_edit.vim
 	ignore = dirty
 [submodule "vim-toml"]
 	path = .config/nvim/pack/plugins/opt/vim-toml
