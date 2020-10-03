@@ -82,10 +82,6 @@
 	path = .config/nvim/pack/plugins/opt/vim-jsx-pretty
 	url = https://github.com/MaxMEllon/vim-jsx-pretty
 	ignore = dirty
-[submodule "aergia"]
-	path = .config/nvim/pack/plugins/opt/aergia
-	url = https://github.com/henricattoire/aergia
-	ignore = dirty
 [submodule "nvim-lsp"]
 	path = .config/nvim/pack/plugins/opt/nvim-lsp
 	url = https://github.com/neovim/nvim-lsp
