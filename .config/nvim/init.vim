@@ -269,9 +269,6 @@ function! Eatchar(pat)
   return (c =~ a:pat) ? '' : c
 endfunction
 
-" open tab with <C-T>
-nnoremap <c-t> :tabnew<CR>
-
 "}}}
 "{{{ statusline and tabline
 
