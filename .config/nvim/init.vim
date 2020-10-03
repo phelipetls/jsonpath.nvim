@@ -459,6 +459,8 @@ else
   command! Make silent make! | redraw!
 endif
 
+command! ClearQf call setqflist([], ' ') | cclose
+
 " function to resize quickfix window given a min and max height
 function! ResizeQf(minheight, maxheight)
   exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
