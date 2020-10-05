@@ -8,4 +8,4 @@ if exists(":CompilerSet") != 2		" older Vim always used :setlocal
 endif
 
 CompilerSet makeprg=flake8\ %
-CompilerSet errorformat=%f:%l:%c:\ %t%n\ %m
+CompilerSet errorformat=%f:%l:%c:\ %t%n\ %m,%-G%.%#
