@@ -20,6 +20,10 @@ if executable("python3")
     if executable("pytest") | compiler pytest | else | compiler pyunit | endif
   else
     compiler flake8
+
+    augroup LintOnSave
+      autocmd! BufWritePost <buffer> Make
+    augroup END
   endif
 endif
 

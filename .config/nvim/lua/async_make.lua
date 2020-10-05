@@ -8,7 +8,6 @@ local function populate_loclist(lines, bufnr)
     lines = lines,
     efm = efm
   })
-  vim.api.nvim_command("lwindow")
   vim.api.nvim_command("doautocmd QuickFixCmdPost")
 end
 

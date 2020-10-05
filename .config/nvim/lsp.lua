@@ -24,25 +24,12 @@ local parse_diagnostics = function(diagnostics)
   return items
 end
 
-local close_loclist_if_empty = function()
-  local loclist = vim.fn.getloclist(0, { title = 0, size = 0})
-
-  local title = loclist.title
-  local size = loclist.size
-
-  if title == 'Language Server' and size == 0 then
-    vim.api.nvim_command [[lclose]]
-  end
-end
-
 update_diagnostics_loclist = function()
   bufnr = vim.fn.bufnr()
   diagnostics = vim.lsp.util.diagnostics_by_buf[bufnr]
 
   items = parse_diagnostics(diagnostics)
   vim.lsp.util.set_loclist(items)
-
-  close_loclist_if_empty()
 end
 
 vim.lsp.util.buf_diagnostics_signs = function() return end
@@ -59,6 +46,7 @@ local function set_lsp_config(_)
   vim.api.nvim_command [[nnoremap <buffer> gR :lua vim.lsp.buf.rename()<CR>]]
   vim.api.nvim_command [[let b:completion_command = "\<C-x>\<C-o>"]]
   vim.api.nvim_command [[autocmd! User LspDiagnosticsChanged lua update_diagnostics_loclist()]]
+  vim.api.nvim_command [[autocmd! LintOnSave]]
 end
 
 nvim_lsp.pyls.setup{

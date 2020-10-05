@@ -452,22 +452,17 @@ else
   command! Make silent make! | redraw!
 endif
 
-" function to resize quickfix window given a min and max height
-function! ResizeQf(minheight, maxheight)
-  exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
-endfunction
-
 nnoremap <silent> <space>q :pclose<CR>:cclose<cr>:lclose<cr>
 nnoremap <silent> <space>m :Make<CR>
 
-augroup QuickFixSettings
+augroup QuickFix
   autocmd!
-  au QuickFixCmdPost * execute &ft == "qf" ? "wincmd p" : ""
-  au FileType qf setlocal nowrap
-  au FileType qf call ResizeQf(1, 5) " min, max
-  au FileType qf au BufEnter <buffer> ++nested if winnr("$") == 1 && tabpagenr("$") == 1 | quit | endif
-  au FileType qf setlocal statusline=%q\ %{get(w:,'quickfix_title','')}\ %=[%l/%L]
+  autocmd QuickFixCmdPost * windo lclose
+  autocmd QuickFixCmdPost * botright lwindow
+  autocmd QuickFixCmdPost * if &ft == "qf" | wincmd p | endif
 augroup END
+
+command! DisableLintOnSave autocmd! LintOnSave BufWritePost <buffer>
 
 "}}}
 "{{{ vim-slime
