@@ -83,20 +83,6 @@ nvim_lsp.pyls.setup{
 --   end;
 -- }
 
-if not configs.r_language_server then
-  configs.r_language_server = {
-    default_config = {
-      cmd = {"R", "--slave", "-e", "languageserver::run()"};
-      filetypes = {"r", "rmd"};
-      root_dir = function(fname)
-        return nvim_lsp.util.find_git_ancestor(fname) or vim.loop.os_homedir()
-      end;
-      log_level = vim.lsp.protocol.MessageType.Warning;
-      settings = {};
-    }
-  }
-end
-
 nvim_lsp.r_language_server.setup{
   on_attach=set_lsp_config;
 }
