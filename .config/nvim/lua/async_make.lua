@@ -1,37 +1,31 @@
 local M = {}
 
-local function populate_loclist(lines, bufnr)
-  local makeprg = vim.api.nvim_buf_get_option(bufnr, "makeprg")
-  local efm = vim.api.nvim_buf_get_option(bufnr, "errorformat")
-  vim.fn.setloclist(winnr, {}, "r", {
-    title = makeprg,
-    lines = lines,
-    efm = efm
-  })
-  vim.api.nvim_command("doautocmd QuickFixCmdPost")
-end
-
-local function on_event(job_id, data, event)
-  if event == "stdout" or event == "stderr" then
-    if data then
-      vim.list_extend(lines, data)
-    end
-  end
-
-  if event == "exit" then
-    populate_loclist(lines, bufnr)
-  end
-end
-
 function M.make()
-  lines = {""}
-  winnr = vim.fn.win_getid()
-  bufnr = vim.api.nvim_win_get_buf(winnr)
+  local lines = {""}
+  local winnr = vim.fn.win_getid()
+  local bufnr = vim.api.nvim_win_get_buf(winnr)
 
   local makeprg = vim.api.nvim_buf_get_option(bufnr, "makeprg")
   if not makeprg then return end
 
   local cmd = vim.fn.expandcmd(makeprg)
+
+  local function on_event(job_id, data, event)
+    if event == "stdout" or event == "stderr" then
+      if data then
+        vim.list_extend(lines, data)
+      end
+    end
+
+    if event == "exit" then
+      vim.fn.setloclist(winnr, {}, "r", {
+        title = cmd,
+        lines = lines,
+        efm = vim.api.nvim_buf_get_option(bufnr, "errorformat")
+      })
+      vim.api.nvim_command("doautocmd QuickFixCmdPost")
+    end
+  end
 
   local job_id =
     vim.fn.jobstart(
