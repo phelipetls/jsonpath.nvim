@@ -462,9 +462,8 @@ nnoremap <silent> <space>m :Make<CR>
 
 augroup QuickFix
   autocmd!
-  autocmd QuickFixCmdPost * windo lclose
   autocmd QuickFixCmdPost * botright lwindow
-  autocmd QuickFixCmdPost * if &ft == "qf" | wincmd p | endif
+  autocmd QuickFixCmdPost * exe &ft == "qf" ? "wincmd p" : ""
 augroup END
 
 command! DisableLintOnSave autocmd! LintOnSave BufWritePost <buffer>
