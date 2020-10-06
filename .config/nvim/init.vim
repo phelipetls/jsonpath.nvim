@@ -460,10 +460,20 @@ endif
 nnoremap <silent> <space>q :pclose<CR>:cclose<cr>:lclose<cr>
 nnoremap <silent> <space>m :Make<CR>
 
+function! OpenLocationList()
+  try
+    botright lwindow
+  catch /E776/
+    return
+  endtry
+  if &ft == "qf"
+    wincmd p
+  endif
+endfunction
+
 augroup QuickFix
   autocmd!
-  autocmd QuickFixCmdPost * botright lwindow
-  autocmd QuickFixCmdPost * exe &ft == "qf" ? "wincmd p" : ""
+  autocmd QuickFixCmdPost * call OpenLocationList()
 augroup END
 
 command! DisableLintOnSave autocmd! LintOnSave BufWritePost <buffer>
