@@ -135,6 +135,10 @@ set diffopt+=algorithm:patience
 " enable lua syntaxh highlighting embedded in vim files
 let g:vimsyn_embed = 'l'
 
+if has("nvim")
+  autocmd! VimResume * checktime
+endif
+
 "}}}
 "{{{ general mappings
 
