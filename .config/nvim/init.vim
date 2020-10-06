@@ -269,6 +269,7 @@ endfunction
 " vim-rsi mappings that I use
 inoremap <C-A> <C-O>^
 cnoremap <C-A> <Home>
+cnoremap <C-X><C-A> <C-A>
 inoremap <expr> <C-E> col('.')>strlen(getline('.'))<bar><bar>pumvisible()?"\<Lt>C-E>":"\<Lt>End>"
 
 "}}}
