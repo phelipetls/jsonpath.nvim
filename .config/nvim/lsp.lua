@@ -54,8 +54,8 @@ nvim_lsp.pyls.setup{
   settings = {
     pyls = {
       plugins = {
-        pycodestyle = { enabled = false; };
-        pyflakes = { enabled = false; };
+        pycodestyle = { enabled = true; };
+        pyflakes = { enabled = true; };
         yapf = { enabled = false; };
       };
     };
