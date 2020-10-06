@@ -2,8 +2,8 @@
 
 " file navigation
 set rtp+=~/.fzf
+packadd! vim-dirvish
 packadd! fzf.vim
-packadd! vim-vinegar
 
 " conveniences
 packadd! splitjoin.vim
@@ -138,6 +138,9 @@ let g:vimsyn_embed = 'l'
 if has("nvim")
   autocmd! VimResume * checktime
 endif
+
+" when writing a file with :w a/b/file.txt, create a/b directory
+au! BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
 
 "}}}
 "{{{ general mappings
@@ -319,8 +322,9 @@ set tabline=%!Tabline()
 "{{{ file navigation
 
 set path=.,,..
-
 nnoremap <space>f :find<space>
+
+"{{{2 fzf
 
 if executable("fzf")
   let $FZF_DEFAULT_COMMAND = 'rg --files --color=never --glob "!.git/*"'
@@ -348,7 +352,8 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
-
+"}}} fzf
+"{{{2 netrw
 let g:netrw_special_syntax = 1  " highlight special files in netrw
 let g:netrw_sizestyle = "H"  " human-readable file size
 let g:netrw_timefmt = "%b %d %R" " preferred datetime format
@@ -372,6 +377,7 @@ augroup Netrw
   autocmd!
   au FileType netrw setlocal bufhidden=wipe
 augroup END
+"}}}2
 
 "}}}
 "{{{ autocompletion config
