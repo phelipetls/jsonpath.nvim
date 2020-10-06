@@ -16,8 +16,7 @@ elseif executable("eslint")
 endif
 
 if executable("node")
-  nnoremap <buffer> <F5> :w !node<CR>
-  vnoremap <buffer> <F5> :w !node<CR>
+  noremap <buffer> <F5> :w !node<CR>
 endif
 
 "}}}
