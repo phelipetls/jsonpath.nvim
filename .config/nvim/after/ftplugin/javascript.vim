@@ -23,7 +23,7 @@ endif
 "{{{ formatter
 
 if executable("prettier")
-  setlocal formatprg=prettier\ --parser\ typescript
+  let &l:formatprg='prettier --parser typescript'
 endif
 
 "}}}

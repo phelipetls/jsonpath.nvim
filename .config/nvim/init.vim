@@ -89,7 +89,7 @@ set softtabstop=2
 set shiftwidth=2
 
 " don't autocomment on newline
-autocmd! BufEnter * set formatoptions-=cro
+autocmd! BufEnter * set formatoptions-=c formatoptions-=r formatoptions-=o
 
 " autoresize splits when vim is resized or entering tab
 autocmd! VimResized * wincmd =
@@ -144,6 +144,12 @@ au! BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
 
 " disable saving session on BufEnter
 let g:obsession_no_bufenter = 1
+
+" open session automatically if avaiable
+autocmd VimEnter * nested
+      \ if !argc() && empty(v:this_session) && filereadable('Session.vim') && !&modified |
+      \   source Session.vim |
+      \ endif
 
 "}}}
 "{{{ general mappings
@@ -258,9 +264,9 @@ nnoremap <left> <nop>
 nnoremap <right> <nop>
 
 " convenient mappgins for matchit
-nmap z<Tab> %
-omap z<Tab> %
-xmap z<Tab> %
+nmap g<Tab> %
+omap g<Tab> %
+xmap g<Tab> %
 
 nmap <S-Tab> [%
 omap <S-Tab> [%
@@ -278,7 +284,18 @@ cnoremap <C-A> <Home>
 cnoremap <C-X><C-A> <C-A>
 inoremap <expr> <C-E> col('.')>strlen(getline('.'))<bar><bar>pumvisible()?"\<Lt>C-E>":"\<Lt>End>"
 
+" cool mapping to get a list of dates
 inoremap <silent> <C-G><C-T> <C-R>=repeat(complete(col('.'),map(["%Y-%m-%d %H:%M:%S","%a, %d %b %Y %H:%M:%S %z","%Y %b %d","%d-%b-%y","%a %b %d %T %Z %Y"],'strftime(v:val)')+[localtime()]),0)<CR>
+
+" fix last spelling mistake
+nnoremap <C-X><C-E> <Esc>[s1z=
+inoremap <C-X><C-E> <Esc>[s1z=gi
+
+" <spac> does not move character
+nmap <script><silent> <Space> :call getchar()<CR>
+
+" when using ^R^L in command-line mode, strip out leading whitespace
+cnoremap <C-R><C-L> <C-R>=substitute(getline('.'), '^\s*', '', '')<CR>
 
 "}}}
 "{{{ statusline and tabline
@@ -293,13 +310,13 @@ function! GitHead() abort
   endif
 endfunction
 
-let &g:statusline=' %n:'                      " buffer number
-let &g:statusline.=' %0.30f'                  " abbreviated file name
-let &g:statusline.=' %{GitHead()}'            " branch of current HEAD commit
-let &g:statusline.=' %m'                      " modified
-let &g:statusline.=' %='                      " jump to other side
-let &g:statusline.=' [%l/%L]'                 " current line number / total lines
-let &g:statusline.=' %y'                      " filetype
+let &g:statusline=' %n:'                         " buffer number
+let &g:statusline.=' %0.30f'                     " abbreviated file name
+let &g:statusline.=' %{GitHead()}'               " branch of current HEAD commit
+let &g:statusline.=' %m'                         " modified
+let &g:statusline.=' %='                         " jump to other side
+let &g:statusline.=' [%l/%L]'                    " current line number / total lines
+let &g:statusline.=' %y'                         " filetype
 
 function! Tabline()
   let s = ''
@@ -484,6 +501,9 @@ endfunction
 
 augroup QuickFix
   autocmd!
+  autocmd WinLeave * lclose
+  autocmd WinEnter * call OpenLocationList()
+  autocmd QuickFixCmdPost * cclose
   autocmd QuickFixCmdPost * call OpenLocationList()
 augroup END
 
