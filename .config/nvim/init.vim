@@ -213,9 +213,8 @@ nnoremap <silent> <c-n> *Ncgn
 command! Hi exe 'hi '.synIDattr(synID(line("."), col("."), 0), "name")
 
 " functions/mappings to format without moving cursor
-function! FormatWithoutMoving(cmd)
-  let w:gqview = winsaveview()
-  execute "normal! ". a:cmd
+function! Format(type, ...)
+  silent exe "normal! '[v']gq"
   if v:shell_error > 0
     silent undo
     redraw
@@ -225,8 +224,9 @@ function! FormatWithoutMoving(cmd)
   unlet w:gqview
 endfunction
 
-nmap <silent> gq :set opfunc=FormatWithoutMoving("'[v']gq")<CR>g@
-nmap <silent> gQ :call FormatWithoutMoving("gggqG")<CR>
+" nmap <silent> gQ :call Format()<CR>
+nmap <silent> gq :set opfunc=Format<CR>:let w:gqview = winsaveview()<CR>g@
+nmap <silent> gQ :set opfunc=Format<CR>:let w:gqview = winsaveview()<CR>ggg@G
 
 " highlight yanked region
 if has("nvim-0.5.0")
