@@ -142,6 +142,9 @@ endif
 " when writing a file with :w a/b/file.txt, create a/b directory
 au! BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
 
+" disable saving session on BufEnter
+let g:obsession_no_bufenter = 1
+
 "}}}
 "{{{ general mappings
 
