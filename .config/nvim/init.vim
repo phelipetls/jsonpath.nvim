@@ -245,15 +245,6 @@ inoremap <M-q> <C-o>gwip
 " put the current file name under the f register
 autocmd! BufEnter * let @f=expand("%:t:r")
 
-" more convenient maps for matchit
-nmap <Tab> %
-omap <Tab> %
-xmap <Tab> %
-
-nmap <S-Tab> [%
-omap <S-Tab> [%
-xmap <S-Tab> [%
-
 " unmap <C-f> from unimpaired in command mode
 try
   cunmap <C-f>
@@ -265,6 +256,15 @@ nnoremap <up> <nop>
 nnoremap <down> <nop>
 nnoremap <left> <nop>
 nnoremap <right> <nop>
+
+" convenient mappgins for matchit
+nmap z<Tab> %
+omap z<Tab> %
+xmap z<Tab> %
+
+nmap <S-Tab> [%
+omap <S-Tab> [%
+xmap <S-Tab> [%
 
 " function used for abbreviations
 function! Eatchar(pat)
