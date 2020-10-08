@@ -263,15 +263,6 @@ nnoremap <down> <nop>
 nnoremap <left> <nop>
 nnoremap <right> <nop>
 
-" convenient mappgins for matchit
-nmap g<Tab> %
-omap g<Tab> %
-xmap g<Tab> %
-
-nmap <S-Tab> [%
-omap <S-Tab> [%
-xmap <S-Tab> [%
-
 " function used for abbreviations
 function! Eatchar(pat)
   let c = nr2char(getchar(0))
@@ -296,6 +287,10 @@ nmap <script><silent> <Space> :call getchar()<CR>
 
 " when using ^R^L in command-line mode, strip out leading whitespace
 cnoremap <C-R><C-L> <C-R>=substitute(getline('.'), '^\s*', '', '')<CR>
+
+" use <Tab> as an operator for matchit
+omap <Tab> %
+vmap <Tab> %
 
 "}}}
 "{{{ statusline and tabline
