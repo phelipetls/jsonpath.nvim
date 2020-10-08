@@ -45,7 +45,6 @@ syntax on
 colorscheme sixteen
 
 set nonumber
-set nowrap
 set hidden
 set wildmenu
 set wildmode=full
