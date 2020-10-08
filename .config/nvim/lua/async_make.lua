@@ -18,7 +18,7 @@ function M.make()
     end
 
     if event == "exit" then
-      vim.fn.setloclist(winnr, {}, "r", {
+      vim.fn.setqflist({}, " ", {
         title = cmd,
         lines = lines,
         efm = vim.api.nvim_buf_get_option(bufnr, "errorformat")
