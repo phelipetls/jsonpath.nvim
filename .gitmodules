@@ -6,10 +6,6 @@
 	path = .config/nvim/pack/plugins/opt/fzf.vim
 	url = https://github.com/junegunn/fzf.vim
 	ignore = dirty
-[submodule "vim-vinegar"]
-	path = .config/nvim/pack/plugins/opt/vim-vinegar
-	url = https://github.com/tpope/vim-vinegar
-	ignore = dirty
 [submodule "vim-simple-complete"]
 	path = .config/nvim/pack/plugins/opt/vim-simple-complete
 	url = https://github.com/phelipetls/vim-simple-complete
