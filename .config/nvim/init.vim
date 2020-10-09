@@ -20,6 +20,7 @@ packadd! traces.vim
 packadd! vim-toml
 packadd! cfilter
 packadd! matchit
+packadd! editorconfig-vim
 
 " databases
 packadd! vim-dadbod
@@ -149,6 +150,9 @@ autocmd VimEnter * nested
       \ if !argc() && empty(v:this_session) && filereadable('Session.vim') && !&modified |
       \   source Session.vim |
       \ endif
+
+" disable editorconfig sometimes
+let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
 "}}}
 "{{{ general mappings
