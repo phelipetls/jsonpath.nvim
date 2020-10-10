@@ -88,6 +88,9 @@ set expandtab
 set softtabstop=2
 set shiftwidth=2
 
+" disable foldcolumn in diff mode
+set diffopt+=foldcolumn:0
+
 " don't autocomment on newline
 autocmd! BufEnter * set formatoptions-=c formatoptions-=r formatoptions-=o
 
@@ -126,15 +129,10 @@ let g:user_emmet_settings = {
 \  },
 \}
 
-" inline-edit config
-let g:inline_edit_autowrite = 1
-
-" use patience algorithm for diffing
-set diffopt+=algorithm:patience
-
 " enable lua syntaxh highlighting embedded in vim files
 let g:vimsyn_embed = 'l'
 
+" checktime when nvim resumes from suspended state
 if has("nvim")
   autocmd! VimResume * checktime
 endif
@@ -273,17 +271,13 @@ function! Eatchar(pat)
 endfunction
 
 " vim-rsi mappings that I use
-inoremap <C-A> <C-O>^
+inoremap <C-A> <Home>
 cnoremap <C-A> <Home>
 cnoremap <C-X><C-A> <C-A>
 inoremap <expr> <C-E> col('.')>strlen(getline('.'))<bar><bar>pumvisible()?"\<Lt>C-E>":"\<Lt>End>"
 
 " cool mapping to get a list of dates
 inoremap <silent> <C-G><C-T> <C-R>=repeat(complete(col('.'),map(["%Y-%m-%d %H:%M:%S","%a, %d %b %Y %H:%M:%S %z","%Y %b %d","%d-%b-%y","%a %b %d %T %Z %Y"],'strftime(v:val)')+[localtime()]),0)<CR>
-
-" fix last spelling mistake
-nnoremap <C-X><C-E> <Esc>[s1z=
-inoremap <C-X><C-E> <Esc>[s1z=gi
 
 " <spac> does not move character
 nmap <script><silent> <Space> :call getchar()<CR>
