@@ -1,6 +1,6 @@
 local M = {}
 
-function M.make()
+function M.make(arg)
   local lines = {""}
   local winnr = vim.fn.win_getid()
   local bufnr = vim.api.nvim_win_get_buf(winnr)
@@ -8,7 +8,9 @@ function M.make()
   local makeprg = vim.api.nvim_buf_get_option(bufnr, "makeprg")
   if not makeprg then return end
 
-  local cmd = vim.fn.expandcmd(makeprg)
+
+  local args = vim.fn.expand(arg)
+  local cmd = vim.fn.expandcmd(makeprg) .. " " .. args
 
   local function on_event(job_id, data, event)
     if event == "stdout" or event == "stderr" then

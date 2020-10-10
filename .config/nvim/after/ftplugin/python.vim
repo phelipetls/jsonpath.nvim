@@ -22,15 +22,14 @@ if executable("python3")
     compiler flake8
 
     augroup LintOnSave
-      autocmd! BufWritePost <buffer> Make
+      autocmd! BufWritePost <buffer> Make <afile>
     augroup END
   endif
 endif
 
 if executable("python3")
   nnoremap <silent> <F5> :!python3 %<CR>
-  command! -bang Test if <bang>1 | compiler pyunit | else | compiler pyunit_dir | endif | Make
-  command! Pytest compiler pytest | Make
+  command! -bang Test if <bang>1 | make <afile>:p:h | else | make <afile>
 endif
 
 "}}}

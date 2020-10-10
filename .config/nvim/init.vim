@@ -478,13 +478,13 @@ nnoremap <silent> ]w :call ListJump("l", "next", "first")<CR>
 nnoremap <silent> [w :call ListJump("l", "previous", "last")<CR>
 
 if has("nvim")
-  command! Make lua require'async_make'.make()
+  command! -nargs=* -complete=file_in_path Make lua require'async_make'.make(<q-args>)
 else
-  command! Make silent make! | redraw!
+  command! -nargs=* -complete=file_in_path Make silent make!
 endif
 
 nnoremap <silent> <space>q :pclose<CR>:cclose<cr>:lclose<cr>
-nnoremap <silent> <space>m :Make<CR>
+nnoremap <silent> <space>m :Make %<CR>
 
 augroup QuickFix
   autocmd!

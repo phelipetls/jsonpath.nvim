@@ -11,7 +11,7 @@ elseif executable("eslint")
   compiler eslint
 
   augroup LintOnSave
-    autocmd! BufWritePost <buffer> Make
+    autocmd! BufWritePost <buffer> Make <afile>
   augroup END
 endif
 

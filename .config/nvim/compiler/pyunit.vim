@@ -7,7 +7,7 @@ if exists(":CompilerSet") != 2		" older Vim always used :setlocal
   command -nargs=* CompilerSet setlocal <args>
 endif
 
-CompilerSet makeprg=python3\ %:S
+CompilerSet makeprg=python3\ -m\ unittest\ -p\ %:S
 CompilerSet errorformat=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
 
 
