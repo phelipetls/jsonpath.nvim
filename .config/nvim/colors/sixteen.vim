@@ -36,10 +36,10 @@ hi Ignore ctermbg=NONE ctermfg=7
 
 "}}}
 "{{{ Misc
-hi DiffAdd ctermbg=2 ctermfg=0
-hi DiffChange ctermbg=0 ctermfg=7
-hi DiffDelete ctermbg=1 ctermfg=0
-hi DiffText ctermbg=0 ctermfg=7 cterm=BOLD
+hi DiffAdd ctermbg=8 ctermfg=white
+hi DiffDelete ctermbg=black ctermfg=red
+hi DiffChange ctermbg=black ctermfg=NONE
+hi DiffText ctermbg=black ctermfg=yellow cterm=BOLD
 
 hi Error ctermbg=1 ctermfg=0
 hi link ErrorMsg Error
