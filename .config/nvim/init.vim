@@ -143,12 +143,6 @@ au! BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
 " disable saving session on BufEnter
 let g:obsession_no_bufenter = 1
 
-" open session automatically if avaiable
-autocmd VimEnter * nested
-      \ if !argc() && empty(v:this_session) && filereadable('Session.vim') && !&modified |
-      \   source Session.vim |
-      \ endif
-
 " disable editorconfig sometimes
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
@@ -287,7 +281,14 @@ cnoremap <C-R><C-L> <C-R>=substitute(getline('.'), '^\s*', '', '')<CR>
 
 " use <Tab> as an operator for matchit
 omap <Tab> %
-vmap <Tab> %
+xmap <Tab> %
+
+command! DiffOrig vert new | set buftype=nofile |
+      \ read ++edit # |
+      \ 0d_ |
+      \ diffthis |
+      \ wincmd p |
+      \ diffthis
 
 "}}}
 "{{{ statusline and tabline
@@ -414,8 +415,8 @@ inoremap <silent> <C-x><C-f> <C-R>=LocalFileCompletion()<CR>
 function! CtrlSpace()
   let l:line_until_cursor = strpart(getline('.'), 0, col('.')-1)
   " do file name completion if line until cursor is something like this:
-  " 'lorem ipsum ../path/'
-  " 'lorem ipsum ../path/file'
+  " 'foo bar ../baz/'
+  " 'foo bar ../baz/qux'
   " but not if like this:
   " '<tag>content</'
   if l:line_until_cursor =~ '\(<\)\@1<!/\f*$'
@@ -483,7 +484,7 @@ nnoremap <silent> <space>m :Make %<CR>
 augroup QuickFix
   autocmd!
   autocmd QuickFixCmdPost * botright cwindow
-  autocmd QuickFixCmdPost * exe &bt == "quickfix" ? "wincmd p" : ""
+  autocmd QuickFixCmdPost * exe &buftype == "quickfix" ? "wincmd p" : ""
 augroup END
 
 command! DisableLintOnSave autocmd! LintOnSave BufWritePost <buffer>

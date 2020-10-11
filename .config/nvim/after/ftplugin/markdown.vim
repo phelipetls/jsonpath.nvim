@@ -27,9 +27,9 @@ endif
 "}}}
 "{{{ surround
 
-let b:surround_{char2nr("P")} = "```python\n\r\n```"
-let b:surround_{char2nr("R")} = "```r\n\r\n```"
+let b:surround_{char2nr("c")} = "```\r\n```"
 let b:surround_{char2nr("l")} = "[\r](\1link: \1)"
+let b:surround_{char2nr("s")} = "{{< \1shortcode: \1 >}}\r\n{{< /\1\1 >}}"
 
 "}}}
 "{{{ conceal
@@ -39,7 +39,7 @@ setl conceallevel=0
 "}}}
 "{{{ matchit
 
-let b:match_words = '^```.\+$:^```$'
+let b:match_words = b:match_words.'^```.\+$:^```$'
 
 "}}}
 "{{{ text objects

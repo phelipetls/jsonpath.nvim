@@ -29,7 +29,6 @@ endif
 
 if executable("python3")
   nnoremap <silent> <F5> :!python3 %<CR>
-  command! -bang Test if <bang>1 | make <afile>:p:h | else | make <afile>
 endif
 
 "}}}

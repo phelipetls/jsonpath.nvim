@@ -45,31 +45,32 @@ local function set_lsp_config(_)
   vim.api.nvim_command [[nnoremap <buffer><silent> gr :lua vim.lsp.buf.references()<CR>]]
   vim.api.nvim_command [[nnoremap <buffer> gR :lua vim.lsp.buf.rename()<CR>]]
   vim.api.nvim_command [[let b:completion_command = "\<C-x>\<C-o>"]]
-  vim.api.nvim_command [[autocmd! User LspDiagnosticsChanged lua update_diagnostics_loclist()]]
   vim.api.nvim_command [[if exists("#LintOnSave") | autocmd! LintOnSave | endif]]
+  vim.api.nvim_command [[autocmd! User LspDiagnosticsChanged lua update_diagnostics_loclist()]]
 end
 
-nvim_lsp.pyls.setup{
-  on_attach=set_lsp_config;
+nvim_lsp.pyls.setup {
+  on_attach = set_lsp_config,
   settings = {
     pyls = {
+      configurationSources = {"flake8"},
       plugins = {
-        pycodestyle = { enabled = true; };
-        pyflakes = { enabled = true; };
-        yapf = { enabled = false; };
-      };
-    };
-  };
-};
+        pycodestyle = {enabled = true},
+        pyflakes = {enabled = true},
+        yapf = {enabled = false}
+      }
+    }
+  }
+}
 
--- nvim_lsp.tsserver.setup{
---   on_attach = set_lsp_config;
---   root_dir = function(fname)
---     return util.find_package_json_ancestor(fname) or
---            util.find_git_ancestor(fname) or
---            vim.loop.os_homedir()
---   end;
--- }
+nvim_lsp.tsserver.setup{
+  on_attach = set_lsp_config;
+  root_dir = function(fname)
+    return util.find_package_json_ancestor(fname) or
+           util.find_git_ancestor(fname) or
+           vim.loop.os_homedir()
+  end;
+}
 
 nvim_lsp.r_language_server.setup{
   on_attach=set_lsp_config;

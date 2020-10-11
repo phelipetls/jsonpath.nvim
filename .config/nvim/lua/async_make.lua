@@ -8,7 +8,6 @@ function M.make(arg)
   local makeprg = vim.api.nvim_buf_get_option(bufnr, "makeprg")
   if not makeprg then return end
 
-
   local args = vim.fn.expand(arg)
   local cmd = vim.fn.expandcmd(makeprg) .. " " .. args
 
@@ -29,15 +28,14 @@ function M.make(arg)
     end
   end
 
-  local job_id =
-    vim.fn.jobstart(
+  vim.fn.jobstart(
     cmd,
     {
       on_stderr = on_event,
       on_stdout = on_event,
       on_exit = on_event,
       stdout_buffered = true,
-      stderr_buffered = true,
+      stderr_buffered = true
     }
   )
 end
