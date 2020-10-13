@@ -1,17 +1,12 @@
 " create file with %
-nnoremap <buffer> % :e %/
-
-" create directory with d
-if !exists("*CreateDirectory")
-  function! CreateDirectory()
-    let input_opts = {"prompt": "Directory: ", "completion": "dir"}
-    let dir = input(input_opts)
-    call mkdir(expand("%").dir, "p")
-    norm R
-  endfunction
-endif
-
-nnoremap <nowait><buffer> d :call CreateDirectory()<CR>
+nnoremap <buffer> % :e %
 
 " keep folders at the top
-sort ,^.*[\/],
+let g:dirvish_mode = ':sort ,^.*[\/],'
+
+nnoremap <silent><buffer>
+        \ gh :silent keeppatterns g@\v/\.[^\/]+/?$@d _<cr>:setl cole=3<cr>
+
+nnoremap <silent><buffer>
+        \ gr :<C-U>Dirvish %<CR>
+
