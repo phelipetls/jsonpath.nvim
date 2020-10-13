@@ -92,7 +92,7 @@ set shiftwidth=2
 set diffopt+=foldcolumn:0
 
 " don't autocomment on newline
-autocmd! BufEnter * set formatoptions-=c formatoptions-=r formatoptions-=o
+autocmd! FileType * set formatoptions-=cro
 
 " autoresize splits when vim is resized or entering tab
 autocmd! VimResized * wincmd =
@@ -290,6 +290,9 @@ command! DiffOrig vert new | set buftype=nofile |
       \ wincmd p |
       \ diffthis
 
+inoreabbrev Taebl Table
+inoreabbrev taebl table
+
 "}}}
 "{{{ statusline and tabline
 
@@ -298,9 +301,8 @@ function! GitHead() abort
     let l:head = FugitiveHead()
     if len(l:head) > 0
       return printf("[%s]", l:head)
-  else
-    return ""
   endif
+  return ""
 endfunction
 
 let &g:statusline=' %n:'                         " buffer number
@@ -369,6 +371,7 @@ let g:fzf_colors =
   \ 'header':  ['fg', 'Comment'] }
 "}}} fzf
 "{{{2 netrw
+
 let g:netrw_special_syntax = 1  " highlight special files in netrw
 let g:netrw_sizestyle = "H"  " human-readable file size
 let g:netrw_timefmt = "%b %d %R" " preferred datetime format
@@ -392,6 +395,7 @@ augroup Netrw
   autocmd!
   au FileType netrw setlocal bufhidden=wipe
 augroup END
+
 "}}}2
 
 "}}}
