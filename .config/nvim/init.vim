@@ -50,6 +50,7 @@ set hidden
 set wildmenu
 set wildmode=full
 set wildcharm=<Tab>
+set lazyredraw
 set mouse=nv                        " allow mouse in normal and visual mode
 set clipboard+=unnamedplus          " always use system clipboard
 set splitbelow splitright           " always split window to the right and below
@@ -63,7 +64,7 @@ set encoding=utf-8                  " set default encoding to utf-8
 set foldmethod=marker
 set laststatus=2                    " always show statusline
 set noshowmode                      " don't show mode
-set tags=./tags,tags;                       " look for tags file in these directories
+set tags=./tags,tags;               " look for tags file
 set complete-=t                     " when completing, don't search tags
 set complete-=i                     " neither in included files
 set updatetime=1000                 " lower updatetime, used for CursorHold event
@@ -71,7 +72,7 @@ set breakindent                     " keep indentation when lines break
 set breakindentopt=shift:2          " but shift it by 2 spaces
 set linebreak                       " break only at specific characters, :h breakat
 
-if has('nvim-0.4.3')
+if has("nvim-0.4.3")
   set wildoptions=tagfile " keep the horizontal wildmenu in neovim
 endif
 
@@ -99,7 +100,7 @@ autocmd! VimResized * wincmd =
 autocmd! TabEnter * wincmd =
 
 " tell neovim where python3 is -- this improves startup time
-if has("nvim")
+if has("nvim") && has("unix")
   let g:python_host_prog = "/usr/bin/python"
   let g:loaded_python_provider = 0
   let g:python3_host_prog = "/usr/bin/python3"
@@ -271,9 +272,9 @@ cnoremap <C-X><C-A> <C-A>
 inoremap <expr> <C-E> col('.')>strlen(getline('.'))<bar><bar>pumvisible()?"\<Lt>C-E>":"\<Lt>End>"
 
 " cool mapping to get a list of dates
-inoremap <silent> <C-G><C-T> <C-R>=repeat(complete(col('.'),map(["%Y-%m-%d %H:%M:%S","%a, %d %b %Y %H:%M:%S %z","%Y %b %d","%d-%b-%y","%a %b %d %T %Z %Y"],'strftime(v:val)')+[localtime()]),0)<CR>
+inoremap <silent> <C-G><C-T> <C-R>=repeat(complete(col('.'),map(["%Y-%m-%d","%Y-%m-%d %H:%M:%S"],'strftime(v:val)')+[localtime()]),0)<CR>
 
-" <spac> does not move character
+" <space> does not move cursor in normal mode
 nmap <script><silent> <Space> :call getchar()<CR>
 
 " when using ^R^L in command-line mode, strip out leading whitespace
@@ -292,6 +293,7 @@ command! DiffOrig vert new | set buftype=nofile |
 
 inoreabbrev Taebl Table
 inoreabbrev taebl table
+inoreabbrev improt import
 
 "}}}
 "{{{ statusline and tabline
