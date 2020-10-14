@@ -34,6 +34,7 @@ end
 
 vim.lsp.util.buf_diagnostics_signs = function() return end
 vim.lsp.util.buf_diagnostics_virtual_text = function() return end
+vim.lsp.util.buf_diagnostics_underline = function() return end
 
 local function set_lsp_config(_)
   vim.api.nvim_command [[setlocal omnifunc=v:lua.vim.lsp.omnifunc]]

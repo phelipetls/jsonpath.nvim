@@ -101,7 +101,6 @@ autocmd! TabEnter * wincmd =
 
 " tell neovim where python3 is -- this improves startup time
 if has("nvim") && has("unix")
-  let g:python_host_prog = "/usr/bin/python"
   let g:loaded_python_provider = 0
   let g:python3_host_prog = "/usr/bin/python3"
 endif

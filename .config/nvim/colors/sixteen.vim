@@ -36,7 +36,7 @@ hi Ignore ctermbg=NONE ctermfg=7
 
 "}}}
 "{{{ Misc
-hi DiffAdd ctermbg=8 ctermfg=white
+hi DiffAdd ctermbg=green ctermfg=white
 hi DiffDelete ctermbg=black ctermfg=red
 hi DiffChange ctermbg=black ctermfg=NONE
 hi DiffText ctermbg=black ctermfg=yellow cterm=BOLD
