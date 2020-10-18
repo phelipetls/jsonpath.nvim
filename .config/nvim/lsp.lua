@@ -45,9 +45,11 @@ local function set_lsp_config(_)
   vim.api.nvim_command [[nnoremap <buffer><silent> gs :lua vim.lsp.buf.signature_help()<CR>]]
   vim.api.nvim_command [[nnoremap <buffer><silent> gr :lua vim.lsp.buf.references()<CR>]]
   vim.api.nvim_command [[nnoremap <buffer> gR :lua vim.lsp.buf.rename()<CR>]]
+  vim.api.nvim_command [[nnoremap <buffer> <M-CR> :lua vim.lsp.buf.code_action()<CR>]]
   vim.api.nvim_command [[let b:completion_command = "\<C-x>\<C-o>"]]
   vim.api.nvim_command [[if exists("#LintOnSave") | autocmd! LintOnSave | endif]]
   vim.api.nvim_command [[autocmd! User LspDiagnosticsChanged lua update_diagnostics_loclist()]]
+  vim.api.nvim_command [[autocmd! BufWritePost <buffer> call OpenLocationList()]]
 end
 
 nvim_lsp.pyls.setup {

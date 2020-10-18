@@ -137,14 +137,14 @@ if has("nvim")
   autocmd! VimResume * checktime
 endif
 
-" when writing a file with :w a/b/file.txt, create a/b directory
-au! BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
-
 " disable saving session on BufEnter
 let g:obsession_no_bufenter = 1
 
 " disable editorconfig sometimes
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+
+" open commits in new tabs
+autocmd! FileType gitcommit wincmd T
 
 "}}}
 "{{{ general mappings
@@ -246,12 +246,6 @@ inoremap <M-q> <C-o>gwip
 " put the current file name under the f register
 autocmd! BufEnter * let @f=expand("%:t:r")
 
-" unmap <C-f> from unimpaired in command mode
-try
-  cunmap <C-f>
-catch /E31/
-endtry
-
 " unmap the arrow keys
 nnoremap <up> <nop>
 nnoremap <down> <nop>
@@ -271,10 +265,10 @@ cnoremap <C-X><C-A> <C-A>
 inoremap <expr> <C-E> col('.')>strlen(getline('.'))<bar><bar>pumvisible()?"\<Lt>C-E>":"\<Lt>End>"
 
 " cool mapping to get a list of dates
-inoremap <silent> <C-G><C-T> <C-R>=repeat(complete(col('.'),map(["%Y-%m-%d","%Y-%m-%d %H:%M:%S"],'strftime(v:val)')+[localtime()]),0)<CR>
+inoremap <silent> <C-G><C-T> <C-R>=repeat(complete(col('.'),map(["%Y-%m-%d","%Y-%m-%d %H:%M:%S"],'strftime(v:val)')),0)<CR>
 
 " <space> does not move cursor in normal mode
-nmap <script><silent> <Space> :call getchar()<CR>
+nnoremap <space> <nop>
 
 " when using ^R^L in command-line mode, strip out leading whitespace
 cnoremap <C-R><C-L> <C-R>=substitute(getline('.'), '^\s*', '', '')<CR>
@@ -370,6 +364,7 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
+
 "}}} fzf
 "{{{2 netrw
 
@@ -486,6 +481,11 @@ endif
 nnoremap <silent> <space>q :pclose<CR>:cclose<cr>:lclose<cr>
 nnoremap <silent> <space>m :Make %<CR>
 
+function! OpenLocationList()
+  try | botright lwindow | catch /E776/ | endtry
+  exe &ft == "qf" ? "wincmd p" : ""
+endfunction
+
 augroup QuickFix
   autocmd!
   autocmd QuickFixCmdPost * botright cwindow
@@ -517,23 +517,12 @@ nnoremap <silent> <C-c><C-s> :exe ":silent !tmux send-keys -t " . b:slime_config
 "}}}
 "{{{ LSP
 
-if has("nvim-0.5.0") && filereadable("/home/phelipe/.config/nvim/lsp.lua")
+if has("nvim-0.5.0") && filereadable(stdpath("config")."/lsp.lua")
   luafile /home/phelipe/.config/nvim/lsp.lua
 endif
 
 "}}}
 "{{{ text objects
-
-" 24 simple text objects
-" ----------------------
-" i_ i. i: i, i; i| i/ i\ i* i+ i- i#
-" a_ a. a: a, a; a| a/ a\ a* a+ a- a#
-for char in [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+', '-', '#' ]
-  execute 'xnoremap i' . char . ' :<C-u>normal! T' . char . 'vt' . char . '<CR>'
-  execute 'onoremap i' . char . ' :normal vi' . char . '<CR>'
-  execute 'xnoremap a' . char . ' :<C-u>normal! F' . char . 'vf' . char . '<CR>'
-  execute 'onoremap a' . char . ' :normal va' . char . '<CR>'
-endfor
 
 " number text object (integer and float)
 " --------------------------------------

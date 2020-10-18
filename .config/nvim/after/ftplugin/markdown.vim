@@ -1,6 +1,7 @@
 "{{{ settings
 
 setlocal spell spelllang=pt,en_us
+setlocal iskeyword+='
 
 "}}}
 "{{{ syntax highlighting
