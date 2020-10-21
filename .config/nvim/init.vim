@@ -21,6 +21,7 @@ packadd! vim-toml
 packadd! cfilter
 packadd! matchit
 packadd! editorconfig-vim
+packadd! vim-lion
 
 " databases
 packadd! vim-dadbod
