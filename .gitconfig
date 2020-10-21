@@ -1,27 +1,28 @@
 [user]
-    email       = phelipe_teles@hotmail.com
-    name        = phelipe
+    email          = phelipe_teles@hotmail.com
+    name           = phelipe
 [commit]
-    verbose     = true
+    verbose        = true
 [core]
-    editor      = nvim
+    editor         = nvim
+    attributesfile = /home/phelipe/.gitattributes
 [mergetool "nvim"]
-    cmd         = $EDITOR -d $LOCAL $MERGED $REMOTE
+    cmd            = $EDITOR -d $LOCAL $MERGED $REMOTE
 [merge]
-    tool        = nvim
+    tool           = nvim
 [rebase]
-    autosquash  = true
+    autosquash     = true
 [rerere]
-    enabled     = true
+    enabled        = true
 [alias]
-    co          = checkout
-    st          = status
-    ci          = commit
-    l           = log --abbrev-commit --oneline --graph --decorate
-    ctags       = !.git/hooks/ctags
+    co             = checkout
+    st             = status
+    ci             = commit
+    l              = log --abbrev-commit --oneline --graph --decorate
+    ctags          = !.git/hooks/ctags
 [credential]
-    helper      = cache
+    helper         = cache
 [credential "https://github.com"]
-    username    = phelipetls
+    username       = phelipetls
 [init]
-    templateDir = ~/.git_template
+    templateDir    = ~/.git_template
