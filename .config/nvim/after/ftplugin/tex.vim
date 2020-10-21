@@ -27,7 +27,6 @@ setlocal textwidth=80
 "}}}
 "{{{ list formatting
 
-setlocal formatoptions+=n
 setlocal formatlistpat=^\\\s*\\\\item\\s*
 
 "}}}

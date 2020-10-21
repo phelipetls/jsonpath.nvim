@@ -19,6 +19,9 @@ function M.run()
         }
       )
     end
+    if event == "exit" then
+      vim.api.nvim_command([[echomsg "Latexmk stopped running"]])
+    end
   end
 
   local pid =
@@ -30,6 +33,8 @@ function M.run()
       on_exit = on_event
     }
   )
+
+  vim.api.nvim_command("command! StopCompile call jobclose(" ..pid.. ")")
 
   print("Latexmk is running. PID: "..pid)
 end
