@@ -144,9 +144,6 @@ let g:obsession_no_bufenter = 1
 " disable editorconfig sometimes
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
-" open commits in new tabs
-autocmd! FileType gitcommit wincmd T
-
 "}}}
 "{{{ general mappings
 
@@ -246,12 +243,6 @@ inoremap <M-q> <C-o>gwip
 
 " put the current file name under the f register
 autocmd! BufEnter * let @f=expand("%:t:r")
-
-" unmap the arrow keys
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-nnoremap <left> <nop>
-nnoremap <right> <nop>
 
 " function used for abbreviations
 function! Eatchar(pat)
