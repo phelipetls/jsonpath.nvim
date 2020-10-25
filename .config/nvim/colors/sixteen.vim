@@ -78,8 +78,8 @@ hi VertSplit ctermbg=0 ctermfg=0
 
 hi StatusLine ctermbg=7 ctermfg=0
 hi StatusLineNC ctermbg=8 ctermfg=0
-hi TabLine ctermbg=NONE ctermfg=8
-hi TabLineFill ctermbg=NONE ctermfg=8 cterm=UNDERLINE
+hi TabLine ctermbg=NONE ctermfg=8 cterm=NONE
+hi TabLineFill ctermbg=8 ctermfg=0
 hi TabLineSel ctermbg=8 ctermfg=7
 
 hi MatchParen ctermbg=8 ctermfg=7
