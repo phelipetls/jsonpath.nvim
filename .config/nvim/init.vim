@@ -473,9 +473,24 @@ endif
 nnoremap <silent> <space>q :pclose<CR>:cclose<cr>:lclose<cr>
 nnoremap <silent> <space>m :Make %<CR>
 
+function! CloseAllLocLists()
+  let loc_windows = filter(getwininfo(), {idx, val -> val.loclist == 1})
+  let loc_windows_numbers = map(loc_windows, {idx, val -> val.winnr})
+  for winnr in loc_windows_numbers
+    exe winnr . "close"
+  endfor
+endfunction
+
 function! OpenLocationList()
-  try | botright lwindow | catch /E776/ | endtry
-  exe &ft == "qf" ? "wincmd p" : ""
+  try
+    if len(getloclist(0)) > 0
+      cclose
+      call CloseAllLocLists()
+    endif
+    botright lwindow
+  catch /E776/
+  endtry
+  exe &buftype == "quickfix" ? "wincmd p" : ""
 endfunction
 
 augroup QuickFix
