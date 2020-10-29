@@ -57,7 +57,7 @@ if executable("zathura")
   nnoremap <buffer><silent> <F5> :silent !zathura %<.pdf<CR>
 
   " synctex forward (go from line in vim to pdf)
-  nnoremap <buffer><silent> <space><cr> :execute ":silent !zathura --synctex-forward " .
+  nnoremap <buffer><silent> <space><space> :execute ":silent !zathura --synctex-forward " .
         \ line(".") . ":" .
         \ col(".") . ":" .
         \ expand("%:t") . " " .
