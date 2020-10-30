@@ -7,7 +7,7 @@ setlocal iskeyword+='
 "{{{ syntax highlighting
 
 " allow syntax highlight inside code blocks for these languages
-let g:markdown_fenced_languages = ['r', 'python', 'js=javascript', 'lua', 'vb']
+let g:markdown_fenced_languages = ['python', 'js=javascript', 'lua']
 
 "}}}
 "{{{ pdf
