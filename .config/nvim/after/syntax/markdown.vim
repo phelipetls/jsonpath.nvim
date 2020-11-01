@@ -15,7 +15,3 @@ syntax region latexInlineEquation start=/\\\\(/ end=/\\\\)/ keepend
 hi link latexDisplayEquation PreProc
 hi link latexDisplayEquationDollars PreProc
 hi link latexInlineEquation PreProc
-
-unlet b:current_syntax
-syntax include @Yaml syntax/yaml.vim
-syntax region yamlFrontmatter start=/\%^---$/ end=/^---$/ keepend contains=@Yaml

@@ -1,15 +1,15 @@
 let python_no_doctest_highlight = 1
 let python_no_doctest_code_highlight = 1
 
-syn match pythonEscape +{{+ contained containedin=pythonfString,pythonfDocstring
-syn match pythonEscape +}}+ contained containedin=pythonfString,pythonfDocstring
+syn match pythonfStringEscape +{{+ contained containedin=pythonfString,pythonfDocstring
+syn match pythonfStringEscape +}}+ contained containedin=pythonfString,pythonfDocstring
 
 syn region pythonfString matchgroup=pythonQuotes
       \ start=+[fF]\@1<=\z(['"]\)+ end="\z1"
-      \ contains=@Spell,pythonEscape,pythonInterpolation
+      \ contains=@Spell,pythonEscape,pythonfStringEscape,pythonInterpolation
 syn region pythonfDocstring matchgroup=pythonQuotes
       \ start=+[fF]\@1<=\z('''\|"""\)+ end="\z1" keepend
-      \ contains=@Spell,pythonEscape,pythonSpaceError,pythonInterpolation,pythonDoctest
+      \ contains=@Spell,pythonEscape,pythonfStringEscape,pythonSpaceError,pythonInterpolation,pythonDoctest
 
 syn region pythonInterpolation contained
       \ matchgroup=SpecialChar

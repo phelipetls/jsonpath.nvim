@@ -144,6 +144,13 @@ let g:obsession_no_bufenter = 1
 " disable editorconfig sometimes
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
+command! Hugo lua require"hugoserve".run()
+
+augroup HugoServe
+  au!
+  autocmd FileType css,markdown,htmlhugo,javascript nnoremap <c-x><c-s> Hugo
+augroup END
+
 "}}}
 "{{{ general mappings
 

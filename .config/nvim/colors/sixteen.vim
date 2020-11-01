@@ -36,10 +36,10 @@ hi Ignore ctermbg=NONE ctermfg=7
 
 "}}}
 "{{{ Misc
-hi DiffAdd ctermbg=77 ctermfg=black
+hi DiffAdd ctermbg=green ctermfg=black
 hi DiffDelete ctermbg=black ctermfg=red
 hi DiffChange ctermbg=black ctermfg=NONE
-hi DiffText ctermbg=black ctermfg=yellow cterm=BOLD
+hi DiffText ctermbg=black ctermfg=magenta cterm=BOLD
 
 hi Error ctermbg=1 ctermfg=0
 hi link ErrorMsg Error
@@ -78,8 +78,8 @@ hi VertSplit ctermbg=0 ctermfg=0
 
 hi StatusLine ctermbg=7 ctermfg=0
 hi StatusLineNC ctermbg=8 ctermfg=0
-hi TabLine ctermbg=NONE ctermfg=8 cterm=NONE
-hi TabLineFill ctermbg=8 ctermfg=0
+hi TabLine ctermbg=NONE ctermfg=8
+hi TabLineFill ctermbg=NONE ctermfg=8 cterm=UNDERLINE
 hi TabLineSel ctermbg=8 ctermfg=7
 
 hi MatchParen ctermbg=8 ctermfg=7

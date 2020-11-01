@@ -40,6 +40,11 @@ xmap ac :<C-u>call SelectAroundCssRule()<CR>
 omap ac :<C-u>normal vic<CR>
 
 "}}}
+"{{{ autocompletion workaround
+
+let b:after = '"'
+
+"}}}
 "{{{ mdn
 
 if executable("firefox")
