@@ -35,3 +35,10 @@ iabbr edf export default function
 iabbr ireact import React from "react";
 
 "}}}
+"{{{ mdn
+
+if executable("firefox")
+  setlocal keywordprg=firefox\ https://developer.mozilla.org/search?topic=api\\&topic=html\\&q=\
+endif
+
+"}}}

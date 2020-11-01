@@ -40,3 +40,10 @@ xmap ac :<C-u>call SelectAroundCssRule()<CR>
 omap ac :<C-u>normal vic<CR>
 
 "}}}
+"{{{ mdn
+
+if executable("firefox")
+  setlocal keywordprg=firefox\ https://developer.mozilla.org/search?topic=api\\&topic=css\\&q=\
+endif
+
+"}}}

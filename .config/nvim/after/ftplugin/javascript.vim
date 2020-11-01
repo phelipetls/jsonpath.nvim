@@ -187,7 +187,7 @@ nnoremap <buffer> ]<C-c> "zyiwoconsole.log(z);<Esc>
 "{{{ mdn integration
 
 if executable("firefox")
-  setlocal keywordprg=:!firefox\ -b\ https://developer.mozilla.org/en-US/search?q=
+  setlocal keywordprg=firefox\ https://developer.mozilla.org/search?topic=api\\&topic=js\\&q=\
 endif
 
 "}}}
