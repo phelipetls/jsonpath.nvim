@@ -212,21 +212,18 @@ nnoremap <silent> <c-n> *Ncgn
 " show information about highlight group under cursor
 command! Hi exe 'hi '.synIDattr(synID(line("."), col("."), 0), "name")
 
-" functions/mappings to format without moving cursor
 function! Format(type, ...)
-  silent exe "normal! '[v']gq"
+  keepjumps normal! '[v']gq
   if v:shell_error > 0
     silent undo
     redraw
     echomsg 'formatprg "' . &formatprg . '" exited with status ' . v:shell_error
   endif
-  call winrestview(w:gqview)
-  unlet w:gqview
+  call winrestview(w:view)
 endfunction
 
-" nmap <silent> gQ :call Format()<CR>
-nmap <silent> gq :set opfunc=Format<CR>:let w:gqview = winsaveview()<CR>g@
-nmap <silent> gQ :set opfunc=Format<CR>:let w:gqview = winsaveview()<CR>ggg@G
+nmap <silent> gq :let w:view = winsaveview()<CR>:set opfunc=Format<CR>g@
+nmap <silent> gQ :let w:view = winsaveview()<CR>:keepjumps normal gg<CR>:set opfunc=Format<CR>:keepjumps normal g@G<CR>
 
 " highlight yanked region
 if has("nvim-0.5.0")
