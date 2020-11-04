@@ -338,7 +338,6 @@ nnoremap <space>f :find<space>
 "{{{2 fzf
 
 if executable("fzf")
-  let $FZF_DEFAULT_COMMAND = 'rg --files --color=never --glob "!.git/*"'
   let g:fzf_preview_window = ''
 
   nnoremap <space>b :Buffers<CR>
