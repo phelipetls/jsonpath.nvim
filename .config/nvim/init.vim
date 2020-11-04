@@ -130,9 +130,6 @@ let g:user_emmet_settings = {
 \  },
 \}
 
-" enable lua syntaxh highlighting embedded in vim files
-let g:vimsyn_embed = 'l'
-
 " checktime when nvim resumes from suspended state
 if has("nvim")
   autocmd! VimResume * checktime
@@ -144,12 +141,9 @@ let g:obsession_no_bufenter = 1
 " disable editorconfig sometimes
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
-command! Hugo lua require"hugoserve".run()
-
-augroup HugoServe
-  au!
-  autocmd FileType css,markdown,htmlhugo,javascript nnoremap <c-x><c-s> Hugo
-augroup END
+if has("nvim")
+  command! Hugo lua require"hugoserve".run()
+endif
 
 "}}}
 "{{{ general mappings
@@ -491,8 +485,8 @@ function! OpenLocationList()
   try
     if len(getloclist(0)) > 0
       cclose
-      call CloseAllLocLists()
     endif
+    call CloseAllLocLists()
     botright lwindow
   catch /E776/
   endtry
@@ -530,6 +524,8 @@ nnoremap <silent> <C-c><C-s> :exe ":silent !tmux send-keys -t " . b:slime_config
 
 if has("nvim-0.5.0") && filereadable(stdpath("config")."/lsp.lua")
   luafile /home/phelipe/.config/nvim/lsp.lua
+
+  command! LspStop lua vim.lsp.stop_client(vim.lsp.get_active_clients())
 endif
 
 "}}}
