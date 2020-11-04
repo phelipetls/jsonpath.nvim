@@ -505,8 +505,6 @@ augroup QuickFix
   autocmd QuickFixCmdPost * exe &buftype == "quickfix" ? "wincmd p" : ""
 augroup END
 
-command! DisableLintOnSave autocmd! LintOnSave BufWritePost <buffer>
-
 "}}}
 "{{{ vim-slime
 
