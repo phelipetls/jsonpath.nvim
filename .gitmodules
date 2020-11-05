@@ -95,3 +95,6 @@
 [submodule "vim-lion"]
 	path = .config/nvim/pack/plugins/opt/vim-lion
 	url = https://github.com/tommcdo/vim-lion
+[submodule "tagalong.vim"]
+	path = .config/nvim/pack/plugins/opt/tagalong.vim
+	url = https://github.com/AndrewRadev/tagalong.vim
