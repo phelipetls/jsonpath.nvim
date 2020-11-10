@@ -1,9 +1,4 @@
-"{{{ indentation
-
 setlocal shiftwidth=2 softtabstop=2
-
-"}}}
-"{{{ code/test runners
 
 if executable("jest") && match(expand("%:p:t"), "test.js") != -1
   compiler jest
@@ -15,30 +10,30 @@ if executable("node")
   noremap <buffer> <F5> :w !node<CR>
 endif
 
-"}}}
-"{{{ formatter
-
 if executable("prettier")
   let &l:formatprg='prettier --parser typescript'
 endif
 
-"}}}
-"{{{ surround
-
 let b:surround_{char2nr("c")} = "console.log(\r)"
 let b:surround_{char2nr("e")} = "${\r};"
-
-"}}}
-"{{{ abbreviations
 
 iabbr <buffer><silent> clog console.log();<Left><Left><C-R>=Eatchar('\s')<CR>
 iabbr consoel console
 iabbr lenght length
 iabbr edf export default function
 iabbr ireact import React from "react";
+iabbr improt import
+iabbr Obejct Object
+iabbr entires entries
 iabbr mui import { } from "@material-ui/";<Left><Left>
 
-"}}}
+nnoremap <buffer> [<C-c> "zyiwOconsole.log(z);<Esc>
+nnoremap <buffer> ]<C-c> "zyiwoconsole.log(z);<Esc>
+
+if executable("firefox")
+  setlocal keywordprg=firefox\ https://developer.mozilla.org/search?topic=api\\&topic=js\\&q=\
+endif
+
 "{{{ path
 
 setlocal path+=./views,./routes,./public,./db
@@ -173,18 +168,5 @@ endfunction
 nnoremap <silent> <buffer> gf      :call <SID>GF(expand('<cfile>'), 0, 0)<CR>
 nnoremap <silent> <buffer> <C-w>f  :call <SID>GF(expand('<cfile>'), 1, 0)<CR>
 nnoremap <silent> <buffer> <C-w>gf :call <SID>GF(expand('<cfile>'), 1, 1)<CR>
-
-"}}}
-"{{{ console.log word under cursor
-
-nnoremap <buffer> [<C-c> "zyiwOconsole.log(z);<Esc>
-nnoremap <buffer> ]<C-c> "zyiwoconsole.log(z);<Esc>
-
-"}}}
-"{{{ mdn integration
-
-if executable("firefox")
-  setlocal keywordprg=firefox\ https://developer.mozilla.org/search?topic=api\\&topic=js\\&q=\
-endif
 
 "}}}

@@ -1,5 +1,3 @@
-"{{{ general settings
-
 " minimal syntax highlighting
 let g:tex_fast = ""
 
@@ -24,24 +22,10 @@ nnoremap gb :find *.bib<Tab><CR>
 
 setlocal textwidth=80
 
-"}}}
-"{{{ list formatting
-
 setlocal formatlistpat=^\\\s*\\\\item\\s*
-
-"}}}
-"{{{ spell checking
 
 setlocal spell spelllang=pt,en_us
 let g:tex_comment_nospell=1
-
-"}}}
-"{{{ simple table of contents
-
-nnoremap gO :vimgrep /\\[a-z]*section{/j %<CR>:cw 10<CR>
-
-"}}}}
-"{{{ pdf generation and interaction
 
 " activate latexmk compiler
 compiler latexmk
@@ -64,10 +48,5 @@ if executable("zathura")
         \ expand("%:r") . ".pdf"<CR>
 endif
 
-"}}}
-"{{{ navigation
-
 nnoremap <buffer><silent> ]] :call search("\\\\.*section{", 'w')<CR>
 nnoremap <buffer><silent> [[ :call search("\\\\[a-z]*section{", 'wb')<CR>
-
-"}}}

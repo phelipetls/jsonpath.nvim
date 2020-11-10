@@ -279,9 +279,6 @@ command! DiffOrig vert new | set buftype=nofile |
 
 inoreabbrev Taebl Table
 inoreabbrev taebl table
-inoreabbrev improt import
-inoreabbrev Obejct Object
-inoreabbrev entires entries
 
 "}}}
 "{{{ statusline and tabline

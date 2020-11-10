@@ -1,5 +1,3 @@
-"{{{ general config
-
 inoremap <buffer> >> %>%
 inoremap <buffer> << <-
 
@@ -15,18 +13,12 @@ let g:rmd_fenced_languages = ['r', 'python']
 
 let &l:keywordprg="silent !tmux send-keys -t {last} 'help(" . expand('<cword>') . ")'"
 
-"}}}
-"{{{ R
-
 " formatter
 setlocal formatprg=Rscript\ --slave\ -e\ \"formatR::tidy_source(file(\'stdin\'),arrow=T)\"
 
 setlocal path+=~/R/x86_64-pc-linux-gnu-library/3.6/
 setlocal include=library(
 setlocal define=\\ze[A-z_.]\\+\\s*\\\(<-\\\\|=\\)\\s*function.*
-
-"}}}
-"{{{ compile and open pdf 
 
 if executable("Rscript")
   " async r markdown rendering on save
@@ -46,13 +38,7 @@ if executable("zathura")
   nmap <buffer><silent> <F5> :silent !zathura %<.pdf<CR>
 endif
 
-"}}}
-"{{{ surround
-
 let b:surround_{char2nr("r")} = "```{r}\r```"
-
-"}}}
-"{{{ movement
 
 nnoremap <silent><buffer> ]] :call search("^```{r.*}$", "W")<CR>
 nnoremap <silent><buffer> [[ :call search("^```{r.*}$", "b")<CR>
@@ -65,5 +51,3 @@ endfunction
 
 nnoremap <buffer><silent> <C-c><C-c> :call EvalChunk("bcn")<CR>
 nmap <buffer><silent> <C-c><C-d> <C-c><C-c>]]
-
-"}}}
