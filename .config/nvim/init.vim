@@ -7,7 +7,6 @@ packadd! fzf.vim
 
 " conveniences
 packadd! splitjoin.vim
-packadd! tagalong.vim
 packadd! vim-simple-complete
 packadd! vim-fugitive
 packadd! vim-surround
@@ -29,6 +28,7 @@ packadd! vim-dadbod
 
 " html and javascript
 packadd! emmet-vim
+packadd! tagalong.vim
 packadd! vim-jinja
 packadd! vim-javascript
 packadd! typescript-vim
@@ -145,6 +145,8 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 if has("nvim")
   command! Hugo lua require"hugoserve".run()
 endif
+
+let g:tagalong_additional_filetypes = ['javascript']
 
 "}}}
 "{{{ general mappings
@@ -278,6 +280,8 @@ command! DiffOrig vert new | set buftype=nofile |
 inoreabbrev Taebl Table
 inoreabbrev taebl table
 inoreabbrev improt import
+inoreabbrev Obejct Object
+inoreabbrev entires entries
 
 "}}}
 "{{{ statusline and tabline

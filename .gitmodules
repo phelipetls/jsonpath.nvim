@@ -89,12 +89,16 @@
 [submodule "vim-dirvish"]
 	path = .config/nvim/pack/plugins/opt/vim-dirvish
 	url = https://github.com/justinmk/vim-dirvish
+	ignore = dirty
 [submodule "editorconfig.vim"]
 	path = .config/nvim/pack/plugins/opt/editorconfig-vim
 	url = https://github.com/editorconfig/editorconfig-vim
+	ignore = dirty
 [submodule "vim-lion"]
 	path = .config/nvim/pack/plugins/opt/vim-lion
 	url = https://github.com/tommcdo/vim-lion
+	ignore = dirty
 [submodule "tagalong.vim"]
 	path = .config/nvim/pack/plugins/opt/tagalong.vim
 	url = https://github.com/AndrewRadev/tagalong.vim
+	ignore = dirty

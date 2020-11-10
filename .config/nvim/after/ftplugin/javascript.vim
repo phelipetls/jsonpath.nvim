@@ -25,7 +25,7 @@ endif
 "}}}
 "{{{ surround
 
-let b:surround_{char2nr("c")} = "console.log(\r);"
+let b:surround_{char2nr("c")} = "console.log(\r)"
 let b:surround_{char2nr("e")} = "${\r};"
 
 "}}}
@@ -36,6 +36,7 @@ iabbr consoel console
 iabbr lenght length
 iabbr edf export default function
 iabbr ireact import React from "react";
+iabbr mui import { } from "@material-ui/";<Left><Left>
 
 "}}}
 "{{{ path
