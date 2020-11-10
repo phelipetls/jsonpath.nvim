@@ -291,7 +291,7 @@ function! GitHead() abort
   return ""
 endfunction
 
-let &g:statusline=' %n:'                         " buffer number
+let &g:statusline='[%n]'                         " buffer number
 let &g:statusline.=' %0.30f'                     " abbreviated file name
 let &g:statusline.=' %{GitHead()}'               " branch of current HEAD commit
 let &g:statusline.=' %m'                         " modified
@@ -471,20 +471,8 @@ endif
 nnoremap <silent> <space>q :pclose<CR>:cclose<cr>:lclose<cr>
 nnoremap <silent> <space>m :Make %<CR>
 
-function! CloseAllLocLists()
-  let loc_windows = filter(getwininfo(), {idx, val -> val.loclist == 1})
-  let loc_windows_numbers = map(loc_windows, {idx, val -> val.winnr})
-  for winnr in loc_windows_numbers
-    exe winnr . "close"
-  endfor
-endfunction
-
 function! OpenLocationList()
   try
-    if len(getloclist(0)) > 0
-      cclose
-    endif
-    call CloseAllLocLists()
     botright lwindow
   catch /E776/
   endtry
