@@ -216,6 +216,7 @@ nnoremap <silent> <c-n> *Ncgn
 " show information about highlight group under cursor
 command! Hi exe 'hi '.synIDattr(synID(line("."), col("."), 0), "name")
 
+" format range or whole file. try to not change the jumplist
 function! Format(type, ...)
   keepjumps normal! '[v']gq
   if v:shell_error > 0
@@ -227,7 +228,9 @@ function! Format(type, ...)
 endfunction
 
 nmap <silent> gq :let w:view = winsaveview()<CR>:set opfunc=Format<CR>g@
-nmap <silent> gQ :let w:view = winsaveview()<CR>:keepjumps normal gg<CR>:set opfunc=Format<CR>:keepjumps normal g@G<CR>
+
+command -range=% Format lua require'format'.format(<line1> - 1, <line2>)
+nnoremap <silent> gQ :Format<CR>
 
 " highlight yanked region
 if has("nvim-0.5.0")
