@@ -9,6 +9,7 @@ packadd! fzf.vim
 packadd! splitjoin.vim
 packadd! vim-simple-complete
 packadd! vim-fugitive
+packadd! gv.vim
 packadd! vim-surround
 packadd! vim-commentary
 packadd! vim-repeat

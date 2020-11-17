@@ -102,3 +102,6 @@
 	path = .config/nvim/pack/plugins/opt/tagalong.vim
 	url = https://github.com/AndrewRadev/tagalong.vim
 	ignore = dirty
+[submodule "gv.vim"]
+	path = .config/nvim/pack/plugins/opt/gv.vim
+	url = https://github.com/junegunn/gv.vim
