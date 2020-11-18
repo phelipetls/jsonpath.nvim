@@ -41,37 +41,18 @@ function M.format(start_line, end_line)
   save_views(windows)
   go_to_window(winnr)
 
-  local formatter = string.format("%s %s", formatprg, bufname)
+  local input = vim.api.nvim_buf_get_lines(bufnr, start_line, end_line, true)
+  local output = vim.fn.systemlist(formatprg, input)
 
-  local function on_event(job_id, data, event)
-    if event == "stdout" then
-      if table_has_empty_values_only(data) then return end
-      vim.api.nvim_buf_set_lines(bufnr, start_line, end_line, true, data)
-    end
-
-    if event == "stderr" then
-      if table_has_empty_values_only(data) then return end
-      local program = vim.split(formatprg, ' ')[1]
-      vim.api.nvim_command(string.format("echoerr '%s failed while formatting.'", program))
-    end
-
-    if event == "exit" then
-      restore_views(windows)
-      go_to_window(winnr)
-    end
+  if vim.api.nvim_get_vvar("shell_error") == 0 then
+    vim.api.nvim_buf_set_lines(bufnr, start_line, end_line, true, output)
+  else
+    local program = vim.split(formatprg, ' ')[1]
+    vim.api.nvim_command(string.format("echomsg '%s failed while formatting.'", program))
   end
 
-  local output =
-    vim.fn.jobstart(
-    formatter,
-    {
-      on_stdout = on_event,
-      on_stderr = on_event,
-      on_exit = on_event,
-      stdout_buffered = true,
-      stderr_buffered = true
-    }
-  )
+  restore_views(windows)
+  go_to_window(winnr)
 end
 
 return M
