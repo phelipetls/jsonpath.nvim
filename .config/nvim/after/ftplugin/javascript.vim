@@ -15,17 +15,18 @@ if executable("prettier")
 endif
 
 let b:surround_{char2nr("c")} = "console.log(\r)"
-let b:surround_{char2nr("e")} = "${\r};"
+let b:surround_{char2nr("e")} = "${\r}"
+let b:surround_{char2nr("i")} = 'import { \r } from "./\r"'
 
 iabbr <buffer><silent> clog console.log();<Left><Left><C-R>=Eatchar('\s')<CR>
 iabbr consoel console
 iabbr lenght length
 iabbr edf export default function
-iabbr ireact import React from "react";
 iabbr improt import
 iabbr Obejct Object
 iabbr entires entries
 iabbr mui import { } from "@material-ui/";<Left><Left>
+iabbr ireact import React from "react";
 
 nnoremap <buffer> [<C-c> "zyiwOconsole.log(z);<Esc>
 nnoremap <buffer> ]<C-c> "zyiwoconsole.log(z);<Esc>

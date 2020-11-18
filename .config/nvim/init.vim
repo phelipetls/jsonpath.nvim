@@ -124,13 +124,11 @@ endif
 let g:user_emmet_leader_key = "<C-c><C-e>"
 
 let g:user_emmet_settings = {
-\  'javascript' : {
-\      'extends' : 'jsx',
-\  },
-\  'html': {
-\      'empty_element_suffix': ' />',
-\  },
-\}
+      \  'javascript' : {
+      \      'extends' : 'jsx',
+      \      'empty_element_suffix': ' />',
+      \  }
+      \}
 
 " checktime when nvim resumes from suspended state
 if has("nvim")
@@ -143,10 +141,7 @@ let g:obsession_no_bufenter = 1
 " disable editorconfig sometimes
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
-if has("nvim")
-  command! Hugo lua require"hugoserve".run()
-endif
-
+" tagalong config
 let g:tagalong_additional_filetypes = ['javascript']
 
 "}}}
@@ -210,7 +205,7 @@ command! -bang -complete=file_in_path W w<bang>
 command! -bang Q q<bang>
 command! -bang Qall qall<bang>
 
-" mapping to rename the word under the cursor
+" mapping to change the word under the cursor. use . to repeat
 nnoremap <silent> <c-n> *Ncgn
 
 " show information about highlight group under cursor
