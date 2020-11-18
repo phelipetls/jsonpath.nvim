@@ -135,6 +135,9 @@ if has("nvim")
   autocmd! VimResume * checktime
 endif
 
+" directories first
+let g:dirvish_mode = ':sort ,^.*[\/],'
+
 " disable saving session on BufEnter
 let g:obsession_no_bufenter = 1
 
