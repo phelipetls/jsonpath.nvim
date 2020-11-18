@@ -223,7 +223,7 @@ function! Format(type, ...)
 endfunction
 
 nmap <silent> gq :let w:view = winsaveview()<CR>:set opfunc=Format<CR>g@
-nmap <silent> gQ :let w:view = winsaveview()<CR>:keepjumps normal gg<CR>:set opfunc=Format<CR>:keepjumps normal g@G<CR>
+nmap <silent> gQ :let w:view = winsaveview()<CR>:set opfunc=Format<CR>:keepjumps normal gg<CR>:keepjumps normal g@G<CR>
 
 " highlight yanked region
 if has("nvim-0.5.0")
