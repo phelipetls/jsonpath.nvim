@@ -215,15 +215,17 @@ command! Hi exe 'hi '.synIDattr(synID(line("."), col("."), 0), "name")
 function! Format(type, ...)
   keepjumps normal! '[v']gq
   if v:shell_error > 0
-    silent undo
-    redraw
+    keepjumps silent undo
     echomsg 'formatprg "' . &formatprg . '" exited with status ' . v:shell_error
   endif
-  call winrestview(w:view)
 endfunction
 
-nmap <silent> gq :let w:view = winsaveview()<CR>:set opfunc=Format<CR>g@
-nmap <silent> gQ :let w:view = winsaveview()<CR>:set opfunc=Format<CR>:keepjumps normal gg<CR>:keepjumps normal g@G<CR>
+nmap <silent> gq :set opfunc=Format<CR>g@
+nmap <silent> gQ :lua require'utils'.same_buffer_windo("let w:view = winsaveview()")<CR>
+      \ :set opfunc=Format<CR>
+      \ :keepjumps normal gg<CR>
+      \ :keepjumps normal gqG<CR>
+      \ :lua require'utils'.same_buffer_windo("keepj call winrestview(w:view)")<CR>
 
 " highlight yanked region
 if has("nvim-0.5.0")
