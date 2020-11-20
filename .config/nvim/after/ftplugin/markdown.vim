@@ -1,8 +1,6 @@
 setlocal spell spelllang=pt,en_us
 setlocal iskeyword+='
 
-let b:completion_command = "\<C-n>"
-
 " allow syntax highlight inside code blocks for these languages
 let g:markdown_fenced_languages = ['python', 'js=javascript']
 

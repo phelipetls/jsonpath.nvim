@@ -7,7 +7,6 @@ packadd! fzf.vim
 
 " conveniences
 packadd! splitjoin.vim
-packadd! vim-simple-complete
 packadd! vim-fugitive
 packadd! gv.vim
 packadd! vim-surround

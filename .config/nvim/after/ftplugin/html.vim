@@ -11,7 +11,6 @@ nnoremap <silent><buffer> <F5> :silent !firefox --new-window "%" &<CR>
 
 setl omnifunc=emmet#completeTag
 
-let b:completion_command = "\<C-x>\<C-o>"
 let b:completion_length = 1
 
 iabbr <buffer><silent> clog console.log();<Left><Left><C-R>=Eatchar('\s')<CR>
