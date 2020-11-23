@@ -38,8 +38,8 @@ hi Ignore ctermbg=NONE ctermfg=7
 "{{{ Misc
 hi DiffAdd ctermbg=green ctermfg=black
 hi DiffDelete ctermbg=black ctermfg=red
-hi DiffChange ctermbg=black ctermfg=NONE
-hi DiffText ctermbg=black ctermfg=magenta cterm=BOLD
+hi DiffChange ctermbg=8 ctermfg=white
+hi DiffText ctermbg=8 ctermfg=yellow cterm=BOLD
 
 hi Error ctermbg=1 ctermfg=0
 hi link ErrorMsg Error
@@ -103,10 +103,10 @@ endif
 hi Title ctermfg=5
 
 if has("nvim-0.5.0")
-  hi LspDiagnosticsUnderlineInformation ctermfg=blue cterm=UNDERLINE
-  hi LspDiagnosticsUnderlineWarning ctermfg=yellow cterm=UNDERLINE
-  hi LspDiagnosticsUnderlineError ctermfg=red cterm=UNDERLINE
-  hi LspDiagnosticsUnderlineHint ctermfg=blue cterm=UNDERLINE
+  hi LspDiagnosticsInformation ctermfg=yellow
+  hi LspDiagnosticsWarning ctermfg=red
+  hi LspDiagnosticsError ctermfg=red
+  hi LspDiagnosticsHint ctermfg=yellow
 endif
 
 "}}}
