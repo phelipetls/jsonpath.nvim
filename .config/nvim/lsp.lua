@@ -32,12 +32,12 @@ update_diagnostics_loclist = function()
   vim.lsp.util.set_loclist(items)
 end
 
-vim.lsp.util.buf_diagnostics_signs = function() return end
 vim.lsp.util.buf_diagnostics_virtual_text = function() return end
 vim.lsp.util.buf_diagnostics_underline = function() return end
 
 local function set_lsp_config(_)
   vim.api.nvim_command [[setlocal omnifunc=v:lua.vim.lsp.omnifunc]]
+  vim.api.nvim_command [[setlocal signcolumn=yes]]
   vim.api.nvim_command [[nnoremap <buffer><silent> K :lua vim.lsp.buf.hover()<CR>]]
   vim.api.nvim_command [[nnoremap <buffer><silent> gd :lua vim.lsp.buf.definition()<CR>]]
   vim.api.nvim_command [[nnoremap <buffer><silent> [<C-d> :lua vim.lsp.buf.definition()<CR>]]
