@@ -19,9 +19,6 @@ set header_cache = "~/.mutt/cache/gmail.headers"
 set message_cachedir = "~/.mutt/cache/gmail.bodies"
 set certificate_file = "~/.mutt/certificates"
 
-# unmailboxes *
-# mailboxes "+Gmail/INBOX" "+Gmail/[Gmail].E-mails enviados" "+Gmail/[Gmail].Lixeira" "+Gmail/[Gmail].Rascunhos" "+Gmail/[Gmail].Spam" "+Gmail/[Gmail].Com estrela"
-
 account-hook gmail 'set imap_user = $my_gmail imap_pass = $my_pass'
 account-hook gmail 'set smtp_url = $smtp_url smtp_pass = $my_pass'
 

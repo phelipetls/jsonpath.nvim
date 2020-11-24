@@ -19,9 +19,6 @@ set header_cache = "~/.mutt/cache/hotmail.headers"
 set message_cachedir = "~/.mutt/cache/hotmail.bodies"
 set certificate_file = "~/.mutt/certificates"
 
-# unmailboxes *
-# mailboxes +Hotmail/Inbox +Hotmail/Sent +Hotmail/Deleted +Hotmail/Junk +Hotmail/Drafts
-
 account-hook "Hotmail" "set imap_user = $my_hotmail imap_pass = $my_pass"
 account-hook "Hotmail" "set smtp_url = $my_smtp_url smtp_pass = $my_pass"
 
