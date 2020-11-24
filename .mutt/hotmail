@@ -1,5 +1,4 @@
 set spoolfile = "+Hotmail/Inbox"
-set record = "+Hotmail/Sent"
 set trash = "+Hotmail/Deleted"
 set postponed = "+Hotmail/Drafts"
 set mail_check = 100
