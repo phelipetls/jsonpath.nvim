@@ -6,7 +6,8 @@ let g:markdown_fenced_languages = ['python', 'js=javascript']
 
 " open pdf with the same filename - to use with pandoc
 if executable("zathura")
-  nnoremap <F5> :!zathura %<.pdf<CR>
+  nnoremap <space>op :!zathura %<.pdf<CR>
+  nnoremap <space>oh :!firefox %<.html<CR>
 endif
 
 " format with markdown github style using pandoc

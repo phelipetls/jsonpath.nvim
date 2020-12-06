@@ -46,6 +46,7 @@ local function set_lsp_config(_)
   vim.api.nvim_command [[nnoremap <buffer><silent> gr :lua vim.lsp.buf.references()<CR>]]
   vim.api.nvim_command [[nnoremap <buffer> gR :lua vim.lsp.buf.rename()<CR>]]
   vim.api.nvim_command [[nnoremap <buffer> <M-CR> :lua vim.lsp.buf.code_action()<CR>]]
+  vim.api.nvim_command [[nnoremap <buffer><silent> <C-space> :lua vim.lsp.util.show_line_diagnostics()<CR>]]
   vim.api.nvim_command [[autocmd! User LspDiagnosticsChanged lua update_diagnostics_loclist()]]
 end
 

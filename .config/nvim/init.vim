@@ -473,19 +473,31 @@ endif
 
 nnoremap <silent> <space>q :pclose<CR>:cclose<cr>:lclose<cr>
 nnoremap <silent> <space>m :Make %<CR>
+nnoremap <silent> <space>M :make! %<CR>
+
+function! OpenQuickfixList()
+  botright cwindow 5
+  if &buftype == "quickfix"
+    wincmd p
+  endif
+endfunction
 
 function! OpenLocationList()
   try
-    botright lwindow
+    botright lwindow 5
   catch /E776/
   endtry
-  exe &buftype == "quickfix" ? "wincmd p" : ""
+  if &buftype == "quickfix"
+    wincmd p
+  endif
 endfunction
+
+nnoremap <silent><space>oo :call OpenQuickfixList()<CR>
+nnoremap <silent><space>ol :call OpenLocationList()<CR>
 
 augroup QuickFix
   autocmd!
-  autocmd QuickFixCmdPost * botright cwindow
-  autocmd QuickFixCmdPost * exe &buftype == "quickfix" ? "wincmd p" : ""
+  autocmd QuickFixCmdPost * call OpenQuickfixList()
 augroup END
 
 "}}}
