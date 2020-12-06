@@ -1,2 +1,2 @@
 #!/bin/bash
-mutt -s "sending file $1" -a "$1" "phelipe_teles_508b24@kindle.com" 
+mutt "phelipe_teles_508b24@kindle.com" -s "sending file $1" -a "$1"
