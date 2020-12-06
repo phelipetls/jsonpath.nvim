@@ -1,5 +1,6 @@
 set spoolfile = "+Hotmail/Inbox"
 set trash = "+Hotmail/Deleted"
+unset record
 set postponed = "+Hotmail/Drafts"
 set mail_check = 100
 set imap_keepalive = 900
