@@ -23,6 +23,9 @@ packadd! matchit
 packadd! editorconfig-vim
 packadd! vim-lion
 packadd! vim-simple-complete
+" if has("nvim-0.5.0")
+"   packadd! nvim-treesitter
+" endif
 
 " databases
 packadd! vim-dadbod
@@ -32,7 +35,6 @@ packadd! emmet-vim
 packadd! tagalong.vim
 packadd! vim-jinja
 packadd! vim-javascript
-packadd! typescript-vim
 packadd! vim-jsx-pretty
 packadd! vim-hugo
 

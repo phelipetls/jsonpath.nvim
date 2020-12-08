@@ -4,36 +4,12 @@ local nvim_lsp = require'nvim_lsp'
 local util = require'nvim_lsp/util'
 local configs = require'nvim_lsp/configs'
 
-local severity_map = { "E", "W", "I", "H" }
-
-local parse_diagnostics = function(diagnostics)
-  if not diagnostics then return end
-  local items = {}
-  for _, diagnostic in ipairs(diagnostics) do
-    local fname = vim.fn.bufname()
-    local position = diagnostic.range.start
-    local severity = diagnostic.severity
-    table.insert(items, {
-      filename = fname,
-      type = severity_map[severity],
-      lnum = position.line + 1,
-      col = position.character + 1,
-      text = diagnostic.message:gsub("\r", ""):gsub("\n", " ")
-    })
-  end
-  return items
-end
-
-update_diagnostics_loclist = function()
-  bufnr = vim.fn.bufnr()
-  diagnostics = vim.lsp.util.diagnostics_by_buf[bufnr]
-
-  items = parse_diagnostics(diagnostics)
-  vim.lsp.util.set_loclist(items)
-end
-
-vim.lsp.util.buf_diagnostics_virtual_text = function() return end
-vim.lsp.util.buf_diagnostics_underline = function() return end
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    virtual_text = false,
+    underline = false,
+  }
+)
 
 local function set_lsp_config(_)
   vim.api.nvim_command [[setlocal omnifunc=v:lua.vim.lsp.omnifunc]]
@@ -46,8 +22,9 @@ local function set_lsp_config(_)
   vim.api.nvim_command [[nnoremap <buffer><silent> gr :lua vim.lsp.buf.references()<CR>]]
   vim.api.nvim_command [[nnoremap <buffer> gR :lua vim.lsp.buf.rename()<CR>]]
   vim.api.nvim_command [[nnoremap <buffer> <M-CR> :lua vim.lsp.buf.code_action()<CR>]]
-  vim.api.nvim_command [[nnoremap <buffer><silent> <C-space> :lua vim.lsp.util.show_line_diagnostics()<CR>]]
-  vim.api.nvim_command [[autocmd! User LspDiagnosticsChanged lua update_diagnostics_loclist()]]
+  vim.api.nvim_command [[nnoremap <buffer><silent> <C-space> :lua vim.lsp.diagnostic.show_line_diagnostics()<CR>]]
+  vim.api.nvim_command [[nnoremap <buffer><silent> ]g :lua vim.lsp.diagnostic.goto_next()<CR>]]
+  vim.api.nvim_command [[nnoremap <buffer><silent> [g :lua vim.lsp.diagnostic.goto_prev()<CR>]]
 end
 
 nvim_lsp.pyls.setup {
