@@ -74,7 +74,7 @@ hi PmenuThumb ctermbg=8 ctermfg=8
 
 hi CursorLine ctermbg=0 ctermfg=NONE cterm=BOLD
 
-hi VertSplit ctermbg=0 ctermfg=0
+hi VertSplit ctermbg=8 ctermfg=0
 
 hi StatusLine ctermbg=7 ctermfg=0
 hi StatusLineNC ctermbg=8 ctermfg=0
