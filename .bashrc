@@ -137,3 +137,15 @@ export PATH="/usr/local/go/bin:$GOPATH/bin:$PATH"
 export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig/
 
 FIGNORE=".synctex.gz"
+
+# Android Studio config
+export PATH="$HOME/android-studio/bin:$PATH"
+
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+# Needed for Android Studio to work in DWM
+export _JAVA_AWT_WM_NONREPARENTING=1
