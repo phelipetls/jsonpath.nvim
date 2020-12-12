@@ -45,7 +45,7 @@ esac
 
 function _get_venv {
   if [ $VIRTUAL_ENV ]; then
-    printf '(%s)' $(basename $VIRTUAL_ENV)
+    printf '(%s) ' $(basename $VIRTUAL_ENV)
   fi
 }
 
@@ -58,21 +58,15 @@ function _get_cwd {
   fi
 }
 
-function _get_git_branch {
-  branch=`git branch --show-current 2>/dev/null`
-  if [ ! -z "$branch" ]; then
-    printf '(%s) ' $branch
-  fi
-  echo ''
-}
+# export GIT_PS1_SHOWDIRTYSTATE=1
 
 function _dynamic_prompt() {
   export PS1="\
-`_get_venv` \
+`_get_venv`\
 \[\e[01;32m\]\u \
 \[\e[01;33m\]@ \
-\[\e[01;94m\]`_get_cwd` \
-\[\e[01;33m\]`_get_git_branch`\
+\[\e[01;94m\]`_get_cwd`\
+\[\e[01;33m\]`__git_ps1 ' (%s)'` \
 \[\e[01;90m\]\$ \
 \[\e[m\]"
 }
