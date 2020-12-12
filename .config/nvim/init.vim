@@ -149,6 +149,9 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 " tagalong config
 let g:tagalong_additional_filetypes = ['javascript']
 
+" disable props highlighting
+let g:yats_host_keyword = 0
+
 "}}}
 "{{{ general mappings
 
