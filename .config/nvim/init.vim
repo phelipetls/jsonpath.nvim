@@ -479,7 +479,7 @@ endif
 
 nnoremap <silent> <space>q :pclose<CR>:cclose<cr>:lclose<cr>
 nnoremap <silent> <space>m :Make %<CR>
-nnoremap <silent> <space>M :make! %<CR>
+nnoremap <silent> <space><space>m :make! %<CR>
 
 function! OpenQuickfixList()
   botright cwindow 5
@@ -498,8 +498,8 @@ function! OpenLocationList()
   endif
 endfunction
 
-nnoremap <silent><space>oo :call OpenQuickfixList()<CR>
-nnoremap <silent><space>ol :call OpenLocationList()<CR>
+nnoremap <silent><space>q :call OpenQuickfixList()<CR>
+nnoremap <silent><space>l :call OpenLocationList()<CR>
 
 augroup QuickFix
   autocmd!
