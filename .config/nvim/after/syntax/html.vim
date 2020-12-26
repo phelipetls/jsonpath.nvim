@@ -1,5 +1,5 @@
-hi link htmlTag Ignore
-hi link htmlEndTag Ignore
+hi link htmlTag Normal
+hi link htmlEndTag Normal
 
 syn match htmlCustomArg /[A-z-.@]\+/ contained containedin=htmlTag
 hi link htmlCustomArg htmlArg
