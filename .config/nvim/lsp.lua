@@ -16,7 +16,9 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] =
 function vim.lsp.buf.formatting_sync(options, timeout_ms)
   local params = vim.lsp.util.make_formatting_params(options)
   local results = vim.lsp.buf_request_sync(0, "textDocument/formatting", params, timeout_ms)
-  if not results or vim.tbl_isempty(results) then return end
+  if not results or vim.tbl_isempty(results) then
+    return
+  end
   for _, result in ipairs(results) do
     if result and not vim.tbl_isempty(result) then
       vim.lsp.util.apply_text_edits(result.result)
@@ -74,7 +76,14 @@ nvim_lsp.efm.setup {
       "efm-langserver",
       "-c",
       [["$HOME/.config/efm-langserver/config.yaml"]]
-    },
-    -- filetypes = {"javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx"}
+    }
+  },
+  filetypes = {
+    "javascript",
+    "javascriptreact",
+    "javascript.jsx",
+    "typescript",
+    "typescript.tsx",
+    "typescriptreact"
   }
 }
