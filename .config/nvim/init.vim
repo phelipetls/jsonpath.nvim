@@ -532,6 +532,11 @@ nnoremap <silent> <C-c><C-s> :exe ":silent !tmux send-keys -t " . b:slime_config
 if has("nvim-0.5.0") && filereadable(stdpath("config")."/lsp.lua")
   luafile /home/phelipe/.config/nvim/lsp.lua
 
+  sign define LspDiagnosticsSignError text=❚ texthl=LspDiagnosticsSignError linehl= numhl=
+  sign define LspDiagnosticsSignWarning text=❚ linehl= texthl=LspDiagnosticsSignWarning linehl= numhl=
+  sign define LspDiagnosticsSignInformation text=❚ texthl=LspDiagnosticsSignInformation linehl= numhl=
+  sign define LspDiagnosticsSignHint text=❚ texthl=LspDiagnosticsSignHint linehl= numhl=
+
   command! LspStop lua vim.lsp.stop_client(vim.lsp.get_active_clients())
 endif
 
