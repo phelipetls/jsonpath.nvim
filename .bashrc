@@ -122,30 +122,25 @@ _fzf_compgen_path() {
 # less config
 export LESS="FXRM"
 
-# path
+# configure PATH for texlive
 export PATH="/usr/local/texlive/2019/bin/x86_64-linux/:$PATH"
 export MANPATH="/usr/local/texlive/2019/texmf-dist/doc/man/:$MANPATH"
 export INFOPATH="/usr/local/texlive/2019/texmf-dist/doc/info/:$INFOPATH"
 
-export PATH="$HOME/scripts/:$PATH"
-export PATH="/snap/bin:$PATH"
-export PATH="$HOME/.cargo/bin:$PATH"
+# custom scripts, snap and cargo
+export PATH="$HOME/scripts/:/snap/bin:/.cargo/bin:$PATH"
 
+# and Go
 export GOPATH="$HOME/go"
 export PATH="/usr/local/go/bin:$GOPATH/bin:$PATH"
 
 export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig/
 
-FIGNORE=".synctex.gz"
-
 # Android Studio config
 export PATH="$HOME/android-studio/bin:$PATH"
 
 export ANDROID_HOME=$HOME/Android/Sdk
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/tools/bin
-export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH="$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools"
 
 # Needed for Android Studio to work in DWM
 export _JAVA_AWT_WM_NONREPARENTING=1
