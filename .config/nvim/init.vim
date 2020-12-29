@@ -159,9 +159,6 @@ let g:yats_host_keyword = 0
 " improve esc in terminal
 tnoremap <Esc> <C-\><C-n>
 
-" copy current file's absolute path to clipboard
-nnoremap y<C-p> :let @+=expand("%:p")<CR>
-
 " escape also cancels search highlight
 nnoremap <silent> <esc> :nohlsearch<cr><esc>
 
@@ -277,6 +274,13 @@ cnoremap <C-R><C-L> <C-R>=substitute(getline('.'), '^\s*', '', '')<CR>
 " use <Tab> as an operator for matchit
 omap <Tab> %
 xmap <Tab> %
+
+" put file name in clipboard
+nnoremap yp :let @+=expand("%:p")<CR>
+
+" put file directory name in clipboard
+nnoremap y. :let @+=expand("%:h")<CR>
+nnoremap yh :let @+=expand("%:h")<CR>
 
 command! DiffOrig vert new | set buftype=nofile |
       \ read ++edit # |
