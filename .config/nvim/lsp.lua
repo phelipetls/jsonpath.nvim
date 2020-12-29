@@ -2,7 +2,6 @@ vim.lsp.stop_client(vim.lsp.buf_get_clients())
 
 local nvim_lsp = require "nvim_lsp"
 local util = require "nvim_lsp/util"
-local configs = require "nvim_lsp/configs"
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] =
   vim.lsp.with(
@@ -41,6 +40,7 @@ local function set_lsp_config(_)
   vim.api.nvim_command [[nnoremap <buffer><silent> gs :lua vim.lsp.buf.workspace_symbol()<CR>]]
   vim.api.nvim_command [[nnoremap <buffer><silent> gR :lua vim.lsp.buf.rename()<CR>]]
   vim.api.nvim_command [[nnoremap <buffer><silent> <M-CR> :lua vim.lsp.buf.code_action()<CR>]]
+  vim.api.nvim_command [[vnoremap <buffer><silent> <M-CR> :lua vim.lsp.buf.range_code_action()<CR>]]
   vim.api.nvim_command [[nnoremap <buffer><silent> <C-space> :lua vim.lsp.diagnostic.show_line_diagnostics()<CR>]]
   vim.api.nvim_command [[nnoremap <buffer><silent> ]g :lua vim.lsp.diagnostic.goto_next()<CR>]]
   vim.api.nvim_command [[nnoremap <buffer><silent> [g :lua vim.lsp.diagnostic.goto_prev()<CR>]]
@@ -64,9 +64,6 @@ nvim_lsp.pyls.setup {
 
 nvim_lsp.tsserver.setup {
   on_attach = set_lsp_config,
-  root_dir = function(fname)
-    return util.find_package_json_ancestor(fname) or util.find_git_ancestor(fname)
-  end
 }
 
 nvim_lsp.efm.setup {
@@ -76,7 +73,8 @@ nvim_lsp.efm.setup {
       "efm-langserver",
       "-c",
       [["$HOME/.config/efm-langserver/config.yaml"]]
-    }
+    },
+    -- root_dir = util.root_pattern(".git", "package.json")
   },
   filetypes = {
     "javascript",
