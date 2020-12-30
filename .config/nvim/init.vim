@@ -533,7 +533,7 @@ nnoremap <silent> <C-c><C-s> :exe ":silent !tmux send-keys -t " . b:slime_config
 "}}}
 "{{{ LSP
 
-if has("nvim-0.5.0") && filereadable(stdpath("config")."/lsp.lua")
+if has("nvim-0.5.0") && filereadable(stdpath("config")."/lsp.lua") && !&diff
   luafile /home/phelipe/.config/nvim/lsp.lua
 
   sign define LspDiagnosticsSignError text=❚ texthl=LspDiagnosticsSignError linehl= numhl=
