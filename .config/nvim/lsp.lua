@@ -74,7 +74,7 @@ nvim_lsp.efm.setup {
       "-c",
       [["$HOME/.config/efm-langserver/config.yaml"]]
     },
-    -- root_dir = util.root_pattern(".git", "package.json")
+    root_dir = util.root_pattern(".git", "package.json")
   },
   filetypes = {
     "javascript",
