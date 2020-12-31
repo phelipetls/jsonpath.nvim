@@ -105,3 +105,6 @@
 [submodule "gv.vim"]
 	path = .config/nvim/pack/plugins/opt/gv.vim
 	url = https://github.com/junegunn/gv.vim
+[submodule "vim-projectionist"]
+	path = .config/nvim/pack/plugins/opt/vim-projectionist
+	url = https://github.com/tpope/vim-projectionist

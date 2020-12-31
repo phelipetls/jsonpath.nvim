@@ -14,12 +14,14 @@ tools:
     lint-ignore-exit-code: true
     format-command: 'eslint_d --fix-to-stdout --stdin --stdin-filename=${INPUT}'
     format-stdin: true
-
-  # js_prettier: &js_prettier
-  #   format-command: 'prettier --parser typescript'
-  #   format-stdin: true
-  #   root-markers:
-  #     - .prettierrc
+    root-markers:
+      - .eslintrc.js
+      - .eslintrc.cjs
+      - .eslintrc.yaml
+      - .eslintrc.yml
+      - .eslintrc.json
+      - .eslintrc
+      - package.json
 
 languages:
   javascript:
@@ -32,6 +34,5 @@ languages:
     - <<: *eslint_d
   typescript.tsx:
     - <<: *eslint_d
-    # - <<: *js_prettier
   typescriptreact:
     - <<: *eslint_d
