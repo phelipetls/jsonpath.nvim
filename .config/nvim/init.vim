@@ -23,6 +23,7 @@ packadd! matchit
 packadd! editorconfig-vim
 packadd! vim-lion
 packadd! vim-simple-complete
+packadd! vim-projectionist
 " if has("nvim-0.5.0")
 "   packadd! nvim-treesitter
 " endif
@@ -152,6 +153,10 @@ let g:tagalong_additional_filetypes = ['javascript']
 
 " disable props highlighting
 let g:yats_host_keyword = 0
+
+if filereadable(stdpath("config")."/projectionist.lua")
+  exe "luafile ".stdpath("config")."/projectionist.lua"
+endif
 
 "}}}
 "{{{ general mappings
