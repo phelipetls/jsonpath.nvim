@@ -58,8 +58,6 @@ function _get_cwd {
   fi
 }
 
-# export GIT_PS1_SHOWDIRTYSTATE=1
-
 function _dynamic_prompt() {
   export PS1="\
 `_get_venv`\
