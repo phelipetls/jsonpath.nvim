@@ -15,10 +15,10 @@ function get_volume() {
   echo " $volume"
 }
 
-# function get_memory() {
-#   mem=$(free | awk '/Mem.:/ { printf("%3.1f", $3/$2*100) }')%
-#   echo " $mem"
-# }
+function get_memory() {
+  mem=$(free | awk '/Mem.:/ { printf("%3.1f", $3/$2*100) }')%
+  echo " $mem"
+}
 
 function get_battery {
   state=$(acpi | sed -E "s/.* ([A-Za-z]+),.*/\1/")
@@ -63,7 +63,6 @@ function now_playing() {
 
 while true
 do
-  xsetroot -name "$(now_playing)  $(get_temp)  $(get_battery)  $(get_volume)  $(get_date) ⋮"
-  # xsetroot -name "$(now_playing)  $(get_temp)  $(get_memory)  $(get_battery)  $(get_volume)  $(get_date) ⋮"
+  xsetroot -name "$(now_playing)  $(get_temp)  $(get_memory)  $(get_battery)  $(get_volume)  $(get_date) ⋮"
   sleep 30s
 done
