@@ -1,27 +1,3 @@
 version: 2
 # log-file: /home/phelipe/efmlangserver.log
 # log-level: 1
-
-tools:
-  eslint_d: &eslint_d
-    lint-command: 'eslint_d -f unix --stdin --stdin-filename ${INPUT}'
-    lint-stdin: true
-    lint-formats:
-      - "%f:%l:%c: %m"
-    lint-ignore-exit-code: true
-    format-command: 'eslint_d --fix-to-stdout --stdin --stdin-filename=${INPUT}'
-    format-stdin: true
-
-languages:
-  javascript:
-    - <<: *eslint_d
-  javascriptreact:
-    - <<: *eslint_d
-  javascript.jsx:
-    - <<: *eslint_d
-  typescript:
-    - <<: *eslint_d
-  typescript.tsx:
-    - <<: *eslint_d
-  typescriptreact:
-    - <<: *eslint_d
