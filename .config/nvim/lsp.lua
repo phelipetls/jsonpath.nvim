@@ -63,21 +63,53 @@ nvim_lsp.pyls.setup {
 }
 
 nvim_lsp.tsserver.setup {
-  on_attach = set_lsp_config,
+  on_attach = set_lsp_config
 }
+
+local efm_settings = {
+  version = 2
+}
+
+local js_filetypes = {
+  "javascript",
+  "javascriptreact",
+  "javascript.jsx",
+  "typescript",
+  "typescript.tsx",
+  "typescriptreact"
+}
+
+local eslint_config = {
+  lintCommand = "eslint_d -f unix --stdin --stdin-filename ${INPUT}",
+  lintStdin = true,
+  lintFormats = {"%f:%l:%c: %m"},
+  lintIgnoreExitCode = true,
+  formatCommand = "eslint_d --fix-to-stdout --stdin --stdin-filename=${INPUT}",
+  formatStdin = true
+}
+
+local prettier_config = {
+  formatCommand = "prettier --parser typescript",
+  formatStdin = true
+}
+
+local js_config = vim.fn.glob(".prettierrc*") and {eslint_config, prettier_config} or {eslint_config}
+
+for _, js_filetype in ipairs(js_filetypes) do
+  efm_settings[js_filetype] = js_config
+end
 
 nvim_lsp.efm.setup {
   on_attach = set_lsp_config,
   default_config = {
     cmd = {
-      "efm-langserver",
-      "-c",
-      [["$HOME/.config/efm-langserver/config.yaml"]]
+      "efm-langserver"
+      -- "-c",
+      -- [["$HOME/.config/efm-langserver/config.yaml"]]
     },
-    root_dir = function()
-      return vim.fn.getcwd()
-    end,
+    root_dir = vim.fn.getcwd
   },
+  settings = efm_settings,
   filetypes = {
     "javascript",
     "javascriptreact",
