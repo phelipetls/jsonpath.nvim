@@ -12,19 +12,6 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] =
   }
 )
 
-function vim.lsp.buf.formatting_sync(options, timeout_ms)
-  local params = vim.lsp.util.make_formatting_params(options)
-  local results = vim.lsp.buf_request_sync(0, "textDocument/formatting", params, timeout_ms)
-  if not results or vim.tbl_isempty(results) then
-    return
-  end
-  for _, result in ipairs(results) do
-    if result and not vim.tbl_isempty(result) then
-      vim.lsp.util.apply_text_edits(result.result)
-    end
-  end
-end
-
 local function set_lsp_config(_)
   vim.api.nvim_command [[setlocal omnifunc=v:lua.vim.lsp.omnifunc]]
   vim.api.nvim_command [[setlocal signcolumn=yes]]
@@ -63,7 +50,13 @@ nvim_lsp.pyls.setup {
 }
 
 nvim_lsp.tsserver.setup {
-  on_attach = set_lsp_config
+  on_attach = function(client)
+    set_lsp_config()
+    client.resolved_capabilities.document_formatting = false
+  end,
+  settings = {
+    init_options = {formatting = {enable = false}}
+  }
 }
 
 local efm_settings = {
@@ -100,15 +93,17 @@ for _, ft in ipairs(js_filetypes) do
 end
 
 nvim_lsp.efm.setup {
-  on_attach = set_lsp_config,
+  on_attach = function(client)
+    set_lsp_config()
+    client.resolved_capabilities.document_formatting = true
+  end,
   default_config = {
     cmd = {
       "efm-langserver",
       "-c",
       [["$HOME/.config/efm-langserver/config.yaml"]]
-    },
+    }
   },
-  init_options = {documentFormatting = true, publishDiagnostics = true},
   root_dir = function()
     return vim.fn.getcwd()
   end,
