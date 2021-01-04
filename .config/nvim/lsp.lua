@@ -53,10 +53,7 @@ nvim_lsp.tsserver.setup {
   on_attach = function(client)
     set_lsp_config()
     client.resolved_capabilities.document_formatting = false
-  end,
-  settings = {
-    init_options = {formatting = {enable = false}}
-  }
+  end
 }
 
 local efm_settings = {
