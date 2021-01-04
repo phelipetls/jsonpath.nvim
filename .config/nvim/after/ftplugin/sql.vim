@@ -1,3 +1,5 @@
+packadd! vim-dadbod
+
 let g:sql_type_default = 'postgresql'
 
 setlocal commentstring=--\ %s

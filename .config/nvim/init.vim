@@ -28,9 +28,6 @@ packadd! vim-projectionist
 "   packadd! nvim-treesitter
 " endif
 
-" databases
-packadd! vim-dadbod
-
 " html and javascript
 packadd! emmet-vim
 packadd! tagalong.vim
