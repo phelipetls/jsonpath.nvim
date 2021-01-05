@@ -89,7 +89,6 @@ set updatetime=1000                 " lower updatetime, used for CursorHold even
 set breakindent                     " keep indentation when lines break
 set breakindentopt=shift:2          " but shift it by 2 spaces
 set linebreak                       " break only at specific characters, :h breakat
-set nowrap
 
 if has("nvim-0.4.3")
   set wildoptions=tagfile " keep the horizontal wildmenu in neovim
@@ -612,4 +611,3 @@ endfunction
 inoremap <silent> <C-X>/ <Lt>/<C-r>=CloseTag()<CR><C-r>=Reindent()<CR><C-r>=Clean()<CR>
 
 "}}}
-" vi: nowrap
