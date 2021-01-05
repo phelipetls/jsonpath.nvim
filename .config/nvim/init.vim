@@ -547,6 +547,13 @@ if has("nvim-0.5.0") && filereadable(stdpath("config")."/lsp.lua") && !&diff
 endif
 
 "}}}
+"{{{ treesitter
+
+if has("nvim-0.5.0")
+  luafile /home/phelipe/.config/nvim/treesitter.lua
+endif
+
+"}}}
 "{{{ text objects
 
 " number text object (integer and float)

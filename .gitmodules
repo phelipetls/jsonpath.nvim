@@ -105,6 +105,12 @@
 [submodule "gv.vim"]
 	path = .config/nvim/pack/plugins/opt/gv.vim
 	url = https://github.com/junegunn/gv.vim
+[submodule "nvim-treesitter"]
+	path = .config/nvim/pack/plugins/opt/nvim-treesitter
+	url = https://github.com/nvim-treesitter/nvim-treesitter
 [submodule "vim-projectionist"]
 	path = .config/nvim/pack/plugins/opt/vim-projectionist
 	url = https://github.com/tpope/vim-projectionist
+[submodule "playground"]
+	path = .config/nvim/pack/plugins/opt/playground
+	url = https://github.com/nvim-treesitter/playground
