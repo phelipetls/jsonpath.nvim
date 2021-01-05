@@ -1,32 +1,47 @@
 "{{{ plugins
 
-" file navigation
-set rtp+=~/.fzf
-packadd! vim-dirvish
-packadd! fzf.vim
-
-" conveniences
+" text editing conveniences
 packadd! splitjoin.vim
 packadd! vim-fugitive
-packadd! gv.vim
 packadd! vim-surround
 packadd! vim-commentary
 packadd! vim-repeat
 packadd! vim-unimpaired
 packadd! vim-speeddating
 packadd! vim-abolish
-packadd! vim-obsession
-packadd! traces.vim
 packadd! vim-toml
-packadd! cfilter
 packadd! matchit
-packadd! editorconfig-vim
 packadd! vim-lion
-packadd! vim-simple-complete
 packadd! vim-projectionist
-" if has("nvim-0.5.0")
-"   packadd! nvim-treesitter
-" endif
+
+if exists("g:vscode")
+  nnoremap <silent> K <Cmd>call VSCodeCall('editor.action.showHover')<CR>
+  nnoremap <silent> gh <Cmd>call VSCodeCall('editor.action.showHover')<CR>
+  nnoremap <silent> [d <Cmd>call VSCodeCall('editor.action.revealDefinition')<CR>
+  nnoremap <silent> [<C-d> <Cmd>call VSCodeCall('editor.action.revealDefinition')<CR>
+  nnoremap <silent> gd <Cmd>call VSCodeCall('editor.action.revealDefinition')<CR>
+  nnoremap <silent> [t <Cmd>call VSCodeCall('editor.action.goToTypeDefinition')<CR>
+  nnoremap <silent> gr <Cmd>call VSCodeCall('references-view.find')<CR>
+  nnoremap <silent> gs <Cmd>call VSCodeCall('workbench.action.gotoSymbol')<CR>
+  nnoremap <silent> <c-w>d <cmd>call VSCodeCall('editor.action.revealDefinitionAside')<CR>
+  nnoremap <silent> <c-b> <cmd>call VSCodeCall('workbench.action.toggleSidebarVisibility')<CR>
+  nnoremap <silent> - <Cmd>call VSCodeCall('workbench.files.action.showActiveFileInExplorer')<CR>
+  nnoremap <silent> <space>r <Cmd>call VSCodeCall('workbench.action.showAllEditorsByMostRecentlyUsed')<CR>
+  finish
+endif
+
+" file navigation
+set rtp+=~/.fzf
+packadd! vim-dirvish
+packadd! fzf.vim
+
+" vim improvements
+packadd! traces.vim
+packadd! vim-obsession
+packadd! editorconfig-vim
+packadd! vim-simple-complete
+packadd! gv.vim
+packadd! cfilter
 
 " html and javascript
 packadd! emmet-vim
