@@ -24,11 +24,3 @@ hi link typescriptTemplateSB Special
 hi link jsxPunct Normal
 hi link jsxCloseString Normal
 hi link jsxTagName Statement
-
-syn match typescriptMethodCall /\k\+\ze(/
-hi link typescriptMethodCall Function
-
-" syntax match   typescriptArrowFuncDef          contained /({\_[^}]*}\(:\_[^)]\)\?)\s*=>/
-"   \ contains=typescriptArrowFuncArg,typescriptArrowFunc
-"   \ nextgroup=@typescriptExpression,typescriptBlock
-"   \ skipwhite skipempty
