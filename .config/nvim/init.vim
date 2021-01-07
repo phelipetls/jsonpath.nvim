@@ -320,6 +320,7 @@ let &g:statusline='[%n]'                         " buffer number
 let &g:statusline.=' %0.30f'                     " abbreviated file name
 let &g:statusline.=' %{GitHead()}'               " branch of current HEAD commit
 let &g:statusline.=' %m'                         " modified
+let &g:statusline.=' %i'                         " no end of line
 let &g:statusline.=' %='                         " jump to other side
 let &g:statusline.=' [%l/%L]'                    " current line number / total lines
 let &g:statusline.=' %y'                         " filetype
