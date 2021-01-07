@@ -111,3 +111,6 @@
 [submodule "playground"]
 	path = .config/nvim/pack/plugins/opt/playground
 	url = https://github.com/nvim-treesitter/playground
+[submodule "completion-nvim"]
+	path = .config/nvim/pack/plugins/opt/completion-nvim
+	url = https://github.com/nvim-lua/completion-nvim
