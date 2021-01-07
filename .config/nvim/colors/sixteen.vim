@@ -36,10 +36,10 @@ hi Ignore ctermbg=NONE ctermfg=7
 
 "}}}
 "{{{ Misc
-hi DiffAdd ctermbg=NONE ctermfg=green cterm=BOLD
+hi DiffAdd ctermbg=green ctermfg=black cterm=BOLD
 hi DiffDelete ctermbg=black ctermfg=red
-hi DiffChange ctermbg=NONE ctermfg=NONE
-hi DiffText ctermbg=NONE ctermfg=NONE cterm=BOLD
+hi DiffChange ctermbg=black ctermfg=white
+hi DiffText ctermbg=black ctermfg=yellow cterm=BOLD
 
 hi Error ctermbg=1 ctermfg=0
 hi link ErrorMsg Error
@@ -54,9 +54,9 @@ hi Todo ctermbg=2 ctermfg=0
 
 hi LineNr ctermfg=8
 hi CursorLineNr ctermfg=8
-hi SignColumn ctermbg=0 ctermfg=8
+hi SignColumn ctermbg=NONE ctermfg=7
 
-hi CursorColumn ctermbg=8 ctermfg=NONE
+hi CursorColumn ctermbg=0 ctermfg=NONE
 
 hi Directory ctermfg=1
 
