@@ -43,33 +43,16 @@ case "$TERM" in
     xterm-color|*-256color) color_prompt=yes;;
 esac
 
-function _get_venv {
-  if [ $VIRTUAL_ENV ]; then
-    printf '(%s) ' $(basename $VIRTUAL_ENV)
-  fi
-}
+source /usr/lib/git-core/git-sh-prompt
 
-function _get_cwd {
-  # shorten current pwd if on a small terminal
-  if [[ $COLUMNS -gt 80 ]]; then
-    echo -n '\w'
-  else
-    echo -n '\W'
-  fi
-}
-
-function _dynamic_prompt() {
-  export PS1="\
-`_get_venv`\
+export PS1="\
 \[\e[01;32m\]\u \
 \[\e[01;33m\]@ \
-\[\e[01;94m\]`_get_cwd`\
-\[\e[01;33m\]`__git_ps1 ' (%s)'` \
+\[\e[01;94m\]\w \
+\[\e[01;33m\]`__git_ps1 '(%s) '`\
 \[\e[01;90m\]\$ \
-\[\e[m\]"
-}
-
-PROMPT_COMMAND=_dynamic_prompt
+\[\e[m\]\
+"
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
