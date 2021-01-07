@@ -12,7 +12,6 @@ packadd! vim-abolish
 packadd! vim-toml
 packadd! matchit
 packadd! vim-lion
-packadd! vim-projectionist
 
 if exists("g:vscode")
   nnoremap <silent> K <Cmd>call VSCodeCall('editor.action.showHover')<CR>
