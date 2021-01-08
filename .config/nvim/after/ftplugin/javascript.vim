@@ -31,8 +31,6 @@ iabbr edf export default function
 iabbr improt import
 iabbr Obejct Object
 iabbr entires entries
-iabbr mui import { } from "@material-ui/";<Left><Left>
-iabbr ireact import React from "react";
 
 nnoremap <buffer> [<C-c> "zyiwOconsole.log(z);<Esc>
 nnoremap <buffer> ]<C-c> "zyiwoconsole.log(z);<Esc>
@@ -40,24 +38,3 @@ nnoremap <buffer> ]<C-c> "zyiwoconsole.log(z);<Esc>
 if executable("firefox")
   setlocal keywordprg=firefox\ https://developer.mozilla.org/search?topic=api\\&topic=js\\&q=\
 endif
-
-function! RemoveFileExtension()
-  let info = complete_info(['mode', 'items', 'selected'])
-  if info.mode != "files"
-    return
-  endif
-  if empty(v:completed_item)
-    return
-  endif
-  if info.selected == -1
-    return
-  endif
-  let fname = info.items[info.selected].word
-  if fname !~ '.*.[jt]sx\?$'
-    return
-  endif
-  let fname_without_extension = substitute(fname, '\.[jt]sx\?$', "", "")
-  call setline(".", substitute(getline("."), fname, fname_without_extension, ''))
-endfunction
-
-autocmd! CompleteDonePre <buffer> call RemoveFileExtension()
