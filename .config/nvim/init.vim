@@ -131,39 +131,13 @@ if executable("rg")
   set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
 
-" emmet trigger key
-let g:user_emmet_leader_key = "<C-c><C-e>"
-
-let g:user_emmet_settings = {
-      \  'javascript' : {
-      \      'extends' : 'jsx',
-      \      'empty_element_suffix': ' />',
-      \  }
-      \}
-
 " checktime when nvim resumes from suspended state
 if has("nvim")
   autocmd! VimResume * checktime
 endif
 
-" directories first
-let g:dirvish_mode = ':sort ,^.*[\/],'
-
-" disable saving session on BufEnter
-let g:obsession_no_bufenter = 1
-
-" disable editorconfig sometimes
-let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
-
-" tagalong config
-let g:tagalong_additional_filetypes = ['javascript']
-
 " disable props highlighting
 let g:yats_host_keyword = 0
-
-if filereadable(stdpath("config")."/projectionist.lua")
-  exe "luafile ".stdpath("config")."/projectionist.lua"
-endif
 
 "}}}
 "{{{ general mappings
