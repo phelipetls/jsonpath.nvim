@@ -45,14 +45,14 @@ esac
 
 source /usr/lib/git-core/git-sh-prompt
 
-export PS1="\
+export PS1='\
 \[\e[01;32m\]\u \
 \[\e[01;33m\]@ \
 \[\e[01;94m\]\w \
-\[\e[01;33m\]`__git_ps1 '(%s) '`\
+\[\e[01;33m\]$(__git_ps1 "(%s) ")\
 \[\e[01;90m\]\$ \
 \[\e[m\]\
-"
+'
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
