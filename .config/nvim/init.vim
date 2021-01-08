@@ -34,7 +34,7 @@ set rtp+=~/.fzf
 packadd! vim-dirvish
 packadd! fzf.vim
 
-" vim improvements
+" vim specific improvements
 packadd! traces.vim
 packadd! vim-obsession
 packadd! editorconfig-vim
@@ -263,6 +263,7 @@ xmap <Tab> %
 
 " put file name in clipboard
 nnoremap yp :let @+=expand("%:p")<CR>
+nnoremap y<C-p> :let @+=expand("%:p")<CR>
 
 " put file directory name in clipboard
 nnoremap y. :let @+=expand("%:h")<CR>
