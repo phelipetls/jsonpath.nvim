@@ -57,10 +57,10 @@ bind stage   u  none
 bind generic uu status-update
 bind generic ur status-revert
 bind generic um status-merge
-bind generic ul stage-update-line
-bind generic us stage-split-chunk
+bind generic s stage-update-line
+bind generic us stage-update-line
 bind generic Vs stage-update-line
-bind generic s stage-split-chunk
+bind generic S stage-split-chunk
 
 bind generic c  none
 bind generic cc !git commit
