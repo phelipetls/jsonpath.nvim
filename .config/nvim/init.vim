@@ -12,46 +12,32 @@ packadd! vim-abolish
 packadd! vim-toml
 packadd! matchit
 packadd! vim-lion
-
-if exists("g:vscode")
-  nnoremap <silent> K <Cmd>call VSCodeCall('editor.action.showHover')<CR>
-  nnoremap <silent> gh <Cmd>call VSCodeCall('editor.action.showHover')<CR>
-  nnoremap <silent> [d <Cmd>call VSCodeCall('editor.action.revealDefinition')<CR>
-  nnoremap <silent> [<C-d> <Cmd>call VSCodeCall('editor.action.revealDefinition')<CR>
-  nnoremap <silent> gd <Cmd>call VSCodeCall('editor.action.revealDefinition')<CR>
-  nnoremap <silent> [t <Cmd>call VSCodeCall('editor.action.goToTypeDefinition')<CR>
-  nnoremap <silent> gr <Cmd>call VSCodeCall('references-view.find')<CR>
-  nnoremap <silent> gs <Cmd>call VSCodeCall('workbench.action.gotoSymbol')<CR>
-  nnoremap <silent> <c-w>d <cmd>call VSCodeCall('editor.action.revealDefinitionAside')<CR>
-  nnoremap <silent> <c-b> <cmd>call VSCodeCall('workbench.action.toggleSidebarVisibility')<CR>
-  nnoremap <silent> - <Cmd>call VSCodeCall('workbench.files.action.showActiveFileInExplorer')<CR>
-  nnoremap <silent> <space>r <Cmd>call VSCodeCall('workbench.action.showAllEditorsByMostRecentlyUsed')<CR>
-  finish
-endif
-
-" file navigation
-set rtp+=~/.fzf
-packadd! vim-dirvish
-packadd! fzf.vim
-
-" vim specific improvements
-packadd! traces.vim
-packadd! vim-obsession
-packadd! editorconfig-vim
-packadd! completion-nvim
-packadd! gv.vim
-packadd! cfilter
-
-" html and javascript
-packadd! emmet-vim
 packadd! tagalong.vim
-packadd! vim-jinja
-packadd! vim-javascript
-packadd! vim-jsx-pretty
-packadd! vim-hugo
 
-" REPL
-packadd! vim-slime
+if !exists("g:vscode")
+  " file navigation
+  set rtp+=~/.fzf
+  packadd! vim-dirvish
+  packadd! fzf.vim
+
+  " vim specific improvements
+  packadd! traces.vim
+  packadd! vim-obsession
+  " packadd! editorconfig-vim
+  packadd! completion-nvim
+  packadd! gv.vim
+  packadd! cfilter
+
+  " html and javascript
+  packadd! emmet-vim
+  packadd! vim-jinja
+  packadd! vim-javascript
+  packadd! vim-jsx-pretty
+  packadd! vim-hugo
+
+  " REPL
+  packadd! vim-slime
+endif
 
 "}}}
 "{{{ general settings
@@ -278,6 +264,25 @@ command! DiffOrig vert new | set buftype=nofile |
 
 inoreabbrev Taebl Table
 inoreabbrev taebl table
+
+"}}}
+"{{{ vscode
+
+if exists("g:vscode")
+  nnoremap <silent> K <Cmd>call VSCodeCall('editor.action.showHover')<CR>
+  nnoremap <silent> gh <Cmd>call VSCodeCall('editor.action.showHover')<CR>
+  nnoremap <silent> [d <Cmd>call VSCodeCall('editor.action.revealDefinition')<CR>
+  nnoremap <silent> [<C-d> <Cmd>call VSCodeCall('editor.action.revealDefinition')<CR>
+  nnoremap <silent> gd <Cmd>call VSCodeCall('editor.action.revealDefinition')<CR>
+  nnoremap <silent> [t <Cmd>call VSCodeCall('editor.action.goToTypeDefinition')<CR>
+  nnoremap <silent> gr <Cmd>call VSCodeCall('references-view.find')<CR>
+  nnoremap <silent> gs <Cmd>call VSCodeCall('workbench.action.gotoSymbol')<CR>
+  nnoremap <silent> <c-w>d <cmd>call VSCodeCall('editor.action.revealDefinitionAside')<CR>
+  nnoremap <silent> <c-b> <cmd>call VSCodeCall('workbench.action.toggleSidebarVisibility')<CR>
+  nnoremap <silent> - <Cmd>call VSCodeCall('workbench.files.action.showActiveFileInExplorer')<CR>
+  nnoremap <silent> <space>r <Cmd>call VSCodeCall('workbench.action.showAllEditorsByMostRecentlyUsed')<CR>
+  finish
+endif
 
 "}}}
 "{{{ statusline and tabline
