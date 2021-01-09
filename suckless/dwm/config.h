@@ -23,10 +23,11 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     iscentered   isfloating   monitor */
-	{ "R_x11",      NULL,       NULL,              0,            0,          1,           -1 },
-	{ "Matplotlib", NULL,       NULL,              0,            0,          1,           -1 },
-	{ "Thunar",     NULL,       NULL,              0,            1,          1,           -1 },
+	/* class        instance  title                tags mask     iscentered  isfloating   monitor */
+	{ "R_x11",      NULL,     NULL,                0,            0,          1,           -1 },
+	{ "Matplotlib", NULL,     NULL,                0,            0,          1,           -1 },
+	{ "Thunar",     NULL,     NULL,                0,            1,          1,           -1 },
+	{ NULL,         NULL,     "Android Emulator",  0,            0,          1,           -1 },
 };
 
 /* layout(s) */
