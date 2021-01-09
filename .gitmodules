@@ -114,3 +114,6 @@
 [submodule "completion-nvim"]
 	path = .config/nvim/pack/plugins/opt/completion-nvim
 	url = https://github.com/nvim-lua/completion-nvim
+[submodule "yats.vim"]
+	path = .config/nvim/pack/plugins/opt/yats.vim
+	url = https://github.com/HerringtonDarkholme/yats.vim/

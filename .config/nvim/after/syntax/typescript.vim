@@ -1,26 +1,34 @@
-hi link typescriptBraces Normal
-hi link typescriptParens Normal
-hi link TypescriptImport Include
-hi link TypescriptExport Include
-hi link TypescriptVariable StorageClass
-hi link TypescriptTypeReference Type
+hi link typescriptImport Include
+hi link typescriptExport Include
 
-hi link TypescriptObjectLabel Normal
-hi link TypescriptFuncComma Normal
-hi link TypescriptArrowFuncArg Normal
-hi link TypescriptCall Normal
-hi link TypescriptOperator Operator
-hi link typescriptFuncType Normal
+hi link typescriptVariable StorageClass
+hi link typescriptLabel Identifier
 
-hi link typescriptAssign Operator
-hi link typescriptKeywordOp Operator
-hi link typescriptCastKeyword Operator
+hi link typescriptBraces Special
+hi link typescriptParens Special
+hi link typescriptTypeReference Type
+hi link typescriptTypeParameter Type
+hi link typescriptAliasDeclaration Type
+hi link typescriptTypeBrackets Special
+hi link typescriptMember typescriptObjectLabel
+
+hi link typescriptFuncComma Normal
+hi link typescriptCall Normal
+hi link typescriptArrowFuncArg Normal
+
 hi link typescriptEnumKeyword Keyword
+
+hi link typescriptUnaryOp Operator
 hi link typescriptBinaryOp Operator
+hi link typescriptKeywordOp Operator
+hi link typescriptTernaryOp Operator
+hi link typescriptAssign Operator
+hi link typescriptCastKeyword Operator
+hi link typescriptRestOrSpread Operator
+hi link typescriptObjectSpread Operator
+hi link typescriptDefaultParam Operator
 
 hi link typescriptEndColons Normal
 hi link typescriptTemplateSB Special
 
-hi link jsxPunct Normal
-hi link jsxCloseString Normal
-hi link jsxTagName Statement
+hi link typescriptDestructureVariable typescriptVariableDeclaration

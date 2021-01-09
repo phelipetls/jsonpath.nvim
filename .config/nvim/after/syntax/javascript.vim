@@ -7,6 +7,7 @@ hi link jsGlobalNodeObjects Normal
 hi link jsExportDefault Include
 hi link jsClassMethodType Statement
 hi link jsParensError Normal
+hi link jsObjectKey Identifier
 
 hi link jsxPunct Normal
 hi link jsxCloseString Normal

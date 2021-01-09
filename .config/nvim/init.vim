@@ -32,6 +32,7 @@ if !exists("g:vscode")
   packadd! emmet-vim
   packadd! vim-jinja
   packadd! vim-javascript
+  packadd! yats.vim
   packadd! vim-jsx-pretty
   packadd! vim-hugo
 endif
