@@ -23,7 +23,7 @@ if !exists("g:vscode")
   " vim specific improvements
   packadd! traces.vim
   packadd! vim-obsession
-  " packadd! editorconfig-vim
+  packadd! editorconfig-vim
   packadd! completion-nvim
   packadd! gv.vim
   packadd! cfilter
@@ -39,7 +39,6 @@ endif
 "}}}
 "{{{ general settings
 
-syntax on
 colorscheme sixteen
 
 set nonumber
@@ -297,7 +296,6 @@ let &g:statusline='[%n]'                         " buffer number
 let &g:statusline.=' %0.30f'                     " abbreviated file name
 let &g:statusline.=' %{GitHead()}'               " branch of current HEAD commit
 let &g:statusline.=' %m'                         " modified
-let &g:statusline.=' %i'                         " no end of line
 let &g:statusline.=' %='                         " jump to other side
 let &g:statusline.=' [%l/%L]'                    " current line number / total lines
 let &g:statusline.=' %y'                         " filetype
@@ -405,7 +403,6 @@ let g:completion_trigger_keyword_length = 3
 let g:completion_chain_complete_list = {
     \ 'default' : {
     \   'default': [
-    \       {'complete_items': ['lsp']},
     \       {'complete_items': ['path'], 'triggered_only': ['/']},
     \       {'mode': '<c-p>'},
     \       {'mode': '<c-n>'}
@@ -478,10 +475,10 @@ augroup END
 "}}}
 "{{{ LSP
 
-if has("nvim-0.5.0") && filereadable(stdpath("config")."/lsp.lua") && !&diff
+if has("nvim-0.5.0") && filereadable($HOME."/.config/nvim/lsp.lua") && !&diff
   packadd! nvim-lsp
 
-  luafile /home/phelipe/.config/nvim/lsp.lua
+  luafile $HOME/.config/nvim/lsp.lua
 
   sign define LspDiagnosticsSignError text=❚ texthl=LspDiagnosticsSignError linehl= numhl=
   sign define LspDiagnosticsSignWarning text=❚ linehl= texthl=LspDiagnosticsSignWarning linehl= numhl=
@@ -494,8 +491,8 @@ endif
 "}}}
 "{{{ treesitter
 
-if has("nvim-0.5.0")
-  luafile /home/phelipe/.config/nvim/treesitter.lua
+if has("nvim-0.5.0") && filereadable($HOME."/.config/nvim/treesitter.lua")
+  luafile $HOME/.config/nvim/treesitter.lua
 endif
 
 "}}}

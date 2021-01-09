@@ -1,4 +1,3 @@
-
 if exists("current_compiler")
   finish
 endif

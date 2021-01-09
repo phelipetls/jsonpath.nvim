@@ -28,31 +28,14 @@ local function get_bufnr()
 end
 
 function M.same_buffer_windo(cmd)
-  local winnr = vim.fn.winnr()
+  local initial_winnr = vim.fn.winnr()
   local tabnr = vim.fn.tabpagenr()
   local windows = get_windows_with_same_buffer(get_bufnr(), tabnr)
   for _, winnr in ipairs(windows) do
     vim.api.nvim_command(string.format("%dwincmd w", winnr))
     vim.api.nvim_command(cmd)
   end
-  go_to_window(winnr)
-end
-
-local function get_closest_qf_item(item, col, line)
-  return item.lnum > line and item.col > cursor
-end
-
-function M.lafter()
-  local loclist = vim.fn.getloclist(0)
-  local col = vim.fn.col(".")
-  local line = vim.fn.line(".")
-  local next_list_item =
-    vim.tbl_filter(
-    function(item)
-      get_closest_qf_item(item, col, line)
-    end,
-    loclist
-  )
+  go_to_window(initial_winnr)
 end
 
 return M
