@@ -8,3 +8,5 @@ suckless/dmenu/dmenu
 .config/nvim/spell/pt.utf-8.add
 .config/nvim/spell/pt.utf-8.add.spl
 suckless/**/*.o
+*.rej
+*.orig
