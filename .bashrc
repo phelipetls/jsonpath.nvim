@@ -95,6 +95,10 @@ _fzf_compgen_path() {
   rg --files --color=never
 }
 
+_fzf_compgen_dir() {
+  fdfind --color=never --type d -E '*node_modules*'
+}
+
 # less config
 export LESS="FXRM"
 
