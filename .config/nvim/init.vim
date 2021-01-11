@@ -293,13 +293,14 @@ function! GitHead() abort
   return ""
 endfunction
 
-let &g:statusline='[%n]'                         " buffer number
-let &g:statusline.=' %0.30f'                     " abbreviated file name
-let &g:statusline.=' %{GitHead()}'               " branch of current HEAD commit
-let &g:statusline.=' %m'                         " modified
-let &g:statusline.=' %='                         " jump to other side
-let &g:statusline.=' [%l/%L]'                    " current line number / total lines
-let &g:statusline.=' %y'                         " filetype
+let &g:statusline='[%n]'
+let &g:statusline.=' %0.30f '
+let &g:statusline.='%{GitHead()}'
+let &g:statusline.='%m'
+let &g:statusline.='%{&endofline ? "" : "[noeol]"}'
+let &g:statusline.='%='
+let &g:statusline.='[%l/%L]'
+let &g:statusline.=' %y'
 
 function! Tabline()
   let s = ''
