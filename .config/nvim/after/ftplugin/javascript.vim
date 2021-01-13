@@ -31,7 +31,8 @@ iabbr edf export default function
 iabbr improt import
 iabbr Obejct Object
 iabbr entires entries
-iabbr /** /****/<Up><C-R>=Eatchar('\s')<CR><Space>
+iabbr cosnt const
+iabbr /** /****/<Up>
 
 nnoremap <buffer> [<C-c> "zyiwOconsole.log(z);<Esc>
 nnoremap <buffer> ]<C-c> "zyiwoconsole.log(z);<Esc>
