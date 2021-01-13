@@ -288,16 +288,16 @@ function! GitHead() abort
   if exists("*FugitiveHead")
     let l:head = FugitiveHead()
     if len(l:head) > 0
-      return printf("[%s]", l:head)
+      return printf(" [%s]", l:head)
   endif
   return ""
 endfunction
 
 let &g:statusline='[%n]'
-let &g:statusline.=' %0.30f '
+let &g:statusline.=' %0.30f'
 let &g:statusline.='%{GitHead()}'
-let &g:statusline.='%m'
-let &g:statusline.='%{&endofline ? "" : "[noeol]"}'
+let &g:statusline.="%{!&modifiable ? '\ua0[-]' : &modified ? '\ua0[+]' : ''}"
+let &g:statusline.="%{&endofline ? '' : '\ua0[noeol]'}"
 let &g:statusline.='%='
 let &g:statusline.='[%l/%L]'
 let &g:statusline.=' %y'
