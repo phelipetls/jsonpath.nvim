@@ -328,7 +328,6 @@ set tabline=%!Tabline()
 "{{{ file navigation
 
 set path=.,,..
-nnoremap <space>f :find<space>
 
 "{{{2 fzf
 
