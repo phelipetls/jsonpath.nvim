@@ -24,7 +24,7 @@ if !exists("g:vscode")
   packadd! traces.vim
   packadd! vim-obsession
   packadd! editorconfig-vim
-  packadd! completion-nvim
+  packadd! vim-simple-complete
   packadd! gv.vim
   packadd! cfilter
 
@@ -390,32 +390,57 @@ augroup END
 "}}}
 "{{{ autocompletion config
 
+" when doing file name completion, change cwd to current file's directory
+function! LocalFileCompletion()
+    lcd %:p:h
+    return "\<C-x>\<C-f>"
+endfunction
+
+" and revert it after the completion is done
+autocmd! CompleteDonePre *
+      \ if complete_info(["mode"]).mode == "files" |
+      \   lcd - |
+      \ endif
+
+inoremap <silent> <C-x><C-f> <C-R>=LocalFileCompletion()<CR>
+
+" overloaded ctrl space functionality
+function! CtrlSpace()
+  let l:line_until_cursor = strpart(getline('.'), 0, col('.')-1)
+  " do file name completion if line until cursor is something like this:
+  " 'foo bar ../baz/'
+  " 'foo bar ../baz/qux'
+  " but not if like this:
+  " '<tag>content</'
+  if l:line_until_cursor =~ '\(<\)\@1<!/\f*$'
+    return LocalFileCompletion()
+  " else, call omnicompletion if omnifunc exists
+  elseif len(&omnifunc) > 0
+    return "\<C-x>\<C-o>"
+  else
+    return "\<C-n>"
+  endif
+endfunction
+
+function! SmartTab()
+  let l:lastchar = matchstr(getline('.'), '.\%' . col('.') . 'c')
+  if pumvisible()
+    return "\<C-n>"
+  elseif l:lastchar =~ '\s' || len(l:lastchar) == 0
+    return "\<Tab>"
+  else
+    return CtrlSpace()
+  endif
+endfunction
+
+inoremap <silent> <Tab> <C-R>=SmartTab()<CR>
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <silent> <C-Space> <C-R>=CtrlSpace()<CR>
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
+
 set completeopt=menuone,noselect,noinsert
 set shortmess+=c
 set pumheight=10
-
-imap <tab> <Plug>(completion_smart_tab)
-imap <s-tab> <Plug>(completion_smart_s_tab)
-imap <silent> <C-Space> <Plug>(completion_trigger)
-
-autocmd BufEnter * lua require'completion'.on_attach()
-
-let g:completion_enable_auto_hover = 0
-let g:completion_trigger_keyword_length = 3
-let g:completion_chain_complete_list = {
-    \ 'default' : {
-    \   'default': [
-    \       {'complete_items': ['path'], 'triggered_only': ['/']},
-    \       {'mode': '<c-p>'},
-    \       {'mode': '<c-n>'}
-    \     ]
-    \   }
-    \}
-
-augroup CompletionTriggerCharacter
-  autocmd!
-  autocmd BufEnter *.ts,*.js,*.tsx,*.jsx let g:completion_trigger_character = ['.']
-augroup end
 
 "}}}
 "{{{ quickfix config
