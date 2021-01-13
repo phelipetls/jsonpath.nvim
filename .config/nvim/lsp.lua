@@ -49,7 +49,7 @@ local function set_lsp_config(client)
     vim.api.nvim_command [[nnoremap <buffer><silent> gs :lua vim.lsp.buf.workspace_symbol()<CR>]]
   end
 
-  if client.resolved_capabilities.client_action then
+  if client.resolved_capabilities.code_action then
     vim.api.nvim_command [[nnoremap <buffer><silent> <M-CR> :lua vim.lsp.buf.code_action()<CR>]]
     vim.api.nvim_command [[vnoremap <buffer><silent> <M-CR> :lua vim.lsp.buf.range_code_action()<CR>]]
   end
