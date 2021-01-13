@@ -104,7 +104,7 @@ endif
 
 " when entering a buffer, resume to the position you were when you left it
 autocmd! BufReadPost *
-      \ if line("'\"") > 0 && line("'\"") <= line("$") && &ft !~ "commit" |
+      \ if line("'\"") > 0 && line("'\"") <= line("$") && &ft !~ "git" |
       \   exe "normal g`\"" |
       \ endif
 

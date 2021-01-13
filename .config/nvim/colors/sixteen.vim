@@ -107,6 +107,10 @@ if has("nvim-0.5.0")
   hi LspDiagnosticsSignWarning ctermfg=red
   hi LspDiagnosticsSignError ctermfg=red
   hi LspDiagnosticsSignHint ctermfg=yellow
+
+  hi link LspReferenceText Search
+  hi link LspReferenceRead Search
+  hi link LspReferenceWrite Search
 endif
 
 "}}}
