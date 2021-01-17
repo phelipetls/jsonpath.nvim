@@ -6,6 +6,7 @@ nitrogen --restore &
 redshift &
 xautolock -detectsleep -time 15 -locker slock &
 numlockx &
+compton &
 nm-applet &
 
 exec dwm
