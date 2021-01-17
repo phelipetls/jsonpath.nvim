@@ -28,6 +28,7 @@ static const Rule rules[] = {
 	{ "Matplotlib", NULL,     NULL,                0,            0,          1,           -1 },
 	{ "Thunar",     NULL,     NULL,                0,            1,          1,           -1 },
 	{ NULL,         NULL,     "Android Emulator",  0,            0,          1,           -1 },
+	{ NULL,         NULL,     "Emulator",          0,            0,          1,           -1 },
 };
 
 /* layout(s) */
@@ -67,9 +68,6 @@ static const char *shutdown[]       = { "/home/phelipe/suckless/dwm/dwm_shut", N
 static const char *upvol[]          = { "/home/phelipe/suckless/dwm/dwm_volume", "up", NULL };
 static const char *downvol[]        = { "/home/phelipe/suckless/dwm/dwm_volume", "down", NULL };
 static const char *mutevol[]        = { "/home/phelipe/suckless/dwm/dwm_volume", "mute", NULL };
-static const char *toggle_cmus[]    = { "/home/phelipe/suckless/dwm/dwm_toggle_cmus", NULL };
-static const char *cmus_next[]      = { "cmus-remote", "--next", NULL };
-static const char *cmus_prev[]      = { "cmus-remote", "--prev", NULL };
 
 #include "focusurgent.c"
 
@@ -80,9 +78,6 @@ static Key keys[] = {
 	{ 0,                            XF86XK_AudioRaiseVolume,  spawn,          {.v = upvol } },
 	{ 0,                            XF86XK_MonBrightnessUp,   spawn,          {.v = brightnessup } },
 	{ 0,                            XF86XK_MonBrightnessDown, spawn,          {.v = brightnessdown } },
-	{ MODKEY,                       XF86XK_AudioPlay,         spawn,          {.v = toggle_cmus } },
-	{ MODKEY,                       XF86XK_AudioNext,         spawn,          {.v = cmus_next } },
-	{ MODKEY,                       XF86XK_AudioPrev,         spawn,          {.v = cmus_prev } },
 	{ 0,                            XK_Print,                 spawn,          {.v = printscreen } },
 	{ MODKEY,                       XK_p,                     spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return,                spawn,          {.v = termcmd } },

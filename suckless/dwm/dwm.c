@@ -1439,9 +1439,6 @@ propertynotify(XEvent *e)
 		/* if (ev->atom == XA_WM_NAME || ev->atom == netatom[NetWMName]) { */
 		if (ev->atom == XA_WM_NAME || ev->atom == netatom[NetWMName])
 			updatetitle(c);
-			/* if (c == c->mon->sel) */
-			/* 	drawbar(c->mon); */
-		/* } */
 		if (ev->atom == netatom[NetWMWindowType])
 			updatewindowtype(c);
 		if (ev->atom == motifatom)
