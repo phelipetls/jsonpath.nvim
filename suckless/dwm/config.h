@@ -63,8 +63,6 @@ static const char *appfinder[]              = { "xfce4-appfinder" };
 static const char *lockcmd[]                = { "slock" };
 static const char *termcmd[]                = { "st", NULL };
 static const char *browsercmd[]             = { "firefox", NULL };
-static const char *printscreen[]            = { "scrot_share", NULL };
-static const char *partial_printscreen[]    = { "scrot_share", "-s", NULL };
 static const char *brightnessup[]           = { "/home/phelipe/suckless/dwm/dwm_brightness", "up", NULL };
 static const char *brightnessdown[]         = { "/home/phelipe/suckless/dwm/dwm_brightness", "down", NULL };
 static const char *shutdown[]               = { "/home/phelipe/suckless/dwm/dwm_shut", NULL };
@@ -75,14 +73,14 @@ static const char *mutevol[]                = { "/home/phelipe/suckless/dwm/dwm_
 #include "focusurgent.c"
 
 static Key keys[] = {
-    /* modifier                     key        function        argument */
+    /* modifier                         key                       function        argument */
 	{ 0,                            XF86XK_AudioLowerVolume,  spawn,          {.v = downvol } },
 	{ 0,                            XF86XK_AudioMute,         spawn,          {.v = mutevol } },
 	{ 0,                            XF86XK_AudioRaiseVolume,  spawn,          {.v = upvol } },
 	{ 0,                            XF86XK_MonBrightnessUp,   spawn,          {.v = brightnessup } },
 	{ 0,                            XF86XK_MonBrightnessDown, spawn,          {.v = brightnessdown } },
-	{ 0,                            XK_Print,                 spawn,          {.v = printscreen } },
-	{ MODKEY,                       XK_Print,                 spawn,          {.v = partial_printscreen } },
+	{ 0,                            XK_Print,                 spawn,          SHCMD("/home/phelipe/scripts/scrot_share") },
+	{ ControlMask,                  XK_Print,                 spawn,          SHCMD("sleep 0.2; /home/phelipe/scripts/scrot_share -s") },
 	{ MODKEY,                       XK_r,                     spawn,          {.v = appfinder } },
 	{ MODKEY,                       XK_p,                     spawn,          {.v = appfinder } },
 	{ MODKEY|ShiftMask,             XK_Return,                spawn,          {.v = termcmd } },
