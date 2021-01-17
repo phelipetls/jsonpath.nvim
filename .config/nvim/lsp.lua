@@ -38,11 +38,12 @@ local function set_lsp_config(client)
   end
 
   if client.resolved_capabilities.find_references then
-    vim.api.nvim_command [[nnoremap <buffer><silent> gr :lua vim.lsp.buf.references()<CR>]]
+    vim.api.nvim_command [[command! -buffer References lua vim.lsp.buf.references()]]
   end
 
   if client.resolved_capabilities.rename then
     vim.api.nvim_command [[nnoremap <buffer><silent> gR :lua vim.lsp.buf.rename()<CR>]]
+    vim.api.nvim_command [[command! -buffer Rename lua vim.lsp.buf.rename()]]
   end
 
   if client.resolved_capabilities.workspace_symbol then

@@ -1,5 +1,7 @@
 setlocal shiftwidth=2 softtabstop=2
 
+setlocal path+=./components,./views
+
 if executable("jest") && match(expand("%:p:t"), "test.js") != -1
   compiler jest
 elseif executable("eslint_d")
@@ -22,7 +24,6 @@ endif
 
 let b:surround_{char2nr("c")} = "console.log(\r)"
 let b:surround_{char2nr("e")} = "${\r}"
-let b:surround_{char2nr("i")} = 'import { \r } from "./\r"'
 
 iabbr <buffer><silent> clog console.log();<Left><Left><C-R>=Eatchar('\s')<CR>
 iabbr consoel console

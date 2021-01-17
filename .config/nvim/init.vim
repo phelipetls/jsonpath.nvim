@@ -122,11 +122,24 @@ endif
 " disable props highlighting
 let g:yats_host_keyword = 0
 
+" emmet trigger key
+let g:user_emmet_leader_key = "<C-c><C-e>"
+
+let g:user_emmet_settings = {
+      \  'javascript' : {
+      \      'extends' : 'jsx',
+      \      'empty_element_suffix': ' />',
+      \  }
+      \}
+
 "}}}
 "{{{ general mappings
 
 " improve esc in terminal
 tnoremap <Esc> <C-\><C-n>
+
+" use gr to go to previous tab
+nnoremap gr gT
 
 " escape also cancels search highlight
 nnoremap <silent> <esc> :nohlsearch<cr><esc>
