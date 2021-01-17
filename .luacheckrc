@@ -1,3 +1,5 @@
 globals = {
   "vim",
+  "awful",
+  "awesome"
 }
