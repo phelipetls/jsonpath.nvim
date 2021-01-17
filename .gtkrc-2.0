@@ -1,3 +1,2 @@
-gtk-icon-theme-name="elementary-xfce-dark"
-gtk-theme-name="Numix"
-gtk-font-name="Hack 10"
+gtk-theme-name = "Adwaita"
+gtk-icon-theme-name = "ePapirus"
