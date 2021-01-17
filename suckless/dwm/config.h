@@ -56,19 +56,19 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static char dmenumon[2]             = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[]       = { "/home/phelipe/suckless/dmenu/dmenu_run" };
-static const char *lockcmd[]        = { "slock" };
-static const char *termcmd[]        = { "st", NULL };
-static const char *browsercmd[]     = { "firefox", NULL };
-static const char *printscreen[]    = { "scrot_share", NULL };
+static char dmenumon[2]                     = "0"; /* component of dmenucmd, manipulated in spawn() */
+static const char *dmenucmd[]               = { "/home/phelipe/suckless/dmenu/dmenu_run" };
+static const char *lockcmd[]                = { "slock" };
+static const char *termcmd[]                = { "st", NULL };
+static const char *browsercmd[]             = { "firefox", NULL };
+static const char *printscreen[]            = { "scrot_share", NULL };
 static const char *partial_printscreen[]    = { "scrot_share", "-s", NULL };
-static const char *brightnessup[]   = { "/home/phelipe/suckless/dwm/dwm_brightness", "up", NULL };
-static const char *brightnessdown[] = { "/home/phelipe/suckless/dwm/dwm_brightness", "down", NULL };
-static const char *shutdown[]       = { "/home/phelipe/suckless/dwm/dwm_shut", NULL };
-static const char *upvol[]          = { "/home/phelipe/suckless/dwm/dwm_volume", "up", NULL };
-static const char *downvol[]        = { "/home/phelipe/suckless/dwm/dwm_volume", "down", NULL };
-static const char *mutevol[]        = { "/home/phelipe/suckless/dwm/dwm_volume", "mute", NULL };
+static const char *brightnessup[]           = { "/home/phelipe/suckless/dwm/dwm_brightness", "up", NULL };
+static const char *brightnessdown[]         = { "/home/phelipe/suckless/dwm/dwm_brightness", "down", NULL };
+static const char *shutdown[]               = { "/home/phelipe/suckless/dwm/dwm_shut", NULL };
+static const char *upvol[]                  = { "/home/phelipe/suckless/dwm/dwm_volume", "up", NULL };
+static const char *downvol[]                = { "/home/phelipe/suckless/dwm/dwm_volume", "down", NULL };
+static const char *mutevol[]                = { "/home/phelipe/suckless/dwm/dwm_volume", "mute", NULL };
 
 #include "focusurgent.c"
 
