@@ -105,15 +105,20 @@
 [submodule "gv.vim"]
 	path = .config/nvim/pack/plugins/opt/gv.vim
 	url = https://github.com/junegunn/gv.vim
+	ignore = dirty
 [submodule "nvim-treesitter"]
 	path = .config/nvim/pack/plugins/opt/nvim-treesitter
 	url = https://github.com/nvim-treesitter/nvim-treesitter
+	ignore = dirty
 [submodule "playground"]
 	path = .config/nvim/pack/plugins/opt/playground
 	url = https://github.com/nvim-treesitter/playground
+	ignore = dirty
 [submodule "completion-nvim"]
 	path = .config/nvim/pack/plugins/opt/completion-nvim
 	url = https://github.com/nvim-lua/completion-nvim
+	ignore = dirty
 [submodule "yats.vim"]
 	path = .config/nvim/pack/plugins/opt/yats.vim
 	url = https://github.com/HerringtonDarkholme/yats.vim/
+	ignore = dirty
