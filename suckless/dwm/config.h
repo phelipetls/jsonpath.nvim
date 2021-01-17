@@ -23,12 +23,13 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class        instance  title                tags mask     iscentered  isfloating   monitor */
-	{ "R_x11",      NULL,     NULL,                0,            0,          1,           -1 },
-	{ "Matplotlib", NULL,     NULL,                0,            0,          1,           -1 },
-	{ "Thunar",     NULL,     NULL,                0,            1,          1,           -1 },
-	{ NULL,         NULL,     "Android Emulator",  0,            0,          1,           -1 },
-	{ NULL,         NULL,     "Emulator",          0,            0,          1,           -1 },
+	/* class             instance  title                tags mask     iscentered  isfloating   monitor */
+	{ "R_x11",           NULL,     NULL,                0,            0,          1,           -1 },
+	{ "Matplotlib",      NULL,     NULL,                0,            0,          1,           -1 },
+	{ "Thunar",          NULL,     NULL,                0,            1,          1,           -1 },
+	{ "appfinder",       NULL,     NULL,                0,            1,          1,           -1 },
+	{ NULL,              NULL,     "Android Emulator",  0,            0,          1,           -1 },
+	{ NULL,              NULL,     "Emulator",          0,            0,          1,           -1 },
 };
 
 /* layout(s) */
@@ -58,6 +59,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2]                     = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[]               = { "/home/phelipe/suckless/dmenu/dmenu_run" };
+static const char *appfinder[]              = { "xfce4-appfinder" };
 static const char *lockcmd[]                = { "slock" };
 static const char *termcmd[]                = { "st", NULL };
 static const char *browsercmd[]             = { "firefox", NULL };
@@ -81,7 +83,8 @@ static Key keys[] = {
 	{ 0,                            XF86XK_MonBrightnessDown, spawn,          {.v = brightnessdown } },
 	{ 0,                            XK_Print,                 spawn,          {.v = printscreen } },
 	{ MODKEY,                       XK_Print,                 spawn,          {.v = partial_printscreen } },
-	{ MODKEY,                       XK_p,                     spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_r,                     spawn,          {.v = appfinder } },
+	{ MODKEY,                       XK_p,                     spawn,          {.v = appfinder } },
 	{ MODKEY|ShiftMask,             XK_Return,                spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_w,                     spawn,          {.v = browsercmd } },
 	{ MODKEY,                       XK_F4,                    spawn,          {.v = shutdown } },
