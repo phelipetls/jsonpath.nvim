@@ -89,7 +89,7 @@ source ~/.tmux/tmux_bash_completion
 
 # fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-export FZF_DEFAULT_COMMAND='rg --files --color=never'
+export FZF_DEFAULT_COMMAND='rg --files --hidden --color=never'
 
 _fzf_compgen_path() {
   rg --files --color=never
