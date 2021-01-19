@@ -24,7 +24,7 @@ if !exists("g:vscode")
   packadd! traces.vim
   packadd! vim-obsession
   packadd! editorconfig-vim
-  packadd! vim-simple-complete
+  packadd! completion-nvim
   packadd! gv.vim
   packadd! cfilter
 
@@ -402,10 +402,14 @@ augroup END
 "}}}
 "{{{ autocompletion config
 
+set completeopt=menuone,noselect,noinsert
+set shortmess+=c
+set pumheight=10
+
 " when doing file name completion, change cwd to current file's directory
 function! LocalFileCompletion()
-    lcd %:p:h
-    return "\<C-x>\<C-f>"
+  lcd %:p:h
+  return "\<C-x>\<C-f>"
 endfunction
 
 " and revert it after the completion is done
@@ -450,9 +454,31 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <silent> <C-Space> <C-R>=CtrlSpace()<CR>
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
 
-set completeopt=menuone,noselect,noinsert
-set shortmess+=c
-set pumheight=10
+autocmd BufEnter * lua require'completion'.on_attach()
+
+imap <c-j> <Plug>(completion_next_source)
+imap <c-k> <Plug>(completion_prev_source)
+
+let g:completion_trigger_keyword_length = 3
+let g:completion_enable_auto_hover = 0
+let g:completion_matching_ignore_case = 1
+let g:completion_chain_complete_list = {
+    \ 'javascript': [{'complete_items': ['lsp', 'snippet']}],
+    \ 'javascript.jsx': [{'complete_items': ['lsp', 'snippet']}],
+    \ 'javascriptreact': [{'complete_items': ['lsp', 'snippet']}],
+    \ 'typescript': [{'complete_items': ['lsp', 'snippet']}],
+    \ 'typescript.tsx': [{'complete_items': ['lsp', 'snippet']}],
+    \ 'typescriptreact': [{'complete_items': ['lsp', 'snippet']}],
+    \ 'css': [{'mode': 'omni'}, {'mode': '<c-n>'}, {'mode': '<c-p>'}],
+    \ 'html': [{'mode': 'omni'}, {'mode': '<c-n>'}, {'mode': '<c-p>'}],
+    \ 'default': [{'mode': '<c-n>'}, {'mode': '<c-p>'}],
+    \}
+
+augroup CompletionTriggerCharacter
+  autocmd!
+  autocmd BufEnter *.js,*.jsx let g:completion_trigger_character = [".", '"', "'", "@"]
+  autocmd BufEnter *.ts,*.tsx let g:completion_trigger_character = [".", '"', "'", "@", "<"]
+augroup end
 
 "}}}
 "{{{ quickfix config

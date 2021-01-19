@@ -122,3 +122,6 @@
 	path = .config/nvim/pack/plugins/opt/yats.vim
 	url = https://github.com/HerringtonDarkholme/yats.vim/
 	ignore = dirty
+[submodule "vader.vim"]
+	path = .config/nvim/pack/plugins/opt/vader.vim
+	url = https://github.com/junegunn/vader.vim
