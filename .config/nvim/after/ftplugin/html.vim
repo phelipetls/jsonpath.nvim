@@ -13,12 +13,6 @@ setl omnifunc=emmet#completeTag
 
 let b:completion_length = 1
 
-iabbr <buffer><silent> clog console.log();<Left><Left><C-R>=Eatchar('\s')<CR>
-iabbr consoel console
-iabbr lenght length
-iabbr edf export default function
-iabbr ireact import React from "react";
-
 if executable("firefox")
   setlocal keywordprg=firefox\ https://developer.mozilla.org/search?topic=api\\&topic=html\\&q=\
 endif

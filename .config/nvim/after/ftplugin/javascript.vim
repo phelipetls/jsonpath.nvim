@@ -18,10 +18,6 @@ if executable("prettier")
   let &l:formatprg='prettier --parser typescript'
 endif
 
-" if executable("eslint_d")
-"   let &l:formatprg='eslint_d --stdin --fix-to-stdout'
-" endif
-
 let b:surround_{char2nr("c")} = "console.log(\r)"
 let b:surround_{char2nr("e")} = "${\r}"
 
