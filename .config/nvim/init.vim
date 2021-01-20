@@ -286,13 +286,20 @@ if exists("g:vscode")
   nnoremap <silent> [d <Cmd>call VSCodeCall('editor.action.revealDefinition')<CR>
   nnoremap <silent> [<C-d> <Cmd>call VSCodeCall('editor.action.revealDefinition')<CR>
   nnoremap <silent> gd <Cmd>call VSCodeCall('editor.action.revealDefinition')<CR>
+  nnoremap <silent> <C-]> <Cmd>call VSCodeCall('editor.action.revealDefinition')<CR>
   nnoremap <silent> [t <Cmd>call VSCodeCall('editor.action.goToTypeDefinition')<CR>
   nnoremap <silent> gr <Cmd>call VSCodeCall('references-view.find')<CR>
+  nnoremap <silent> gR <Cmd>call VSCodeCall('editor.action.rename')<CR>
   nnoremap <silent> gs <Cmd>call VSCodeCall('workbench.action.gotoSymbol')<CR>
   nnoremap <silent> <c-w>d <cmd>call VSCodeCall('editor.action.revealDefinitionAside')<CR>
   nnoremap <silent> <c-b> <cmd>call VSCodeCall('workbench.action.toggleSidebarVisibility')<CR>
   nnoremap <silent> - <Cmd>call VSCodeCall('workbench.files.action.showActiveFileInExplorer')<CR>
   nnoremap <silent> <space>r <Cmd>call VSCodeCall('workbench.action.showAllEditorsByMostRecentlyUsed')<CR>
+  nnoremap <silent> ]g <Cmd>call VSCodeCall('editor.action.marker.nextInFiles')<CR>
+  nnoremap <silent> [g <Cmd>call VSCodeCall('editor.action.marker.prevInFiles')<CR>
+  nnoremap <silent> ]q <Cmd>call VSCodeCall('editor.action.marker.nextInFiles')<CR>
+  nnoremap <silent> [q <Cmd>call VSCodeCall('editor.action.marker.prevInFiles')<CR>
+  nnoremap <silent> <space>q <Cmd>call VSCodeCall('workbench.actions.view.problems')<CR>
   finish
 endif
 
