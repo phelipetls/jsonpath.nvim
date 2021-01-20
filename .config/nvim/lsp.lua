@@ -25,6 +25,8 @@ local function set_lsp_config(client)
   end
 
   if client.resolved_capabilities.goto_definition then
+    vim.api.nvim_command [[nnoremap <buffer><silent> <C-LeftMouse> :lua vim.lsp.buf.definition()<CR>]]
+    vim.api.nvim_command [[nnoremap <buffer><silent> [d :lua vim.lsp.buf.definition()<CR>]]
     vim.api.nvim_command [[nnoremap <buffer><silent> gd :lua vim.lsp.buf.definition()<CR>]]
     vim.api.nvim_command [[nnoremap <buffer><silent> [<C-d> :lua vim.lsp.buf.definition()<CR>]]
     vim.api.nvim_command [[nnoremap <buffer><silent> <C-]> :lua vim.lsp.buf.definition()<CR>]]
@@ -59,6 +61,10 @@ local function set_lsp_config(client)
     vim.api.nvim_command [[autocmd! BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 1000)]]
   end
 
+  if client.resolved_capabilities.signature_help then
+    vim.api.nvim_command [[inoremap <buffer><silent> <C-x><C-p> <C-o>:lua vim.lsp.buf.signature_help()<CR>]]
+  end
+
   -- vim.api.nvim_command [[autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()]]
   -- vim.api.nvim_command [[autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()]]
   -- vim.api.nvim_command [[autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()]]
@@ -83,6 +89,9 @@ nvim_lsp.pyls.setup {
 nvim_lsp.tsserver.setup {
   on_attach = function(client)
     set_lsp_config(client)
+    if client.config.flags then
+      client.config.flags.allow_incremental_sync = true
+    end
     client.resolved_capabilities.document_formatting = false
   end
 }
