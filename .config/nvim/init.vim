@@ -487,6 +487,7 @@ augroup CompletionTriggerCharacter
   autocmd!
   autocmd BufEnter *.js,*.jsx let g:completion_trigger_character = [".", '"', "'", "@"]
   autocmd BufEnter *.ts,*.tsx let g:completion_trigger_character = [".", '"', "'", "@", "<"]
+  autocmd BufEnter *.html let g:completion_trigger_character = ["<", '"', "'"]
 augroup end
 
 "}}}
