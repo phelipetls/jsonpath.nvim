@@ -19,9 +19,16 @@ if executable("prettier")
 endif
 
 let b:surround_{char2nr("c")} = "console.log(\r)"
+let b:surround_{char2nr("C")} = "console.log(JSON.stringify(\r, null, 2))"
+let b:surround_{char2nr("j")} = "JSON.stringify(\r, null, 2)"
 let b:surround_{char2nr("e")} = "${\r}"
 
-iabbr <buffer><silent> clog console.log();<Left><Left><C-R>=Eatchar('\s')<CR>
+nnoremap <buffer> [<C-c> "zyiwOconsole.log(z)<Esc>
+nnoremap <buffer> ]<C-c> "zyiwoconsole.log(z)<Esc>
+nnoremap <buffer> [<C-j> "zyiwOJSON.stringify(z, null, 2)<Esc>
+nnoremap <buffer> ]<C-j> "zyiwoJSON.stringify(z, null, 2)<Esc>
+
+iabbr <buffer><silent> clog console.log()<Left><C-R>=Eatchar('\s')<CR>
 iabbr consoel console
 iabbr lenght length
 iabbr edf export default function
@@ -30,9 +37,6 @@ iabbr Obejct Object
 iabbr entires entries
 iabbr cosnt const
 iabbr /** /****/<Up>
-
-nnoremap <buffer> [<C-c> "zyiwOconsole.log(z);<Esc>
-nnoremap <buffer> ]<C-c> "zyiwoconsole.log(z);<Esc>
 
 if executable("firefox")
   setlocal keywordprg=firefox\ https://developer.mozilla.org/search?topic=api\\&topic=js\\&q=\
