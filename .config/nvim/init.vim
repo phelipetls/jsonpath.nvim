@@ -119,6 +119,8 @@ if has("nvim")
   autocmd! VimResume * checktime
 endif
 
+autocmd! FocusGained * checktime
+
 " disable props highlighting
 let g:yats_host_keyword = 0
 
