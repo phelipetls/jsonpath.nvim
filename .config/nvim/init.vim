@@ -553,6 +553,11 @@ augroup QuickFix
   autocmd QuickFixCmdPost * call OpenQuickfixList()
 augroup END
 
+augroup CloseQuickFix
+  au!
+  autocmd WinEnter * if winnr('$') == 1 && &buftype == "quickfix" | q |endif
+augroup END
+
 "}}}
 "{{{ LSP
 
