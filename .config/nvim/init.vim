@@ -264,6 +264,8 @@ nnoremap yp :let @+=expand("%:p")<CR>
 nnoremap y<C-p> :let @+=expand("%:p")<CR>
 
 " put file directory name in clipboard
+nnoremap yd :let @+=expand("%:h")<CR>
+nnoremap y<C-d> :let @+=expand("%:h")<CR>
 nnoremap y. :let @+=expand("%:h")<CR>
 nnoremap yh :let @+=expand("%:h")<CR>
 
