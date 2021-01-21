@@ -465,24 +465,28 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <silent> <C-Space> <C-R>=CtrlSpace()<CR>
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
 
-autocmd BufEnter * lua require'completion'.on_attach()
+augroup CompletionNvim
+  au!
+  autocmd BufEnter * lua require'completion'.on_attach()
+augroup end
 
 imap <c-j> <Plug>(completion_next_source)
 imap <c-k> <Plug>(completion_prev_source)
 
-let g:completion_trigger_keyword_length = 3
+let g:completion_trigger_keyword_length = 2
 let g:completion_enable_auto_hover = 0
 let g:completion_matching_ignore_case = 1
+let g:completion_auto_change_source = 1
 let g:completion_chain_complete_list = {
-    \ 'javascript': [{'complete_items': ['lsp', 'snippet']}],
-    \ 'javascript.jsx': [{'complete_items': ['lsp', 'snippet']}],
-    \ 'javascriptreact': [{'complete_items': ['lsp', 'snippet']}],
-    \ 'typescript': [{'complete_items': ['lsp', 'snippet']}],
-    \ 'typescript.tsx': [{'complete_items': ['lsp', 'snippet']}],
-    \ 'typescriptreact': [{'complete_items': ['lsp', 'snippet']}],
-    \ 'css': [{'mode': 'omni'}, {'mode': '<c-n>'}, {'mode': '<c-p>'}],
-    \ 'html': [{'mode': 'omni'}, {'mode': '<c-n>'}, {'mode': '<c-p>'}],
-    \ 'default': [{'mode': '<c-n>'}, {'mode': '<c-p>'}],
+    \ 'javascript': [{'complete_items': ['lsp']}, {'mode': '<c-n>'}],
+    \ 'javascript.jsx': [{'complete_items': ['lsp']}, {'mode': '<c-n>'}],
+    \ 'javascriptreact': [{'complete_items': ['lsp']}, {'mode': '<c-n>'}],
+    \ 'typescript': [{'complete_items': ['lsp']}, {'mode': '<c-n>'}],
+    \ 'typescript.tsx': [{'complete_items': ['lsp']}, {'mode': '<c-n>'}],
+    \ 'typescriptreact': [{'complete_items': ['lsp']}, {'mode': '<c-n>'}],
+    \ 'css': [{'mode': 'omni'}, {'mode': '<c-n>'}],
+    \ 'html': [{'mode': 'omni'}, {'mode': '<c-n>'}],
+    \ 'default': [{'mode': '<c-n>'}],
     \}
 
 augroup CompletionTriggerCharacter
