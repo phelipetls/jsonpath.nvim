@@ -30,7 +30,7 @@ local function set_lsp_config(client)
     vim.api.nvim_command [[nnoremap <buffer><silent> gd :lua vim.lsp.buf.definition()<CR>]]
     vim.api.nvim_command [[nnoremap <buffer><silent> [<C-d> :lua vim.lsp.buf.definition()<CR>]]
     vim.api.nvim_command [[nnoremap <buffer><silent> <C-]> :lua vim.lsp.buf.definition()<CR>]]
-    vim.api.nvim_command [[nnoremap <buffer><silent> <C-w><C-d> :vsplit <bar> lua vim.lsp.buf.definition()<CR>]]
+    vim.api.nvim_command [[nnoremap <buffer><silent> <C-w><C-d> :split <bar> lua vim.lsp.buf.definition()<CR>]]
   end
 
   if client.resolved_capabilities.type_definition then
