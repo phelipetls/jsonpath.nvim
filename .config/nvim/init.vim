@@ -18,6 +18,7 @@ if !exists("g:vscode")
   " file navigation
   set rtp+=~/.fzf
   packadd! vim-dirvish
+  packadd! vim-dirvish-dovish
   packadd! fzf.vim
 
   " vim specific improvements
