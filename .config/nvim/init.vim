@@ -25,7 +25,7 @@ if !exists("g:vscode")
   packadd! traces.vim
   packadd! vim-obsession
   packadd! editorconfig-vim
-  packadd! completion-nvim
+  packadd! vim-simple-complete
   packadd! gv.vim
   packadd! cfilter
 
@@ -466,35 +466,16 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <silent> <C-Space> <C-R>=CtrlSpace()<CR>
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
 
-augroup CompletionNvim
-  au!
-  autocmd BufEnter * lua require'completion'.on_attach()
-augroup end
-
-imap <c-j> <Plug>(completion_next_source)
-imap <c-k> <Plug>(completion_prev_source)
-
-let g:completion_trigger_keyword_length = 2
-let g:completion_enable_auto_hover = 0
-let g:completion_matching_ignore_case = 1
-let g:completion_auto_change_source = 1
-let g:completion_chain_complete_list = {
-    \ 'javascript': [{'complete_items': ['lsp']}, {'mode': '<c-n>'}],
-    \ 'javascript.jsx': [{'complete_items': ['lsp']}, {'mode': '<c-n>'}],
-    \ 'javascriptreact': [{'complete_items': ['lsp']}, {'mode': '<c-n>'}],
-    \ 'typescript': [{'complete_items': ['lsp']}, {'mode': '<c-n>'}],
-    \ 'typescript.tsx': [{'complete_items': ['lsp']}, {'mode': '<c-n>'}],
-    \ 'typescriptreact': [{'complete_items': ['lsp']}, {'mode': '<c-n>'}],
-    \ 'css': [{'mode': 'omni'}, {'mode': '<c-n>'}],
-    \ 'html': [{'mode': 'omni'}, {'mode': '<c-n>'}],
-    \ 'default': [{'mode': '<c-n>'}],
-    \}
-
 augroup CompletionTriggerCharacter
   autocmd!
-  autocmd BufEnter *.js,*.jsx let g:completion_trigger_character = [".", '"', "'", "@"]
-  autocmd BufEnter *.ts,*.tsx let g:completion_trigger_character = [".", '"', "'", "@", "<"]
-  autocmd BufEnter *.html let g:completion_trigger_character = ["<", '"', "'"]
+  autocmd BufEnter *.js,*.jsx let b:omni_completion_triggers = [".", '"', "'", "@"]
+  autocmd BufEnter *.ts,*.tsx let b:omni_completion_triggers = [".", '"', "'", "@", "<"]
+augroup end
+
+augroup CompleteCommand
+  autocmd!
+  autocmd BufEnter *.html let b:completion_command = "\<C-x>\<C-o>"
+  autocmd BufEnter *.css let b:completion_command = "\<C-x>\<C-o>"
 augroup end
 
 "}}}
