@@ -3,6 +3,7 @@ suckless/st/st
 suckless/slock/slock
 suckless/tabbed/tabbed
 suckless/dmenu/dmenu
+suckless/dmenu/stest
 .config/nvim/spell/en.utf-8.add
 .config/nvim/spell/en.utf-8.add.spl
 .config/nvim/spell/pt.utf-8.add
