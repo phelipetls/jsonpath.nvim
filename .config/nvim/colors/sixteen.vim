@@ -50,7 +50,7 @@ hi MoreMsg ctermfg=3
 
 hi Question ctermfg=8
 
-hi Todo ctermbg=2 ctermfg=0
+hi Todo ctermbg=0 ctermfg=2 cterm=BOLD
 
 hi LineNr ctermfg=8
 hi CursorLineNr ctermfg=8
