@@ -270,6 +270,9 @@ nnoremap y<C-d> :let @+=expand("%:h")<CR>
 nnoremap y. :let @+=expand("%:h")<CR>
 nnoremap yh :let @+=expand("%:h")<CR>
 
+" map to toggle case of character under cursor
+inoremap <C-l> <C-o>:silent norm g~l<CR>
+
 command! DiffOrig vert new | set buftype=nofile |
       \ read ++edit # |
       \ 0d_ |
