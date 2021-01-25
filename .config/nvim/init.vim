@@ -469,12 +469,6 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <silent> <C-Space> <C-R>=CtrlSpace()<CR>
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
 
-augroup CompletionTriggerCharacter
-  autocmd!
-  autocmd BufEnter *.js,*.jsx let b:omni_completion_triggers = [".", '"', "'", "@"]
-  autocmd BufEnter *.ts,*.tsx let b:omni_completion_triggers = [".", '"', "'", "@", "<"]
-augroup end
-
 augroup CompleteCommand
   autocmd!
   autocmd BufEnter *.html let b:completion_command = "\<C-x>\<C-o>"
