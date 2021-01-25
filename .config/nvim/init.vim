@@ -549,6 +549,7 @@ augroup END
 
 if has("nvim-0.5.0") && filereadable($HOME."/.config/nvim/lsp.lua") && !&diff
   packadd! nvim-lsp
+  packadd! lspsaga.nvim
 
   luafile $HOME/.config/nvim/lsp.lua
 

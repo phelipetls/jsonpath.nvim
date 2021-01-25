@@ -13,7 +13,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] =
 
 local function set_lsp_config(client)
   vim.api.nvim_command [[setlocal signcolumn=yes]]
-  vim.api.nvim_command [[nnoremap <buffer><silent> <C-space> :lua vim.lsp.diagnostic.show_line_diagnostics()<CR>]]
+  vim.api.nvim_command [[nnoremap <buffer><silent> <C-space> :lua require'lspsaga.diagnostic'.show_line_diagnostics()<CR>]]
   vim.api.nvim_command [[nnoremap <buffer><silent> ]g :lua vim.lsp.diagnostic.goto_next()<CR>]]
   vim.api.nvim_command [[nnoremap <buffer><silent> [g :lua vim.lsp.diagnostic.goto_prev()<CR>]]
   vim.api.nvim_command [[nnoremap <buffer><silent> <space>d :lua vim.lsp.diagnostic.set_loclist()<CR>]]
@@ -23,7 +23,7 @@ local function set_lsp_config(client)
   end
 
   if client.resolved_capabilities.hover then
-    vim.api.nvim_command [[nnoremap <buffer><silent> K :lua vim.lsp.buf.hover()<CR>]]
+    vim.api.nvim_command [[nnoremap <buffer><silent> K :lua require('lspsaga.hover').render_hover_doc()<CR>]]
   end
 
   if client.resolved_capabilities.goto_definition then
@@ -32,7 +32,7 @@ local function set_lsp_config(client)
     vim.api.nvim_command [[nnoremap <buffer><silent> [<C-d> :lua require"lsp_utils".definition_sync()<CR>]]
     vim.api.nvim_command [[nnoremap <buffer><silent> <C-w><C-d> :split <bar> lua require"lsp_utils".definition_sync('split')<CR>]]
     vim.api.nvim_command [[nnoremap <buffer><silent> <C-w>} <cmd>lua require"lsp_utils".peek_definition()<CR>]]
-    vim.api.nvim_command [[nnoremap <buffer><silent> <C-c><C-p> <cmd>lua require"lsp_utils".peek_definition()<CR>]]
+    vim.api.nvim_command [[nnoremap <buffer><silent> <C-c><C-p> :lua require'lspsaga.provider'.preview_definition()<CR>]]
   end
 
   if client.resolved_capabilities.type_definition then
@@ -64,7 +64,7 @@ local function set_lsp_config(client)
   end
 
   if client.resolved_capabilities.signature_help then
-    vim.api.nvim_command [[inoremap <buffer><silent> <C-x><C-p> <C-o>:lua vim.lsp.buf.signature_help()<CR>]]
+    vim.api.nvim_command [[inoremap <buffer><silent> <C-x><C-p> <C-o>:lua require('lspsaga.signaturehelp').signature_help()<CR>]]
   end
 end
 

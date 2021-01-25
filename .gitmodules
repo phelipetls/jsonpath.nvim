@@ -126,3 +126,7 @@
 	path = .config/nvim/pack/plugins/opt/diffconflicts
 	url = https://github.com/whiteinge/diffconflicts
 	ignore = dirty
+[submodule "lspsaga.nvim"]
+	path = .config/nvim/pack/plugins/opt/lspsaga.nvim
+	url = https://github.com/glepnir/lspsaga.nvim
+	ignore = dirty
