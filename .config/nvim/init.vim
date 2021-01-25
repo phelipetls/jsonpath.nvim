@@ -570,21 +570,21 @@ function! VisualNumber()
   normal v
   call search('\(^\|[^0-9\.]\d\)', 'becW')
 endfunction
-xnoremap in :<C-u>call VisualNumber()<CR>
-onoremap in :<C-u>normal vin<CR>
+xnoremap <silent> in :<C-u>call VisualNumber()<CR>
+onoremap <silent> in :<C-u>normal vin<CR>
 
 " square brackets text objects
 " ----------------------------
-xnoremap ir i[
-xnoremap ar a[
-onoremap ir :normal vi[<CR>
-onoremap ar :normal va[<CR>
+xnoremap <silent> ir i[
+xnoremap <silent> ar a[
+onoremap <silent> ir :normal vi[<CR>
+onoremap <silent> ar :normal va[<CR>
 
 for char in [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+', '-', '#' ]
-  execute 'xnoremap i' . char . ' :<C-u>normal! T' . char . 'vt' . char . '<CR>'
-  execute 'onoremap i' . char . ' :normal vi' . char . '<CR>'
-  execute 'xnoremap a' . char . ' :<C-u>normal! F' . char . 'vf' . char . '<CR>'
-  execute 'onoremap a' . char . ' :normal va' . char . '<CR>'
+  execute 'xnoremap <silent> i' . char . ' :<C-u>normal! T' . char . 'vt' . char . '<CR>'
+  execute 'onoremap <silent> i' . char . ' :normal vi' . char . '<CR>'
+  execute 'xnoremap <silent> a' . char . ' :<C-u>normal! F' . char . 'vf' . char . '<CR>'
+  execute 'onoremap <silent> a' . char . ' :normal va' . char . '<CR>'
 endfor
 
 "}}}
