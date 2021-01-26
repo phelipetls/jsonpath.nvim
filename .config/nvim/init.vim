@@ -260,6 +260,9 @@ cnoremap <C-R><C-L> <C-R>=substitute(getline('.'), '^\s*', '', '')<CR>
 omap <Tab> %
 xmap <Tab> %
 
+" use aa as an operator for matchit region
+omap <silent> aa :normal va%<CR>
+
 " put file name in clipboard
 nnoremap yp :let @+=expand("%:p")<CR>
 nnoremap y<C-p> :let @+=expand("%:p")<CR>
