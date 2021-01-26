@@ -11,6 +11,22 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] =
   }
 )
 
+local function preview_location_callback(_, method, result)
+  if result == nil or vim.tbl_isempty(result) then
+    return
+  end
+  if vim.tbl_islist(result) then
+    vim.lsp.util.preview_location(result[1])
+  else
+    vim.lsp.util.preview_location(result)
+  end
+end
+
+function peek_definition()
+  local params = vim.lsp.util.make_position_params()
+  return vim.lsp.buf_request(0, 'textDocument/definition', params, preview_location_callback)
+end
+
 local function set_lsp_config(client)
   vim.api.nvim_command [[setlocal signcolumn=yes]]
   vim.api.nvim_command [[setlocal omnifunc=v:lua.vim.lsp.omnifunc]]
@@ -31,6 +47,7 @@ local function set_lsp_config(client)
     vim.api.nvim_command [[nnoremap <buffer><silent> [<C-d> :lua vim.lsp.buf.definition()<CR>]]
     vim.api.nvim_command [[nnoremap <buffer><silent> <C-]> :lua vim.lsp.buf.definition()<CR>]]
     vim.api.nvim_command [[nnoremap <buffer><silent> <C-w><C-d> :split <bar> lua vim.lsp.buf.definition()<CR>]]
+    vim.api.nvim_command [[nnoremap <buffer><silent> <C-w>} <cmd>lua peek_definition()<CR>]]
   end
 
   if client.resolved_capabilities.type_definition then
