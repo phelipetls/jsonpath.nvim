@@ -25,7 +25,7 @@ if !exists("g:vscode")
   packadd! traces.vim
   packadd! vim-obsession
   packadd! editorconfig-vim
-  packadd! vim-simple-complete
+  packadd! nvim-compe
   packadd! gv.vim
   packadd! cfilter
 
@@ -424,38 +424,6 @@ set completeopt=menuone,noselect,noinsert
 set shortmess+=c
 set pumheight=10
 
-" when doing file name completion, change cwd to current file's directory
-function! LocalFileCompletion()
-  lcd %:p:h
-  return "\<C-x>\<C-f>"
-endfunction
-
-" and revert it after the completion is done
-autocmd! CompleteDonePre *
-      \ if complete_info(["mode"]).mode == "files" |
-      \   lcd - |
-      \ endif
-
-inoremap <silent> <C-x><C-f> <C-R>=LocalFileCompletion()<CR>
-
-" overloaded ctrl space functionality
-function! CtrlSpace()
-  let l:line_until_cursor = strpart(getline('.'), 0, col('.')-1)
-  " do file name completion if line until cursor is something like this:
-  " 'foo bar ../baz/'
-  " 'foo bar ../baz/qux'
-  " but not if like this:
-  " '<tag>content</'
-  if l:line_until_cursor =~ '\(<\)\@1<!/\f*$'
-    return LocalFileCompletion()
-  " else, call omnicompletion if omnifunc exists
-  elseif len(&omnifunc) > 0
-    return "\<C-x>\<C-o>"
-  else
-    return "\<C-n>"
-  endif
-endfunction
-
 function! SmartTab()
   let l:lastchar = matchstr(getline('.'), '.\%' . col('.') . 'c')
   if pumvisible()
@@ -463,20 +431,27 @@ function! SmartTab()
   elseif l:lastchar =~ '\s' || len(l:lastchar) == 0
     return "\<Tab>"
   else
-    return CtrlSpace()
+    return compe#complete()
   endif
 endfunction
 
+let g:compe = {
+      \ 'enabled': 1,
+      \ 'min_length': 2,
+      \ 'source_timeout': 500,
+      \ 'source': {
+      \   'path': 1,
+      \   'buffer': 1,
+      \   'nvim_lsp': {
+      \       'filetypes': [ "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescript.tsx", "typescriptreact" ]
+      \     }
+      \   }
+      \ }
+
 inoremap <silent> <Tab> <C-R>=SmartTab()<CR>
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <silent> <C-Space> <C-R>=CtrlSpace()<CR>
+inoremap <silent> <C-Space> <C-R>=compe#complete()<CR>
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
-
-augroup CompleteCommand
-  autocmd!
-  autocmd BufEnter *.html let b:completion_command = "\<C-x>\<C-o>"
-  autocmd BufEnter *.css let b:completion_command = "\<C-x>\<C-o>"
-augroup end
 
 "}}}
 "{{{ quickfix config
