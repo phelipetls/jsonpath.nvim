@@ -1,6 +1,7 @@
 vim.lsp.set_log_level("debug")
 
 local nvim_lsp = require "nvim_lsp"
+local rg_find = require "rg_find"
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] =
   vim.lsp.with(
@@ -32,7 +33,7 @@ function definition_sync(fallback_command)
   local clients, err = vim.lsp.buf_request_sync(0, "textDocument/definition", params, timeout_ms or 1000)
 
   if err or not clients or vim.tbl_isempty(clients) then
-    vim.api.nvim_command(string.format("execute 'normal! %s'", fallback_command))
+    require"rg_find".rg_find()
     return
   end
 
@@ -66,11 +67,11 @@ local function set_lsp_config(client)
   end
 
   if client.resolved_capabilities.goto_definition then
-    vim.api.nvim_command [[nnoremap <buffer><silent> <C-LeftMouse> :lua definition_sync('<C-LeftMouse>')<CR>]]
-    vim.api.nvim_command [[nnoremap <buffer><silent> [d :lua definition_sync('[d')<CR>]]
-    vim.api.nvim_command [[nnoremap <buffer><silent> gd :lua definition_sync('gd')<CR>]]
-    vim.api.nvim_command [[nnoremap <buffer><silent> [<C-d> :lua definition_sync('[<C-D')<CR>]]
-    vim.api.nvim_command [[nnoremap <buffer><silent> <C-w><C-d> :split <bar> lua definition_sync('<C-w><C-d>')<CR>]]
+    vim.api.nvim_command [[nnoremap <buffer><silent> <C-LeftMouse> :lua definition_sync()<CR>]]
+    vim.api.nvim_command [[nnoremap <buffer><silent> [d :lua definition_sync()<CR>]]
+    vim.api.nvim_command [[nnoremap <buffer><silent> gd :lua definition_sync()<CR>]]
+    vim.api.nvim_command [[nnoremap <buffer><silent> [<C-d> :lua definition_sync()<CR>]]
+    vim.api.nvim_command [[nnoremap <buffer><silent> <C-w><C-d> :split <bar> lua definition_sync('split')<CR>]]
     vim.api.nvim_command [[nnoremap <buffer><silent> <C-w>} <cmd>lua peek_definition()<CR>]]
     vim.api.nvim_command [[nnoremap <buffer><silent> <C-c><C-p> <cmd>lua peek_definition()<CR>]]
   end
