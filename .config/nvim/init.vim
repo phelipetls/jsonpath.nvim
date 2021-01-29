@@ -283,6 +283,8 @@ command! DiffOrig vert new | set buftype=nofile |
       \ wincmd p |
       \ diffthis
 
+nnoremap <C-g>t :tabnew<CR>
+
 inoreabbrev Taebl Table
 inoreabbrev taebl table
 
