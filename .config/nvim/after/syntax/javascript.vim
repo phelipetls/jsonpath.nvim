@@ -12,3 +12,4 @@ hi link jsObjectKey Identifier
 hi link jsxPunct Normal
 hi link jsxCloseString Normal
 hi link jsxTagName Statement
+hi link jsxAttrib Identifier
