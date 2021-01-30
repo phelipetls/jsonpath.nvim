@@ -1,7 +1,6 @@
 vim.lsp.set_log_level("debug")
 
-local nvim_lsp = require "nvim_lsp"
-local rg_find = require "rg_find"
+local lspconfig = require "lspconfig"
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] =
   vim.lsp.with(
@@ -12,54 +11,33 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] =
   }
 )
 
-local function preview_location_callback(_, method, result)
-  if result == nil or vim.tbl_isempty(result) then
-    return
-  end
-  if vim.tbl_islist(result) then
-    vim.lsp.util.preview_location(result[1])
-  else
-    vim.lsp.util.preview_location(result)
-  end
-end
-
-function peek_definition()
-  local params = vim.lsp.util.make_position_params()
-  return vim.lsp.buf_request(0, "textDocument/definition", params, preview_location_callback)
-end
-
-function definition_sync(fallback_command)
-  local params = vim.lsp.util.make_position_params()
-  local clients, err = vim.lsp.buf_request_sync(0, "textDocument/definition", params, timeout_ms or 1000)
-
-  if err or not clients or vim.tbl_isempty(clients) then
-    require"rg_find".rg_find()
+vim.lsp.handlers["textDocument/formatting"] = function(err, _, result, _, bufnr)
+  if err or result == nil then
     return
   end
 
-  local results  = {}
+  if vim.bo.modified then return end
 
-  for i, client in ipairs(clients) do
-    if client.result then
-      results[i] = client.result[1]
-    end
-  end
+  local view = vim.fn.winsaveview()
 
-  vim.lsp.util.jump_to_location(results[1])
-  if #results > 1 then
-    util.set_qflist(util.locations_to_items(results))
+  vim.lsp.util.apply_text_edits(result, bufnr)
+
+  vim.fn.winrestview(view)
+
+  if bufnr == vim.api.nvim_get_current_buf() then
+    vim.api.nvim_command("noautocmd :update")
   end
 end
 
 local function set_lsp_config(client)
   vim.api.nvim_command [[setlocal signcolumn=yes]]
-  vim.api.nvim_command [[setlocal omnifunc=v:lua.vim.lsp.omnifunc]]
+  vim.api.nvim_command [[nnoremap <buffer><silent> <C-space> :lua vim.lsp.diagnostic.show_line_diagnostics()<CR>]]
+  vim.api.nvim_command [[nnoremap <buffer><silent> ]g :lua vim.lsp.diagnostic.goto_next()<CR>]]
+  vim.api.nvim_command [[nnoremap <buffer><silent> [g :lua vim.lsp.diagnostic.goto_prev()<CR>]]
+  vim.api.nvim_command [[nnoremap <buffer><silent> <space>d :lua vim.lsp.diagnostic.set_loclist()<CR>]]
 
   if client.resolved_capabilities.completion then
-    vim.api.nvim_command [[nnoremap <buffer><silent> <C-space> :lua vim.lsp.diagnostic.show_line_diagnostics()<CR>]]
-    vim.api.nvim_command [[nnoremap <buffer><silent> ]g :lua vim.lsp.diagnostic.goto_next()<CR>]]
-    vim.api.nvim_command [[nnoremap <buffer><silent> [g :lua vim.lsp.diagnostic.goto_prev()<CR>]]
-    vim.api.nvim_command [[nnoremap <buffer><silent> <space>d :lua vim.lsp.diagnostic.set_loclist()<CR>]]
+    vim.api.nvim_command [[setlocal omnifunc=v:lua.vim.lsp.omnifunc]]
   end
 
   if client.resolved_capabilities.hover then
@@ -67,13 +45,13 @@ local function set_lsp_config(client)
   end
 
   if client.resolved_capabilities.goto_definition then
-    vim.api.nvim_command [[nnoremap <buffer><silent> <C-LeftMouse> :lua definition_sync()<CR>]]
-    vim.api.nvim_command [[nnoremap <buffer><silent> [d :lua definition_sync()<CR>]]
-    vim.api.nvim_command [[nnoremap <buffer><silent> gd :lua definition_sync()<CR>]]
-    vim.api.nvim_command [[nnoremap <buffer><silent> [<C-d> :lua definition_sync()<CR>]]
-    vim.api.nvim_command [[nnoremap <buffer><silent> <C-w><C-d> :split <bar> lua definition_sync('split')<CR>]]
-    vim.api.nvim_command [[nnoremap <buffer><silent> <C-w>} <cmd>lua peek_definition()<CR>]]
-    vim.api.nvim_command [[nnoremap <buffer><silent> <C-c><C-p> <cmd>lua peek_definition()<CR>]]
+    vim.api.nvim_command [[nnoremap <buffer><silent> <C-LeftMouse> :lua require"lsp_utils".definition_sync()<CR>]]
+    vim.api.nvim_command [[nnoremap <buffer><silent> [d :lua require"lsp_utils".definition_sync()<CR>]]
+    vim.api.nvim_command [[nnoremap <buffer><silent> gd :lua require"lsp_utils".definition_sync()<CR>]]
+    vim.api.nvim_command [[nnoremap <buffer><silent> [<C-d> :lua require"lsp_utils".definition_sync()<CR>]]
+    vim.api.nvim_command [[nnoremap <buffer><silent> <C-w><C-d> :split <bar> lua require"lsp_utils".definition_sync('split')<CR>]]
+    vim.api.nvim_command [[nnoremap <buffer><silent> <C-w>} <cmd>lua require"lsp_utils".peek_definition()<CR>]]
+    vim.api.nvim_command [[nnoremap <buffer><silent> <C-c><C-p> <cmd>lua require"lsp_utils".peek_definition()<CR>]]
   end
 
   if client.resolved_capabilities.type_definition then
@@ -100,8 +78,8 @@ local function set_lsp_config(client)
   end
 
   if client.resolved_capabilities.document_formatting then
-    vim.api.nvim_command [[command! -buffer Fmt lua vim.lsp.buf.formatting_sync(nil, 1000)]]
-    vim.api.nvim_command [[autocmd! BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 1000)]]
+    vim.api.nvim_command [[command! -buffer Fmt lua vim.lsp.buf.formatting()]]
+    vim.api.nvim_command [[autocmd! BufWritePost <buffer> lua vim.lsp.buf.formatting()]]
   end
 
   if client.resolved_capabilities.signature_help then
@@ -109,7 +87,7 @@ local function set_lsp_config(client)
   end
 end
 
-nvim_lsp.pyls.setup {
+lspconfig.pyls.setup {
   on_attach = function(client)
     set_lsp_config(client)
   end,
@@ -125,7 +103,7 @@ nvim_lsp.pyls.setup {
   }
 }
 
-nvim_lsp.tsserver.setup {
+lspconfig.tsserver.setup {
   on_attach = function(client)
     if client.config.flags then
       client.config.flags.allow_incremental_sync = true
@@ -134,6 +112,22 @@ nvim_lsp.tsserver.setup {
     set_lsp_config(client)
   end
 }
+
+local function eslint_config_exists()
+  local eslintrc = vim.fn.glob(".eslintrc*", 0, 1)
+
+  if not vim.tbl_isempty(eslintrc) then
+    return true
+  end
+
+  if vim.fn.filereadable("package.json") then
+    if vim.fn.json_decode(vim.fn.readfile("package.json"))["eslintConfig"] then
+      return true
+    end
+  end
+
+  return false
+end
 
 local eslint = {
   lintCommand = "eslint_d -f unix --stdin --stdin-filename ${INPUT}",
@@ -144,17 +138,14 @@ local eslint = {
   formatStdin = true
 }
 
-nvim_lsp.efm.setup {
+lspconfig.efm.setup {
   on_attach = function(client)
     client.resolved_capabilities.document_formatting = true
     client.resolved_capabilities.goto_definition = false
     set_lsp_config(client)
   end,
-  default_config = {
-    cmd = { "efm-langserver" }
-  },
   root_dir = function()
-    if not vim.tbl_contains(vim.fn.glob("*", 0, 1), '.eslintrc') then
+    if not eslint_config_exists() then
       return nil
     end
     return vim.fn.getcwd()
@@ -176,5 +167,5 @@ nvim_lsp.efm.setup {
     "typescript",
     "typescript.tsx",
     "typescriptreact"
-  }
+  },
 }
