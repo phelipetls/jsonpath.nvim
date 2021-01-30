@@ -14,3 +14,5 @@ nmap <silent><buffer> R <Plug>(dovish_rename)
 nmap <silent><buffer> yy <Plug>(dovish_yank)
 nmap <silent><buffer> p <Plug>(dovish_copy)
 nmap <silent><buffer> P <Plug>(dovish_move)
+
+nmap <silent><buffer> st :call Sort("t")<CR>
