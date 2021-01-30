@@ -27,12 +27,14 @@ let b:match_words = b:match_words.'^```.\+$:^```$'
 
 " code block text object
 " ----------------------
-function! SelectCodeBlock()
+function! SelectCodeBlock(inner)
   call search('^```.\+', "bcW")
-  normal jv
+  execute "normal" . (a:inner == "i" ? "jv" : "v")
   call search('^```$', "cW")
-  normal k$
+  execute "normal" . (a:inner == "i" ? "k$" : "$")
 endfunction
 
-xnoremap ic :<C-u>call SelectCodeBlock()<CR>
+xnoremap ac :<C-u>call SelectCodeBlock("a")<CR>
+onoremap ac :<C-u>normal vac<CR>
+xnoremap ic :<C-u>call SelectCodeBlock("i")<CR>
 onoremap ic :<C-u>normal vic<CR>
