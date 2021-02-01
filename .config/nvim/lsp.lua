@@ -19,9 +19,7 @@ vim.lsp.handlers["textDocument/formatting"] = function(err, _, result, _, bufnr)
   if vim.bo.modified then return end
 
   local view = vim.fn.winsaveview()
-
   vim.lsp.util.apply_text_edits(result, bufnr)
-
   vim.fn.winrestview(view)
 
   if bufnr == vim.api.nvim_get_current_buf() then
@@ -47,7 +45,6 @@ local function set_lsp_config(client)
   if client.resolved_capabilities.goto_definition then
     vim.api.nvim_command [[nnoremap <buffer><silent> <C-LeftMouse> :lua require"lsp_utils".definition_sync()<CR>]]
     vim.api.nvim_command [[nnoremap <buffer><silent> [d :lua require"lsp_utils".definition_sync()<CR>]]
-    vim.api.nvim_command [[nnoremap <buffer><silent> gd :lua require"lsp_utils".definition_sync()<CR>]]
     vim.api.nvim_command [[nnoremap <buffer><silent> [<C-d> :lua require"lsp_utils".definition_sync()<CR>]]
     vim.api.nvim_command [[nnoremap <buffer><silent> <C-w><C-d> :split <bar> lua require"lsp_utils".definition_sync('split')<CR>]]
     vim.api.nvim_command [[nnoremap <buffer><silent> <C-w>} <cmd>lua require"lsp_utils".peek_definition()<CR>]]

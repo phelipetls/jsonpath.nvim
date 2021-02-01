@@ -39,5 +39,4 @@ function M.definition_sync()
   end
 end
 
-
 return M
