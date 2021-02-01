@@ -288,6 +288,16 @@ nnoremap <C-g>t :tabnew<CR>
 inoreabbrev Taebl Table
 inoreabbrev taebl table
 
+" use ctrl-k to delete rest of line
+inoremap <C-k> <C-o>D
+inoremap <C-x><C-k> <C-k>
+
+" go to local/global declaration and turn off search highlight
+nnoremap <silent> gd gd:nohlsearch<CR>
+nnoremap <silent> gD gD:nohlsearch<CR>
+nnoremap <silent> 1gd 1gd:nohlsearch<CR>
+nnoremap <silent> 1gD 1gD:nohlsearch<CR>
+
 "}}}
 "{{{ vscode
 
