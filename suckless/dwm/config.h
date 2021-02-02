@@ -27,6 +27,7 @@ static const Rule rules[] = {
 	{ "R_x11",           NULL,     NULL,                0,            0,          1,           -1 },
 	{ "Matplotlib",      NULL,     NULL,                0,            0,          1,           -1 },
 	{ "Thunar",          NULL,     NULL,                0,            1,          1,           -1 },
+	{ "Peek",            NULL,     NULL,                0,            0,          1,           -1 },
 	{ "appfinder",       NULL,     NULL,                0,            1,          1,           -1 },
 	{ NULL,              NULL,     "Android Emulator",  0,            0,          1,           -1 },
 	{ NULL,              NULL,     "Emulator",          0,            0,          1,           -1 },
