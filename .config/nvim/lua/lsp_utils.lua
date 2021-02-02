@@ -33,7 +33,14 @@ function M.definition_sync()
     end
   end
 
-  vim.lsp.util.jump_to_location(results[1])
+  if vim.tbl_isempty(results) then
+    return
+  end
+
+  if results[1] then
+    vim.lsp.util.jump_to_location(results[1])
+  end
+
   if #results > 1 then
     vim.lsp.util.set_qflist(vim.lsp.util.locations_to_items(results))
   end

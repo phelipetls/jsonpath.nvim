@@ -4,9 +4,10 @@ local js_pattern =
   [[((export\s*)?]] ..
   [[(default\s*)?]] ..
     [[(var|const|let|interface|type|class|(async\s*)?function)]] ..
-      [[|(public|private|protected|readonly|static|get|set)]] .. [[|(export\s*default\s*abstract\s*class))\s*]]
+      [[|(public|private|protected|readonly|static|get|set)]] ..
+        [[|(export\s*default\s*abstract\s*class))\s*]] .. [[%s]]
 
-local define_patterns = {
+local definition_patterns = {
   javascript = js_pattern,
   typescript = js_pattern,
   ["javascript.jsx"] = js_pattern,
@@ -34,15 +35,16 @@ end
 local RG_OPTIONS = "--column --word-regexp"
 
 function M.rg_find(open_cmd)
-  local define_pattern = define_patterns[vim.bo.filetype]
+  local definition_pattern = definition_patterns[vim.bo.filetype]
 
-  if not define_pattern then
+  if not definition_pattern then
     print("Filetype not configured")
     return
   end
 
-  local search_pattern = vim.fn.expand("<cword>")
-  local cmd = string.format("rg %s '%s%s'", RG_OPTIONS, define_pattern, search_pattern)
+  local word_under_cursor = vim.fn.expand("<cword>")
+
+  local cmd = string.format("rg %s '%s'", RG_OPTIONS, definition_pattern:format(word_under_cursor))
   local results = vim.fn.systemlist(cmd)
 
   if not results or vim.tbl_isempty(results) then
@@ -54,11 +56,13 @@ function M.rg_find(open_cmd)
   gotofile(open_cmd, fname, lnum)
 
   if #results > 1 then
-    vim.fn.setqflist({}, " ", {
-      title = string.format("Ripgrep results for %s", search_pattern),
-      lines = results,
-      efm = "%f:%l:%c:%m"
-    })
+    vim.fn.setqflist(
+      {}, " ", {
+        title = string.format("ripgrep results for %s", word_under_cursor),
+        lines = results,
+        efm = "%f:%l:%c:%m"
+      }
+    )
     vim.api.nvim_command("doautocmd QuickFixCmdPost")
   end
 end
