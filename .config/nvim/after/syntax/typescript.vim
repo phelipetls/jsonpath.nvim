@@ -18,6 +18,7 @@ hi link typescriptCall Normal
 hi link typescriptArrowFuncArg Normal
 
 hi link typescriptEnumKeyword Keyword
+hi link typescriptTry Keyword
 
 hi link typescriptOperator Operator
 hi link typescriptUnaryOp Operator

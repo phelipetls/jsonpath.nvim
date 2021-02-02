@@ -283,10 +283,9 @@ command! DiffOrig vert new | set buftype=nofile |
       \ wincmd p |
       \ diffthis
 
+" open a new tab mapping
+nnoremap <C-w>t :tabnew<CR>
 nnoremap <C-g>t :tabnew<CR>
-
-inoreabbrev Taebl Table
-inoreabbrev taebl table
 
 " use ctrl-k to delete rest of line
 inoremap <C-k> <C-o>D
@@ -297,6 +296,10 @@ nnoremap <silent> gd gd:nohlsearch<CR>
 nnoremap <silent> gD gD:nohlsearch<CR>
 nnoremap <silent> 1gd 1gd:nohlsearch<CR>
 nnoremap <silent> 1gD 1gD:nohlsearch<CR>
+
+" convenient abbreviations
+inoreabbrev Taebl Table
+inoreabbrev taebl table
 
 "}}}
 "{{{ vscode
@@ -337,10 +340,11 @@ function! GitHead() abort
 endfunction
 
 let &g:statusline='[%n]'
-let &g:statusline.=' %0.30f'
+let &g:statusline.=' %t'
 let &g:statusline.='%{GitHead()}'
 let &g:statusline.="%{!&modifiable ? '\ua0[-]' : &modified ? '\ua0[+]' : ''}"
-let &g:statusline.="%{&endofline ? '' : '\ua0[noeol]'}"
+let &g:statusline.="%{&endofline ? '' : '\ua0[noeol] '}"
+let &g:statusline.="%r"
 let &g:statusline.='%='
 let &g:statusline.='[%l/%L]'
 let &g:statusline.=' %y'
