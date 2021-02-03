@@ -11,22 +11,6 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] =
   }
 )
 
-vim.lsp.handlers["textDocument/formatting"] = function(err, _, result, _, bufnr)
-  if err or result == nil then
-    return
-  end
-
-  if vim.bo.modified then return end
-
-  local view = vim.fn.winsaveview()
-  vim.lsp.util.apply_text_edits(result, bufnr)
-  vim.fn.winrestview(view)
-
-  if bufnr == vim.api.nvim_get_current_buf() then
-    vim.api.nvim_command("noautocmd :update")
-  end
-end
-
 local function set_lsp_config(client)
   vim.api.nvim_command [[setlocal signcolumn=yes]]
   vim.api.nvim_command [[nnoremap <buffer><silent> <C-space> :lua vim.lsp.diagnostic.show_line_diagnostics()<CR>]]
@@ -71,12 +55,12 @@ local function set_lsp_config(client)
 
   if client.resolved_capabilities.code_action then
     vim.api.nvim_command [[nnoremap <buffer><silent> <M-CR> :lua vim.lsp.buf.code_action()<CR>]]
-    vim.api.nvim_command [[vnoremap <buffer><silent> <M-CR> :lua vim.lsp.buf.range_code_action()<CR>]]
+    vim.api.nvim_command [[vnoremap <buffer><silent> <M-CR> :'<,'>lua vim.lsp.buf.range_code_action()<CR>]]
   end
 
   if client.resolved_capabilities.document_formatting then
-    vim.api.nvim_command [[command! -buffer Fmt lua vim.lsp.buf.formatting()]]
-    vim.api.nvim_command [[autocmd! BufWritePost <buffer> lua vim.lsp.buf.formatting()]]
+    vim.api.nvim_command [[command! -buffer Fmt lua vim.lsp.buf.formatting_sync(nil, 1000)]]
+    vim.api.nvim_command [[autocmd! BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 500)]]
   end
 
   if client.resolved_capabilities.signature_help then
@@ -106,6 +90,11 @@ lspconfig.tsserver.setup {
       client.config.flags.allow_incremental_sync = true
     end
     client.resolved_capabilities.document_formatting = false
+    if vim.startswith(vim.bo.filetype, "javascript") then
+      client.server_capabilities.completionProvider.triggerCharacters = {"."}
+    else
+      client.server_capabilities.completionProvider.triggerCharacters = {".", "<"}
+    end
     set_lsp_config(client)
   end
 }
@@ -164,5 +153,5 @@ lspconfig.efm.setup {
     "typescript",
     "typescript.tsx",
     "typescriptreact"
-  },
+  }
 }
