@@ -330,23 +330,14 @@ endif
 "}}}
 "{{{ statusline and tabline
 
-function! GitHead() abort
-  if exists("*FugitiveHead")
-    let l:head = FugitiveHead()
-    if len(l:head) > 0
-      return printf(" [%s]", l:head)
-  endif
-  return ""
-endfunction
-
 let &g:statusline='[%n]'
 let &g:statusline.=' %t'
-let &g:statusline.='%{GitHead()}'
+let &g:statusline.=' %{FugitiveStatusline()}'
 let &g:statusline.="%{!&modifiable ? '\ua0[-]' : &modified ? '\ua0[+]' : ''}"
-let &g:statusline.="%{&endofline ? '' : '\ua0[noeol] '}"
-let &g:statusline.="%r"
+let &g:statusline.="%{&endofline ? '' : '\ua0[noeol]'}"
 let &g:statusline.='%='
 let &g:statusline.='[%l/%L]'
+let &g:statusline.="%{!empty(matchstr(expand('%'), 'fugitive://')) ? '\ua0[fugitive]' : ''}"
 let &g:statusline.=' %y'
 
 function! Tabline()
