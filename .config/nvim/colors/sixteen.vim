@@ -103,10 +103,25 @@ endif
 hi Title ctermfg=5
 
 if has("nvim-0.5.0")
-  hi LspDiagnosticsSignInformation ctermfg=yellow
-  hi LspDiagnosticsSignWarning ctermfg=red
-  hi LspDiagnosticsSignError ctermfg=red
-  hi LspDiagnosticsSignHint ctermfg=yellow
+  hi LspError ctermfg=red
+  hi LspWarning ctermfg=red
+  hi LspInfo ctermfg=red
+  hi LspHint ctermfg=red
+
+  hi link LspDiagnosticsSignError LspError
+  hi link LspDiagnosticsSignWarning LspWarning
+  hi link LspDiagnosticsSignInformation LspInformation
+  hi link LspDiagnosticsSignHint LspHint
+
+  hi link LspDiagnosticsVirtualTextError LspError
+  hi link LspDiagnosticsVirtualTextWarning LspWarning
+  hi link LspDiagnosticsVirtualTextInformation LspInformation
+  hi link LspDiagnosticsVirtualTextHint LspHint
+
+  hi link LspDiagnosticsUnderlineError LspError
+  hi link LspDiagnosticsUnderlineWarning LspWarning
+  hi link LspDiagnosticsUnderlineInformation LspInformation
+  hi link LspDiagnosticsUnderlineHint LspHint
 
   hi link LspReferenceText Search
   hi link LspReferenceRead Search
