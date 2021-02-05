@@ -16,21 +16,21 @@ static const char dmenufont[]       = "monospace:size=10";
 #include "/home/phelipe/.cache/wal/colors-wal-dwm.h"
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { "1", "2", "3", "4", "5" };
 
 static const Rule rules[] = {
 	/* xprop(1):
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class             instance  title                tags mask     iscentered  isfloating   monitor */
-	{ "R_x11",           NULL,     NULL,                0,            0,          1,           -1 },
-	{ "Matplotlib",      NULL,     NULL,                0,            0,          1,           -1 },
-	{ "Thunar",          NULL,     NULL,                0,            1,          1,           -1 },
-	{ "Peek",            NULL,     NULL,                0,            0,          1,           -1 },
-	{ "appfinder",       NULL,     NULL,                0,            1,          1,           -1 },
-	{ NULL,              NULL,     "Android Emulator",  0,            0,          1,           -1 },
-	{ NULL,              NULL,     "Emulator",          0,            0,          1,           -1 },
+	/* class         instance  title                tags mask  iscentered  isfloating  monitor */
+	{ "R_x11",       NULL,     NULL,                0,         0,          1,          -1 },
+	{ "Matplotlib",  NULL,     NULL,                0,         0,          1,          -1 },
+	{ "Thunar",      NULL,     NULL,                0,         1,          1,          -1 },
+	{ "Peek",        NULL,     NULL,                0,         0,          1,          -1 },
+	{ "appfinder",   NULL,     NULL,                0,         1,          1,          -1 },
+	{ NULL,          NULL,     "Android Emulator",  0,         0,          1,          -1 },
+	{ NULL,          NULL,     "Emulator",          0,         0,          1,          -1 },
 };
 
 /* layout(s) */
