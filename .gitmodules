@@ -127,3 +127,6 @@
 [submodule "nvim-compe"]
 	path = .config/nvim/pack/plugins/opt/nvim-compe
 	url = https://github.com/hrsh7th/nvim-compe
+[submodule "dsf.vim"]
+	path = .config/nvim/pack/plugins/opt/dsf.vim
+	url = https://github.com/AndrewRadev/dsf.vim

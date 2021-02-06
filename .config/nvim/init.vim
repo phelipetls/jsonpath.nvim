@@ -13,6 +13,7 @@ packadd! vim-toml
 packadd! matchit
 packadd! vim-lion
 packadd! tagalong.vim
+packadd! dsf.vim
 
 if !exists("g:vscode")
   " file navigation
