@@ -28,7 +28,6 @@ if !exists("g:vscode")
   packadd! vim-obsession
   packadd! editorconfig-vim
   packadd! nvim-compe
-  packadd! gv.vim
   packadd! cfilter
 
   " html and javascript
