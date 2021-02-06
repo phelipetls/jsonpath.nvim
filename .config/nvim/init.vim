@@ -136,6 +136,9 @@ let g:user_emmet_settings = {
       \  }
       \}
 
+" integrate traces.vim with vim-subvert
+let g:traces_abolish_integration = 1
+
 "}}}
 "{{{ general mappings
 
