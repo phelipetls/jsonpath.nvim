@@ -14,6 +14,7 @@ packadd! matchit
 packadd! vim-lion
 packadd! tagalong.vim
 packadd! dsf.vim
+packadd! sideways.vim
 
 if !exists("g:vscode")
   " file navigation
@@ -300,6 +301,11 @@ nnoremap <silent> 1gD 1gD:nohlsearch<CR>
 " convenient abbreviations
 inoreabbrev Taebl Table
 inoreabbrev taebl table
+
+" mappings for sideways.vim
+nnoremap [z :SidewaysLeft<CR>
+nnoremap ]z :SidewaysRight<CR>
+
 
 "}}}
 "{{{ vscode
