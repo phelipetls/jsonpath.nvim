@@ -285,7 +285,6 @@ command! DiffOrig vert new | set buftype=nofile |
 
 " open a new tab mapping
 nnoremap <C-w>t :tabnew<CR>
-nnoremap <C-g>t :tabnew<CR>
 
 " use ctrl-k to delete rest of line
 inoremap <C-k> <C-o>D
