@@ -90,11 +90,7 @@ lspconfig.tsserver.setup {
       client.config.flags.allow_incremental_sync = true
     end
     client.resolved_capabilities.document_formatting = false
-    if vim.startswith(vim.bo.filetype, "javascript") then
-      client.server_capabilities.completionProvider.triggerCharacters = {"."}
-    else
-      client.server_capabilities.completionProvider.triggerCharacters = {".", "<"}
-    end
+    client.server_capabilities.completionProvider.triggerCharacters = {}
     set_lsp_config(client)
   end
 }
