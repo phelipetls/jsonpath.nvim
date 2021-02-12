@@ -99,6 +99,8 @@ _fzf_compgen_dir() {
   fdfind --color=never --type d -E '*node_modules*'
 }
 
+_fzf_setup_completion path npm
+
 # less config
 export LESS="FXRM"
 
