@@ -95,20 +95,18 @@ lspconfig.tsserver.setup {
   end
 }
 
-local function eslint_config_exists()
-  local eslintrc = vim.fn.glob(".eslintrc*", 0, 1)
-
-  if not vim.tbl_isempty(eslintrc) then
-    return true
-  end
-
-  if vim.fn.filereadable("package.json") ~= 0 then
-    if vim.fn.json_decode(vim.fn.readfile("package.json"))["eslintConfig"] then
-      return true
+local function get_js_formatter()
+  if require"js_utils".prettier_config_exists() then
+    if vim.fn.executable("prettier_d") then
+      return "prettier_d --parser=typescript"
     end
   end
 
-  return false
+  if require"js_utils".eslint_config_exists() then
+    if vim.fn.executable("eslint_d") then
+      return "eslint_d --fix-to-stdout --stdin --stdin-filename=${INPUT}"
+    end
+  end
 end
 
 local eslint = {
@@ -116,7 +114,7 @@ local eslint = {
   lintStdin = true,
   lintFormats = {"%f:%l:%c: %m"},
   lintIgnoreExitCode = true,
-  formatCommand = "eslint_d --fix-to-stdout --stdin --stdin-filename=${INPUT}",
+  formatCommand = get_js_formatter(),
   formatStdin = true
 }
 
@@ -127,7 +125,7 @@ lspconfig.efm.setup {
     set_lsp_config(client)
   end,
   root_dir = function()
-    if not eslint_config_exists() then
+    if not require"js_utils".eslint_config_exists() then
       return nil
     end
     return vim.fn.getcwd()
