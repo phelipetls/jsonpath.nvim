@@ -311,6 +311,9 @@ inoreabbrev taebl table
 nnoremap [z :SidewaysLeft<CR>
 nnoremap ]z :SidewaysRight<CR>
 
+" do not change jump list when using }
+nnoremap <silent> } :keepjumps norm! }<CR>
+nnoremap <silent> { :keepjumps norm! {<CR>
 
 "}}}
 "{{{ vscode
