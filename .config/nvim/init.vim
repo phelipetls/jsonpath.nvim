@@ -2,7 +2,6 @@
 
 " text editing conveniences
 packadd! splitjoin.vim
-packadd! vim-fugitive
 packadd! vim-surround
 packadd! vim-commentary
 packadd! vim-repeat
@@ -17,6 +16,10 @@ packadd! dsf.vim
 packadd! sideways.vim
 
 if !exists("g:vscode")
+  " git
+  packadd! vim-fugitive
+  packadd! diffconflicts
+
   " file navigation
   set rtp+=~/.fzf
   packadd! vim-dirvish

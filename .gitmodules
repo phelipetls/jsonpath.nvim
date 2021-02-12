@@ -129,3 +129,6 @@
 [submodule "sideways.vim"]
 	path = .config/nvim/pack/plugins/opt/sideways.vim
 	url = https://github.com/AndrewRadev/sideways.vim
+[submodule "diffconflicts"]
+	path = .config/nvim/pack/plugins/opt/diffconflicts
+	url = https://github.com/whiteinge/diffconflicts

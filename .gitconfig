@@ -7,10 +7,14 @@
     pager = diff-so-fancy | less --tabs=4 -RFX
     editor = nvim
     attributesfile = /home/phelipe/.gitattributes
-[mergetool "nvim"]
-    cmd = $EDITOR -d $LOCAL $MERGED $REMOTE
 [merge]
-    tool = nvim
+    tool = diffconflicts
+[mergetool "nvim"]
+    cmd = nvim -d "$LOCAL" "$MERGED" "$REMOTE"
+[mergetool "diffconflicts"]
+    cmd = nvim -c DiffConflicts "$MERGED" "$BASE" "$LOCAL" "$REMOTE"
+    trustExitCode = true
+    keepBackup = false
 [rebase]
     autosquash = true
 [rerere]
