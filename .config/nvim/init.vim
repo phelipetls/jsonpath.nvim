@@ -97,9 +97,8 @@ set diffopt+=foldcolumn:0
 " don't autocomment on newline
 autocmd! FileType * set formatoptions-=cro
 
-" autoresize splits when vim is resized or entering tab
+" autoresize splits when vim is resized
 autocmd! VimResized * wincmd =
-autocmd! TabEnter * wincmd =
 
 " tell neovim where python3 is -- this improves startup time
 if has("nvim") && has("unix")
