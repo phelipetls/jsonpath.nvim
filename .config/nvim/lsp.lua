@@ -95,26 +95,12 @@ lspconfig.tsserver.setup {
   end
 }
 
-local function get_js_formatter()
-  if require"js_utils".prettier_config_exists() then
-    if vim.fn.executable("prettier_d") then
-      return "prettier_d --parser=typescript"
-    end
-  end
-
-  if require"js_utils".eslint_config_exists() then
-    if vim.fn.executable("eslint_d") then
-      return "eslint_d --fix-to-stdout --stdin --stdin-filename=${INPUT}"
-    end
-  end
-end
-
 local eslint = {
   lintCommand = "eslint_d -f unix --stdin --stdin-filename ${INPUT}",
   lintStdin = true,
   lintFormats = {"%f:%l:%c: %m"},
   lintIgnoreExitCode = true,
-  formatCommand = get_js_formatter(),
+  formatCommand = require"js_utils".get_js_formatter(),
   formatStdin = true
 }
 

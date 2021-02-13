@@ -32,4 +32,20 @@ function M.eslint_config_exists()
   return false
 end
 
+function M.get_js_formatter()
+  if M.prettier_config_exists() then
+    if vim.fn.executable("prettier_d") then
+      return "prettier_d --parser=typescript"
+    end
+  end
+
+  if M.eslint_config_exists() then
+    if vim.fn.executable("eslint_d") then
+      return "eslint_d --fix-to-stdout --stdin --stdin-filename=${INPUT}"
+    end
+  end
+
+  return ""
+end
+
 return M
