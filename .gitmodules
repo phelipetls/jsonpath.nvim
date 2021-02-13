@@ -106,10 +106,6 @@
 	path = .config/nvim/pack/plugins/opt/playground
 	url = https://github.com/nvim-treesitter/playground
 	ignore = dirty
-[submodule "completion-nvim"]
-	path = .config/nvim/pack/plugins/opt/completion-nvim
-	url = https://github.com/nvim-lua/completion-nvim
-	ignore = dirty
 [submodule "yats.vim"]
 	path = .config/nvim/pack/plugins/opt/yats.vim
 	url = https://github.com/HerringtonDarkholme/yats.vim/
@@ -123,12 +119,6 @@
 [submodule "nvim-compe"]
 	path = .config/nvim/pack/plugins/opt/nvim-compe
 	url = https://github.com/hrsh7th/nvim-compe
-[submodule "dsf.vim"]
-	path = .config/nvim/pack/plugins/opt/dsf.vim
-	url = https://github.com/AndrewRadev/dsf.vim
-[submodule "sideways.vim"]
-	path = .config/nvim/pack/plugins/opt/sideways.vim
-	url = https://github.com/AndrewRadev/sideways.vim
 [submodule "diffconflicts"]
 	path = .config/nvim/pack/plugins/opt/diffconflicts
 	url = https://github.com/whiteinge/diffconflicts

@@ -12,8 +12,6 @@ packadd! vim-toml
 packadd! matchit
 packadd! vim-lion
 packadd! tagalong.vim
-packadd! dsf.vim
-packadd! sideways.vim
 
 if !exists("g:vscode")
   " git
@@ -305,10 +303,6 @@ nnoremap <silent> 1gD 1gD:nohlsearch<CR>
 " convenient abbreviations
 inoreabbrev Taebl Table
 inoreabbrev taebl table
-
-" mappings for sideways.vim
-nnoremap [z :SidewaysLeft<CR>
-nnoremap ]z :SidewaysRight<CR>
 
 " do not change jump list when using }
 nnoremap <silent> } :keepjumps norm! }<CR>
