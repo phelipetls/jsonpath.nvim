@@ -479,11 +479,6 @@ let g:compe = {
       \   'path': 1,
       \   'buffer': 1,
       \   'calc': 1,
-      \   'spell': {
-      \     'filetypes': [
-      \        'markdown',
-      \        'html'
-      \     ]},
       \   'nvim_lsp': {
       \     'filetypes': [
       \       'javascript',
