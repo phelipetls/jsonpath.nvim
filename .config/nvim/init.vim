@@ -44,6 +44,7 @@ endif
 "}}}
 "{{{ general settings
 
+set termguicolors
 colorscheme sixteen
 
 set nonumber

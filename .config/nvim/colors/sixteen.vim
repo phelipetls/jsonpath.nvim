@@ -3,129 +3,140 @@ set background=dark
 
 let g:colors_name = 'sixteen'
 
+let pywal_file = "$HOME/.cache/wal/colors-wal.vim"
+
+if filereadable(expand(pywal_file))
+  exe "source ".pywal_file
+else
+  echoerr "No pywal generated files"
+  finish
+endif
+
 "{{{ Syntax groups
-hi Normal ctermbg=NONE ctermfg=7
+exe "hi Normal ctermbg=NONE guibg=NONE ctermfg=7 guifg=".color7
 
-hi Comment ctermfg=8
+exe "hi Comment ctermfg=8 guifg=".color8
 
-hi Constant ctermfg=5
-hi String ctermfg=2
+exe "hi Constant ctermfg=5 guifg=".color5
+exe "hi String ctermfg=2 guifg=".color2
 hi link Character Constant
 hi link Number Constant
 hi link Boolean Constant
 hi link Float Constant
 
-hi Identifier ctermfg=3 cterm=NONE
-hi Function ctermfg=4 cterm=NONE
+exe "hi Identifier ctermfg=3 guifg=".color3." cterm=NONE gui=NONE"
+exe "hi Function ctermfg=4 guifg=".color4." cterm=NONE gui=NONE"
 
-hi Statement ctermfg=9
+exe "hi Statement ctermfg=9 guifg=".color9." gui=NONE"
 
-hi PreProc ctermfg=6
+exe "hi PreProc ctermfg=6 guifg=".color6
 hi link Include Statement
 
-hi Type ctermfg=4
+exe "hi Type ctermfg=4 guifg=".color4" gui=NONE"
 
-hi Special ctermfg=5
-hi SpecialChar ctermfg=5
+exe "hi Special ctermfg=5 guifg=".color5
+exe "hi SpecialChar ctermfg=5 guifg=".color5
 hi link Delimiter SpecialChar
 hi link SpecialComment SpecialChar
 
-hi Underlined ctermfg=1 cterm=UNDERLINE
+exe "hi Underlined ctermfg=1 guifg=".color1." cterm=UNDERLINE gui=UNDERLINE"
 
-hi Ignore ctermbg=NONE ctermfg=7
+exe "hi Ignore ctermbg=NONE guibg=NONE ctermfg=7 guifg=".color7
 
 "}}}
 "{{{ Misc
-hi DiffAdd ctermbg=green ctermfg=black
-hi DiffDelete ctermbg=black ctermfg=red
-hi DiffChange ctermbg=black ctermfg=NONE
-hi DiffText ctermbg=red ctermfg=yellow
+exe "hi DiffAdd ctermbg=2 guibg=".color2." guibg=".color2." ctermfg=0 guifg="color0
+exe "hi DiffDelete ctermbg=0 guibg=".color0." ctermfg=1 guifg=".color1
+exe "hi DiffChange ctermbg=0 guibg=".color0." ctermfg=0 guifg=".color0
+exe "hi DiffText ctermbg=1 guibg=".color1." ctermfg=3 guifg=".color3
+exe "hi diffAdded ctermfg=2 guifg=".color2
+exe "hi diffRemoved ctermfg=1 guifg=".color1
 
-hi Error ctermbg=1 ctermfg=0
-hi link ErrorMsg Error
-hi link WarningMsg Error
+exe "hi Error ctermbg=1 guibg=".color1." ctermfg=0 guifg=".color7
+exe "hi ErrorMsg ctermbg=1 guibg=".color1." ctermfg=0 guifg=".color7
+exe "hi WarningMsg ctermbg=1 guibg=".color1." ctermfg=0 guifg=".color7
 
-hi ModeMsg ctermfg=7 cterm=NONE
-hi MoreMsg ctermfg=3
+exe "hi ModeMsg ctermfg=7 guifg=".color7." cterm=NONE gui=NONE"
+exe "hi MoreMsg ctermfg=3 guifg=".color3
 
-hi Question ctermfg=8
+exe "hi Question ctermfg=8 guifg=".color8
 
-hi Todo ctermbg=0 ctermfg=2 cterm=BOLD
+exe "hi Todo ctermbg=0 guibg=".color0." ctermfg=2 guifg=".color2." cterm=BOLD gui=BOLD"
 
-hi LineNr ctermfg=8
-hi CursorLineNr ctermfg=8
-hi SignColumn ctermbg=NONE ctermfg=7
+exe "hi LineNr ctermfg=8 guifg=".color8
+exe "hi CursorLineNr ctermfg=8 guifg=".color8
+exe "hi SignColumn ctermbg=NONE guibg=NONE ctermfg=7 guifg=".color7
 
-hi CursorColumn ctermbg=0 ctermfg=NONE
+exe "hi CursorColumn ctermbg=0 guibg=".color0." ctermfg=NONE"
 
-hi Directory ctermfg=1
+exe "hi Directory ctermfg=1 guifg=".color1
 
-hi NonText ctermbg=NONE ctermfg=8
+exe "hi NonText ctermbg=NONE guibg=NONE ctermfg=8 guifg=".color8
 
-hi Visual ctermbg=6 ctermfg=0
-hi VisualNOS ctermbg=NONE ctermfg=1
-hi Search ctermbg=8 ctermfg=7
-hi IncSearch ctermbg=1 ctermfg=7 cterm=BOLD
+exe "hi Visual ctermbg=6 guibg=".color6." ctermfg=0 guifg=".color0
+exe "hi VisualNOS ctermbg=NONE guibg=NONE ctermfg=1 guifg=".color1
+exe "hi Search ctermbg=8 guibg=".color8." ctermfg=7 guifg=".color7
+exe "hi IncSearch ctermbg=1 guibg=".color1." ctermfg=7 guifg=".color7." cterm=BOLD gui=BOLD"
 
-hi Pmenu ctermbg=8 ctermfg=7
-hi PmenuSbar ctermbg=6 ctermfg=7
-hi PmenuSel ctermbg=4 ctermfg=0
-hi PmenuThumb ctermbg=8 ctermfg=8
+exe "hi Pmenu ctermbg=8 guibg=".color8." ctermfg=7 guifg=".color7
+exe "hi PmenuSbar ctermbg=6 guibg=".color6." ctermfg=7 guifg=".color7
+exe "hi PmenuSel ctermbg=4 guibg=".color4." ctermfg=0 guifg=".color0
+exe "hi PmenuThumb ctermbg=8 guibg=".color8." ctermfg=8 guifg=".color8
 
-hi CursorLine ctermbg=0 ctermfg=NONE cterm=BOLD
+exe "hi CursorLine ctermbg=0 guibg=".color0." ctermfg=NONE cterm=BOLD gui=BOLD"
 
-hi VertSplit ctermbg=0 ctermfg=0
+exe "hi VertSplit ctermbg=0 guibg=".color0." ctermfg=0 guifg=".color0
 
-hi StatusLine ctermbg=7 ctermfg=0
-hi StatusLineNC ctermbg=8 ctermfg=0
-hi TabLine ctermbg=NONE ctermfg=8
-hi TabLineFill ctermbg=NONE ctermfg=8 cterm=UNDERLINE
-hi TabLineSel ctermbg=8 ctermfg=7
+exe "hi StatusLine ctermbg=7 guibg=".color7." ctermfg=8 guifg=".color8
+exe "hi StatusLineNC ctermbg=8 guibg=".color8." ctermfg=0 guifg=".color0
+exe "hi TabLine ctermbg=NONE guibg=NONE ctermfg=8 guifg=".color8
+exe "hi TabLineFill ctermbg=NONE guibg=NONE ctermfg=8 guifg=".color8." cterm=UNDERLINE gui=UNDERLINE"
+exe "hi TabLineSel ctermbg=8 guibg=".color8." ctermfg=7 guifg=".color7
 
-hi MatchParen ctermbg=8 ctermfg=7
+exe "hi MatchParen ctermbg=8 guibg=".color8." ctermfg=7 guifg=".color7
 
-hi SpellBad ctermbg=NONE ctermfg=1 cterm=UNDERLINE
-hi SpellCap ctermbg=NONE ctermfg=4 cterm=UNDERLINE
-hi SpellLocal ctermbg=NONE ctermfg=5 cterm=UNDERLINE
-hi SpellRare ctermbg=NONE ctermfg=6 cterm=UNDERLINE
+exe "hi SpellBad ctermbg=NONE guibg=NONE ctermfg=1 guifg=".color1." cterm=UNDERLINE gui=UNDERLINE"
+exe "hi SpellCap ctermbg=NONE guibg=NONE ctermfg=4 guifg=".color4." cterm=UNDERLINE gui=UNDERLINE"
+exe "hi SpellLocal ctermbg=NONE guibg=NONE ctermfg=5 guifg=".color5." cterm=UNDERLINE gui=UNDERLINE"
+exe "hi SpellRare ctermbg=NONE guibg=NONE ctermfg=6 guifg=".color6." cterm=UNDERLINE gui=UNDERLINE"
 
-hi FoldColumn ctermbg=NONE ctermfg=7
-hi Folded ctermbg=NONE ctermfg=8
+exe "hi FoldColumn ctermbg=NONE guibg=NONE guibg=NONE ctermfg=7 guifg=".color7
+exe "hi Folded ctermbg=NONE guibg=NONE guibg=NONE ctermfg=8 guifg=".color8
 
-hi WildMenu ctermfg=0 ctermbg=11
+exe "hi WildMenu ctermfg=0 guifg=".color0." ctermbg=11 guibg=".color11
 
 if has("nvim")
-  hi MsgArea ctermfg=7 ctermbg=NONE
-  hi link QuickFixLine CursorLine
-  hi Whitespace ctermbg=NONE ctermfg=8
+ exe "hi MsgArea ctermfg=7 guifg=".color7." ctermbg=NONE guibg=NONE"
+ hi link QuickFixLine CursorLine
+ exe "hi Whitespace ctermbg=NONE guibg=NONE ctermfg=8 guifg=".color8
 endif
 
-hi Title ctermfg=5
+exe "hi Title ctermfg=5 guifg=".color5
 
 if has("nvim-0.5.0")
-  hi LspError ctermfg=red
-  hi LspWarning ctermfg=red
-  hi LspInfo ctermfg=red
-  hi LspHint ctermfg=red
+ exe "hi LspError ctermfg=1 guifg=".color1
+ exe "hi LspWarning ctermfg=1 guifg=".color1
+ exe "hi LspInfo ctermfg=1 guifg=".color1
+ exe "hi LspHint ctermfg=1 guifg=".color1
 
-  hi link LspDiagnosticsSignError LspError
-  hi link LspDiagnosticsSignWarning LspWarning
-  hi link LspDiagnosticsSignInformation LspInformation
-  hi link LspDiagnosticsSignHint LspHint
+ hi link LspDiagnosticsSignError LspError
+ hi link LspDiagnosticsSignWarning LspWarning
+ hi link LspDiagnosticsSignInformation LspInformation
+ hi link LspDiagnosticsSignHint LspHint
 
-  hi link LspDiagnosticsVirtualTextError LspError
-  hi link LspDiagnosticsVirtualTextWarning LspWarning
-  hi link LspDiagnosticsVirtualTextInformation LspInformation
-  hi link LspDiagnosticsVirtualTextHint LspHint
+ hi link LspDiagnosticsVirtualTextError LspError
+ hi link LspDiagnosticsVirtualTextWarning LspWarning
+ hi link LspDiagnosticsVirtualTextInformation LspInformation
+ hi link LspDiagnosticsVirtualTextHint LspHint
 
-  hi link LspDiagnosticsUnderlineError LspError
-  hi link LspDiagnosticsUnderlineWarning LspWarning
-  hi link LspDiagnosticsUnderlineInformation LspInformation
-  hi link LspDiagnosticsUnderlineHint LspHint
+ hi link LspDiagnosticsUnderlineError LspError
+ hi link LspDiagnosticsUnderlineWarning LspWarning
+ hi link LspDiagnosticsUnderlineInformation LspInformation
+ hi link LspDiagnosticsUnderlineHint LspHint
 
-  hi link LspReferenceText Search
-  hi link LspReferenceRead Search
-  hi link LspReferenceWrite Search
+ hi link LspReferenceText Search
+ hi link LspReferenceRead Search
+ hi link LspReferenceWrite Search
 endif
 
 "}}}
