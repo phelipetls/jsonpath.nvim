@@ -47,8 +47,8 @@ exe "hi Ignore ctermbg=NONE guibg=NONE ctermfg=7 guifg=".color7
 "{{{ Misc
 exe "hi DiffAdd ctermbg=2 guibg=".color2." guibg=".color2." ctermfg=0 guifg="color0
 exe "hi DiffDelete ctermbg=0 guibg=".color0." ctermfg=1 guifg=".color1
-exe "hi DiffChange ctermbg=0 guibg=".color0." ctermfg=0 guifg=".color0
-exe "hi DiffText ctermbg=1 guibg=".color1." ctermfg=3 guifg=".color3
+exe "hi DiffChange ctermbg=NONE guibg=NONE ctermfg=NONE guifg=NONE"
+exe "hi DiffText ctermbg=4 guibg=".color4." ctermfg=0 guifg=".color0." gui=NONE"
 exe "hi diffAdded ctermfg=2 guifg=".color2
 exe "hi diffRemoved ctermfg=1 guifg=".color1
 
