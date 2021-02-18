@@ -162,7 +162,17 @@ nnoremap <silent> <C-c><C-a> :%SlimeSend<CR>
 nnoremap <silent> <C-c><C-l> :exe ":silent !tmux send-keys -t " . b:slime_config['target_pane'] . " '^L'"<CR>
 nnoremap <silent> <C-c><C-s> :exe ":silent !tmux send-keys -t " . b:slime_config['target_pane'] . " 'plt.show()' Enter"<CR>
 
+" disable editorconfig for these file patterns
+let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+
+" enable tagalong in javascript, not only jsx
+let g:tagalong_additional_filetypes = ['javascript']
+
+" disable saving session on BufEnter
+let g:obsession_no_bufenter = 1
+
 if has("nvim")
+  " enable colorizer for all file types
   lua require'colorizer'.setup()
 endif
 
