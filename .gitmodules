@@ -130,3 +130,7 @@
 	path = .config/nvim/pack/plugins/opt/lspsaga.nvim
 	url = https://github.com/glepnir/lspsaga.nvim
 	ignore = dirty
+[submodule "nvim-colorizer.lua"]
+	path = .config/nvim/pack/plugins/opt/nvim-colorizer.lua
+	url = https://github.com/norcalli/nvim-colorizer.lua
+	ignore = dirty

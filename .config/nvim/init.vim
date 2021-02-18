@@ -23,7 +23,6 @@ if !exists("g:vscode")
   packadd! vim-dirvish
   packadd! vim-dirvish-dovish
   packadd! fzf.vim
-  packadd! vim-slime
 
   " vim specific improvements
   packadd! traces.vim
@@ -31,6 +30,8 @@ if !exists("g:vscode")
   packadd! editorconfig-vim
   packadd! nvim-compe
   packadd! cfilter
+  packadd! vim-slime
+  packadd! nvim-colorizer.lua
 
   " html and javascript
   packadd! emmet-vim
@@ -158,6 +159,8 @@ nnoremap <silent> <C-c>% :%SlimeSend<CR>
 nnoremap <silent> <C-c><C-a> :%SlimeSend<CR>
 nnoremap <silent> <C-c><C-l> :exe ":silent !tmux send-keys -t " . b:slime_config['target_pane'] . " '^L'"<CR>
 nnoremap <silent> <C-c><C-s> :exe ":silent !tmux send-keys -t " . b:slime_config['target_pane'] . " 'plt.show()' Enter"<CR>
+
+lua require'colorizer'.setup()
 
 "}}}
 "{{{ general mappings
