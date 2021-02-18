@@ -28,10 +28,12 @@ if !exists("g:vscode")
   packadd! traces.vim
   packadd! vim-obsession
   packadd! editorconfig-vim
-  packadd! nvim-compe
   packadd! cfilter
   packadd! vim-slime
-  packadd! nvim-colorizer.lua
+  if has("nvim")
+    packadd! nvim-compe
+    packadd! nvim-colorizer.lua
+  endif
 
   " html and javascript
   packadd! emmet-vim
@@ -160,7 +162,9 @@ nnoremap <silent> <C-c><C-a> :%SlimeSend<CR>
 nnoremap <silent> <C-c><C-l> :exe ":silent !tmux send-keys -t " . b:slime_config['target_pane'] . " '^L'"<CR>
 nnoremap <silent> <C-c><C-s> :exe ":silent !tmux send-keys -t " . b:slime_config['target_pane'] . " 'plt.show()' Enter"<CR>
 
-lua require'colorizer'.setup()
+if has("nvim")
+  lua require'colorizer'.setup()
+endif
 
 "}}}
 "{{{ general mappings
