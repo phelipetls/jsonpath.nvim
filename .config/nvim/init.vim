@@ -493,10 +493,14 @@ let g:compe = {
       \ 'source_timeout': 300,
       \ 'throttle_time': 100,
       \ 'incomplete_delay': 400,
+      \ 'documentation': 0,
       \ 'source': {
       \   'path': 1,
       \   'buffer': 1,
       \   'calc': 1,
+      \   'nvim_lua': {
+      \     'filetypes': ['lua']
+      \   },
       \   'nvim_lsp': {
       \     'filetypes': [
       \       'javascript',
@@ -512,7 +516,7 @@ let g:compe = {
 inoremap <silent> <Tab> <C-R>=SmartTab()<CR>
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <silent> <C-Space> <C-R>=compe#complete()<CR>
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
+inoremap <silent><expr> <CR> compe#confirm('<CR>')
 
 "}}}
 "{{{ quickfix config
