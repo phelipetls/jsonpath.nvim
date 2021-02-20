@@ -345,6 +345,9 @@ inoreabbrev taebl table
 nnoremap <silent> } :keepjumps norm! }<CR>
 nnoremap <silent> { :keepjumps norm! {<CR>
 
+" mapping to insert current file directory in command line easily
+cnoremap ;; %:h/
+
 "}}}
 "{{{ vscode
 
