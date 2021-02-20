@@ -173,7 +173,7 @@ let g:obsession_no_bufenter = 1
 
 if has("nvim")
   " enable colorizer for all file types
-  lua require'colorizer'.setup()
+  lua require'colorizer'.setup(nil, { rgb_fn = true })
 endif
 
 "}}}
