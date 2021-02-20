@@ -16,3 +16,11 @@ nmap <silent><buffer> p <Plug>(dovish_copy)
 nmap <silent><buffer> P <Plug>(dovish_move)
 
 nmap <silent><buffer> st :call Sort("t")<CR>
+
+function! g:DovishDelete(target) abort
+  if isdirectory(a:target)
+    return 'rmdir ' . a:target
+  else
+    return 'rm ' . a:target
+  endif
+endfunction
