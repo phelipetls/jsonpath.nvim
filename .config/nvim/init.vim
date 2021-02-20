@@ -8,7 +8,6 @@ packadd! vim-repeat
 packadd! vim-unimpaired
 packadd! vim-speeddating
 packadd! vim-abolish
-packadd! vim-toml
 packadd! matchit
 packadd! vim-lion
 packadd! tagalong.vim
@@ -20,9 +19,9 @@ if !exists("g:vscode")
 
   " file navigation
   set rtp+=~/.fzf
+  packadd! fzf.vim
   packadd! vim-dirvish
   packadd! vim-dirvish-dovish
-  packadd! fzf.vim
 
   " vim specific improvements
   packadd! traces.vim
@@ -30,6 +29,7 @@ if !exists("g:vscode")
   packadd! editorconfig-vim
   packadd! cfilter
   packadd! vim-slime
+  packadd! vim-toml
   if has("nvim")
     packadd! nvim-compe
     packadd! nvim-colorizer.lua
