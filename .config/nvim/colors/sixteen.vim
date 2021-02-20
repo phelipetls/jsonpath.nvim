@@ -57,9 +57,9 @@ exe "hi ErrorMsg ctermbg=1 guibg=".color1." ctermfg=0 guifg=".color7
 exe "hi WarningMsg ctermbg=1 guibg=".color1." ctermfg=0 guifg=".color7
 
 exe "hi ModeMsg ctermfg=7 guifg=".color7." cterm=NONE gui=NONE"
-exe "hi MoreMsg ctermfg=3 guifg=".color3
-
-exe "hi Question ctermfg=8 guifg=".color8
+exe "hi MoreMsg ctermfg=3 guifg=".color3." gui=NONE"
+exe "hi Title ctermfg=3 guifg=".color3." gui=NONE"
+exe "hi Question ctermfg=8 guifg=".color8." gui=NONE"
 
 exe "hi Todo ctermbg=0 guibg=".color0." ctermfg=2 guifg=".color2." cterm=BOLD gui=BOLD"
 
@@ -106,12 +106,10 @@ exe "hi Folded ctermbg=NONE guibg=NONE guibg=NONE ctermfg=8 guifg=".color8
 exe "hi WildMenu ctermfg=0 guifg=".color0." ctermbg=11 guibg=".color11
 
 if has("nvim")
- exe "hi MsgArea ctermfg=7 guifg=".color7." ctermbg=NONE guibg=NONE"
+ exe "hi MsgArea ctermfg=7 guifg=".color7." ctermbg=NONE guibg=NONE gui=NONE"
  hi link QuickFixLine CursorLine
  exe "hi Whitespace ctermbg=NONE guibg=NONE ctermfg=8 guifg=".color8
 endif
-
-exe "hi Title ctermfg=5 guifg=".color5
 
 if has("nvim-0.5.0")
  exe "hi LspError ctermfg=1 guifg=".color1
