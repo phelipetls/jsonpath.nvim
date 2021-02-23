@@ -60,7 +60,6 @@ set mouse=nv                        " allow mouse in normal and visual mode
 set clipboard+=unnamedplus          " always use system clipboard
 set splitbelow splitright           " always split window to the right and below
 set ignorecase smartcase            " ignore case, except when there is an upper case
-set noswapfile                      " i don't want swap files...
 set noshowcmd nocursorline          " don't show incomplete commands nor cursor line
 set nojoinspaces                    " remove spaces when joining lines
 set scrolloff=3                     " when scrolling, keep three lines ahead visible
