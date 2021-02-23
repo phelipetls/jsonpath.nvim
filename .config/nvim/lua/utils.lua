@@ -1,14 +1,15 @@
 local M = {}
 
-local function get_windows_with_same_buffer(bufnr, tabnr)
-  local all_windows = vim.fn.getwininfo()
+local function filter_windows(fn)
+  return vim.tbl_filter(fn, vim.fn.getwininfo())
+end
 
+local function get_windows_with_same_buffer(bufnr, tabnr)
   local windows =
-    vim.tbl_filter(
+    filter_windows(
     function(window)
       return window.bufnr == bufnr and window.tabnr == tabnr
-    end,
-    all_windows
+    end
   )
 
   return vim.tbl_map(
@@ -36,6 +37,28 @@ function M.same_buffer_windo(cmd)
     vim.api.nvim_command(cmd)
   end
   go_to_window(initial_winnr)
+end
+
+local function inside_current_tab(window)
+  return window.tabnr == vim.fn.tabpagenr()
+end
+
+local function is_quickfix(window)
+  return inside_current_tab(window) and window.quickfix == 1 and window.loclist == 0
+end
+
+local function is_loclist(window)
+  return inside_current_tab(window) and window.quickfix == 1 and window.loclist == 1
+end
+
+function M.quickfix_is_visible()
+  local quickfix_windows = filter_windows(is_quickfix)
+  return #quickfix_windows > 0
+end
+
+function M.loclist_is_visible()
+  local loclist_windows = filter_windows(is_loclist)
+  return #loclist_windows > 0
 end
 
 return M

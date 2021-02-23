@@ -515,15 +515,22 @@ else
   command! -nargs=* -complete=file_in_path Make silent make!
 endif
 
-nnoremap <silent> <space>q :pclose<CR>:cclose<cr>:lclose<cr>
 nnoremap <silent> <space>m :Make %<CR>
-nnoremap <silent> <space><space>m :make! %<CR>
 
 function! OpenQuickfixList()
   botright cwindow 5
   if &buftype == "quickfix"
     wincmd p
   endif
+endfunction
+
+function! ToggleQuickfixList()
+  if luaeval("require'utils'.quickfix_is_visible()")
+    cclose
+    return
+  endif
+
+  call OpenQuickfixList()
 endfunction
 
 function! OpenLocationList()
@@ -536,8 +543,17 @@ function! OpenLocationList()
   endif
 endfunction
 
-nnoremap <silent><space>q :call OpenQuickfixList()<CR>
-nnoremap <silent><space>l :call OpenLocationList()<CR>
+function! ToggleLocationList()
+  if luaeval("require'utils'.loclist_is_visible()")
+    lclose
+    return
+  endif
+
+  call OpenLocationList()
+endfunction
+
+nnoremap <silent><space>q :call ToggleQuickfixList()<CR>
+nnoremap <silent><space>l :call ToggleLocationList()<CR>
 
 augroup QuickFix
   autocmd!
