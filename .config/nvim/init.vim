@@ -289,7 +289,8 @@ cnoremap <C-X><C-A> <C-A>
 inoremap <expr> <C-E> col('.')>strlen(getline('.'))<bar><bar>pumvisible()?"\<Lt>C-E>":"\<Lt>End>"
 
 " cool mapping to get a list of dates
-inoremap <silent> <C-G><C-T> <C-R>=repeat(complete(col('.'),map(["%Y-%m-%d","%Y-%m-%d %H:%M:%S"],'strftime(v:val)')),0)<CR>
+let date_formats = ["%Y-%m-%d","%Y-%m-%d %H:%M:%S"]
+inoremap <silent> <C-G><C-T> <C-R>=repeat(complete(col('.'),map(date_formats,'strftime(v:val)')),0)<CR>
 
 " <space> does not move cursor in normal mode
 nnoremap <space> <nop>
@@ -311,18 +312,9 @@ nnoremap y<C-p> :let @+=expand("%:p")<CR>
 " put file directory name in clipboard
 nnoremap yd :let @+=expand("%:h")<CR>
 nnoremap y<C-d> :let @+=expand("%:h")<CR>
-nnoremap y. :let @+=expand("%:h")<CR>
-nnoremap yh :let @+=expand("%:h")<CR>
 
 " map to toggle case of character under cursor
 inoremap <C-l> <C-o>:silent norm g~l<CR>
-
-command! DiffOrig vert new | set buftype=nofile |
-      \ read ++edit # |
-      \ 0d_ |
-      \ diffthis |
-      \ wincmd p |
-      \ diffthis
 
 " open a new tab mapping
 nnoremap <C-w>t :tabnew<CR>
@@ -477,6 +469,8 @@ set completeopt=menuone,noselect,noinsert
 set shortmess+=c
 set pumheight=10
 
+luafile $HOME/.config/nvim/nvim-compe.lua
+
 function! SmartTab()
   let l:lastchar = matchstr(getline('.'), '.\%' . col('.') . 'c')
   if pumvisible()
@@ -487,34 +481,6 @@ function! SmartTab()
     return compe#complete()
   endif
 endfunction
-
-let g:compe = {
-      \ 'enabled': 1,
-      \ 'min_length': 3,
-      \ 'preselect': 'enable',
-      \ 'allow_prefix_unmatch': 0,
-      \ 'source_timeout': 300,
-      \ 'throttle_time': 100,
-      \ 'incomplete_delay': 400,
-      \ 'documentation': 0,
-      \ 'source': {
-      \   'path': 1,
-      \   'buffer': 1,
-      \   'calc': 1,
-      \   'nvim_lua': {
-      \     'filetypes': ['lua']
-      \   },
-      \   'nvim_lsp': {
-      \     'filetypes': [
-      \       'javascript',
-      \       'javascriptreact',
-      \       'javascript.jsx',
-      \       'typescript',
-      \       'typescript.tsx',
-      \       'typescriptreact'
-      \     ]}
-      \   }
-      \ }
 
 inoremap <silent> <Tab> <C-R>=SmartTab()<CR>
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
