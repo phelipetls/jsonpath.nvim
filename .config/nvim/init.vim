@@ -483,13 +483,14 @@ function! SmartTab()
   elseif l:lastchar =~ '\s' || len(l:lastchar) == 0
     return "\<Tab>"
   else
-    return compe#complete()
+    call compe#complete()
+    return ""
   endif
 endfunction
 
 inoremap <silent> <Tab> <C-R>=SmartTab()<CR>
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <silent> <C-Space> <C-R>=compe#complete()<CR>
+inoremap <silent><expr> <C-Space> compe#complete()
 inoremap <silent><expr> <CR> compe#confirm('<CR>')
 
 "}}}
