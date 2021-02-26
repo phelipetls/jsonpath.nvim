@@ -291,7 +291,7 @@ endfunction
 inoremap <C-A> <Home>
 cnoremap <C-A> <Home>
 cnoremap <C-X><C-A> <C-A>
-inoremap <expr> <C-E> col('.')>strlen(getline('.'))<bar><bar>pumvisible()?"\<Lt>C-E>":"\<Lt>End>"
+inoremap <expr> <C-E> col('.')>strlen(getline('.'))?"\<Lt>C-E>":"\<Lt>End>"
 
 " cool mapping to get a list of dates
 let date_formats = ["%Y-%m-%d","%Y-%m-%d %H:%M:%S"]
