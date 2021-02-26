@@ -1,6 +1,7 @@
 vim.api.nvim_command [[packadd! nvim-treesitter]]
 
 require "nvim-treesitter.configs".setup {
+  ensure_installed = { "typescript", "javascript", "tsx", "json" },
   highlight = {
     enable = true,
   },
@@ -9,4 +10,4 @@ require "nvim-treesitter.configs".setup {
   }
 }
 
-vim.api.nvim_command [[hi link TSConstructor Normal]]
+vim.api.nvim_command [[hi link TSConstructor Function]]
