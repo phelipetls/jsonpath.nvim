@@ -134,3 +134,7 @@
 	path = .config/nvim/pack/plugins/opt/nvim-colorizer.lua
 	url = https://github.com/norcalli/nvim-colorizer.lua
 	ignore = dirty
+[submodule "indent-blankline.nvim"]
+	path = .config/nvim/pack/plugins/opt/indent-blankline.nvim
+	url = https://github.com/lukas-reineke/indent-blankline.nvim
+	ignore = dirty
