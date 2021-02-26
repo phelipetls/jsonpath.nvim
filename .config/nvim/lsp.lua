@@ -14,8 +14,8 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] =
 local function set_lsp_config(client)
   vim.api.nvim_command [[setlocal signcolumn=yes]]
   vim.api.nvim_command [[nnoremap <buffer><silent> <C-space> :lua require'lspsaga.diagnostic'.show_line_diagnostics()<CR>]]
-  vim.api.nvim_command [[nnoremap <buffer><silent> ]g :lua vim.lsp.diagnostic.goto_next()<CR>]]
-  vim.api.nvim_command [[nnoremap <buffer><silent> [g :lua vim.lsp.diagnostic.goto_prev()<CR>]]
+  vim.api.nvim_command [[nnoremap <buffer><silent> ]g :Lspsaga diagnostic_jump_next<CR>]]
+  vim.api.nvim_command [[nnoremap <buffer><silent> [g :Lspsaga diagnostic_jump_prev<CR>]]
   vim.api.nvim_command [[nnoremap <buffer><silent> <space>d :lua vim.lsp.diagnostic.set_loclist()<CR>]]
 
   if client.resolved_capabilities.completion then
