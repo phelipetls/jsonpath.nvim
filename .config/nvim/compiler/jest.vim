@@ -7,14 +7,25 @@ if exists(":CompilerSet") != 2		" older Vim always used :setlocal
   command -nargs=* CompilerSet setlocal <args>
 endif
 
-CompilerSet makeprg=npm\ run\ test
+CompilerSet makeprg=CI=true\ npm\ run\ test\ --silent\ --if-present
 
 CompilerSet errorformat=
-      \%A%.%#●\ %o,
-      \%C\ %\\+at\ %s\ (%f:%l:%c),
-      \%C\ %\\+>\ %l\ \|%m,
+      \%E\ \ ●\ %m,
+      \%Z\ \ \ \ \ \ at\ %s\ (%f:%l:%c),
+      \%Z\ \ \ \ %.%#Error:\ %f:\ %m\ (%l:%c):%\\=,
+      \%+C\ \ \ \ Expected:\ %m,
+      \%+C\ \ \ \ Received:\ %m,
       \%C%.%#,
       \%-G%.%#
+
+" errorformat in upstream Vim, not yet in Neovim
+" %E\ \ ●\ %m,
+" \%Z\ %\\{4}%.%#Error:\ %f:\ %m\ (%l:%c):%\\=,
+" \%Z\ %\\{6}at\ %\\S%#\ (%f:%l:%c),
+" \%+C\ %\\{4}%\\w%.%#,
+" \%+C\ %\\{4}%[-+]%.%#,
+" \%-C%.%#,
+" \%-G%.%#
 
 " FAIL src/api/utils.test.js
 "   ✓ handling offsetting by days (3ms)
