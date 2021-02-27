@@ -107,7 +107,6 @@ local eslint = {
 lspconfig.efm.setup {
   on_attach = function(client)
     client.resolved_capabilities.document_formatting = true
-    client.resolved_capabilities.goto_definition = false
     set_lsp_config(client)
   end,
   root_dir = function()

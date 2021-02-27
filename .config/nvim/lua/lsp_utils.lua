@@ -28,8 +28,8 @@ function M.definition_sync()
   local results = {}
 
   for i, client in ipairs(clients) do
-    if client.result then
-      results[i] = client.result[1]
+    if not vim.tbl_isempty(client.result) then
+      vim.list_extend(results, client.result)
     end
   end
 
