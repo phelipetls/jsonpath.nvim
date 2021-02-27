@@ -476,20 +476,6 @@ set pumheight=10
 
 luafile $HOME/.config/nvim/nvim-compe.lua
 
-function! SmartTab()
-  let l:lastchar = matchstr(getline('.'), '.\%' . col('.') . 'c')
-  if pumvisible()
-    return "\<C-n>"
-  elseif l:lastchar =~ '\s' || len(l:lastchar) == 0
-    return "\<Tab>"
-  else
-    call compe#complete()
-    return ""
-  endif
-endfunction
-
-inoremap <silent> <Tab> <C-R>=SmartTab()<CR>
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <silent><expr> <C-Space> compe#complete()
 inoremap <silent><expr> <CR> compe#confirm('<CR>')
 

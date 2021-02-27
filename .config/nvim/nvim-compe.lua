@@ -33,9 +33,9 @@ local t = function(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
 
-local prev_char_is_whitespace = function()
-  local col = vim.fn.col(".") - 1
-  return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
+local check_whitespace = function()
+    local col = vim.fn.col('.') - 1
+    return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s')
 end
 
 -- Use (s-)tab to:
@@ -44,10 +44,10 @@ end
 _G.tab_complete = function()
   if vim.fn.pumvisible() == 1 then
     return t "<C-n>"
-  elseif prev_char_is_whitespace() then
+  elseif check_whitespace() then
     return t "<Tab>"
   else
-    return vim.fn["compe#complete"]()
+    return vim.fn['compe#complete']()
   end
 end
 
