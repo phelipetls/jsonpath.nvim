@@ -507,7 +507,18 @@ else
   command! -nargs=* -complete=file_in_path Make silent make!
 endif
 
-nnoremap <silent> <space>m :Make %<CR>
+let s:test_compilers = ["jest", "pytest", "pyunit"]
+
+function! RunMake()
+  if index(s:test_compilers, b:current_compiler) >= 0
+    make! %
+    return
+  endif
+
+  Make %
+endfunction
+
+nnoremap <silent> <space>m :call RunMake()<CR>
 
 function! OpenQuickfixList()
   botright cwindow 5
