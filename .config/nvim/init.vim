@@ -79,9 +79,9 @@ set breakindent                     " keep indentation when lines break
 set breakindentopt=shift:2          " but shift it by 2 spaces
 set linebreak                       " break only at specific characters, :h breakat
 
-if has("nvim-0.4.3")
-  set wildoptions=tagfile " keep the horizontal wildmenu in neovim
-endif
+" if has("nvim-0.4.3")
+"   set wildoptions=tagfile " keep the horizontal wildmenu in neovim
+" endif
 
 filetype plugin indent on
 
