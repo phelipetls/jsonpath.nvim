@@ -35,6 +35,7 @@ iabbr Obejct Object
 iabbr entires entries
 iabbr cosnt const
 iabbr /** /****/<Up>
+iabbr docuemnt document
 
 if executable("firefox")
   setlocal keywordprg=firefox\ https://developer.mozilla.org/search?topic=api\\&topic=js\\&q=\
