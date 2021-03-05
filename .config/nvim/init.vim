@@ -182,6 +182,9 @@ endif
 " let g:indent_blankline_char_highlight = 'NonText'
 " let g:indent_blankline_filetype = ['javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'css', 'python']
 
+" try disable nodejs color
+let $FORCE_COLOR=0
+
 "}}}
 "{{{ general mappings
 
