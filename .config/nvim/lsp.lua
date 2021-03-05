@@ -95,7 +95,7 @@ lspconfig.tsserver.setup {
       client.config.flags.allow_incremental_sync = true
     end
     client.resolved_capabilities.document_formatting = false
-    client.server_capabilities.completionProvider.triggerCharacters = {}
+    client.server_capabilities.completionProvider.triggerCharacters = {"."}
     set_lsp_config(client)
   end
 }
@@ -114,6 +114,14 @@ lspconfig.efm.setup {
     client.resolved_capabilities.document_formatting = true
     set_lsp_config(client)
   end,
+  -- default_config = {
+  --   cmd = {
+  --     "efm-langserver",
+  --     "-c",
+  --     [["$HOME/.config/efm-langserver/config.yaml"]]
+  --   },
+  --   filetypes = {"javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx"}
+  -- },
   root_dir = function()
     if not require"js_utils".eslint_config_exists() then
       return nil

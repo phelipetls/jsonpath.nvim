@@ -13,7 +13,7 @@ end
 
 function M.peek_definition()
   local params = vim.lsp.util.make_position_params()
-  return vim.lsp.buf_request(0, "textDocument/definition", params, preview_location_callback)
+  vim.lsp.buf_request(0, "textDocument/definition", params, preview_location_callback)
 end
 
 function M.organize_imports()
@@ -32,7 +32,7 @@ function M.definition_sync()
   local results = {}
 
   for i, client in ipairs(clients) do
-    if not vim.tbl_isempty(client.result) then
+    if client.result and not vim.tbl_isempty(client.result) then
       vim.list_extend(results, client.result)
     end
   end
