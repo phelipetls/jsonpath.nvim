@@ -1,16 +1,15 @@
 require "compe".setup(
   {
     enabled = true,
+    debug = false,
     min_length = 3,
-    preselect = "disable",
-    source_timeout = 300,
-    throttle_time = 100,
+    preselect = "enable",
+    source_timeout = 200,
+    throttle_time = 80,
     incomplete_delay = 400,
-    documentation = true,
+    documentation = false,
     source = {
-      path = {
-        priority = 100
-      },
+      path = true,
       buffer = true,
       calc = true,
       omni = {filetypes = {"css", "html"}},
