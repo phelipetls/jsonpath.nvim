@@ -11,14 +11,24 @@ local function exists_glob(glob)
   return vim.fn.glob(glob) ~= ""
 end
 
-local prettier_ignore = {vim.fn.expand("~/Mutual/mutual"), vim.fn.expand("~/Mutual/mutualapp")}
+local prettier_ignore = {
+  vim.fn.expand("~/Mutual/mutual"),
+  vim.fn.expand("~/Mutual/mutualapp"),
+  vim.fn.expand("~/Mutual/mutualapp-alpha")
+}
 
-local function ignore_prettier(path)
-  return vim.tbl_contains(prettier_ignore, vim.fn.getcwd())
+local function should_ignore_prettier()
+  for _, dir in ipairs(prettier_ignore) do
+    if dir == vim.fn.getcwd() then
+      return true
+    end
+  end
+
+  return false
 end
 
 function M.prettier_config_exists()
-  if ignore_prettier(vim.fn.getcwd()) then
+  if should_ignore_prettier() then
     return false
   end
 
