@@ -16,6 +16,10 @@ function M.peek_definition()
   return vim.lsp.buf_request(0, "textDocument/definition", params, preview_location_callback)
 end
 
+function M.organize_imports()
+  vim.lsp.buf.execute_command({command = "_typescript.organizeImports", arguments = {vim.fn.expand("%:p")}})
+end
+
 function M.definition_sync()
   local params = vim.lsp.util.make_position_params()
   local clients, err = vim.lsp.buf_request_sync(0, "textDocument/definition", params, 1000)

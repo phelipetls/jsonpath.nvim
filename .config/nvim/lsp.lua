@@ -66,6 +66,11 @@ local function set_lsp_config(client)
   if client.resolved_capabilities.signature_help then
     vim.api.nvim_command [[inoremap <buffer><silent> <C-x><C-p> <C-o>:lua require('lspsaga.signaturehelp').signature_help()<CR>]]
   end
+
+  if client.name == "tsserver" then
+    vim.api.nvim_command [[command! OrganizeImports :lua require'lsp_utils'.organize_imports()<CR>]]
+    vim.api.nvim_command [[nnoremap <silent> <S-M-o> :lua require'lsp_utils'.organize_imports()<CR>]]
+  end
 end
 
 lspconfig.pyls.setup {
