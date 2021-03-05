@@ -31,8 +31,8 @@ local function set_lsp_config(client)
     vim.api.nvim_command [[nnoremap <buffer><silent> [d :lua require"lsp_utils".definition_sync()<CR>]]
     vim.api.nvim_command [[nnoremap <buffer><silent> [<C-d> :lua require"lsp_utils".definition_sync()<CR>]]
     vim.api.nvim_command [[nnoremap <buffer><silent> <C-w><C-d> :split <bar> lua require"lsp_utils".definition_sync('split')<CR>]]
-    vim.api.nvim_command [[nnoremap <buffer><silent> <C-w>} <cmd>lua require"lsp_utils".peek_definition()<CR>]]
-    vim.api.nvim_command [[nnoremap <buffer><silent> <C-c><C-p> :lua require'lspsaga.provider'.preview_definition()<CR>]]
+    vim.api.nvim_command [[nnoremap <buffer><silent> <C-w>} :Lspsaga preview_definition<CR>]]
+    vim.api.nvim_command [[nnoremap <buffer><silent> <C-c><C-p> :Lspsaga preview_definition<CR>]]
   end
 
   if client.resolved_capabilities.type_definition then
