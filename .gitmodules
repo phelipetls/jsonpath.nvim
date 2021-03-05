@@ -138,3 +138,6 @@
 	path = .config/nvim/pack/plugins/opt/indent-blankline.nvim
 	url = https://github.com/lukas-reineke/indent-blankline.nvim
 	ignore = dirty
+[submodule "git-messenger.vim"]
+	path = .config/nvim/pack/plugins/opt/git-messenger.vim
+	url = https://github.com/rhysd/git-messenger.vim

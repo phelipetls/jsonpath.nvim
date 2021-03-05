@@ -16,6 +16,7 @@ if !exists("g:vscode")
   " git
   packadd! vim-fugitive
   packadd! diffconflicts
+  packadd! git-messenger.vim
 
   " file navigation
   set rtp+=~/.fzf
@@ -344,6 +345,9 @@ nnoremap <silent> { :keepjumps norm! {<CR>
 
 " mapping to insert current file directory in command line easily
 cnoremap ;; %:h/
+
+" git messenger mapping
+nnoremap <silent> gb :GitMessenger<CR>
 
 "}}}
 "{{{ vscode
