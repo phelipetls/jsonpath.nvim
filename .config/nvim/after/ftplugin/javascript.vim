@@ -2,7 +2,7 @@ setlocal shiftwidth=2 softtabstop=2
 
 setlocal path+=./components,./views
 
-if executable("jest") && match(expand("%:p:t"), "test.js") != -1
+if executable("jest") && match(expand("%:p:t"), 'test\.\(js\|ts\|jsx\|tsx\)$') != -1
   compiler jest
 elseif executable("eslint_d")
   compiler eslint_d

@@ -514,10 +514,9 @@ else
   command! -nargs=* -complete=file_in_path Make silent make!
 endif
 
-let s:test_compilers = ["jest", "pytest", "pyunit"]
-
 function! RunMake()
-  if index(s:test_compilers, b:current_compiler) >= 0
+  let compiler = get(b:, "current_compiler", "")
+  if index(["jest", "pytest", "pyunit"], compiler) >= 0
     make! %
     return
   endif
