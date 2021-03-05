@@ -182,8 +182,12 @@ endif
 " let g:indent_blankline_char_highlight = 'NonText'
 " let g:indent_blankline_filetype = ['javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'css', 'python']
 
-" try disable nodejs color
-let $FORCE_COLOR=0
+" disable colors in deno and nodejs
+let $NO_COLOR=0
+
+" avoid showing ansi escape sequences in nvim terminal
+" such as in lint-staged output before committing
+let g:fugitive_pty=0
 
 "}}}
 "{{{ general mappings
