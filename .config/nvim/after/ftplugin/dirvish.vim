@@ -24,3 +24,8 @@ function! g:DovishDelete(target) abort
     return 'rm ' . a:target
   endif
 endfunction
+
+function! g:DovishRename(old, new) abort
+  call luaeval('require"tsserver_utils".rename_file(_A)', [a:old, a:new])
+  return printf('mv %s %s', a:old, a:new)
+endfunction

@@ -68,8 +68,8 @@ local function set_lsp_config(client)
   end
 
   if client.name == "tsserver" then
-    vim.api.nvim_command [[command! OrganizeImports :lua require'lsp_utils'.organize_imports()<CR>]]
-    vim.api.nvim_command [[nnoremap <silent> <S-M-o> :lua require'lsp_utils'.organize_imports()<CR>]]
+    vim.api.nvim_command [[command! OrganizeImports :lua require'tsserver_utils'.organize_imports()<CR>]]
+    vim.api.nvim_command [[nnoremap <silent> <S-M-o> :lua require'tsserver_utils'.organize_imports()<CR>]]
   end
 end
 
