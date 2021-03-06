@@ -356,6 +356,11 @@ cnoremap ;; %:h/
 " git messenger mapping
 nnoremap <silent> gb :GitMessenger<CR>
 
+" fix netrw gx being broken
+if executable("xdg-open")
+  nnoremap <silent> gx :call system(printf("xdg-open %s", expand("<cWORD>")))<CR>
+endif
+
 "}}}
 "{{{ vscode
 
