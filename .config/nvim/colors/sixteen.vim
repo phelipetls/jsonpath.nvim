@@ -36,6 +36,7 @@ exe "hi Type ctermfg=4 guifg=".color4" gui=NONE"
 
 exe "hi Special ctermfg=5 guifg=".color5
 exe "hi SpecialChar ctermfg=5 guifg=".color5
+exe "hi SpecialKey ctermfg=5 guifg=".color5
 hi link Delimiter SpecialChar
 hi link SpecialComment SpecialChar
 
