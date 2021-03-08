@@ -71,7 +71,7 @@ local function set_lsp_config(client)
     vim.api.nvim_command [[command! OrganizeImports :lua require'tsserver_utils'.organize_imports()<CR>]]
     vim.api.nvim_command [[nnoremap <silent> <S-M-o> :lua require'tsserver_utils'.organize_imports()<CR>]]
 
-    vim.api.nvim_command("let g:DovishRename = function('tsserver#Rename')")
+    vim.api.nvim_command("let g:AfterRenameHook = function('tsserver#Rename')")
   end
 end
 

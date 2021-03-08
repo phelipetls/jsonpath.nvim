@@ -22,7 +22,6 @@ if !exists("g:vscode")
   set rtp+=~/.fzf
   packadd! fzf.vim
   packadd! vim-dirvish
-  packadd! vim-dirvish-dovish
 
   " vim specific improvements
   packadd! traces.vim

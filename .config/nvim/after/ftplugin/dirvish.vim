@@ -1,23 +1,9 @@
-" unmap all default mappings
-let g:dirvish_dovish_map_keys = 0
-
 nnoremap <silent><buffer>
         \ gh :silent keeppatterns g@\v/\.[^\/]+/?$@d _<cr>:setl cole=3<cr>
 
-nmap <silent><buffer> st :call Sort("t")<CR>
+nmap <silent><buffer> st :call dirvishUtils#Sort("t")<CR>
 
-function! g:DovishDelete(target) abort
-  if isdirectory(a:target)
-    return printf('rmdir %s', a:target)
-  else
-    return printf('rm %s', a:target)
-  endif
-endfunction
-
-nmap <silent><buffer> % <Plug>(dovish_create_file)
-nmap <silent><nowait><buffer> d <Plug>(dovish_create_directory)
-nmap <silent><buffer> D <Plug>(dovish_delete)
-nmap <silent><buffer> R <Plug>(dovish_rename)
-nmap <silent><buffer> yy <Plug>(dovish_yank)
-nmap <silent><buffer> p <Plug>(dovish_copy)
-nmap <silent><buffer> P <Plug>(dovish_move)
+nmap <silent><buffer> % :call dirvishUtils#CreateFile()<CR>
+nmap <silent><nowait><buffer> d :call dirvishUtils#CreateDir()<CR>
+nmap <silent><buffer> D :call dirvishUtils#Delete()<CR>
+nmap <silent><buffer> R :call dirvishUtils#Rename()<CR>
