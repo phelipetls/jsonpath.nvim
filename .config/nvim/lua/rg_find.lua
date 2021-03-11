@@ -32,7 +32,7 @@ local function gotofile(open_cmd, fname, lnum)
   vim.api.nvim_command(cmd)
 end
 
-local RG_OPTIONS = "--column --word-regexp"
+local RG_OPTIONS = "--column --word-regexp --case-sensitive"
 
 function M.rg_find(open_cmd)
   local definition_pattern = definition_patterns[vim.bo.filetype]
