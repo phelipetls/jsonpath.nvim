@@ -40,5 +40,3 @@ iabbr docuemnt document
 if executable("firefox")
   setlocal keywordprg=firefox\ https://developer.mozilla.org/search?topic=api\\&topic=js\\&q=\
 endif
-
-let b:dsf_function_pattern = '\(new\s*\)\?\k\+'

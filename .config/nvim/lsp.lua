@@ -122,7 +122,6 @@ lspconfig.efm.setup {
   --     "-c",
   --     [["$HOME/.config/efm-langserver/config.yaml"]]
   --   },
-  --   filetypes = {"javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx"}
   -- },
   root_dir = function()
     if not require"js_utils".eslint_config_exists() then
