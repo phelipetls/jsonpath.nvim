@@ -124,10 +124,9 @@ lspconfig.efm.setup {
     },
   },
   root_dir = function()
-    if not require"js_utils".eslint_config_exists() then
-      return nil
+    if require"js_utils".eslint_config_exists() then
+      return vim.fn.getcwd()
     end
-    return vim.fn.getcwd()
   end,
   settings = {
     languages = {
