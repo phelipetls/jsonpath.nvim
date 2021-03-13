@@ -116,13 +116,13 @@ lspconfig.efm.setup {
     client.resolved_capabilities.document_formatting = true
     set_lsp_config(client)
   end,
-  -- default_config = {
-  --   cmd = {
-  --     "efm-langserver",
-  --     "-c",
-  --     [["$HOME/.config/efm-langserver/config.yaml"]]
-  --   },
-  -- },
+  default_config = {
+    cmd = {
+      "efm-langserver",
+      "-c",
+      [["$HOME/.config/efm-langserver/config.yaml"]]
+    },
+  },
   root_dir = function()
     if not require"js_utils".eslint_config_exists() then
       return nil
@@ -146,5 +146,12 @@ lspconfig.efm.setup {
     "typescript",
     "typescript.tsx",
     "typescriptreact"
+  },
+  commands = {
+    EfmLog = {
+      function()
+        vim.api.nvim_command("split $HOME/efmlangserver.log")
+      end
+    }
   }
 }
