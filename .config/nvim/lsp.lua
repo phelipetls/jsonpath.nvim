@@ -107,7 +107,7 @@ local eslint = {
   lintStdin = true,
   lintFormats = {"%f:%l:%c: %m"},
   lintIgnoreExitCode = true,
-  formatCommand = require"js_utils".get_js_formatter(),
+  formatCommand = require "js_utils".get_js_formatter(),
   formatStdin = true
 }
 
@@ -121,10 +121,10 @@ lspconfig.efm.setup {
       "efm-langserver",
       "-c",
       [["$HOME/.config/efm-langserver/config.yaml"]]
-    },
+    }
   },
   root_dir = function()
-    if require"js_utils".eslint_config_exists() then
+    if require "js_utils".eslint_config_exists() then
       return vim.fn.getcwd()
     end
   end,
