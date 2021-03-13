@@ -150,19 +150,14 @@ lspconfig.efm.setup {
     EfmLog = {
       function()
         local logfile = "$HOME/efmlangserver.log"
-        local cmd = string.format("tail -1000 %s | grep -E '^[0-9]{4}/[0-9]{2}/[0-9]{2}' | tac", logfile)
-        local lines = vim.fn.systemlist(cmd)
-        vim.fn.setqflist(
-          {},
-          " ",
-          {
-            lines = lines,
-            title = "Efm Language Server Log",
-            efm = "%*\\d/%*\\d/%*\\d %*\\d:%*\\d:%*\\d %m"
-          }
-        )
-        vim.api.nvim_command("copen")
+        local cmd = string.format("tail -1000 %s | grep -E '^[0-9]{4}/[0-9]{2}/[0-9]{2}'", logfile)
+
+        vim.api.nvim_command("split new")
+        vim.api.nvim_command("10wincmd _")
+        vim.api.nvim_command("set bt=nofile")
         vim.api.nvim_command("setlocal nowrap")
+        vim.api.nvim_command("setlocal bufhidden=wipe")
+        vim.api.nvim_command(string.format("r ++edit !%s", cmd))
       end
     }
   }
