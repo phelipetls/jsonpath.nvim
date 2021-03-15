@@ -25,7 +25,7 @@ local function go_to_window(winnr)
 end
 
 local function get_bufnr()
-  return vim.api.nvim_win_get_buf(vim.fn.nvim_get_current_win())
+  return vim.api.nvim_win_get_buf(vim.api.nvim_get_current_win())
 end
 
 function M.same_buffer_windo(cmd)
