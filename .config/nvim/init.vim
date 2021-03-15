@@ -17,6 +17,7 @@ if !exists("g:vscode")
   packadd! vim-fugitive
   packadd! diffconflicts
   packadd! git-messenger.vim
+  packadd! gv.vim
 
   " file navigation
   set rtp+=~/.fzf
