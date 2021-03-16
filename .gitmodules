@@ -141,6 +141,8 @@
 [submodule "git-messenger.vim"]
 	path = .config/nvim/pack/plugins/opt/git-messenger.vim
 	url = https://github.com/rhysd/git-messenger.vim
+	ignore = dirty
 [submodule "gv.vim"]
 	path = .config/nvim/pack/plugins/opt/gv.vim
 	url = https://github.com/junegunn/gv.vim
+	ignore = dirty
