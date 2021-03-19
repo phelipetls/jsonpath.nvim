@@ -1,6 +1,7 @@
 setlocal shiftwidth=2 softtabstop=2
 
 setlocal path+=./components,./views
+setlocal path-=./node_modules/**,node_modules/**
 
 if executable("jest") && match(expand("%:p:t"), 'test\.\(js\|ts\|jsx\|tsx\)$') != -1
   compiler jest
