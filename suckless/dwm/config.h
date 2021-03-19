@@ -29,6 +29,7 @@ static const Rule rules[] = {
 	{ "Thunar",      NULL,     NULL,                0,         1,          1,          -1 },
 	{ "Peek",        NULL,     NULL,                0,         0,          1,          -1 },
 	{ "appfinder",   NULL,     NULL,                0,         1,          1,          -1 },
+	{ "scrcpy",      NULL,     NULL,                0,         0,          1,          -1 },
 	{ NULL,          NULL,     "Android Emulator",  0,         0,          1,          -1 },
 	{ NULL,          NULL,     "Emulator",          0,         0,          1,          -1 },
 };
