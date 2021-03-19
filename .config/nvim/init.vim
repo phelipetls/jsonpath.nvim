@@ -51,9 +51,6 @@ endif
 "}}}
 "{{{ general settings
 
-set termguicolors
-colorscheme sixteen
-
 set nonumber
 set hidden
 set wildmenu
@@ -80,31 +77,15 @@ set breakindent                     " keep indentation when lines break
 set breakindentopt=shift:2          " but shift it by 2 spaces
 set linebreak                       " break only at specific characters, :h breakat
 
-" if has("nvim-0.4.3")
-"   set wildoptions=tagfile " keep the horizontal wildmenu in neovim
-" endif
-
 filetype plugin indent on
-
-" visually show special characters
-set list
-set fillchars=fold:-
-set listchars=tab:»\ ,nbsp:¬,trail:·,extends:…,precedes:‹
-set showbreak=↳\ 
 
 " default identation
 set expandtab
 set softtabstop=2
 set shiftwidth=2
 
-" disable foldcolumn in diff mode
-set diffopt+=foldcolumn:0
-
 " don't autocomment on newline
 autocmd! FileType * set formatoptions-=cro
-
-" autoresize splits when vim is resized
-autocmd! VimResized * wincmd =
 
 " tell neovim where python3 is -- this improves startup time
 if has("nvim") && has("unix")
@@ -118,76 +99,93 @@ autocmd! BufReadPost *
       \   exe "normal g`\"" |
       \ endif
 
-" use ripgrep as the external grep command
-if executable("rg")
-  set grepprg=rg\ --vimgrep\ --smart-case\ --hidden\ --no-heading
-  set grepformat=%f:%l:%c:%m,%f:%l:%m
+if !exists("g:vscode")
+  set termguicolors
+  colorscheme sixteen
+
+  " disable foldcolumn in diff mode
+  set diffopt+=foldcolumn:0
+
+  " visually show special characters
+  set list
+  set fillchars=fold:-
+  set listchars=tab:»\ ,nbsp:¬,trail:·,extends:…,precedes:‹
+  set showbreak=↳\ 
+
+  " autoresize splits when vim is resized
+  autocmd! VimResized * wincmd =
+
+  " use ripgrep as the external grep command
+  if executable("rg")
+    set grepprg=rg\ --vimgrep\ --smart-case\ --hidden\ --no-heading
+    set grepformat=%f:%l:%c:%m,%f:%l:%m
+  endif
+
+  " checktime when nvim resumes from suspended state
+  if has("nvim")
+    autocmd! VimResume * checktime
+  endif
+
+  autocmd! FocusGained * checktime
+
+  " disable props highlighting
+  let g:yats_host_keyword = 0
+
+  " emmet trigger key
+  let g:user_emmet_leader_key = "<C-c><C-e>"
+
+  let g:user_emmet_settings = {
+        \  'javascript' : {
+        \      'extends' : 'jsx',
+        \      'empty_element_suffix': ' />',
+        \  }
+        \}
+
+  " integrate traces.vim with vim-subvert
+  let g:traces_abolish_integration = 1
+
+  " slime
+  if exists("$TMUX")
+    let g:slime_target = "tmux"
+    let g:slime_default_config = {"socket_name": "default", "target_pane": "{last}"}
+    let g:slime_dont_ask_default = 1
+  elseif has("unix")
+    let g:slime_target = "x11"
+  else
+    let g:slime_target = "neovim"
+  endif
+
+  nnoremap <silent> <C-c><C-c> <Plug>SLimeRegionSend
+  nnoremap <silent> <C-c><C-w> :exe ":SlimeSend1 " . expand('<cword>')<CR>
+  nnoremap <silent> <C-c>% :%SlimeSend<CR>
+  nnoremap <silent> <C-c><C-a> :%SlimeSend<CR>
+  nnoremap <silent> <C-c><C-l> :exe ":silent !tmux send-keys -t " . b:slime_config['target_pane'] . " '^L'"<CR>
+  nnoremap <silent> <C-c><C-s> :exe ":silent !tmux send-keys -t " . b:slime_config['target_pane'] . " 'plt.show()' Enter"<CR>
+
+  " disable editorconfig for these file patterns
+  let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+
+  " enable tagalong in javascript, not only jsx
+  let g:tagalong_additional_filetypes = ['javascript']
+
+  " disable saving session on BufEnter
+  let g:obsession_no_bufenter = 1
+
+  if has("nvim")
+    " enable colorizer for all file types
+    lua require'colorizer'.setup(nil, { rgb_fn = true })
+  endif
+
+  " let g:indent_blankline_char_highlight = 'NonText'
+  " let g:indent_blankline_filetype = ['javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'css', 'python']
+
+  " disable colors in deno and nodejs
+  let $NO_COLOR=0
+
+  " avoid showing ansi escape sequences in nvim terminal
+  " such as in lint-staged output before committing
+  let g:fugitive_pty=0
 endif
-
-" checktime when nvim resumes from suspended state
-if has("nvim")
-  autocmd! VimResume * checktime
-endif
-
-autocmd! FocusGained * checktime
-
-" disable props highlighting
-let g:yats_host_keyword = 0
-
-" emmet trigger key
-let g:user_emmet_leader_key = "<C-c><C-e>"
-
-let g:user_emmet_settings = {
-      \  'javascript' : {
-      \      'extends' : 'jsx',
-      \      'empty_element_suffix': ' />',
-      \  }
-      \}
-
-" integrate traces.vim with vim-subvert
-let g:traces_abolish_integration = 1
-
-" slime
-if exists("$TMUX")
-  let g:slime_target = "tmux"
-  let g:slime_default_config = {"socket_name": "default", "target_pane": "{last}"}
-  let g:slime_dont_ask_default = 1
-elseif has("unix")
-  let g:slime_target = "x11"
-else
-  let g:slime_target = "neovim"
-endif
-
-nnoremap <silent> <C-c><C-c> <Plug>SLimeRegionSend
-nnoremap <silent> <C-c><C-w> :exe ":SlimeSend1 " . expand('<cword>')<CR>
-nnoremap <silent> <C-c>% :%SlimeSend<CR>
-nnoremap <silent> <C-c><C-a> :%SlimeSend<CR>
-nnoremap <silent> <C-c><C-l> :exe ":silent !tmux send-keys -t " . b:slime_config['target_pane'] . " '^L'"<CR>
-nnoremap <silent> <C-c><C-s> :exe ":silent !tmux send-keys -t " . b:slime_config['target_pane'] . " 'plt.show()' Enter"<CR>
-
-" disable editorconfig for these file patterns
-let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
-
-" enable tagalong in javascript, not only jsx
-let g:tagalong_additional_filetypes = ['javascript']
-
-" disable saving session on BufEnter
-let g:obsession_no_bufenter = 1
-
-if has("nvim")
-  " enable colorizer for all file types
-  lua require'colorizer'.setup(nil, { rgb_fn = true })
-endif
-
-" let g:indent_blankline_char_highlight = 'NonText'
-" let g:indent_blankline_filetype = ['javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'css', 'python']
-
-" disable colors in deno and nodejs
-let $NO_COLOR=0
-
-" avoid showing ansi escape sequences in nvim terminal
-" such as in lint-staged output before committing
-let g:fugitive_pty=0
 
 "}}}
 "{{{ general mappings
@@ -365,25 +363,18 @@ endif
 "{{{ vscode
 
 if exists("g:vscode")
-  nnoremap <silent> K <Cmd>call VSCodeCall('editor.action.showHover')<CR>
-  nnoremap <silent> gh <Cmd>call VSCodeCall('editor.action.showHover')<CR>
-  nnoremap <silent> [d <Cmd>call VSCodeCall('editor.action.revealDefinition')<CR>
-  nnoremap <silent> [<C-d> <Cmd>call VSCodeCall('editor.action.revealDefinition')<CR>
-  nnoremap <silent> gd <Cmd>call VSCodeCall('editor.action.revealDefinition')<CR>
-  nnoremap <silent> <C-]> <Cmd>call VSCodeCall('editor.action.revealDefinition')<CR>
-  nnoremap <silent> [t <Cmd>call VSCodeCall('editor.action.goToTypeDefinition')<CR>
-  nnoremap <silent> gr <Cmd>call VSCodeCall('references-view.find')<CR>
-  nnoremap <silent> gR <Cmd>call VSCodeCall('editor.action.rename')<CR>
-  nnoremap <silent> gs <Cmd>call VSCodeCall('workbench.action.gotoSymbol')<CR>
-  nnoremap <silent> <c-w>d <cmd>call VSCodeCall('editor.action.revealDefinitionAside')<CR>
   nnoremap <silent> <c-b> <cmd>call VSCodeCall('workbench.action.toggleSidebarVisibility')<CR>
+
+  nnoremap <silent> K <Cmd>call VSCodeCall('editor.action.showHover')<CR>
+  nnoremap <silent> [d <Cmd>call VSCodeCall('editor.action.revealDefinition')<CR>
+  nnoremap <silent> <c-w>d <cmd>call VSCodeCall('editor.action.revealDefinition')<CR>
+  nnoremap <silent> [t <Cmd>call VSCodeCall('editor.action.goToTypeDefinition')<CR>
+  nnoremap <silent> gR <Cmd>call VSCodeCall('editor.action.rename')<CR>
   nnoremap <silent> - <Cmd>call VSCodeCall('workbench.files.action.showActiveFileInExplorer')<CR>
+  nnoremap <silent> <space>f <Cmd>call VSCodeCall('workbench.action.quickOpen')<CR>
   nnoremap <silent> <space>r <Cmd>call VSCodeCall('workbench.action.showAllEditorsByMostRecentlyUsed')<CR>
   nnoremap <silent> ]g <Cmd>call VSCodeCall('editor.action.marker.nextInFiles')<CR>
   nnoremap <silent> [g <Cmd>call VSCodeCall('editor.action.marker.prevInFiles')<CR>
-  nnoremap <silent> ]q <Cmd>call VSCodeCall('editor.action.marker.nextInFiles')<CR>
-  nnoremap <silent> [q <Cmd>call VSCodeCall('editor.action.marker.prevInFiles')<CR>
-  nnoremap <silent> <space>q <Cmd>call VSCodeCall('workbench.actions.view.problems')<CR>
   finish
 endif
 
