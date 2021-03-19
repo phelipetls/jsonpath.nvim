@@ -122,7 +122,7 @@ export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig/
 export PATH="$HOME/android-studio/bin:$PATH"
 
 export ANDROID_HOME=$HOME/Android/Sdk
-export PATH="$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools"
+export PATH="$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$PATH"
 
 # Needed for Android Studio to work in DWM
 export _JAVA_AWT_WM_NONREPARENTING=1
