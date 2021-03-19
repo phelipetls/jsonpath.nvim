@@ -126,3 +126,7 @@ export PATH="$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:
 
 # Needed for Android Studio to work in DWM
 export _JAVA_AWT_WM_NONREPARENTING=1
+
+# Fix Intel graphics driver issue in Ubuntu 20.04
+# https://bugs.launchpad.net/ubuntu/+source/xserver-xorg-video-intel/+bug/1876219
+export MESA_LOADER_DRIVER_OVERRIDE=i965
