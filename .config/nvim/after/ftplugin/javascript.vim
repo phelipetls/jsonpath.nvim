@@ -2,6 +2,7 @@ setlocal shiftwidth=2 softtabstop=2
 
 setlocal path+=./components,./views
 setlocal path-=./node_modules/**,node_modules/**
+lua require"js_utils".set_tsconfig_include_in_path()
 
 if executable("jest") && match(expand("%:p:t"), 'test\.\(js\|ts\|jsx\|tsx\)$') != -1
   compiler jest
@@ -41,3 +42,21 @@ iabbr docuemnt document
 if executable("firefox")
   setlocal keywordprg=firefox\ https://developer.mozilla.org/search?topic=api\\&topic=js\\&q=\
 endif
+
+function JsIncludeExpr(fname)
+  return luaeval("require'js_utils'.js_includeexpr(_A)",a:fname)
+endfunction
+
+setlocal includeexpr=JsIncludeExpr(v:fname)
+
+setlocal isfname+=@-@
+
+setlocal include=^\\s*[^\/]\\+\\(from\\\|require(\\)\\s*['\"]\\ze[\.]
+
+let &l:define = '^\s*\('
+      \ . '\(export\s\)*\(\w\+\s\)*\(var\|const\|let\|function\|class\|interface\|as\)\s'
+      \ . '\|\(public\|private\|protected\|readonly\|static\|get\s\|set\)\s'
+      \ . '\|\(export\sdefault\s\|abstract\sclass\s\)'
+      \ . '\|\(async\sfunction\)\s'
+      \ . '\|\(\ze\i\+([^)]*).*{$\)'
+      \ . '\)'

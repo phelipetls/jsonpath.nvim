@@ -51,4 +51,87 @@ function M.get_js_formatter()
   return ""
 end
 
+local function remove_comments(line)
+  return line:gsub("/%*.*%*/", ""):gsub("//.*", "")
+end
+
+local function read_json_with_comments(file)
+  local file_without_comments = vim.tbl_map(remove_comments, vim.fn.readfile(file))
+  return vim.fn.json_decode(file_without_comments)
+end
+
+local function get_tsconfig_file()
+  if vim.fn.filereadable("tsconfig.json") then
+    return "tsconfig.json"
+  end
+
+  if vim.fn.filereadable("jsconfig.json") then
+    return "jsconfig.json"
+  end
+end
+
+local function once(fn)
+  local value
+  return function(...)
+    if not value then
+      value = fn(...)
+    end
+    return value
+  end
+end
+
+local function get_tsconfig_paths(tsconfig, old_paths)
+  local new_paths = old_paths or {}
+  local json = read_json_with_comments(tsconfig or get_tsconfig_file())
+
+  if json and json.compilerOptions and json.compilerOptions.paths then
+    for alias, path in pairs(json.compilerOptions.paths) do
+      if not vim.tbl_contains(vim.tbl_keys(new_paths), alias) then
+        new_paths[alias] = path[1]
+      end
+    end
+  end
+
+  if json and json.extends and vim.startswith(json.extends, ".") then
+    get_tsconfig_paths(json.extends, new_paths)
+  end
+
+  return new_paths
+end
+
+local memo_get_tsconfig_paths = once(get_tsconfig_paths)
+
+local function get_tsconfig_include()
+  local include = read_json_with_comments(get_tsconfig_file()).include
+  if include then
+    return table.concat(include, ",")
+  end
+end
+
+local memo_get_tsconfig_include = once(get_tsconfig_include)
+
+M.set_tsconfig_include_in_path = function()
+  local include_paths = memo_get_tsconfig_include()
+  if not include_paths then
+    return
+  end
+  if not vim.bo.path:match(include_paths) then
+    vim.bo.path = vim.bo.path .. "," .. include_paths
+  end
+end
+
+function M.js_includeexpr(fname)
+  local paths = memo_get_tsconfig_paths()
+
+  if paths then
+    for alias, path in pairs(paths) do
+      if vim.startswith(fname, alias:gsub("*", "")) then
+        local real_path = fname:gsub(alias, "./" .. path:gsub("*", ""))
+        return real_path
+      end
+    end
+  end
+
+  return fname
+end
 return M
