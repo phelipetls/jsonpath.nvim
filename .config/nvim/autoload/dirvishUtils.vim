@@ -19,6 +19,7 @@ function! dirvishUtils#Delete()
   if result == -1
     echoerr printf("Failed to remove %s", target)
   endif
+  bd #
   Dirvish %
 endfunction
 
@@ -70,6 +71,7 @@ function! dirvishUtils#Rename()
   if output == -1
     echoerr "Failed to rename"
   else
+    bd #
     let Hook = get(g:, "AfterRenameHook")
     if !empty(Hook)
       call Hook(oldpath, newpath)
