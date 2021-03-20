@@ -7,10 +7,6 @@ local function exists_package_json_field(field)
   end
 end
 
-local function exists_glob(glob)
-  return vim.fn.glob(glob) ~= ""
-end
-
 local prettier_ignore = {
   vim.fn.expand("~/Mutual/mutual"),
   vim.fn.expand("~/Mutual/mutualapp"),
@@ -25,6 +21,10 @@ local function should_ignore_prettier()
   end
 
   return false
+end
+
+local function exists_glob(glob)
+  return vim.fn.glob(glob) ~= ""
 end
 
 function M.prettier_config_exists()
@@ -80,6 +80,9 @@ local function once(fn)
   end
 end
 
+-- Get all possible configured `.compilerOptions.paths` values by walking
+-- through all tsconfig.json configuration recursively, e.g., if it find a base
+-- configuration (in `.extends` key), it will continue to search there.
 local function get_tsconfig_paths(tsconfig, old_paths)
   local new_paths = old_paths or {}
   local json = read_json_with_comments(tsconfig or get_tsconfig_file())
@@ -101,6 +104,7 @@ end
 
 local memo_get_tsconfig_paths = once(get_tsconfig_paths)
 
+-- Get `.include` array from a tsconfig.json file as comma separated string.
 local function get_tsconfig_include()
   local include = read_json_with_comments(get_tsconfig_file()).include
   if include then
@@ -110,6 +114,7 @@ end
 
 local memo_get_tsconfig_include = once(get_tsconfig_include)
 
+-- Helper function to include tsconfig's `.include` array inside `:h path`.
 M.set_tsconfig_include_in_path = function()
   local include_paths = memo_get_tsconfig_include()
   if not include_paths then
@@ -120,6 +125,17 @@ M.set_tsconfig_include_in_path = function()
   end
 end
 
+-- includeexpr that understands tsconfig.json `.compilerOptions.paths`.
+-- For example, if tsconfig.json has
+-- {
+--   "compilerOptions": {
+--     "paths": {
+--       "~/*": ["src/*"]
+--     }
+--   }
+-- }
+-- When you do gf in a string like '~/components/App', it will end up being
+-- './src/components/App'.
 function M.js_includeexpr(fname)
   local paths = memo_get_tsconfig_paths()
 
