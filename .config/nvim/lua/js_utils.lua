@@ -91,25 +91,37 @@ local function once_per_config(fn)
 end
 
 -- Get all possible configured `.compilerOptions.paths` values by walking
--- through all tsconfig.json configuration recursively, e.g., if it find a base
--- configuration (in `.extends` key), it will continue to search there.
+-- through all tsconfig.json files recursively. If it finds a base
+-- configuration (`.extends` key), it will continue to search there.
 local function get_tsconfig_paths(tsconfig, old_paths)
   local new_paths = old_paths or {}
 
-  if not tsconfig then return old_paths end
+  if not tsconfig then return new_paths end
   local json = read_json_with_comments(tsconfig)
+
+  local tsconfig_dir = vim.fn.fnamemodify(tsconfig, ":h")
 
   if json and json.compilerOptions and json.compilerOptions.paths then
     for alias, path in pairs(json.compilerOptions.paths) do
       if not vim.tbl_contains(vim.tbl_keys(new_paths), alias) then
-        new_paths[alias] = path[1]
+        new_paths[alias] = tsconfig_dir .. "/" .. path[1]
       end
     end
   end
 
-  -- TODO: expand `.extends` value to be relative to tsconfig
-  if json and json.extends and vim.startswith(json.extends, ".") then
-    get_tsconfig_paths(json.extends, new_paths)
+  -- If tsconfig has a `.extends` field, we must search there too.
+  -- But local files only, @tsconfig/node12 is not supported.
+  if json and json.extends and not vim.startswith(json.extends, "@") then
+    -- If it is in a parent directory, get its real path.
+    -- We need to count how much "../" there is in json.extends, then use that
+    -- to modify the extended tsconfig directory path.
+    if vim.startswith(json.extends, "..") then
+      local new_tsconfig, parentdir_count = json.extends:gsub("%.%./", "")
+      local new_tsconfig_dir = vim.fn.fnamemodify(tsconfig_dir, string.rep(":h", parentdir_count))
+      get_tsconfig_paths(new_tsconfig_dir .. "/" .. new_tsconfig, new_paths)
+    else
+      get_tsconfig_paths(tsconfig_dir .. "/" .. json.extends, new_paths)
+    end
   end
 
   return new_paths
@@ -155,7 +167,7 @@ function M.js_includeexpr(fname)
   if paths then
     for alias, path in pairs(paths) do
       if vim.startswith(fname, alias:gsub("*", "")) then
-        local real_path = fname:gsub(alias, "./" .. path:gsub("*", ""))
+        local real_path = fname:gsub(alias, path:gsub("*", ""))
         return real_path
       end
     end
