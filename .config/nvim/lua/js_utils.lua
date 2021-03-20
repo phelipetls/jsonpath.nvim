@@ -60,23 +60,20 @@ local function read_json_with_comments(file)
   return vim.fn.json_decode(file_without_comments)
 end
 
-local function get_tsconfig_file()
-  if vim.fn.filereadable("tsconfig.json") then
-    return "tsconfig.json"
-  end
-
-  if vim.fn.filereadable("jsconfig.json") then
-    return "jsconfig.json"
-  end
+local function find_tsconfig_root_dir()
+  local fname = vim.fn.expand("%:p")
+  return require"lspconfig".util.root_pattern("tsconfig.json", "jsconfig.json")(fname)
 end
 
-local function once(fn)
-  local value
-  return function(...)
-    if not value then
-      value = fn(...)
-    end
-    return value
+local function get_tsconfig_file()
+  local root_dir = find_tsconfig_root_dir()
+
+  if vim.fn.filereadable(root_dir .. "/tsconfig.json") then
+    return root_dir .. "/tsconfig.json"
+  end
+
+  if vim.fn.filereadable(root_dir .. "/jsconfig.json") then
+    return root_dir .. "/jsconfig.json"
   end
 end
 
@@ -102,8 +99,6 @@ local function get_tsconfig_paths(tsconfig, old_paths)
   return new_paths
 end
 
-local memo_get_tsconfig_paths = once(get_tsconfig_paths)
-
 -- Get `.include` array from a tsconfig.json file as comma separated string.
 local function get_tsconfig_include()
   local include = read_json_with_comments(get_tsconfig_file()).include
@@ -112,11 +107,9 @@ local function get_tsconfig_include()
   end
 end
 
-local memo_get_tsconfig_include = once(get_tsconfig_include)
-
 -- Helper function to include tsconfig's `.include` array inside `:h path`.
 M.set_tsconfig_include_in_path = function()
-  local include_paths = memo_get_tsconfig_include()
+  local include_paths = get_tsconfig_include()
   if not include_paths then
     return
   end
@@ -137,7 +130,7 @@ end
 -- When you do gf in a string like '~/components/App', it will end up being
 -- './src/components/App'.
 function M.js_includeexpr(fname)
-  local paths = memo_get_tsconfig_paths()
+  local paths = get_tsconfig_paths()
 
   if paths then
     for alias, path in pairs(paths) do
