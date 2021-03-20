@@ -36,7 +36,6 @@ if !exists("g:vscode")
   endif
   if has("nvim-0.5.0")
     packadd! nvim-compe
-    " packadd! indent-blankline.nvim
   endif
 
   " html and javascript
@@ -175,9 +174,6 @@ if !exists("g:vscode")
     " enable colorizer for all file types
     lua require'colorizer'.setup(nil, { rgb_fn = true })
   endif
-
-  " let g:indent_blankline_char_highlight = 'NonText'
-  " let g:indent_blankline_filetype = ['javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'css', 'python']
 
   " disable colors in deno and nodejs
   let $NO_COLOR=0
