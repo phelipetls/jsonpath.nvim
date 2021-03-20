@@ -77,12 +77,27 @@ local function get_tsconfig_file()
   end
 end
 
+-- Memoizes the result of a function that takes a tsconfig filename
+local function once_per_config(fn)
+  local values_per_config = {}
+  return function(tsconfig, ...)
+    if vim.tbl_contains(values_per_config, tsconfig) then
+      return values_per_config[tsconfig]
+    end
+    local value = fn(tsconfig, ...)
+    values_per_config[tsconfig] = value
+    return value
+  end
+end
+
 -- Get all possible configured `.compilerOptions.paths` values by walking
 -- through all tsconfig.json configuration recursively, e.g., if it find a base
 -- configuration (in `.extends` key), it will continue to search there.
 local function get_tsconfig_paths(tsconfig, old_paths)
   local new_paths = old_paths or {}
-  local json = read_json_with_comments(tsconfig or get_tsconfig_file())
+
+  if not tsconfig then return old_paths end
+  local json = read_json_with_comments(tsconfig)
 
   if json and json.compilerOptions and json.compilerOptions.paths then
     for alias, path in pairs(json.compilerOptions.paths) do
@@ -92,6 +107,7 @@ local function get_tsconfig_paths(tsconfig, old_paths)
     end
   end
 
+  -- TODO: expand `.extends` value to be relative to tsconfig
   if json and json.extends and vim.startswith(json.extends, ".") then
     get_tsconfig_paths(json.extends, new_paths)
   end
@@ -99,17 +115,21 @@ local function get_tsconfig_paths(tsconfig, old_paths)
   return new_paths
 end
 
+local memo_get_tsconfig_paths = once_per_config(get_tsconfig_paths)
+
 -- Get `.include` array from a tsconfig.json file as comma separated string.
-local function get_tsconfig_include()
-  local include = read_json_with_comments(get_tsconfig_file()).include
+local function get_tsconfig_include(tsconfig)
+  local include = read_json_with_comments(tsconfig).include
   if include then
     return table.concat(include, ",")
   end
 end
 
+local memo_get_tsconfig_include = once_per_config(get_tsconfig_include)
+
 -- Helper function to include tsconfig's `.include` array inside `:h path`.
 M.set_tsconfig_include_in_path = function()
-  local include_paths = get_tsconfig_include()
+  local include_paths = memo_get_tsconfig_include(get_tsconfig_file())
   if not include_paths then
     return
   end
@@ -130,7 +150,7 @@ end
 -- When you do gf in a string like '~/components/App', it will end up being
 -- './src/components/App'.
 function M.js_includeexpr(fname)
-  local paths = get_tsconfig_paths()
+  local paths = memo_get_tsconfig_paths(get_tsconfig_file())
 
   if paths then
     for alias, path in pairs(paths) do
