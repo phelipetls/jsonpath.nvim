@@ -81,7 +81,7 @@ end
 local function once_per_config(fn)
   local values_per_config = {}
   return function(tsconfig, ...)
-    if vim.tbl_contains(values_per_config, tsconfig) then
+    if vim.tbl_contains(vim.tbl_keys(values_per_config), tsconfig) then
       return values_per_config[tsconfig]
     end
     local value = fn(tsconfig, ...)
