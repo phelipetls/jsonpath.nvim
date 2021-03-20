@@ -170,9 +170,9 @@ if !exists("g:vscode")
   " disable saving session on BufEnter
   let g:obsession_no_bufenter = 1
 
-  if has("nvim")
-    " enable colorizer for all file types
-    lua require'colorizer'.setup(nil, { rgb_fn = true })
+  " colorizer config
+  if has("nvim") && filereadable($HOME."/.config/nvim/colorizer.lua")
+    luafile $HOME/.config/nvim/colorizer.lua
   endif
 
   " disable colors in deno and nodejs
