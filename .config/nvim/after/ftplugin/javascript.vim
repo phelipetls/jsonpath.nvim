@@ -25,8 +25,6 @@ let b:surround_{char2nr("e")} = "${\r}"
 
 nnoremap <buffer> [<C-c> "zyiwOconsole.log(z)<Esc>
 nnoremap <buffer> ]<C-c> "zyiwoconsole.log(z)<Esc>
-nnoremap <buffer> [<C-j> "zyiwOJSON.stringify(z, null, 2)<Esc>
-nnoremap <buffer> ]<C-j> "zyiwoJSON.stringify(z, null, 2)<Esc>
 
 iabbr <buffer><silent> clog console.log()<Left><C-R>=Eatchar('\s')<CR>
 iabbr consoel console

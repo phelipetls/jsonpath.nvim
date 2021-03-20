@@ -328,7 +328,7 @@ nnoremap y<C-d> :let @+=expand("%:h")<CR>
 inoremap <C-l> <C-o>:silent norm g~l<CR>
 
 " open a new tab mapping
-nnoremap <C-w>t :tabnew<CR>
+nnoremap <C-w>t :tabedit %<CR>
 
 " use ctrl-k to delete rest of line
 inoremap <C-k> <C-o>D
