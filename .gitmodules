@@ -114,10 +114,6 @@
 	path = .config/nvim/pack/plugins/opt/vader.vim
 	url = https://github.com/junegunn/vader.vim
 	ignore = dirty
-[submodule "vim-dirvish-dovish"]
-	path = .config/nvim/pack/plugins/opt/vim-dirvish-dovish
-	url = https://github.com/roginfarrer/vim-dirvish-dovish
-	ignore = dirty
 [submodule "nvim-compe"]
 	path = .config/nvim/pack/plugins/opt/nvim-compe
 	url = https://github.com/hrsh7th/nvim-compe
