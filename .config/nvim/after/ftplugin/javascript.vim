@@ -45,14 +45,13 @@ function JsIncludeExpr(fname)
   return luaeval("require'js_utils'.js_includeexpr(_A)",a:fname)
 endfunction
 
-setlocal includeexpr=JsIncludeExpr(v:fname)
-
 setlocal isfname+=@-@
-
-setlocal include=^\\s*[^\/]\\+\\(from\\\|require(\\)\\s*['\"]\\ze[\.]
+setlocal includeexpr=JsIncludeExpr(v:fname)
+setlocal include=\\s*from\\s*['\"]
+setlocal suffixesadd=.js,.jsx,.ts,.tsx,.d.ts,.vue
 
 let &l:define = '^\s*\('
-      \ . '\(export\s\)*\(\w\+\s\)*\(var\|const\|let\|function\|class\|interface\|as\)\s'
+      \ . '\(export\s\)*\(\w\+\s\)*\(var\|const\|let\|function\|class\|interface\|as\|enum\)\s'
       \ . '\|\(public\|private\|protected\|readonly\|static\|get\s\|set\)\s'
       \ . '\|\(export\sdefault\s\|abstract\sclass\s\)'
       \ . '\|\(async\sfunction\)\s'
