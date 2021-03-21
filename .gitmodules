@@ -74,10 +74,6 @@
 	path = .config/nvim/pack/plugins/opt/vim-slime
 	url = https://github.com/jpalardy/vim-slime
 	ignore = dirty
-[submodule "AndreRadev/splitjoin"]
-	path = .config/nvim/pack/plugins/opt/splitjoin.vim
-	url = https://github.com/AndrewRadev/splitjoin.vim
-	ignore = dirty
 [submodule "vim-obsession"]
 	path = .config/nvim/pack/plugins/opt/vim-obsession
 	url = https://github.com/tpope/vim-obsession

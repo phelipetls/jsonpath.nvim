@@ -1,7 +1,6 @@
 "{{{ plugins
 
 " text editing conveniences
-packadd! splitjoin.vim
 packadd! vim-surround
 packadd! vim-commentary
 packadd! vim-repeat
