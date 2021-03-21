@@ -62,7 +62,10 @@ end
 
 local function find_tsconfig_root_dir()
   local fname = vim.fn.expand("%:p")
-  return require"lspconfig".util.root_pattern("tsconfig.json", "jsconfig.json")(fname)
+  local root_dir = require"lspconfig".util.root_pattern("tsconfig.json", "jsconfig.json")(fname)
+  if root_dir then
+    return root_dir
+  end
 end
 
 local function get_tsconfig_file()
@@ -83,6 +86,7 @@ end
 local function once_per_config(fn)
   local values_per_config = {}
   return function(tsconfig, ...)
+    if not tsconfig then return end
     if vim.tbl_contains(vim.tbl_keys(values_per_config), tsconfig) then
       return values_per_config[tsconfig]
     end
@@ -97,8 +101,8 @@ end
 -- configuration (`.extends` key), it will continue to search there.
 local function get_tsconfig_paths(tsconfig, old_paths)
   local new_paths = old_paths or {}
-
   if not tsconfig then return new_paths end
+
   local json = read_json_with_comments(tsconfig)
 
   local tsconfig_dir = vim.fn.fnamemodify(tsconfig, ":h")
@@ -133,9 +137,10 @@ local memo_get_tsconfig_paths = once_per_config(get_tsconfig_paths)
 
 -- Get `.include` array from a tsconfig.json file as comma separated string.
 local function get_tsconfig_include(tsconfig)
-  local include = read_json_with_comments(tsconfig).include
-  if include then
-    return table.concat(include, ",")
+  if not tsconfig then return end
+  local json = read_json_with_comments(tsconfig)
+  if json.include then
+    return table.concat(json.include, ",")
   end
 end
 
@@ -144,12 +149,10 @@ local memo_get_tsconfig_include = once_per_config(get_tsconfig_include)
 -- Helper function to include tsconfig's `.include` array inside `:h path`.
 M.set_tsconfig_include_in_path = function()
   local include_paths = memo_get_tsconfig_include(get_tsconfig_file())
-  if not include_paths then
+  if not include_paths or vim.bo.path:match(include_paths) then
     return
   end
-  if not vim.bo.path:match(include_paths) then
-    vim.bo.path = vim.bo.path .. "," .. include_paths
-  end
+  vim.bo.path = vim.bo.path .. "," .. include_paths
 end
 
 -- includeexpr that understands tsconfig.json `.compilerOptions.paths`.
@@ -177,4 +180,5 @@ function M.js_includeexpr(fname)
 
   return fname
 end
+
 return M
