@@ -10,7 +10,3 @@ endif
 nnoremap <silent><buffer> <F5> :silent !firefox --new-window "%" &<CR>
 
 setl omnifunc=emmet#completeTag
-
-if executable("firefox")
-  setlocal keywordprg=firefox\ https://developer.mozilla.org/search?topic=api\\&topic=html\\&q=\
-endif

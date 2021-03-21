@@ -1,5 +1,3 @@
-" source $HOME/.config/nvim/after/ftplugin/html.vim
-
 setlocal commentstring={#\ %s\ #}
 
 inoremap <C-x>{ {{<space><space>}}<left><left><left>
