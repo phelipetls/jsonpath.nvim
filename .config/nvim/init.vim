@@ -48,7 +48,6 @@ endif
 
 "}}}
 "{{{ general settings
-
 set nonumber
 set hidden
 set wildmenu
@@ -64,7 +63,6 @@ set nojoinspaces                    " remove spaces when joining lines
 set scrolloff=3                     " when scrolling, keep three lines ahead visible
 set backspace=indent,eol,start      " better backspace behaviour
 set encoding=utf-8                  " set default encoding to utf-8
-set foldmethod=marker
 set laststatus=2                    " always show statusline
 set noshowmode                      " don't show mode
 set tags=./tags,tags;               " look for tags file
@@ -605,3 +603,4 @@ endfunction
 inoremap <silent> <C-X>/ <Lt>/<C-r>=CloseTag()<CR><C-r>=Reindent()<CR><C-r>=Clean()<CR>
 
 "}}}
+" vim: foldmethod=marker
