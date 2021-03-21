@@ -186,9 +186,6 @@ endif
 "}}}
 "{{{ general mappings
 
-" improve esc in terminal
-tnoremap <Esc> <C-\><C-n>
-
 " use gr to go to previous tab
 nnoremap gr gT
 
@@ -296,7 +293,7 @@ cnoremap <C-X><C-A> <C-A>
 inoremap <expr> <C-E> col('.')>strlen(getline('.'))?"\<Lt>C-E>":"\<Lt>End>"
 
 " cool mapping to get a list of dates
-let date_formats = ["%Y-%m-%d","%Y-%m-%d %H:%M:%S"]
+let date_formats = ["%Y-%m-%d","%Y-%m-%dT%H:%M:%S%Z"]
 inoremap <silent> <C-G><C-T> <C-R>=repeat(complete(col('.'),map(date_formats,'strftime(v:val)')),0)<CR>
 
 " <space> does not move cursor in normal mode
@@ -309,9 +306,6 @@ cnoremap <C-R><C-L> <C-R>=substitute(getline('.'), '^\s*', '', '')<CR>
 omap <Tab> %
 xmap <Tab> %
 
-" use aa as an operator for matchit region
-omap <silent> aa :normal va%<CR>
-
 " put file name in clipboard
 nnoremap yp :let @+=expand("%:p")<CR>
 nnoremap y<C-p> :let @+=expand("%:p")<CR>
@@ -319,9 +313,6 @@ nnoremap y<C-p> :let @+=expand("%:p")<CR>
 " put file directory name in clipboard
 nnoremap yd :let @+=expand("%:h")<CR>
 nnoremap y<C-d> :let @+=expand("%:h")<CR>
-
-" map to toggle case of character under cursor
-inoremap <C-l> <C-o>:silent norm g~l<CR>
 
 " open a new tab mapping
 nnoremap <C-w>t :tabedit %<CR>
@@ -413,7 +404,8 @@ set tabline=%!Tabline()
 
 set path=.,,..
 
-"{{{2 fzf
+" ignore these files while browsing
+set wildignore=venv*/,__pycache__/,.pytest_cache/,tags,htmlcov/.coverage,*.pyc
 
 if executable("fzf")
   let g:fzf_preview_window = ''
@@ -426,49 +418,21 @@ if executable("fzf")
   nnoremap <space>g :Rg<CR>
 endif
 
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
-
-"}}} fzf
-"{{{2 netrw
-
-let g:netrw_special_syntax = 1  " highlight special files in netrw
-let g:netrw_sizestyle = "H"  " human-readable file size
-let g:netrw_timefmt = "%b %d %R" " preferred datetime format
-let g:netrw_use_errorwindow = 0 " don't open a separate window to show errors
-
-" don't go to netrw buffer on ctrl-6
-let g:netrw_altfile = 1
-
-" delete hidden netrw buffers
-" see https://github.com/tpope/vim-vinegar/issues/13
-let g:netrw_fastbrowse = 0
-
-" avoid netrw refresh command conflicting with <c-l> mapping
-nnoremap <a-L> <Plug>NetrwRefresh
-
-" ignore these files while browsing
-set wildignore=venv*/,__pycache__/,.pytest_cache/,tags,htmlcov/.coverage,*.pyc
-
-" wipe netrw buffers when closed
-augroup Netrw
-  autocmd!
-  au FileType netrw setlocal bufhidden=wipe
-augroup END
-
-"}}}2
+let g:fzf_colors = {
+      \ 'fg':      ['fg', 'Normal'],
+      \ 'bg':      ['bg', 'Normal'],
+      \ 'hl':      ['fg', 'Comment'],
+      \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+      \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+      \ 'hl+':     ['fg', 'Statement'],
+      \ 'info':    ['fg', 'PreProc'],
+      \ 'border':  ['fg', 'Ignore'],
+      \ 'prompt':  ['fg', 'Conditional'],
+      \ 'pointer': ['fg', 'Exception'],
+      \ 'marker':  ['fg', 'Keyword'],
+      \ 'spinner': ['fg', 'Label'],
+      \ 'header':  ['fg', 'Comment']
+      \ }
 
 "}}}
 "{{{ autocompletion config
@@ -477,10 +441,10 @@ set completeopt=menuone,noselect,noinsert
 set shortmess+=c
 set pumheight=10
 
-luafile $HOME/.config/nvim/nvim-compe.lua
-
 inoremap <silent><expr> <C-Space> compe#complete()
 inoremap <silent><expr> <CR> compe#confirm('<CR>')
+
+luafile $HOME/.config/nvim/nvim-compe.lua
 
 "}}}
 "{{{ quickfix config
@@ -516,7 +480,6 @@ function! RunMake()
     make! %
     return
   endif
-
   Make %
 endfunction
 
@@ -534,7 +497,6 @@ function! ToggleQuickfixList()
     cclose
     return
   endif
-
   call OpenQuickfixList()
 endfunction
 
@@ -553,7 +515,6 @@ function! ToggleLocationList()
     lclose
     return
   endif
-
   call OpenLocationList()
 endfunction
 
@@ -614,7 +575,7 @@ xnoremap <silent> ar a[
 onoremap <silent> ir :normal vi[<CR>
 onoremap <silent> ar :normal va[<CR>
 
-for char in [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+', '-', '#' ]
+for char in ['_', '-', '/', '*']
   execute 'xnoremap <silent> i' . char . ' :<C-u>normal! T' . char . 'vt' . char . '<CR>'
   execute 'onoremap <silent> i' . char . ' :normal vi' . char . '<CR>'
   execute 'xnoremap <silent> a' . char . ' :<C-u>normal! F' . char . 'vf' . char . '<CR>'
