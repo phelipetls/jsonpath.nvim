@@ -12,66 +12,66 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] =
 )
 
 local function set_lsp_config(client)
-  vim.api.nvim_command [[setlocal signcolumn=yes]]
-  vim.api.nvim_command [[nnoremap <buffer><silent> <C-space> :lua require'lspsaga.diagnostic'.show_line_diagnostics()<CR>]]
-  vim.api.nvim_command [[nnoremap <buffer><silent> ]g :Lspsaga diagnostic_jump_next<CR>]]
-  vim.api.nvim_command [[nnoremap <buffer><silent> [g :Lspsaga diagnostic_jump_prev<CR>]]
-  vim.api.nvim_command [[nnoremap <buffer><silent> <space>d :lua vim.lsp.diagnostic.set_loclist()<CR>]]
+  vim.cmd [[setlocal signcolumn=yes]]
+  vim.cmd [[nnoremap <buffer><silent> <C-space> :lua require'lspsaga.diagnostic'.show_line_diagnostics()<CR>]]
+  vim.cmd [[nnoremap <buffer><silent> ]g :Lspsaga diagnostic_jump_next<CR>]]
+  vim.cmd [[nnoremap <buffer><silent> [g :Lspsaga diagnostic_jump_prev<CR>]]
+  vim.cmd [[nnoremap <buffer><silent> <space>d :lua vim.lsp.diagnostic.set_loclist()<CR>]]
 
   if client.resolved_capabilities.completion then
-    vim.api.nvim_command [[setlocal omnifunc=v:lua.vim.lsp.omnifunc]]
+    vim.cmd [[setlocal omnifunc=v:lua.vim.lsp.omnifunc]]
   end
 
   if client.resolved_capabilities.hover then
-    vim.api.nvim_command [[nnoremap <buffer><silent> K :lua require('lspsaga.hover').render_hover_doc()<CR>]]
+    vim.cmd [[nnoremap <buffer><silent> K :lua require('lspsaga.hover').render_hover_doc()<CR>]]
   end
 
   if client.resolved_capabilities.goto_definition then
-    vim.api.nvim_command [[nnoremap <buffer><silent> <C-LeftMouse> :lua require"lsp_utils".definition_sync()<CR>]]
-    vim.api.nvim_command [[nnoremap <buffer><silent> [d :lua require"lsp_utils".definition_sync()<CR>]]
-    vim.api.nvim_command [[nnoremap <buffer><silent> [<C-d> :lua require"lsp_utils".definition_sync()<CR>]]
-    vim.api.nvim_command [[nnoremap <buffer><silent> <C-w><C-d> :split <bar> lua require"lsp_utils".definition_sync('split')<CR>]]
-    vim.api.nvim_command [[nnoremap <buffer><silent> <C-w>} :Lspsaga preview_definition<CR>]]
-    vim.api.nvim_command [[nnoremap <buffer><silent> <C-c><C-p> :Lspsaga preview_definition<CR>]]
+    vim.cmd [[nnoremap <buffer><silent> <C-LeftMouse> :lua require"lsp_utils".definition_sync()<CR>]]
+    vim.cmd [[nnoremap <buffer><silent> [d :lua require"lsp_utils".definition_sync()<CR>]]
+    vim.cmd [[nnoremap <buffer><silent> [<C-d> :lua require"lsp_utils".definition_sync()<CR>]]
+    vim.cmd [[nnoremap <buffer><silent> <C-w><C-d> :split <bar> lua require"lsp_utils".definition_sync('split')<CR>]]
+    vim.cmd [[nnoremap <buffer><silent> <C-w>} :Lspsaga preview_definition<CR>]]
+    vim.cmd [[nnoremap <buffer><silent> <C-c><C-p> :Lspsaga preview_definition<CR>]]
   end
 
   if client.resolved_capabilities.type_definition then
-    vim.api.nvim_command [[nnoremap <buffer><silent> [t :lua vim.lsp.buf.type_definition()<CR>]]
-    vim.api.nvim_command [[nnoremap <buffer><silent> <C-w><C-t> :lua vim.lsp.buf.type_definition()<CR>]]
+    vim.cmd [[nnoremap <buffer><silent> [t :lua vim.lsp.buf.type_definition()<CR>]]
+    vim.cmd [[nnoremap <buffer><silent> <C-w><C-t> :lua vim.lsp.buf.type_definition()<CR>]]
   end
 
   if client.resolved_capabilities.find_references then
-    vim.api.nvim_command [[command! -buffer References lua vim.lsp.buf.references()]]
+    vim.cmd [[command! -buffer References lua vim.lsp.buf.references()]]
   end
 
   if client.resolved_capabilities.rename then
-    vim.api.nvim_command [[nnoremap <buffer><silent> gR :lua vim.lsp.buf.rename()<CR>]]
-    vim.api.nvim_command [[command! -buffer Rename lua vim.lsp.buf.rename()]]
+    vim.cmd [[nnoremap <buffer><silent> gR :lua vim.lsp.buf.rename()<CR>]]
+    vim.cmd [[command! -buffer Rename lua vim.lsp.buf.rename()]]
   end
 
   if client.resolved_capabilities.workspace_symbol then
-    vim.api.nvim_command [[nnoremap <buffer><silent> gs :lua vim.lsp.buf.workspace_symbol()<CR>]]
+    vim.cmd [[nnoremap <buffer><silent> gs :lua vim.lsp.buf.workspace_symbol()<CR>]]
   end
 
   if client.resolved_capabilities.code_action then
-    vim.api.nvim_command [[nnoremap <buffer><silent> <M-CR> :lua vim.lsp.buf.code_action()<CR>]]
-    vim.api.nvim_command [[vnoremap <buffer><silent> <M-CR> :'<,'>lua vim.lsp.buf.range_code_action()<CR>]]
+    vim.cmd [[nnoremap <buffer><silent> <M-CR> :lua vim.lsp.buf.code_action()<CR>]]
+    vim.cmd [[vnoremap <buffer><silent> <M-CR> :'<,'>lua vim.lsp.buf.range_code_action()<CR>]]
   end
 
   if client.resolved_capabilities.document_formatting then
-    vim.api.nvim_command [[command! -buffer Fmt lua vim.lsp.buf.formatting_sync(nil, 1000)]]
-    vim.api.nvim_command [[autocmd! BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 500)]]
+    vim.cmd [[command! -buffer Fmt lua vim.lsp.buf.formatting_sync(nil, 1000)]]
+    vim.cmd [[autocmd! BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 500)]]
   end
 
   if client.resolved_capabilities.signature_help then
-    vim.api.nvim_command [[inoremap <buffer><silent> <C-x><C-p> <C-o>:lua require('lspsaga.signaturehelp').signature_help()<CR>]]
+    vim.cmd [[inoremap <buffer><silent> <C-x><C-p> <C-o>:lua require('lspsaga.signaturehelp').signature_help()<CR>]]
   end
 
   if client.name == "tsserver" then
-    vim.api.nvim_command [[command! OrganizeImports :lua require'tsserver_utils'.organize_imports()<CR>]]
-    vim.api.nvim_command [[nnoremap <silent> <S-M-o> :lua require'tsserver_utils'.organize_imports()<CR>]]
+    vim.cmd [[command! OrganizeImports :lua require'tsserver_utils'.organize_imports()<CR>]]
+    vim.cmd [[nnoremap <silent> <S-M-o> :lua require'tsserver_utils'.organize_imports()<CR>]]
 
-    vim.api.nvim_command("let g:AfterRenameHook = function('tsserver#Rename')")
+    vim.cmd("let g:AfterRenameHook = function('tsserver#Rename')")
   end
 end
 
@@ -154,12 +154,12 @@ lspconfig.efm.setup {
         local logfile = "$HOME/efmlangserver.log"
         local cmd = string.format("tail -1000 %s | grep -E '^[0-9]{4}/[0-9]{2}/[0-9]{2}'", logfile)
 
-        vim.api.nvim_command("split new")
-        vim.api.nvim_command("10wincmd _")
-        vim.api.nvim_command("set bt=nofile")
-        vim.api.nvim_command("setlocal nowrap")
-        vim.api.nvim_command("setlocal bufhidden=wipe")
-        vim.api.nvim_command(string.format("r ++edit !%s", cmd))
+        vim.cmd("split new")
+        vim.cmd("10wincmd _")
+        vim.cmd("set bt=nofile")
+        vim.cmd("setlocal nowrap")
+        vim.cmd("setlocal bufhidden=wipe")
+        vim.cmd(string.format("r ++edit !%s", cmd))
       end
     }
   }
