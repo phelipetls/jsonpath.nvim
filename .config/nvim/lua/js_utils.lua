@@ -1,5 +1,7 @@
 local M = {}
 
+local lspconfig = require"lspconfig"
+
 local function exists_package_json_field(field)
   if vim.fn.filereadable("package.json") ~= 0 then
     local package_json = vim.fn.json_decode(vim.fn.readfile("package.json"))
@@ -62,7 +64,11 @@ end
 
 local function find_tsconfig_root_dir()
   local fname = vim.fn.expand("%:p")
-  local root_dir = require"lspconfig".util.root_pattern("tsconfig.json", "jsconfig.json")(fname)
+  -- Return early for fugitive:// files, for example
+  if not vim.startswith(fname, os.getenv("HOME")) then
+    return
+  end
+  local root_dir = lspconfig.util.root_pattern("tsconfig.json", "jsconfig.json")(fname)
   if root_dir then
     return root_dir
   end
