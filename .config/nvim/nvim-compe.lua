@@ -13,17 +13,7 @@ require "compe".setup(
       buffer = true,
       calc = true,
       omni = {filetypes = {"css", "html"}},
-      nvim_lua = true,
-      nvim_lsp = {
-        filetypes = {
-          "javascript",
-          "javascriptreact",
-          "javascript.jsx",
-          "typescript",
-          "typescript.tsx",
-          "typescriptreact"
-        }
-      }
+      nvim_lua = true
     }
   }
 )
