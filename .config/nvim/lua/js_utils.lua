@@ -79,11 +79,11 @@ local function get_tsconfig_file()
 
   if not root_dir then return end
 
-  if vim.fn.filereadable(root_dir .. "/tsconfig.json") then
+  if vim.fn.filereadable(root_dir .. "/tsconfig.json") == 1 then
     return root_dir .. "/tsconfig.json"
   end
 
-  if vim.fn.filereadable(root_dir .. "/jsconfig.json") then
+  if vim.fn.filereadable(root_dir .. "/jsconfig.json") == 1 then
     return root_dir .. "/jsconfig.json"
   end
 end
