@@ -1,7 +1,9 @@
 setlocal shiftwidth=2 softtabstop=2
 
 setlocal path-=./node_modules/**,node_modules/**
-lua require"js_utils".set_tsconfig_include_in_path()
+if has("nvim")
+  lua require"js_utils".set_tsconfig_include_in_path()
+endif
 
 if executable("jest") && match(expand("%:p:t"), 'test\.\(js\|ts\|jsx\|tsx\)$') != -1
   compiler jest

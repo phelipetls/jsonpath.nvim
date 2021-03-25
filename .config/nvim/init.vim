@@ -438,10 +438,12 @@ set completeopt=menuone,noselect,noinsert
 set shortmess+=c
 set pumheight=10
 
-inoremap <silent><expr> <C-Space> compe#complete()
-inoremap <silent><expr> <CR> compe#confirm('<CR>')
+if has("nvim")
+  inoremap <silent><expr> <C-Space> compe#complete()
+  inoremap <silent><expr> <CR> compe#confirm('<CR>')
 
-luafile $HOME/.config/nvim/nvim-compe.lua
+  luafile $HOME/.config/nvim/nvim-compe.lua
+endif
 
 "}}}
 "{{{ quickfix config
