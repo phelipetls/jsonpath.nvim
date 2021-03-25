@@ -366,7 +366,7 @@ endif
 "{{{ statusline and tabline
 
 let &g:statusline=' '
-let &g:statusline.='[%n] %t'
+let &g:statusline.='%t'
 let &g:statusline.=' %{FugitiveStatusline()}'
 let &g:statusline.="%{!&modifiable ? '\ua0[-]' : &modified ? '\ua0[+]' : ''}"
 let &g:statusline.="%{&endofline ? '' : '\ua0[noeol]'}"
