@@ -13,7 +13,17 @@ require "compe".setup(
       buffer = true,
       calc = true,
       omni = {filetypes = {"css", "html"}},
-      nvim_lua = true
+      nvim_lua = true,
+      nvim_lsp = {
+        filetypes = {
+          "javascript",
+          "javascriptreact",
+          "javascript.jsx",
+          "typescript",
+          "typescript.tsx",
+          "typescriptreact"
+        }
+      }
     }
   }
 )
@@ -27,9 +37,6 @@ local check_whitespace = function()
     return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s')
 end
 
--- Use (s-)tab to:
---- move to prev/next item in completion menuone
---- jump to prev/next snippet's placeholder
 _G.tab_complete = function()
   if vim.fn.pumvisible() == 1 then
     return t "<C-n>"

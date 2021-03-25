@@ -18,10 +18,6 @@ local function set_lsp_config(client)
   vim.cmd [[nnoremap <buffer><silent> [g :Lspsaga diagnostic_jump_prev<CR>]]
   vim.cmd [[nnoremap <buffer><silent> <space>d :lua vim.lsp.diagnostic.set_loclist()<CR>]]
 
-  if client.resolved_capabilities.completion then
-    vim.cmd [[setlocal omnifunc=v:lua.vim.lsp.omnifunc]]
-  end
-
   if client.resolved_capabilities.hover then
     vim.cmd [[nnoremap <buffer><silent> K :lua require('lspsaga.hover').render_hover_doc()<CR>]]
   end
