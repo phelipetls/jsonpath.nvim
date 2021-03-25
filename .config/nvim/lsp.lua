@@ -13,13 +13,13 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] =
 
 local function set_lsp_config(client)
   vim.cmd [[setlocal signcolumn=yes]]
-  vim.cmd [[nnoremap <buffer><silent> <C-space> :lua require'lspsaga.diagnostic'.show_line_diagnostics()<CR>]]
-  vim.cmd [[nnoremap <buffer><silent> ]g :Lspsaga diagnostic_jump_next<CR>]]
-  vim.cmd [[nnoremap <buffer><silent> [g :Lspsaga diagnostic_jump_prev<CR>]]
+  vim.cmd [[nnoremap <buffer><silent> <C-space> :lua vim.lsp.diagnostic.show_line_diagnostics()<CR>]]
+  vim.cmd [[nnoremap <buffer><silent> ]g :lua vim.lsp.diagnostic.goto_next()<CR>]]
+  vim.cmd [[nnoremap <buffer><silent> [g :lua vim.lsp.diagnostic.goto_prev()<CR>]]
   vim.cmd [[nnoremap <buffer><silent> <space>d :lua require'lsp_utils'.open_diagnostics_loclist()<CR>]]
 
   if client.resolved_capabilities.hover then
-    vim.cmd [[nnoremap <buffer><silent> K :lua require('lspsaga.hover').render_hover_doc()<CR>]]
+    vim.cmd [[nnoremap <buffer><silent> K :lua vim.lsp.buf.hover()<CR>]]
   end
 
   if client.resolved_capabilities.goto_definition then
@@ -27,8 +27,8 @@ local function set_lsp_config(client)
     vim.cmd [[nnoremap <buffer><silent> [d :lua require"lsp_utils".definition_sync()<CR>]]
     vim.cmd [[nnoremap <buffer><silent> [<C-d> :lua require"lsp_utils".definition_sync()<CR>]]
     vim.cmd [[nnoremap <buffer><silent> <C-w><C-d> :split <bar> lua require"lsp_utils".definition_sync('split')<CR>]]
-    vim.cmd [[nnoremap <buffer><silent> <C-w>} :Lspsaga preview_definition<CR>]]
-    vim.cmd [[nnoremap <buffer><silent> <C-c><C-p> :Lspsaga preview_definition<CR>]]
+    vim.cmd [[nnoremap <buffer><silent> <C-w>} :lua require"lsp_utils".peek_definition()<CR>]]
+    vim.cmd [[nnoremap <buffer><silent> <C-c><C-p> :lua require"lsp_utils".peek_definition()<CR>]]
   end
 
   if client.resolved_capabilities.type_definition then
@@ -60,7 +60,7 @@ local function set_lsp_config(client)
   end
 
   if client.resolved_capabilities.signature_help then
-    vim.cmd [[inoremap <buffer><silent> <C-x><C-p> <C-o>:lua require('lspsaga.signaturehelp').signature_help()<CR>]]
+    vim.cmd [[inoremap <buffer><silent> <C-x><C-p> <C-o>:lua vim.lsp.buf.signature_help()<CR>]]
   end
 
   if client.name == "tsserver" then
