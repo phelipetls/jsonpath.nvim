@@ -1,6 +1,6 @@
 local M = {}
 
-local lspconfig = require"lspconfig"
+local lspconfig = require "lspconfig"
 
 local function exists_package_json_field(field)
   if vim.fn.filereadable("package.json") ~= 0 then
@@ -77,7 +77,9 @@ end
 local function get_tsconfig_file()
   local root_dir = find_tsconfig_root_dir()
 
-  if not root_dir then return end
+  if not root_dir then
+    return
+  end
 
   if vim.fn.filereadable(root_dir .. "/tsconfig.json") == 1 then
     return root_dir .. "/tsconfig.json"
@@ -92,7 +94,9 @@ end
 local function once_per_config(fn)
   local values_per_config = {}
   return function(tsconfig, ...)
-    if not tsconfig then return end
+    if not tsconfig then
+      return
+    end
     if vim.tbl_contains(vim.tbl_keys(values_per_config), tsconfig) then
       return values_per_config[tsconfig]
     end
@@ -108,7 +112,9 @@ end
 -- See https://www.typescriptlang.org/docs/handbook/module-resolution.html#path-mapping.
 local function get_tsconfig_paths(tsconfig, old_paths)
   local new_paths = old_paths or {}
-  if not tsconfig then return new_paths end
+  if not tsconfig then
+    return new_paths
+  end
 
   local json = read_json_with_comments(tsconfig)
 
@@ -147,7 +153,9 @@ local memo_get_tsconfig_paths = once_per_config(get_tsconfig_paths)
 
 -- Get `.include` array from a tsconfig.json file as comma separated string.
 local function get_tsconfig_include(tsconfig)
-  if not tsconfig then return end
+  if not tsconfig then
+    return
+  end
   local json = read_json_with_comments(tsconfig)
   if json.include then
     return table.concat(json.include, ",")
