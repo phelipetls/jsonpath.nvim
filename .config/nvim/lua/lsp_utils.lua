@@ -46,4 +46,10 @@ function M.definition_sync()
   end
 end
 
+function M.open_diagnostics_loclist()
+  vim.lsp.diagnostic.set_loclist()
+  vim.cmd [[wincmd p]]
+  vim.cmd [[lafter]]
+end
+
 return M

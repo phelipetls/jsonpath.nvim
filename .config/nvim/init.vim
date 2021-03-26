@@ -464,8 +464,8 @@ endfunction
 " wrap around when navigating the quickfix list
 nnoremap <silent> ]q :call ListJump("c", "next", "first")<CR>
 nnoremap <silent> [q :call ListJump("c", "previous", "last")<CR>
-nnoremap <silent> ]w :call ListJump("l", "next", "first")<CR>
-nnoremap <silent> [w :call ListJump("l", "previous", "last")<CR>
+nnoremap <silent> ]w :call ListJump("l", "after", "first")<CR>
+nnoremap <silent> [w :call ListJump("l", "before", "last")<CR>
 
 if has("nvim")
   command! -nargs=* -complete=file_in_path Make lua require'async_make'.make(<q-args>)
