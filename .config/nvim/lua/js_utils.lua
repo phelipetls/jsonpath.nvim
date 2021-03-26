@@ -105,6 +105,7 @@ end
 -- Get all possible configured `.compilerOptions.paths` values by walking
 -- through all tsconfig.json files recursively. If it finds a base
 -- configuration (`.extends` key), it will continue to search there.
+-- See https://www.typescriptlang.org/docs/handbook/module-resolution.html#path-mapping.
 local function get_tsconfig_paths(tsconfig, old_paths)
   local new_paths = old_paths or {}
   if not tsconfig then return new_paths end
@@ -114,9 +115,12 @@ local function get_tsconfig_paths(tsconfig, old_paths)
   local tsconfig_dir = vim.fn.fnamemodify(tsconfig, ":h")
 
   if json and json.compilerOptions and json.compilerOptions.paths then
-    for alias, path in pairs(json.compilerOptions.paths) do
-      if not vim.tbl_contains(vim.tbl_keys(new_paths), alias) then
-        new_paths[alias] = tsconfig_dir .. "/" .. path[1]
+    local base_url = json.compilerOptions.baseUrl
+
+    for alias, paths_list in pairs(json.compilerOptions.paths) do
+      for _, path in pairs(paths_list) do
+        local path_without_wildcard = path:gsub("*", "")
+        new_paths[alias] = table.concat({tsconfig_dir, base_url, path_without_wildcard}, "/")
       end
     end
   end
@@ -171,14 +175,19 @@ end
 --   }
 -- }
 -- When you do gf in a string like '~/components/App', it will end up being
--- './src/components/App'.
+-- '<compilerOptions.baseUrl>/src/components/App'.
 function M.js_includeexpr(fname)
   local paths = memo_get_tsconfig_paths(get_tsconfig_file())
 
-  if paths then
-    for alias, path in pairs(paths) do
-      if vim.startswith(fname, alias:gsub("*", "")) then
-        local real_path = fname:gsub(alias, path:gsub("*", ""))
+  if not paths then
+    return fname
+  end
+
+  for alias, path in pairs(paths) do
+    local alias_without_wildcard = alias:gsub("*", "")
+    if vim.startswith(fname, alias_without_wildcard) then
+      local real_path = fname:gsub(alias, path)
+      if vim.fn.filereadable(real_path) then
         return real_path
       end
     end
