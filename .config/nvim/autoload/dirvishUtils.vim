@@ -1,6 +1,6 @@
 let s:DEFAULT_LS_FLAGS = "--directory --indicator-style=slash"
 
-function! dirvishUtils#Sort(flag)
+function! dirvishUtils#Sort(flag) abort
   if &filetype != "dirvish" || !executable("ls")
     return
   endif
@@ -9,21 +9,23 @@ function! dirvishUtils#Sort(flag)
   execute printf("%%!%s", cmd)
 endfunction
 
-function! dirvishUtils#Delete()
+function! dirvishUtils#Delete() abort
   let target = trim(getline("."))
   if confirm(printf("Delete %s?", target), "&Yes\n&No", 2) != 1
     return
   endif
-  let flags = isdirectory(target) ? "d" : ""
-  let result = delete(target, flags)
+  let result = delete(target, isdirectory(target) ? "d" : "")
   if result == -1
     echoerr printf("Failed to remove %s", target)
   endif
-  bd #
+  let altfile = expand("#")
+  if !isdirectory(altfile) && bufexists(target)
+    exe "bd " . bufnr(target)
+  endif
   Dirvish %
 endfunction
 
-function! dirvishUtils#CreateFile()
+function! dirvishUtils#CreateFile() abort
   let filename = input("File: ")
   if trim(filename) == ""
     return
@@ -39,7 +41,7 @@ function! dirvishUtils#CreateFile()
   Dirvish %
 endfunction
 
-function! dirvishUtils#CreateDir()
+function! dirvishUtils#CreateDir() abort
   let filename = input("Directory: ")
   if trim(filename) == ""
     return
@@ -55,7 +57,7 @@ function! dirvishUtils#CreateDir()
   Dirvish %
 endfunction
 
-function! dirvishUtils#Rename()
+function! dirvishUtils#Rename() abort
   let oldpath = trim(getline('.'))
   if isdirectory(oldpath)
     let oldname = fnamemodify(oldpath, ':h:t')
@@ -71,10 +73,15 @@ function! dirvishUtils#Rename()
   if output == -1
     echoerr "Failed to rename"
   else
-    bd #
+    let altfile = expand("#")
+    if !isdirectory(altfile) && bufexists(oldpath)
+      exe "bd " . bufnr(oldpath)
+    endif
     let Hook = get(g:, "AfterRenameHook")
     if !empty(Hook)
-      call Hook(oldpath, newpath)
+      try
+        call Hook(oldpath, newpath)
+      endtry
     endif
   endif
   Dirvish %
