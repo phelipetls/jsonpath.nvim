@@ -4,6 +4,8 @@ hi link typescriptExport Include
 hi link typescriptVariable StorageClass
 hi link typescriptLabel Identifier
 
+hi link typescriptInterfaceHeritage Type
+
 hi link typescriptBraces Special
 hi link typescriptParens Special
 hi link typescriptTypeReference Type
