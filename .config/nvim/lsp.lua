@@ -88,11 +88,6 @@ lspconfig.pyls.setup {
 }
 
 lspconfig.tsserver.setup {
-  on_init = function(client)
-    if client.config.flags then
-      client.config.flags.allow_incremental_sync = true
-    end
-  end,
   on_attach = function(client)
     client.resolved_capabilities.document_formatting = false
     client.server_capabilities.completionProvider.triggerCharacters = nil
