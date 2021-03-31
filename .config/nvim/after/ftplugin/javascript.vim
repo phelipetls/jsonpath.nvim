@@ -38,10 +38,6 @@ inoreabbrev cosnt const
 inoreabbrev /** /****/<Up>
 inoreabbrev docuemnt document
 
-if executable("firefox")
-  setlocal keywordprg=firefox\ https://developer.mozilla.org/search?topic=api\\&topic=js\\&q=\
-endif
-
 function JsIncludeExpr(fname)
   return luaeval("require'js_utils'.js_includeexpr(_A)",a:fname)
 endfunction
