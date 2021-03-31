@@ -1,1 +1,1 @@
-source $HOME/.config/nvim/after/ftplugin/css.vim
+source <sfile>:h/css.vim

@@ -1,4 +1,4 @@
-source $HOME/.config/nvim/after/ftplugin/javascript.vim
+source <sfile>:h/javascript.vim
 
 if executable("deno")
   nnoremap <buffer> <F5> :!deno run %<CR>

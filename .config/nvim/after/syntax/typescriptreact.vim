@@ -1,2 +1,2 @@
-source $HOME/.config/nvim/after/syntax/tsx.vim
-source $HOME/.config/nvim/after/syntax/typescript.vim
+source <sfile>:h/tsx.vim
+source <sfile>:h/typescript.vim
