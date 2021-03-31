@@ -184,6 +184,49 @@ M.set_tsconfig_include_in_path = function()
   vim.bo.path = vim.bo.path .. "," .. include_paths
 end
 
+local function expand_tsconfig_alias(fname)
+  if vim.startswith(fname, ".") then
+    return fname
+  end
+
+  local alias_to_path = memo_get_tsconfig_paths(get_tsconfig_file())
+
+  if not alias_to_path then
+    return fname
+  end
+
+  for alias, path in pairs(alias_to_path) do
+    local alias_without_wildcard = alias:gsub("*", "")
+    if vim.startswith(fname, alias_without_wildcard) then
+      local real_path = fname:gsub(alias, path)
+      if vim.fn.filereadable(real_path) then
+        return real_path
+      end
+    end
+  end
+
+  return fname
+end
+
+local function find_index_file(fname)
+  if vim.fn.isdirectory(fname) then
+    local file = vim.fn.findfile("index", fname)
+    if file ~= "" then
+      return file
+    end
+  end
+end
+
+local function find_component(fname)
+  if vim.fn.isdirectory(fname) then
+    local component_name = vim.fn.fnamemodify(fname, ":t:r")
+    local file = vim.fn.findfile(component_name, fname)
+    if file ~= "" then
+      return file
+    end
+  end
+end
+
 -- includeexpr that understands tsconfig.json `.compilerOptions.paths`.
 -- For example, if tsconfig.json has
 -- {
@@ -195,24 +238,25 @@ end
 -- }
 -- When you do gf in a string like '~/components/App', it will end up being
 -- '<compilerOptions.baseUrl>/src/components/App'.
+--
+-- It also tries to find a file with the same name as the folder (e.g.,
+-- components) or index files.
 function M.js_includeexpr(fname)
-  local paths = memo_get_tsconfig_paths(get_tsconfig_file())
+  fname = expand_tsconfig_alias(fname)
+  return find_component(fname) or find_index_file(fname) or fname
+end
 
-  if not paths then
-    return fname
+function M.go_to_file(cmd)
+  local fname = expand_tsconfig_alias(vim.fn.expand("<cfile>"))
+  local file = find_component(fname) or find_index_file(fname) or vim.fn.findfile(fname)
+
+  if vim.fn.filereadable(file) then
+    vim.cmd(string.format("silent %s %s", cmd, file))
+  else
+    vim.cmd [[echohl WarningMsg]]
+    vim.cmd(string.format("echo '%s'", "Failed to go to " .. fname))
+    vim.cmd [[echohl None]]
   end
-
-  for alias, path in pairs(paths) do
-    local alias_without_wildcard = alias:gsub("*", "")
-    if vim.startswith(fname, alias_without_wildcard) then
-      local real_path = fname:gsub(alias, path)
-      if vim.fn.filereadable(real_path) then
-        return real_path
-      end
-    end
-  end
-
-  return fname
 end
 
 return M

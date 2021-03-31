@@ -58,3 +58,7 @@ let &l:define = '^\s*\('
       \ . '\|\(async\sfunction\)\s'
       \ . '\|\(\ze\i\+([^)]*).*{$\)'
       \ . '\)'
+
+nnoremap <silent><buffer> gf :call luaeval("require'js_utils'.go_to_file(_A)","edit")<CR>
+nnoremap <silent><buffer> <C-w>f :call luaeval("require'js_utils'.go_to_file(_A)","split")<CR>
+nnoremap <silent><buffer> <C-w><C-f> :call luaeval("require'js_utils'.go_to_file(_A)","split")<CR>
