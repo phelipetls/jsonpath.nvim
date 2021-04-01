@@ -173,17 +173,13 @@ local function get_tsconfig_include(tsconfig)
   if json.include then
     return table.concat(json.include, ",")
   end
+  return ""
 end
 
 local memo_get_tsconfig_include = once_per_config(get_tsconfig_include)
 
--- Helper function to include tsconfig's `.include` array inside `:h path`.
-M.set_tsconfig_include_in_path = function()
-  local include_paths = memo_get_tsconfig_include(get_tsconfig_file())
-  if not include_paths or vim.bo.path:match(include_paths) then
-    return
-  end
-  vim.bo.path = vim.bo.path .. "," .. include_paths
+function M.get_tsconfig_include()
+  return memo_get_tsconfig_include(get_tsconfig_file())
 end
 
 local function expand_tsconfig_alias(fname)
