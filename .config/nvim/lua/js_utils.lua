@@ -106,18 +106,20 @@ local function once_per_config(fn)
   end
 end
 
+-- Expand the parent directory accessors in a relative filename.
+local function expand_parentdir(dir, relative_fname)
+  local fname, parentdir_count = relative_fname:gsub("%.%./", "")
+  local parentdir_path = vim.fn.fnamemodify(dir, string.rep(":h", parentdir_count))
+  return vim.fn.simplify(parentdir_path .. "/" .. fname)
+end
+
 local function expand_tsconfig_extends(extends, tsconfig_dir)
   if not extends or vim.startswith(extends, "@") then
     return
   end
 
-  -- If it is in a parent directory, get its real path.
-  -- We need to count how much "../" there is in json.extends, then use that
-  -- to modify the extended tsconfig directory path.
   if vim.startswith(extends, "..") then
-    local new_tsconfig, parentdir_count = extends:gsub("%.%./", "")
-    local new_tsconfig_dir = vim.fn.fnamemodify(tsconfig_dir, string.rep(":h", parentdir_count))
-    return new_tsconfig_dir .. "/" .. new_tsconfig
+    return expand_parentdir(tsconfig_dir, extends)
   end
 
   return tsconfig_dir .. "/" .. extends
@@ -185,10 +187,6 @@ M.set_tsconfig_include_in_path = function()
 end
 
 local function expand_tsconfig_alias(fname)
-  if vim.startswith(fname, ".") then
-    return fname
-  end
-
   local alias_to_path = memo_get_tsconfig_paths(get_tsconfig_file())
 
   if not alias_to_path then
@@ -242,16 +240,28 @@ end
 -- It also tries to find a file with the same name as the folder (e.g.,
 -- components) or index files.
 function M.js_includeexpr(fname)
-  fname = expand_tsconfig_alias(fname)
+  if not vim.startswith(fname, ".") then
+    fname = expand_tsconfig_alias(fname)
+  end
+
   return find_component(fname) or find_index_file(fname) or fname
 end
 
 function M.go_to_file(cmd)
-  local fname = expand_tsconfig_alias(vim.fn.expand("<cfile>"))
-  local file = find_component(fname) or find_index_file(fname) or vim.fn.findfile(fname)
+  local fname = vim.fn.expand("<cfile>")
 
-  if vim.fn.filereadable(file) then
-    vim.cmd(string.format("silent %s %s", cmd, file))
+  if vim.startswith(fname, "..") then
+    fname = expand_parentdir(vim.fn.expand("%:p:h"), fname)
+  elseif vim.startswith(fname, ".") then
+    fname = vim.fn.simplify(fname)
+  else
+    fname = expand_tsconfig_alias(fname)
+  end
+
+  local foundfile = find_component(fname) or find_index_file(fname) or vim.fn.findfile(fname)
+
+  if vim.fn.filereadable(foundfile) then
+    vim.cmd(string.format("silent %s %s", cmd, foundfile))
   else
     vim.cmd [[echohl WarningMsg]]
     vim.cmd(string.format("echo '%s'", "Failed to go to " .. fname))
