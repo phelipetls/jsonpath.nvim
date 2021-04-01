@@ -202,6 +202,18 @@ local function expand_tsconfig_alias(fname)
   return fname
 end
 
+local function expand_fname(fname)
+  if vim.startswith(fname, "..") then
+    return expand_parentdir(vim.fn.expand("%:p:h"), fname)
+  end
+
+  if vim.startswith(fname, ".") then
+    return vim.fn.simplify(fname)
+  end
+
+  return expand_tsconfig_alias(fname)
+end
+
 local function find_index_file(fname)
   if vim.fn.isdirectory(fname) then
     local file = vim.fn.findfile("index", fname)
@@ -230,29 +242,19 @@ end
 --     }
 --   }
 -- }
--- When you do gf in a string like '~/components/App', it will end up being
+--
+-- It will replace the tilde in '~/components/App' with
 -- '<compilerOptions.baseUrl>/src/components/App'.
 --
 -- It also tries to find a file with the same name as the folder (e.g.,
 -- components) or index files.
 function M.js_includeexpr(fname)
-  if not vim.startswith(fname, ".") then
-    fname = expand_tsconfig_alias(fname)
-  end
-
+  fname = expand_fname(fname)
   return find_component(fname) or find_index_file(fname) or fname
 end
 
 function M.go_to_file(cmd)
-  local fname = vim.fn.expand("<cfile>")
-
-  if vim.startswith(fname, "..") then
-    fname = expand_parentdir(vim.fn.expand("%:p:h"), fname)
-  elseif vim.startswith(fname, ".") then
-    fname = vim.fn.simplify(fname)
-  else
-    fname = expand_tsconfig_alias(fname)
-  end
+  local fname = expand_fname(vim.fn.expand("<cfile>"))
 
   local foundfile = find_component(fname) or find_index_file(fname) or vim.fn.findfile(fname)
 
@@ -260,7 +262,7 @@ function M.go_to_file(cmd)
     vim.cmd(string.format("silent %s %s", cmd, foundfile))
   else
     vim.cmd [[echohl WarningMsg]]
-    vim.cmd(string.format("echo '%s'", "Failed to go to " .. fname))
+    vim.cmd(string.format("echo '%s'", "Found file " .. foundfile .. " does not exist"))
     vim.cmd [[echohl None]]
   end
 end
