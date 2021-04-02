@@ -123,7 +123,7 @@ local function expand_tsconfig_extends(extends, tsconfig_dir)
     return expand_parentdir(tsconfig_dir, extends)
   end
 
-  return tsconfig_dir .. "/" .. extends
+  return vim.fn.simplify(tsconfig_dir .. "/" .. extends)
 end
 
 -- Get all possible configured `.compilerOptions.paths` values by walking
@@ -132,12 +132,12 @@ end
 -- See https://www.typescriptlang.org/docs/handbook/module-resolution.html#path-mapping.
 local function get_tsconfig_paths(tsconfig, old_alias_to_path)
   local alias_to_path = old_alias_to_path or {}
+
   if not tsconfig then
     return alias_to_path
   end
 
   local json = read_json_with_comments(tsconfig)
-
   local tsconfig_dir = vim.fn.fnamemodify(tsconfig, ":h")
 
   if json and json.compilerOptions and json.compilerOptions.paths then
@@ -146,18 +146,17 @@ local function get_tsconfig_paths(tsconfig, old_alias_to_path)
     for alias, paths in pairs(json.compilerOptions.paths) do
       for _, path in pairs(paths) do
         local path_without_wildcard = path:gsub("*", "")
-        local full_path = table.concat({tsconfig_dir, base_url, path_without_wildcard}, "/")
+        local full_path = tsconfig_dir .. "/" .. base_url .. "/" .. path_without_wildcard
         alias_to_path[alias] = vim.fn.simplify(full_path)
       end
     end
   end
 
   -- If tsconfig has a `.extends` field, we must search there too.
-  -- But local files only, @tsconfig/node12 is not supported.
-  local expanded_tsconfig_extends = expand_tsconfig_extends(json.extends, tsconfig_dir)
+  local tsconfig_extends = expand_tsconfig_extends(json.extends, tsconfig_dir)
 
-  if expanded_tsconfig_extends then
-    get_tsconfig_paths(expanded_tsconfig_extends, alias_to_path)
+  if tsconfig_extends then
+    get_tsconfig_paths(tsconfig_extends, alias_to_path)
   end
 
   return alias_to_path
@@ -211,7 +210,7 @@ local function expand_fname(fname)
   end
 
   if vim.startswith(fname, ".") then
-    return vim.fn.simplify(fname)
+    return fname
   end
 
   return expand_tsconfig_alias(fname)
