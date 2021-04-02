@@ -74,6 +74,13 @@ local function find_tsconfig_root_dir()
   end
 end
 
+local function find_file(fname, path)
+  local found = vim.fn.findfile(fname, path)
+  if found ~= "" then
+    return vim.fn.fnamemodify(found, ":p")
+  end
+end
+
 local function get_tsconfig_file()
   local root_dir = find_tsconfig_root_dir()
 
@@ -81,13 +88,7 @@ local function get_tsconfig_file()
     return
   end
 
-  if vim.fn.filereadable(root_dir .. "/tsconfig.json") == 1 then
-    return root_dir .. "/tsconfig.json"
-  end
-
-  if vim.fn.filereadable(root_dir .. "/jsconfig.json") == 1 then
-    return root_dir .. "/jsconfig.json"
-  end
+  return find_file("tsconfig.json", root_dir) or find_file("jsconfig.json", root_dir)
 end
 
 -- Memoizes the result of a function that takes a tsconfig filename
@@ -182,6 +183,10 @@ function M.get_tsconfig_include()
   return memo_get_tsconfig_include(get_tsconfig_file())
 end
 
+local function path_exists(path)
+  return vim.fn.filereadable(path) ~= 0 or vim.fn.isdirectory(path) ~= 0
+end
+
 local function expand_tsconfig_alias(fname)
   local alias_to_path = memo_get_tsconfig_paths(get_tsconfig_file())
 
@@ -193,9 +198,7 @@ local function expand_tsconfig_alias(fname)
     local alias_without_wildcard = alias:gsub("*", "")
     if vim.startswith(fname, alias_without_wildcard) then
       local real_path = fname:gsub(alias, path)
-      if vim.fn.filereadable(real_path) then
-        return real_path
-      end
+      return real_path
     end
   end
 
@@ -216,20 +219,14 @@ end
 
 local function find_index_file(fname)
   if vim.fn.isdirectory(fname) then
-    local file = vim.fn.findfile("index", fname)
-    if file ~= "" then
-      return file
-    end
+    return find_file("index", fname)
   end
 end
 
 local function find_component(fname)
   if vim.fn.isdirectory(fname) then
     local component_name = vim.fn.fnamemodify(fname, ":t:r")
-    local file = vim.fn.findfile(component_name, fname)
-    if file ~= "" then
-      return file
-    end
+    return find_file(component_name, fname)
   end
 end
 
@@ -256,13 +253,13 @@ end
 function M.go_to_file(cmd)
   local fname = expand_fname(vim.fn.expand("<cfile>"))
 
-  local foundfile = find_component(fname) or find_index_file(fname) or vim.fn.findfile(fname)
+  local found = find_component(fname) or find_index_file(fname) or find_file(fname) or fname
 
-  if vim.fn.filereadable(foundfile) then
-    vim.cmd(string.format("silent %s %s", cmd, foundfile))
+  if path_exists(found) then
+    vim.cmd(string.format("silent %s %s", cmd, found))
   else
     vim.cmd [[echohl WarningMsg]]
-    vim.cmd(string.format("echo '%s'", "Found file " .. foundfile .. " does not exist"))
+    vim.cmd(string.format("echo '%s'", "Failed to find " .. found))
     vim.cmd [[echohl None]]
   end
 end
