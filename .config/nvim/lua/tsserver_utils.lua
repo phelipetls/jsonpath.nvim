@@ -4,9 +4,10 @@ function M.organize_imports()
   vim.lsp.buf.execute_command({command = "_typescript.organizeImports", arguments = {vim.fn.expand("%:p")}})
 end
 
-function M.rename_file(args)
-  local old = args[1]
-  local new = args[2]
+function M.rename_file(old, new)
+  if old == nil or new == nil then
+    return
+  end
 
   local old_uri = vim.uri_from_fname(old)
   local new_uri = vim.uri_from_fname(new)

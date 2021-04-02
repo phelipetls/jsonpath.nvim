@@ -19,7 +19,7 @@ function! dirvishUtils#Delete() abort
     echoerr printf("Failed to remove %s", target)
   endif
   let altfile = expand("#")
-  if !isdirectory(altfile) && bufexists(target)
+  if !isdirectory(altfile) && buflisted(target)
     exe "bd " . bufnr(target)
   endif
   Dirvish %
@@ -73,15 +73,12 @@ function! dirvishUtils#Rename() abort
   if output == -1
     echoerr "Failed to rename"
   else
-    let altfile = expand("#")
-    if !isdirectory(altfile) && bufexists(oldpath)
-      exe "bd " . bufnr(oldpath)
-    endif
     let Hook = get(g:, "AfterRenameHook")
     if !empty(Hook)
-      try
-        call Hook(oldpath, newpath)
-      endtry
+      call Hook(oldpath, newpath)
+    endif
+    if !isdirectory(oldpath) && buflisted(oldpath)
+      exe "bd " . bufnr(oldpath)
     endif
   endif
   Dirvish %
