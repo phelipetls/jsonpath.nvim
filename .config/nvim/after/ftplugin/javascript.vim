@@ -41,22 +41,8 @@ inoreabbrev cosnt const
 inoreabbrev /** /****/<Up>
 inoreabbrev docuemnt document
 
-function JsIncludeExpr(fname)
-  return luaeval("require'js_utils'.js_includeexpr(_A)",a:fname)
-endfunction
-
 setlocal isfname+=@-@
-setlocal includeexpr=JsIncludeExpr(v:fname)
-setlocal include=\\s*from\\s*['\"]
 setlocal suffixesadd=.js,.jsx,.ts,.tsx,.d.ts,.vue
-
-let &l:define = '^\s*\('
-      \ . '\(export\s\)*\(\w\+\s\)*\(var\|const\|let\|function\|class\|interface\|as\|enum\)\s'
-      \ . '\|\(public\|private\|protected\|readonly\|static\|get\s\|set\)\s'
-      \ . '\|\(export\sdefault\s\|abstract\sclass\s\)'
-      \ . '\|\(async\sfunction\)\s'
-      \ . '\|\(\ze\i\+([^)]*).*{$\)'
-      \ . '\)'
 
 nnoremap <silent><buffer> gf :call luaeval("require'js_utils'.go_to_file(_A)","edit")<CR>
 nnoremap <silent><buffer> <C-w>f :call luaeval("require'js_utils'.go_to_file(_A)","split")<CR>

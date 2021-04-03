@@ -234,22 +234,23 @@ local function expand_fname(fname)
   return expand_tsconfig_alias(fname)
 end
 
-local function find_index_file(fname)
-  if vim.fn.isdirectory(fname) then
-    return find_file("index", fname)
-  end
+local function find_index_file(dir)
+  return find_file("index", dir)
 end
 
-local function find_component(fname)
-  if vim.fn.isdirectory(fname) then
-    local component_name = vim.fn.fnamemodify(fname, ":t:r")
-    return find_file(component_name, fname)
-  end
+local function find_component(dir)
+  local fname = vim.fn.fnamemodify(dir, ":h:t")
+  return find_file(fname, dir)
 end
 
--- includeexpr that understands tsconfig.json `.compilerOptions.paths`.
+local function get_file_under_cursor()
+  return vim.fn.expand("<cfile>")
+end
+
+-- gf that understands tsconfig.json `.compilerOptions.paths`.
 -- For example, if tsconfig.json has
 -- {
+--   "baseUrl": ".",
 --   "compilerOptions": {
 --     "paths": {
 --       "~/*": ["src/*"]
@@ -262,21 +263,21 @@ end
 --
 -- It also tries to find a file with the same name as the folder (e.g.,
 -- components) or index files.
-function M.js_includeexpr(fname)
-  fname = expand_fname(fname)
-  return find_component(fname) or find_index_file(fname) or fname
-end
-
 function M.go_to_file(cmd)
-  local fname = expand_fname(vim.fn.expand("<cfile>"))
+  local cfile = get_file_under_cursor()
+  local fname = expand_fname(cfile)
 
-  local found = find_component(fname) or find_index_file(fname) or find_file(fname) or fname
+  fname = find_file(fname) or find_dir(fname)
 
-  if path_exists(found) then
-    vim.cmd(string.format("silent %s %s", cmd, found))
+  if vim.fn.isdirectory(fname) == 1 then
+    fname = find_component(fname) or find_index_file(fname) or fname
+  end
+
+  if path_exists(fname) then
+    vim.cmd(string.format("silent %s %s", cmd, fname))
   else
     vim.cmd [[echohl WarningMsg]]
-    vim.cmd(string.format("echo '%s'", "Failed to find " .. found))
+    vim.cmd(string.format("echo '%s'", "Failed to find " .. cfile))
     vim.cmd [[echohl None]]
   end
 end
