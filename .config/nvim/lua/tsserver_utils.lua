@@ -4,7 +4,7 @@ function M.organize_imports()
   vim.lsp.buf.execute_command({command = "_typescript.organizeImports", arguments = {vim.fn.expand("%:p")}})
 end
 
-function M.rename_file(old, new)
+function M.rename(old, new)
   if old == nil or new == nil then
     return
   end

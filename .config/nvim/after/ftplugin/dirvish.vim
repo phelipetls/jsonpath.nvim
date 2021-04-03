@@ -3,7 +3,7 @@ nnoremap <silent><buffer>
 
 nmap <silent><buffer> st :call dirvishUtils#Sort("t")<CR>
 
-nmap <silent><buffer> % :call dirvishUtils#CreateFile()<CR>
-nmap <silent><nowait><buffer> d :call dirvishUtils#CreateDir()<CR>
-nmap <silent><buffer> D :call dirvishUtils#Delete()<CR>
-nmap <silent><buffer> R :call dirvishUtils#Rename()<CR>
+nmap <silent><buffer> % :lua require'dirvish_utils'.create_file()<CR>
+nmap <silent><nowait><buffer> d :lua require'dirvish_utils'.create_dir()<CR>
+nmap <silent><buffer> D :lua require'dirvish_utils'.delete()<CR>
+nmap <silent><buffer> R :lua require'dirvish_utils'.rename()<CR>
