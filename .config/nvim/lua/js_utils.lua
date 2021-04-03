@@ -119,10 +119,19 @@ local function path_exists(path)
 end
 
 -- Expand the parent directory accessors in a relative filename.
-local function expand_parentdir(dir, relative_fname)
+local function expand_parentdir(relative_fname, dir)
   local fname, parentdir_count = relative_fname:gsub("%.%./", "")
   local parentdir_path = vim.fn.fnamemodify(dir, string.rep(":h", parentdir_count))
   return vim.fn.simplify(parentdir_path .. "/" .. fname)
+end
+
+local function get_current_file_dir()
+  return vim.fn.expand("%:p:h")
+end
+
+local function expand_curdir(relative_fname)
+  local fname = relative_fname:gsub("%.", get_current_file_dir())
+  return fname
 end
 
 local function expand_tsconfig_extends(extends, tsconfig_dir)
@@ -130,8 +139,8 @@ local function expand_tsconfig_extends(extends, tsconfig_dir)
     return
   end
 
-  if vim.startswith(extends, "..") then
-    return expand_parentdir(tsconfig_dir, extends)
+  if vim.startswith(extends, "../") then
+    return expand_parentdir(extends, tsconfig_dir)
   end
 
   return vim.fn.simplify(tsconfig_dir .. "/" .. extends)
@@ -215,11 +224,11 @@ end
 
 local function expand_fname(fname)
   if vim.startswith(fname, "..") then
-    return expand_parentdir(vim.fn.expand("%:p:h"), fname)
+    return expand_parentdir(fname, get_current_file_dir())
   end
 
   if vim.startswith(fname, ".") then
-    return fname
+    return expand_curdir(fname)
   end
 
   return expand_tsconfig_alias(fname)
