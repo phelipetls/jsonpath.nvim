@@ -178,6 +178,12 @@ if !exists("g:vscode")
   " avoid showing ansi escape sequences in nvim terminal
   " such as in lint-staged output before committing
   let g:fugitive_pty=0
+
+  " make fugitive buffers read only. avoid mistake of writing to them
+  augroup FugitiveReadOnly
+    au!
+    autocmd BufRead fugitive://* set readonly
+  augroup END
 endif
 
 "}}}
