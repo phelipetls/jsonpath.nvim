@@ -438,7 +438,7 @@ set completeopt=menuone,noselect,noinsert
 set shortmess+=c
 set pumheight=10
 
-if has("nvim")
+if has("nvim-0.5.0")
   inoremap <silent><expr> <C-Space> compe#complete()
   inoremap <silent><expr> <CR> compe#confirm('<CR>')
 
