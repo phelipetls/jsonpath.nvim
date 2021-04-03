@@ -118,11 +118,8 @@ local function path_exists(path)
   return vim.fn.filereadable(path) == 1 or vim.fn.isdirectory(path) == 1
 end
 
--- Expand the parent directory accessors in a relative filename.
-local function expand_parentdir(relative_fname, dir)
-  local fname, parentdir_count = relative_fname:gsub("%.%./", "")
-  local parentdir_path = vim.fn.fnamemodify(dir, string.rep(":h", parentdir_count))
-  return vim.fn.simplify(parentdir_path .. "/" .. fname)
+local function path_join(...)
+  return vim.fn.simplify(table.concat({...}, "/"))
 end
 
 local function get_current_file_dir()
@@ -134,6 +131,13 @@ local function expand_curdir(relative_fname)
   return fname
 end
 
+-- Expand the parent directory accessors in a relative filename.
+local function expand_parentdir(relative_fname, dir)
+  local fname, parentdir_count = relative_fname:gsub("%.%./", "")
+  local parentdir_path = vim.fn.fnamemodify(dir, string.rep(":h", parentdir_count))
+  return path_join(parentdir_path, fname)
+end
+
 local function expand_tsconfig_extends(extends, tsconfig_dir)
   if not extends or vim.startswith(extends, "@") then
     return
@@ -143,7 +147,12 @@ local function expand_tsconfig_extends(extends, tsconfig_dir)
     return expand_parentdir(extends, tsconfig_dir)
   end
 
-  return vim.fn.simplify(tsconfig_dir .. "/" .. extends)
+  return path_join(tsconfig_dir, extends)
+end
+
+local function remove_wildcard(path)
+  local str, _ = path:gsub("*", "")
+  return str
 end
 
 -- Get all possible configured `.compilerOptions.paths` values by walking
@@ -165,9 +174,7 @@ local function get_tsconfig_paths(tsconfig)
 
     for alias, paths in pairs(json.compilerOptions.paths) do
       for _, path in pairs(paths) do
-        local path_without_wildcard = path:gsub("*", "")
-        local full_path = tsconfig_dir .. "/" .. base_url .. "/" .. path_without_wildcard
-        alias_to_path[alias] = vim.fn.simplify(full_path)
+        alias_to_path[alias] = path_join(tsconfig_dir, base_url, remove_wildcard(path))
       end
     end
   end
