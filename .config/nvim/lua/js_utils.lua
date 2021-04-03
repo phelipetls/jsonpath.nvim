@@ -3,7 +3,7 @@ local M = {}
 local lspconfig = require "lspconfig"
 
 local function exists_package_json_field(field)
-  if vim.fn.filereadable("package.json") ~= 0 then
+  if vim.fn.filereadable("package.json") == 1 then
     local package_json = vim.fn.json_decode(vim.fn.readfile("package.json"))
     return package_json[field] ~= nil
   end
@@ -57,25 +57,32 @@ local function remove_comments(line)
   return line:gsub("/%*.*%*/", ""):gsub("//.*", "")
 end
 
-local function read_json_with_comments(file)
-  local file_without_comments = vim.tbl_map(remove_comments, vim.fn.readfile(file))
-  return vim.fn.json_decode(file_without_comments)
+local function read_json_with_comments(json_file)
+  local json_without_comments = vim.tbl_map(remove_comments, vim.fn.readfile(json_file))
+  return vim.fn.json_decode(json_without_comments)
 end
 
 local function find_tsconfig_root_dir()
-  local fname = vim.fn.expand("%:p")
+  local current_file_fullpath = vim.fn.expand("%:p")
   -- Return early for fugitive:// files, for example
-  if not vim.startswith(fname, os.getenv("HOME")) then
+  if not vim.startswith(current_file_fullpath, os.getenv("HOME")) then
     return
   end
-  local root_dir = lspconfig.util.root_pattern("tsconfig.json", "jsconfig.json")(fname)
+  local root_dir = lspconfig.util.root_pattern("tsconfig.json", "jsconfig.json")(current_file_fullpath)
   if root_dir then
     return root_dir
   end
 end
 
 local function find_file(fname, path)
-  local found = vim.fn.findfile(fname, path)
+  local found = vim.fn.findfile(fname, path or "")
+  if found ~= "" then
+    return vim.fn.fnamemodify(found, ":p")
+  end
+end
+
+local function find_dir(fname, path)
+  local found = vim.fn.finddir(fname, path or "")
   if found ~= "" then
     return vim.fn.fnamemodify(found, ":p")
   end
@@ -105,6 +112,10 @@ local function once_per_config(fn)
     values_per_config[tsconfig] = value
     return value
   end
+end
+
+local function path_exists(path)
+  return vim.fn.filereadable(path) == 1 or vim.fn.isdirectory(path) == 1
 end
 
 -- Expand the parent directory accessors in a relative filename.
@@ -182,10 +193,6 @@ function M.get_tsconfig_include()
   return memo_get_tsconfig_include(get_tsconfig_file())
 end
 
-local function path_exists(path)
-  return vim.fn.filereadable(path) ~= 0 or vim.fn.isdirectory(path) ~= 0
-end
-
 local function expand_tsconfig_alias(fname)
   local alias_to_path = memo_get_tsconfig_paths(get_tsconfig_file())
 
@@ -196,8 +203,10 @@ local function expand_tsconfig_alias(fname)
   for alias, path in pairs(alias_to_path) do
     local alias_without_wildcard = alias:gsub("*", "")
     if vim.startswith(fname, alias_without_wildcard) then
-      local real_path = fname:gsub(alias, path)
-      return real_path
+      local real_path = find_file(fname:gsub(alias, path))
+      if real_path then
+        return real_path
+      end
     end
   end
 
