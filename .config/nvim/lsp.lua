@@ -87,15 +87,7 @@ lspconfig.pyls.setup {
   }
 }
 
-lspconfig.tsserver.setup {
-  on_attach = function(client)
-    client.resolved_capabilities.document_formatting = false
-    client.server_capabilities.completionProvider.triggerCharacters = nil
-    set_lsp_config(client)
-  end
-}
-
-local eslint = {
+local js_config = {
   lintCommand = "eslint_d -f unix --stdin --stdin-filename ${INPUT}",
   lintStdin = true,
   lintFormats = {"%f:%l:%c: %m"},
@@ -104,9 +96,29 @@ local eslint = {
   formatStdin = true
 }
 
+local function should_use_efm_formatting()
+  if js_config.formatCommand == "" then
+    return false
+  end
+
+  if js_config.formatCommand:find("eslint_d") then
+    return require"js_utils".check_eslint_config()
+  end
+
+  return js_config.formatCommand ~= ""
+end
+
+lspconfig.tsserver.setup {
+  on_attach = function(client, bufnr)
+    client.resolved_capabilities.document_formatting = not should_use_efm_formatting()
+    client.server_capabilities.completionProvider.triggerCharacters = nil
+    set_lsp_config(client)
+  end
+}
+
 lspconfig.efm.setup {
   on_attach = function(client)
-    client.resolved_capabilities.document_formatting = true
+    client.resolved_capabilities.document_formatting = should_use_efm_formatting()
     set_lsp_config(client)
   end,
   default_config = {
@@ -123,12 +135,12 @@ lspconfig.efm.setup {
   end,
   settings = {
     languages = {
-      javascript = {eslint},
-      javascriptreact = {eslint},
-      ["javascript.jsx"] = {eslint},
-      typescript = {eslint},
-      ["typescript.tsx"] = {eslint},
-      typescriptreact = {eslint}
+      javascript = {js_config},
+      javascriptreact = {js_config},
+      ["javascript.jsx"] = {js_config},
+      typescript = {js_config},
+      ["typescript.tsx"] = {js_config},
+      typescriptreact = {js_config}
     }
   },
   filetypes = {

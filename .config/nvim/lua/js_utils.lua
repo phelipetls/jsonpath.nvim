@@ -53,6 +53,12 @@ function M.get_js_formatter()
   return ""
 end
 
+function M.check_eslint_config()
+  local current_file = vim.fn.expand("%")
+  local exit_code = os.execute("eslint_d --print-config " .. current_file)
+  return exit_code == 0
+end
+
 local function remove_comments(line)
   return line:gsub("/%*.*%*/", ""):gsub("//.*", "")
 end
