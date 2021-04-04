@@ -1,0 +1,55 @@
+{
+  "window.zoomLevel": -1,
+  "workbench.colorTheme": "Default Dark+",
+  "editor.fontFamily": "Consolas,'Source Code Pro','monospace', monospace",
+  "editor.cursorStyle": "block",
+  "editor.tabSize": 2,
+  "editor.minimap.enabled": false,
+  "editor.renderWhitespace": "trailing",
+  "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "modifications",
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "window.menuBarVisibility": "hidden",
+  "workbench.startupEditor": "welcomePage",
+  "workbench.sideBar.location": "right",
+  "workbench.editor.enablePreview": false,
+  "workbench.activityBar.visible": false,
+  "workbench.tree.indent": 12,
+  "editor.cursorBlinking": "solid",
+  "breadcrumbs.enabled": true,
+  "scm.diffDecorations": "gutter",
+  "files.enableTrash": false,
+  "vim.handleKeys": {
+    "<C-b>": false
+  },
+  "vim.normalModeKeyBindings": [
+    {
+      "before": ["-"],
+      "commands": ["workbench.view.explorer"]
+    },
+    {
+      "before": ["[", "e"],
+      "commands": ["editor.action.moveLinesUpAction"]
+    },
+    {
+      "before": ["]", "e"],
+      "commands": ["editor.action.moveLinesDownAction"]
+    },
+    {
+      "before": ["]", "q"],
+      "commands": ["search.action.focusNextSearchResult"]
+    },
+    {
+      "before": ["[", "q"],
+      "commands": ["search.action.focusPreviousSearchResult"]
+    },
+    {
+      "before": ["K"],
+      "commands": ["editor.action.showHover"]
+    }
+  ],
+  "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
+  "explorer.compactFolders": false,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "typescript.updateImportsOnFileMove.enabled": "always"
+}
