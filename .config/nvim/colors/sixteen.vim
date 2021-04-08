@@ -90,8 +90,8 @@ exe "hi VertSplit ctermbg=0 guibg=".color0." ctermfg=0 guifg=".color0
 
 exe "hi StatusLine ctermbg=7 guibg=".color7." ctermfg=8 guifg=".color8
 exe "hi StatusLineNC ctermbg=8 guibg=".color8." ctermfg=0 guifg=".color0
-exe "hi TabLine ctermbg=NONE guibg=NONE ctermfg=8 guifg=".color8." cterm=NONE gui=NONE"
-exe "hi TabLineFill ctermbg=0 guibg=0 ctermfg=0 guifg=".color0
+exe "hi TabLine ctermbg=NONE guibg=NONE ctermfg=8 guifg=".color8." cterm=UNDERLINE gui=UNDERLINE"
+exe "hi TabLineFill ctermbg=0 guibg=0 ctermfg=8 guifg=".color8." cterm=UNDERLINE gui=UNDERLINE"
 exe "hi TabLineSel ctermbg=8 guibg=".color8." ctermfg=7 guifg=".color7
 
 exe "hi MatchParen ctermbg=8 guibg=".color8." ctermfg=7 guifg=".color7
