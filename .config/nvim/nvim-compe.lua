@@ -4,7 +4,7 @@ require "compe".setup(
     debug = false,
     min_length = 3,
     preselect = "enable",
-    source_timeout = 200,
+    source_timeout = 2000,
     throttle_time = 80,
     incomplete_delay = 400,
     documentation = false,
@@ -54,6 +54,9 @@ _G.s_tab_complete = function()
     return t "<S-Tab>"
   end
 end
+
+vim.api.nvim_set_keymap("i", "<C-Space>", "compe#complete()", {expr = true, silent = true})
+vim.api.nvim_set_keymap("i", "<CR>", "compe#confirm('<CR>')", {expr = true, silent = true})
 
 vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
