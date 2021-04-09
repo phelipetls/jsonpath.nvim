@@ -8,10 +8,6 @@ local function is_directory(path)
   return vim.fn.isdirectory(path) == 1
 end
 
-local function is_buf_listed(expr)
-  return vim.fn.buflisted(expr) == 1
-end
-
 local function echo_err(msg)
   vim.cmd(string.format("echoerr '%s'", msg))
 end
@@ -24,10 +20,34 @@ local function get_input(...)
   return vim.fn.trim(vim.fn.input(...))
 end
 
-local function delete_buffer(expr)
-  if not is_directory(expr) and is_buf_listed(expr) then
-    vim.cmd("bd " .. vim.fn.bufnr(expr))
+local function is_inside_directory(path, dir)
+  return string.find(dir, path, 1, true)
+end
+
+local function delete_dir_buffers(path)
+  for bufnr = 1, vim.fn.bufnr("$") do
+    if bufnr ~= vim.fn.bufnr("%") and vim.fn.bufexists(bufnr) == 1 then
+      local bufpath = vim.api.nvim_buf_get_name(bufnr)
+
+      if is_inside_directory(path, bufpath) then
+        vim.cmd("bd " .. bufnr)
+      end
+    end
   end
+end
+
+local function delete_file_buffer(fname)
+  if vim.fn.buflisted(fname) == 1 then
+    vim.cmd("bd " .. vim.fn.bufnr(fname))
+  end
+end
+
+local function get_clear_buffers_function(expr)
+  if is_directory(expr) then
+    return delete_dir_buffers
+  end
+
+  return delete_file_buffer
 end
 
 local function delete_path(path, force)
@@ -46,14 +66,16 @@ function M.delete()
     return
   end
 
-  local result = delete_path(path, option == 3)
+  local force = option == 3
+  local clear_buffers = get_clear_buffers_function(path)
+  local result = delete_path(path, force)
 
   if result == -1 then
     echo_err("Failed to remove " .. path)
     return
   end
 
-  delete_buffer(path)
+  clear_buffers(path)
   reload_dirvish()
 end
 
@@ -111,6 +133,7 @@ function M.rename()
 
   local newpath = vim.fn.expand("%") .. newname
 
+  local clear_buffers = get_clear_buffers_function(oldpath)
   local result = vim.fn.rename(oldpath, newpath)
 
   if result ~= 0 then
@@ -121,7 +144,7 @@ function M.rename()
     pcall(_G.rename_hook, oldpath, newpath)
   end
 
-  delete_buffer(oldpath)
+  clear_buffers(oldpath)
   reload_dirvish()
 end
 
