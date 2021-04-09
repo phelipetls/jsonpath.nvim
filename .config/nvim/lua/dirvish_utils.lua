@@ -138,6 +138,7 @@ function M.rename()
 
   if result ~= 0 then
     echo_err("Failed to rename")
+    return
   end
 
   if _G.rename_hook and vim.is_callable(_G.rename_hook) then
@@ -146,6 +147,50 @@ function M.rename()
 
   clear_buffers(oldpath)
   reload_dirvish()
+end
+
+local function get_full_path(fname)
+  return vim.fn.fnamemodify(fname, ":p")
+end
+
+function M.move()
+  local arglist = vim.tbl_map(get_full_path, vim.fn.argv())
+
+  if #arglist == 0 then
+    return
+  end
+
+  local new_paths =
+    vim.tbl_map(
+    function(path)
+      return vim.fn.expand("%") .. get_name(path)
+    end,
+    arglist
+  )
+
+  for _, path in ipairs(new_paths) do
+    if vim.fn.isdirectory(path) == 1 or vim.fn.filereadable(path) == 1 then
+      vim.cmd(path .. " already exists!")
+      return
+    end
+  end
+
+  for i = 1, #arglist do
+    local oldpath = arglist[i]
+    local newpath = new_paths[i]
+    local result = vim.fn.rename(oldpath, newpath)
+
+    if result ~= 0 and _G.rename_hook and vim.is_callable(_G.rename_hook) then
+      pcall(_G.rename_hook, oldpath, newpath)
+    end
+  end
+
+  reload_dirvish()
+end
+
+function M.clear_arglist()
+  vim.cmd("%argdelete")
+  vim.cmd("echomsg 'arglist: cleared'")
 end
 
 return M
