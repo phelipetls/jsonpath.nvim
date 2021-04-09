@@ -46,10 +46,29 @@ function M.definition_sync()
   end
 end
 
-function M.open_diagnostics_loclist()
-  vim.lsp.diagnostic.set_loclist()
-  vim.cmd [[wincmd p]]
-  vim.cmd [[lafter]]
+function M.import_after_completion()
+  local completed_item = vim.v.completed_item
+  if
+    not (completed_item and completed_item.user_data and completed_item.user_data.nvim and
+      completed_item.user_data.nvim.lsp and
+      completed_item.user_data.nvim.lsp.completion_item)
+   then
+    return
+  end
+
+  local item = completed_item.user_data.nvim.lsp.completion_item
+  local bufnr = vim.api.nvim_get_current_buf()
+
+  vim.lsp.buf_request(
+    bufnr,
+    "completionItem/resolve",
+    item,
+    function(_, _, result)
+      if result and result.additionalTextEdits then
+        vim.lsp.util.apply_text_edits(result.additionalTextEdits, bufnr)
+      end
+    end
+  )
 end
 
 return M

@@ -16,7 +16,8 @@ local function set_lsp_config(client)
   vim.cmd [[nnoremap <buffer><silent> <C-space> :lua vim.lsp.diagnostic.show_line_diagnostics()<CR>]]
   vim.cmd [[nnoremap <buffer><silent> ]g :lua vim.lsp.diagnostic.goto_next()<CR>]]
   vim.cmd [[nnoremap <buffer><silent> [g :lua vim.lsp.diagnostic.goto_prev()<CR>]]
-  vim.cmd [[nnoremap <buffer><silent> <space>d :lua require'lsp_utils'.open_diagnostics_loclist()<CR>]]
+
+  vim.cmd [[setlocal omnifunc=v:lua.vim.lsp.omnifunc]]
 
   if client.resolved_capabilities.hover then
     vim.cmd [[nnoremap <buffer><silent> K :lua vim.lsp.buf.hover()<CR>]]
@@ -66,6 +67,11 @@ local function set_lsp_config(client)
   if client.name == "tsserver" then
     vim.cmd [[command! OrganizeImports :lua require'tsserver_utils'.organize_imports()<CR>]]
     vim.cmd [[nnoremap <silent> <S-M-o> :lua require'tsserver_utils'.organize_imports()<CR>]]
+
+    vim.cmd [[augroup LspImportAfterCompletion]]
+    vim.cmd [[  au!]]
+    vim.cmd [[  autocmd CompleteDone <buffer> lua require"lsp_utils".import_after_completion()]]
+    vim.cmd [[augroup END]]
 
     _G.rename_hook = require "tsserver_utils".rename
   end

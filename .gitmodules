@@ -6,10 +6,6 @@
 	path = .config/nvim/pack/plugins/opt/fzf.vim
 	url = https://github.com/junegunn/fzf.vim
 	ignore = dirty
-[submodule "vim-simple-complete"]
-	path = .config/nvim/pack/plugins/opt/vim-simple-complete
-	url = https://github.com/phelipetls/vim-simple-complete
-	ignore = dirty
 [submodule "vim-fugitive"]
 	path = .config/nvim/pack/plugins/opt/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive
@@ -110,17 +106,9 @@
 	path = .config/nvim/pack/plugins/opt/vader.vim
 	url = https://github.com/junegunn/vader.vim
 	ignore = dirty
-[submodule "nvim-compe"]
-	path = .config/nvim/pack/plugins/opt/nvim-compe
-	url = https://github.com/hrsh7th/nvim-compe
-	ignore = dirty
 [submodule "diffconflicts"]
 	path = .config/nvim/pack/plugins/opt/diffconflicts
 	url = https://github.com/whiteinge/diffconflicts
-	ignore = dirty
-[submodule "lspsaga.nvim"]
-	path = .config/nvim/pack/plugins/opt/lspsaga.nvim
-	url = https://github.com/glepnir/lspsaga.nvim
 	ignore = dirty
 [submodule "nvim-colorizer.lua"]
 	path = .config/nvim/pack/plugins/opt/nvim-colorizer.lua

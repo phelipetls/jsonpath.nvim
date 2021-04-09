@@ -33,9 +33,6 @@ if !exists("g:vscode")
   if has("nvim")
     packadd! nvim-colorizer.lua
   endif
-  if has("nvim-0.5.0")
-    packadd! nvim-compe
-  endif
 
   " html and javascript
   packadd! emmet-vim
@@ -445,7 +442,7 @@ set shortmess+=c
 set pumheight=10
 
 if has("nvim-0.5.0")
-  luafile $HOME/.config/nvim/nvim-compe.lua
+  luafile $HOME/.config/nvim/completion.lua
 endif
 
 "}}}
