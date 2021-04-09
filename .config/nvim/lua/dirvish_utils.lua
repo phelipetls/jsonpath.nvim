@@ -4,10 +4,6 @@ local function get_path_under_cursor()
   return vim.fn.expand("<cfile>")
 end
 
-local function is_directory(path)
-  return vim.fn.isdirectory(path) == 1
-end
-
 local function echo_err(msg)
   vim.cmd(string.format("echoerr '%s'", msg))
 end
@@ -43,7 +39,7 @@ local function delete_file_buffer(fname)
 end
 
 local function get_clear_buffers_function(expr)
-  if is_directory(expr) then
+  if vim.fn.isdirectory(expr) == 1 then
     return delete_dir_buffers
   end
 
@@ -55,7 +51,7 @@ local function delete_path(path, force)
     return vim.fn.delete(path, "rf")
   end
 
-  return vim.fn.delete(path, is_directory(path) == 1 and "d" or "")
+  return vim.fn.delete(path, vim.fn.isdirectory(path) == 1 and "d" or "")
 end
 
 function M.delete()
@@ -114,7 +110,7 @@ function M.create_dir()
 end
 
 local function get_name(path)
-  if is_directory(path) then
+  if vim.fn.isdirectory(path) == 1 then
     return vim.fn.fnamemodify(path, ":h:t")
   end
 
