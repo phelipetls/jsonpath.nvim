@@ -1,6 +1,8 @@
 vim.lsp.set_log_level("debug")
 
 local lspconfig = require "lspconfig"
+local js_utils = require "js_utils"
+local utils = require "utils"
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] =
   vim.lsp.with(
@@ -101,7 +103,9 @@ local function should_use_efm_formatting()
   end
 
   if js_config.formatCommand:find("eslint_d") then
-    return require"js_utils".check_eslint_config()
+    -- check if eslint worked for first file opened only
+    -- not accurate but avoid latency
+    return utils.once(js_utils.check_eslint_config())
   end
 
   return js_config.formatCommand ~= ""
