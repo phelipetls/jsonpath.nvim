@@ -1,6 +1,7 @@
 local M = {}
 
 local lspconfig = require "lspconfig"
+local path_utils = require "path_utils"
 
 local function exists_package_json_field(field)
   if vim.fn.filereadable("package.json") == 1 then
@@ -120,40 +121,16 @@ local function once_per_config(fn)
   end
 end
 
-local function path_exists(path)
-  return vim.fn.filereadable(path) == 1 or vim.fn.isdirectory(path) == 1
-end
-
-local function path_join(...)
-  return vim.fn.simplify(table.concat({...}, "/"))
-end
-
-local function get_current_file_dir()
-  return vim.fn.expand("%:p:h")
-end
-
-local function expand_curdir(relative_fname)
-  local fname = relative_fname:gsub("%.", get_current_file_dir())
-  return fname
-end
-
--- Expand the parent directory accessors in a relative filename.
-local function expand_parentdir(relative_fname, dir)
-  local fname, parentdir_count = relative_fname:gsub("%.%./", "")
-  local parentdir_path = vim.fn.fnamemodify(dir, string.rep(":h", parentdir_count))
-  return path_join(parentdir_path, fname)
-end
-
 local function expand_tsconfig_extends(extends, tsconfig_dir)
   if not extends or vim.startswith(extends, "@") then
     return
   end
 
   if vim.startswith(extends, "../") then
-    return expand_parentdir(extends, tsconfig_dir)
+    return path_utils.expand_parentdir(extends, tsconfig_dir)
   end
 
-  return path_join(tsconfig_dir, extends)
+  return path_utils.path_join(tsconfig_dir, extends)
 end
 
 local function remove_wildcard(path)
@@ -180,7 +157,7 @@ local function get_tsconfig_paths(tsconfig)
 
     for alias, paths in pairs(json.compilerOptions.paths) do
       for _, path in pairs(paths) do
-        alias_to_path[alias] = path_join(tsconfig_dir, base_url, remove_wildcard(path))
+        alias_to_path[alias] = path_utils.path_join(tsconfig_dir, base_url, remove_wildcard(path))
       end
     end
   end
@@ -238,11 +215,11 @@ end
 
 local function expand_fname(fname)
   if vim.startswith(fname, "..") then
-    return expand_parentdir(fname, get_current_file_dir())
+    return path_utils.expand_parentdir(fname, path_utils.get_current_file_dir())
   end
 
   if vim.startswith(fname, ".") then
-    return expand_curdir(fname)
+    return path_utils.expand_curdir(fname)
   end
 
   return expand_tsconfig_alias(fname)
@@ -287,7 +264,7 @@ function M.go_to_file(cmd)
     fname = find_component(fname) or find_index_file(fname) or fname
   end
 
-  if path_exists(fname) then
+  if path_utils.path_exists(fname) then
     vim.cmd(string.format("silent %s %s", cmd, fname))
   else
     vim.cmd [[echohl WarningMsg]]
