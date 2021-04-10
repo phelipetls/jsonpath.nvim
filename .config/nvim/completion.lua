@@ -2,16 +2,29 @@ local t = function(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
 
-local check_whitespace = function()
-    local col = vim.fn.col('.') - 1
-    return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s')
+local get_last_char = function()
+  local col = vim.fn.col(".") - 1
+  if col == 0 then
+    return
+  end
+  return vim.fn.getline("."):sub(col, col)
+end
+
+local last_char_is_whitespace = function()
+  return get_last_char():match("%s")
+end
+
+local last_char_is_slash = function()
+  return get_last_char():match("/")
 end
 
 _G.tab_complete = function()
   if vim.fn.pumvisible() == 1 then
     return t "<C-n>"
-  elseif check_whitespace() then
+  elseif last_char_is_whitespace() then
     return t "<Tab>"
+  elseif last_char_is_slash() then
+    return t "<C-x><C-f>"
   elseif vim.bo.omnifunc ~= "" then
     return t "<C-x><C-o>"
   else
