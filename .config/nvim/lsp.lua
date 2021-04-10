@@ -24,17 +24,14 @@ local function set_lsp_config(client)
   end
 
   if client.resolved_capabilities.goto_definition then
-    vim.cmd [[nnoremap <buffer><silent> <C-LeftMouse> :lua require"lsp_utils".definition_sync()<CR>]]
     vim.cmd [[nnoremap <buffer><silent> [d :lua require"lsp_utils".definition_sync()<CR>]]
     vim.cmd [[nnoremap <buffer><silent> [<C-d> :lua require"lsp_utils".definition_sync()<CR>]]
     vim.cmd [[nnoremap <buffer><silent> <C-w><C-d> :split <bar> lua require"lsp_utils".definition_sync('split')<CR>]]
-    vim.cmd [[nnoremap <buffer><silent> <C-w>} :lua require"lsp_utils".peek_definition()<CR>]]
     vim.cmd [[nnoremap <buffer><silent> <C-c><C-p> :lua require"lsp_utils".peek_definition()<CR>]]
   end
 
   if client.resolved_capabilities.type_definition then
     vim.cmd [[nnoremap <buffer><silent> [t :lua vim.lsp.buf.type_definition()<CR>]]
-    vim.cmd [[nnoremap <buffer><silent> <C-w><C-t> :lua vim.lsp.buf.type_definition()<CR>]]
   end
 
   if client.resolved_capabilities.find_references then
@@ -43,21 +40,18 @@ local function set_lsp_config(client)
 
   if client.resolved_capabilities.rename then
     vim.cmd [[nnoremap <buffer><silent> gR :lua vim.lsp.buf.rename()<CR>]]
-    vim.cmd [[command! -buffer Rename lua vim.lsp.buf.rename()]]
-  end
-
-  if client.resolved_capabilities.workspace_symbol then
-    vim.cmd [[nnoremap <buffer><silent> gs :lua vim.lsp.buf.workspace_symbol()<CR>]]
   end
 
   if client.resolved_capabilities.code_action then
     vim.cmd [[nnoremap <buffer><silent> <M-CR> :lua vim.lsp.buf.code_action()<CR>]]
-    vim.cmd [[vnoremap <buffer><silent> <M-CR> :'<,'>lua vim.lsp.buf.range_code_action()<CR>]]
   end
 
   if client.resolved_capabilities.document_formatting then
     vim.cmd [[command! -buffer Fmt lua vim.lsp.buf.formatting_sync(nil, 1000)]]
-    vim.cmd [[autocmd! BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 500)]]
+    vim.cmd [[augroup LspFormatOnSave]]
+    vim.cmd [[  au!]]
+    vim.cmd [[  autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 500)]]
+    vim.cmd [[augroup END]]
   end
 
   if client.resolved_capabilities.signature_help then
@@ -65,7 +59,6 @@ local function set_lsp_config(client)
   end
 
   if client.name == "tsserver" then
-    vim.cmd [[command! OrganizeImports :lua require'tsserver_utils'.organize_imports()<CR>]]
     vim.cmd [[nnoremap <silent> <S-M-o> :lua require'tsserver_utils'.organize_imports()<CR>]]
 
     vim.cmd [[augroup LspImportAfterCompletion]]

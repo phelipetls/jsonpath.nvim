@@ -542,8 +542,6 @@ if has("nvim-0.5.0") && filereadable($HOME."/.config/nvim/lsp.lua") && !&diff
   sign define LspDiagnosticsSignWarning text=❚ linehl= texthl=LspDiagnosticsSignWarning linehl= numhl=
   sign define LspDiagnosticsSignInformation text=❚ texthl=LspDiagnosticsSignInformation linehl= numhl=
   sign define LspDiagnosticsSignHint text=❚ texthl=LspDiagnosticsSignHint linehl= numhl=
-
-  command! LspStop lua vim.lsp.stop_client(vim.lsp.get_active_clients())
 endif
 
 "}}}
