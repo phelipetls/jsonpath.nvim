@@ -13,7 +13,7 @@ function M.path_join(...)
 end
 
 function M.expand_curdir(relative_fname)
-  local fname = relative_fname:gsub("%.", get_current_file_dir())
+  local fname = relative_fname:gsub("%./", M.get_current_file_dir() .. "/")
   return fname
 end
 
