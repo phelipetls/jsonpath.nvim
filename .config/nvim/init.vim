@@ -181,6 +181,22 @@ if !exists("g:vscode")
     au!
     autocmd BufRead fugitive://* set readonly
   augroup END
+
+  " format range or whole file. try to not change the jumplist
+  function! Format(type, ...)
+    keepjumps normal! '[v']gq
+    if v:shell_error > 0
+      keepjumps silent undo
+      echomsg 'formatprg "' . &formatprg . '" exited with status ' . v:shell_error
+    endif
+  endfunction
+
+  nmap <silent> gq :set opfunc=Format<CR>g@
+  nmap <silent> gQ :lua require'utils'.same_buffer_windo("let w:view = winsaveview()")<CR>
+        \ :set opfunc=Format<CR>
+        \ :keepjumps normal gg<CR>
+        \ :keepjumps normal gqG<CR>
+        \ :lua require'utils'.same_buffer_windo("keepj call winrestview(w:view)")<CR>
 endif
 
 "}}}
@@ -246,22 +262,6 @@ nnoremap <silent> <c-n> *Ncgn
 
 " show information about highlight group under cursor
 command! Hi exe 'hi '.synIDattr(synID(line("."), col("."), 0), "name")
-
-" format range or whole file. try to not change the jumplist
-function! Format(type, ...)
-  keepjumps normal! '[v']gq
-  if v:shell_error > 0
-    keepjumps silent undo
-    echomsg 'formatprg "' . &formatprg . '" exited with status ' . v:shell_error
-  endif
-endfunction
-
-nmap <silent> gq :set opfunc=Format<CR>g@
-nmap <silent> gQ :lua require'utils'.same_buffer_windo("let w:view = winsaveview()")<CR>
-      \ :set opfunc=Format<CR>
-      \ :keepjumps normal gg<CR>
-      \ :keepjumps normal gqG<CR>
-      \ :lua require'utils'.same_buffer_windo("keepj call winrestview(w:view)")<CR>
 
 " highlight yanked region
 if has("nvim-0.5.0")
@@ -334,9 +334,6 @@ inoreabbrev taebl table
 " do not change jump list when using }
 nnoremap <silent> } :keepjumps norm! }<CR>
 nnoremap <silent> { :keepjumps norm! {<CR>
-
-" mapping to insert current file directory in command line easily
-cnoremap ;; %:h/
 
 " git messenger mapping
 nnoremap <silent> gb :GitMessenger<CR>
@@ -517,8 +514,8 @@ function! ToggleLocationList()
   call OpenLocationList()
 endfunction
 
-nnoremap <silent><space>q :call ToggleQuickfixList()<CR>
-nnoremap <silent><space>l :call ToggleLocationList()<CR>
+nnoremap <silent> <space>q :call ToggleQuickfixList()<CR>
+nnoremap <silent> <space>l :call ToggleLocationList()<CR>
 
 augroup QuickFix
   autocmd!
