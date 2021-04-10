@@ -93,7 +93,7 @@ local js_config = {
   lintStdin = true,
   lintFormats = {"%f:%l:%c: %m"},
   lintIgnoreExitCode = true,
-  formatCommand = require "js_utils".get_js_formatter(),
+  formatCommand = js_utils.get_js_formatter(),
   formatStdin = true
 }
 
@@ -132,7 +132,7 @@ lspconfig.efm.setup {
     }
   },
   root_dir = function()
-    if require "js_utils".eslint_config_exists() then
+    if js_utils.eslint_config_exists() then
       return vim.fn.getcwd()
     end
   end,
