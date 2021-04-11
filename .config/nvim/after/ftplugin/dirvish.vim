@@ -8,4 +8,5 @@ nmap <silent><nowait><buffer> d :lua require'dirvish_utils'.create_dir()<CR>
 nmap <silent><buffer> D :lua require'dirvish_utils'.delete()<CR>
 nmap <silent><buffer> R :lua require'dirvish_utils'.rename()<CR>
 nmap <silent><buffer> pp :lua require'dirvish_utils'.move()<CR>
+nmap <silent><buffer> gpp :lua require'dirvish_utils'.copy()<CR>
 nmap <silent><buffer> X :lua require'dirvish_utils'.clear_arglist()<CR>

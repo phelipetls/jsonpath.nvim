@@ -1,5 +1,7 @@
 local M = {}
 
+local path_utils = require "path_utils"
+
 local function get_path_under_cursor()
   return vim.fn.expand("<cfile>")
 end
@@ -179,6 +181,49 @@ function M.move()
     if result ~= 0 and _G.rename_hook and vim.is_callable(_G.rename_hook) then
       pcall(_G.rename_hook, oldpath, newpath)
     end
+  end
+
+  reload_dirvish()
+end
+
+function M.copy()
+  local arglist = vim.tbl_map(get_full_path, vim.fn.argv())
+
+  if #arglist == 0 then
+    return
+  end
+
+  local new_paths =
+    vim.tbl_map(
+    function(path)
+      local name = get_name(path)
+      local new_path = vim.fn.expand("%") .. name
+
+      if not path_utils.path_exists(new_path) then
+        return new_path
+      end
+
+      if vim.fn.getftype(path) == "file" then
+        if vim.startswith(name, ".") then
+          return new_path .. "_"
+        end
+
+        local _, dots_count = name:gsub("%.", "")
+
+        local no_extensions = vim.fn.fnamemodify(new_path, string.rep(":r", dots_count))
+        local extensions = "." .. vim.fn.fnamemodify(name, string.rep(":e", dots_count))
+        return no_extensions .. "_" .. extensions
+      end
+
+      return new_path .. "_"
+    end,
+    arglist
+  )
+
+  for i = 1, #arglist do
+    local oldpath = arglist[i]
+    local new_path = new_paths[i]
+    local result = vim.loop.fs_copyfile(oldpath, new_path)
   end
 
   reload_dirvish()
