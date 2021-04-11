@@ -168,7 +168,7 @@ function M.move()
 
   for _, path in ipairs(new_paths) do
     if vim.fn.isdirectory(path) == 1 or vim.fn.filereadable(path) == 1 then
-      vim.cmd(path .. " already exists!")
+      vim.cmd(("echoerr '%s'"):format(path .. " already exists!"))
       return
     end
   end
@@ -177,6 +177,11 @@ function M.move()
     local oldpath = arglist[i]
     local newpath = new_paths[i]
     local result = vim.fn.rename(oldpath, newpath)
+
+    if result ~= 0 then
+      vim.cmd(string.format("echoerr 'Failed to rename %s to %s'", old_path, new_path))
+      return
+    end
 
     if result ~= 0 and _G.rename_hook and vim.is_callable(_G.rename_hook) then
       pcall(_G.rename_hook, oldpath, newpath)
@@ -223,7 +228,12 @@ function M.copy()
   for i = 1, #arglist do
     local oldpath = arglist[i]
     local new_path = new_paths[i]
-    local result = vim.loop.fs_copyfile(oldpath, new_path)
+    local result = vim.loop.fs_copyfile(old_path, new_path)
+
+    if not result then
+      vim.cmd(string.format("echoerr 'Failed to copy %s'", old_path))
+      return
+    end
   end
 
   reload_dirvish()
