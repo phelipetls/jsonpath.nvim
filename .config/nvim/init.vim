@@ -101,7 +101,7 @@ if !exists("g:vscode")
 
   " visually show special characters
   set list
-  set fillchars=fold:-
+  set fillchars=fold:-,vert:│
   set listchars=tab:»\ ,nbsp:¬,trail:·,extends:…,precedes:‹
   set showbreak=↳\ 
 

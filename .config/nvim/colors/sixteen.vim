@@ -87,7 +87,7 @@ exe "hi PmenuThumb ctermbg=8 guibg=".color8." ctermfg=8 guifg=".color8
 
 exe "hi CursorLine ctermbg=0 guibg=".color0." ctermfg=NONE cterm=BOLD gui=BOLD"
 
-exe "hi VertSplit ctermbg=0 guibg=".color0." ctermfg=0 guifg=".color0
+exe "hi VertSplit ctermbg=8 guibg=".color8." ctermfg=0 guifg=".color0
 
 exe "hi StatusLine ctermbg=7 guibg=".color7." ctermfg=8 guifg=".color8
 exe "hi StatusLineNC ctermbg=8 guibg=".color8." ctermfg=0 guifg=".color0
