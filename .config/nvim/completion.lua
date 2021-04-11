@@ -70,8 +70,15 @@ _G.auto_complete = function()
 
   chars_inserted = chars_inserted + 1
 
-  if chars_inserted == 3 then
-    vim.fn.feedkeys(t "<C-N>")
+  if chars_inserted >= 3 then
+    vim.schedule(
+      function()
+        if vim.fn.mode() ~= "i" then
+          return
+        end
+        vim.fn.feedkeys(t "<C-n>", "i")
+      end
+    )
     return
   end
 end
