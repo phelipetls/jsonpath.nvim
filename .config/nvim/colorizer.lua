@@ -6,7 +6,8 @@ require "colorizer".setup(
     javascriptreact = {names = false},
     "css",
     "html",
-    "vim"
+    "vim",
+    "json"
   },
   {rgb_fn = true}
 )
