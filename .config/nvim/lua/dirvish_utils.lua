@@ -60,7 +60,7 @@ function M.delete()
   local path = get_path_under_cursor()
   local option = vim.fn.confirm("Delete " .. path, "&Yes\n&No\n&Force", 2)
 
-  if option == 2 then
+  if option == 0 or option == 2 then
     return
   end
 
