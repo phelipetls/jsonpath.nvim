@@ -120,8 +120,8 @@ local function get_name(path)
 end
 
 function M.rename()
-  local oldpath = get_path_under_cursor()
-  local oldname = get_name(oldpath)
+  local old_path = get_path_under_cursor()
+  local oldname = get_name(old_path)
 
   local newname = get_input("Rename: ", oldname)
 
@@ -131,8 +131,8 @@ function M.rename()
 
   local newpath = vim.fn.expand("%") .. newname
 
-  local clear_buffers = get_clear_buffers_function(oldpath)
-  local result = vim.fn.rename(oldpath, newpath)
+  local clear_buffers = get_clear_buffers_function(old_path)
+  local result = vim.fn.rename(old_path, newpath)
 
   if result ~= 0 then
     echo_err("Failed to rename")
@@ -140,10 +140,10 @@ function M.rename()
   end
 
   if _G.rename_hook and vim.is_callable(_G.rename_hook) then
-    pcall(_G.rename_hook, oldpath, newpath)
+    pcall(_G.rename_hook, old_path, newpath)
   end
 
-  clear_buffers(oldpath)
+  clear_buffers(old_path)
   reload_dirvish()
 end
 
@@ -174,9 +174,9 @@ function M.move()
   end
 
   for i = 1, #arglist do
-    local oldpath = arglist[i]
-    local newpath = new_paths[i]
-    local result = vim.fn.rename(oldpath, newpath)
+    local old_path = arglist[i]
+    local new_path = new_paths[i]
+    local result = vim.fn.rename(old_path, new_path)
 
     if result ~= 0 then
       vim.cmd(string.format("echoerr 'Failed to rename %s to %s'", old_path, new_path))
@@ -184,7 +184,7 @@ function M.move()
     end
 
     if result ~= 0 and _G.rename_hook and vim.is_callable(_G.rename_hook) then
-      pcall(_G.rename_hook, oldpath, newpath)
+      pcall(_G.rename_hook, old_path, new_path)
     end
   end
 
@@ -226,7 +226,7 @@ function M.copy()
   )
 
   for i = 1, #arglist do
-    local oldpath = arglist[i]
+    local old_path = arglist[i]
     local new_path = new_paths[i]
     local result = vim.loop.fs_copyfile(old_path, new_path)
 
