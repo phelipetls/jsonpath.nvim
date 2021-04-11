@@ -515,7 +515,7 @@ function! ToggleLocationList()
 endfunction
 
 nnoremap <silent> <space>q :call ToggleQuickfixList()<CR>
-nnoremap <silent> <space>l :call ToggleLocationList()<CR>
+nnoremap <silent> <space>w :call ToggleLocationList()<CR>
 
 augroup QuickFix
   autocmd!
