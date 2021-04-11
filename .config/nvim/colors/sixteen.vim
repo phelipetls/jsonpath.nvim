@@ -8,7 +8,7 @@ let pywal_file = "$HOME/.cache/wal/colors-wal.vim"
 if filereadable(expand(pywal_file))
   exe "source ".pywal_file
 else
-  echoerr "No pywal generated files"
+  echoerr "No pywal generated file"
   finish
 endif
 
