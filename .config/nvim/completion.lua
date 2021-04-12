@@ -59,7 +59,7 @@ end
 local chars_inserted = 0
 
 _G.auto_complete = function()
-  if vim.fn.mode() ~= "i" or vim.fn.pumvisible() == 1 then
+  if vim.fn.reg_executing() ~= "" or vim.fn.mode() ~= "i" or vim.fn.pumvisible() == 1 then
     return
   end
 
