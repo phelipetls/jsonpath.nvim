@@ -58,6 +58,24 @@ end
 
 local chars_inserted = 0
 
+local function debounce(fn)
+  local timer_id = 0
+  return function(...)
+    vim.fn.timer_stop(timer_id)
+    timer_id = vim.fn.timer_start(200, fn)
+  end
+end
+
+local debounced_complete_words =
+  debounce(
+  function()
+    if vim.fn.mode() ~= "i" then
+      return
+    end
+    vim.fn.feedkeys(t "<C-n>")
+  end
+)
+
 _G.auto_complete = function()
   if vim.fn.reg_executing() ~= "" or vim.fn.mode() ~= "i" or vim.fn.pumvisible() == 1 then
     return
@@ -71,14 +89,7 @@ _G.auto_complete = function()
   chars_inserted = chars_inserted + 1
 
   if chars_inserted >= 3 then
-    vim.schedule(
-      function()
-        if vim.fn.mode() ~= "i" then
-          return
-        end
-        vim.fn.feedkeys(t "<C-n>", "i")
-      end
-    )
+    debounced_complete_words()
     return
   end
 end
