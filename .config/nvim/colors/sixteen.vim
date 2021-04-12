@@ -14,7 +14,7 @@ endif
 
 "{{{ Syntax groups
 exe "hi Normal ctermbg=NONE guibg=NONE ctermfg=7 guifg=".color7
-exe "hi NormalFloat ctermbg=238 guibg=#444444 ctermfg=7 guifg=7"
+exe "hi link NormalFloat Normal"
 
 exe "hi Comment ctermfg=8 guifg=".color8
 
