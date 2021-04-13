@@ -130,7 +130,6 @@ end
 lspconfig.tsserver.setup {
   on_attach = function(client, bufnr)
     client.resolved_capabilities.document_formatting = not should_use_efm_formatting()
-    client.server_capabilities.completionProvider.triggerCharacters = nil
     set_lsp_config(client)
   end
 }
