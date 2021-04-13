@@ -25,9 +25,9 @@ end
 local function delete_dir_buffers(path)
   for bufnr = 1, vim.fn.bufnr("$") do
     if bufnr ~= vim.fn.bufnr("%") and vim.fn.bufexists(bufnr) == 1 then
-      local bufpath = vim.api.nvim_buf_get_name(bufnr)
+      local buf_path = vim.api.nvim_buf_get_name(bufnr)
 
-      if is_inside_directory(path, bufpath) then
+      if is_inside_directory(path, buf_path) then
         vim.cmd("bd " .. bufnr)
       end
     end
@@ -129,10 +129,10 @@ function M.rename()
     return
   end
 
-  local newpath = vim.fn.expand("%") .. newname
+  local new_path = vim.fn.expand("%") .. newname
 
   local clear_buffers = get_clear_buffers_function(old_path)
-  local result = vim.fn.rename(old_path, newpath)
+  local result = vim.fn.rename(old_path, new_path)
 
   if result ~= 0 then
     echo_err("Failed to rename")
@@ -140,7 +140,7 @@ function M.rename()
   end
 
   if _G.rename_hook and vim.is_callable(_G.rename_hook) then
-    pcall(_G.rename_hook, old_path, newpath)
+    pcall(_G.rename_hook, old_path, new_path)
   end
 
   clear_buffers(old_path)
