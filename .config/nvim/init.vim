@@ -63,8 +63,7 @@ set encoding=utf-8                  " set default encoding to utf-8
 set laststatus=2                    " always show statusline
 set noshowmode                      " don't show mode
 set tags=./tags,tags;               " look for tags file
-set complete-=t                     " when completing, don't search tags
-set complete-=i                     " neither in included files
+set complete=.,b,w
 set updatetime=1000                 " lower updatetime, used for CursorHold event
 set breakindent                     " keep indentation when lines break
 set breakindentopt=shift:2          " but shift it by 2 spaces
