@@ -19,6 +19,8 @@
   "breadcrumbs.enabled": true,
   "scm.diffDecorations": "gutter",
   "files.enableTrash": false,
+  "vim.incsearch": true,
+  "vim.useSystemClipboard": true,
   "vim.handleKeys": {
     "<C-b>": false
   },
