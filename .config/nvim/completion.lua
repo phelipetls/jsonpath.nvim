@@ -66,21 +66,15 @@ local function debounce(fn)
   end
 end
 
-local debounced_complete_words =
-  debounce(
-  function()
-    if vim.fn.mode() ~= "i" then
-      return
-    end
+local complete_words = function()
+  if vim.fn.reg_executing() == "" and vim.fn.pumvisible() == 0 and vim.fn.mode() == "i" then
     vim.fn.feedkeys(t "<C-n>")
   end
-)
+end
+
+local debounced_complete_words = debounce(complete_words)
 
 _G.auto_complete = function()
-  if vim.fn.reg_executing() ~= "" or vim.fn.mode() ~= "i" or vim.fn.pumvisible() == 1 then
-    return
-  end
-
   if not is_keyword(vim.v.char) then
     chars_inserted = 0
     return
@@ -88,7 +82,7 @@ _G.auto_complete = function()
 
   chars_inserted = chars_inserted + 1
 
-  if chars_inserted >= 3 then
+  if chars_inserted == 3 then
     debounced_complete_words()
     return
   end
@@ -96,7 +90,7 @@ end
 
 vim.cmd [[augroup AutoComplete]]
 vim.cmd [[  au!]]
-vim.cmd [[  autocmd InsertCharPre * noautocmd lua auto_complete()]]
+vim.cmd [[  autocmd InsertCharPre * lua auto_complete()]]
 vim.cmd [[augroup END]]
 
 local function read_dir(dir, fn)
