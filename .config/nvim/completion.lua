@@ -7,7 +7,7 @@ end
 local get_last_char = function()
   local col = vim.fn.col(".") - 1
   if col == 0 then
-    return
+    return " "
   end
   return vim.fn.getline("."):sub(col, col)
 end
