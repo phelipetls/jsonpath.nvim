@@ -14,7 +14,15 @@ local function exists_glob(glob)
   return vim.fn.glob(glob) ~= ""
 end
 
+local function should_ignore_prettier()
+  return vim.startswith(vim.fn.getcwd(), vim.fn.expand("$HOME/Mutual/"))
+end
+
 function M.prettier_config_exists()
+  if should_ignore_prettier() then
+    return false
+  end
+
   return exists_glob(".prettierrc*") or exists_package_json_field("prettier")
 end
 
