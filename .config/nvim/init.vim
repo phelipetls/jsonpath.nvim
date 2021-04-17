@@ -191,11 +191,11 @@ if !exists("g:vscode")
   endfunction
 
   nmap <silent> gq :set opfunc=Format<CR>g@
-  nmap <silent> gQ :lua require'utils'.same_buffer_windo("let w:view = winsaveview()")<CR>
+  nmap <silent> gQ :lua require'misc'.same_buffer_windo("let w:view = winsaveview()")<CR>
         \ :set opfunc=Format<CR>
         \ :keepjumps normal gg<CR>
         \ :keepjumps normal gqG<CR>
-        \ :lua require'utils'.same_buffer_windo("keepj call winrestview(w:view)")<CR>
+        \ :lua require'misc'.same_buffer_windo("keepj call winrestview(w:view)")<CR>
 
   let g:git_messenger_floating_win_opts = {'border': 'single'}
   let g:git_messenger_popup_content_margin = v:false
@@ -491,7 +491,7 @@ function! OpenQuickfixList()
 endfunction
 
 function! ToggleQuickfixList()
-  if luaeval("require'utils'.quickfix_is_visible()")
+  if luaeval("require'misc'.quickfix_is_visible()")
     cclose
     return
   endif
@@ -509,7 +509,7 @@ function! OpenLocationList()
 endfunction
 
 function! ToggleLocationList()
-  if luaeval("require'utils'.loclist_is_visible()")
+  if luaeval("require'misc'.loclist_is_visible()")
     lclose
     return
   endif

@@ -1,4 +1,4 @@
-local path_utils = require "path_utils"
+local path_utils = require "utils/path"
 
 local t = function(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)

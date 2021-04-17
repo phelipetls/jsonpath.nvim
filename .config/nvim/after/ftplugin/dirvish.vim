@@ -1,11 +1,13 @@
 nnoremap <silent><buffer>
         \ gh :silent keeppatterns g@\v/\.[^\/]+/?$@d _<cr>:setl cole=3<cr>
 
-nmap <silent><buffer> % :lua require'dirvish_utils'.create_file()<CR>
-nmap <silent><nowait><buffer> d :lua require'dirvish_utils'.create_dir()<CR>
-nmap <silent><buffer> D :lua require'dirvish_utils'.delete()<CR>
-nmap <silent><buffer> R :lua require'dirvish_utils'.rename()<CR>
-nmap <silent><buffer> pp :lua require'dirvish_utils'.move()<CR>
-nmap <silent><buffer> gpp :lua require'dirvish_utils'.copy()<CR>
-nmap <silent><buffer> X :lua require'dirvish_utils'.clear_arglist()<CR>
-nnoremap <silent><buffer> gR :<C-U>Dirvish %<CR>
+lua << EOF
+local dirvish = require'utils/dirvish'
+vim.api.nvim_buf_set_keymap(0, "n", "%", ":lua require'utils/dirvish'.create_file()<CR>", { silent = true })
+vim.api.nvim_buf_set_keymap(0, "n", "d", ":lua require'utils/dirvish'.create_dir()<CR>", { silent = true, nowait = true })
+vim.api.nvim_buf_set_keymap(0, "n", "D", ":lua require'utils/dirvish'.delete()<CR>", { silent = true })
+vim.api.nvim_buf_set_keymap(0, "n", "R", ":lua require'utils/dirvish'.rename()<CR>", { silent = true })
+vim.api.nvim_buf_set_keymap(0, "n", "pp", ":lua require'utils/dirvish'.move()<CR>", { silent = true })
+vim.api.nvim_buf_set_keymap(0, "n", "gpp", ":lua require'utils/dirvish'.copy()<CR>", { silent = true })
+vim.api.nvim_buf_set_keymap(0, "n", "X", ":lua require'utils/dirvish'.clear_arglist()<CR>", { silent = true })
+EOF

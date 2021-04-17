@@ -1,7 +1,7 @@
 vim.lsp.set_log_level("debug")
 
 local lspconfig = require "lspconfig"
-local js_utils = require "js_utils"
+local js_tools = require "utils/js_tools"
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] =
   vim.lsp.with(
@@ -46,10 +46,10 @@ local function set_lsp_config(client, bufnr)
   end
 
   if client.resolved_capabilities.goto_definition then
-    set_buf_keymap(bufnr, "n", "[d", [[:lua require'lsp_utils'.definition_sync()<CR>]])
-    set_buf_keymap(bufnr, "n", "[<C-d>", [[:lua require'lsp_utils'.definition_sync()<CR>]])
-    set_buf_keymap(bufnr, "n", "<C-w><C-d>", [[:split <bar> lua require'lsp_utils'.definition_sync('split')<CR>]])
-    set_buf_keymap(bufnr, "n", "<C-c><C-p>", [[:lua require'lsp_utils'.peek_definition()<CR>]])
+    set_buf_keymap(bufnr, "n", "[d", [[:lua require'utils/lsp'.definition_sync()<CR>]])
+    set_buf_keymap(bufnr, "n", "[<C-d>", [[:lua require'utils/lsp'.definition_sync()<CR>]])
+    set_buf_keymap(bufnr, "n", "<C-w><C-d>", [[:split <bar> lua require'utils/lsp'.definition_sync('split')<CR>]])
+    set_buf_keymap(bufnr, "n", "<C-c><C-p>", [[:lua require'utils/lsp'.peek_definition()<CR>]])
   end
 
   if client.resolved_capabilities.type_definition then
@@ -81,14 +81,14 @@ local function set_lsp_config(client, bufnr)
   end
 
   if client.name == "tsserver" then
-    vim.cmd [[nnoremap <silent> <S-M-o> :lua require'tsserver_utils'.organize_imports()<CR>]]
+    vim.cmd [[nnoremap <silent> <S-M-o> :lua require'utils/tsserver'.organize_imports()<CR>]]
 
     vim.cmd [[augroup LspImportAfterCompletion]]
     vim.cmd [[  au!]]
-    vim.cmd [[  autocmd CompleteDone <buffer> lua require'lsp_utils'.import_after_completion()]]
+    vim.cmd [[  autocmd CompleteDone <buffer> lua require'utils/lsp'.import_after_completion()]]
     vim.cmd [[augroup END]]
 
-    _G.rename_hook = require "tsserver_utils".rename
+    _G.rename_hook = require "utils/tsserver".rename
   end
 end
 
@@ -109,11 +109,11 @@ lspconfig.pyls.setup {
 }
 
 local js_config = {
-  lintCommand = js_utils.should_use_eslint() and "eslint_d -f unix --stdin --stdin-filename ${INPUT}" or "",
+  lintCommand = js_tools.should_use_eslint() and "eslint_d -f unix --stdin --stdin-filename ${INPUT}" or "",
   lintStdin = true,
   lintFormats = {"%f:%l:%c: %m"},
   lintIgnoreExitCode = true,
-  formatCommand = js_utils.get_js_formatter(),
+  formatCommand = js_tools.get_js_formatter(),
   formatStdin = true
 }
 
@@ -123,7 +123,7 @@ local function should_use_efm_formatting()
   end
 
   if js_config.formatCommand:find("eslint_d") then
-    return js_utils.check_eslint_config()
+    return js_tools.check_eslint_config()
   end
 
   return js_config.formatCommand ~= ""
@@ -149,7 +149,7 @@ lspconfig.efm.setup {
     }
   },
   root_dir = function()
-    if js_utils.should_use_eslint() then
+    if js_tools.should_use_eslint() then
       return vim.fn.getcwd()
     end
   end,

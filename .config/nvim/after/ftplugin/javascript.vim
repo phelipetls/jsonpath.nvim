@@ -3,7 +3,7 @@ setlocal shiftwidth=2 softtabstop=2
 setlocal path-=./node_modules/**,node_modules/**
 setlocal path+=cypress/fixtures
 if has("nvim")
-  let tsconfig_include = luaeval("require'js_utils'.get_tsconfig_include()")
+  let tsconfig_include = luaeval("require'utils/tsconfig'.get_tsconfig_include()")
   if !empty(tsconfig_include) && match(&l:path, tsconfig_include) == -1
     let &l:path .= ',' . tsconfig_include
   endif
@@ -21,7 +21,7 @@ if executable("node")
   noremap <buffer> <F5> :w !node<CR>
 endif
 
-let &l:formatprg=luaeval("require'js_utils'.get_js_formatter()")
+let &l:formatprg=luaeval("require'utils/js_tools'.get_js_formatter()")
 
 let b:surround_{char2nr("c")} = "console.log(\r)"
 let b:surround_{char2nr("C")} = "console.log(JSON.stringify(\r, null, 2))"
@@ -45,6 +45,6 @@ inoreabbrev docuemnt document
 setlocal isfname+=@-@
 setlocal suffixesadd=.js,.jsx,.ts,.tsx,.d.ts,.vue
 
-nnoremap <silent><buffer> gf :call luaeval("require'js_utils'.go_to_file(_A)","edit")<CR>
-nnoremap <silent><buffer> <C-w>f :call luaeval("require'js_utils'.go_to_file(_A)","split")<CR>
-nnoremap <silent><buffer> <C-w><C-f> :call luaeval("require'js_utils'.go_to_file(_A)","split")<CR>
+nnoremap <silent><buffer> gf :call luaeval("require'utils/tsconfig'.go_to_file(_A)","edit")<CR>
+nnoremap <silent><buffer> <C-w>f :call luaeval("require'utils/tsconfig'.go_to_file(_A)","split")<CR>
+nnoremap <silent><buffer> <C-w><C-f> :call luaeval("require'utils/tsconfig'.go_to_file(_A)","split")<CR>

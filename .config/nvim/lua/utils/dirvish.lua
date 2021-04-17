@@ -1,6 +1,6 @@
 local M = {}
 
-local path_utils = require "path_utils"
+local path_utils = require "utils/path"
 
 local function get_path_under_cursor()
   return vim.fn.expand("<cfile>")
