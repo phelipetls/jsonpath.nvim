@@ -108,25 +108,23 @@ lspconfig.pyls.setup {
   }
 }
 
+local js_formatter = js_tools.get_js_formatter()
+
 local js_config = {
   lintCommand = js_tools.should_use_eslint() and "eslint_d -f unix --stdin --stdin-filename ${INPUT}" or "",
   lintStdin = true,
   lintFormats = {"%f:%l:%c: %m"},
   lintIgnoreExitCode = true,
-  formatCommand = js_tools.get_js_formatter(),
+  formatCommand = js_formatter,
   formatStdin = true
 }
 
 local function should_use_efm_formatting()
-  if js_config.formatCommand == "" then
-    return false
-  end
-
-  if js_config.formatCommand:find("eslint_d") then
+  if js_formatter:find("eslint_d") then
     return js_tools.check_eslint_config()
   end
 
-  return js_config.formatCommand ~= ""
+  return js_formatter ~= ""
 end
 
 lspconfig.tsserver.setup {
