@@ -91,6 +91,13 @@ autocmd! BufReadPost *
       \   exe "normal g`\"" |
       \ endif
 
+lua << EOF
+  function _G.dump(...)
+    local objects = vim.tbl_map(vim.inspect, {...})
+    print(unpack(objects))
+  end
+EOF
+
 if !exists("g:vscode")
   set termguicolors
   colorscheme sixteen
