@@ -109,7 +109,7 @@ lspconfig.pyls.setup {
 }
 
 local js_config = {
-  lintCommand = "eslint_d -f unix --stdin --stdin-filename ${INPUT}",
+  lintCommand = js_utils.should_use_eslint() and "eslint_d -f unix --stdin --stdin-filename ${INPUT}" or "",
   lintStdin = true,
   lintFormats = {"%f:%l:%c: %m"},
   lintIgnoreExitCode = true,
@@ -149,7 +149,7 @@ lspconfig.efm.setup {
     }
   },
   root_dir = function()
-    if js_utils.eslint_config_exists() then
+    if js_utils.should_use_eslint() then
       return vim.fn.getcwd()
     end
   end,
