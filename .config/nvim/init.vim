@@ -96,7 +96,7 @@ if !exists("g:vscode")
   colorscheme sixteen
 
   " disable foldcolumn in diff mode
-  set diffopt+=foldcolumn:0
+  set diffopt+=foldcolumn:0,indent-heuristic,algorithm:patience,hiddenoff
 
   " visually show special characters
   set list
