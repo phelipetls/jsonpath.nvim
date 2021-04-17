@@ -26,6 +26,11 @@ function M.prettier_config_exists()
   return exists_glob(".prettierrc*") or exists_package_json_field("prettier")
 end
 
+function M.check_eslint_config()
+  local exit_code = os.execute(vim.fn.expandcmd("eslint_d --print-config %"))
+  return exit_code == 0
+end
+
 function M.eslint_config_exists()
   return exists_glob(".eslintrc*") or exists_package_json_field("eslintConfig")
 end
@@ -40,12 +45,6 @@ function M.get_js_formatter()
   end
 
   return ""
-end
-
-function M.check_eslint_config()
-  local current_file = vim.fn.expand("%")
-  local exit_code = os.execute("eslint_d --print-config " .. current_file)
-  return exit_code == 0
 end
 
 local function remove_comments(line)
