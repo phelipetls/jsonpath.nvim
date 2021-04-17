@@ -44,8 +44,8 @@ function get_battery {
 
   if [ $level -lt 15 ] && [ $state = "Discharging" ]; then
     dunstify -u normal -r 10000 "Bateria baixa: $level"
-  elif [[ $level = 100 && $state = "Charging" ]]; then
-    dunstify -u low "Bateria cheia: $level"
+  elif [[ $state = "Full" ]]; then
+    dunstify -u low "Bateria cheia"
   fi
 }
 
