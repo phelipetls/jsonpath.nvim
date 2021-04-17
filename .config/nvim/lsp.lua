@@ -171,7 +171,6 @@ lspconfig.efm.setup {
       function()
         local logfile = "$HOME/efmlangserver.log"
         local cmd = string.format("tail -1000 %s | grep -E '^[0-9]{4}/[0-9]{2}/[0-9]{2}'", logfile)
-
         vim.cmd("split new")
         vim.cmd("10wincmd _")
         vim.cmd("set bt=nofile")
