@@ -28,27 +28,32 @@ vim.lsp.handlers["textDocument/signatureHelp"] =
   }
 )
 
-local function set_lsp_config(client)
-  vim.cmd [[setlocal signcolumn=yes]]
-  vim.cmd [[nnoremap <buffer><silent> <C-space> :lua vim.lsp.diagnostic.show_line_diagnostics({ border = "single" })<CR>]]
-  vim.cmd [[nnoremap <buffer><silent> ]g :lua vim.lsp.diagnostic.goto_next({ popup_opts = { border = "single" }})<CR>]]
-  vim.cmd [[nnoremap <buffer><silent> [g :lua vim.lsp.diagnostic.goto_prev({ popup_opts = { border = "single" }})<CR>]]
+local function set_buf_keymap(bufnr, mode, lhs, rhs)
+  vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, {noremap = true, silent = true})
+end
 
-  vim.cmd [[setlocal omnifunc=v:lua.vim.lsp.omnifunc]]
+local function set_lsp_config(client, bufnr)
+  vim.cmd [[setlocal signcolumn=yes]]
+
+  set_buf_keymap(bufnr, "n", "<C-space>", [[:lua vim.lsp.diagnostic.show_line_diagnostics({ border = 'single' })<CR>]])
+  set_buf_keymap(bufnr, "n", "]g", [[:lua vim.lsp.diagnostic.goto_next({ popup_opts = { border = 'single' }})<CR>]])
+  set_buf_keymap(bufnr, "n", "[g", [[:lua vim.lsp.diagnostic.goto_prev({ popup_opts = { border = 'single' }})<CR>]])
+
+  vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
 
   if client.resolved_capabilities.hover then
-    vim.cmd [[nnoremap <buffer><silent> K :lua vim.lsp.buf.hover()<CR>]]
+    set_buf_keymap(bufnr, "n", "K", [[:lua vim.lsp.buf.hover()<CR>]])
   end
 
   if client.resolved_capabilities.goto_definition then
-    vim.cmd [[nnoremap <buffer><silent> [d :lua require"lsp_utils".definition_sync()<CR>]]
-    vim.cmd [[nnoremap <buffer><silent> [<C-d> :lua require"lsp_utils".definition_sync()<CR>]]
-    vim.cmd [[nnoremap <buffer><silent> <C-w><C-d> :split <bar> lua require"lsp_utils".definition_sync('split')<CR>]]
-    vim.cmd [[nnoremap <buffer><silent> <C-c><C-p> :lua require"lsp_utils".peek_definition()<CR>]]
+    set_buf_keymap(bufnr, "n", "[d", [[:lua require'lsp_utils'.definition_sync()<CR>]])
+    set_buf_keymap(bufnr, "n", "[<C-d>", [[:lua require'lsp_utils'.definition_sync()<CR>]])
+    set_buf_keymap(bufnr, "n", "<C-w><C-d>", [[:split <bar> lua require'lsp_utils'.definition_sync('split')<CR>]])
+    set_buf_keymap(bufnr, "n", "<C-c><C-p>", [[:lua require'lsp_utils'.peek_definition()<CR>]])
   end
 
   if client.resolved_capabilities.type_definition then
-    vim.cmd [[nnoremap <buffer><silent> [t :lua vim.lsp.buf.type_definition()<CR>]]
+    set_buf_keymap(bufnr, "n", "[t", [[:lua vim.lsp.buf.type_definition()<CR>]])
   end
 
   if client.resolved_capabilities.find_references then
@@ -56,11 +61,11 @@ local function set_lsp_config(client)
   end
 
   if client.resolved_capabilities.rename then
-    vim.cmd [[nnoremap <buffer><silent> gR :lua vim.lsp.buf.rename()<CR>]]
+    set_buf_keymap(bufnr, "n", "gR", [[:lua vim.lsp.buf.rename()<CR>]])
   end
 
   if client.resolved_capabilities.code_action then
-    vim.cmd [[nnoremap <buffer><silent> <M-CR> :lua vim.lsp.buf.code_action()<CR>]]
+    set_buf_keymap(bufnr, "n", "<M-CR>", [[:lua vim.lsp.buf.code_action()<CR>]])
   end
 
   if client.resolved_capabilities.document_formatting then
@@ -72,7 +77,7 @@ local function set_lsp_config(client)
   end
 
   if client.resolved_capabilities.signature_help then
-    vim.cmd [[inoremap <buffer><silent> <C-x><C-p> <C-o>:lua vim.lsp.buf.signature_help()<CR>]]
+    set_buf_keymap(bufnr, "i", "<C-x><C-p>", [[<C-o>:lua vim.lsp.buf.signature_help()<CR>]])
   end
 
   if client.name == "tsserver" then
@@ -80,7 +85,7 @@ local function set_lsp_config(client)
 
     vim.cmd [[augroup LspImportAfterCompletion]]
     vim.cmd [[  au!]]
-    vim.cmd [[  autocmd CompleteDone <buffer> lua require"lsp_utils".import_after_completion()]]
+    vim.cmd [[  autocmd CompleteDone <buffer> lua require'lsp_utils'.import_after_completion()]]
     vim.cmd [[augroup END]]
 
     _G.rename_hook = require "tsserver_utils".rename
@@ -88,8 +93,8 @@ local function set_lsp_config(client)
 end
 
 lspconfig.pyls.setup {
-  on_attach = function(client)
-    set_lsp_config(client)
+  on_attach = function(client, bufnr)
+    set_lsp_config(client, bufnr)
   end,
   settings = {
     pyls = {
@@ -127,14 +132,14 @@ end
 lspconfig.tsserver.setup {
   on_attach = function(client, bufnr)
     client.resolved_capabilities.document_formatting = not should_use_efm_formatting()
-    set_lsp_config(client)
+    set_lsp_config(client, bufnr)
   end
 }
 
 lspconfig.efm.setup {
-  on_attach = function(client)
+  on_attach = function(client, bufnr)
     client.resolved_capabilities.document_formatting = should_use_efm_formatting()
-    set_lsp_config(client)
+    set_lsp_config(client, bufnr)
   end,
   default_config = {
     cmd = {
