@@ -197,9 +197,8 @@ if !exists("g:vscode")
         \ :keepjumps normal gqG<CR>
         \ :lua require'utils'.same_buffer_windo("keepj call winrestview(w:view)")<CR>
 
-  let g:git_messenger_floating_win_opts = {
-        \ 'border': 'single'
-        \ }
+  let g:git_messenger_floating_win_opts = {'border': 'single'}
+  let g:git_messenger_popup_content_margin = v:false
 endif
 
 "}}}
