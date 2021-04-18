@@ -278,7 +278,6 @@ endif
 
 " format paragraph
 nnoremap <M-q> gwip
-inoremap <M-q> <C-o>gwip
 
 " put the current file name under the f register
 autocmd! BufEnter * let @f=expand("%:t:r")
@@ -333,10 +332,6 @@ nnoremap <silent> 1gD 1gD:nohlsearch<CR>
 " convenient abbreviations
 inoreabbrev Taebl Table
 inoreabbrev taebl table
-
-" do not change jump list when using }
-nnoremap <silent> } :keepjumps norm! }<CR>
-nnoremap <silent> { :keepjumps norm! {<CR>
 
 " git messenger mapping
 nnoremap <silent> gb :GitMessenger<CR>
