@@ -40,35 +40,37 @@ packadd! vim-javascript
 packadd! yats.vim
 packadd! vim-jsx-pretty
 packadd! vim-hugo
+
 "}}}
-"{{{ general settings
+"{{{ text editing settings
+
+set termguicolors
+colorscheme sixteen
+
+filetype plugin indent on
+
 set nonumber
 set hidden
 set wildmenu
 set wildmode=full
 set wildcharm=<Tab>
 set lazyredraw
-set mouse=nv                        " allow mouse in normal and visual mode
-set clipboard+=unnamedplus          " always use system clipboard
-set splitbelow splitright           " always split window to the right and below
-set ignorecase smartcase            " ignore case, except when there is an upper case
-set noshowcmd nocursorline          " don't show incomplete commands nor cursor line
-set nojoinspaces                    " remove spaces when joining lines
-set scrolloff=3                     " when scrolling, keep three lines ahead visible
-set backspace=indent,eol,start      " better backspace behaviour
-set encoding=utf-8                  " set default encoding to utf-8
-set laststatus=2                    " always show statusline
-set noshowmode                      " don't show mode
-set tags=./tags,tags;               " look for tags file
-set complete=.,b,w
-set updatetime=1000                 " lower updatetime, used for CursorHold event
-set breakindent                     " keep indentation when lines break
-set breakindentopt=shift:2          " but shift it by 2 spaces
-set linebreak                       " break only at specific characters, :h breakat
+set mouse=nv
+set clipboard+=unnamedplus
+set splitbelow splitright
+set ignorecase smartcase
+set noshowcmd nocursorline
+set nojoinspaces
+set scrolloff=3
+set backspace=indent,eol,start
+set encoding=utf-8
+set laststatus=2
+set noshowmode
+set updatetime=1000
+set breakindent
+set breakindentopt=shift:2
+set linebreak
 
-filetype plugin indent on
-
-" default identation
 set expandtab
 set softtabstop=2
 set shiftwidth=2
@@ -287,7 +289,7 @@ function! Eatchar(pat)
   return (c =~ a:pat) ? '' : c
 endfunction
 
-" vim-rsi mappings that I use
+" emacs keybindings that I use
 inoremap <C-A> <Home>
 cnoremap <C-A> <Home>
 cnoremap <C-X><C-A> <C-A>
@@ -297,7 +299,7 @@ inoremap <expr> <C-E> col('.')>strlen(getline('.'))?"\<Lt>C-E>":"\<Lt>End>"
 let date_formats = ["%Y-%m-%d","%Y-%m-%dT%H:%M:%S%Z"]
 inoremap <silent> <C-G><C-T> <C-R>=repeat(complete(col('.'),map(date_formats,'strftime(v:val)')),0)<CR>
 
-" <space> does not move cursor in normal mode
+" <space> should not move cursor in normal mode
 nnoremap <space> <nop>
 
 " when using ^R^L in command-line mode, strip out leading whitespace
@@ -307,11 +309,11 @@ cnoremap <C-R><C-L> <C-R>=substitute(getline('.'), '^\s*', '', '')<CR>
 omap <Tab> %
 xmap <Tab> %
 
-" put file name in clipboard
+" copy active file name
 nnoremap yp :let @+=expand("%:p")<CR>
 nnoremap y<C-p> :let @+=expand("%:p")<CR>
 
-" put file directory name in clipboard
+" copy active directory name
 nnoremap yd :let @+=expand("%:h")<CR>
 nnoremap y<C-d> :let @+=expand("%:h")<CR>
 
