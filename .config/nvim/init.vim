@@ -11,38 +11,35 @@ packadd! matchit
 packadd! vim-lion
 packadd! tagalong.vim
 
-if !exists("g:vscode")
-  " git
-  packadd! vim-fugitive
-  packadd! diffconflicts
-  packadd! git-messenger.vim
-  packadd! gv.vim
+" git
+packadd! vim-fugitive
+packadd! diffconflicts
+packadd! git-messenger.vim
+packadd! gv.vim
 
-  " file navigation
-  set rtp+=~/.fzf
-  packadd! fzf.vim
-  packadd! vim-dirvish
+" file navigation
+set rtp+=~/.fzf
+packadd! fzf.vim
+packadd! vim-dirvish
 
-  " vim specific improvements
-  packadd! traces.vim
-  packadd! vim-obsession
-  packadd! editorconfig-vim
-  packadd! cfilter
-  packadd! vim-slime
-  packadd! vim-toml
-  if has("nvim")
-    packadd! nvim-colorizer.lua
-  endif
-
-  " html and javascript
-  packadd! emmet-vim
-  packadd! vim-jinja
-  packadd! vim-javascript
-  packadd! yats.vim
-  packadd! vim-jsx-pretty
-  packadd! vim-hugo
+" vim specific improvements
+packadd! traces.vim
+packadd! vim-obsession
+packadd! editorconfig-vim
+packadd! cfilter
+packadd! vim-slime
+packadd! vim-toml
+if has("nvim")
+  packadd! nvim-colorizer.lua
 endif
 
+" web development
+packadd! emmet-vim
+packadd! vim-jinja
+packadd! vim-javascript
+packadd! yats.vim
+packadd! vim-jsx-pretty
+packadd! vim-hugo
 "}}}
 "{{{ general settings
 set nonumber
@@ -79,17 +76,122 @@ set shiftwidth=2
 " don't autocomment on newline
 autocmd! FileType * set formatoptions-=cro
 
+" after reading a buffer, jump to last position before exiting it
+autocmd! BufReadPost *
+      \ if line("'\"") > 0 && line("'\"") <= line("$") && &ft !~ "git" |
+      \   exe "normal g`\"" |
+      \ endif
+
 " tell neovim where python3 is -- this improves startup time
 if has("nvim") && has("unix")
   let g:loaded_python_provider = 0
   let g:python3_host_prog = "/usr/bin/python3"
 endif
 
-" when entering a buffer, resume to the position you were when you left it
-autocmd! BufReadPost *
-      \ if line("'\"") > 0 && line("'\"") <= line("$") && &ft !~ "git" |
-      \   exe "normal g`\"" |
-      \ endif
+" disable foldcolumn in diff mode
+set diffopt+=foldcolumn:0,indent-heuristic,algorithm:patience,hiddenoff
+
+" visually show special characters
+set list
+set fillchars=fold:-,vert:│
+set listchars=tab:»\ ,nbsp:¬,trail:·,extends:…,precedes:‹
+set showbreak=↳\ 
+
+" autoresize splits when vim is resized
+autocmd! VimResized * wincmd =
+
+" use ripgrep as the external grep command
+if executable("rg")
+  set grepprg=rg\ --vimgrep\ --smart-case\ --hidden\ --no-heading
+  set grepformat=%f:%l:%c:%m,%f:%l:%m
+endif
+
+" checktime when nvim resumes from suspended state
+if has("nvim")
+  autocmd! VimResume * checktime
+endif
+
+autocmd! FocusGained * checktime
+
+" disable javascript browser-related keywords
+let g:yats_host_keyword = 0
+
+" emmet trigger key
+let g:user_emmet_leader_key = "<C-c><C-e>"
+
+let g:user_emmet_settings = {
+      \  'javascript' : {
+      \      'extends' : 'jsx',
+      \      'empty_element_suffix': ' />',
+      \  }
+      \}
+
+" integrate traces.vim with vim-subvert
+let g:traces_abolish_integration = 1
+
+" slime
+if exists("$TMUX")
+  let g:slime_target = "tmux"
+  let g:slime_default_config = {"socket_name": "default", "target_pane": "{last}"}
+  let g:slime_dont_ask_default = 1
+elseif has("unix")
+  let g:slime_target = "x11"
+else
+  let g:slime_target = "neovim"
+endif
+
+nnoremap <silent> <C-c><C-c> <Plug>SLimeRegionSend
+nnoremap <silent> <C-c><C-w> :exe ":SlimeSend1 " . expand('<cword>')<CR>
+nnoremap <silent> <C-c>% :%SlimeSend<CR>
+nnoremap <silent> <C-c><C-a> :%SlimeSend<CR>
+nnoremap <silent> <C-c><C-l> :exe ":silent !tmux send-keys -t " . b:slime_config['target_pane'] . " '^L'"<CR>
+nnoremap <silent> <C-c><C-s> :exe ":silent !tmux send-keys -t " . b:slime_config['target_pane'] . " 'plt.show()' Enter"<CR>
+
+" disable editorconfig for these file patterns
+let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+
+" enable tagalong in javascript, not only jsx
+let g:tagalong_additional_filetypes = ['javascript']
+
+" disable saving session on BufEnter
+let g:obsession_no_bufenter = 1
+
+" colorizer config
+if has("nvim") && filereadable($HOME."/.config/nvim/colorizer.lua")
+  luafile $HOME/.config/nvim/colorizer.lua
+endif
+
+" disable colors in deno and nodejs
+let $NO_COLOR=0
+
+" avoid showing ansi escape sequences in nvim terminal
+" such as in lint-staged output before committing
+let g:fugitive_pty=0
+
+" make fugitive buffers read only to avoid mistake of writing to them
+augroup FugitiveReadOnly
+  au!
+  autocmd BufRead fugitive://* set readonly
+augroup END
+
+" format range or whole file. try to not change the jumplist
+function! Format(type, ...)
+  keepjumps normal! '[v']gq
+  if v:shell_error > 0
+    keepjumps silent undo
+    echomsg 'formatprg "' . &formatprg . '" exited with status ' . v:shell_error
+  endif
+endfunction
+
+nmap <silent> gq :set opfunc=Format<CR>g@
+nmap <silent> gQ :lua require'misc'.same_buffer_windo("let w:view = winsaveview()")<CR>
+      \ :set opfunc=Format<CR>
+      \ :keepjumps normal gg<CR>
+      \ :keepjumps normal gqG<CR>
+      \ :lua require'misc'.same_buffer_windo("keepj call winrestview(w:view)")<CR>
+
+let g:git_messenger_floating_win_opts = {'border': 'single'}
+let g:git_messenger_popup_content_margin = v:false
 
 lua << EOF
   function _G.dump(...)
@@ -97,116 +199,6 @@ lua << EOF
     print(unpack(objects))
   end
 EOF
-
-if !exists("g:vscode")
-  set termguicolors
-  colorscheme sixteen
-
-  " disable foldcolumn in diff mode
-  set diffopt+=foldcolumn:0,indent-heuristic,algorithm:patience,hiddenoff
-
-  " visually show special characters
-  set list
-  set fillchars=fold:-,vert:│
-  set listchars=tab:»\ ,nbsp:¬,trail:·,extends:…,precedes:‹
-  set showbreak=↳\ 
-
-  " autoresize splits when vim is resized
-  autocmd! VimResized * wincmd =
-
-  " use ripgrep as the external grep command
-  if executable("rg")
-    set grepprg=rg\ --vimgrep\ --smart-case\ --hidden\ --no-heading
-    set grepformat=%f:%l:%c:%m,%f:%l:%m
-  endif
-
-  " checktime when nvim resumes from suspended state
-  if has("nvim")
-    autocmd! VimResume * checktime
-  endif
-
-  autocmd! FocusGained * checktime
-
-  " disable props highlighting
-  let g:yats_host_keyword = 0
-
-  " emmet trigger key
-  let g:user_emmet_leader_key = "<C-c><C-e>"
-
-  let g:user_emmet_settings = {
-        \  'javascript' : {
-        \      'extends' : 'jsx',
-        \      'empty_element_suffix': ' />',
-        \  }
-        \}
-
-  " integrate traces.vim with vim-subvert
-  let g:traces_abolish_integration = 1
-
-  " slime
-  if exists("$TMUX")
-    let g:slime_target = "tmux"
-    let g:slime_default_config = {"socket_name": "default", "target_pane": "{last}"}
-    let g:slime_dont_ask_default = 1
-  elseif has("unix")
-    let g:slime_target = "x11"
-  else
-    let g:slime_target = "neovim"
-  endif
-
-  nnoremap <silent> <C-c><C-c> <Plug>SLimeRegionSend
-  nnoremap <silent> <C-c><C-w> :exe ":SlimeSend1 " . expand('<cword>')<CR>
-  nnoremap <silent> <C-c>% :%SlimeSend<CR>
-  nnoremap <silent> <C-c><C-a> :%SlimeSend<CR>
-  nnoremap <silent> <C-c><C-l> :exe ":silent !tmux send-keys -t " . b:slime_config['target_pane'] . " '^L'"<CR>
-  nnoremap <silent> <C-c><C-s> :exe ":silent !tmux send-keys -t " . b:slime_config['target_pane'] . " 'plt.show()' Enter"<CR>
-
-  " disable editorconfig for these file patterns
-  let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
-
-  " enable tagalong in javascript, not only jsx
-  let g:tagalong_additional_filetypes = ['javascript']
-
-  " disable saving session on BufEnter
-  let g:obsession_no_bufenter = 1
-
-  " colorizer config
-  if has("nvim") && filereadable($HOME."/.config/nvim/colorizer.lua")
-    luafile $HOME/.config/nvim/colorizer.lua
-  endif
-
-  " disable colors in deno and nodejs
-  let $NO_COLOR=0
-
-  " avoid showing ansi escape sequences in nvim terminal
-  " such as in lint-staged output before committing
-  let g:fugitive_pty=0
-
-  " make fugitive buffers read only. avoid mistake of writing to them
-  augroup FugitiveReadOnly
-    au!
-    autocmd BufRead fugitive://* set readonly
-  augroup END
-
-  " format range or whole file. try to not change the jumplist
-  function! Format(type, ...)
-    keepjumps normal! '[v']gq
-    if v:shell_error > 0
-      keepjumps silent undo
-      echomsg 'formatprg "' . &formatprg . '" exited with status ' . v:shell_error
-    endif
-  endfunction
-
-  nmap <silent> gq :set opfunc=Format<CR>g@
-  nmap <silent> gQ :lua require'misc'.same_buffer_windo("let w:view = winsaveview()")<CR>
-        \ :set opfunc=Format<CR>
-        \ :keepjumps normal gg<CR>
-        \ :keepjumps normal gqG<CR>
-        \ :lua require'misc'.same_buffer_windo("keepj call winrestview(w:view)")<CR>
-
-  let g:git_messenger_floating_win_opts = {'border': 'single'}
-  let g:git_messenger_popup_content_margin = v:false
-endif
 
 "}}}
 "{{{ general mappings
@@ -350,25 +342,6 @@ nnoremap <silent> gb :GitMessenger<CR>
 " fix netrw gx being broken
 if executable("xdg-open")
   nnoremap <silent> gx :call system(printf("xdg-open %s", expand("<cWORD>")))<CR>
-endif
-
-"}}}
-"{{{ vscode
-
-if exists("g:vscode")
-  nnoremap <silent> <c-b> <cmd>call VSCodeCall('workbench.action.toggleSidebarVisibility')<CR>
-
-  nnoremap <silent> K <Cmd>call VSCodeCall('editor.action.showHover')<CR>
-  nnoremap <silent> [d <Cmd>call VSCodeCall('editor.action.revealDefinition')<CR>
-  nnoremap <silent> <c-w>d <cmd>call VSCodeCall('editor.action.revealDefinition')<CR>
-  nnoremap <silent> [t <Cmd>call VSCodeCall('editor.action.goToTypeDefinition')<CR>
-  nnoremap <silent> gR <Cmd>call VSCodeCall('editor.action.rename')<CR>
-  nnoremap <silent> - <Cmd>call VSCodeCall('workbench.files.action.showActiveFileInExplorer')<CR>
-  nnoremap <silent> <space>f <Cmd>call VSCodeCall('workbench.action.quickOpen')<CR>
-  nnoremap <silent> <space>r <Cmd>call VSCodeCall('workbench.action.showAllEditorsByMostRecentlyUsed')<CR>
-  nnoremap <silent> ]g <Cmd>call VSCodeCall('editor.action.marker.nextInFiles')<CR>
-  nnoremap <silent> [g <Cmd>call VSCodeCall('editor.action.marker.prevInFiles')<CR>
-  finish
 endif
 
 "}}}
