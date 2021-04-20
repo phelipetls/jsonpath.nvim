@@ -48,6 +48,10 @@
     {
       "before": ["K"],
       "commands": ["editor.action.showHover"]
+    },
+    {
+      "before": ["g", "r"],
+      "commands": ["workbench.action.previousEditor"]
     }
   ],
   "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
