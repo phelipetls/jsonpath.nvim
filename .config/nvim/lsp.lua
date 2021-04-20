@@ -39,8 +39,6 @@ local function set_lsp_config(client, bufnr)
   set_buf_keymap(bufnr, "n", "]g", [[:lua vim.lsp.diagnostic.goto_next({ popup_opts = { border = 'single' }})<CR>]])
   set_buf_keymap(bufnr, "n", "[g", [[:lua vim.lsp.diagnostic.goto_prev({ popup_opts = { border = 'single' }})<CR>]])
 
-  vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
-
   if client.resolved_capabilities.hover then
     set_buf_keymap(bufnr, "n", "K", [[:lua vim.lsp.buf.hover()<CR>]])
   end

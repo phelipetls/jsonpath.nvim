@@ -1,5 +1,35 @@
 local path_utils = require "utils/path"
 
+require "compe".setup(
+  {
+    enabled = true,
+    debug = false,
+    min_length = 3,
+    preselect = "enable",
+    throttle_time = 80,
+    source_timeout = 200,
+    incomplete_delay = 400,
+    documentation = false,
+    source = {
+      path = true,
+      buffer = true,
+      calc = true,
+      omni = {filetypes = {"css", "html"}},
+      nvim_lua = true,
+      nvim_lsp = {
+        filetypes = {
+          "javascript",
+          "javascriptreact",
+          "javascript.jsx",
+          "typescript",
+          "typescript.tsx",
+          "typescriptreact"
+        }
+      }
+    }
+  }
+)
+
 local t = function(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
@@ -27,10 +57,8 @@ _G.tab_complete = function()
     return t "<Tab>"
   elseif last_char_is_slash() then
     return t "<C-x><C-f>"
-  elseif vim.bo.omnifunc ~= "" then
-    return t "<C-x><C-o>"
   else
-    return t "<C-n>"
+    return vim.fn['compe#complete']()
   end
 end
 
@@ -48,50 +76,10 @@ _G.ctrl_space = function()
   end
 end
 
-vim.api.nvim_set_keymap("i", "<C-Space>", "v:lua.ctrl_space()", {expr = true, silent = true})
+vim.api.nvim_set_keymap("i", "<C-Space>", "compe#complete()", {expr = true, silent = true})
+vim.api.nvim_set_keymap("i", "<CR>", "compe#confirm('<CR>')", {expr = true, silent = true})
 vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
-
-local function is_keyword(char)
-  return vim.fn.match(char, "\\k") ~= -1
-end
-
-local chars_inserted = 0
-
-local function debounce(fn)
-  local timer_id = 0
-  return function(...)
-    vim.fn.timer_stop(timer_id)
-    timer_id = vim.fn.timer_start(200, fn)
-  end
-end
-
-local complete_words = function()
-  if vim.fn.reg_executing() == "" and vim.fn.pumvisible() == 0 and vim.fn.mode() == "i" then
-    vim.fn.feedkeys(t "<C-n>")
-  end
-end
-
-local debounced_complete_words = debounce(complete_words)
-
-_G.auto_complete = function()
-  if not is_keyword(vim.v.char) then
-    chars_inserted = 0
-    return
-  end
-
-  chars_inserted = chars_inserted + 1
-
-  if chars_inserted == 3 then
-    debounced_complete_words()
-    return
-  end
-end
-
-vim.cmd [[augroup AutoComplete]]
-vim.cmd [[  au!]]
-vim.cmd [[  autocmd InsertCharPre * lua auto_complete()]]
-vim.cmd [[augroup END]]
 
 local function read_dir(dir, fn)
   local items = fn and vim.fn.readdir(dir, fn) or vim.fn.readdir(dir)

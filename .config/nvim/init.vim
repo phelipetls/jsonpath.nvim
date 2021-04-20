@@ -31,6 +31,7 @@ packadd! vim-slime
 packadd! vim-toml
 if has("nvim")
   packadd! nvim-colorizer.lua
+  packadd! nvim-compe
 endif
 
 " web development
