@@ -7,7 +7,9 @@ local function get_path_under_cursor()
 end
 
 local function echo_err(msg)
+  vim.cmd("echohl WarningMsg")
   vim.cmd(string.format("echoerr '%s'", msg))
+  vim.cmd("echohl None")
 end
 
 local function reload_dirvish()
@@ -69,7 +71,7 @@ function M.delete()
   local result = delete_path(path, force)
 
   if result == -1 then
-    echo_err("Failed to remove " .. path)
+    echo_err("Failed to delete " .. path)
     return
   end
 
