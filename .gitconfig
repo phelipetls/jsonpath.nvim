@@ -25,7 +25,7 @@
     ci = commit
     l = log --abbrev-commit --oneline --graph --decorate
     ctags = !.git/hooks/ctags
-    recent = branch -av --sort=-committerdate
+    recent = branch -v --sort=-committerdate
 [credential]
     helper = cache
 [credential "https://github.com"]
