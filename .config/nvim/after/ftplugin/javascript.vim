@@ -39,7 +39,7 @@ inoreabbrev improt import
 inoreabbrev Obejct Object
 inoreabbrev entires entries
 inoreabbrev cosnt const
-inoreabbrev /** /****/<Up>
+inoreabbrev /** /**<BS> **/<Up>
 inoreabbrev docuemnt document
 
 setlocal isfname+=@-@
