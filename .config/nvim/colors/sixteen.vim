@@ -44,13 +44,12 @@ hi link SpecialComment SpecialChar
 exe "hi Underlined ctermfg=1 guifg=".color1." cterm=UNDERLINE gui=UNDERLINE"
 
 exe "hi Ignore ctermbg=NONE guibg=NONE ctermfg=7 guifg=".color7
-
 "}}}
 "{{{ Misc
 exe "hi DiffAdd ctermbg=2 guibg=".color2." guibg=".color2." ctermfg=0 guifg="color0
-exe "hi DiffDelete ctermbg=0 guibg=".color0." ctermfg=1 guifg=".color1
+exe "hi DiffDelete ctermbg=NONE guibg=NONE ctermfg=1 guifg=".color1
 exe "hi DiffChange ctermbg=NONE guibg=NONE ctermfg=NONE guifg=NONE"
-exe "hi DiffText ctermbg=4 guibg=".color4." ctermfg=0 guifg=".color0." gui=NONE"
+exe "hi DiffText ctermbg=4 guibg=".color4." ctermfg=NONE guifg=NONE gui=NONE"
 exe "hi diffAdded ctermfg=2 guifg=".color2
 exe "hi diffRemoved ctermfg=1 guifg=".color1
 
@@ -63,19 +62,19 @@ exe "hi MoreMsg ctermfg=3 guifg=".color3." gui=NONE"
 exe "hi Title ctermfg=3 guifg=".color3." gui=NONE"
 exe "hi Question ctermfg=8 guifg=".color8." gui=NONE"
 
-exe "hi Todo ctermbg=0 guibg=".color0." ctermfg=2 guifg=".color2." cterm=BOLD gui=BOLD"
+exe "hi Todo ctermbg=NONE guibg=NONE ctermfg=2 guifg=".color2." cterm=BOLD gui=BOLD"
 
 exe "hi LineNr ctermfg=8 guifg=".color8
 exe "hi CursorLineNr ctermfg=8 guifg=".color8
 exe "hi SignColumn ctermbg=NONE guibg=NONE ctermfg=7 guifg=".color7
 
-exe "hi CursorColumn ctermbg=0 guibg=".color0." ctermfg=NONE"
+exe "hi CursorColumn ctermbg=0 guibg=".color0
 
 exe "hi Directory ctermfg=1 guifg=".color1
 
 exe "hi NonText ctermbg=NONE guibg=NONE ctermfg=8 guifg=".color8
 
-exe "hi Visual ctermbg=6 guibg=".color6." ctermfg=0 guifg=".color0
+exe "hi Visual ctermbg=4 guibg=".color4." ctermfg=0 guifg=".color0
 exe "hi VisualNOS ctermbg=NONE guibg=NONE ctermfg=1 guifg=".color1
 exe "hi Search ctermbg=8 guibg=".color8." ctermfg=7 guifg=".color7
 exe "hi IncSearch ctermbg=1 guibg=".color1." ctermfg=7 guifg=".color7." cterm=BOLD gui=BOLD"
@@ -85,14 +84,14 @@ exe "hi PmenuSbar ctermbg=6 guibg=".color6." ctermfg=7 guifg=".color7
 exe "hi PmenuSel ctermbg=4 guibg=".color4." ctermfg=0 guifg=".color0
 exe "hi PmenuThumb ctermbg=8 guibg=".color8." ctermfg=8 guifg=".color8
 
-exe "hi CursorLine ctermbg=0 guibg=".color0." ctermfg=NONE cterm=BOLD gui=BOLD"
+exe "hi CursorLine ctermbg=NONE guibg=NONE ctermfg=NONE cterm=BOLD gui=BOLD"
 
-exe "hi VertSplit ctermbg=8 guibg=".color8." ctermfg=0 guifg=".color0
+exe "hi VertSplit ctermbg=NONE guibg=NONE ctermfg=0 guifg=".color0." cterm=NONE gui=NONE"
 
 exe "hi StatusLine ctermbg=8 guibg=".color8." ctermfg=7 guifg=".color7." cterm=BOLD gui=BOLD"
-exe "hi StatusLineNC ctermbg=NONE guibg=NONE ctermfg=8 guifg=".color8." cterm=NONE gui=NONE"
-exe "hi TabLine ctermbg=NONE guibg=NONE ctermfg=8 guifg=".color8." cterm=UNDERLINE gui=UNDERLINE"
-exe "hi TabLineFill ctermbg=0 guibg=0 ctermfg=8 guifg=".color8." cterm=UNDERLINE gui=UNDERLINE"
+exe "hi StatusLineNC ctermbg=0 guibg=".color0." ctermfg=7 guifg=".color7." cterm=NONE gui=NONE"
+exe "hi TabLine ctermbg=0 guibg=".color0." ctermfg=7 guifg=".color7." cterm=NONE gui=NONE"
+exe "hi TabLineFill ctermbg=0 guibg=".color0." cterm=NONE gui=NONE"
 exe "hi TabLineSel ctermbg=8 guibg=".color8." ctermfg=7 guifg=".color7
 
 exe "hi MatchParen ctermbg=8 guibg=".color8." ctermfg=7 guifg=".color7
