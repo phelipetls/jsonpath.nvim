@@ -8,7 +8,7 @@ end
 
 local function echo_err(msg)
   vim.cmd("echohl WarningMsg")
-  vim.cmd(string.format("echoerr '%s'", msg))
+  vim.cmd(string.format("echomsg '%s'", msg))
   vim.cmd("echohl None")
 end
 
