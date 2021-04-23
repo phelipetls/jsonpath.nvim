@@ -317,9 +317,6 @@ nnoremap y<C-p> :let @+=expand("%:p")<CR>
 nnoremap yd :let @+=expand("%:h")<CR>
 nnoremap y<C-d> :let @+=expand("%:h")<CR>
 
-" open a new tab mapping
-nnoremap <C-w>t :tabedit %<CR>
-
 " use ctrl-k to delete rest of line
 inoremap <C-k> <C-o>D
 inoremap <C-x><C-k> <C-k>
