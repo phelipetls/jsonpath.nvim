@@ -379,7 +379,7 @@ set tabline=%!Tabline()
 set path=.,,..
 
 " ignore these files while browsing
-set wildignore=venv*/,__pycache__/,.pytest_cache/,tags,htmlcov/.coverage,*.pyc
+set wildignore=venv*/,__pycache__/,.pytest_cache/,tags,htmlcov/.coverage,*.pyc,package-lock.json
 
 if executable("fzf")
   let g:fzf_preview_window = ''
