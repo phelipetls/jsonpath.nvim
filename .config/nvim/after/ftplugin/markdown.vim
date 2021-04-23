@@ -34,7 +34,7 @@ function! SelectCodeBlock(inner)
   execute "normal " . (a:inner == "i" ? "k$" : "$")
 endfunction
 
-xnoremap ac :<C-u>call SelectCodeBlock("a")<CR>
-onoremap ac :<C-u>normal vac<CR>
-xnoremap ic :<C-u>call SelectCodeBlock("i")<CR>
-onoremap ic :<C-u>normal vic<CR>
+xnoremap <silent> ac :<C-u>call SelectCodeBlock("a")<CR>
+onoremap <silent> ac :<C-u>normal vac<CR>
+xnoremap <silent> ic :<C-u>call SelectCodeBlock("i")<CR>
+onoremap <silent> ic :<C-u>normal vic<CR>
