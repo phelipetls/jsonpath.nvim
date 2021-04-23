@@ -20,17 +20,13 @@ local function get_input(...)
   return vim.fn.trim(vim.fn.input(...))
 end
 
-local function is_inside_directory(path, dir)
-  return string.find(dir, path, 1, true)
-end
-
-local function delete_dir_buffers(path)
+local function delete_dir_buffers(deleted_dir)
   for bufnr = 1, vim.fn.bufnr("$") do
-    if bufnr ~= vim.fn.bufnr("%") and vim.fn.bufexists(bufnr) == 1 then
+    if vim.fn.bufexists(bufnr) == 1 then
       local buf_path = vim.api.nvim_buf_get_name(bufnr)
 
-      if is_inside_directory(path, buf_path) then
-        vim.cmd("bd " .. bufnr)
+      if buf_path:find(deleted_dir, 1, true) then
+        vim.cmd("silent! bd " .. bufnr)
       end
     end
   end
@@ -38,7 +34,7 @@ end
 
 local function delete_file_buffer(fname)
   if vim.fn.buflisted(fname) == 1 then
-    vim.cmd("bd " .. vim.fn.bufnr(fname))
+    vim.cmd("silent! bd " .. vim.fn.bufnr(fname))
   end
 end
 
