@@ -106,6 +106,11 @@ lspconfig.pyls.setup {
   }
 }
 
+local md_config = {
+  formatCommand = "prettier_d --parser=markdown --prose-wrap always",
+  formatStdin = true
+}
+
 local js_formatter = js_tools.get_js_formatter()
 
 local js_config = {
@@ -114,27 +119,32 @@ local js_config = {
   lintFormats = {"%f:%l:%c: %m"},
   lintIgnoreExitCode = true,
   formatCommand = js_formatter,
-  formatStdin = true
+  formatStdin = true,
+  rootMarkers = {"package.json"}
 }
 
-local function should_use_efm_formatting()
-  if js_formatter:find("eslint_d") then
-    return js_tools.check_eslint_config()
+local function should_use_efm_formatter()
+  if vim.startswith(vim.bo.filetype, "javascript") or vim.startswith(vim.bo.filetype, "typescript") then
+    if js_formatter:find("eslint_d") then
+      return js_tools.check_eslint_config()
+    end
+
+    return js_formatter ~= ""
   end
 
-  return js_formatter ~= ""
+  return true
 end
 
 lspconfig.tsserver.setup {
   on_attach = function(client, bufnr)
-    client.resolved_capabilities.document_formatting = not should_use_efm_formatting()
+    client.resolved_capabilities.document_formatting = not should_use_efm_formatter()
     set_lsp_config(client, bufnr)
   end
 }
 
 lspconfig.efm.setup {
   on_attach = function(client, bufnr)
-    client.resolved_capabilities.document_formatting = should_use_efm_formatting()
+    client.resolved_capabilities.document_formatting = should_use_efm_formatter()
     set_lsp_config(client, bufnr)
   end,
   default_config = {
@@ -144,11 +154,6 @@ lspconfig.efm.setup {
       [["$HOME/.config/efm-langserver/config.yaml"]]
     }
   },
-  root_dir = function()
-    if js_tools.should_use_eslint() then
-      return vim.fn.getcwd()
-    end
-  end,
   settings = {
     languages = {
       javascript = {js_config},
@@ -156,7 +161,8 @@ lspconfig.efm.setup {
       ["javascript.jsx"] = {js_config},
       typescript = {js_config},
       ["typescript.tsx"] = {js_config},
-      typescriptreact = {js_config}
+      typescriptreact = {js_config},
+      markdown = {md_config}
     }
   },
   filetypes = {
@@ -165,7 +171,8 @@ lspconfig.efm.setup {
     "javascript.jsx",
     "typescript",
     "typescript.tsx",
-    "typescriptreact"
+    "typescriptreact",
+    "markdown"
   },
   commands = {
     EfmLog = {
