@@ -107,7 +107,7 @@ lspconfig.pyls.setup {
 }
 
 local md_config = {
-  formatCommand = "prettier_d --parser=markdown --prose-wrap always",
+  formatCommand = "prettier_d_slim --parser=markdown --stdin --stdin-filepath ${INPUT}",
   formatStdin = true
 }
 

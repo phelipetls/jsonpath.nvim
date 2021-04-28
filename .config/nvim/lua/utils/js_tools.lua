@@ -32,12 +32,12 @@ function M.should_use_eslint()
 end
 
 function M.should_use_prettier()
-  return prettier_config_exists() and vim.fn.executable("prettier_d")
+  return prettier_config_exists() and vim.fn.executable("prettier_d_slim")
 end
 
 function M.get_js_formatter()
   if M.should_use_prettier() then
-    return "prettier_d --parser=typescript"
+    return "prettier_d_slim --parser=typescript --stdin --stdin-filepath ${INPUT}"
   end
 
   if M.should_use_eslint() then
