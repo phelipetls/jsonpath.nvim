@@ -136,6 +136,15 @@ function M.rename()
     pcall(_G.rename_hook, old_path, new_path)
   end
 
+  for winnr = 1, vim.fn.winnr("$") do
+    local winbuf = vim.api.nvim_buf_get_name(vim.fn.winbufnr(winnr))
+    if winbuf == old_path then
+      vim.cmd(string.format("%dwincmd w", winnr))
+      vim.cmd(string.format("edit %s", new_path))
+      vim.cmd("wincmd p")
+    end
+  end
+
   clear_buffers(old_path)
   reload_dirvish()
 end
