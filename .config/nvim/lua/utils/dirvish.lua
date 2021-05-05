@@ -3,7 +3,7 @@ local M = {}
 local path_utils = require "utils/path"
 
 local function get_path_under_cursor()
-  return vim.fn.expand("<cfile>")
+  return vim.fn.getline(".")
 end
 
 local function echo_err(msg)
