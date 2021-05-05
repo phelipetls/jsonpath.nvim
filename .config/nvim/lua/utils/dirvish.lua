@@ -244,6 +244,7 @@ end
 function M.clear_arglist()
   vim.cmd("%argdelete")
   vim.cmd("echomsg 'arglist: cleared'")
+  reload_dirvish()
 end
 
 return M
