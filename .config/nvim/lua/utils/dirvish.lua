@@ -228,10 +228,19 @@ function M.copy()
   for i = 1, #arglist do
     local old_path = arglist[i]
     local new_path = new_paths[i]
-    local result = vim.loop.fs_copyfile(old_path, new_path)
 
-    if not result then
-      vim.cmd(string.format("echoerr 'Failed to copy %s'", old_path))
+    local result
+
+    if vim.fn.getftype(old_path) == "file" then
+      result = vim.loop.fs_copyfile(old_path, new_path)
+    else
+      if vim.fn.executable("cp") then
+        result = os.execute(string.format("cp -r %s %s", old_path, new_path))
+      end
+    end
+
+    if not result or result > 0 then
+      echo_err("Failed to copy " .. old_path)
       return
     end
   end
