@@ -6,7 +6,7 @@ local function get_path_under_cursor()
   return vim.fn.getline(".")
 end
 
-local function echo_err(msg)
+local function echoerr(msg)
   vim.cmd("echohl WarningMsg")
   vim.cmd(string.format("echomsg '%s'", msg))
   vim.cmd("echohl None")
@@ -62,7 +62,7 @@ function M.delete()
   local result = delete_path(path)
 
   if result == -1 then
-    echo_err("Failed to delete " .. path)
+    echoerr("Failed to delete " .. path)
     return
   end
 
@@ -80,7 +80,7 @@ function M.create_file()
   local path = vim.fn.expand("%") .. fname
 
   if vim.fn.filereadable(path) == 1 then
-    echo_err("File already exists")
+    echoerr("File already exists")
     vim.cmd("edit " .. path)
     return
   end
@@ -128,7 +128,7 @@ function M.rename()
   local result = vim.fn.rename(old_path, new_path)
 
   if result ~= 0 then
-    echo_err("Failed to rename")
+    echoerr("Failed to rename")
     return
   end
 
@@ -170,7 +170,7 @@ function M.move()
 
   for _, path in ipairs(new_paths) do
     if vim.fn.isdirectory(path) == 1 or vim.fn.filereadable(path) == 1 then
-      echo_err(path .. " already exists!")
+      echoerr(path .. " already exists!")
       return
     end
   end
@@ -181,7 +181,7 @@ function M.move()
     local result = vim.fn.rename(old_path, new_path)
 
     if result ~= 0 then
-      echo_err(string.format("Failed to rename %s to %s", old_path, new_path))
+      echoerr(string.format("Failed to rename %s to %s", old_path, new_path))
       return
     end
 
@@ -240,7 +240,7 @@ function M.copy()
     end
 
     if not result or result > 0 then
-      echo_err("Failed to copy " .. old_path)
+      echoerr("Failed to copy " .. old_path)
       return
     end
   end
