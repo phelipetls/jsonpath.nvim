@@ -72,6 +72,11 @@ function M.delete()
   reload_dirvish()
 end
 
+local function search(basename)
+  local pattern = string.format("\\<%s\\>", basename)
+  vim.fn.search(pattern, "w")
+end
+
 function M.create_file()
   local fname = get_input("File: ")
 
@@ -94,6 +99,7 @@ function M.create_file()
   end
 
   reload_dirvish()
+  search(fname)
 end
 
 function M.create_dir()
@@ -113,6 +119,7 @@ function M.create_dir()
   end
 
   reload_dirvish()
+  search(dirname)
 end
 
 local function get_basename(path)
