@@ -116,13 +116,13 @@ function M.rename()
   local old_path = get_path_under_cursor()
   local old_basename = get_basename(old_path)
 
-  local newname = get_input("Rename: ", old_basename)
+  local new_name = get_input("Rename: ", old_basename)
 
-  if not newname or newname == "" or newname == old_basename then
+  if not new_name or new_name == "" or new_name == old_basename then
     return
   end
 
-  local new_path = vim.fn.expand("%") .. newname
+  local new_path = vim.fn.expand("%") .. new_name
 
   local clear_buffers = get_clear_buffers_function(old_path)
   local result = vim.fn.rename(old_path, new_path)
