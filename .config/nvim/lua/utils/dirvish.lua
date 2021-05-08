@@ -81,7 +81,6 @@ function M.create_file()
 
   if vim.fn.filereadable(path) == 1 then
     echoerr("File already exists")
-    vim.cmd("edit " .. path)
     return
   end
 
