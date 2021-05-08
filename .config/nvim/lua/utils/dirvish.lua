@@ -170,7 +170,7 @@ function M.move()
 
   for _, path in ipairs(new_paths) do
     if vim.fn.isdirectory(path) == 1 or vim.fn.filereadable(path) == 1 then
-      vim.cmd(("echoerr '%s'"):format(path .. " already exists!"))
+      echo_err(path .. " already exists!")
       return
     end
   end
@@ -181,7 +181,7 @@ function M.move()
     local result = vim.fn.rename(old_path, new_path)
 
     if result ~= 0 then
-      vim.cmd(string.format("echoerr 'Failed to rename %s to %s'", old_path, new_path))
+      echo_err(string.format("Failed to rename %s to %s", old_path, new_path))
       return
     end
 
