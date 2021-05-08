@@ -17,7 +17,9 @@ local function reload_dirvish()
 end
 
 local function get_input(...)
-  return vim.fn.trim(vim.fn.input(...))
+  local input = vim.fn.trim(vim.fn.input(...))
+  vim.cmd("redraw!")
+  return input
 end
 
 local function delete_dir_buffers(deleted_dir)
