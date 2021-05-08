@@ -85,7 +85,12 @@ function M.create_file()
     return
   end
 
-  vim.fn.writefile({}, path)
+  local result = vim.fn.writefile({}, path)
+
+  if result == -1 then
+    echoerr("Failed to create file " .. fname)
+    return
+  end
 
   reload_dirvish()
 end
@@ -99,7 +104,12 @@ function M.create_dir()
 
   local path = vim.fn.expand("%") .. dirname
 
-  vim.fn.mkdir(path)
+  local result = vim.fn.mkdir(path)
+
+  if result == -1 then
+    echoerr("Failed to create directory " .. dirname)
+    return
+  end
 
   reload_dirvish()
 end
