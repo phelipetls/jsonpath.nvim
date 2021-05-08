@@ -193,6 +193,29 @@ function M.move()
   reload_dirvish()
 end
 
+local function get_non_conflicting_path(path)
+  local basename = get_basename(path)
+  local new_path = vim.fn.expand("%") .. basename
+
+  if not path_utils.path_exists(new_path) then
+    return new_path
+  end
+
+  if vim.fn.getftype(path) == "file" then
+    if vim.startswith(basename, ".") then
+      return new_path .. "_"
+    end
+
+    local _, dots_count = basename:gsub("%.", "")
+
+    local no_extensions = vim.fn.fnamemodify(new_path, string.rep(":r", dots_count))
+    local extensions = "." .. vim.fn.fnamemodify(basename, string.rep(":e", dots_count))
+    return no_extensions .. "_" .. extensions
+  end
+
+  return new_path .. "_"
+end
+
 function M.copy()
   local arglist = vim.tbl_map(get_full_path, vim.fn.argv())
 
@@ -200,32 +223,7 @@ function M.copy()
     return
   end
 
-  local new_paths =
-    vim.tbl_map(
-    function(path)
-      local basename = get_basename(path)
-      local new_path = vim.fn.expand("%") .. basename
-
-      if not path_utils.path_exists(new_path) then
-        return new_path
-      end
-
-      if vim.fn.getftype(path) == "file" then
-        if vim.startswith(basename, ".") then
-          return new_path .. "_"
-        end
-
-        local _, dots_count = basename:gsub("%.", "")
-
-        local no_extensions = vim.fn.fnamemodify(new_path, string.rep(":r", dots_count))
-        local extensions = "." .. vim.fn.fnamemodify(basename, string.rep(":e", dots_count))
-        return no_extensions .. "_" .. extensions
-      end
-
-      return new_path .. "_"
-    end,
-    arglist
-  )
+  local new_paths = vim.tbl_map(get_non_conflicting_path, arglist)
 
   for i = 1, #arglist do
     local old_path = arglist[i]
