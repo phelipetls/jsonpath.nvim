@@ -104,7 +104,7 @@ function M.create_dir()
   reload_dirvish()
 end
 
-local function get_name(path)
+local function get_basename(path)
   if vim.fn.isdirectory(path) == 1 then
     return vim.fn.fnamemodify(path, ":h:t")
   end
@@ -114,11 +114,11 @@ end
 
 function M.rename()
   local old_path = get_path_under_cursor()
-  local oldname = get_name(old_path)
+  local old_basename = get_basename(old_path)
 
-  local newname = get_input("Rename: ", oldname)
+  local newname = get_input("Rename: ", old_basename)
 
-  if not newname or newname == "" or newname == oldname then
+  if not newname or newname == "" or newname == old_basename then
     return
   end
 
@@ -163,7 +163,7 @@ function M.move()
   local new_paths =
     vim.tbl_map(
     function(path)
-      return vim.fn.expand("%") .. get_name(path)
+      return vim.fn.expand("%") .. get_basename(path)
     end,
     arglist
   )
@@ -203,22 +203,22 @@ function M.copy()
   local new_paths =
     vim.tbl_map(
     function(path)
-      local name = get_name(path)
-      local new_path = vim.fn.expand("%") .. name
+      local basename = get_basename(path)
+      local new_path = vim.fn.expand("%") .. basename
 
       if not path_utils.path_exists(new_path) then
         return new_path
       end
 
       if vim.fn.getftype(path) == "file" then
-        if vim.startswith(name, ".") then
+        if vim.startswith(basename, ".") then
           return new_path .. "_"
         end
 
-        local _, dots_count = name:gsub("%.", "")
+        local _, dots_count = basename:gsub("%.", "")
 
         local no_extensions = vim.fn.fnamemodify(new_path, string.rep(":r", dots_count))
-        local extensions = "." .. vim.fn.fnamemodify(name, string.rep(":e", dots_count))
+        local extensions = "." .. vim.fn.fnamemodify(basename, string.rep(":e", dots_count))
         return no_extensions .. "_" .. extensions
       end
 
