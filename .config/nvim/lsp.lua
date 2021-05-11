@@ -128,7 +128,7 @@ end
 
 local function check_efm_formatter(set_document_formatting)
   if is_javascript(vim.bo.filetype) then
-    if js_formatter:find("eslint_d") then
+    if vim.startswith(js_formatter, "eslint_d") then
       js_tools.check_eslint_config(function(exit_code)
         set_document_formatting(exit_code == 0)
       end)
