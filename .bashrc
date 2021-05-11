@@ -132,3 +132,7 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 # Fix Intel graphics driver issue in Ubuntu 20.04
 # https://bugs.launchpad.net/ubuntu/+source/xserver-xorg-video-intel/+bug/1876219
 export MESA_LOADER_DRIVER_OVERRIDE=i965
+
+NPM_PACKAGES="${HOME}/.npm-packages"
+export PATH="$PATH:$NPM_PACKAGES/bin"
+export MANPATH="$MANPATH:$NPM_PACKAGES/share/man"
