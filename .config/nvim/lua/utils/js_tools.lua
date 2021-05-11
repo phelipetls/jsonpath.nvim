@@ -47,9 +47,14 @@ function M.get_js_formatter()
   return ""
 end
 
-function M.check_eslint_config()
-  local exit_code = os.execute(vim.fn.expandcmd("eslint_d --print-config %"))
-  return exit_code == 0
+function M.check_eslint_config(handle_exit)
+  local cmd = vim.fn.expandcmd("eslint_d --print-config %")
+
+  vim.fn.jobstart(cmd, {
+    on_exit = function(_, exit_code)
+      handle_exit(exit_code)
+    end
+  })
 end
 
 return M

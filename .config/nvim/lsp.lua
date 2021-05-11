@@ -122,28 +122,39 @@ local js_config = {
   rootMarkers = {"package.json"}
 }
 
-local function should_use_efm_formatter()
-  if vim.startswith(vim.bo.filetype, "javascript") or vim.startswith(vim.bo.filetype, "typescript") then
+local function is_javascript(ft)
+  return vim.startswith(ft, "javascript") or vim.startswith(ft, "typescript")
+end
+
+local function check_efm_formatter(set_document_formatting)
+  if is_javascript(vim.bo.filetype) then
     if js_formatter:find("eslint_d") then
-      return js_tools.check_eslint_config()
+      js_tools.check_eslint_config(function(exit_code)
+        set_document_formatting(exit_code == 0)
+      end)
+      return
     end
 
-    return js_formatter ~= ""
+    set_document_formatting(js_formatter ~= "")
   end
 
-  return true
+  return set_document_formatting(true)
 end
 
 lspconfig.tsserver.setup {
   on_attach = function(client, bufnr)
-    client.resolved_capabilities.document_formatting = not should_use_efm_formatter()
+    check_efm_formatter(function(ok)
+      client.resolved_capabilities.document_formatting = not ok
+    end)
     set_lsp_config(client, bufnr)
   end
 }
 
 lspconfig.efm.setup {
   on_attach = function(client, bufnr)
-    client.resolved_capabilities.document_formatting = should_use_efm_formatter()
+    check_efm_formatter(function(ok)
+      client.resolved_capabilities.document_formatting = ok
+    end)
     set_lsp_config(client, bufnr)
   end,
   default_config = {
