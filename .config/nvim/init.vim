@@ -51,6 +51,7 @@ colorscheme sixteen
 filetype plugin indent on
 
 set nonumber
+set noruler
 set hidden
 set wildmenu
 set wildmode=full
