@@ -157,6 +157,11 @@ lspconfig.efm.setup {
     end)
     set_lsp_config(client, bufnr)
   end,
+  root_dir = function(client, bufnr)
+    if vim.api.nvim_buf_get_name(bufnr):match("node_modules") == nil then
+      return vim.fn.getcwd()
+    end
+  end,
   default_config = {
     cmd = {
       "efm-langserver",
