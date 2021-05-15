@@ -122,8 +122,8 @@ export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig/
 # Android Studio config
 export PATH="$HOME/android-studio/bin:$PATH"
 
-export ANDROID_SDK_ROOT=$HOME/Android/Sdk
-export ANDROID_HOME=$ANDROID_SDK_ROOT
+export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
+export ANDROID_HOME="$ANDROID_SDK_ROOT"
 export PATH="$ANDROID_SDK_ROOT/emulator:$ANDROID_SDK_ROOT/tools:$ANDROID_SDK_ROOT/tools/bin:$ANDROID_SDK_ROOT/platform-tools:$PATH"
 
 # Needed for Android Studio to work in DWM
@@ -136,3 +136,5 @@ export MESA_LOADER_DRIVER_OVERRIDE=i965
 NPM_PACKAGES="${HOME}/.npm-packages"
 export PATH="$PATH:$NPM_PACKAGES/bin"
 export MANPATH="$MANPATH:$NPM_PACKAGES/share/man"
+
+export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
