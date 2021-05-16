@@ -49,20 +49,8 @@ function get_battery {
   fi
 }
 
-function now_playing() {
-  if ps -C cmus > /dev/null; then
-    status=`cmus-remote -Q | awk '/status/ { print $2 }'`
-    if [ $status = "playing" ]; then
-      music=$(cmus-remote -C 'format_print "%a - %t"')
-      echo " $music ⋮"
-    else
-      echo ""; 
-    fi
-  fi
-}
-
 while true
 do
-  xsetroot -name "$(now_playing)  $(get_temp)  $(get_memory)  $(get_battery)  $(get_volume)  $(get_date) ⋮"
+  xsetroot -name "$(get_temp)  $(get_memory)  $(get_battery)  $(get_volume)  $(get_date) ⋮"
   sleep 30s
 done
