@@ -80,4 +80,4 @@ vim.api.nvim_set_keymap("i", "<C-Space>", "compe#complete()", {expr = true, sile
 vim.api.nvim_set_keymap("i", "<CR>", "compe#confirm('<CR>')", {expr = true, silent = true})
 vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("i", "<C-x><C-f>", "<C-r>require'path_completion'.complete()<CR>", {silent = true})
+vim.api.nvim_set_keymap("i", "<C-x><C-f>", [[<C-r>=luaeval("require'path_completion'.complete()")<CR>]], {silent = true})
