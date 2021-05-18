@@ -451,6 +451,9 @@ else
 endif
 
 function! RunMake()
+  if empty(&l:makeprg)
+    return
+  endif
   let compiler = get(b:, "current_compiler", "")
   if index(["jest", "pytest", "pyunit"], compiler) >= 0
     make! %
