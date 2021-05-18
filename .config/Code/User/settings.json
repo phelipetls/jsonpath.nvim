@@ -8,6 +8,7 @@
   "editor.renderWhitespace": "trailing",
   "editor.formatOnSaveMode": "modifications",
   "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "eslint.codeActionsOnSave.mode": "problems",
   "eslint.format.enable": true,
   "editor.formatOnSave": true,
   "window.menuBarVisibility": "hidden",
