@@ -341,6 +341,9 @@ if executable("xdg-open")
   nnoremap <silent> gx :call system(printf("xdg-open %s", expand("<cWORD>")))<CR>
 endif
 
+" add mapping to redraw screen
+nnoremap <space>l :redraw!<CR>
+
 "}}}
 "{{{ statusline and tabline
 
