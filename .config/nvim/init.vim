@@ -396,23 +396,45 @@ if executable("fzf")
   nnoremap <space>r :History<CR>
   nnoremap <space>g :Rg<CR>
   nnoremap <space>c :call fzf#run(fzf#wrap({'source': $FZF_ALT_C_COMMAND}))<CR>
-endif
 
-let g:fzf_colors = {
-      \ 'fg':      ['fg', 'Normal'],
-      \ 'bg':      ['bg', 'Normal'],
-      \ 'hl':      ['fg', 'Comment'],
-      \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-      \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-      \ 'hl+':     ['fg', 'Statement'],
-      \ 'info':    ['fg', 'PreProc'],
-      \ 'border':  ['fg', 'Ignore'],
-      \ 'prompt':  ['fg', 'Conditional'],
-      \ 'pointer': ['fg', 'Exception'],
-      \ 'marker':  ['fg', 'Keyword'],
-      \ 'spinner': ['fg', 'Label'],
-      \ 'header':  ['fg', 'Comment']
-      \ }
+  let g:fzf_colors = {
+        \ 'fg':      ['fg', 'Normal'],
+        \ 'bg':      ['bg', 'Normal'],
+        \ 'hl':      ['fg', 'Comment'],
+        \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+        \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+        \ 'hl+':     ['fg', 'Statement'],
+        \ 'info':    ['fg', 'PreProc'],
+        \ 'border':  ['fg', 'Ignore'],
+        \ 'prompt':  ['fg', 'Conditional'],
+        \ 'pointer': ['fg', 'Exception'],
+        \ 'marker':  ['fg', 'Keyword'],
+        \ 'spinner': ['fg', 'Label'],
+        \ 'header':  ['fg', 'Comment']
+        \ }
+
+  if has("nvim")
+    let $FZF_DEFAULT_OPTS .= ' --margin=0,2'
+
+    function! FloatingFZF()
+      let width = float2nr(&columns * 0.9)
+      let height = float2nr(&lines * 0.6)
+      let opts = {
+            \ 'relative': 'editor',
+            \ 'border': 'single',
+            \ 'row': (&lines - height) / 2,
+            \ 'col': (&columns - width) / 2,
+            \ 'width': width,
+            \ 'height': height
+            \ }
+
+      let win = nvim_open_win(nvim_create_buf(v:false, v:true), v:true, opts)
+      call setwinvar(win, '&winhighlight', 'NormalFloat:Normal')
+    endfunction
+
+    let g:fzf_layout = { 'window': 'call FloatingFZF()' }
+  endif
+endif
 
 "}}}
 "{{{ autocompletion config
