@@ -46,12 +46,20 @@ exe "hi Underlined ctermfg=1 guifg=".color1." cterm=UNDERLINE gui=UNDERLINE"
 exe "hi Ignore ctermbg=NONE guibg=NONE ctermfg=7 guifg=".color7
 "}}}
 "{{{ Misc
-exe "hi DiffAdd ctermbg=2 guibg=".color2." guibg=".color2." ctermfg=0 guifg="color0
-exe "hi DiffDelete ctermbg=NONE guibg=NONE ctermfg=1 guifg=".color1
-exe "hi DiffChange ctermbg=NONE guibg=NONE ctermfg=NONE guifg=NONE"
-exe "hi DiffText ctermbg=4 guibg=".color6." ctermfg=7 guifg=".color7." gui=NONE"
+exe "hi DiffDelete ctermfg=1 ctermbg=NONE guibg=#572E33 guifg=NONE"
+exe "hi DiffAdd ctermfg=2 ctermbg=0 guibg=#26332c guifg=NONE"
+exe "hi DiffChange ctermfg=NONE ctermbg=NONE guifg=NONE guibg=#273842"
+exe "hi DiffText ctermfg=7 ctermbg=2 guibg=#314753 guifg=NONE"
+
 exe "hi diffAdded ctermfg=2 guifg=".color2
 exe "hi diffRemoved ctermfg=1 guifg=".color1
+hi link diffBDiffer WarningMsg
+hi link diffCommon WarningMsg
+hi link diffDiffer WarningMsg
+hi link diffIdentical WarningMsg
+hi link diffIsA WarningMsg
+hi link diffNoEOL WarningMsg
+hi link diffOnly WarningMsg
 
 exe "hi Error ctermbg=1 guibg=".color1." ctermfg=0 guifg=".color7
 exe "hi ErrorMsg ctermbg=1 guibg=".color1." ctermfg=0 guifg=".color7
