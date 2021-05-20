@@ -35,6 +35,8 @@ end
 local function set_lsp_config(client, bufnr)
   vim.cmd [[setlocal signcolumn=yes]]
 
+  vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
+
   set_buf_keymap(bufnr, "n", "<C-space>", [[:lua vim.lsp.diagnostic.show_line_diagnostics({ border = 'single' })<CR>]])
   set_buf_keymap(bufnr, "n", "]g", [[:lua vim.lsp.diagnostic.goto_next({ popup_opts = { border = 'single' }})<CR>]])
   set_buf_keymap(bufnr, "n", "[g", [[:lua vim.lsp.diagnostic.goto_prev({ popup_opts = { border = 'single' }})<CR>]])
