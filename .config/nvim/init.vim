@@ -51,7 +51,6 @@ filetype plugin indent on
 
 set nonumber
 set noruler
-set nowrap
 set hidden
 set wildmenu
 set wildmode=full
