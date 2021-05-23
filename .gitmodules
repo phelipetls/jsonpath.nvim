@@ -122,3 +122,7 @@
 	path = .config/nvim/pack/plugins/opt/gv.vim
 	url = https://github.com/junegunn/gv.vim
 	ignore = dirty
+[submodule "splitjoin.vim"]
+	path = .config/nvim/pack/plugins/opt/splitjoin.vim
+	url = https://github.com/AndrewRadev/splitjoin.vim
+	ignore = dirty

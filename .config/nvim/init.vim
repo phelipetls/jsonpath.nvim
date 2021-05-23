@@ -10,6 +10,7 @@ packadd! vim-abolish
 packadd! matchit
 packadd! vim-lion
 packadd! tagalong.vim
+packadd! splitjoin.vim
 
 " git
 packadd! vim-fugitive
