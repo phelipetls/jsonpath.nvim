@@ -209,8 +209,8 @@ EOF
 " use gr to go to previous tab
 nnoremap gr gT
 
-" escape also cancels search highlight
-nnoremap <silent> <esc> :nohlsearch<cr><esc>
+" escape also cancels search highlight and redraw screen
+nnoremap <silent> <esc> :nohlsearch<cr>:redraw!<cr><<esc>
 
 " go to vimrc file
 nnoremap <silent> <space>ev :edit $MYVIMRC<cr>
@@ -338,9 +338,6 @@ nnoremap <silent> gb :GitMessenger<CR>
 if executable("xdg-open")
   nnoremap <silent> gx :call system(printf("xdg-open %s", expand("<cWORD>")))<CR>
 endif
-
-" add mapping to redraw screen
-nnoremap <space>l :redraw!<CR>
 
 "}}}
 "{{{ statusline and tabline
