@@ -122,7 +122,3 @@
 	path = .config/nvim/pack/plugins/opt/gv.vim
 	url = https://github.com/junegunn/gv.vim
 	ignore = dirty
-[submodule "nvim-compe"]
-	path = .config/nvim/pack/plugins/opt/nvim-compe
-	url = https://github.com/hrsh7th/nvim-compe
-	ignore = dirty
