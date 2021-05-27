@@ -79,24 +79,16 @@ function M.complete()
     return
   end
 
-  local path = path_utils.expand_relative_fname(path_under_cursor)
+  local expanded_path_under_cursor = path_utils.expand_relative_fname(path_under_cursor)
 
-  if vim.endswith(path_under_cursor, "/") then
-    local items = read_dir(path)
-
-    vim.fn.complete(vim.fn.col("."), items)
-    return ""
-  end
-
-  local dir = vim.fn.fnamemodify(path, ":h")
-  local fname = vim.fn.fnamemodify(path, ":t")
+  local dir = vim.fn.fnamemodify(expanded_path_under_cursor, ":h")
+  local fname = vim.fn.fnamemodify(expanded_path_under_cursor, ":t")
 
   local items =
     read_dir(
     dir,
     function()
-      local value = vim.v.val
-      if value:match("^" .. fname) then
+      if vim.v.val:match("^" .. fname) then
         return 1
       end
       return 0
