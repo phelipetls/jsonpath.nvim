@@ -14,6 +14,7 @@ endif
 
 "{{{ Syntax groups
 exe "hi Normal ctermbg=NONE guibg=NONE ctermfg=7 guifg=".color7
+exe "hi NormalFloat ctermbg=0 guibg=".color0." ctermfg=7 guifg=".color7
 exe "hi link NormalFloat Normal"
 
 exe "hi Comment ctermfg=8 guifg=".color8
@@ -122,9 +123,9 @@ endif
 
 if has("nvim-0.5.0")
  exe "hi LspError ctermfg=1 guifg=".color1
- exe "hi LspWarning ctermfg=1 guifg=".color1
- exe "hi LspInfo ctermfg=1 guifg=".color1
- exe "hi LspHint ctermfg=1 guifg=".color1
+ exe "hi LspWarning ctermfg=1 guifg=".color3
+ exe "hi LspInfo ctermfg=1 guifg=".color4
+ exe "hi LspHint ctermfg=1 guifg=".color4
 
  hi link LspDiagnosticsSignError LspError
  hi link LspDiagnosticsSignWarning LspWarning
@@ -144,6 +145,16 @@ if has("nvim-0.5.0")
  hi link LspReferenceText Search
  hi link LspReferenceRead Search
  hi link LspReferenceWrite Search
+
+ hi link CocErrorSign LspError
+ hi link CocWarningSign LspWarning
+ hi link CocHintSign LspHint
+ hi link CocInfoSign LspInfo
+
+ hi link CocErrorFloat Normal
+ hi link CocWarningFloat Normal
+ hi link CocHintFloat Normal
+ hi link CocInfoFloat Normal
 endif
 
 "}}}

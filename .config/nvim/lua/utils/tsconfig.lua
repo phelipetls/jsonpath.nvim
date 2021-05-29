@@ -1,6 +1,5 @@
 local M = {}
 
-local lspconfig = require "lspconfig"
 local path_utils = require "utils/path"
 
 local function remove_comments(line)
@@ -18,7 +17,7 @@ local function find_tsconfig_root_dir()
   if not vim.startswith(current_file_fullpath, os.getenv("HOME")) then
     return
   end
-  local root_dir = lspconfig.util.root_pattern("tsconfig.json", "jsconfig.json")(current_file_fullpath)
+  local root_dir = vim.fn.findfile("tsconfig.json", ".;")
   if root_dir then
     return root_dir
   end

@@ -129,3 +129,4 @@
 [submodule "coc.nvim"]
 	path = .config/nvim/pack/plugins/opt/coc.nvim
 	url = https://github.com/neoclide/coc.nvim
+	ignore = dirty

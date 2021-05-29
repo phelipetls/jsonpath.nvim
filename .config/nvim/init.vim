@@ -32,6 +32,7 @@ packadd! vim-slime
 packadd! vim-toml
 if has("nvim")
   packadd! nvim-colorizer.lua
+  packadd! coc.nvim
 endif
 
 " web development
@@ -346,6 +347,7 @@ endif
 let &g:statusline=' '
 let &g:statusline.='%t'
 let &g:statusline.=' %{FugitiveStatusline()}'
+let &g:statusline.=' %{coc#status()}'
 let &g:statusline.="%{!&modifiable ? '\ua0[-]' : &modified ? '\ua0[+]' : ''}"
 let &g:statusline.="%{&endofline ? '' : '\ua0[noeol]'}"
 let &g:statusline.='%='
@@ -534,16 +536,92 @@ augroup END
 "}}}
 "{{{ LSP
 
-if has("nvim-0.5.0") && filereadable($HOME."/.config/nvim/lsp.lua") && !&diff
-  packadd! nvim-lsp
+" if has("nvim-0.5.0") && filereadable($HOME."/.config/nvim/lsp.lua") && !&diff
+"   packadd! nvim-lsp
 
-  luafile $HOME/.config/nvim/lsp.lua
+"   luafile $HOME/.config/nvim/lsp.lua
 
-  sign define LspDiagnosticsSignError text=▎ texthl=LspDiagnosticsSignError linehl= numhl=
-  sign define LspDiagnosticsSignWarning text=▎ linehl= texthl=LspDiagnosticsSignWarning linehl= numhl=
-  sign define LspDiagnosticsSignInformation text=▎ texthl=LspDiagnosticsSignInformation linehl= numhl=
-  sign define LspDiagnosticsSignHint text=▎ texthl=LspDiagnosticsSignHint linehl= numhl=
-endif
+"   sign define LspDiagnosticsSignError text=▎ texthl=LspDiagnosticsSignError linehl= numhl=
+"   sign define LspDiagnosticsSignWarning text=▎ linehl= texthl=LspDiagnosticsSignWarning linehl= numhl=
+"   sign define LspDiagnosticsSignInformation text=▎ texthl=LspDiagnosticsSignInformation linehl= numhl=
+"   sign define LspDiagnosticsSignHint text=▎ texthl=LspDiagnosticsSignHint linehl= numhl=
+" endif
+
+"}}}
+"{{{ coc
+
+set nobackup
+set nowritebackup
+set updatetime=300
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <silent><expr> <c-space> coc#refresh()
+
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+nmap <silent> [d <Plug>(coc-definition)
+nmap <silent> <C-w>d :call CocAction("jumpDefinition", "split")<CR>
+nmap <silent> <C-c>p :call CocAction("jumpDefinition", "split")<CR>
+nmap <silent> <C-c><C-p> :call CocAction("jumpDefinition", "pedit")<CR>
+nmap <silent> [t <Plug>(coc-type-definition)
+nmap <silent> gR <Plug>(coc-references)
+
+command! -nargs=0 References :call CocAction('jumpReferences') | wincmd p
+
+nmap <silent> <C-space> :call CocAction("diagnosticInfo")<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
+
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+nmap <F2> <Plug>(coc-rename)
+
+command! -nargs=0 Fmt :call CocAction('format')
+
+nnoremap <silent> <M-S-O> :call CocAction('runCommand', 'editor.action.organizeImport')<CR>
+
+nmap <M-CR>  <Plug>(coc-codeaction-cursor)
+
+xmap if <Plug>(coc-funcobj-i)
+omap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap af <Plug>(coc-funcobj-a)
+xmap ic <Plug>(coc-classobj-i)
+omap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
+
+nmap <silent> <C-s> <Plug>(coc-range-select)
+xmap <silent> <C-s> <Plug>(coc-range-select)
+
+nnoremap <silent><nowait> <space>d  :<C-u>CocList diagnostics<cr>
+nnoremap <silent><nowait> <space>S  :<C-u>CocList -I symbols<cr>
+
+let g:coc_quickfix_open_command = 'copen 5 | wincmd J | wincmd p'
+
+nnoremap <silent><expr> <c-y> coc#float#has_scroll() ? coc#float#scroll(0) : "\<c-y>"
+nnoremap <silent><expr> <c-e> coc#float#has_scroll() ? coc#float#scroll(1) : "\<c-e>"
 
 "}}}
 "{{{ treesitter

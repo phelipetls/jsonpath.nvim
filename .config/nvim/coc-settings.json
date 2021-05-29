@@ -1,0 +1,19 @@
+{
+  "coc.preferences.floatActions": false,
+  "diagnostic.enableMessage": "never",
+  "diagnostic.checkCurrentLine": true,
+  "signature.hideOnTextChange": true,
+  "diagnostic.enableSign": false,
+  "diagnostic.virtualText": true,
+  "diagnostic.virtualTextCurrentLineOnly": false,
+  "diagnostic.errorSign": "▎",
+  "diagnostic.warningSign": "▎",
+  "diagnostic.hintSign": "▎",
+  "diagnostic.infoSign": "▎",
+  "coc.preferences.formatOnSaveFiletypes": ["javascript", "typescript", "javascriptreact", "typescriptreact"],
+  "javascript.format.enabled": false,
+  "typescript.format.enabled": false,
+  "eslint.autoFixOnSave": true,
+  "typescript.updateImportsOnFileMove.enable": true,
+  "coc.preferences.useQuickfixForLocations": true
+}
