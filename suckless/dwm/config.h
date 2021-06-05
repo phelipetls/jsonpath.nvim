@@ -84,7 +84,7 @@ static Key keys[] = {
 	{ 0,                            XK_Print,                 spawn,          SHCMD("/home/phelipe/scripts/scrot_share") },
 	{ ControlMask,                  XK_Print,                 spawn,          SHCMD("sleep 0.2; /home/phelipe/scripts/scrot_share -s") },
 	{ MODKEY,                       XK_r,                     spawn,          {.v = appfinder } },
-	{ MODKEY,                       XK_p,                     spawn,          {.v = appfinder } },
+	{ MODKEY,                       XK_p,                     spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return,                spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_w,                     spawn,          {.v = browsercmd } },
 	{ MODKEY,                       XK_F4,                    spawn,          {.v = shutdown } },
