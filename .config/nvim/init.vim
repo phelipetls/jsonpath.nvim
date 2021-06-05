@@ -392,7 +392,6 @@ if executable("fzf")
   nnoremap <space>h :Help<CR>
   nnoremap <space>t :Tags<CR>
   nnoremap <space>r :History<CR>
-  nnoremap <space>g :Rg<CR>
   nnoremap <space>c :call fzf#run(fzf#wrap({'source': $FZF_ALT_C_COMMAND}))<CR>
 
   let g:fzf_colors = {
