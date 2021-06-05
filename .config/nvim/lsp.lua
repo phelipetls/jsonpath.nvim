@@ -108,11 +108,6 @@ lspconfig.pyls.setup {
   }
 }
 
-local md_config = {
-  formatCommand = "prettier_d_slim --parser=markdown --stdin --stdin-filepath ${INPUT}",
-  formatStdin = true
-}
-
 local js_formatter = js_tools.get_js_formatter()
 
 local js_config = {
