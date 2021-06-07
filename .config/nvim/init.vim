@@ -617,7 +617,7 @@ xmap <silent> <C-s> <Plug>(coc-range-select)
 nnoremap <silent><nowait> <space>d  :<C-u>CocList diagnostics<cr>
 nnoremap <silent><nowait> <space>S  :<C-u>CocList -I symbols<cr>
 
-let g:coc_quickfix_open_command = 'copen 5 | wincmd J | wincmd p'
+let g:coc_quickfix_open_command = 'doautocmd QuickFixCmdPost'
 
 nnoremap <silent><expr> <c-y> coc#float#has_scroll() ? coc#float#scroll(0) : "\<c-y>"
 nnoremap <silent><expr> <c-e> coc#float#has_scroll() ? coc#float#scroll(1) : "\<c-e>"
