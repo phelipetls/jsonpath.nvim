@@ -107,8 +107,8 @@ autocmd! VimResized * wincmd =
 
 " use ripgrep as the external grep command
 if executable("rg")
-  set grepprg=rg\ --vimgrep\ --smart-case\ --hidden\ --no-heading
-  set grepformat=%f:%l:%c:%m,%f:%l:%m
+  set grepprg=rg\ --vimgrep\ --smart-case\ --hidden
+  set grepformat=%f:%l:%c:%m
 endif
 
 " checktime when nvim resumes from suspended state
