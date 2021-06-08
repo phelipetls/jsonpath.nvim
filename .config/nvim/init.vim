@@ -575,7 +575,7 @@ nmap <silent> <C-c><C-p> :call CocAction("jumpDefinition", "pedit")<CR>
 nmap <silent> [t <Plug>(coc-type-definition)
 nmap <silent> gR <Plug>(coc-references)
 
-command! -nargs=0 References :call CocAction('jumpReferences') | wincmd p
+command! -nargs=0 References :call CocAction('jumpReferences')
 
 nmap <silent> <C-space> :call CocAction("diagnosticInfo")<CR>
 
