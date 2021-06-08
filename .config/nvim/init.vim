@@ -195,9 +195,6 @@ nmap <silent> gQ :lua require'misc'.same_buffer_windo("let w:view = winsaveview(
       \ :keepjumps normal gqG<CR>
       \ :lua require'misc'.same_buffer_windo("keepj call winrestview(w:view)")<CR>
 
-let g:git_messenger_floating_win_opts = {'border': 'single'}
-let g:git_messenger_popup_content_margin = v:false
-
 lua << EOF
   function _G.dump(...)
     local objects = vim.tbl_map(vim.inspect, {...})
