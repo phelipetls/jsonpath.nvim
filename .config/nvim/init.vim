@@ -195,12 +195,14 @@ nmap <silent> gQ :lua require'misc'.same_buffer_windo("let w:view = winsaveview(
       \ :keepjumps normal gqG<CR>
       \ :lua require'misc'.same_buffer_windo("keepj call winrestview(w:view)")<CR>
 
+if has("nvim")
 lua << EOF
   function _G.dump(...)
     local objects = vim.tbl_map(vim.inspect, {...})
     print(unpack(objects))
   end
 EOF
+endif
 
 "}}}
 "{{{ general mappings
@@ -559,8 +561,9 @@ inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 inoremap <silent><expr> <c-space> coc#refresh()
+
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
@@ -569,14 +572,15 @@ nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 nmap <silent> [d <Plug>(coc-definition)
-nmap <silent> <C-w>d :call CocAction("jumpDefinition", "split")<CR>
-nmap <silent> <C-c>p :call CocAction("jumpDefinition", "split")<CR>
-nmap <silent> <C-c><C-p> :call CocAction("jumpDefinition", "pedit")<CR>
 nmap <silent> [t <Plug>(coc-type-definition)
 
-command! -nargs=0 References :call CocAction('jumpReferences')
-
-nmap <silent> <C-space> :call CocAction("diagnosticInfo")<CR>
+nmap <silent> <C-w>d :call CocActionAsync("jumpDefinition", "split")<CR>
+nmap <silent> <C-c>p :call CocActionAsync("jumpDefinition", "split")<CR>
+nmap <silent> <C-c><C-p> :call CocActionAsync("jumpDefinition", "pedit")<CR>
+nmap <silent> <C-space> :call CocActionAsync("diagnosticInfo")<CR>
+command! -nargs=0 References :call CocActionAsync('jumpReferences')
+command! -nargs=0 Fmt :call CocActionAsync('format')
+nnoremap <silent> <M-S-O> :call CocActionAsync('runCommand', 'editor.action.organizeImport')<CR>
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -590,11 +594,9 @@ endfunction
 
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
+inoremap <silent> <C-c><C-p> :call CocActionAsync('showSignatureHelp')<CR>
+
 nmap <F2> <Plug>(coc-rename)
-
-command! -nargs=0 Fmt :call CocAction('format')
-
-nnoremap <silent> <M-S-O> :call CocAction('runCommand', 'editor.action.organizeImport')<CR>
 
 nmap <M-CR>  <Plug>(coc-codeaction-cursor)
 
@@ -617,8 +619,6 @@ let g:coc_quickfix_open_command = 'doautocmd QuickFixCmdPost'
 
 nnoremap <silent><expr> <c-y> coc#float#has_scroll() ? coc#float#scroll(0) : "\<c-y>"
 nnoremap <silent><expr> <c-e> coc#float#has_scroll() ? coc#float#scroll(1) : "\<c-e>"
-
-inoremap <silent> <C-c><C-p> :call CocActionAsync('showSignatureHelp')<CR>
 
 "}}}
 "{{{ treesitter
