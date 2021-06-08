@@ -6,6 +6,7 @@
   "diagnostic.enableSign": false,
   "diagnostic.virtualText": true,
   "diagnostic.virtualTextCurrentLineOnly": false,
+  "diagnostic.virtualTextPrefix": "» ",
   "diagnostic.errorSign": "▎",
   "diagnostic.warningSign": "▎",
   "diagnostic.hintSign": "▎",
