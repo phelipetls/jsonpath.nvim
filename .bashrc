@@ -49,6 +49,14 @@ export PS1='\
 \[\e[m\]\
 '
 
+beep_on_error() {
+  if [[ $? -gt 0 ]]; then
+    echo -ne '\a'
+  fi
+}
+
+export PROMPT_COMMAND='beep_on_error'
+
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
   test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
