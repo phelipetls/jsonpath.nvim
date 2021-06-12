@@ -44,7 +44,7 @@ packadd! vim-jsx-pretty
 packadd! vim-hugo
 
 "}}}
-"{{{ text editing settings
+"{{{ settings
 
 set termguicolors
 colorscheme sixteen
@@ -205,7 +205,7 @@ EOF
 endif
 
 "}}}
-"{{{ general mappings
+"{{{ mappings
 
 " use gr to go to previous tab
 nnoremap gr gT
