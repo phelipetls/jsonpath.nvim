@@ -343,15 +343,26 @@ endif
 "}}}
 "{{{ statusline and tabline
 
-let &g:statusline=' '
-let &g:statusline.='%t'
-let &g:statusline.=' %{FugitiveStatusline()}'
-let &g:statusline.=' %{coc#status()}'
-let &g:statusline.="%{!&modifiable ? '\ua0[-]' : &modified ? '\ua0[+]' : ''}"
-let &g:statusline.="%{&endofline ? '' : '\ua0[noeol]'}"
-let &g:statusline.='%='
-let &g:statusline.='[%l/%L]'
-let &g:statusline.=' %y'
+function! StatusLine(type) abort
+  let statusline=' '
+  let statusline.='%t'
+  let statusline.="%{!&modifiable ? '\ua0[-]' : &modified ? '\ua0[+]' : ''}"
+  let statusline.="%{&endofline ? '' : '\ua0[noeol]'}"
+  if a:type == 'active'
+    let statusline.=' %{FugitiveStatusline()}'
+    let statusline.=' %{coc#status()}'
+  endif
+  let statusline.='%='
+  let statusline.='[%l/%L]'
+  let statusline.=' %y'
+  return statusline
+endfunction
+
+augroup StatusLine
+  autocmd!
+  autocmd WinEnter,BufEnter * setlocal statusline=%!StatusLine('active')
+  autocmd WinLeave,BufLeave * setlocal statusline=%!StatusLine('inactive')
+augroup end
 
 function! Tabline()
   let s = ''
