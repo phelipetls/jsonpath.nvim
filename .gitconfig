@@ -30,8 +30,6 @@
     helper = cache
 [credential "https://github.com"]
     username = phelipetls
-[init]
-    templateDir = ~/.git_template
 [color]
     [diff]
         meta = "11"
