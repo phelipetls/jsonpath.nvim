@@ -16,5 +16,6 @@
   "typescript.format.enabled": false,
   "eslint.autoFixOnSave": true,
   "typescript.updateImportsOnFileMove.enable": false,
-  "coc.preferences.useQuickfixForLocations": true
+  "coc.preferences.useQuickfixForLocations": true,
+  "coc.preferences.bracketEnterImprove": false
 }
