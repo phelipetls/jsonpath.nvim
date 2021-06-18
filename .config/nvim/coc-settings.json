@@ -1,6 +1,6 @@
 {
   "coc.preferences.floatActions": false,
-  "diagnostic.enableMessage": "never",
+  "diagnostic.enableMessage": "jump",
   "diagnostic.checkCurrentLine": true,
   "signature.hideOnTextChange": true,
   "diagnostic.enableSign": false,
