@@ -343,18 +343,19 @@ endif
 "}}}
 "{{{ statusline and tabline
 
+function CocStatus()
+  let status = coc#status()
+  return status ? '['.. status ..']' : ''
+endfunction
+
 function! StatusLine(type) abort
-  let statusline=' '
-  let statusline.='%t'
-  let statusline.="%{!&modifiable ? '\ua0[-]' : &modified ? '\ua0[+]' : ''}"
-  let statusline.="%{&endofline ? '' : '\ua0[noeol]'}"
+  let statusline=' %t %m'
+  let statusline.="%{&endofline ? '' : '[noeol]'}"
   if a:type == 'active'
-    let statusline.=' %{FugitiveStatusline()}'
-    let statusline.=' %{coc#status()}'
+    let statusline.='%{FugitiveStatusline()}'
+    let statusline.='%{CocStatus()}'
   endif
-  let statusline.='%='
-  let statusline.='[%l/%L]'
-  let statusline.=' %y'
+  let statusline.='%=[%l/%L] %y'
   return statusline
 endfunction
 
