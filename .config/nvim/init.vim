@@ -444,17 +444,6 @@ if executable("fzf")
 endif
 
 "}}}
-"{{{ autocompletion config
-
-set completeopt=menuone,noselect,noinsert
-set shortmess+=c
-set pumheight=10
-
-if has("nvim-0.5.0")
-  luafile $HOME/.config/nvim/completion.lua
-endif
-
-"}}}
 "{{{ quickfix config
 
 function! ListJump(list_type, direction, wrap)
@@ -563,6 +552,10 @@ set nobackup
 set nowritebackup
 set updatetime=300
 
+set completeopt=menuone,noselect,noinsert
+set shortmess+=c
+set pumheight=10
+
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
@@ -573,8 +566,9 @@ inoremap <silent><expr> <TAB>
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 inoremap <silent><expr> <c-space> coc#refresh()
-
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+inoremap <silent> <C-x><C-f> <C-r>=luaeval("require'path_completion'.complete()")
 
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
