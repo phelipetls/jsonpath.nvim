@@ -21,9 +21,7 @@ if executable("node")
   noremap <buffer> <F5> :w !node<CR>
 endif
 
-if executable('prettier')
-  let &l:formatprg='prettier --parser=typescript'
-endif
+let &l:formatprg=luaeval("require'utils/js_tools'.get_js_formatter()")
 
 let b:surround_{char2nr("c")} = "console.log(\r)"
 let b:surround_{char2nr("C")} = "console.log(JSON.stringify(\r, null, 2))"
