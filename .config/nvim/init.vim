@@ -360,6 +360,9 @@ endif
 "{{{ statusline and tabline
 
 function CocStatus()
+  if !exists("*coc#status")
+    return ''
+  endif
   let status = coc#status()
   return status ? '['.. status ..']' : ''
 endfunction
