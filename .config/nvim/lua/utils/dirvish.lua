@@ -165,6 +165,7 @@ function M.rename()
 
   clear_buffers(old_path)
   reload_dirvish()
+  search(new_name)
 end
 
 local function get_full_path(fname)
