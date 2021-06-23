@@ -21,7 +21,13 @@ if executable("node")
   noremap <buffer> <F5> :w !node<CR>
 endif
 
-let &l:formatprg=luaeval("require'utils/js_tools'.get_js_formatter()")
+if executable('prettier_d_slim')
+  let &l:formatprg='prettier_d_slim --parser=typescript --stdin --stdin-filepath'
+elseif executable('prettier')
+  let &l:formatprg='prettier --parser=typescript'
+elseif executable('eslint_d')
+  let &l:formatprg='eslint_d --fix-to-stdout --stdin'
+endif
 
 let b:surround_{char2nr("c")} = "console.log(\r)"
 let b:surround_{char2nr("C")} = "console.log(JSON.stringify(\r, null, 2))"
