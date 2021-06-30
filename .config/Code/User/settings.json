@@ -55,6 +55,15 @@
     {
       "before": [
         "[",
+        "d"
+      ],
+      "commands": [
+        "editor.action.revealDefinition"
+      ]
+    },
+    {
+      "before": [
+        "[",
         "e"
       ],
       "commands": [
