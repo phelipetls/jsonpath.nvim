@@ -491,6 +491,62 @@ globalkeys =
       }
     end,
     {description = "lua execute prompt", group = "awesome"}
+  ),
+  awful.key(
+    {},
+    "Print",
+    function()
+      awful.util.spawn_with_shell("/home/phelipe/scripts/scrot_share")
+    end,
+    {description = "take a screenshot", group = "awesome"}
+  ),
+  awful.key(
+    {modkey},
+    "Print",
+    function()
+      awful.util.spawn_with_shell("/home/phelipe/scripts/scrot_share -s")
+    end,
+    {description = "take a screenshot witha selection", group = "awesome"}
+  ),
+  awful.key(
+    {},
+    "XF86AudioRaiseVolume",
+    function()
+      awful.util.spawn_with_shell("/home/phelipe/scripts/change_volume up")
+    end,
+    {description = "increase volume", group = "awesome"}
+  ),
+  awful.key(
+    {},
+    "XF86AudioLowerVolume",
+    function()
+      awful.util.spawn_with_shell("/home/phelipe/scripts/change_volume down")
+    end,
+    {description = "decrease volume", group = "awesome"}
+  ),
+  awful.key(
+    {},
+    "XF86AudioMute",
+    function()
+      awful.util.spawn_with_shell("/home/phelipe/scripts/change_volume mute")
+    end,
+    {description = "mute volume", group = "awesome"}
+  ),
+  awful.key(
+    {},
+    "XF86MonBrightnessUp",
+    function()
+      awful.util.spawn_with_shell("/home/phelipe/scripts/change_brightness up")
+    end,
+    {description = "increase screen brightness", group = "awesome"}
+  ),
+  awful.key(
+    {},
+    "XF86MonBrightnessDown",
+    function()
+      awful.util.spawn_with_shell("/home/phelipe/scripts/change_brightness down")
+    end,
+    {description = "decrease screen brightness", group = "awesome"}
   )
 )
 
@@ -685,7 +741,10 @@ awful.rules.rules = {
         "Wpa_gui",
         "veromix",
         "xtightvncviewer",
-        "Emulator"
+        "Emulator",
+        "Thunar",
+        "scrcpy",
+        "Peek"
       },
       -- Note that the name property shown in xprop might be set slightly after creation of the client
       -- and the name shown there might not match defined rules here.
