@@ -597,6 +597,8 @@ nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 nmap <silent> [d <Plug>(coc-definition)
+nmap <silent> <C-w>d :call CocActionAsync('jumpDefinition', 'split')<CR>
+nmap <silent> <C-w><C-d> :call CocActionAsync('jumpDefinition', 'split')<CR>
 nmap <silent> [t <Plug>(coc-type-definition)
 
 nmap <silent> <C-w>d :call CocActionAsync("jumpDefinition", "split")<CR>
