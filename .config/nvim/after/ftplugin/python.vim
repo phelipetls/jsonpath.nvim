@@ -1,7 +1,3 @@
-set expandtab
-set shiftwidth=4
-set softtabstop=4
-
 if executable("black")
   setlocal formatprg=black\ --quiet\ -\ 2>/dev/null
 endif

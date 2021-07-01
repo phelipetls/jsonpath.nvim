@@ -1,5 +1,3 @@
-setl softtabstop=2 shiftwidth=2
-
 let g:html_indent_script1 = "inc"
 let g:html_indent_style1 = "inc"
 

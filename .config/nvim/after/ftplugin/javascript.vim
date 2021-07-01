@@ -1,5 +1,3 @@
-setlocal shiftwidth=2 softtabstop=2
-
 setlocal path-=./node_modules/**,node_modules/**
 setlocal path+=cypress/fixtures
 if has("nvim")

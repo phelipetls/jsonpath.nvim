@@ -11,6 +11,7 @@ packadd! matchit
 packadd! vim-lion
 packadd! tagalong.vim
 packadd! splitjoin.vim
+packadd! vim-sleuth
 
 " git
 packadd! vim-fugitive
@@ -73,10 +74,6 @@ set updatetime=1000
 set breakindent
 set breakindentopt=shift:2
 set linebreak
-
-set expandtab
-set softtabstop=2
-set shiftwidth=2
 
 " don't autocomment on newline
 autocmd! FileType * set formatoptions-=cro
