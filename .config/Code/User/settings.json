@@ -113,6 +113,24 @@
       "commands": [
         "workbench.action.previousEditor"
       ]
+    },
+    {
+      "before": [
+        "[",
+        "g"
+      ],
+      "commands": [
+        "editor.action.marker.prevInFiles"
+      ]
+    },
+    {
+      "before": [
+        "]",
+        "g"
+      ],
+      "commands": [
+        "editor.action.marker.nextInFiles"
+      ]
     }
   ],
   "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
