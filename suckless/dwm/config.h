@@ -66,12 +66,12 @@ static const char *appfinder[]              = { "xfce4-appfinder" };
 static const char *lockcmd[]                = { "slock" };
 static const char *termcmd[]                = { "st", NULL };
 static const char *browsercmd[]             = { "firefox", NULL };
-static const char *brightnessup[]           = { "/home/phelipe/suckless/dwm/dwm_brightness", "up", NULL };
-static const char *brightnessdown[]         = { "/home/phelipe/suckless/dwm/dwm_brightness", "down", NULL };
-static const char *shutdown[]               = { "/home/phelipe/suckless/dwm/dwm_shut", NULL };
-static const char *upvol[]                  = { "/home/phelipe/suckless/dwm/dwm_volume", "up", NULL };
-static const char *downvol[]                = { "/home/phelipe/suckless/dwm/dwm_volume", "down", NULL };
-static const char *mutevol[]                = { "/home/phelipe/suckless/dwm/dwm_volume", "mute", NULL };
+static const char *shutdown[]               = { "/home/phelipe/scripts/shutdown", NULL };
+static const char *brightnessup[]           = { "/home/phelipe/scripts/change_brightness", "up", NULL };
+static const char *brightnessdown[]         = { "/home/phelipe/scripts/change_brightness", "down", NULL };
+static const char *upvol[]                  = { "/home/phelipe/scripts/change_volume", "up", NULL };
+static const char *downvol[]                = { "/home/phelipe/scripts/change_volume", "down", NULL };
+static const char *mutevol[]                = { "/home/phelipe/scripts/change_volume", "mute", NULL };
 
 #include "focusurgent.c"
 
