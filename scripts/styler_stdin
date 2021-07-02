@@ -1,6 +1,0 @@
-#!/usr/bin/Rscript
-
-input <- file("stdin")
-styled_input <- suppressWarnings(styler::style_text(readLines(input)))
-close(input)
-print(styled_input, colored=F)
