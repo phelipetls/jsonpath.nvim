@@ -1,5 +1,5 @@
 #!/bin/bash
-#this script goes into a file in /usr/share/xsessions
+# this script goes into a file in /usr/share/xsessions
 
 nitrogen --restore &
 ~/suckless/dwm/dwm_statusbar &
