@@ -41,12 +41,6 @@ function get_battery {
   fi
 
   echo "$batt_symbol $state_symbol$level%"
-
-  if [ $level -lt 15 ] && [ $state = "Discharging" ]; then
-    dunstify -u normal -r 10000 "Bateria baixa: $level"
-  elif [[ $state = "Full" ]]; then
-    dunstify -u low "Bateria cheia"
-  fi
 }
 
 while true
