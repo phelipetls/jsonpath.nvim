@@ -1,11 +1,11 @@
 #!/bin/bash
 
 function get_volume {
-    amixer get Master | grep -o --perl-regex '([0-9]+)(?=%)'
+    amixer get Master | grep -Eo '([0-9]+)%'
 }
 
 function is_mute {
-    amixer get Master | grep -o 'off'
+    amixer get Master | grep off
 }
 
 case $1 in
