@@ -24,17 +24,17 @@ function get_battery {
   state=$(acpi | sed -E "s/.* ([A-Za-z]+),.*/\1/")
   level=$(acpi | sed -E 's/.* ([0-9]+)%.*/\1/')
 
-  if [ $state = "Charging" ]; then
+  if [ "$state" = "Charging" ]; then
     state_symbol="+"
   else
     state_symbol=""
   fi
 
-  if [ $level -lt 30 ]; then
+  if [ "$level" -lt 30 ]; then
     batt_symbol=""
-  elif [ $level -lt 60 ]; then
+  elif [ "$level" -lt 60 ]; then
     batt_symbol=""
-  elif [ $level -lt 95 ]; then
+  elif [ "$level" -lt 95 ]; then
     batt_symbol=""
   else
     batt_symbol=""
