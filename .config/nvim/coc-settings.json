@@ -17,5 +17,12 @@
   "eslint.autoFixOnSave": true,
   "typescript.updateImportsOnFileMove.enable": false,
   "coc.preferences.useQuickfixForLocations": true,
-  "coc.preferences.bracketEnterImprove": false
+  "coc.preferences.bracketEnterImprove": false,
+  "languageserver": {
+    "efm": {
+      "command": "efm-langserver",
+      "args": ["-c", "/home/phelipe/.config/efm-langserver/config.yaml"],
+      "filetypes": ["sh", "yaml", "lua"]
+    }
+  }
 }
