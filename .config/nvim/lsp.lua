@@ -155,7 +155,7 @@ lspconfig.efm.setup {
     end)
     set_lsp_config(client, bufnr)
   end,
-  root_dir = function(client, bufnr)
+  root_dir = function(_, bufnr)
     if vim.api.nvim_buf_get_name(bufnr):match("node_modules") == nil then
       return vim.fn.getcwd()
     end
@@ -174,8 +174,7 @@ lspconfig.efm.setup {
       ["javascript.jsx"] = {js_config},
       typescript = {js_config},
       ["typescript.tsx"] = {js_config},
-      typescriptreact = {js_config},
-      markdown = {md_config}
+      typescriptreact = {js_config}
     }
   },
   filetypes = {
