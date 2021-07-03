@@ -1,23 +1,19 @@
 #!/bin/bash
 
-function get_temp {
-  temp=$(sensors | awk '/Core 0:/ { print $3 }' | sed 's/[+0.]//g')
-  echo " $temp"
+function get_cpu_temp {
+  cpu_temp=" $(sensors | awk '/Core 0:/ { print $3 }' | sed 's/[+0.]//g')"
 }
 
 function get_date {
-  today=$(date +"%a, %d %b, %R" | sed 's/[^ ]\+/\u&/g' )
-  echo " $today"
+  date=" $(date +"%a, %d %b, %R" | sed 's/[^ ]\+/\u&/g' )"
 }
 
 function get_volume() {
-  volume=$(amixer get Master | awk '/Mono:/ { print $4 }' | sed 's/[][]//g')
-  echo " $volume"
+  volume=" $(amixer get Master | awk '/Mono:/ { print $4 }' | sed 's/[][]//g')"
 }
 
 function get_memory() {
-  mem=$(free | awk '/Mem.:/ { printf("%3.1f", $3/$2*100) }')%
-  echo " $mem"
+  memory=" $(free | awk '/Mem.:/ { printf("%3.1f", $3/$2*100) }')%"
 }
 
 function get_battery {
@@ -40,11 +36,27 @@ function get_battery {
     batt_symbol=""
   fi
 
-  echo "$batt_symbol $state_symbol$level%"
+  battery="$batt_symbol $state_symbol$level%"
 }
+
+get_cpu_temp
+get_volume
+get_memory
+get_date
+get_battery
+
+trap "get_volume" "RTMIN"
+
+sec=0
 
 while true
 do
-  xsetroot -name "$(get_temp)  $(get_memory)  $(get_battery)  $(get_volume)  $(get_date) ⋮"
-  sleep 30s
+  get_date
+  [ $(( sec % 10 )) -eq 0 ] && get_cpu_temp
+  [ $(( sec % 10 )) -eq 0 ] && get_memory
+  [ $(( sec % 15 )) -eq 0 ] && get_battery
+
+  xsetroot -name "$cpu_temp  $memory  $battery  $volume  $date ⋮"
+
+  sleep 1 & wait && sec=$((sec + 1))
 done
