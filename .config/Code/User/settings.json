@@ -11,7 +11,9 @@
   "eslint.format.enable": true,
   "editor.formatOnSave": true,
   "eslint.codeActionsOnSave.mode": "problems",
-  "editor.codeActionsOnSave": ["source.fixAll.eslint"],
+  "editor.codeActionsOnSave": [
+    "source.fixAll.eslint"
+  ],
   "[javascript]": {
     "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
