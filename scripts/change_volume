@@ -8,28 +8,26 @@ function is_mute {
     amixer get Master | grep -o 'off'
 }
 
+case $1 in
+    up)
+        amixer -D pulse set Master on
+        amixer -D pulse set Master 5%+
+        ;;
+    down)
+        amixer -D pulse set Master on
+        amixer -D pulse set Master 5%-
+        ;;
+    mute)
+        amixer -D pulse set Master 1+ toggle
+        ;;
+esac
+
 function send_notification {
-    volume=`get_volume`
-    if is_mute ; then
+    if is_mute; then
         dunstify -r 9999 -t 2000 -u normal "Mute"
     else
-        dunstify -r 9999 -t 2000 -u normal "Volume: $volume"
+        dunstify -r 9999 -t 2000 -u normal "Volume: $(get_volume)"
     fi
 }
 
-case $1 in
-    up)
-        amixer -D pulse set Master on > /dev/null
-        amixer -D pulse set Master 5%+ > /dev/null
-        send_notification
-        ;;
-    down)
-        amixer -D pulse set Master on > /dev/null
-        amixer -D pulse set Master 5%- > /dev/null
-        send_notification
-        ;;
-    mute)
-        amixer -D pulse set Master 1+ toggle > /dev/null
-        send_notification
-        ;;
-esac
+send_notification
