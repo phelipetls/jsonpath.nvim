@@ -1,19 +1,21 @@
 #!/bin/bash
 
 function get_cpu_temp {
-  cpu_temp=" $(sensors | awk '/Core 0:/ { print $3 }' | sed 's/[+0.]//g')"
+  cpu_temp="CPU $(sensors | awk '/Core 0:/ { print $3 }' | sed 's/[+0.]//g')"
 }
 
 function get_date {
-  date=" $(date +"%a, %d %b, %R" | sed 's/[^ ]\+/\u&/g' )"
+  date="$(date +"%a, %d %b, %R" | sed 's/\w\+/\u&/g' )"
 }
 
 function get_volume() {
-  volume=" $(amixer get Master | awk '/Mono:/ { print $4 }' | sed 's/[][]//g')"
+  symbol="ON"
+  amixer get Master | grep -q off && symbol="OFF"
+  volume="$symbol $(amixer get Master | awk '/Mono:/ { print $4 }' | sed 's/[][]//g')"
 }
 
 function get_memory() {
-  memory=" $(free | awk '/Mem.:/ { printf("%3.1f", $3/$2*100) }')%"
+  memory="MEM $(free | awk '/Mem.:/ { printf("%3.1f", $3/$2*100) }')%"
 }
 
 function get_battery {
@@ -26,17 +28,7 @@ function get_battery {
     state_symbol=""
   fi
 
-  if [ "$level" -lt 30 ]; then
-    batt_symbol=""
-  elif [ "$level" -lt 60 ]; then
-    batt_symbol=""
-  elif [ "$level" -lt 95 ]; then
-    batt_symbol=""
-  else
-    batt_symbol=""
-  fi
-
-  battery="$batt_symbol $state_symbol$level%"
+  battery="BAT $state_symbol$level%"
 }
 
 get_cpu_temp
@@ -56,7 +48,7 @@ do
   [ $(( sec % 10 )) -eq 0 ] && get_memory
   [ $(( sec % 15 )) -eq 0 ] && get_battery
 
-  xsetroot -name "$cpu_temp  $memory  $battery  $volume  $date ⋮"
+  xsetroot -name "$cpu_temp | $memory | $battery | $volume | $date ⋮"
 
   sleep 1 & wait && sec=$((sec + 1))
 done
