@@ -10,6 +10,7 @@
 # Type=XSession
 
 nitrogen --restore &
+killall dwm_statusbar &
 ~/suckless/dwm/dwm_statusbar &
 redshift &
 xautolock -detectsleep -time 15 -locker slock &
