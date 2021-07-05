@@ -32,4 +32,4 @@ function send_notification {
 
 send_notification
 
-kill -SIGRTMIN $(pgrep dwm_statusbar)
+kill -SIGRTMIN "$(pgrep dwm_statusbar)"

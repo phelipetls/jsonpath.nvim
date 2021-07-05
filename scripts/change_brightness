@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function get_brightness {
-    echo $(xbacklight -get | awk '{print int($1)}')
+    xbacklight -get | awk '{print int($1)}'
 }
 
 function send_notification {
@@ -10,7 +10,6 @@ function send_notification {
 
 case $1 in
     up)
-        # Set the volume on (if it was muted)
         xbacklight +1
         send_notification
         ;;

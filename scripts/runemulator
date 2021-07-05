@@ -2,4 +2,4 @@
 set -eo pipefail
 
 device=$(emulator -list-avds | dmenu -i)
-emulator -avd $device "$@"
+emulator -avd "$device" "$@"

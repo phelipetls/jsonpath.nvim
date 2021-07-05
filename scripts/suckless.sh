@@ -1,2 +1,2 @@
 #!/bin/bash
-for folder in ~/suckless/*; do sudo make clean install -C $folder; done
+for folder in ~/suckless/*; do sudo make clean install -C "$folder"; done

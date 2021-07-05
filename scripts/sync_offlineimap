@@ -1,8 +1,7 @@
 #!/bin/bash
+offlineimap_running=$(pgrep '[o]fflineimap' | wc -l)
 
-offlineimap_running=$(ps -ef | grep '[o]fflineimap' | wc -l)
-
-if [ $offlineimap_running = "1" ]; then
+if [ "$offlineimap_running" = "1" ]; then
     killall offlineimap
 fi
 

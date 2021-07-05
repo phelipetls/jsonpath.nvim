@@ -1,14 +1,13 @@
 #!/bin/bash
 
-
 chosen=$(echo -e "[Cancel]\nShutdown\nReboot\nSuspend" | dmenu -i -l 10 )
 # Info about some states are available here:
 # https://www.freedesktop.org/software/systemd/man/systemd-sleep.conf.html#Description
 
 if [[ $chosen = "Shutdown" ]]; then
-	systemctl poweroff
+  systemctl poweroff
 elif [[ $chosen = "Reboot" ]]; then
-	systemctl reboot
+  systemctl reboot
 elif [[ $chosen = "Suspend" ]]; then
-	systemctl suspend
+  systemctl suspend
 fi
