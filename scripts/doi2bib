@@ -1,4 +1,0 @@
-#!/bin/bash
-
-curl -s "http://api.crossref.org/works/$1/transform/application/x-bibtex" 2>/dev/null |
-    sed 's///g' >> ~/Documentos/mono/bibliografia.bib

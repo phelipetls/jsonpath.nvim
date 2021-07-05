@@ -1,3 +1,0 @@
-#!/bin/bash
-
-column -t -s,$'\t' < $1 | less -#2 -N -S
