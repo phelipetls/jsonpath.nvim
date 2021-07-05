@@ -1,33 +1,33 @@
 #!/bin/bash
 
 function get_volume {
-    amixer get Master | grep -Eo '([0-9]+)%'
+  amixer get Master | grep -Eo '([0-9]+)%'
 }
 
 function is_mute {
-    amixer get Master | grep off
+  amixer get Master | grep off
 }
 
 case $1 in
-    up)
-        amixer -D pulse set Master on
-        amixer -D pulse set Master 5%+
-        ;;
-    down)
-        amixer -D pulse set Master on
-        amixer -D pulse set Master 5%-
-        ;;
-    mute)
-        amixer -D pulse set Master 1+ toggle
-        ;;
+  up)
+    amixer -D pulse set Master on
+    amixer -D pulse set Master 5%+
+    ;;
+  down)
+    amixer -D pulse set Master on
+    amixer -D pulse set Master 5%-
+    ;;
+  mute)
+    amixer -D pulse set Master 1+ toggle
+    ;;
 esac
 
 function send_notification {
-    if is_mute; then
-        dunstify -r 9999 -t 2000 -u normal "Mute"
-    else
-        dunstify -r 9999 -t 2000 -u normal "Volume: $(get_volume)"
-    fi
+  if is_mute; then
+    dunstify -r 9999 -t 2000 -u normal "Mute"
+  else
+    dunstify -r 9999 -t 2000 -u normal "Volume: $(get_volume)"
+  fi
 }
 
 send_notification

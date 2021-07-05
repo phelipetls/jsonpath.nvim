@@ -1,20 +1,20 @@
 #!/bin/bash
 
 function get_brightness {
-    xbacklight -get | awk '{print int($1)}'
+  xbacklight -get | awk '{print int($1)}'
 }
 
 function send_notification {
-    dunstify -r 9999 -u normal "Brightness: $(get_brightness)%"
+  dunstify -r 9999 -u normal "Brightness: $(get_brightness)%"
 }
 
 case $1 in
-    up)
-        xbacklight +1
-        send_notification
-        ;;
-    down)
-        xbacklight -1
-        send_notification
-        ;;
+  up)
+    xbacklight +1
+    send_notification
+    ;;
+  down)
+    xbacklight -1
+    send_notification
+    ;;
 esac
