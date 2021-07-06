@@ -6,7 +6,7 @@ export XDG_RUNTIME_DIR=/run/user/$(id -u)
 state=$(acpi | sed -E "s/.* ([A-Za-z]+),.*/\1/")
 level=$(acpi | sed -E 's/.* ([0-9]+)%.*/\1/')
 
-if [ "$level" -lt 15 ] && [ "$state" = "Discharging" ]; then
+if [[ "$level" -lt 15 ]] && [[ "$state" = "Discharging" ]]; then
   dunstify -u normal -r 10000 "Bateria baixa: $level"
 elif [[ $state = "Full" ]]; then
   dunstify -u low "Bateria cheia"
