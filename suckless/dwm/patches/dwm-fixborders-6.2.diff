@@ -1,0 +1,27 @@
+From 1529909466206016f2101457bbf37c67195714c8 Mon Sep 17 00:00:00 2001
+From: Jakub Leszczak <szatan@gecc.xyz>
+Date: Fri, 22 Nov 2019 10:46:53 +0800
+Subject: [PATCH] Fix transparent borders
+
+When terminal has transparency then its borders also become transparent.
+Fix it by removing transparency from any pixels drawn.
+---
+ drw.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/drw.c b/drw.c
+index 8fd1ca4..490a592 100644
+--- a/drw.c
++++ b/drw.c
+@@ -202,6 +202,8 @@ drw_clr_create(Drw *drw, Clr *dest, const char *clrname)
+ 	                       DefaultColormap(drw->dpy, drw->screen),
+ 	                       clrname, dest))
+ 		die("error, cannot allocate color '%s'", clrname);
++
++	dest->pixel |= 0xff << 24;
+ }
+ 
+ /* Wrapper to create color schemes. The caller has to call free(3) on the
+-- 
+2.26.2
+
