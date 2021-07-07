@@ -1,10 +1,10 @@
 #!/bin/bash
 
-function get_cpu_temp {
+function get_cpu_temp() {
   cpu_temp="CPU $(sensors | awk '/Core 0:/ { print $3 }' | sed 's/[+0.]//g')"
 }
 
-function get_date {
+function get_date() {
   date="$(date +"%a, %d %b, %R" | sed 's/\w\+/\u&/g' )"
 }
 
@@ -18,7 +18,7 @@ function get_memory() {
   memory="MEM $(free | awk '/Mem.:/ { printf("%3.1f", $3/$2*100) }')%"
 }
 
-function get_battery {
+function get_battery() {
   state=$(acpi | sed -E "s/.* ([A-Za-z]+),.*/\1/")
   level=$(acpi | sed -E 's/.* ([0-9]+)%.*/\1/')
 
