@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function get_cpu_temp() {
-  cpu_temp="CPU $(sensors | awk '/Core 0:/ { print $3 }' | sed 's/[+0.]//g')"
+  cpu_temp="CPU $(sensors | awk '/Core 0:/ { print $3 }' | tr -d '+.0')"
 }
 
 function get_date() {
@@ -11,7 +11,7 @@ function get_date() {
 function get_volume() {
   symbol="ON"
   amixer get Master | grep -q off && symbol="OFF"
-  volume="$symbol $(amixer get Master | awk '/Mono:/ { print $4 }' | sed 's/[][]//g')"
+  volume="$symbol $(amixer get Master | awk '/Mono:/ { print $4 }' | tr -d '[]')"
 }
 
 function get_memory() {
@@ -19,8 +19,8 @@ function get_memory() {
 }
 
 function get_battery() {
-  state=$(acpi | sed -E "s/.* ([A-Za-z]+),.*/\1/")
-  level=$(acpi | sed -E 's/.* ([0-9]+)%.*/\1/')
+  state=$(acpi | grep -Eo '(Discharging|Charging)')
+  level=$(acpi | grep -Eo '[0-9]+%')
 
   if [ "$state" = "Charging" ]; then
     state_symbol="+"
@@ -28,7 +28,7 @@ function get_battery() {
     state_symbol=""
   fi
 
-  battery="BAT $state_symbol$level%"
+  battery="BAT $state_symbol$level"
 }
 
 get_cpu_temp
