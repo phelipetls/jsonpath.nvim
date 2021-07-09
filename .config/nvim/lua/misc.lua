@@ -71,7 +71,7 @@ function M.loclist_is_visible()
   return #loclist_windows > 0
 end
 
-function M.once(fn, input)
+function M.once(fn)
   local value
   return function(...)
     if not value then
