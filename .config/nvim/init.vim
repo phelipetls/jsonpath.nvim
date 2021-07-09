@@ -185,16 +185,22 @@ function! Format(type, ...)
   endif
 endfunction
 
+function! SameBufferWinDo(cmd)
+  let initial_winnr = winnr()
+  let windows = filter(getwininfo(), {_, win -> win.bufnr == bufnr() && win.tabnr == tabpagenr()})
+  for winnr in map(windows, {_, win -> win.winnr})
+    execute winnr . "wincmd w"
+    execute a:cmd
+  endfor
+  execute initial_winnr . "wincmd w"
+endfunction
+
 nmap <silent> gq :set opfunc=Format<CR>g@
-if has("nvim")
-  nmap <silent> gQ :lua require'misc'.same_buffer_windo("let w:view = winsaveview()")<CR>
-        \ :set opfunc=Format<CR>
-        \ :keepjumps normal gg<CR>
-        \ :keepjumps normal gqG<CR>
-        \ :lua require'misc'.same_buffer_windo("keepj call winrestview(w:view)")<CR>
-else
-  nmap <silent> gQ :norm magggqG`a
-endif
+nmap <silent> gQ :call SameBufferWinDo("let w:view = winsaveview()")<CR>
+      \ :set opfunc=Format<CR>
+      \ :keepjumps normal gg<CR>
+      \ :keepjumps normal gqG<CR>
+      \ :call SameBufferWinDo("keepjumps call winrestview(w:view)")<CR>
 
 if has("nvim")
 lua << EOF
