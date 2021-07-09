@@ -49,6 +49,8 @@ inoreabbrev docuemnt document
 setlocal isfname+=@-@
 setlocal suffixesadd=.js,.jsx,.ts,.tsx,.d.ts,.vue
 
-nnoremap <silent><buffer> gf :call luaeval("require'utils/tsconfig'.go_to_file(_A)","edit")<CR>
-nnoremap <silent><buffer> <C-w>f :call luaeval("require'utils/tsconfig'.go_to_file(_A)","split")<CR>
-nnoremap <silent><buffer> <C-w><C-f> :call luaeval("require'utils/tsconfig'.go_to_file(_A)","split")<CR>
+if has("nvim")
+  nnoremap <silent><buffer> gf :call luaeval("require'utils/tsconfig'.go_to_file(_A)","edit")<CR>
+  nnoremap <silent><buffer> <C-w>f :call luaeval("require'utils/tsconfig'.go_to_file(_A)","split")<CR>
+  nnoremap <silent><buffer> <C-w><C-f> :call luaeval("require'utils/tsconfig'.go_to_file(_A)","split")<CR>
+endif

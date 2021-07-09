@@ -186,11 +186,15 @@ function! Format(type, ...)
 endfunction
 
 nmap <silent> gq :set opfunc=Format<CR>g@
-nmap <silent> gQ :lua require'misc'.same_buffer_windo("let w:view = winsaveview()")<CR>
-      \ :set opfunc=Format<CR>
-      \ :keepjumps normal gg<CR>
-      \ :keepjumps normal gqG<CR>
-      \ :lua require'misc'.same_buffer_windo("keepj call winrestview(w:view)")<CR>
+if has("nvim")
+  nmap <silent> gQ :lua require'misc'.same_buffer_windo("let w:view = winsaveview()")<CR>
+        \ :set opfunc=Format<CR>
+        \ :keepjumps normal gg<CR>
+        \ :keepjumps normal gqG<CR>
+        \ :lua require'misc'.same_buffer_windo("keepj call winrestview(w:view)")<CR>
+else
+  nmap <silent> gQ :norm magggqG`a
+endif
 
 if has("nvim")
 lua << EOF
@@ -535,8 +539,10 @@ function! ToggleLocationList()
   call OpenLocationList()
 endfunction
 
-nnoremap <silent> <space>q :call ToggleQuickfixList()<CR>
-nnoremap <silent> <space>w :call ToggleLocationList()<CR>
+if has("nvim")
+  nnoremap <silent> <space>q :call ToggleQuickfixList()<CR>
+  nnoremap <silent> <space>w :call ToggleLocationList()<CR>
+endif
 
 augroup QuickFix
   autocmd!
@@ -585,7 +591,9 @@ inoremap <silent><expr> <TAB>
 inoremap <silent><expr> <c-space> coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-inoremap <silent> <C-x><C-f> <C-r>=luaeval("require'path_completion'.complete()")
+if has("nvim")
+  inoremap <silent> <C-x><C-f> <C-r>=luaeval("require'path_completion'.complete()")
+endif
 
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
