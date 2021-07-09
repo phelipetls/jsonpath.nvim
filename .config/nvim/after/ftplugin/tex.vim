@@ -44,6 +44,3 @@ if executable("zathura")
         \ expand("%:t") . " " .
         \ expand("%:r") . ".pdf"<CR>
 endif
-
-nnoremap <buffer><silent> ]] :call search("\\\\.*section{", 'w')<CR>
-nnoremap <buffer><silent> [[ :call search("\\\\[a-z]*section{", 'wb')<CR>
