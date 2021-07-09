@@ -513,8 +513,12 @@ function! OpenQuickfixList()
   endif
 endfunction
 
+function! IsQuickfixOpen()
+  return !empty(filter(getwininfo(), {_, win -> win.tabnr == tabpagenr() && win.quickfix == 1 && win.loclist == 0}))
+endfunction
+
 function! ToggleQuickfixList()
-  if luaeval("require'misc'.quickfix_is_visible()")
+  if IsQuickfixOpen()
     cclose
     return
   endif
@@ -531,8 +535,12 @@ function! OpenLocationList()
   endif
 endfunction
 
+function! IsLoclistOpen()
+  return !empty(filter(getwininfo(), {_, win -> win.tabnr == tabpagenr() && win.quickfix == 1 && win.loclist == 1}))
+endfunction
+
 function! ToggleLocationList()
-  if luaeval("require'misc'.loclist_is_visible()")
+  if IsLoclistOpen()
     lclose
     return
   endif

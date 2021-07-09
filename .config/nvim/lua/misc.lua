@@ -39,38 +39,6 @@ function M.same_buffer_windo(cmd)
   go_to_window(initial_winnr)
 end
 
-local function is_inside_current_tab(window)
-  return window.tabnr == vim.fn.tabpagenr()
-end
-
-local function is_quickfix(window)
-  return window.quickfix == 1 and window.loclist == 0
-end
-
-local function is_loclist(window)
-  return window.quickfix == 1 and window.loclist == 1
-end
-
-function M.quickfix_is_visible()
-  local quickfix_windows =
-    filter_windows(
-    function(window)
-      return is_quickfix(window) and is_inside_current_tab(window)
-    end
-  )
-  return #quickfix_windows > 0
-end
-
-function M.loclist_is_visible()
-  local loclist_windows =
-    filter_windows(
-    function(window)
-      return is_loclist(window) and is_inside_current_tab(window)
-    end
-  )
-  return #loclist_windows > 0
-end
-
 function M.once(fn)
   local value
   return function(...)
