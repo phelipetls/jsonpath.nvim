@@ -43,9 +43,9 @@ sec=0
 
 while true
 do
-  get_date
-  [ $(( sec % 10 )) -eq 0 ] && get_cpu_temp
-  [ $(( sec % 10 )) -eq 0 ] && get_memory
+  [ $(( $(date +"%s") % 60 )) -eq 0 ] && get_date
+  [ $(( sec % 15 )) -eq 0 ] && get_cpu_temp
+  [ $(( sec % 15 )) -eq 0 ] && get_memory
   [ $(( sec % 15 )) -eq 0 ] && get_battery
 
   xsetroot -name "$cpu_temp | $memory | $battery | $volume | $date ⋮"
