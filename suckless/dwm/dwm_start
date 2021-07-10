@@ -19,4 +19,4 @@ numlockx &
 compton &
 nm-applet &
 
-exec dwm
+dwm > ~/dwm.log 2>&1
