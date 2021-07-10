@@ -569,20 +569,6 @@ augroup CloseQuickFix
 augroup END
 
 "}}}
-"{{{ LSP
-
-" if has("nvim-0.5.0") && filereadable($HOME."/.config/nvim/lsp.lua") && !&diff
-"   packadd! nvim-lsp
-
-"   luafile $HOME/.config/nvim/lsp.lua
-
-"   sign define LspDiagnosticsSignError text=▎ texthl=LspDiagnosticsSignError linehl= numhl=
-"   sign define LspDiagnosticsSignWarning text=▎ linehl= texthl=LspDiagnosticsSignWarning linehl= numhl=
-"   sign define LspDiagnosticsSignInformation text=▎ texthl=LspDiagnosticsSignInformation linehl= numhl=
-"   sign define LspDiagnosticsSignHint text=▎ texthl=LspDiagnosticsSignHint linehl= numhl=
-" endif
-
-"}}}
 "{{{ coc
 
 set nobackup
