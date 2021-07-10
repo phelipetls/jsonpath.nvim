@@ -130,3 +130,7 @@
 	path = .config/nvim/pack/plugins/opt/vim-sleuth
 	url = https://github.com/tpope/vim-sleuth
 	ignore = dirty
+[submodule "fugitive-gitlab.vim"]
+	path = .config/nvim/pack/plugins/opt/fugitive-gitlab.vim
+	url = https://github.com/shumphrey/fugitive-gitlab.vim
+	ignore = dirty

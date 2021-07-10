@@ -15,6 +15,7 @@ packadd! vim-sleuth
 
 " git
 packadd! vim-fugitive
+packadd! fugitive-gitlab.vim
 packadd! diffconflicts
 packadd! git-messenger.vim
 packadd! gv.vim
