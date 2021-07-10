@@ -91,10 +91,10 @@ static Key keys[] = {
 	{ MODKEY,                       XK_F4,                    spawn,          {.v = shutdown } },
 	{ MODKEY,                       XK_l,                     spawn,          {.v = lockcmd } },
 	{ MODKEY,                       XK_b,                     togglebar,      {0} },
-	{ MODKEY,                       XK_j,                     focusstackvis,     {.i = +1 } },
-	{ MODKEY,                       XK_k,                     focusstackvis,     {.i = -1 } },
-	{ Mod1Mask,                     XK_Tab,                   focusstackvis,     {.i = +1 } },
-	{ Mod1Mask|ShiftMask,           XK_Tab,                   focusstackvis,     {.i = -1 } },
+	{ MODKEY,                       XK_j,                     focusstackvis,  {.i = +1 } },
+	{ MODKEY,                       XK_k,                     focusstackvis,  {.i = -1 } },
+	{ Mod1Mask,                     XK_Tab,                   focusstackvis,  {.i = +1 } },
+	{ Mod1Mask|ShiftMask,           XK_Tab,                   focusstackvis,  {.i = -1 } },
 	{ MODKEY,                       XK_i,                     incnmaster,     {.i = +1 } },
 	{ MODKEY,                       XK_d,                     incnmaster,     {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_h,                     setmfact,       {.f = -0.05} },
@@ -129,7 +129,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                     7)
 	TAGKEYS(                        XK_9,                     8)
 	{ MODKEY|ShiftMask,             XK_q,                     quit,           {0} },
-	{ MODKEY,                       XK_u,      focusurgent,    {0} },
+	{ MODKEY,                       XK_u,                     focusurgent,    {0} },
 };
 
 /* button definitions */

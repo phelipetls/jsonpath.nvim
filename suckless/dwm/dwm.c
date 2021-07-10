@@ -1469,7 +1469,7 @@ movemouse(const Arg *arg)
 	}
 }
 
- Client *
+Client *
 nexttagged(Client *c) {
 	Client *walked = c->mon->clients;
 	for(;
@@ -2087,11 +2087,11 @@ tile(Monitor *m)
 
 	if (n > m->nmaster) {
 		mw = m->nmaster ? m->ww * m->mfact : 0;
-        ns = m->nmaster > 0 ? 2 : 1;
-    } else {
+		ns = m->nmaster > 0 ? 2 : 1;
+	} else {
 		mw = m->ww;
-        ns = 1;
-    }
+		ns = 1;
+	}
 	for(i = 0, my = ty = gappx, c = nexttiled(m->clients); c; c = nexttiled(c->next), i++)
 		if (i < m->nmaster) {
 			h = (m->wh - my) * (c->cfact / mfacts) - gappx;
