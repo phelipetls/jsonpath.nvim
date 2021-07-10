@@ -1,6 +1,6 @@
 local M = {}
 
-local path_utils = require "utils/path"
+local path_utils = require "path"
 
 local function get_path_under_cursor()
   return vim.fn.getline(".")

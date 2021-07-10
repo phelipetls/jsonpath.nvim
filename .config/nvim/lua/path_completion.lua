@@ -1,6 +1,6 @@
 local M = {}
 
-local path_utils = require "utils/path"
+local path_utils = require "path"
 
 local function read_dir(dir, fn)
   local items = fn and vim.fn.readdir(dir, fn) or vim.fn.readdir(dir)

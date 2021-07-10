@@ -1,7 +1,7 @@
 setlocal path-=./node_modules/**,node_modules/**
 setlocal path+=cypress/fixtures
 if has("nvim")
-  let tsconfig_include = luaeval("require'utils/tsconfig'.get_tsconfig_include()")
+  let tsconfig_include = luaeval("require'tsconfig'.get_tsconfig_include()")
   if !empty(tsconfig_include) && match(&l:path, tsconfig_include) == -1
     let &l:path .= ',' . tsconfig_include
   endif
@@ -50,7 +50,7 @@ setlocal isfname+=@-@
 setlocal suffixesadd=.js,.jsx,.ts,.tsx,.d.ts,.vue
 
 if has("nvim")
-  nnoremap <silent><buffer> gf :call luaeval("require'utils/tsconfig'.go_to_file(_A)","edit")<CR>
-  nnoremap <silent><buffer> <C-w>f :call luaeval("require'utils/tsconfig'.go_to_file(_A)","split")<CR>
-  nnoremap <silent><buffer> <C-w><C-f> :call luaeval("require'utils/tsconfig'.go_to_file(_A)","split")<CR>
+  nnoremap <silent><buffer> gf :call luaeval("require'tsconfig'.go_to_file(_A)","edit")<CR>
+  nnoremap <silent><buffer> <C-w>f :call luaeval("require'tsconfig'.go_to_file(_A)","split")<CR>
+  nnoremap <silent><buffer> <C-w><C-f> :call luaeval("require'tsconfig'.go_to_file(_A)","split")<CR>
 endif
