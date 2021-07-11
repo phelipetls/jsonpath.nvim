@@ -26,6 +26,7 @@
     l = log --abbrev-commit --oneline --graph --decorate
     ctags = !.git/hooks/ctags
     recent = branch -v --sort=-committerdate
+    undo = reset --soft HEAD^
     recommit = commit -c ORIG_HEAD
 [credential]
     helper = cache
