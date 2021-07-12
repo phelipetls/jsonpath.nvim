@@ -28,6 +28,12 @@ tools:
     format-command: 'lua-format -i'
     format-stdin: true
 
+  python-flake8: &python-flake8
+    lint-command: 'flake8 --stdin-display-name ${INPUT} -'
+    lint-stdin: true
+    lint-formats:
+      - '%f:%l:%c: %m'
+
 languages:
   yaml:
     - <<: *yaml-yamllint
@@ -38,3 +44,6 @@ languages:
   lua:
     - <<: *lua-luacheck
     - <<: *lua-lua-format
+
+  python:
+    - <<: *python-flake8

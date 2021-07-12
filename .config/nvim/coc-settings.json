@@ -22,7 +22,7 @@
     "efm": {
       "command": "efm-langserver",
       "args": ["-c", "/home/phelipe/.config/efm-langserver/config.yaml"],
-      "filetypes": ["sh", "yaml", "lua"]
+      "filetypes": ["sh", "yaml", "lua", "python"]
     }
   }
 }
