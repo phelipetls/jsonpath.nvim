@@ -258,7 +258,7 @@ function M.copy()
       end
     end
 
-    if not result or result > 0 then
+    if not result or (type(result) == "number" and result > 0) then
       echoerr("Failed to copy " .. old_path)
       return
     end
