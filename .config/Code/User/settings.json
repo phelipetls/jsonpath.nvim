@@ -133,6 +133,46 @@
       "commands": [
         "editor.action.marker.nextInFiles"
       ]
+    },
+    {
+      "before": [
+        "[",
+        "b"
+      ],
+      "commands": [
+        "workbench.action.previousEditor"
+      ]
+    },
+    {
+      "before": [
+        "]",
+        "b"
+      ],
+      "commands": [
+        "workbench.action.nextEditor"
+      ]
+    },
+    {
+      "before": [
+        "[",
+        "f"
+      ],
+      "commands": [
+        "workbench.view.explorer",
+        "list.focusUp",
+        "explorer.openAndPassFocus"
+      ]
+    },
+    {
+      "before": [
+        "]",
+        "f"
+      ],
+      "commands": [
+        "workbench.view.explorer",
+        "list.focusDown",
+        "explorer.openAndPassFocus"
+      ]
     }
   ],
   "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
