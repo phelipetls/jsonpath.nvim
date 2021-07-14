@@ -430,7 +430,21 @@ if executable("fzf")
   nnoremap <space>h :Help<CR>
   nnoremap <space>t :Tags<CR>
   nnoremap <space>r :History<CR>
-  nnoremap <space>c :call fzf#run(fzf#wrap({'source': $FZF_ALT_C_COMMAND}))<CR>
+  nnoremap <space>d :call fzf#run(fzf#wrap({'source': $FZF_ALT_C_COMMAND}))<CR>
+
+  function! CheckoutBranch(branch)
+    exe '!' .. fugitive#Prepare('checkout', a:branch)
+  endfunction
+
+  function! CheckoutBranchFzf()
+    call fzf#run(fzf#wrap({
+          \ 'source': fugitive#Prepare('branch', '-v', '--sort', '-committerdate', '--format', '%(refname:short)'),
+          \ 'sink': function('CheckoutBranch'),
+          \ 'options': '--prompt "Checkout: " --preview "'..fugitive#Prepare('log', '--oneline')..' {}"'
+          \ }))
+  endfunction
+
+  nnoremap <space>cb :call CheckoutBranchFzf()<CR>
 
   let g:fzf_colors = {
         \ 'fg':      ['fg', 'Normal'],
