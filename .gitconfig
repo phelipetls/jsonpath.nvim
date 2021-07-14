@@ -19,6 +19,8 @@
     cmd = code --wait $MERGED
 [rebase]
     autosquash = true
+[blame]
+    date = relative
 [alias]
     co = checkout
     st = status
