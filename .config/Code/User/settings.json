@@ -43,7 +43,8 @@
   "vim.incsearch": true,
   "vim.useSystemClipboard": true,
   "vim.handleKeys": {
-    "<C-b>": false
+    "<C-b>": false,
+    "<C-f>": false
   },
   "vim.normalModeKeyBindings": [
     {
