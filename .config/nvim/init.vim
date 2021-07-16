@@ -371,17 +371,27 @@ function CocStatus()
     return ''
   endif
   let status = coc#status()
-  return status ? '['.. status ..']' : ''
+  return !empty(status) ? '['.. status ..']' : ''
+endfunction
+
+function GetStatusLine(active) abort
+  let fugitive = a:active ? FugitiveStatusline() : ''
+  let coc = a:active ? CocStatus() : ''
+  let modified = !&modifiable ? '[-]' : &modified ? '[+]' : ''
+  let eol = &endofline ? '' : '[noeol]'
+
+  return join(filter([fugitive, coc, modified, eol], "!empty(v:val)"), ' ')
 endfunction
 
 function! StatusLine(type) abort
-  let statusline=' %t %m'
-  let statusline.="%{&endofline ? '' : '[noeol]'}"
+  let statusline = ' %t '
   if a:type == 'active'
-    let statusline.='%{FugitiveStatusline()}'
-    let statusline.='%{CocStatus()}'
+    let statusline.='%{GetStatusLine(1)}'
+  else
+    let statusline.='%{GetStatusLine(0)}'
   endif
-  let statusline.='%=[%l/%L] %y'
+  let statusline.='%='
+  let statusline.='[%l/%L] %y'
   return statusline
 endfunction
 
