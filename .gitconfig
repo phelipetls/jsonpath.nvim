@@ -32,6 +32,7 @@
     recommit = commit -c ORIG_HEAD
     current-branch = rev-parse --abbrev-ref HEAD
     spinoff = !git-spinoff
+    track = branch --set-upstream-to
 [credential]
     helper = cache
 [credential "https://github.com"]
