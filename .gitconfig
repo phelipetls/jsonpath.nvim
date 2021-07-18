@@ -17,6 +17,8 @@
     keepBackup = false
 [mergetool "vscode"]
     cmd = code --wait $MERGED
+[push]
+    default = current
 [rebase]
     autosquash = true
 [blame]
