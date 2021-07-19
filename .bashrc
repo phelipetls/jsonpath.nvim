@@ -38,7 +38,7 @@ case "$TERM" in
   xterm-color|*-256color) color_prompt=yes;;
 esac
 
-source /usr/lib/git-core/git-sh-prompt
+[ -f /usr/lib/git-core/git-sh-prompt ] && source /usr/lib/git-core/git-sh-prompt
 
 export PS1='\
 \[\e[01;32m\]\u \
@@ -93,7 +93,7 @@ fi
 
 # autocompletion
 eval "$(pandoc --bash-completion)"
-source ~/.tmux/tmux_bash_completion
+[ -f ~/.tmux/tmux_bash_completion ] && source ~/.tmux/tmux_bash_completion
 
 # fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
