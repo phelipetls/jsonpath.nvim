@@ -41,13 +41,13 @@ esac
 [ -f /usr/lib/git-core/git-sh-prompt ] && source /usr/lib/git-core/git-sh-prompt
 
 export PS1='\
-\[\e[01;32m\]\u \
-\[\e[01;33m\]@ \
-\[\e[01;94m\]\w \
-\[\e[01;33m\]$(__git_ps1 "(%s) ")\
-\[\e[01;32m\]$([ \j -gt 0 ] && echo "* ")\
-\[\e[01;90m\]\$ \
-\[\e[m\]\
+\[\e[1;32m\]\u \
+\[\e[1;33m\]@ \
+\[\e[1;94m\]\w \
+\[\e[1;33m\]$(__git_ps1 "(%s) ")\
+\[\e[1;32m\]$([ \j -gt 0 ] && echo "* ")\
+\[\e[1;90m\]\$ \
+\[\e[0m\]\
 '
 
 beep_on_error() {
