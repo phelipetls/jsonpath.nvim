@@ -50,7 +50,7 @@ export PS1='\
 \[\e[m\]\
 '
 
-function beep_on_error() {
+beep_on_error() {
   if [[ $? -gt 0 ]]; then
     echo -ne '\a'
   fi
