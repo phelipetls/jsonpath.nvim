@@ -1,5 +1,5 @@
 #!/bin/bash
 set -eo pipefail
 
-device=$(emulator -list-avds | dmenu -i)
+device=$(emulator -list-avds | fzf --height 40%)
 emulator -avd "$device" "$@"
