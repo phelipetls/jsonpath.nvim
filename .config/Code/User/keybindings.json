@@ -13,5 +13,10 @@
     "key": "ctrl+e",
     "command": "cursorLineEnd",
     "when": "textInputFocus && vim.active && vim.mode == 'Insert'"
+  },
+  {
+    "key": "alt+enter",
+    "command": "editor.action.quickFix",
+    "when": "editorHasCodeActionsProvider && editorTextFocus && !editorReadonly"
   }
 ]
