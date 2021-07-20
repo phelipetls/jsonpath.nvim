@@ -35,6 +35,7 @@
     current-branch = rev-parse --abbrev-ref HEAD
     spinoff = !git-spinoff
     track = branch --set-upstream-to
+    cb = !git-cb
 [credential]
     helper = cache
 [credential "https://github.com"]

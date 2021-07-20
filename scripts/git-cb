@@ -1,0 +1,8 @@
+#/bin/bash
+set -eu
+
+branch=$(git branch -v --sort -committerdate --format '%(refname:short)' | fzf --height 40% --preview 'git log --oneline {}')
+
+if [ -n $branch ]; then
+  git checkout $branch
+fi
