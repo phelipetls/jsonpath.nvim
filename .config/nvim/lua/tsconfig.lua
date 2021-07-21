@@ -215,4 +215,18 @@ function M.go_to_file(cmd)
   end
 end
 
+function M.includeexpr(input)
+  local fname = expand_fname(input)
+
+  fname = find_file(fname) or find_dir(fname)
+
+  if vim.fn.isdirectory(fname) == 1 then
+    fname = find_component(fname) or find_index_file(fname) or fname
+  end
+
+  if fname then
+    return fname
+  end
+end
+
 return M

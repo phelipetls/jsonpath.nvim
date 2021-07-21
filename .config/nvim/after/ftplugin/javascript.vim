@@ -7,6 +7,21 @@ if has("nvim")
   endif
 endif
 
+setlocal include=\\s*from\\s*['\"]
+
+function JsIncludeExpr(fname)
+  return luaeval("require'tsconfig'.includeexpr(_A)",a:fname)
+endfunction
+
+setlocal includeexpr=JsIncludeExpr(v:fname)
+let &l:define = '^\s*\('
+      \ . '\(export\s\)*\(\w\+\s\)*\(var\|const\|let\|function\|class\|interface\|as\|enum\)\s'
+      \ . '\|\(public\|private\|protected\|readonly\|static\|get\s\|set\)\s'
+      \ . '\|\(export\sdefault\s\|abstract\sclass\s\)'
+      \ . '\|\(async\sfunction\)\s'
+      \ . '\|\(\ze\i\+([^)]*).*{$\)'
+      \ . '\)'
+
 if executable("jest") && match(expand("%:p:t"), 'test\.\(js\|ts\|jsx\|tsx\)$') != -1
   compiler jest
 elseif executable("eslint_d")
