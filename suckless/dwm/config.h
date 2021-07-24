@@ -24,14 +24,17 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class         instance  title                tags mask  iscentered  isfloating  monitor */
-	{ "R_x11",       NULL,     NULL,                0,         0,          1,          -1 },
-	{ "Matplotlib",  NULL,     NULL,                0,         0,          1,          -1 },
-	{ "Thunar",      NULL,     NULL,                0,         1,          1,          -1 },
-	{ "Peek",        NULL,     NULL,                0,         0,          1,          -1 },
-	{ "appfinder",   NULL,     NULL,                0,         1,          1,          -1 },
-	{ "scrcpy",      NULL,     NULL,                0,         0,          1,          -1 },
-	{ NULL,          NULL,     "Emulator",          0,         0,          1,          -1 },
+	/* class         instance  title        tags mask  iscentered  isfloating  monitor */
+	{ "R_x11",       NULL,     NULL,        0,         0,          1,          -1 },
+	{ "Matplotlib",  NULL,     NULL,        0,         0,          1,          -1 },
+	{ "Thunar",      NULL,     NULL,        0,         1,          1,          -1 },
+	{ "Peek",        NULL,     NULL,        0,         0,          1,          -1 },
+	{ "appfinder",   NULL,     NULL,        0,         1,          1,          -1 },
+	{ "scrcpy",      NULL,     NULL,        0,         0,          1,          -1 },
+	{ NULL,          NULL,     "Emulator",  0,         0,          1,          -1 },
+	{ "Spotify",     NULL,     NULL,        1 << 6,    0,          1,          -1 },
+	{ "Slack",       NULL,     NULL,        1 << 6,    0,          1,          -1 },
+	{ "Discord",     NULL,     NULL,        1 << 6,    0,          1,          -1 },
 };
 
 /* layout(s) */
