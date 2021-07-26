@@ -92,7 +92,6 @@ if ! shopt -oq posix; then
 fi
 
 # autocompletion
-eval "$(pandoc --bash-completion)"
 [ -f ~/.tmux/tmux_bash_completion ] && source ~/.tmux/tmux_bash_completion
 
 # fzf
