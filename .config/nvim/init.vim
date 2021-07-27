@@ -628,12 +628,11 @@ nmap <silent> ]g <Plug>(coc-diagnostic-next)
 nmap <silent> [d <Plug>(coc-definition)
 nmap <silent> <C-w>d :call CocActionAsync('jumpDefinition', 'split')<CR>
 nmap <silent> <C-w><C-d> :call CocActionAsync('jumpDefinition', 'split')<CR>
+nmap <silent> <C-c><C-p> :call CocActionAsync("jumpDefinition", "pedit")<CR>
 nmap <silent> [t <Plug>(coc-type-definition)
 
-nmap <silent> <C-w>d :call CocActionAsync("jumpDefinition", "split")<CR>
-nmap <silent> <C-c>p :call CocActionAsync("jumpDefinition", "split")<CR>
-nmap <silent> <C-c><C-p> :call CocActionAsync("jumpDefinition", "pedit")<CR>
 nmap <silent> <C-space> :call CocActionAsync("diagnosticInfo")<CR>
+
 command! -nargs=0 References :call CocActionAsync('jumpReferences')
 command! -nargs=0 Fmt :call CocActionAsync('format')
 nnoremap <silent> <M-S-O> :call CocActionAsync('runCommand', 'editor.action.organizeImport')<CR>
