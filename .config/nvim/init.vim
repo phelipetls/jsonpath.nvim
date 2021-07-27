@@ -615,10 +615,6 @@ inoremap <silent><expr> <TAB>
 inoremap <silent><expr> <c-space> coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-if has("nvim")
-  inoremap <silent> <C-x><C-f> <C-r>=luaeval("require'path_completion'.complete()")
-endif
-
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
