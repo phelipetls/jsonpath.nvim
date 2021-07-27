@@ -663,8 +663,8 @@ omap ac <Plug>(coc-classobj-a)
 nmap <silent> <C-s> <Plug>(coc-range-select)
 xmap <silent> <C-s> <Plug>(coc-range-select)
 
-nnoremap <silent><nowait> <space>d  :<C-u>CocList diagnostics<cr>
-nnoremap <silent><nowait> <space>S  :<C-u>CocList -I symbols<cr>
+nnoremap <silent> <space>d :<C-u>CocList diagnostics<cr>
+nnoremap <silent> <space>g :<C-u>CocList -I symbols<cr>
 
 let g:coc_quickfix_open_command = 'doautocmd QuickFixCmdPost | cfirst'
 
