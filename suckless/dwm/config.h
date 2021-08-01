@@ -32,9 +32,9 @@ static const Rule rules[] = {
 	{ "appfinder",   NULL,     NULL,        0,         1,          1,          -1 },
 	{ "scrcpy",      NULL,     NULL,        0,         0,          1,          -1 },
 	{ NULL,          NULL,     "Emulator",  0,         0,          1,          -1 },
-	{ "Spotify",     NULL,     NULL,        1 << 6,    0,          1,          -1 },
-	{ "Slack",       NULL,     NULL,        1 << 6,    0,          1,          -1 },
-	{ "Discord",     NULL,     NULL,        1 << 6,    0,          1,          -1 },
+	{ "spotify",     NULL,     NULL,        1 << 0,    0,          0,          -1 },
+	{ "Slack",       NULL,     NULL,        1 << 6,    0,          0,          -1 },
+	{ "discord",     NULL,     NULL,        1 << 6,    0,          0,          -1 },
 };
 
 /* layout(s) */
