@@ -30,6 +30,8 @@
     l = log --abbrev-commit --oneline --graph --decorate
     rb = rebase
     cp = cherry-pick
+    sw = switch
+    re = restore
     ctags = !.git/hooks/ctags
     recent = branch -v --sort=-committerdate
     undo = reset --soft HEAD^
