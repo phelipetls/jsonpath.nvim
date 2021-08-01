@@ -439,7 +439,6 @@ if executable("fzf")
   nnoremap <space>h :Help<CR>
   nnoremap <space>t :Tags<CR>
   nnoremap <space>r :History<CR>
-  nnoremap <space>d :call fzf#run(fzf#wrap({'source': $FZF_ALT_C_COMMAND}))<CR>
 
   function! CheckoutBranch(branch)
     exe '!' .. fugitive#Prepare('checkout', a:branch)
