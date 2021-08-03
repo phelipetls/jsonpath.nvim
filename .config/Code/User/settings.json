@@ -37,7 +37,7 @@
   "workbench.sideBar.location": "right",
   "workbench.tree.indent": 12,
   "editor.cursorBlinking": "solid",
-  "breadcrumbs.enabled": true,
+  "breadcrumbs.enabled": false,
   "scm.diffDecorations": "gutter",
   "files.enableTrash": false,
   "vim.incsearch": true,
