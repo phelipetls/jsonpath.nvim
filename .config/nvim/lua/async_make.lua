@@ -6,7 +6,9 @@ function M.make(arg)
   local bufnr = vim.api.nvim_win_get_buf(winnr)
 
   local makeprg = vim.api.nvim_buf_get_option(bufnr, "makeprg")
-  if not makeprg then return end
+  if not makeprg then
+    return
+  end
 
   local args = vim.fn.expand(arg)
   local cmd = vim.fn.expandcmd(makeprg) .. " " .. args
@@ -19,11 +21,15 @@ function M.make(arg)
     end
 
     if event == "exit" then
-      vim.fn.setqflist({}, " ", {
-        title = cmd,
-        lines = lines,
-        efm = vim.api.nvim_buf_get_option(bufnr, "errorformat")
-      })
+      vim.fn.setqflist(
+        {},
+        " ",
+        {
+          title = cmd,
+          lines = lines,
+          efm = vim.api.nvim_buf_get_option(bufnr, "errorformat")
+        }
+      )
       vim.api.nvim_command("doautocmd QuickFixCmdPost")
     end
   end

@@ -1,12 +1,12 @@
 vim.api.nvim_command [[packadd! nvim-treesitter]]
 
 require "nvim-treesitter.configs".setup {
-  ensure_installed = { "typescript", "javascript", "tsx", "json" },
+  ensure_installed = {"typescript", "javascript", "tsx", "json"},
   highlight = {
-    enable = true,
+    enable = true
   },
   indent = {
-    enable = true,
+    enable = true
   }
 }
 
