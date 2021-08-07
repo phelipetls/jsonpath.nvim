@@ -629,7 +629,7 @@ nmap <silent> [t <Plug>(coc-type-definition)
 nmap <silent> <C-space> :call CocActionAsync("diagnosticInfo")<CR>
 
 command! -nargs=0 References :call CocActionAsync('jumpReferences')
-command! -nargs=0 Fmt :call CocActionAsync('format')
+command! -nargs=0 Fmt :call CocAction('format')
 nnoremap <silent> <M-S-O> :call CocActionAsync('runCommand', 'editor.action.organizeImport')<CR>
 
 function! s:show_documentation()
