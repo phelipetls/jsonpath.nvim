@@ -648,7 +648,7 @@ inoremap <silent> <C-c><C-p> :call CocActionAsync('showSignatureHelp')<CR>
 
 nmap <F2> <Plug>(coc-rename)
 
-nmap <M-CR>  <Plug>(coc-codeaction-cursor)
+nmap <M-CR> <Plug>(coc-codeaction-cursor)
 
 nmap <silent> <C-s> <Plug>(coc-range-select)
 xmap <silent> <C-s> <Plug>(coc-range-select)
@@ -713,12 +713,12 @@ function! Reindent()
   return ""
 endfunction
 
-function! Clean()
+function! CleanUp()
   let &l:omnifunc = b:old_omnifunc
   return ""
 endfunction
 
-inoremap <silent> <C-X>/ <Lt>/<C-r>=CloseTag()<CR><C-r>=Reindent()<CR><C-r>=Clean()<CR>
+inoremap <silent> <C-X>/ <Lt>/<C-r>=CloseTag()<CR><C-r>=Reindent()<CR><C-r>=CleanUp()<CR>
 
 "}}}
 " vim: foldmethod=marker
