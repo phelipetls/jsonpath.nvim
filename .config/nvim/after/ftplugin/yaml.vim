@@ -21,5 +21,5 @@ if expand("%:r") == ".gitlab-ci" && executable("gitlab-ci-lint")
         \ })
   endfunction
 
-  autocmd BufWritePre <buffer> call GitlabCILint()
+  " autocmd BufWritePre <buffer> call GitlabCILint()
 endif
