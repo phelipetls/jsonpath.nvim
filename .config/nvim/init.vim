@@ -441,14 +441,14 @@ if executable("fzf")
   nnoremap <space>r :History<CR>
 
   function! CheckoutBranch(branch)
-    exe '!' .. fugitive#Prepare('checkout', a:branch)
+    exe '!' .. FugitivePrepare('checkout', a:branch)
   endfunction
 
   function! CheckoutBranchFzf()
     call fzf#run(fzf#wrap({
-          \ 'source': fugitive#Prepare('branch', '-v', '--sort', '-committerdate', '--format', '%(refname:short)'),
+          \ 'source': FugitivePrepare('branch', '-v', '--sort', '-committerdate', '--format', '%(refname:short)'),
           \ 'sink': function('CheckoutBranch'),
-          \ 'options': '--prompt "Checkout: " --preview "'..fugitive#Prepare('log', '--oneline')..' {}"'
+          \ 'options': '--prompt "Checkout: " --preview "'..FugitivePrepare('log', '--oneline')..' {}"'
           \ }))
   endfunction
 
