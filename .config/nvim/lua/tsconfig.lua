@@ -84,7 +84,7 @@ end
 -- through all tsconfig.json files recursively. If it finds a base
 -- configuration (`.extends` key), it will continue to search there.
 -- See https://www.typescriptlang.org/docs/handbook/module-resolution.html#path-mapping.
-local function get_tsconfig_paths(tsconfig)
+local function get_tsconfig_paths(tsconfig, prev_base_url)
   local alias_to_path = {}
 
   if not tsconfig then
@@ -94,9 +94,9 @@ local function get_tsconfig_paths(tsconfig)
   local json = read_json_with_comments(tsconfig)
   local tsconfig_dir = vim.fn.fnamemodify(tsconfig, ":h")
 
-  if json and json.compilerOptions and json.compilerOptions.paths then
-    local base_url = json.compilerOptions.baseUrl
+  local base_url = json and json.compilerOptions and json.compilerOptions.baseUrl or prev_base_url
 
+  if json and json.compilerOptions and json.compilerOptions.paths then
     for alias, paths in pairs(json.compilerOptions.paths) do
       for _, path in pairs(paths) do
         alias_to_path[alias] = path_utils.path_join(tsconfig_dir, base_url, remove_wildcard(path))
@@ -108,7 +108,7 @@ local function get_tsconfig_paths(tsconfig)
   local tsconfig_extends = expand_tsconfig_extends(json.extends, tsconfig_dir)
 
   if tsconfig_extends then
-    return vim.tbl_extend("force", alias_to_path, get_tsconfig_paths(tsconfig_extends))
+    return vim.tbl_extend("force", alias_to_path, get_tsconfig_paths(tsconfig_extends, base_url))
   end
 
   return alias_to_path
