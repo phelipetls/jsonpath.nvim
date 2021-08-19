@@ -25,7 +25,7 @@ tools:
     lint-stdin: true
 
   lua-luafmt: &lua-luafmt
-    format-command: 'luafmt --indent-count 2 ${INPUT}'
+    format-command: 'luafmt --indent-count 2 --stdin ${INPUT}'
     format-stdin: true
 
   python-flake8: &python-flake8
