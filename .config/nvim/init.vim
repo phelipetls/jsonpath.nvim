@@ -644,7 +644,7 @@ endfunction
 
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-inoremap <silent> <C-c><C-p> :call CocActionAsync('showSignatureHelp')<CR>
+inoremap <silent> <C-c><C-p> <C-r>=CocActionAsync('showSignatureHelp')<CR>
 
 nmap <F2> <Plug>(coc-rename)
 
