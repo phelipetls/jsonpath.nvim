@@ -620,10 +620,15 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
+set tagfunc=CocTagFunc
+
 nmap <silent> [d <Plug>(coc-definition)
 nmap <silent> <C-w>d :call CocActionAsync('jumpDefinition', 'split')<CR>
 nmap <silent> <C-w><C-d> :call CocActionAsync('jumpDefinition', 'split')<CR>
-nmap <silent> <C-c><C-p> :call CocActionAsync("jumpDefinition", "pedit")<CR>
+
+nmap <silent> <C-c><C-p> :call CocActionAsync("jumpDefinition", 'pedit')<CR>
+nmap <silent> <c-w>} :call CocActionAsync('jumpDefinition', 'pedit')<CR>
+
 nmap <silent> [t <Plug>(coc-type-definition)
 
 nmap <silent> <C-space> :call CocActionAsync("diagnosticInfo")<CR>
@@ -660,8 +665,6 @@ let g:coc_quickfix_open_command = 'doautocmd QuickFixCmdPost | cfirst'
 
 nnoremap <silent><expr> <c-y> coc#float#has_scroll() ? coc#float#scroll(0) : "\<c-y>"
 nnoremap <silent><expr> <c-e> coc#float#has_scroll() ? coc#float#scroll(1) : "\<c-e>"
-
-set tagfunc=CocTagFunc
 
 "}}}
 "{{{ treesitter
