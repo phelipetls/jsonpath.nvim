@@ -76,15 +76,6 @@ set breakindent
 set breakindentopt=shift:2
 set linebreak
 
-" don't autocomment on newline
-autocmd! FileType * set formatoptions-=cro
-
-" after reading a buffer, jump to last position before exiting it
-autocmd! BufReadPost *
-      \ if line("'\"") > 0 && line("'\"") <= line("$") && &ft !~ "git" |
-      \   exe "normal g`\"" |
-      \ endif
-
 " tell neovim where python3 is -- this improves startup time
 if has("nvim") && has("unix")
   let g:loaded_python_provider = 0
@@ -100,21 +91,23 @@ set fillchars=fold:-,vert:│
 set listchars=tab:»\ ,nbsp:¬,trail:·,extends:…,precedes:‹
 set showbreak=↳\ 
 
-" autoresize splits when vim is resized
-autocmd! VimResized * wincmd =
-
 " use ripgrep as the external grep command
 if executable("rg")
   set grepprg=rg\ --vimgrep\ --smart-case\ --hidden
   set grepformat=%f:%l:%c:%m
 endif
 
-" checktime when nvim resumes from suspended state
 if has("nvim")
-  autocmd! VimResume * checktime
+lua << EOF
+  function _G.dump(...)
+    local objects = vim.tbl_map(vim.inspect, {...})
+    print(unpack(objects))
+  end
+EOF
 endif
 
-autocmd! FocusGained * checktime
+"}}}
+"{{{ plugins config
 
 " disable javascript browser-related keywords
 let g:yats_host_keyword = 0
@@ -176,40 +169,27 @@ augroup FugitiveReadOnly
   autocmd BufRead fugitive://* set readonly
 augroup END
 
-" format range or whole file. try to not change the jumplist
-function! Format(type, ...)
-  keepjumps normal! '[v']gq
-  if v:shell_error > 0
-    keepjumps silent undo
-    echomsg 'formatprg "' . &formatprg . '" exited with status ' . v:shell_error
-  endif
-endfunction
+"}}}
+"{{{ autocommands
 
-function! SameBufferWinDo(cmd)
-  let initial_winnr = winnr()
-  let windows = filter(getwininfo(), {_, win -> win.bufnr == bufnr() && win.tabnr == tabpagenr()})
-  for winnr in map(windows, {_, win -> win.winnr})
-    execute winnr . "wincmd w"
-    execute a:cmd
-  endfor
-  execute initial_winnr . "wincmd w"
-endfunction
+" don't autocomment on newline
+autocmd! FileType * set formatoptions-=cro
 
-nmap <silent> gq :set opfunc=Format<CR>g@
-nmap <silent> gQ :call SameBufferWinDo("let w:view = winsaveview()")<CR>
-      \ :set opfunc=Format<CR>
-      \ :keepjumps normal gg<CR>
-      \ :keepjumps normal gqG<CR>
-      \ :call SameBufferWinDo("keepjumps call winrestview(w:view)")<CR>
+" after reading a buffer, jump to last position before exiting it
+autocmd! BufReadPost *
+      \ if line("'\"") > 0 && line("'\"") <= line("$") && &ft !~ "git" |
+      \   exe "normal g`\"" |
+      \ endif
 
+" autoresize splits when vim is resized
+autocmd! VimResized * wincmd =
+
+" checktime when nvim resumes from suspended state
 if has("nvim")
-lua << EOF
-  function _G.dump(...)
-    local objects = vim.tbl_map(vim.inspect, {...})
-    print(unpack(objects))
-  end
-EOF
+  autocmd! VimResume * checktime
 endif
+
+autocmd! FocusGained * checktime
 
 "}}}
 "{{{ mappings
@@ -366,6 +346,32 @@ endif
 " toggle autocomment on newline
 nnoremap [oc :set formatoptions+=cro<CR>
 nnoremap ]oc :set formatoptions-=cro<CR>
+
+" format range or whole file. try to not change the jumplist
+function! Format(type, ...)
+  keepjumps normal! '[v']gq
+  if v:shell_error > 0
+    keepjumps silent undo
+    echomsg 'formatprg "' . &formatprg . '" exited with status ' . v:shell_error
+  endif
+endfunction
+
+function! SameBufferWinDo(cmd)
+  let initial_winnr = winnr()
+  let windows = filter(getwininfo(), {_, win -> win.bufnr == bufnr() && win.tabnr == tabpagenr()})
+  for winnr in map(windows, {_, win -> win.winnr})
+    execute winnr . "wincmd w"
+    execute a:cmd
+  endfor
+  execute initial_winnr . "wincmd w"
+endfunction
+
+nmap <silent> gq :set opfunc=Format<CR>g@
+nmap <silent> gQ :call SameBufferWinDo("let w:view = winsaveview()")<CR>
+      \ :set opfunc=Format<CR>
+      \ :keepjumps normal gg<CR>
+      \ :keepjumps normal gqG<CR>
+      \ :call SameBufferWinDo("keepjumps call winrestview(w:view)")<CR>
 
 "}}}
 "{{{ statusline and tabline
