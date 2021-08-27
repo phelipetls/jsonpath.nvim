@@ -363,6 +363,10 @@ if executable("xdg-open")
   vnoremap <silent> gx :<C-U>call system(printf("xdg-open %s", shellescape(<SID>get_visual_selection())))<CR>
 endif
 
+" toggle autocomment on newline
+nnoremap [oc :set formatoptions+=cro<CR>
+nnoremap ]oc :set formatoptions-=cro<CR>
+
 "}}}
 "{{{ statusline and tabline
 
