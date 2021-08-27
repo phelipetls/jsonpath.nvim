@@ -32,4 +32,7 @@ function send_notification {
 
 send_notification
 
-kill -SIGRTMIN "$(pgrep dwm_statusbar)"
+dwm_statusbar_pid="$(pgrep dwm_statusbar)"
+if [ -n "$dwm_statusbar_pid" ]; then
+  kill -SIGUSR1 "$dwm_statusbar_pid"
+fi

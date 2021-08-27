@@ -37,16 +37,18 @@ get_memory
 get_date
 get_battery
 
-trap "get_volume" "RTMIN"
+trap "get_volume" "USR1"
 
 sec=0
 
 while true
 do
-  [ $(( $(date +"%s") % 60 )) -eq 0 ] && get_date
-  [ $(( sec % 15 )) -eq 0 ] && get_cpu_temp
-  [ $(( sec % 15 )) -eq 0 ] && get_memory
-  [ $(( sec % 15 )) -eq 0 ] && get_battery
+  [ $(( sec % 15 )) -eq 0 ] && {
+    get_date
+    get_cpu_temp
+    get_memory
+    get_battery
+  }
 
   xsetroot -name "$cpu_temp | $memory | $battery | $volume | $date ⋮"
 
