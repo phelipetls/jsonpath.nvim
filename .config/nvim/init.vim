@@ -676,6 +676,8 @@ let g:coc_quickfix_open_command = 'doautocmd QuickFixCmdPost | cfirst'
 nnoremap <silent><expr> <c-y> coc#float#has_scroll() ? coc#float#scroll(0) : "\<c-y>"
 nnoremap <silent><expr> <c-e> coc#float#has_scroll() ? coc#float#scroll(1) : "\<c-e>"
 
+hi link CocFadeOut StatusLineNC
+
 "}}}
 "{{{ treesitter
 
