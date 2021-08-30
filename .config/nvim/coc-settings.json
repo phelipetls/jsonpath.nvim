@@ -14,7 +14,6 @@
   "coc.preferences.formatOnSaveFiletypes": ["javascript", "typescript", "javascriptreact", "typescriptreact", "lua"],
   "javascript.format.enabled": false,
   "typescript.format.enabled": false,
-  "eslint.autoFixOnSave": true,
   "typescript.updateImportsOnFileMove.enable": false,
   "coc.preferences.useQuickfixForLocations": true,
   "coc.preferences.bracketEnterImprove": false,
@@ -22,7 +21,8 @@
     "efm": {
       "command": "efm-langserver",
       "args": ["-c", "/home/phelipe/.config/efm-langserver/config.yaml"],
-      "filetypes": ["sh", "yaml", "lua", "python"]
+      "filetypes": ["sh", "yaml", "lua", "python", "javascript", "typescript", "javascriptreact", "typescriptreact"],
+      "formatterPriority": 100
     }
   }
 }
