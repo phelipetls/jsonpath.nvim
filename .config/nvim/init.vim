@@ -21,9 +21,11 @@ packadd! git-messenger.vim
 packadd! gv.vim
 
 " file navigation
-set rtp+=~/.fzf
-packadd! fzf.vim
 packadd! vim-dirvish
+
+" fuzzy finder
+packadd! telescope.nvim
+packadd! plenary.nvim
 
 " vim specific improvements
 packadd! traces.vim
@@ -441,66 +443,32 @@ set path=.,,..
 " ignore these files while browsing
 set wildignore=venv*/,__pycache__/,.pytest_cache/,tags,htmlcov/.coverage,*.pyc,package-lock.json
 
-if executable("fzf")
-  let g:fzf_preview_window = ''
+"}}}
+"{{{ fuzzy finder
 
-  nnoremap <space>b :Buffers<CR>
-  nnoremap <space>f :Files<CR>
-  nnoremap <space>h :Help<CR>
-  nnoremap <space>t :Tags<CR>
-  nnoremap <space>r :History<CR>
+if has("nvim-0.5.0")
+  nnoremap <space>f <cmd>lua require'telescope.builtin'.find_files({ previewer = false })<cr>
+  nnoremap <space>h <cmd>Telescope help_tags<cr>
+  nnoremap <space>b <cmd>lua require'telescope.builtin'.buffers({ previewer = false })<cr>
+  nnoremap <space>r <cmd>lua require'telescope.builtin'.oldfiles()<cr>
 
-  function! CheckoutBranch(branch)
-    exe '!' .. FugitivePrepare('checkout', a:branch)
-  endfunction
+  nnoremap <space>gb <cmd>lua require'telescope.builtin'.git_branches()<cr>
+  nnoremap <space>gy <cmd>lua require'telescope.builtin'.git_stash()<cr>
 
-  function! CheckoutBranchFzf()
-    call fzf#run(fzf#wrap({
-          \ 'source': FugitivePrepare('branch', '-v', '--sort', '-committerdate', '--format', '%(refname:short)'),
-          \ 'sink': function('CheckoutBranch'),
-          \ 'options': '--prompt "Checkout: " --preview "'..FugitivePrepare('log', '--oneline')..' {}"'
-          \ }))
-  endfunction
-
-  nnoremap <space>cb :call CheckoutBranchFzf()<CR>
-
-  let g:fzf_colors = {
-        \ 'fg':      ['fg', 'Normal'],
-        \ 'bg':      ['bg', 'Normal'],
-        \ 'hl':      ['fg', 'Comment'],
-        \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-        \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-        \ 'hl+':     ['fg', 'Statement'],
-        \ 'info':    ['fg', 'PreProc'],
-        \ 'border':  ['fg', 'Ignore'],
-        \ 'prompt':  ['fg', 'Conditional'],
-        \ 'pointer': ['fg', 'Exception'],
-        \ 'marker':  ['fg', 'Keyword'],
-        \ 'spinner': ['fg', 'Label'],
-        \ 'header':  ['fg', 'Comment']
-        \ }
-
-  if has("nvim")
-    let $FZF_DEFAULT_OPTS .= ' --margin=0,2'
-
-    function! FloatingFZF()
-      let width = float2nr(&columns * 0.9)
-      let height = float2nr(&lines * 0.6)
-      let opts = {
-            \ 'relative': 'editor',
-            \ 'border': 'single',
-            \ 'row': (&lines - height) / 2,
-            \ 'col': (&columns - width) / 2,
-            \ 'width': width,
-            \ 'height': height
-            \ }
-
-      let win = nvim_open_win(nvim_create_buf(v:false, v:true), v:true, opts)
-      call setwinvar(win, '&winhighlight', 'NormalFloat:Normal')
-    endfunction
-
-    let g:fzf_layout = { 'window': 'call FloatingFZF()' }
-  endif
+lua << EOF
+require'telescope'.setup{
+  defaults = {
+    mappings = {
+      i = {
+        ["<esc>"] = require'telescope.actions'.close,
+      },
+      n = {
+        ["<esc>"] = require'telescope.actions'.close,
+      },
+    },
+  },
+}
+EOF
 endif
 
 "}}}
