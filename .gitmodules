@@ -134,3 +134,11 @@
 	path = .config/nvim/pack/plugins/opt/fugitive-gitlab.vim
 	url = https://github.com/shumphrey/fugitive-gitlab.vim
 	ignore = dirty
+[submodule "telescope.nvim"]
+	path = .config/nvim/pack/plugins/opt/telescope.nvim
+	url = https://github.com/nvim-telescope/telescope.nvim
+	ignore = dirty
+[submodule "plenary.nvim"]
+	path = .config/nvim/pack/plugins/opt/plenary.nvim
+	url = https://github.com/nvim-lua/plenary.nvim
+	ignore = dirty
