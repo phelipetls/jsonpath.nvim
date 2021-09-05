@@ -468,6 +468,10 @@ require'telescope'.setup{
     },
   },
 }
+
+
+vim.cmd('packadd! telescope-coc.nvim')
+require'telescope'.load_extension('coc')
 EOF
 endif
 
@@ -636,8 +640,11 @@ nmap <M-CR> <Plug>(coc-codeaction-cursor)
 nmap <silent> <C-s> <Plug>(coc-range-select)
 xmap <silent> <C-s> <Plug>(coc-range-select)
 
-nnoremap <silent> <space>d :<C-u>CocList diagnostics<cr>
-nnoremap <silent> <space>g :<C-u>CocList -I symbols<cr>
+if has("nvim-0.5.0")
+  nnoremap <space>d <cmd>Telescope coc workspace_diagnostics<CR>
+  nnoremap <space>s <cmd>Telescope coc workspace_symbols<CR>
+  nnoremap <M-CR> <cmd>Telescope coc code_actions<CR>
+endif
 
 let g:coc_quickfix_open_command = 'doautocmd QuickFixCmdPost | cfirst'
 

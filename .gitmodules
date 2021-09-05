@@ -142,3 +142,6 @@
 	path = .config/nvim/pack/plugins/opt/plenary.nvim
 	url = https://github.com/nvim-lua/plenary.nvim
 	ignore = dirty
+[submodule "telescope-coc.nvim"]
+	path = .config/nvim/pack/plugins/opt/telescope-coc.nvim
+	url = https://github.com/fannheyward/telescope-coc.nvim
