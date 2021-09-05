@@ -158,6 +158,8 @@ if has("nvim-0.5.0")
  hi link CocWarningFloat Normal
  hi link CocHintFloat Normal
  hi link CocInfoFloat Normal
+
+ exe "hi CocFadeOut ctermbg=NONE guibg=NONE ctermfg=8 guifg=".color8
 endif
 
 "}}}
