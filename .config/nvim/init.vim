@@ -12,6 +12,7 @@ packadd! vim-lion
 packadd! tagalong.vim
 packadd! splitjoin.vim
 packadd! vim-sleuth
+packadd! inline_edit.vim
 
 " git
 packadd! vim-fugitive
@@ -170,6 +171,11 @@ augroup FugitiveReadOnly
   au!
   autocmd BufRead fugitive://* set readonly
 augroup END
+
+" inline_edit commands
+nnoremap <C-c>' :InlineEdit<CR>
+
+let g:inline_edit_autowrite=1
 
 "}}}
 "{{{ autocommands
