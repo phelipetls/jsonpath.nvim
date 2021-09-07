@@ -1,0 +1,6 @@
+[Unit]
+Description=Restore previously set wallpaper
+PartOf=graphical-session.target
+
+[Service]
+ExecStart=nitrogen --restore

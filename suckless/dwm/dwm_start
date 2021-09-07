@@ -9,14 +9,4 @@
 # Icon=dwm
 # Type=XSession
 
-killall dwm_statusbar
-
-nitrogen --restore &
-~/suckless/dwm/dwm_statusbar &
-redshift &
-xautolock -detectsleep -time 15 -locker slock &
-numlockx &
-compton &
-nm-applet &
-
-dwm > ~/dwm.log 2>&1
+systemctl --user start --wait dwm-session.target

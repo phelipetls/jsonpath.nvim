@@ -1,0 +1,11 @@
+[Unit]
+Description=dwm session
+BindsTo=graphical-session.target
+Wants=nitrogen.service
+Wants=nm-applet.service
+Wants=compton.service
+Wants=numlockx.service
+Wants=redshift.service
+Wants=slock.service
+Wants=dwm.service
+Wants=dwm-statusbar.service

@@ -1,0 +1,6 @@
+[Unit]
+Description=Compton compositor for X11
+PartOf=graphical-session.target
+
+[Service]
+ExecStart=compton
