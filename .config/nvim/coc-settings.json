@@ -11,7 +11,7 @@
   "diagnostic.warningSign": "▎",
   "diagnostic.hintSign": "▎",
   "diagnostic.infoSign": "▎",
-  "coc.preferences.formatOnSaveFiletypes": ["javascript", "typescript", "javascriptreact", "typescriptreact", "lua"],
+  "coc.preferences.formatOnSaveFiletypes": ["javascript", "typescript", "javascriptreact", "typescriptreact"],
   "javascript.format.enabled": false,
   "typescript.format.enabled": false,
   "typescript.updateImportsOnFileMove.enable": false,
