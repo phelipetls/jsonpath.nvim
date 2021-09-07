@@ -186,9 +186,14 @@ autocmd! BufReadPost *
 " autoresize splits when vim is resized
 autocmd! VimResized * wincmd =
 
-" checktime when nvim resumes from suspended state
 if has("nvim")
-  autocmd! VimResume * checktime
+  augroup FugitiveVimResume
+    au!
+    " checktime when nvim resumes from suspended state
+    autocmd VimResume * checktime
+    " reload fugitive status buffer when vim resumes from background
+    autocmd VimResume * call fugitive#ReloadStatus()
+  augroup END
 endif
 
 autocmd! FocusGained * checktime
