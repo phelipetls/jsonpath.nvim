@@ -69,7 +69,7 @@ local function expand_tsconfig_extends(extends, tsconfig_dir)
   end
 
   if vim.startswith(extends, "../") then
-    return path_utils.expand_parentdir(extends, tsconfig_dir)
+    return find_file(extends, tsconfig_dir)
   end
 
   return path_utils.path_join(tsconfig_dir, extends)
@@ -161,18 +161,6 @@ local function expand_tsconfig_alias(fname)
   return fname
 end
 
-local function expand_fname(fname)
-  if vim.startswith(fname, "..") then
-    return path_utils.expand_parentdir(fname, path_utils.get_current_file_dir())
-  end
-
-  if vim.startswith(fname, ".") then
-    return path_utils.expand_curdir(fname)
-  end
-
-  return expand_tsconfig_alias(fname)
-end
-
 local function find_index_file(dir)
   return find_file("index", dir)
 end
@@ -183,7 +171,7 @@ local function find_component(dir)
 end
 
 function M.includeexpr(input)
-  local fname = expand_fname(input)
+  local fname = expand_tsconfig_alias(input)
 
   fname = find_file(fname) or find_dir(fname)
 
