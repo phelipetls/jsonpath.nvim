@@ -60,9 +60,5 @@ setlocal isfname+=@-@
 setlocal suffixesadd=.js,.jsx,.ts,.tsx,.d.ts,.vue
 
 if has("nvim")
-  function JsIncludeExpr(fname)
-    return luaeval("require'tsconfig'.includeexpr(_A)",a:fname)
-  endfunction
-
-  setlocal includeexpr=JsIncludeExpr(v:fname)
+  setlocal includeexpr=luaeval(\"require'tsconfig'.includeexpr(_A)\",v:fname)
 endif
