@@ -141,17 +141,13 @@ local function expand_tsconfig_path(input)
   return input
 end
 
-local function find_index_file(dir)
-  return find_file("index", dir)
-end
-
 function M.includeexpr(input)
   local path = expand_tsconfig_path(input)
 
   path = find_file(path) or find_dir(path)
 
   if vim.fn.isdirectory(path) == 1 then
-    path = find_index_file(path) or path
+    path = find_file("index", path) or path
   end
 
   return path
