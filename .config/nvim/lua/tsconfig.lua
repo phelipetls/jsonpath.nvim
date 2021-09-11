@@ -105,7 +105,7 @@ local function expand_tsconfig_path(input)
 
   local alias_to_path = get_tsconfig_paths(tsconfig_file)
 
-  if not alias_to_path then
+  if vim.tbl_isempty(alias_to_path) then
     return input
   end
 
