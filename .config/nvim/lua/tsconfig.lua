@@ -26,14 +26,14 @@ end
 local function find_file(fname, path)
   local found = vim.fn.findfile(fname, path or "")
   if found ~= "" then
-    return vim.fn.fnamemodify(found, ":p")
+    return found
   end
 end
 
 local function find_dir(fname, path)
   local found = vim.fn.finddir(fname, path or "")
   if found ~= "" then
-    return vim.fn.fnamemodify(found, ":p")
+    return found
   end
 end
 
