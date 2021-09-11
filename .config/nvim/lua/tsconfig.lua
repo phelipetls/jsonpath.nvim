@@ -165,18 +165,13 @@ local function find_index_file(dir)
   return find_file("index", dir)
 end
 
-local function find_component(dir)
-  local fname = vim.fn.fnamemodify(dir, ":h:t")
-  return find_file(fname, dir)
-end
-
 function M.includeexpr(input)
   local path = expand_tsconfig_path(input)
 
   path = find_file(path) or find_dir(path)
 
   if vim.fn.isdirectory(path) == 1 then
-    path = find_component(path) or find_index_file(path) or path
+    path = find_index_file(path) or path
   end
 
   return path
