@@ -63,7 +63,7 @@ local function once_per_config(fn)
   end
 end
 
-local function expand_tsconfig_extends(extends, tsconfig_dir)
+local function find_tsconfig_extends(extends, tsconfig_dir)
   if not extends or vim.startswith(extends, "@") then
     return
   end
@@ -105,7 +105,7 @@ local function get_tsconfig_paths(tsconfig, prev_base_url)
   end
 
   -- If tsconfig has a `.extends` field, we must search there too.
-  local tsconfig_extends = expand_tsconfig_extends(json.extends, tsconfig_dir)
+  local tsconfig_extends = find_tsconfig_extends(json.extends, tsconfig_dir)
 
   if tsconfig_extends then
     return vim.tbl_extend("force", alias_to_path, get_tsconfig_paths(tsconfig_extends, base_url))
