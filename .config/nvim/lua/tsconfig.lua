@@ -134,7 +134,7 @@ function M.get_tsconfig_include()
   return memo_get_tsconfig_include(get_tsconfig_file())
 end
 
-local function expand_tsconfig_alias(fname)
+local function expand_tsconfig_path(fname)
   local tsconfig_file = get_tsconfig_file()
 
   if not tsconfig_file then
@@ -171,7 +171,7 @@ local function find_component(dir)
 end
 
 function M.includeexpr(input)
-  local fname = expand_tsconfig_alias(input)
+  local fname = expand_tsconfig_path(input)
 
   fname = find_file(fname) or find_dir(fname)
 
