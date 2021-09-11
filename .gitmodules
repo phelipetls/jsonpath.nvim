@@ -149,3 +149,6 @@
 	path = .config/nvim/pack/plugins/opt/inline_edit.vim
 	url = https://github.com/AndrewRadev/inline_edit.vim
 	ignore = dirty
+[submodule "vim-rhubarb"]
+	path = .config/nvim/pack/plugins/opt/vim-rhubarb
+	url = https://github.com/tpope/vim-rhubarb
