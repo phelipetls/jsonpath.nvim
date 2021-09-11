@@ -47,22 +47,6 @@ local function get_tsconfig_file()
   return find_file("tsconfig.json", root_dir) or find_file("jsconfig.json", root_dir)
 end
 
--- Memoizes the result of a function that takes a tsconfig filename
-local function once_per_config(fn)
-  local values_per_config = {}
-  return function(tsconfig, ...)
-    if not tsconfig then
-      return
-    end
-    if vim.tbl_contains(vim.tbl_keys(values_per_config), tsconfig) then
-      return values_per_config[tsconfig]
-    end
-    local value = fn(tsconfig, ...)
-    values_per_config[tsconfig] = value
-    return value
-  end
-end
-
 local function find_tsconfig_extends(extends, tsconfig_dir)
   if not extends or vim.startswith(extends, "@") then
     return
@@ -114,8 +98,6 @@ local function get_tsconfig_paths(tsconfig, prev_base_url)
   return alias_to_path
 end
 
-local memo_get_tsconfig_paths = once_per_config(get_tsconfig_paths)
-
 -- Get `.include` array from a tsconfig.json file as comma separated string.
 local function get_tsconfig_include(tsconfig)
   if not tsconfig then
@@ -128,10 +110,8 @@ local function get_tsconfig_include(tsconfig)
   return ""
 end
 
-local memo_get_tsconfig_include = once_per_config(get_tsconfig_include)
-
 function M.get_tsconfig_include()
-  return memo_get_tsconfig_include(get_tsconfig_file())
+  return get_tsconfig_include(get_tsconfig_file())
 end
 
 local function expand_tsconfig_path(input)
@@ -141,7 +121,7 @@ local function expand_tsconfig_path(input)
     return input
   end
 
-  local alias_to_path = memo_get_tsconfig_paths(tsconfig_file)
+  local alias_to_path = get_tsconfig_paths(tsconfig_file)
 
   if not alias_to_path then
     return input
