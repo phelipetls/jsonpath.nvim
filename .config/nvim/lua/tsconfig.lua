@@ -182,45 +182,6 @@ local function find_component(dir)
   return find_file(fname, dir)
 end
 
-local function get_file_under_cursor()
-  return vim.fn.expand("<cfile>")
-end
-
--- gf that understands tsconfig.json `.compilerOptions.paths`.
--- For example, if tsconfig.json has
--- {
---   "baseUrl": ".",
---   "compilerOptions": {
---     "paths": {
---       "~/*": ["src/*"]
---     }
---   }
--- }
---
--- It will replace the tilde in '~/components/App' with
--- '<compilerOptions.baseUrl>/src/components/App'.
---
--- It also tries to find a file with the same name as the folder (e.g.,
--- components) or index files.
-function M.go_to_file(cmd)
-  local cfile = get_file_under_cursor()
-  local fname = expand_fname(cfile)
-
-  fname = find_file(fname) or find_dir(fname)
-
-  if vim.fn.isdirectory(fname) == 1 then
-    fname = find_component(fname) or find_index_file(fname) or fname
-  end
-
-  if path_utils.path_exists(fname) then
-    vim.cmd(string.format("silent %s %s", cmd, fname))
-  else
-    vim.cmd [[echohl WarningMsg]]
-    vim.cmd(string.format("echo '%s'", "Failed to find " .. cfile))
-    vim.cmd [[echohl None]]
-  end
-end
-
 function M.includeexpr(input)
   local fname = expand_fname(input)
 

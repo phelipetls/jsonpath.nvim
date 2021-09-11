@@ -9,11 +9,6 @@ endif
 
 setlocal include=\\s*from\\s*['\"]
 
-function JsIncludeExpr(fname)
-  return luaeval("require'tsconfig'.includeexpr(_A)",a:fname)
-endfunction
-
-setlocal includeexpr=JsIncludeExpr(v:fname)
 let &l:define = '^\s*\('
       \ . '\(export\s\)*\(\w\+\s\)*\(var\|const\|let\|function\|class\|interface\|as\|enum\)\s'
       \ . '\|\(public\|private\|protected\|readonly\|static\|get\s\|set\)\s'
@@ -65,7 +60,9 @@ setlocal isfname+=@-@
 setlocal suffixesadd=.js,.jsx,.ts,.tsx,.d.ts,.vue
 
 if has("nvim")
-  nnoremap <silent><buffer> gf :call luaeval("require'tsconfig'.go_to_file(_A)","edit")<CR>
-  nnoremap <silent><buffer> <C-w>f :call luaeval("require'tsconfig'.go_to_file(_A)","split")<CR>
-  nnoremap <silent><buffer> <C-w><C-f> :call luaeval("require'tsconfig'.go_to_file(_A)","split")<CR>
+  function JsIncludeExpr(fname)
+    return luaeval("require'tsconfig'.includeexpr(_A)",a:fname)
+  endfunction
+
+  setlocal includeexpr=JsIncludeExpr(v:fname)
 endif
