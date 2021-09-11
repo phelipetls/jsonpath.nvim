@@ -135,7 +135,13 @@ function M.get_tsconfig_include()
 end
 
 local function expand_tsconfig_alias(fname)
-  local alias_to_path = memo_get_tsconfig_paths(get_tsconfig_file())
+  local tsconfig_file = get_tsconfig_file()
+
+  if not tsconfig_file then
+    return fname
+  end
+
+  local alias_to_path = memo_get_tsconfig_paths(tsconfig_file)
 
   if not alias_to_path then
     return fname
