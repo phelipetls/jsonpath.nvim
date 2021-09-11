@@ -11,18 +11,6 @@ local function read_json_with_comments(json_file)
   return vim.fn.json_decode(json_without_comments)
 end
 
-local function find_tsconfig_root_dir()
-  local current_file_fullpath = vim.fn.expand("%:p")
-  -- Return early for fugitive:// files, for example
-  if not vim.startswith(current_file_fullpath, os.getenv("HOME")) then
-    return
-  end
-  local root_dir = vim.fn.findfile("tsconfig.json", ".;")
-  if root_dir then
-    return root_dir
-  end
-end
-
 local function find_file(fname, path)
   local found = vim.fn.findfile(fname, path or "")
   if found ~= "" then
@@ -38,13 +26,7 @@ local function find_dir(fname, path)
 end
 
 local function get_tsconfig_file()
-  local root_dir = find_tsconfig_root_dir()
-
-  if not root_dir then
-    return
-  end
-
-  return find_file("tsconfig.json", root_dir) or find_file("jsconfig.json", root_dir)
+  return find_file("tsconfig.json", ".;") or find_file("jsconfig.json", ".;")
 end
 
 local function find_tsconfig_extends(extends, tsconfig_dir)
