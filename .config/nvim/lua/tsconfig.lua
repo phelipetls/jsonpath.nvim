@@ -134,31 +134,31 @@ function M.get_tsconfig_include()
   return memo_get_tsconfig_include(get_tsconfig_file())
 end
 
-local function expand_tsconfig_path(fname)
+local function expand_tsconfig_path(input)
   local tsconfig_file = get_tsconfig_file()
 
   if not tsconfig_file then
-    return fname
+    return input
   end
 
   local alias_to_path = memo_get_tsconfig_paths(tsconfig_file)
 
   if not alias_to_path then
-    return fname
+    return input
   end
 
   for alias, path in pairs(alias_to_path) do
     local alias_without_wildcard = alias:gsub("*", "")
-    if vim.startswith(fname, alias_without_wildcard) then
-      local expanded_path = fname:gsub(alias, path)
+
+    if vim.startswith(input, alias_without_wildcard) then
+      local expanded_path = input:gsub(alias, path)
       local real_path = find_file(expanded_path) or find_dir(expanded_path)
-      if real_path then
-        return real_path
-      end
+
+      if real_path then return real_path end
     end
   end
 
-  return fname
+  return input
 end
 
 local function find_index_file(dir)
@@ -171,17 +171,15 @@ local function find_component(dir)
 end
 
 function M.includeexpr(input)
-  local fname = expand_tsconfig_path(input)
+  local path = expand_tsconfig_path(input)
 
-  fname = find_file(fname) or find_dir(fname)
+  path = find_file(path) or find_dir(path)
 
-  if vim.fn.isdirectory(fname) == 1 then
-    fname = find_component(fname) or find_index_file(fname) or fname
+  if vim.fn.isdirectory(path) == 1 then
+    path = find_component(path) or find_index_file(path) or path
   end
 
-  if fname then
-    return fname
-  end
+  return path
 end
 
 return M
