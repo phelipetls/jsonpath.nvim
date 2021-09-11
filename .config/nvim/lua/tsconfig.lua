@@ -1,7 +1,5 @@
 local M = {}
 
-local path_utils = require "path"
-
 local function remove_comments(line)
   return line:gsub("/%*.*%*/", ""):gsub("//.*", "")
 end
@@ -29,16 +27,22 @@ local function get_tsconfig_file()
   return find_file("tsconfig.json", ".;") or find_file("jsconfig.json", ".;")
 end
 
-local function find_tsconfig_extends(extends, tsconfig_dir)
+local function get_dir(fname)
+  return vim.fn.fnamemodify(fname, ":h")
+end
+
+local function find_tsconfig_extends(extends, tsconfig_fname)
   if not extends or vim.startswith(extends, "@") then
     return
   end
+
+  local tsconfig_dir = get_dir(tsconfig_fname)
 
   if vim.startswith(extends, "../") then
     return find_file(extends, tsconfig_dir)
   end
 
-  return path_utils.path_join(tsconfig_dir, extends)
+  return tsconfig_dir .. "/" .. extends
 end
 
 local function remove_wildcard(path)
@@ -58,20 +62,21 @@ local function get_tsconfig_paths(tsconfig_fname, prev_base_url)
   local alias_to_path = {}
 
   local json = read_json_with_comments(tsconfig_fname)
-  local tsconfig_dir = vim.fn.fnamemodify(tsconfig_fname, ":h")
-
   local base_url = json and json.compilerOptions and json.compilerOptions.baseUrl or prev_base_url
 
   if json and json.compilerOptions and json.compilerOptions.paths then
+
     for alias, paths in pairs(json.compilerOptions.paths) do
       for _, path in pairs(paths) do
-        alias_to_path[alias] = path_utils.path_join(tsconfig_dir, base_url, remove_wildcard(path))
+        alias_to_path[alias] = vim.fn.simplify(
+          get_dir(tsconfig_fname) .. "/" .. base_url .. "/" .. remove_wildcard(path)
+        )
       end
     end
   end
 
   -- If tsconfig has a `.extends` field, we must search there too.
-  local tsconfig_extends = find_tsconfig_extends(json.extends, tsconfig_dir)
+  local tsconfig_extends = find_tsconfig_extends(json.extends, tsconfig_fname)
 
   if tsconfig_extends then
     return vim.tbl_extend("force", alias_to_path, get_tsconfig_paths(tsconfig_extends, base_url))
