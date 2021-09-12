@@ -4,8 +4,8 @@ local function remove_comments(line)
   return line:gsub("/%*.*%*/", ""):gsub("//.*", "")
 end
 
-local function decode_json_with_comments(json_file)
-  local json_without_comments = vim.tbl_map(remove_comments, vim.fn.readfile(json_file))
+local function decode_json_with_comments(fname)
+  local json_without_comments = vim.tbl_map(remove_comments, vim.fn.readfile(fname))
   return vim.fn.json_decode(json_without_comments)
 end
 
@@ -49,10 +49,10 @@ local function get_tsconfig_paths(tsconfig_fname, prev_base_url)
     return {}
   end
 
-  local alias_to_paths = {}
-
   local json = decode_json_with_comments(tsconfig_fname)
   local base_url = json and json.compilerOptions and json.compilerOptions.baseUrl or prev_base_url
+
+  local alias_to_paths = {}
 
   if json and json.compilerOptions and json.compilerOptions.paths then
     for alias, paths in pairs(json.compilerOptions.paths) do
