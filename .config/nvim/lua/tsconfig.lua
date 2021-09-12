@@ -37,12 +37,7 @@ local function find_tsconfig_extends(extends, tsconfig_fname)
   end
 
   local tsconfig_dir = get_dir(tsconfig_fname)
-
-  if vim.startswith(extends, "../") then
-    return find_file(extends, tsconfig_dir)
-  end
-
-  return tsconfig_dir .. "/" .. extends
+  return vim.fn.simplify(tsconfig_dir .. "/" .. extends)
 end
 
 local function remove_wildcard(path)
