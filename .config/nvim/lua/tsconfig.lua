@@ -101,9 +101,7 @@ local function expand_tsconfig_path(input)
   end
 
   for alias, paths in pairs(alias_to_paths) do
-    local alias_without_wildcard = alias:gsub("*", "")
-
-    if vim.startswith(input, alias_without_wildcard) then
+    if alias == "*" or vim.startswith(input, alias:gsub("*", "")) then
       for _, path in pairs(paths) do
         local expanded_path = input:gsub(alias, path)
         local real_path = find_file(expanded_path) or find_dir(expanded_path)
