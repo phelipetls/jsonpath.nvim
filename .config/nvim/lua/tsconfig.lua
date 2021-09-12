@@ -119,7 +119,7 @@ end
 function M.includeexpr(input)
   local path = expand_tsconfig_path(input)
 
-  path = find_file(path) or find_dir(path)
+  path = find_file(path) or find_dir(path) or input
 
   if vim.fn.isdirectory(path) == 1 then
     path = find_file("index", path) or path
