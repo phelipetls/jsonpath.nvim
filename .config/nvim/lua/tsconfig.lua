@@ -72,11 +72,7 @@ local function get_tsconfig_paths(tsconfig_fname, prev_base_url)
 
   local tsconfig_extends = find_tsconfig_extends(json.extends, tsconfig_fname)
 
-  if tsconfig_extends then
-    return vim.tbl_extend("force", alias_to_path, get_tsconfig_paths(tsconfig_extends, base_url))
-  end
-
-  return alias_to_path
+  return vim.tbl_extend("force", alias_to_path, get_tsconfig_paths(tsconfig_extends, base_url))
 end
 
 -- Get `.include` array from a tsconfig.json file as comma separated string.
