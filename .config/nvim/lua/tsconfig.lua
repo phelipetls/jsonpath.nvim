@@ -70,7 +70,6 @@ local function get_tsconfig_paths(tsconfig_fname, prev_base_url)
     end
   end
 
-  -- If tsconfig has a `.extends` field, we must search there too.
   local tsconfig_extends = find_tsconfig_extends(json.extends, tsconfig_fname)
 
   if tsconfig_extends then
