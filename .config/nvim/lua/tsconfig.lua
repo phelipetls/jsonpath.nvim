@@ -40,11 +40,6 @@ local function find_tsconfig_extends(extends, tsconfig_fname)
   return vim.fn.simplify(tsconfig_dir .. "/" .. extends)
 end
 
-local function remove_wildcard(path)
-  local str, _ = path:gsub("*", "")
-  return str
-end
-
 -- Get all possible configured `.compilerOptions.paths` values by walking
 -- through all tsconfig.json files recursively. If it finds a base
 -- configuration (`.extends` key), it will continue to search there.
@@ -63,7 +58,7 @@ local function get_tsconfig_paths(tsconfig_fname, prev_base_url)
     for alias, paths in pairs(json.compilerOptions.paths) do
       for _, path in pairs(paths) do
         alias_to_path[alias] =
-          vim.fn.simplify(get_dir(tsconfig_fname) .. "/" .. base_url .. "/" .. remove_wildcard(path))
+          vim.fn.simplify(get_dir(tsconfig_fname) .. "/" .. base_url .. "/" .. path:gsub("*", ""))
       end
     end
   end
