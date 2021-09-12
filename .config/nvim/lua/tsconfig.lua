@@ -60,12 +60,10 @@ local function get_tsconfig_paths(tsconfig_fname, prev_base_url)
   local base_url = json and json.compilerOptions and json.compilerOptions.baseUrl or prev_base_url
 
   if json and json.compilerOptions and json.compilerOptions.paths then
-
     for alias, paths in pairs(json.compilerOptions.paths) do
       for _, path in pairs(paths) do
-        alias_to_path[alias] = vim.fn.simplify(
-          get_dir(tsconfig_fname) .. "/" .. base_url .. "/" .. remove_wildcard(path)
-        )
+        alias_to_path[alias] =
+          vim.fn.simplify(get_dir(tsconfig_fname) .. "/" .. base_url .. "/" .. remove_wildcard(path))
       end
     end
   end
@@ -111,7 +109,9 @@ local function expand_tsconfig_path(input)
       local expanded_path = input:gsub(alias, path)
       local real_path = find_file(expanded_path) or find_dir(expanded_path)
 
-      if real_path then return real_path end
+      if real_path then
+        return real_path
+      end
     end
   end
 
