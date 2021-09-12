@@ -49,23 +49,26 @@ local function get_tsconfig_paths(tsconfig_fname, prev_base_url)
     return {}
   end
 
-  local alias_to_path = {}
+  local alias_to_paths = {}
 
   local json = decode_json_with_comments(tsconfig_fname)
   local base_url = json and json.compilerOptions and json.compilerOptions.baseUrl or prev_base_url
 
   if json and json.compilerOptions and json.compilerOptions.paths then
     for alias, paths in pairs(json.compilerOptions.paths) do
-      for _, path in pairs(paths) do
-        alias_to_path[alias] =
-          vim.fn.simplify(get_dir(tsconfig_fname) .. "/" .. base_url .. "/" .. path:gsub("*", ""))
-      end
+      alias_to_paths[alias] =
+        vim.tbl_map(
+        function(path)
+          return vim.fn.simplify(get_dir(tsconfig_fname) .. "/" .. base_url .. "/" .. path:gsub("*", ""))
+        end,
+        paths
+      )
     end
   end
 
   local tsconfig_extends = find_tsconfig_extends(json.extends, tsconfig_fname)
 
-  return vim.tbl_extend("force", alias_to_path, get_tsconfig_paths(tsconfig_extends, base_url))
+  return vim.tbl_extend("force", alias_to_paths, get_tsconfig_paths(tsconfig_extends, base_url))
 end
 
 -- Get `.include` array from a tsconfig.json file as comma separated string.
@@ -91,21 +94,23 @@ local function expand_tsconfig_path(input)
     return input
   end
 
-  local alias_to_path = get_tsconfig_paths(tsconfig_file)
+  local alias_to_paths = get_tsconfig_paths(tsconfig_file)
 
-  if vim.tbl_isempty(alias_to_path) then
+  if vim.tbl_isempty(alias_to_paths) then
     return input
   end
 
-  for alias, path in pairs(alias_to_path) do
+  for alias, paths in pairs(alias_to_paths) do
     local alias_without_wildcard = alias:gsub("*", "")
 
     if vim.startswith(input, alias_without_wildcard) then
-      local expanded_path = input:gsub(alias, path)
-      local real_path = find_file(expanded_path) or find_dir(expanded_path)
+      for _, path in pairs(paths) do
+        local expanded_path = input:gsub(alias, path)
+        local real_path = find_file(expanded_path) or find_dir(expanded_path)
 
-      if real_path then
-        return real_path
+        if real_path then
+          return real_path
+        end
       end
     end
   end
