@@ -26,8 +26,10 @@ packadd! gv.vim
 packadd! vim-dirvish
 
 " fuzzy finder
-packadd! telescope.nvim
-packadd! plenary.nvim
+if has("nvim-0.5.0")
+  packadd! telescope.nvim
+  packadd! plenary.nvim
+endif
 
 " vim specific improvements
 packadd! traces.vim
