@@ -42,8 +42,6 @@ tools:
       - '%f:%l:%c: %m'
     format-command: 'eslint_d --fix-to-stdout --stdin --stdin-filename ${INPUT}'
     format-stdin: true
-    root-markers:
-      - package.json
 
 languages:
   yaml:
