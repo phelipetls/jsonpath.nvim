@@ -112,6 +112,10 @@ lua << EOF
 EOF
 endif
 
+if has('nvim-0.5.0')
+  command! OpenMR lua require'gitlab'.open_mr()
+endif
+
 "}}}
 "{{{ plugins config
 
