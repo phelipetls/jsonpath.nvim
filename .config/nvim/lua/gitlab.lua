@@ -69,19 +69,16 @@ function M.open_mr(target_branch)
   if #merge_requests == 1 then
     url = merge_requests[1].web_url
   else
-    local prompt_lines = {}
+    local textlist = {'Select merge request:'}
 
     for index, mr in pairs(merge_requests) do
       local prompt = string.format('%s: %s', index, mr.title)
-      table.insert(prompt_lines, prompt)
+      table.insert(textlist, prompt)
     end
 
-    local choice = tonumber(vim.fn.input({
-      prompt = table.concat(prompt_lines, '\n') .. '\nPrompt: ',
-    }))
+    local choice = vim.fn.inputlist(textlist)
 
-    if not choice or choice > #merge_requests then
-      echoerr('Not a valid input')
+    if choice == 0 then
       return
     end
 
