@@ -594,6 +594,8 @@ augroup END
 "}}}
 "{{{ coc
 
+let g:coc_start_at_startup = 0
+
 set nobackup
 set nowritebackup
 set updatetime=300
