@@ -1,7 +1,7 @@
 local M = {}
 
 local function remove_comments(line)
-  return line:gsub("/%*.*%*/", ""):gsub("//.*", "")
+  return line:gsub("/%*.+%*/", ""):gsub("//.*", "")
 end
 
 local function decode_json_with_comments(fname)
