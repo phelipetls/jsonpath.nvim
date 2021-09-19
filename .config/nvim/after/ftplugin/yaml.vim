@@ -3,14 +3,14 @@ if executable("yamllint")
 endif
 
 if expand("%:r") == ".gitlab-ci" && executable("gitlab-ci-lint")
-  nnoremap <F5> :!gitlab-ci-lint %<CR>
-
   function! OnStdout(_, data, __)
     let json = json_decode(join(a:data, ''))
     if json.status == 'valid'
       echomsg 'Configuration is valid'
     else
-      echomsg 'Configuration is invalid!\n' .. join(json.errors, '\n')
+      echohl WarningMsg
+      echomsg join(json.errors)
+      echohl None
     endif
   endfunction
 
@@ -21,5 +21,5 @@ if expand("%:r") == ".gitlab-ci" && executable("gitlab-ci-lint")
         \ })
   endfunction
 
-  " autocmd BufWritePre <buffer> call GitlabCILint()
+  nnoremap <silent> <F5> :call GitlabCILint()<CR>
 endif
