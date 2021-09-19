@@ -72,15 +72,36 @@ function M.get_tsconfig_paths(tsconfig_fname, prev_base_url)
 end
 
 -- Get `.include` array from a tsconfig.json file as comma separated string.
-local function get_tsconfig_include(tsconfig)
-  if not tsconfig then
-    return
+local function get_tsconfig_include(tsconfig_fname)
+  if not tsconfig_fname then
+    return {}
   end
-  local json = decode_json_with_comments(tsconfig)
-  if json.include then
-    return table.concat(json.include, ",")
+
+  local json = decode_json_with_comments(tsconfig_fname)
+
+  if not json.include then
+    return {}
   end
-  return ""
+
+  local include = vim.tbl_map(function(fname)
+    local fname_without_globs = fname:gsub("%*%*/%*%..+$", "")
+    local dir = vim.fn.simplify(get_dir(tsconfig_fname) .. "/" .. fname_without_globs)
+
+    if vim.fn.isdirectory(dir) == 0 then
+      return nil
+    end
+
+    return dir
+  end, json.include)
+
+  local extends  = json.extends
+  local tsconfig_extends = find_tsconfig_extends(extends, tsconfig_fname)
+
+  if tsconfig_extends then
+    vim.list_extend(include, get_tsconfig_include(tsconfig_extends))
+  end
+
+  return include
 end
 
 function M.get_tsconfig_include()
