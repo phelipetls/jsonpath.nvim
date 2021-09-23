@@ -11,7 +11,7 @@ endif
 setlocal include=\\%(\\<require\\s*(\\s*\\\|\\<import\\>[^;\"']*\\)[\"']\\zs[^\"']*
 
 let &l:define = '^\s*\('
-      \ . '\(export\s\)*\(\w\+\s\)*\(var\|const\|let\|function\|class\|interface\|as\|enum\)\s'
+      \ . '\(export\s\)*\(\w\+\s\)*\(var\|const\|type\|let\|function\|class\|interface\|as\|enum\)\s'
       \ . '\|\(public\|private\|protected\|readonly\|static\|get\s\|set\)\s'
       \ . '\|\(export\sdefault\s\|abstract\sclass\s\)'
       \ . '\|\(async\sfunction\)\s'
