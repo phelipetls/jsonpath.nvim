@@ -13,6 +13,8 @@ function M.make(arg)
   local args = vim.fn.expand(arg)
   local cmd = vim.fn.expandcmd(makeprg) .. " " .. args
 
+  vim.g.async_make_status = '[Loading...]'
+
   local function on_event(_, data, event)
     if event == "stdout" or event == "stderr" then
       if data then
@@ -30,6 +32,7 @@ function M.make(arg)
           efm = vim.api.nvim_buf_get_option(bufnr, "errorformat")
         }
       )
+      vim.g.async_make_status = ''
       vim.api.nvim_command("doautocmd QuickFixCmdPost")
     end
   end

@@ -409,8 +409,9 @@ function GetStatusLine(active) abort
   let coc = a:active ? CocStatus() : ''
   let modified = !&modifiable ? '[-]' : &modified ? '[+]' : ''
   let eol = &endofline ? '' : '[noeol]'
+  let async_make = get(g:, 'async_make_status', '')
 
-  return join(filter([fugitive, coc, modified, eol], "!empty(v:val)"), ' ')
+  return join(filter([fugitive, coc, modified, eol, async_make], "!empty(v:val)"), ' ')
 endfunction
 
 function! StatusLine(type) abort
