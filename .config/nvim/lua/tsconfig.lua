@@ -5,7 +5,11 @@ local function remove_comments(line)
 end
 
 local function decode_json_with_comments(fname)
-  local json_without_comments = vim.tbl_map(remove_comments, vim.fn.readfile(fname))
+  if vim.fn.filereadable(fname) == 0 then
+    return nil
+  end
+  local file = vim.fn.readfile(fname)
+  local json_without_comments = vim.tbl_map(remove_comments, file)
   return vim.fn.json_decode(json_without_comments)
 end
 
@@ -50,11 +54,16 @@ function M.get_tsconfig_paths(tsconfig_fname, prev_base_url)
   end
 
   local json = decode_json_with_comments(tsconfig_fname)
-  local base_url = json and json.compilerOptions and json.compilerOptions.baseUrl or prev_base_url
+
+  if not json then
+    return {}
+  end
+
+  local base_url = json.compilerOptions and json.compilerOptions.baseUrl or prev_base_url
 
   local alias_to_paths = {}
 
-  if json and json.compilerOptions and json.compilerOptions.paths then
+  if json.compilerOptions and json.compilerOptions.paths then
     for alias, paths in pairs(json.compilerOptions.paths) do
       alias_to_paths[alias] =
         vim.tbl_map(
@@ -66,7 +75,8 @@ function M.get_tsconfig_paths(tsconfig_fname, prev_base_url)
     end
   end
 
-  local tsconfig_extends = find_tsconfig_extends(json.extends, tsconfig_fname)
+  local extends = json.extends
+  local tsconfig_extends = find_tsconfig_extends(extends, tsconfig_fname)
 
   return vim.tbl_extend("force", alias_to_paths, M.get_tsconfig_paths(tsconfig_extends, base_url))
 end
@@ -78,8 +88,9 @@ local function get_tsconfig_include(tsconfig_fname)
   end
 
   local json = decode_json_with_comments(tsconfig_fname)
+  local include = json and json.include
 
-  if not json.include then
+  if not include then
     return {}
   end
 
@@ -92,7 +103,7 @@ local function get_tsconfig_include(tsconfig_fname)
     end
 
     return dir
-  end, json.include)
+  end, include)
 
   local extends  = json.extends
   local tsconfig_extends = find_tsconfig_extends(extends, tsconfig_fname)
