@@ -20,6 +20,8 @@ let &l:define = '^\s*\('
 
 if executable("jest") && match(expand("%:p:t"), 'test\.\(js\|ts\|jsx\|tsx\)$') != -1
   compiler jest
+elseif findfile("tsconfig.json", ";.") || findfile("jsconfig.json", ";.")
+  compiler tsc_lint
 elseif executable("eslint_d")
   compiler eslint_d
 elseif executable("eslint")
