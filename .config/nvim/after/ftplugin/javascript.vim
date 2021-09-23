@@ -8,7 +8,7 @@ if has("nvim")
   endif
 endif
 
-setlocal include=\\%(\\<require\\s*(\\s*\\\|\\<import\\>[^;\"']*\\)[\"']\\zs[^\"']*
+setlocal include=\\%(\\<require\\s*(\\s*\\\|\\<import\\\|from\\>[^;\"']*\\)[\"']\\zs[^\"']*
 
 let &l:define = '^\s*\('
       \ . '\(export\s\)*\(\w\+\s\)*\(var\|const\|type\|let\|function\|class\|interface\|as\|enum\)\s'
