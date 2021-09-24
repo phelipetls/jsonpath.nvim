@@ -672,7 +672,6 @@ xmap <silent> <C-s> <Plug>(coc-range-select)
 if has("nvim-0.5.0")
   nnoremap <space>d <cmd>Telescope coc workspace_diagnostics<CR>
   nnoremap <space>s <cmd>Telescope coc workspace_symbols<CR>
-  nnoremap <M-CR> <cmd>Telescope coc code_actions<CR>
 endif
 
 let g:coc_quickfix_open_command = 'doautocmd QuickFixCmdPost | cfirst'
