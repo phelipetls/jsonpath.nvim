@@ -88,13 +88,13 @@ local function get_tsconfig_include(tsconfig_fname)
   end
 
   local json = decode_json_with_comments(tsconfig_fname)
-  local include = json and json.include
+  local json_include = json and json.include
 
-  if not include then
+  if not json_include then
     return {}
   end
 
-  local include = vim.tbl_map(function(fname)
+  local include_list = vim.tbl_map(function(fname)
     local fname_without_globs = fname:gsub("%*%*/%*%..+$", "")
     local dir = vim.fn.simplify(get_dir(tsconfig_fname) .. "/" .. fname_without_globs)
 
@@ -103,16 +103,16 @@ local function get_tsconfig_include(tsconfig_fname)
     end
 
     return dir
-  end, include)
+  end, json_include)
 
   local extends  = json.extends
   local tsconfig_extends = find_tsconfig_extends(extends, tsconfig_fname)
 
   if tsconfig_extends then
-    vim.list_extend(include, get_tsconfig_include(tsconfig_extends))
+    vim.list_extend(include_list, get_tsconfig_include(tsconfig_extends))
   end
 
-  return include
+  return include_list
 end
 
 function M.get_tsconfig_include()
