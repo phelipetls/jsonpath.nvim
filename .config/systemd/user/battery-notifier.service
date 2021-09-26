@@ -1,0 +1,5 @@
+[Unit]
+description=Notify about low battery
+
+[Service]
+ExecStart=%h/scripts/battery_notifier

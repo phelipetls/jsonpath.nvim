@@ -3,6 +3,7 @@ Description=dwm session
 BindsTo=graphical-session.target
 Requires=dwm.service
 Wants=dwm-statusbar.service
+Wants=battery-notifier.timer
 Wants=nitrogen.service
 Wants=nm-applet.service
 Wants=compton.service
