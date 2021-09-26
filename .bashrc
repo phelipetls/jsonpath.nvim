@@ -147,3 +147,7 @@ export MANPATH="$MANPATH:$NPM_PACKAGES/share/man"
 export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
 
 export N_PREFIX="$HOME/.local"
+
+tmux() {
+  systemd-run --scope --user tmux "$@"
+}
