@@ -3,4 +3,4 @@ Description=dwm status bar
 PartOf=graphical-session.target
 
 [Service]
-ExecStart=/home/phelipe/suckless/dwm/dwm_statusbar
+ExecStart=%h/suckless/dwm/dwm_statusbar
