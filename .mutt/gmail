@@ -9,7 +9,7 @@ set my_gmail = "telesphelipe@gmail.com"
 set imap_user = $my_gmail
 set from = $imap_user
 set use_from = "yes"
-set my_pass = "`gpg -dq ~/.password-store/email/gmail-mutt.gpg`"
+set my_pass = "`pass show gmail/mutt-token`"
 set imap_pass = $my_pass
 
 set smtp_url = 'smtp://telesphelipe@smtp.gmail.com:587/'

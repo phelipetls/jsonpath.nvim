@@ -9,7 +9,7 @@ set my_hotmail = "phelipe_teles@hotmail.com"
 set imap_user = $my_hotmail
 set from = $imap_user
 set use_from = "yes"
-set my_pass = "`gpg -dq ~/.password-store/email/hotmail.gpg`"
+set my_pass = "`pass show outlook.live.com/phelipe_teles@hotmail.com`"
 set imap_pass = $my_pass
 
 set my_smtp_url = "smtp://$imap_user@smtp.office365.com:587/"

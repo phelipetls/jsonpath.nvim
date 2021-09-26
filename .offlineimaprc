@@ -10,7 +10,7 @@ remoterepository = hotmail-remote
 type = IMAP
 remotehost = outlook.office365.com
 remoteuser = phelipe_teles@hotmail.com
-remotepasseval = get_pass("hotmail")
+remotepasseval = get_pass("outlook.live.com/phelipe_teles@hotmail.com")
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 
 [Repository hotmail-local]
@@ -25,7 +25,7 @@ remoterepository = gmail-remote
 type = Gmail
 remotehost = imap.gmail.com
 remoteuser = telesphelipe@gmail.com
-remotepasseval = get_pass("gmail-mutt")
+remotepasseval = get_pass("gmail/mutt-token")
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 folderfilter = lambda folder: folder in ["INBOX", "[Gmail]/E-mails enviados", "[Gmail]/Lixeira", "[Gmail]/Rascunhos", "[Gmail]/Spam", "[Gmail]/Com estrela"]
 
