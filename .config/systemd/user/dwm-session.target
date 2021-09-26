@@ -9,3 +9,4 @@ Wants=redshift.service
 Wants=slock.service
 Wants=dwm.service
 Wants=dwm-statusbar.service
+Wants=ssh-agent.service
