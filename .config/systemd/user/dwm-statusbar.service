@@ -4,3 +4,4 @@ PartOf=graphical-session.target
 
 [Service]
 ExecStart=%h/suckless/dwm/dwm_statusbar
+Restart=on-failure
