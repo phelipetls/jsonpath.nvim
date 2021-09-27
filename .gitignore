@@ -2,6 +2,7 @@ suckless/dwm/dwm
 suckless/st/st
 suckless/slock/slock
 suckless/tabbed/tabbed
+suckless/tabbed/xembed
 suckless/dmenu/dmenu
 suckless/dmenu/stest
 .config/nvim/spell/en.utf-8.add
