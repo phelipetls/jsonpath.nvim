@@ -1,0 +1,90 @@
+---
+- name: Bootstrap development environment
+  hosts: localhost
+
+  tasks:
+  - name: Install apt packages
+    tags:
+      - packages
+      - apt
+    become: yes
+    ansible.builtin.apt:
+      name:
+        - git
+        - tig
+        - tmux
+        - fzf
+        - stow
+        - nodejs
+        - mutt
+        - w3m
+        - offlineimap
+        - mpv
+        - ripgrep
+        - scrot
+        - sxiv
+        - zathura
+        - fd-find
+        - numlockx
+        - jq
+        - shellcheck
+        - peek
+        - scrcpy
+        - tlp
+        - htop
+      state: present
+
+  - name: Install pip packages
+    tags:
+      - packages
+      - pip
+    ansible.builtin.pip:
+      name:
+        - pywal
+        - ranger-fm
+        - ueberzug
+        - urlscan
+        - flake8
+        - black
+        - yamllint
+      state: present
+      executable: pip3
+
+  - name: Install npm packages
+    tags:
+      - packages
+      - npm
+    loop:
+      - n
+      - eslint_d
+      - prettier
+    community.general.npm:
+      name: "{{ item }}"
+      state: present
+      global: yes
+
+  - name: Build suckless tools
+    tags:
+      - setup
+      - suckless
+    loop:
+      - dmenu
+      - dwm
+      - slock
+      - st
+      - tabbed
+    shell: make clean install
+    args:
+      chdir: "./suckless/{{ item }}"
+    become: yes
+
+  - name: Run Stow
+    tags:
+      - setup
+      - stow
+    # TODO: remove .bashrc and other files that may already exist
+    ansible.builtin.shell: "stow . --target {{ ansible_env.HOME }}"
+
+  # TODO: install go and efm-langserver
+  # TODO: install Source Code Pro. See https://askubuntu.com/a/193073
+  # TODO: start tlp if it's not yet started

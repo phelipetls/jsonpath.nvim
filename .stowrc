@@ -1,1 +1,1 @@
---ignore README.md
+--ignore README.md bootstrap.yml requirements.yml ansible.cfg hosts
