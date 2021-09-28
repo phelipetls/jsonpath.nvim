@@ -42,9 +42,6 @@ source "~/.mutt/hotmail" # default account
 folder-hook "Gmail" "source ~/.mutt/gmail"
 folder-hook "Hotmail" "source ~/.mutt/hotmail"
 
-macro index <f2> "<sync-mailbox><enter-command>source ~/.mutt/hotmail<enter><change-folder>!<enter>" "change to hotmail"
-macro index <f3> "<sync-mailbox><enter-command>source ~/.mutt/gmail<enter><change-folder>!<enter>" "change to gmail"
-
 # keybindings
 source "~/.mutt/keybindings"
 bind index R group-reply
