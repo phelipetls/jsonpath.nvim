@@ -3,8 +3,6 @@ set realname = "Phelipe Teles"
 
 # basic settings
 source "~/.mutt/colors"
-source "~/.mutt/aliases"
-set alias_file = "~/.mutt/aliases"
 set quit = ask-yes
 set pipe_decode
 set wait_key = no
@@ -32,6 +30,11 @@ set editor = $EDITOR
 set edit_headers
 set autoedit
 set ispell = "/usr/lib/ispell"
+
+# abook
+set query_command= "abook --mutt-query '%s'"
+macro index,pager  a "<pipe-message>abook --add-email-quiet<return>" "Add this sender to Abook"
+bind editor <Tab> complete-query
 
 # accounts
 set mbox_type = Maildir
