@@ -12,3 +12,4 @@ suckless/dmenu/stest
 suckless/**/*.o
 *.rej
 *.orig
+.mutt/aliases
