@@ -85,6 +85,15 @@
     # TODO: remove .bashrc and other files that may already exist
     ansible.builtin.shell: "stow . --target {{ ansible_env.HOME }}"
 
+  - name: Configure DWM X Session
+    tags:
+      - setup
+      - dwm
+    ansible.builtin.template:
+      src: templates/dwm.desktop.j2
+      dest: /usr/share/xsessions/dwm.desktop
+    become: yes
+
   # TODO: install go and efm-langserver
   # TODO: install Source Code Pro. See https://askubuntu.com/a/193073
   # TODO: start tlp if it's not yet started
