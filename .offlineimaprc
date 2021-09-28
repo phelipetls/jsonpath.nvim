@@ -12,6 +12,7 @@ remotehost = outlook.office365.com
 remoteuser = phelipe_teles@hotmail.com
 remotepasseval = get_pass("outlook.live.com/phelipe_teles@hotmail.com")
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+folderfilter = lambda folder: not (folder.startswith("Problemas de Sincroniza") or folder in ["Inbox/McAfee Antispam", "Scheduled", "Outbox", "Notes", "Adiado"])
 
 [Repository hotmail-local]
 type = Maildir
