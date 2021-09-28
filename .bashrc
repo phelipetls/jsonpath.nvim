@@ -124,8 +124,6 @@ export PATH="$HOME/scripts/:/snap/bin:/.cargo/bin:$PATH"
 export GOPATH="$HOME/go"
 export PATH="/usr/local/go/bin:$GOPATH/bin:$PATH"
 
-export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig/
-
 # Android Studio config
 export PATH="$HOME/android-studio/bin:$PATH"
 
