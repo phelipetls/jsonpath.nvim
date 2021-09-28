@@ -73,8 +73,8 @@
       - slock
       - st
       - tabbed
-    shell: make clean install
-    args:
+    community.general.make:
+      target: install
       chdir: "./suckless/{{ item }}"
     become: yes
 
