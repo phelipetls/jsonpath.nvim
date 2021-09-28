@@ -12,7 +12,7 @@ set sendmail = "/usr/bin/msmtp"
 set attribution = "Em %d, %n escreveu:"
 set mailcap_path = "~/.mutt/mailcap"
 auto_view text/html
-alternative_order text/html text/plain text/enriched
+alternative_order text/plain text/html text/enriched
 
 # index
 set mark_old = no
