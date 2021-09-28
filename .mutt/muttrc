@@ -68,9 +68,19 @@ bind index,pager <right> sidebar-open
 
 unmailboxes *
 mailboxes Hotmail
-mailboxes +Hotmail/Inbox +Hotmail/Sent +Hotmail/Deleted +Hotmail/Junk +Hotmail/Drafts +Hotmail/Faculdade
+mailboxes +Hotmail/Inbox
+mailboxes +Hotmail/Sent
+mailboxes +Hotmail/Deleted
+mailboxes +Hotmail/Junk
+mailboxes +Hotmail/Drafts
+mailboxes +Hotmail/Faculdade
 mailboxes Gmail
-mailboxes "+Gmail/INBOX" "+Gmail/[Gmail].E-mails enviados" "+Gmail/[Gmail].Lixeira" "+Gmail/[Gmail].Rascunhos" "+Gmail/[Gmail].Spam" "+Gmail/[Gmail].Com estrela"
+mailboxes "+Gmail/INBOX"
+mailboxes "+Gmail/[Gmail].Importante"
+mailboxes "+Gmail/[Gmail].E-mails enviados"
+mailboxes "+Gmail/[Gmail].Lixeira"
+mailboxes "+Gmail/[Gmail].Rascunhos"
+mailboxes "+Gmail/[Gmail].Spam"
 
 # headers
 ignore *

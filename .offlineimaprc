@@ -27,7 +27,7 @@ remotehost = imap.gmail.com
 remoteuser = telesphelipe@gmail.com
 remotepasseval = get_pass("gmail/mutt-token")
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
-folderfilter = lambda folder: folder in ["INBOX", "[Gmail]/E-mails enviados", "[Gmail]/Lixeira", "[Gmail]/Rascunhos", "[Gmail]/Spam", "[Gmail]/Com estrela"]
+folderfilter = lambda folder: folder not in ["[Gmail]/Todos os e-mails", "Scheduled"]
 
 [Repository gmail-local]
 type = Maildir
