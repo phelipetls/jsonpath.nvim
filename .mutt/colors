@@ -38,4 +38,4 @@ mono quoted         bold
 color body		magenta		default	"(ftp|https?|gopher|news|telnet|finger)://[^ \"\t\r\n]+"
 color body		magenta		default	"[-a-z_0-9.]+@[-a-z_0-9.]+"
 
-# vi: ft=neomuttrc ts=4 sw=4 sts=4 et nowrap
+# vi: ft=muttrc

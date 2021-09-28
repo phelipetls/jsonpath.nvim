@@ -22,4 +22,4 @@ set certificate_file = "~/.mutt/certificates"
 account-hook gmail 'set imap_user = $my_gmail imap_pass = $my_pass'
 account-hook gmail 'set smtp_url = $smtp_url smtp_pass = $my_pass'
 
-# vi: ft=muttrc nowrap
+# vi: ft=muttrc

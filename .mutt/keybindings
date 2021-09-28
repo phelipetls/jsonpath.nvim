@@ -13,3 +13,5 @@ bind attach,browser,pager,index \Cu half-up
 bind attach,browser,pager,index \Cd half-down
 bind index,browser,pager        \Ce next-line
 bind index,browser,pager        \Cy previous-line
+
+# vi: ft=muttrc

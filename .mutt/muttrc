@@ -82,5 +82,3 @@ macro index,pager <esc>u "<pipe-message>urlscan<Enter>"
 macro index <f1> "!w3m /usr/share/doc/mutt/html/manual.html\n" "show Mutt documentation"
 macro index M "<shell-escape>offlineimap<enter>" "sync offlineimap"
 macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
-
-# vi: ft=neomuttrc nowrap

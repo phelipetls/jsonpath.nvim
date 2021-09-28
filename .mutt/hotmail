@@ -23,4 +23,4 @@ set certificate_file = "~/.mutt/certificates"
 account-hook "Hotmail" "set imap_user = $my_hotmail imap_pass = $my_pass"
 account-hook "Hotmail" "set smtp_url = $my_smtp_url smtp_pass = $my_pass"
 
-# vi: ft=neomuttrc
+# vi: ft=muttrc
