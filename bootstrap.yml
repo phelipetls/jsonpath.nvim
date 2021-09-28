@@ -63,6 +63,12 @@
       state: present
       global: yes
 
+  - name: Run pywal
+    tags:
+      - setup
+      - pywal
+    command: wal --theme custom-base16-railscasts
+
   - name: Build suckless tools
     tags:
       - setup
