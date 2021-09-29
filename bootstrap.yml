@@ -104,6 +104,19 @@
       dest: /usr/share/xsessions/dwm.desktop
     become: yes
 
+  - name: Install Font Awesome
+    tags:
+      - fonts
+    get_url:
+      url: https://github.com/FortAwesome/Font-Awesome/blob/7d3d774145ac38663f6d1effc6def0334b68ab7e/otfs/Font%20Awesome%205%20Free-Solid-900.otf?raw=true
+      dest: "{{ ansible_env.HOME }}/.local/share/fonts/Font Awesome 5 Free-Solid-900.otf"
+      checksum: md5:8d531d92051cddac77556d0734b701f8
+
+  - name: Update font cache
+    tags:
+      - fonts
+    command: fc-cache -f
+
   # TODO: install go and efm-langserver
   # TODO: install Source Code Pro. See https://askubuntu.com/a/193073
   # TODO: start tlp if it's not yet started
