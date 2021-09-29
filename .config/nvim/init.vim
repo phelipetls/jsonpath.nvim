@@ -474,7 +474,7 @@ set wildignore=venv*/,__pycache__/,.pytest_cache/,tags,htmlcov/.coverage,*.pyc,p
 "{{{ fuzzy finder
 
 if has("nvim-0.5.0")
-  nnoremap <space>f <cmd>lua require'telescope.builtin'.find_files({ previewer = false })<cr>
+  nnoremap <space>f <cmd>lua require'telescope.builtin'.find_files({ previewer = false, hidden = true })<cr>
   nnoremap <space>h <cmd>Telescope help_tags<cr>
   nnoremap <space>b <cmd>lua require'telescope.builtin'.buffers({ previewer = false })<cr>
   nnoremap <space>r <cmd>lua require'telescope.builtin'.oldfiles()<cr>
