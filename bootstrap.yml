@@ -9,7 +9,7 @@
       - apt
     become: yes
     when: ansible_facts['distribution'] == "Ubuntu"
-    ansible.builtin.apt:
+    apt:
       name:
         - git
         - tig
@@ -40,7 +40,7 @@
     tags:
       - packages
       - pip
-    ansible.builtin.pip:
+    pip:
       name:
         - pywal
         - ranger-fm
@@ -91,13 +91,13 @@
       - setup
       - stow
     # TODO: remove .bashrc and other files that may already exist
-    ansible.builtin.shell: "stow . --target {{ ansible_env.HOME }}"
+    shell: "stow . --target {{ ansible_env.HOME }}"
 
   - name: Configure DWM X Session
     tags:
       - setup
       - dwm
-    ansible.builtin.template:
+    template:
       src: templates/dwm.desktop.j2
       dest: /usr/share/xsessions/dwm.desktop
     become: yes
