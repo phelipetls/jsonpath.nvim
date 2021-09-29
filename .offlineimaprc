@@ -1,6 +1,7 @@
 [general]
 accounts = Hotmail, Gmail
 pythonfile = ~/.get_password_offlineimap
+postsynchook = kill -SIGUSR2 $(pgrep dwm_statusbar)
 
 [Account Hotmail]
 localrepository = HotmailLocal
