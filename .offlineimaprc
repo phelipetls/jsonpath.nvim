@@ -1,12 +1,12 @@
 [general]
-accounts = hotmail, gmail
+accounts = Hotmail, Gmail
 pythonfile = ~/.get_password_offlineimap
 
-[Account hotmail]
-localrepository = hotmail-local
-remoterepository = hotmail-remote
+[Account Hotmail]
+localrepository = HotmailLocal
+remoterepository = HotmailRemote
 
-[Repository hotmail-remote]
+[Repository HotmailRemote]
 type = IMAP
 remotehost = outlook.office365.com
 remoteuser = phelipe_teles@hotmail.com
@@ -14,24 +14,24 @@ remotepasseval = get_pass("outlook.live.com/phelipe_teles@hotmail.com")
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 folderfilter = lambda folder: not (folder.startswith("Problemas de Sincroniza") or folder in ["Inbox/McAfee Antispam", "Scheduled", "Outbox", "Notes", "Adiado"])
 
-[Repository hotmail-local]
+[Repository HotmailLocal]
 type = Maildir
 localfolders = ~/Mail/Hotmail
 
-[Account gmail]
-localrepository = gmail-local
-remoterepository = gmail-remote
+[Account Gmail]
+localrepository = GmailLocal
+remoterepository = GmailRemote
 
-[Repository gmail-remote]
+[Repository GmailRemote]
 type = Gmail
 remotehost = imap.gmail.com
 remoteuser = telesphelipe@gmail.com
 remotepasseval = get_pass("gmail/mutt-token")
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 folderfilter = lambda folder: folder not in ["[Gmail]/Todos os e-mails", "Scheduled"]
-nametrans = lambda folder: folder.capitalize() if folder == 'INBOX' else folder
+nametrans = lambda folder: folder.capitalize() if folder == 'INBOX' else re.sub('^\[Gmail\]/', '', folder)
 createfolders = False
 
-[Repository gmail-local]
+[Repository GmailLocal]
 type = Maildir
 localfolders = ~/Mail/Gmail
