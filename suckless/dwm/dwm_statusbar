@@ -32,9 +32,8 @@ function get_battery() {
 }
 
 function get_mailcount() {
-  hotmail=$(find "$HOME"/Mail/ -type f -ipath "*Hotmail*inbox*new*" | wc -l)
-  gmail=$(find "$HOME"/Mail/ -type f -ipath "*Gmail*inbox*new*" | wc -l)
-  mailcount="MAIL H: $hotmail G: $gmail"
+  count=$(find "$HOME"/Mail/ -type f -ipath "*inbox*new*" | wc -l)
+  mailcount="MAIL $count"
 }
 
 function get_all() {
