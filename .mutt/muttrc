@@ -48,7 +48,7 @@ folder-hook "Hotmail" "source ~/.mutt/hotmail"
 # keybindings
 source "~/.mutt/keybindings"
 bind index R group-reply
-bind index <space>  collapse-thread
+bind index <space> collapse-thread
 
 # formats
 set date_format = "%d/%m/%y"
