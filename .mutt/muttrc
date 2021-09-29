@@ -8,7 +8,6 @@ set pipe_decode
 set wait_key = no
 set ssl_starttls = no
 set ssl_force_tls = yes
-set sendmail = "/usr/bin/msmtp"
 set attribution = "Em %d, %n escreveu:"
 set mailcap_path = "~/.mutt/mailcap"
 auto_view text/html
