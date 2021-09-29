@@ -1,11 +1,11 @@
 [general]
 accounts = Hotmail, Gmail
 pythonfile = ~/.get_password_offlineimap
-postsynchook = kill -SIGUSR2 $(pgrep dwm_statusbar)
 
 [Account Hotmail]
 localrepository = HotmailLocal
 remoterepository = HotmailRemote
+postsynchook = "kill -SIGUSR2 $(pgrep dwm_statusbar)"
 
 [Repository HotmailRemote]
 type = IMAP
@@ -22,6 +22,7 @@ localfolders = ~/Mail/Hotmail
 [Account Gmail]
 localrepository = GmailLocal
 remoterepository = GmailRemote
+postsynchook = "kill -SIGUSR2 $(pgrep dwm_statusbar)"
 
 [Repository GmailRemote]
 type = Gmail
