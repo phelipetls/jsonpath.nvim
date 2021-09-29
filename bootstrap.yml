@@ -8,7 +8,6 @@
       - packages
       - apt
     become: yes
-    when: ansible_facts['distribution'] == "Ubuntu"
     apt:
       name:
         - git
