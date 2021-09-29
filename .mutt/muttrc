@@ -97,4 +97,5 @@ hdr_order from: to: cc: date: subject:
 # macros
 macro index,pager <esc>u "<pipe-message>urlscan<Enter>"
 macro index M "<shell-escape>offlineimap<enter>" "sync offlineimap"
-macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
+macro index c "<copy-message>?<toggle-mailboxes>" "Copy an e-mail to another mailbox"
+macro index s "<save-message>?<toggle-mailboxes>" "Save (move) an e-mail to another mailbox"
