@@ -1,1 +1,7 @@
---ignore README.md bootstrap.yml requirements.yml templates ansible.cfg hosts .stowrc
+--ignore README.md
+--ignore bootstrap.yml
+--ignore requirements.yml
+--ignore templates
+--ignore ansible.cfg
+--ignore hosts
+--ignore .stowrc
