@@ -1,26 +1,26 @@
 #!/bin/bash
 
 function get_cpu_temp() {
-  cpu_temp="CPU $(sensors | awk '/Core 0:/ { print $3 }' | tr -d '+.0')"
+  cpu_temp=" $(sensors | awk '/Core 0:/ { print $3 }' | tr -d '+.0')"
 }
 
 function get_date() {
-  date="$(date +"%a, %d %b, %R" | sed 's/\w\+/\u&/g' )"
+  date=" $(date +"%d/%m/%y %R")"
 }
 
 function get_volume() {
-  symbol="ON"
-  amixer get Master | grep -q off && symbol="OFF"
+  symbol=""
+  amixer get Master | grep -q off && symbol=""
   volume="$symbol $(amixer get Master | awk '/Mono:/ { print $4 }' | tr -d '[]')"
 }
 
 function get_memory() {
-  memory="MEM $(free | awk '/Mem.:/ { printf("%3.1f", $3/$2*100) }')%"
+  memory=" $(free | awk '/Mem.:/ { printf("%3.1f", $3/$2*100) }')%"
 }
 
 function get_battery() {
   state=$(acpi | grep -Eo '(Discharging|Charging)')
-  level=$(acpi | grep -Eo '[0-9]+%')
+  level=$(acpi | sed -E 's/.* ([0-9]+)%.*/\1/')
 
   if [ "$state" = "Charging" ]; then
     state_symbol="+"
@@ -28,12 +28,22 @@ function get_battery() {
     state_symbol=""
   fi
 
-  battery="BAT $state_symbol$level"
+  if [ "$level" -lt 30 ]; then
+    batt_symbol=""
+  elif [ "$level" -lt 60 ]; then
+    batt_symbol=""
+  elif [ "$level" -lt 95 ]; then
+    batt_symbol=""
+  else
+    batt_symbol=""
+  fi
+
+  battery="$batt_symbol $state_symbol$level%"
 }
 
 function get_mailcount() {
   count=$(find "$HOME"/Mail/ -type f -ipath "*inbox*new*" | wc -l)
-  mailcount="MAIL $count"
+  mailcount=" $count"
 }
 
 function get_all() {
