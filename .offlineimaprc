@@ -28,6 +28,8 @@ remoteuser = telesphelipe@gmail.com
 remotepasseval = get_pass("gmail/mutt-token")
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 folderfilter = lambda folder: folder not in ["[Gmail]/Todos os e-mails", "Scheduled"]
+nametrans = lambda folder: folder.capitalize() if folder == 'INBOX' else folder
+createfolders = False
 
 [Repository gmail-local]
 type = Maildir
