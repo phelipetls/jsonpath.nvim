@@ -111,11 +111,18 @@
       dest: "{{ ansible_env.HOME }}/.local/share/fonts/Font Awesome 5 Free-Solid-900.otf"
       checksum: md5:8d531d92051cddac77556d0734b701f8
 
+  - name: Install Source Code Pro
+    tags:
+      - fonts
+    get_url:
+      url: https://github.com/adobe-fonts/source-code-pro/blob/29fdb884c6e9dc2a312f4a5e2bb3b2dad2350777/TTF/SourceCodePro-Semibold.ttf?raw=true
+      dest: "{{ ansible_env.HOME }}/.local/share/fonts/SourceCodePro-Semibold.ttf"
+      checksum: md5:0a182fd5b03b7bc3bbc99a57ae8d8a45
+
   - name: Update font cache
     tags:
       - fonts
     command: fc-cache -f
 
   # TODO: install go and efm-langserver
-  # TODO: install Source Code Pro. See https://askubuntu.com/a/193073
   # TODO: start tlp if it's not yet started
