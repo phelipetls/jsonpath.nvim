@@ -14,7 +14,7 @@ case $1 in
     ;;
 esac
 
-dwm_statusbar_pid="$(pgrep dwm_statusbar)"
-if [ -n "$dwm_statusbar_pid" ]; then
-  kill -SIGUSR1 "$dwm_statusbar_pid"
+pid="$(pgrep dwm-statusbar)"
+if [ -n "$pid" ]; then
+  kill -SIGUSR1 "$pid"
 fi

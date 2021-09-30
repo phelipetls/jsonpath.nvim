@@ -512,7 +512,7 @@ globalkeys =
     {},
     "XF86AudioRaiseVolume",
     function()
-      awful.util.spawn_with_shell("/home/phelipe/scripts/change_volume up")
+      awful.util.spawn_with_shell("/home/phelipe/scripts/change-volume up")
     end,
     {description = "increase volume", group = "awesome"}
   ),
@@ -520,7 +520,7 @@ globalkeys =
     {},
     "XF86AudioLowerVolume",
     function()
-      awful.util.spawn_with_shell("/home/phelipe/scripts/change_volume down")
+      awful.util.spawn_with_shell("/home/phelipe/scripts/change-volume down")
     end,
     {description = "decrease volume", group = "awesome"}
   ),
@@ -528,7 +528,7 @@ globalkeys =
     {},
     "XF86AudioMute",
     function()
-      awful.util.spawn_with_shell("/home/phelipe/scripts/change_volume mute")
+      awful.util.spawn_with_shell("/home/phelipe/scripts/change-volume mute")
     end,
     {description = "mute volume", group = "awesome"}
   ),
@@ -536,7 +536,7 @@ globalkeys =
     {},
     "XF86MonBrightnessUp",
     function()
-      awful.util.spawn_with_shell("/home/phelipe/scripts/change_brightness up")
+      awful.util.spawn_with_shell("/home/phelipe/scripts/change-brightness up")
     end,
     {description = "increase screen brightness", group = "awesome"}
   ),
@@ -544,7 +544,7 @@ globalkeys =
     {},
     "XF86MonBrightnessDown",
     function()
-      awful.util.spawn_with_shell("/home/phelipe/scripts/change_brightness down")
+      awful.util.spawn_with_shell("/home/phelipe/scripts/change-brightness down")
     end,
     {description = "decrease screen brightness", group = "awesome"}
   )

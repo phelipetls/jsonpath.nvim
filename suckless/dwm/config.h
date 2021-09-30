@@ -69,11 +69,11 @@ static const char *lockcmd[]                = { "slock" };
 static const char *termcmd[]                = { "st", NULL };
 static const char *browsercmd[]             = { "firefox", NULL };
 static const char *shutdown[]               = { "/home/phelipe/scripts/shutdown", NULL };
-static const char *brightnessup[]           = { "/home/phelipe/scripts/change_brightness", "up", NULL };
-static const char *brightnessdown[]         = { "/home/phelipe/scripts/change_brightness", "down", NULL };
-static const char *upvol[]                  = { "/home/phelipe/scripts/change_volume", "up", NULL };
-static const char *downvol[]                = { "/home/phelipe/scripts/change_volume", "down", NULL };
-static const char *mutevol[]                = { "/home/phelipe/scripts/change_volume", "mute", NULL };
+static const char *brightnessup[]           = { "/home/phelipe/scripts/change-brightness", "up", NULL };
+static const char *brightnessdown[]         = { "/home/phelipe/scripts/change-brightness", "down", NULL };
+static const char *upvol[]                  = { "/home/phelipe/scripts/change-volume", "up", NULL };
+static const char *downvol[]                = { "/home/phelipe/scripts/change-volume", "down", NULL };
+static const char *mutevol[]                = { "/home/phelipe/scripts/change-volume", "mute", NULL };
 
 #include "focusurgent.c"
 
@@ -84,8 +84,8 @@ static Key keys[] = {
 	{ 0,                            XF86XK_AudioRaiseVolume,  spawn,          {.v = upvol } },
 	{ 0,                            XF86XK_MonBrightnessUp,   spawn,          {.v = brightnessup } },
 	{ 0,                            XF86XK_MonBrightnessDown, spawn,          {.v = brightnessdown } },
-	{ 0,                            XK_Print,                 spawn,          SHCMD("/home/phelipe/scripts/scrot_share") },
-	{ ControlMask,                  XK_Print,                 spawn,          SHCMD("sleep 0.2; /home/phelipe/scripts/scrot_share -s") },
+	{ 0,                            XK_Print,                 spawn,          SHCMD("/home/phelipe/scripts/scrot-share") },
+	{ ControlMask,                  XK_Print,                 spawn,          SHCMD("sleep 0.2; /home/phelipe/scripts/scrot-share -s") },
 	{ MODKEY,                       XK_r,                     spawn,          {.v = appfinder } },
 	{ MODKEY,                       XK_p,                     spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return,                spawn,          {.v = termcmd } },

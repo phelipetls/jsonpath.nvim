@@ -1,0 +1,35 @@
+#!/bin/bash
+
+set -euo pipefail
+
+base_url="https://gitlab.com/api/v4"
+source_branch="${1:-$(git branch --show-current)}"
+url="$base_url/merge_requests?source_branch=$source_branch"
+
+token="$(pass show gitlab-token)"
+
+mrs=$(curl --silent "$url" --header "PRIVATE-TOKEN: $token" | sed 's/\n//')
+total_mrs=$(jq 'length' <<< "$mrs")
+
+jq -r 'to_entries[] | "\(.key + 1): \(.value.title)"' <<< "$mrs"
+
+if [[ $total_mrs -eq 1 ]]; then
+  choice=1
+else
+  read -r -p "Choose merge request: " choice
+  echo [[ -z "$choice" ]]
+  echo [[ "$choice" -gt "$total_mrs" ]]
+
+  if [[ -z "$choice" ]]; then
+    echo "Empty input"
+    exit 1
+  fi
+
+  if [[ "$choice" -gt "$total_mrs" ]]; then
+    echo "Not so many MRs"
+    exit 1
+  fi
+fi
+
+web_url=$(jq -r --arg choice "$choice" '[$choice].web_url')
+xdg-open "$web_url"
