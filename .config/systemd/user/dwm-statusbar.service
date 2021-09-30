@@ -3,5 +3,5 @@ Description=dwm status bar
 PartOf=graphical-session.target
 
 [Service]
-ExecStart=%h/suckless/dwm/dwm_statusbar
+ExecStart=%h/scripts/dwm-statusbar
 Restart=on-failure
