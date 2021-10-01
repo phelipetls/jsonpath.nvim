@@ -27,6 +27,9 @@ function M.make(arg)
       end
     end
 
+    local efm, err = pcall(vim.api.nvim_buf_get_option, bufnr, "errorformat")
+    efm = err and vim.o.errorformat or efm
+
     if event == "exit" then
       vim.fn.setqflist(
         {},
@@ -34,7 +37,7 @@ function M.make(arg)
         {
           title = cmd,
           lines = lines,
-          efm = vim.api.nvim_buf_get_option(bufnr, "errorformat")
+          efm = efm
         }
       )
 
