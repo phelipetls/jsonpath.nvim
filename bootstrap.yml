@@ -124,5 +124,26 @@
       - fonts
     command: fc-cache -f
 
-  # TODO: install go and efm-langserver
+  - name: Install Go
+    tags:
+      - always
+    include_role:
+      name: ansible-role-golang
+      apply:
+        tags:
+          - go
+    vars:
+      go_version: 1.17
+      go_install_clean: true
+      go_install_clean_full: false
+
+  - name: Install Go packages
+    tags:
+      - go
+      - packages
+    loop:
+      - github.com/mattn/efm-langserver@v0.0.37
+      - github.com/gohugoio/hugo@v0.88.1
+    command: "go install {{ item }}"
+
   # TODO: start tlp if it's not yet started

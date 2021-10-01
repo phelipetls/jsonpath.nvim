@@ -1,3 +1,9 @@
 ---
 collections:
 - name: community.general
+
+roles:
+# TODO: simply use `src: fubarhouse.golang` once my fork changes gets merged
+- name: fubarhouse.golang
+  src: https://github.com/phelipetls/ansible-role-golang.git
+  version: fix/install-dependencies-in-debian
