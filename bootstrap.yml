@@ -7,7 +7,7 @@
     tags:
       - packages
       - apt
-    become: yes
+    become: true
     apt:
       name:
         - git
@@ -62,7 +62,7 @@
     community.general.npm:
       name: "{{ item }}"
       state: present
-      global: yes
+      global: true
 
   - name: Run pywal
     tags:
@@ -83,7 +83,7 @@
     shell:
       cmd: make clean install
       chdir: "./suckless/{{ item }}"
-    become: yes
+    become: true
 
   - name: Run Stow
     tags:
@@ -101,7 +101,7 @@
     template:
       src: templates/dwm.desktop.j2
       dest: /usr/share/xsessions/dwm.desktop
-    become: yes
+    become: true
 
   - name: Install Font Awesome
     tags:
