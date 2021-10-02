@@ -6,8 +6,8 @@ static const char sel_fg[] = "{foreground}";
 static const char sel_bg[] = "{color8}";
 static const char sel_border[] = "{color8}";
 
-static const char hid_fg[] = "{color8}";
-static const char hid_bg[] = "{foreground}";
+static const char hid_fg[] = "{foreground}";
+static const char hid_bg[] = "{color0}";
 static const char hid_border[] = "{color8}";
 
 static const char *colors[][3]      = {{
