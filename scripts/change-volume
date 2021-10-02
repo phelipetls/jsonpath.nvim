@@ -14,6 +14,30 @@ case $1 in
     ;;
 esac
 
+function get_volume {
+  amixer get Master | grep -Eo '([0-9]+)%' | sed 's/%//'
+}
+
+function is_mute {
+  amixer get Master | grep off
+}
+
+# if [[ -f "$HOME/.cache/wal/colors.sh" ]]; then
+#   source "$HOME/.cache/wal/colors.sh"
+# fi
+
+function notify() {
+  volume=$(get_volume)
+  max_volume=$(( 100 / 5 ))
+  completed=$(seq -s "█" 0 $(( volume / 5 )) | tr -d '[:digit:]')
+  remaining=$(seq -s "░" 0 $(( max_volume - volume / 5 )) | tr -d '[:digit:]')
+  icon='audio-volume-high'
+  [[ $(is_mute) || $volume -eq 0 ]] && icon='audio-volume-muted'
+  dunstify -i "$icon" -h string:x-dunst-stack-tag:volume -t 2000 -u normal "$completed$remaining ($volume%)"
+}
+
+notify
+
 pid="$(pgrep dwm-statusbar)"
 if [ -n "$pid" ]; then
   kill -SIGUSR1 "$pid"
