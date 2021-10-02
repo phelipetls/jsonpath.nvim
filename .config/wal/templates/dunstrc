@@ -17,9 +17,8 @@
     # will be ignored.
     follow = mouse
 
-    # The geometry of the window:
-    #   [{width}]x{height}[+/-{x}+/-{y}]
     # The geometry of the message window.
+    #   [$width]x$height[+/-$x+/-$y]
     # The height is measured in number of notifications everything else
     # in pixels.  If the width is omitted but the height is given
     # ("-geometry x2"), the message window expands over the whole screen
@@ -61,7 +60,7 @@
 
     # Defines width in pixels of frame around the notification window.
     # Set to 0 to disable.
-    frame_width = 3
+    frame_width = 1
 
     # Defines color of the frame around the notification window.
     frame_color = "#aaaaaa"
@@ -86,7 +85,7 @@
 
     ### Text ###
 
-    font = Monospace 8
+    font = SourceCodePro-SemiBold 8
 
     # The spacing between lines.  If the height is smaller than the
     # font height, it will get raised to the font height.
@@ -152,7 +151,7 @@
     stack_duplicates = true
 
     # Hide the count of stacked notifications with the same content
-    hide_duplicate_count = false
+    hide_duplicate_count = true
 
     # Display indicators for URLs (U) and actions (A).
     show_indicators = yes
@@ -160,7 +159,7 @@
     ### Icons ###
 
     # Align icons left/right/off
-    icon_position = off
+    icon_position = left
 
     # Scale small icons up to this size, set to 0 to disable. Helpful
     # for e.g. small files or high-dpi screens. In case of conflict,
@@ -168,10 +167,10 @@
     min_icon_size = 0
 
     # Scale larger icons down to this size, set to 0 to disable
-    max_icon_size = 32
+    max_icon_size = 16
 
     # Paths to default icons.
-    icon_path = /usr/share/icons/ePapirus/16x16/status/:/usr/share/icons/ePapirus/16x16/devices/
+    icon_path = /usr/share/icons/Papirus-Dark/16x16/actions
 
     ### History ###
 
@@ -278,28 +277,22 @@
     context = ctrl+shift+period
 
 [urgency_low]
-    # IMPORTANT: colors have to be defined in quotation marks.
-    # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#222222"
-    foreground = "#888888"
+    background = "{background}"
+    foreground = "{foreground}"
+    frame_color = "{color0}"
     timeout = 10
-    # Icon for notifications with low urgency, uncomment to enable
-    #icon = /path/to/icon
 
 [urgency_normal]
-    background = "#285577"
-    foreground = "#ffffff"
+    background = "{background}"
+    foreground = "{foreground}"
+    frame_color = "{color4}"
     timeout = 10
-    # Icon for notifications with normal urgency, uncomment to enable
-    #icon = /path/to/icon
 
 [urgency_critical]
-    background = "#900000"
-    foreground = "#ffffff"
-    frame_color = "#ff0000"
+    background = "{background}"
+    foreground = "{foreground}"
+    frame_color = "{color1}"
     timeout = 0
-    # Icon for notifications with critical urgency, uncomment to enable
-    #icon = /path/to/icon
 
 # Every section that isn't one of the above is interpreted as a rules to
 # override settings for certain messages.

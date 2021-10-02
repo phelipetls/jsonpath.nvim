@@ -74,7 +74,7 @@
     tags:
       - setup
       - pywal
-    command: wal --theme custom-base16-railscasts
+    command: wal --theme custom-base16-railscasts -o .config/wal/done.sh
 
   - name: Build suckless tools
     tags:
