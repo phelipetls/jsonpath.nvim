@@ -128,7 +128,7 @@
     tags:
       - always
     include_role:
-      name: ansible-role-golang
+      name: fubarhouse.golang
       apply:
         tags:
           - go
