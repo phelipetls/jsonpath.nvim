@@ -10,7 +10,7 @@ use most often:
 ```sh
 sudo apt install -y ansible git
 
-git clone git@github.com:phelipetls/dotfiles.git --recurse-submodules --shallow-submodules --jobs 4
+git clone git@github.com:phelipetls/dotfiles.git
 
 ansible-galaxy install -r dotfiles/requirements.yml
 ansible-playbook --ask-become-pass dotfiles/bootstrap.yml

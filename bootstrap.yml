@@ -64,6 +64,12 @@
       state: present
       global: true
 
+  - name: Initialize git submodules
+    tags:
+      - packages
+      - submodules
+    command: git submodule update --init --recursive --jobs 4
+
   - name: Run pywal
     tags:
       - setup
