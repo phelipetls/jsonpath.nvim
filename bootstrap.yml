@@ -72,13 +72,11 @@
 
   - name: Run pywal
     tags:
-      - setup
       - pywal
     command: wal --theme custom-base16-railscasts -o .config/wal/done.sh
 
   - name: Build suckless tools
     tags:
-      - setup
       - suckless
     loop:
       - dmenu
@@ -93,7 +91,6 @@
 
   - name: Run Stow
     tags:
-      - setup
       - stow
     # TODO: remove .bashrc and other files that may already exist
     shell: "stow . --target {{ ansible_env.HOME }} --verbose=2"
@@ -102,7 +99,6 @@
 
   - name: Configure DWM X Session
     tags:
-      - setup
       - dwm
     template:
       src: templates/dwm.desktop.j2
