@@ -1,6 +1,0 @@
-[Unit]
-Description=redshift
-PartOf=graphical-session.target
-
-[Service]
-ExecStart=redshift
