@@ -5,3 +5,4 @@
 --ignore ansible.cfg
 --ignore hosts
 --ignore .stowrc
+--ignore install
