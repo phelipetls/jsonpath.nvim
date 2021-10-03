@@ -187,7 +187,7 @@
     max_icon_size = 16
 
     # Paths to default icons.
-    icon_path = /usr/share/icons/Papirus-Dark/16x16/actions
+    icon_path = /usr/share/icons/Papirus-Dark/symbolic/status:/usr/share/icons/Papirus-Dark/16x16/devices:/usr/share/icons/Papirus-Dark/16x16/legacy
 
     ### History ###
 

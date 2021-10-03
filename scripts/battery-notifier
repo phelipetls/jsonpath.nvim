@@ -6,8 +6,10 @@ export XDG_RUNTIME_DIR=/run/user/$(id -u)
 state=$(acpi | sed -E "s/.* ([A-Za-z]+),.*/\1/")
 level=$(acpi | sed -E 's/.* ([0-9]+)%.*/\1/')
 
+hint="string:x-dunst-stack-tag:battery-notifier"
+
 if [[ "$level" -lt 15 ]] && [[ "$state" = "Discharging" ]]; then
-  notify-send -u normal -r 10000 "Bateria baixa: $level"
+  notify-send -u normal -h "$hint":x-dunst-stack-tag:battery-notifier -i "battery-caution-symbolic" -h "int:value:$level" "Bateria baixa"
 elif [[ $state = "Full" ]]; then
-  notify-send -u low "Bateria cheia"
+  notify-send -u low -h "$hint" -i "battery-full-charged-symbolic" "Bateria cheia"
 fi
