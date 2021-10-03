@@ -30,7 +30,7 @@ function notify() {
   volume=$(get_volume)
   icon='audio-volume-high-symbolic'
   [[ $(is_mute) || $volume -eq 0 ]] && icon='audio-volume-muted-symbolic'
-  notify-send -i "$icon" -h string:x-dunst-stack-tag:volume -h "int:value:$volume" -t 2000 -u normal "Volume "
+  notify-send -i "$icon" -h string:x-dunst-stack-tag:volume -h "int:value:$volume" -t 2000 -u low "Volume "
 }
 
 notify
