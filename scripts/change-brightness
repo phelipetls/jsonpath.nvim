@@ -5,7 +5,7 @@ function get_brightness {
 }
 
 function send_notification {
-  dunstify -r 9999 -u normal "Brightness: $(get_brightness)%"
+  notify-send -r 9999 -u normal "Brightness: $(get_brightness)%"
 }
 
 case $1 in

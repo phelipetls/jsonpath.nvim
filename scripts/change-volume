@@ -33,7 +33,7 @@ function notify() {
   remaining=$(seq -s "░" 0 $(( max_volume - volume / 5 )) | tr -d '[:digit:]')
   icon='audio-volume-high'
   [[ $(is_mute) || $volume -eq 0 ]] && icon='audio-volume-muted'
-  dunstify -i "$icon" -h string:x-dunst-stack-tag:volume -t 2000 -u normal "$completed$remaining ($volume%)"
+  notify-send -i "$icon" -h string:x-dunst-stack-tag:volume -t 2000 -u normal "$completed$remaining ($volume%)"
 }
 
 notify
