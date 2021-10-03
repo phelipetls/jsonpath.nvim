@@ -607,6 +607,11 @@ augroup END
 
 let g:coc_start_at_startup = 0
 
+augroup AutoStartCoc
+  au!
+  autocmd FileType lua,json,yaml CocStart
+augroup END
+
 set nobackup
 set nowritebackup
 set updatetime=300
