@@ -28,12 +28,9 @@ function is_mute {
 
 function notify() {
   volume=$(get_volume)
-  max_volume=$(( 100 / 5 ))
-  completed=$(seq -s "█" 0 $(( volume / 5 )) | tr -d '[:digit:]')
-  remaining=$(seq -s "░" 0 $(( max_volume - volume / 5 )) | tr -d '[:digit:]')
   icon='audio-volume-high'
   [[ $(is_mute) || $volume -eq 0 ]] && icon='audio-volume-muted'
-  notify-send -i "$icon" -h string:x-dunst-stack-tag:volume -t 2000 -u normal "$completed$remaining ($volume%)"
+  notify-send -i "$icon" -h string:x-dunst-stack-tag:volume -h "int:value:$volume" -t 2000 -u normal "Volume "
 }
 
 notify

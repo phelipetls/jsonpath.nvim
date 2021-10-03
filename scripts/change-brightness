@@ -5,7 +5,8 @@ function get_brightness {
 }
 
 function send_notification {
-  notify-send -r 9999 -u normal "Brightness: $(get_brightness)%"
+  brightness=$(get_brightness)
+  notify-send -h string:x-dunst-stack-tag:brightness -t 2000 -u normal -h "int:value:$brightness" "Brightness"
 }
 
 case $1 in
