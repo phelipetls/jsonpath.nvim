@@ -12,3 +12,4 @@ Wants=numlockx.service
 Wants=redshift.service
 Wants=slock.service
 Wants=ssh-agent.service
+Wants=dunst.service
