@@ -33,6 +33,7 @@
         - scrcpy
         - tlp
         - htop
+        - dunst
       state: present
 
   - name: Install pip packages
