@@ -65,6 +65,48 @@
       state: present
       global: true
 
+  - name: Build neovim from source
+    tags:
+      - packages
+      - neovim
+    vars:
+      clone_path: "{{ ansible_env.HOME }}/src/neovim"
+    block:
+      - name: Install system dependencies
+        apt:
+          name:
+            - ninja-build
+            - gettext
+            - libtool
+            - libtool-bin
+            - autoconf
+            - automake
+            - cmake
+            - g++
+            - pkg-config
+            - unzip
+            - curl
+          state: present
+
+      - name: Clone neovim repository
+        git:
+          repo: https://github.com/neovim/neovim
+          dest: "{{ clone_path }}"
+          clone: yes
+          version: v0.5.0
+
+      - name: Build release version
+        community.general.make:
+          chdir: "{{ clone_path }}"
+          params:
+            CMAKE_BUILD_TYPE: Release
+
+      - name: Install release version
+        become: yes
+        community.general.make:
+          chdir: "{{ clone_path }}"
+          target: install
+
   - name: Initialize git submodules
     tags:
       - packages
