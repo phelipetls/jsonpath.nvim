@@ -612,6 +612,11 @@ augroup AutoStartCoc
   autocmd FileType lua,json,yaml CocStart
 augroup END
 
+let g:coc_global_extensions = [
+      \'coc-tsserver',
+      \'coc-json'
+      \]
+
 set nobackup
 set nowritebackup
 set updatetime=300
