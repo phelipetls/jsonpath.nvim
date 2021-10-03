@@ -1,12 +1,2 @@
 #!/bin/bash
-# this script goes into a file in /usr/share/xsessions
-# like this:
-# [Desktop Entry]
-# Encoding=UTF-8
-# Name=Dwm
-# Comment=Dynamic window manager
-# Exec=/home/phelipe/suckless/dwm/dwm_start
-# Icon=dwm
-# Type=XSession
-
 systemctl --user start --wait dwm-session.target
