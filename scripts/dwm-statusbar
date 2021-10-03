@@ -71,7 +71,7 @@ do
     get_battery
   }
 
-  xsetroot -name "$mailcount | $cpu_temp | $memory | $battery | $volume | $date ⋮"
+  xsetroot -name "$mailcount | $cpu_temp | $memory | $battery | $volume | $date |"
 
   sleep 1 & wait && sec=$((sec + 1))
 done
