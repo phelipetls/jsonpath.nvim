@@ -149,4 +149,23 @@
       - github.com/gohugoio/hugo@v0.88.1
     command: "go install {{ item }}"
 
-  # TODO: start tlp if it's not yet started
+  - name: Start third-party systemd system services
+    tags:
+      - systemd
+    loop:
+      - tlp
+    systemd:
+      name: "{{ item }}"
+      state: started
+      scope: system
+
+  - name: Start third-party systemd user services
+    tags:
+      - systemd
+    loop:
+      - dunst
+      - redshift
+    systemd:
+      name: "{{ item }}"
+      state: started
+      scope: user
