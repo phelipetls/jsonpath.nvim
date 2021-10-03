@@ -3,6 +3,16 @@
   hosts: localhost
 
   tasks:
+  - name: Add apt repositories
+    tags:
+      - packages
+      - apt
+    loop:
+      - "ppa:papirus/papirus"
+    apt_repository:
+      repo: "{{ item }}"
+      state: present
+
   - name: Install apt packages
     tags:
       - packages
@@ -34,6 +44,7 @@
         - tlp
         - htop
         - dunst
+        - papirus-icon-theme
       state: present
 
   - name: Install pip packages
