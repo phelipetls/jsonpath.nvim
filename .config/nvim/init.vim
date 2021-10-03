@@ -11,7 +11,6 @@ packadd! matchit
 packadd! vim-lion
 packadd! tagalong.vim
 packadd! splitjoin.vim
-packadd! vim-sleuth
 packadd! inline_edit.vim
 
 " git
