@@ -5,7 +5,7 @@
   tasks:
   - name: Add apt repositories
     tags:
-      - packages
+      - deps
       - apt
     loop:
       - "ppa:papirus/papirus"
@@ -15,7 +15,7 @@
 
   - name: Install apt packages
     tags:
-      - packages
+      - deps
       - apt
     become: true
     apt:
@@ -49,7 +49,7 @@
 
   - name: Install pip packages
     tags:
-      - packages
+      - deps
       - pip
     pip:
       name:
@@ -65,7 +65,7 @@
 
   - name: Install npm packages
     tags:
-      - packages
+      - deps
       - npm
     loop:
       - n
@@ -78,7 +78,7 @@
 
   - name: Build neovim from source
     tags:
-      - packages
+      - deps
       - neovim
     vars:
       clone_path: "{{ ansible_env.HOME }}/src/neovim"
@@ -120,7 +120,7 @@
 
   - name: Initialize git submodules
     tags:
-      - packages
+      - deps
       - submodules
     command: git submodule update --init --recursive --jobs 4
 
@@ -162,6 +162,7 @@
   - name: Install Font Awesome
     tags:
       - fonts
+      - deps
     get_url:
       url: https://github.com/FortAwesome/Font-Awesome/blob/7d3d774145ac38663f6d1effc6def0334b68ab7e/otfs/Font%20Awesome%205%20Free-Solid-900.otf?raw=true
       dest: "{{ ansible_env.HOME }}/.local/share/fonts/Font Awesome 5 Free-Solid-900.otf"
@@ -170,6 +171,7 @@
   - name: Install Source Code Pro
     tags:
       - fonts
+      - deps
     get_url:
       url: https://github.com/adobe-fonts/source-code-pro/blob/29fdb884c6e9dc2a312f4a5e2bb3b2dad2350777/TTF/SourceCodePro-Semibold.ttf?raw=true
       dest: "{{ ansible_env.HOME }}/.local/share/fonts/SourceCodePro-Semibold.ttf"
@@ -196,7 +198,7 @@
   - name: Install Go packages
     tags:
       - go
-      - packages
+      - deps
     loop:
       - github.com/mattn/efm-langserver@v0.0.37
       - github.com/gohugoio/hugo@v0.88.1
