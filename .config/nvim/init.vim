@@ -210,6 +210,9 @@ endif
 
 autocmd! FocusGained * checktime
 
+autocmd FileType javascript,typescript,javascriptreact,typescriptreact,sh,yaml,vim,lua,json,html set expandtab shiftwidth=2 softtabstop=2
+autocmd FileType python set expandtab shiftwidth=4 softtabstop=4
+
 "}}}
 "{{{ mappings
 
