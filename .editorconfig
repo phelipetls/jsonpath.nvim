@@ -1,9 +1,0 @@
-[*.{js,jsx,ts,tsx,lua,json,vim,yml}]
-end_of_line = lf
-indent_size = space
-indent_size = 2
-
-[*.py]
-end_of_line = lf
-indent_size = space
-indent_size = 4
