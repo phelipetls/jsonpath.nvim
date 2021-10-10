@@ -13,6 +13,17 @@
       repo: "{{ item }}"
       state: present
 
+  - name: Install deb packages
+    tags:
+      - deps
+      - deb
+    loop:
+      - "https://go.microsoft.com/fwlink/?LinkID=760868"
+    apt:
+      deb: "{{ item }}"
+      state: present
+    become: true
+
   - name: Install apt packages
     tags:
       - deps
@@ -44,6 +55,7 @@
         - tlp
         - htop
         - papirus-icon-theme
+        - code
       state: present
 
   - name: Install pip packages
