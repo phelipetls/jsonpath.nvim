@@ -10,11 +10,3 @@ cd dotfiles
 
 ./install
 ```
-
-# Manual Setup
-
-## Start TLP
-
-```sh
-tlp start
-```
