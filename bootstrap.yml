@@ -82,6 +82,7 @@
       - n
       - eslint_d
       - prettier
+      - yalc
     community.general.npm:
       name: "{{ item }}"
       state: present

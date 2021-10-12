@@ -1,3 +1,5 @@
 .projections.json
 Session.vim
 .prettier_d
+.yalc
+yalc.lock
