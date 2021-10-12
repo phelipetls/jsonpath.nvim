@@ -1,7 +1,7 @@
 hi clear
 set background=dark
 
-let g:colors_name = 'sixteen'
+let g:colors_name = 'pywal'
 
 let pywal_file = "$HOME/.cache/wal/colors-wal.vim"
 

@@ -54,7 +54,7 @@ packadd! vim-hugo
 "{{{ settings
 
 set termguicolors
-colorscheme sixteen
+colorscheme pywal
 
 filetype plugin indent on
 
