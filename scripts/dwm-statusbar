@@ -60,18 +60,14 @@ get_all
 trap "get_volume" "USR1"
 trap "get_mailcount" "USR2"
 
-sec=0
-
 while true
 do
-  [ $(( sec % 30 )) -eq 0 ] && {
-    get_date
-    get_cpu_temp
-    get_memory
-    get_battery
-  }
+  get_date
+  get_cpu_temp
+  get_memory
+  get_battery
 
   xsetroot -name "$mailcount | $cpu_temp | $memory | $battery | $volume | $date |"
 
-  sleep 1 & wait && sec=$((sec + 1))
+  sleep 30 & wait
 done
