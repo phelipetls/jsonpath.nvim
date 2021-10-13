@@ -106,6 +106,8 @@ exe "hi TabLine ctermbg=0 guibg=".color0." ctermfg=7 guifg=".color7." cterm=NONE
 exe "hi TabLineFill ctermbg=0 guibg=".color0." cterm=NONE gui=NONE"
 exe "hi TabLineSel ctermbg=8 guibg=".color8." ctermfg=7 guifg=".color7
 
+exe "hi ColorColumn ctermbg=0 guibg=".color0." ctermfg=7 guifg=".color7." cterm=NONE gui=NONE"
+
 exe "hi MatchParen ctermbg=8 guibg=".color8." ctermfg=7 guifg=".color7
 
 exe "hi SpellBad ctermbg=NONE guibg=NONE ctermfg=1 guifg=".color1." cterm=UNDERLINE gui=UNDERLINE"
