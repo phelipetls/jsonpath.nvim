@@ -23,6 +23,7 @@
       deb: "{{ item }}"
       state: present
     become: true
+    when: "'DISPLAY' in ansible_env"
 
   - name: Install apt packages
     tags:
@@ -41,22 +42,32 @@
         - w3m
         - offlineimap
         - abook
-        - mpv
         - ripgrep
+        - fd-find
+        - jq
+        - shellcheck
+        - htop
+      state: present
+
+  - name: Install apt GUI applications
+    tags:
+      - deps
+      - apt
+    become: true
+    apt:
+      name:
         - scrot
         - sxiv
         - zathura
-        - fd-find
+        - mpv
         - numlockx
-        - jq
-        - shellcheck
         - peek
         - scrcpy
         - tlp
-        - htop
         - papirus-icon-theme
         - code
       state: present
+      when: "'DISPLAY' in ansible_env"
 
   - name: Install pip packages
     tags:
@@ -192,6 +203,7 @@
       cmd: make clean install
       chdir: "./suckless/{{ item }}"
     become: true
+    when: "'DISPLAY' in ansible_env"
 
   - name: Run Stow
     tags:
@@ -208,6 +220,7 @@
       src: templates/dwm.desktop.j2
       dest: /usr/share/xsessions/dwm.desktop
     become: true
+    when: "'DISPLAY' in ansible_env"
 
   - name: Install Font Awesome
     tags:
@@ -217,6 +230,7 @@
       url: https://github.com/FortAwesome/Font-Awesome/blob/7d3d774145ac38663f6d1effc6def0334b68ab7e/otfs/Font%20Awesome%205%20Free-Solid-900.otf?raw=true
       dest: "{{ ansible_env.HOME }}/.local/share/fonts/Font Awesome 5 Free-Solid-900.otf"
       checksum: md5:8d531d92051cddac77556d0734b701f8
+      when: "'DISPLAY' in ansible_env"
 
   - name: Install Source Code Pro
     tags:
@@ -263,6 +277,7 @@
       name: "{{ item }}"
       state: started
       scope: system
+      when: "'DISPLAY' in ansible_env"
 
   - name: Start third-party systemd user services
     tags:
@@ -274,3 +289,4 @@
       name: "{{ item }}"
       state: started
       scope: user
+      when: "'DISPLAY' in ansible_env"
