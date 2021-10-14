@@ -23,6 +23,8 @@ packadd! gv.vim
 
 " file navigation
 packadd! vim-dirvish
+packadd! ranger.vim
+packadd! bclose.vim
 
 " fuzzy finder
 if has("nvim-0.5.0")
@@ -182,6 +184,9 @@ augroup END
 nnoremap <C-c>' :InlineEdit<CR>
 
 let g:inline_edit_autowrite=1
+
+" ranger.vim
+let g:ranger_map_keys = 0
 
 "}}}
 "{{{ autocommands
