@@ -32,9 +32,7 @@ if executable("node")
   noremap <buffer> <F5> :w !node<CR>
 endif
 
-if executable('prettier_d_slim')
-  let &l:formatprg='prettier_d_slim --parser=typescript --stdin --stdin-filepath'
-elseif executable('prettier')
+if executable('prettier')
   let &l:formatprg='prettier --parser=typescript'
 elseif executable('eslint_d')
   let &l:formatprg='eslint_d --fix-to-stdout --stdin'
