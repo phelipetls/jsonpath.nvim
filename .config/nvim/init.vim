@@ -635,6 +635,13 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#rpc#ready() ? coc#refresh() :
+      \ !empty(&omnifunc) ? "\<C-x>\<C-o>" :
+      \ "\<C-n>"
+
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
@@ -647,10 +654,6 @@ endfunction
 
 augroup Coc
   autocmd!
-  autocmd User CocNvimInit inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
   autocmd User CocNvimInit inoremap <silent><expr> <c-space> coc#refresh()
   autocmd User CocNvimInit inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
@@ -675,10 +678,6 @@ augroup Coc
   autocmd User CocNvimInit command! -nargs=0 References :call CocActionAsync('jumpReferences')
   autocmd User CocNvimInit command! -nargs=0 Fmt :call CocAction('format')
   autocmd User CocNvimInit nnoremap <silent> <M-S-O> :call CocActionAsync('runCommand', 'editor.action.organizeImport')<CR>
-  autocmd User CocNvimInit inoremap <silent><expr> <TAB>
-        \ pumvisible() ? "\<C-n>" :
-        \ <SID>check_back_space() ? "\<TAB>" :
-        \ coc#refresh()
   autocmd User CocNvimInit nnoremap <silent> K :call <SID>show_documentation()<CR>
 
   autocmd User CocNvimInit inoremap <silent> <C-c><C-p> <C-r>=CocActionAsync('showSignatureHelp')<CR>
