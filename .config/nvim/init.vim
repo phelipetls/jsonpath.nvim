@@ -642,6 +642,11 @@ inoremap <silent><expr> <TAB>
       \ !empty(&omnifunc) ? "\<C-x>\<C-o>" :
       \ "\<C-n>"
 
+inoremap <silent><expr> <c-space>
+      \ !empty(&omnifunc) ? "\<C-x>\<C-o>" :
+      \ coc#rpc#ready() ? coc#refresh() :
+      \ ""
+
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
@@ -654,7 +659,6 @@ endfunction
 
 augroup Coc
   autocmd!
-  autocmd User CocNvimInit inoremap <silent><expr> <c-space> coc#refresh()
   autocmd User CocNvimInit inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
   autocmd User CocNvimInit inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() :"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
