@@ -1,7 +1,7 @@
-set spoolfile = "+Gmail/INBOX"
-set record = "+Gmail/[Gmail].E-mails enviados"
-set trash = "+Gmail/[Gmail].Lixeira"
-set postponed = "+Gmail/[Gmail].Rascunhos"
+set spoolfile = "+Gmail/Inbox"
+set record = "+Gmail/E-mails enviados"
+set trash = "+Gmail/Lixeira"
+set postponed = "+Gmail/Rascunhos"
 set mail_check = 100
 set imap_keepalive = 900
 
