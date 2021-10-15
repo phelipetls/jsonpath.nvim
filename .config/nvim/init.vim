@@ -635,36 +635,6 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <silent><expr> <c-space> coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-set tagfunc=CocTagFunc
-
-nmap <silent> [d <Plug>(coc-definition)
-nmap <silent> <C-w>d :call CocActionAsync('jumpDefinition', 'split')<CR>
-nmap <silent> <C-w><C-d> :call CocActionAsync('jumpDefinition', 'split')<CR>
-
-nmap <silent> <C-c><C-p> :call CocActionAsync("jumpDefinition", 'pedit')<CR>
-nmap <silent> <c-w>} :call CocActionAsync('jumpDefinition', 'pedit')<CR>
-
-nmap <silent> [t <Plug>(coc-type-definition)
-
-nmap <silent> <C-space> :call CocActionAsync("diagnosticInfo")<CR>
-
-command! -nargs=0 References :call CocActionAsync('jumpReferences')
-command! -nargs=0 Fmt :call CocAction('format')
-nnoremap <silent> <M-S-O> :call CocActionAsync('runCommand', 'editor.action.organizeImport')<CR>
-
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
@@ -675,26 +645,62 @@ function! s:show_documentation()
   endif
 endfunction
 
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+augroup Coc
+  autocmd!
+  autocmd User CocNvimInit inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+  autocmd User CocNvimInit inoremap <silent><expr> <c-space> coc#refresh()
+  autocmd User CocNvimInit inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-inoremap <silent> <C-c><C-p> <C-r>=CocActionAsync('showSignatureHelp')<CR>
+  autocmd User CocNvimInit inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() :"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
-nmap <F2> <Plug>(coc-rename)
+  autocmd User CocNvimInit nmap <silent> [g <Plug>(coc-diagnostic-prev)
+  autocmd User CocNvimInit nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
-nmap <M-CR> <Plug>(coc-codeaction-cursor)
+  autocmd User CocNvimInit set tagfunc=CocTagFunc
 
-nmap <silent> <C-s> <Plug>(coc-range-select)
-xmap <silent> <C-s> <Plug>(coc-range-select)
+  autocmd User CocNvimInit nmap <silent> [d <Plug>(coc-definition)
+  autocmd User CocNvimInit nmap <silent> <C-w>d :call CocActionAsync('jumpDefinition', 'split')<CR>
+  autocmd User CocNvimInit nmap <silent> <C-w><C-d> :call CocActionAsync('jumpDefinition', 'split')<CR>
+
+  autocmd User CocNvimInit nmap <silent> <C-c><C-p> :call CocActionAsync("jumpDefinition", 'pedit')<CR>
+  autocmd User CocNvimInit nmap <silent> <c-w>} :call CocActionAsync('jumpDefinition', 'pedit')<CR>
+
+  autocmd User CocNvimInit nmap <silent> [t <Plug>(coc-type-definition)
+
+  autocmd User CocNvimInit nmap <silent> <C-space> :call CocActionAsync("diagnosticInfo")<CR>
+
+  autocmd User CocNvimInit command! -nargs=0 References :call CocActionAsync('jumpReferences')
+  autocmd User CocNvimInit command! -nargs=0 Fmt :call CocAction('format')
+  autocmd User CocNvimInit nnoremap <silent> <M-S-O> :call CocActionAsync('runCommand', 'editor.action.organizeImport')<CR>
+  autocmd User CocNvimInit inoremap <silent><expr> <TAB>
+        \ pumvisible() ? "\<C-n>" :
+        \ <SID>check_back_space() ? "\<TAB>" :
+        \ coc#refresh()
+  autocmd User CocNvimInit nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+  autocmd User CocNvimInit inoremap <silent> <C-c><C-p> <C-r>=CocActionAsync('showSignatureHelp')<CR>
+
+  autocmd User CocNvimInit nmap <F2> <Plug>(coc-rename)
+
+  autocmd User CocNvimInit nmap <M-CR> <Plug>(coc-codeaction-cursor)
+
+  autocmd User CocNvimInit nmap <silent> <C-s> <Plug>(coc-range-select)
+  autocmd User CocNvimInit xmap <silent> <C-s> <Plug>(coc-range-select)
+
+  autocmd User CocNvimInit nnoremap <space>d <cmd>Telescope coc workspace_diagnostics<CR>
+  autocmd User CocNvimInit nnoremap <space>s <cmd>Telescope coc workspace_symbols<CR>
+
+  autocmd User CocNvimInit nnoremap <silent><expr> <c-y> coc#float#has_scroll() ? coc#float#scroll(0) : "\<c-y>"
+  autocmd User CocNvimInit nnoremap <silent><expr> <c-e> coc#float#has_scroll() ? coc#float#scroll(1) : "\<c-e>"
+
+  autocmd User CocNvimInit let g:coc_quickfix_open_command = 'doautocmd QuickFixCmdPost | cfirst'
+augroup END
 
 if has("nvim-0.5.0")
-  nnoremap <space>d <cmd>Telescope coc workspace_diagnostics<CR>
-  nnoremap <space>s <cmd>Telescope coc workspace_symbols<CR>
 endif
-
-let g:coc_quickfix_open_command = 'doautocmd QuickFixCmdPost | cfirst'
-
-nnoremap <silent><expr> <c-y> coc#float#has_scroll() ? coc#float#scroll(0) : "\<c-y>"
-nnoremap <silent><expr> <c-e> coc#float#has_scroll() ? coc#float#scroll(1) : "\<c-e>"
 
 "}}}
 "{{{ treesitter
