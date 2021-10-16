@@ -6,3 +6,4 @@
 --ignore hosts
 --ignore .stowrc
 --ignore install
+--ignore .vagrant

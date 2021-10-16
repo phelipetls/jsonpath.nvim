@@ -13,3 +13,4 @@ suckless/**/*.o
 *.rej
 *.orig
 .mutt/aliases
+.vagrant
