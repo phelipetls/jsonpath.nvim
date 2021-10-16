@@ -12,6 +12,7 @@
     apt_repository:
       repo: "{{ item }}"
       state: present
+    become: true
 
   - name: Install deb packages
     tags:
