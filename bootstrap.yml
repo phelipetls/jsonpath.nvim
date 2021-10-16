@@ -1,6 +1,6 @@
 ---
 - name: Bootstrap development environment
-  hosts: localhost
+  hosts: default
 
   tasks:
   - name: Add apt repositories
