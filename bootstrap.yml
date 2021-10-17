@@ -48,6 +48,7 @@
         - jq
         - shellcheck
         - htop
+        - python3-pip
       state: present
 
   - name: Install apt GUI applications
