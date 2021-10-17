@@ -6,6 +6,7 @@
   - name: Add apt repositories
     tags:
       - deps
+      - gui
       - apt
     loop:
       - "ppa:papirus/papirus"
@@ -18,6 +19,7 @@
     tags:
       - always
       - deps
+      - gui
     include_role:
       name: gantsign.visual-studio-code
       apply:
@@ -52,6 +54,7 @@
     tags:
       - deps
       - apt
+      - gui
     become: true
     apt:
       name:
@@ -65,7 +68,6 @@
         - tlp
         - papirus-icon-theme
       state: present
-      when: "'DISPLAY' in ansible_env"
 
   - name: Install pip packages
     tags:
@@ -201,7 +203,6 @@
       cmd: make clean install
       chdir: "./suckless/{{ item }}"
     become: true
-    when: "'DISPLAY' in ansible_env"
 
   - name: Run Stow
     tags:
@@ -214,21 +215,21 @@
   - name: Configure DWM X Session
     tags:
       - dwm
+      - gui
     template:
       src: templates/dwm.desktop.j2
       dest: /usr/share/xsessions/dwm.desktop
     become: true
-    when: "'DISPLAY' in ansible_env"
 
   - name: Install Font Awesome
     tags:
       - fonts
       - deps
+      - gui
     get_url:
       url: https://github.com/FortAwesome/Font-Awesome/blob/7d3d774145ac38663f6d1effc6def0334b68ab7e/otfs/Font%20Awesome%205%20Free-Solid-900.otf?raw=true
       dest: "{{ ansible_env.HOME }}/.local/share/fonts/Font Awesome 5 Free-Solid-900.otf"
       checksum: md5:8d531d92051cddac77556d0734b701f8
-      when: "'DISPLAY' in ansible_env"
 
   - name: Install Source Code Pro
     tags:
@@ -269,17 +270,18 @@
   - name: Start third-party systemd system services
     tags:
       - systemd
+      - gui
     loop:
       - tlp
     systemd:
       name: "{{ item }}"
       state: started
       scope: system
-      when: "'DISPLAY' in ansible_env"
 
   - name: Start third-party systemd user services
     tags:
       - systemd
+      - gui
     loop:
       - dunst
       - redshift
@@ -287,4 +289,3 @@
       name: "{{ item }}"
       state: started
       scope: user
-      when: "'DISPLAY' in ansible_env"
