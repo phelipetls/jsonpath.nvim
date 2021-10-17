@@ -7,3 +7,5 @@ roles:
   - name: fubarhouse.golang
     src: https://github.com/phelipetls/ansible-role-golang.git
     version: fix/install-dependencies-in-debian
+
+  - name: gantsign.visual-studio-code

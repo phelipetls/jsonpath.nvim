@@ -14,17 +14,15 @@
       state: present
     become: true
 
-  - name: Install deb packages
+  - name: Install Visual Studio Code
     tags:
+      - always
       - deps
-      - deb
-    loop:
-      - "https://go.microsoft.com/fwlink/?LinkID=760868"
-    apt:
-      deb: "{{ item }}"
-      state: present
-    become: true
-    when: "'DISPLAY' in ansible_env"
+    include_role:
+      name: gantsign.visual-studio-code
+      apply:
+        tags:
+          - vscode
 
   - name: Install apt packages
     tags:
@@ -66,7 +64,6 @@
         - scrcpy
         - tlp
         - papirus-icon-theme
-        - code
       state: present
       when: "'DISPLAY' in ansible_env"
 
