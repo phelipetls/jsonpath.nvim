@@ -63,17 +63,17 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2]                     = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[]               = { "/home/phelipe/suckless/dmenu/dmenu_run" };
+static const char *dmenucmd[]               = { "$HOME/suckless/dmenu/dmenu_run" };
 static const char *appfinder[]              = { "xfce4-appfinder" };
 static const char *lockcmd[]                = { "slock" };
 static const char *termcmd[]                = { "st", NULL };
 static const char *browsercmd[]             = { "firefox", NULL };
-static const char *shutdown[]               = { "/home/phelipe/scripts/shutdown", NULL };
-static const char *brightnessup[]           = { "/home/phelipe/scripts/change-brightness", "up", NULL };
-static const char *brightnessdown[]         = { "/home/phelipe/scripts/change-brightness", "down", NULL };
-static const char *upvol[]                  = { "/home/phelipe/scripts/change-volume", "up", NULL };
-static const char *downvol[]                = { "/home/phelipe/scripts/change-volume", "down", NULL };
-static const char *mutevol[]                = { "/home/phelipe/scripts/change-volume", "mute", NULL };
+static const char *shutdown[]               = { "$HOME/scripts/shutdown", NULL };
+static const char *brightnessup[]           = { "$HOME/scripts/change-brightness", "up", NULL };
+static const char *brightnessdown[]         = { "$HOME/scripts/change-brightness", "down", NULL };
+static const char *upvol[]                  = { "$HOME/scripts/change-volume", "up", NULL };
+static const char *downvol[]                = { "$HOME/scripts/change-volume", "down", NULL };
+static const char *mutevol[]                = { "$HOME/scripts/change-volume", "mute", NULL };
 
 #include "focusurgent.c"
 
@@ -84,8 +84,8 @@ static Key keys[] = {
 	{ 0,                            XF86XK_AudioRaiseVolume,  spawn,          {.v = upvol } },
 	{ 0,                            XF86XK_MonBrightnessUp,   spawn,          {.v = brightnessup } },
 	{ 0,                            XF86XK_MonBrightnessDown, spawn,          {.v = brightnessdown } },
-	{ 0,                            XK_Print,                 spawn,          SHCMD("/home/phelipe/scripts/scrot-share") },
-	{ ControlMask,                  XK_Print,                 spawn,          SHCMD("sleep 0.2; /home/phelipe/scripts/scrot-share -s") },
+	{ 0,                            XK_Print,                 spawn,          SHCMD("$HOME/scripts/scrot-share") },
+	{ ControlMask,                  XK_Print,                 spawn,          SHCMD("sleep 0.2; $HOME/scripts/scrot-share -s") },
 	{ MODKEY,                       XK_r,                     spawn,          {.v = appfinder } },
 	{ MODKEY,                       XK_p,                     spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return,                spawn,          {.v = termcmd } },
