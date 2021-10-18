@@ -186,11 +186,6 @@
           chdir: "{{ clone_path }}"
           target: install
 
-  - name: Run pywal
-    tags:
-      - pywal
-    command: wal --theme custom-base16-railscasts -o .config/wal/done.sh
-
   - name: Build suckless tools
     tags:
       - suckless
@@ -211,6 +206,11 @@
     shell: "stow . --target {{ ansible_env.HOME }} --verbose=2"
     register: result
     changed_when: 'result.stderr is search("LINK: ")'
+
+  - name: Run pywal
+    tags:
+      - pywal
+    command: wal --theme custom-base16-railscasts -o .config/wal/done.sh
 
   - name: Configure DWM X Session
     tags:
