@@ -191,19 +191,6 @@
           chdir: "{{ clone_path }}"
           target: install
 
-  - name: Build suckless tools
-    tags:
-      - suckless
-    loop:
-      - dmenu
-      - dwm
-      - slock
-      - st
-      - tabbed
-    shell:
-      cmd: make clean install
-      chdir: "./suckless/{{ item }}"
-
   - name: Run Stow
     tags:
       - stow
@@ -216,6 +203,19 @@
     tags:
       - pywal
     command: wal --theme custom-base16-railscasts -o .config/wal/done.sh
+
+  - name: Build suckless tools
+    tags:
+      - suckless
+    loop:
+      - dmenu
+      - dwm
+      - slock
+      - st
+      - tabbed
+    shell:
+      cmd: make clean install
+      chdir: "./suckless/{{ item }}"
 
   - name: Configure DWM X Session
     become: true
