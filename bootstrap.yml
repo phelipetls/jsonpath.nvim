@@ -167,6 +167,7 @@
             - libpango1.0-dev
             - libgtk-3-dev
             - libxdg-basedir-dev
+            - libnotify-dev
           state: present
 
       - name: Clone dunst repository
