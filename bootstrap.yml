@@ -95,6 +95,7 @@
     include_role:
       name: geerlingguy.nodejs
     vars:
+      nodejs_generate_etc_profile: false
       nodejs_version: "12.x"
       npm_config_prefix: "{{ ansible_env.HOME }}/.npm-packages"
       nodejs_npm_global_packages:
