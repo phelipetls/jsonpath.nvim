@@ -68,6 +68,9 @@
         - scrcpy
         - tlp
         - papirus-icon-theme
+        - libx11-dev
+        - libxext-dev
+        - libxres-dev
       state: present
 
   - name: Install pip packages
