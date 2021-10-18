@@ -233,6 +233,12 @@
       src: templates/dwm.desktop.j2
       dest: /usr/share/xsessions/dwm.desktop
 
+  - name: Create .local/share/fonts
+    file:
+      path: "{{ ansible_env.HOME }}/.local/share/fonts"
+      state: directory
+      mode: '0775'
+
   - name: Install Font Awesome
     tags:
       - fonts
