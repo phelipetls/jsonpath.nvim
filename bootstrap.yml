@@ -1,6 +1,7 @@
 ---
 - name: Bootstrap development environment
   hosts: default
+  become: true
 
   tasks:
   - name: Add apt repositories
@@ -13,7 +14,6 @@
     apt_repository:
       repo: "{{ item }}"
       state: present
-    become: true
 
   - name: Install Visual Studio Code
     tags:
@@ -30,7 +30,6 @@
     tags:
       - deps
       - apt
-    become: true
     apt:
       name:
         - git
@@ -55,7 +54,6 @@
       - deps
       - apt
       - gui
-    become: true
     apt:
       name:
         - scrot
@@ -140,7 +138,6 @@
             CMAKE_BUILD_TYPE: Release
 
       - name: Install release version
-        become: true
         community.general.make:
           chdir: "{{ clone_path }}"
           target: install
@@ -184,7 +181,6 @@
           chdir: "{{ clone_path }}"
 
       - name: Install
-        become: true
         community.general.make:
           chdir: "{{ clone_path }}"
           target: install
@@ -206,7 +202,6 @@
     shell:
       cmd: make clean install
       chdir: "./suckless/{{ item }}"
-    become: true
 
   - name: Run Stow
     tags:
@@ -223,7 +218,6 @@
     template:
       src: templates/dwm.desktop.j2
       dest: /usr/share/xsessions/dwm.desktop
-    become: true
 
   - name: Install Font Awesome
     tags:
