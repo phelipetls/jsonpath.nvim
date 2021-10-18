@@ -3,6 +3,6 @@ Description=dwm
 PartOf=graphical-session.target
 
 [Service]
-ExecStart=dwm
 ExecStopPost=/bin/systemctl --user stop graphical-session.target
+ExecStart=%h/.local/bin/dwm
 Restart=on-failure

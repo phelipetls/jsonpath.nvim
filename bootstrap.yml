@@ -1,10 +1,10 @@
 ---
 - name: Bootstrap development environment
   hosts: default
-  become: true
 
   tasks:
   - name: Add apt repositories
+    become: true
     tags:
       - deps
       - gui
@@ -27,6 +27,7 @@
           - vscode
 
   - name: Install apt packages
+    become: true
     tags:
       - deps
       - apt
@@ -50,6 +51,7 @@
       state: present
 
   - name: Install apt GUI applications
+    become: true
     tags:
       - deps
       - apt
@@ -102,6 +104,7 @@
         - yalc
 
   - name: Build neovim from source
+    become: true
     tags:
       - deps
       - neovim
@@ -149,6 +152,7 @@
     command: git submodule update --init --recursive --jobs 4
 
   - name: Build dunst from source
+    become: true
     tags:
       - deps
       - dunst
@@ -213,6 +217,7 @@
     command: wal --theme custom-base16-railscasts -o .config/wal/done.sh
 
   - name: Configure DWM X Session
+    become: true
     tags:
       - dwm
       - gui

@@ -4,7 +4,7 @@ VERSION = 0.8.2
 # Customize below to fit your system
 
 # paths
-PREFIX = /usr/local
+PREFIX = ${HOME}/.local
 MANPREFIX = $(PREFIX)/share/man
 
 X11INC = /usr/X11R6/include
@@ -22,7 +22,7 @@ LIBS = -L$(X11LIB) -lm -lrt -lX11 -lutil -lXft \
 
 # flags
 STCPPFLAGS = -DVERSION=\"$(VERSION)\" -D_XOPEN_SOURCE=600
-STCFLAGS = $(INCS) $(STCPPFLAGS) $(CPPFLAGS) $(CFLAGS)
+STCFLAGS = $(INCS) $(STCPPFLAGS) $(CPPFLAGS) $(CFLAGS) -I ${HOME}/.cache/wal
 STLDFLAGS = $(LIBS) $(LDFLAGS)
 
 # OpenBSD:

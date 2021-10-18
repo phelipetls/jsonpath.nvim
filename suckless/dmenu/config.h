@@ -7,7 +7,7 @@ static const char *fonts[] = {
 	"monospace:size=10"
 };
 static const char *prompt      = NULL;      /* -p  option; prompt to the left of input field */
-#include "/home/phelipe/.cache/wal/colors-wal-dmenu.h"
+#include "colors-wal-dmenu.h"
 /* static const char *colors[SchemeLast][2] = { */
 /* 	/1*     fg         bg       *1/ */
 /* 	[SchemeNorm] = { "#bbbbbb", "#222222" }, */

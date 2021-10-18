@@ -4,7 +4,7 @@ VERSION = 1.4
 # Customize below to fit your system
 
 # paths
-PREFIX = /usr/local
+PREFIX = ${HOME}/.local
 MANPREFIX = ${PREFIX}/share/man
 
 X11INC = /usr/X11R6/include
@@ -16,7 +16,7 @@ LIBS = -L/usr/lib -lc -lcrypt -L${X11LIB} -lX11 -lXext -lXrandr
 
 # flags
 CPPFLAGS = -DVERSION=\"${VERSION}\" -D_DEFAULT_SOURCE -DHAVE_SHADOW_H
-CFLAGS = -std=c99 -pedantic -Wall -Os ${INCS} ${CPPFLAGS}
+CFLAGS = -std=c99 -pedantic -Wall -Os ${INCS} ${CPPFLAGS} -I ${HOME}/.cache/wal
 LDFLAGS = -s ${LIBS}
 COMPATSRC = explicit_bzero.c
 

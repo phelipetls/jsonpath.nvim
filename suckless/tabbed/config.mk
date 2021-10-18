@@ -4,7 +4,7 @@ VERSION = 0.6
 # Customize below to fit your system
 
 # paths
-PREFIX = /usr/local
+PREFIX = ${HOME}/.local
 MANPREFIX = ${PREFIX}/share/man
 
 X11INC = /usr/X11R6/include
@@ -22,7 +22,7 @@ LIBS = -L/usr/lib -lc -L${X11LIB} -lX11 ${FREETYPELIBS}
 
 # flags
 CPPFLAGS = -DVERSION=\"${VERSION}\" -D_DEFAULT_SOURCE
-CFLAGS = -std=c99 -pedantic -Wall -Os ${INCS} ${CPPFLAGS}
+CFLAGS = -std=c99 -pedantic -Wall -Os ${INCS} ${CPPFLAGS} -I ${HOME}/.cache/wal
 LDFLAGS = -s ${LIBS}
 
 # Solaris

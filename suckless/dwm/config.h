@@ -14,7 +14,7 @@ static const int topbar             = 0;        /* 0 means bottom bar */
 static const int focusonwheel       = 0;
 static const char *fonts[]          = { "SourceCodePro-SemiBold:size=9", "FontAwesome:style=Regular" };
 static const char dmenufont[]       = "monospace:size=10";
-#include "/home/phelipe/.cache/wal/colors-wal-dwm.h"
+#include "colors-wal-dwm.h"
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7" };
