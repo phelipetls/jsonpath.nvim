@@ -108,7 +108,7 @@
     vars:
       clone_path: "{{ ansible_env.HOME }}/src/neovim"
     block:
-      - name: Install system dependencies
+      - name: (Neovim) Install system dependencies
         apt:
           name:
             - ninja-build
@@ -124,20 +124,20 @@
             - curl
           state: present
 
-      - name: Clone neovim repository
+      - name: (Neovim) Clone repository
         git:
           repo: https://github.com/neovim/neovim
           dest: "{{ clone_path }}"
           clone: true
           version: v0.5.1
 
-      - name: Build release version
+      - name: (Neovim) Build release version
         community.general.make:
           chdir: "{{ clone_path }}"
           params:
             CMAKE_BUILD_TYPE: Release
 
-      - name: Install release version
+      - name: (Neovim) Install release version
         community.general.make:
           chdir: "{{ clone_path }}"
           target: install
@@ -155,7 +155,7 @@
     vars:
       clone_path: "{{ ansible_env.HOME }}/src/dunst"
     block:
-      - name: Install system dependencies
+      - name: (Dunst) Install system dependencies
         apt:
           name:
             - libdbus-1-dev
@@ -170,18 +170,18 @@
             - libnotify-dev
           state: present
 
-      - name: Clone dunst repository
+      - name: (Dunst) Clone repository
         git:
           repo: https://github.com/dunst-project/dunst
           dest: "{{ clone_path }}"
           clone: true
           version: v1.6.1
 
-      - name: Build
+      - name: (Dunst) Build
         community.general.make:
           chdir: "{{ clone_path }}"
 
-      - name: Install
+      - name: (Dunst) Install
         community.general.make:
           chdir: "{{ clone_path }}"
           target: install
