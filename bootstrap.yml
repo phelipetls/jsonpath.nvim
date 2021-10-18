@@ -50,6 +50,17 @@
         - python3-pip
       state: present
 
+  - name: Install deb packages
+    become: true
+    tags:
+      - deps
+      - apt
+    loop:
+      - https://github.com/gohugoio/hugo/releases/download/v0.88.1/hugo_0.88.1_Linux-64bit.deb
+    apt:
+      deb: "{{ item }}"
+      state: present
+
   - name: Install apt GUI applications
     become: true
     tags:
@@ -263,24 +274,14 @@
       - fonts
     command: fc-cache -f
 
-  - name: Install Go
+  - name: Install efm-langserver
     tags:
-      - always
-    include_role:
-      name: fubarhouse.golang
-      apply:
-        tags:
-          - go
-    vars:
-      go_version: 1.17
-      go_install_clean: true
-      go_install_clean_full: false
-
-  - name: Install Go packages
-    tags:
-      - go
+      - efm-langserver
       - deps
-    loop:
-      - github.com/mattn/efm-langserver@v0.0.37
-      - github.com/gohugoio/hugo@v0.88.1
-    command: "go install {{ item }}"
+    unarchive:
+      src: https://github.com/mattn/efm-langserver/releases/download/v0.0.37/efm-langserver_v0.0.37_linux_amd64.tar.gz
+      dest: "{{ ansible_env.HOME }}/.local/bin"
+      remote_src: true
+      extra_opts:
+        - "--strip-components=1"
+        - "efm-langserver_v0.0.37_linux_amd64/efm-langserver"
