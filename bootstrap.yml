@@ -38,7 +38,6 @@
         - tmux
         - fzf
         - stow
-        - nodejs
         - mutt
         - w3m
         - offlineimap
@@ -89,19 +88,20 @@
       state: present
       executable: pip3
 
-  - name: Install npm packages
+  - name: Install node
     tags:
       - deps
-      - npm
-    loop:
-      - n
-      - eslint_d
-      - prettier
-      - yalc
-    community.general.npm:
-      name: "{{ item }}"
-      state: present
-      global: true
+      - node
+    include_role:
+      name: geerlingguy.nodejs
+    vars:
+      nodejs_version: "12.x"
+      npm_config_prefix: "{{ ansible_env.HOME }}/.npm-packages"
+      nodejs_npm_global_packages:
+        - n
+        - eslint_d
+        - prettier
+        - yalc
 
   - name: Build neovim from source
     tags:

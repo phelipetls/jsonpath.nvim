@@ -9,3 +9,5 @@ roles:
     version: fix/install-dependencies-in-debian
 
   - name: gantsign.visual-studio-code
+
+  - name: geerlingguy.nodejs
