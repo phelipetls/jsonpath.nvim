@@ -81,6 +81,9 @@
         - libx11-dev
         - libxext-dev
         - libxres-dev
+        - acpi
+        - lm-sensors
+        - alsa-utils
       state: present
 
   - name: Install pip packages
