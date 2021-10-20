@@ -1,6 +1,0 @@
-[Unit]
-Description=Lock screen after 15 minutes
-PartOf=graphical-session.target
-
-[Service]
-ExecStart=xautolock -detectsleep -time 15 -locker slock
