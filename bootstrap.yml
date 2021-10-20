@@ -250,6 +250,22 @@
       src: templates/dwm.desktop.j2
       dest: /usr/share/xsessions/dwm.desktop
 
+  - name: Activate slock before sleep
+    become: true
+    tags:
+      - slock
+      - gui
+    block:
+      - name: Configure systemd service
+        template:
+          src: templates/slock@.service.j2
+          dest: /etc/systemd/system/slock@.service
+
+      - name: Activate systemd service for current user
+        systemd:
+          name: "slock@{{ ansible_env.USER }}"
+          enabled: true
+
   - name: Create .local/share/fonts
     file:
       path: "{{ ansible_env.HOME }}/.local/share/fonts"
