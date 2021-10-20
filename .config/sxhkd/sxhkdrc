@@ -1,0 +1,30 @@
+super + p
+	dmenu_run
+
+super + w
+	firefox
+
+super + l
+	slock
+
+super + shift + Return
+	st
+
+super + F4
+	~/scripts/shutdown
+
+XF86Audio{Lower,Raise}Volume
+	;~/scripts/change-volume {down,up}
+
+XF86AudioMute
+	;~/scripts/change-volume mute
+
+XF86MonBrightness{Down,Up}
+	;~/scripts/change-brightness {down,up}
+
+Print
+	sleep 0.2; \
+	~/scripts/scrot-share -s
+
+control + Print
+	~/scripts/scrot-share

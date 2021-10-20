@@ -84,6 +84,7 @@
         - acpi
         - lm-sensors
         - alsa-utils
+        - sxhkd
       state: present
 
   - name: Install pip packages
