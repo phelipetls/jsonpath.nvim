@@ -229,6 +229,8 @@
   - name: Build suckless tools
     tags:
       - suckless
+    become: true
+    become_flags: '--preserve-env=HOME'
     loop:
       - dmenu
       - dwm
