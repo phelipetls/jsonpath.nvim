@@ -22,7 +22,7 @@ LIBS = -L$(X11LIB) -lm -lrt -lX11 -lutil -lXft \
 
 # flags
 STCPPFLAGS = -DVERSION=\"$(VERSION)\" -D_XOPEN_SOURCE=600
-STCFLAGS = $(INCS) $(STCPPFLAGS) $(CPPFLAGS) $(CFLAGS) -I ${HOME}/.cache/wal
+STCFLAGS = $(INCS) $(STCPPFLAGS) $(CPPFLAGS) $(CFLAGS) -I ${HOME}/.cache/wal -D'LINKGRABBER="${HOME}/suckless/st/linkgrabber.sh"'
 STLDFLAGS = $(LIBS) $(LDFLAGS)
 
 # OpenBSD:

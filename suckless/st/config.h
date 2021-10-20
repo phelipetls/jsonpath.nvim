@@ -146,7 +146,7 @@ MouseKey mkeys[] = {
 #define MODKEY Mod1Mask
 #define TERMMOD (ControlMask|ShiftMask)
 
-static char *openurlcmd[] = { "$HOME/suckless/st/linkgrabber.sh", NULL };
+static char *openurlcmd[] = { LINKGRABBER, NULL };
 
 static Shortcut shortcuts[] = {
 	/* mask                 keysym          function        argument */
