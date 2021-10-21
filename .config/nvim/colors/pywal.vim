@@ -17,9 +17,6 @@ exe "hi Normal ctermbg=NONE guibg=NONE ctermfg=7 guifg=".color7
 exe "hi NormalFloat ctermbg=0 guibg=".color0." ctermfg=7 guifg=".color7
 exe "hi link NormalFloat Normal"
 
-exe "hi link TelescopeSelection StatusLineNC"
-exe "hi TelescopeMatching ctermfg=4 guifg=".color4
-
 exe "hi Comment ctermfg=8 guifg=".color8
 
 exe "hi Constant ctermfg=5 guifg=".color5
