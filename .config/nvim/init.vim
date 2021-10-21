@@ -734,9 +734,6 @@ augroup Coc
   autocmd User CocNvimInit let g:coc_quickfix_open_command = 'doautocmd QuickFixCmdPost | cfirst'
 augroup END
 
-if has("nvim-0.5.0")
-endif
-
 "}}}
 "{{{ treesitter
 
