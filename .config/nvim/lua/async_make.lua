@@ -27,8 +27,8 @@ function M.make(arg)
       end
     end
 
-    local efm, err = pcall(vim.api.nvim_buf_get_option, bufnr, "errorformat")
-    efm = err and vim.o.errorformat or efm
+    local success, efm = pcall(vim.api.nvim_buf_get_option, bufnr, "errorformat")
+    efm = not success and vim.o.errorformat or efm
 
     if event == "exit" then
       vim.fn.setqflist(
