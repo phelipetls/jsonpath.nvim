@@ -689,6 +689,15 @@ awful.rules.rules = {
     },
     properties = {floating = true}
   },
+  {
+    rule = {
+      name = {
+        "Android Emulator",
+        "Emulator"
+      }
+    },
+    properties = {border_width = 0, placement = awful.placement.closest_screen}
+  },
 
   -- Set Firefox to always map on the tag named "2" on screen 1.
   -- { rule = { class = "Firefox" },
