@@ -465,22 +465,6 @@ globalkeys =
   -- Prompt
   awful.key(
     {modkey},
-    "r",
-    function()
-      awful.util.spawn_with_shell("dmenu_run")
-    end,
-    {description = "run prompt", group = "launcher"}
-  ),
-  awful.key(
-    {modkey},
-    "p",
-    function()
-      awful.util.spawn_with_shell("dmenu_run")
-    end,
-    {description = "run prompt", group = "launcher"}
-  ),
-  awful.key(
-    {modkey},
     "x",
     function()
       awful.prompt.run {
@@ -491,62 +475,6 @@ globalkeys =
       }
     end,
     {description = "lua execute prompt", group = "awesome"}
-  ),
-  awful.key(
-    {},
-    "Print",
-    function()
-      awful.util.spawn_with_shell("/home/phelipe/scripts/scrot_share")
-    end,
-    {description = "take a screenshot", group = "awesome"}
-  ),
-  awful.key(
-    {modkey},
-    "Print",
-    function()
-      awful.util.spawn_with_shell("/home/phelipe/scripts/scrot_share -s")
-    end,
-    {description = "take a screenshot witha selection", group = "awesome"}
-  ),
-  awful.key(
-    {},
-    "XF86AudioRaiseVolume",
-    function()
-      awful.util.spawn_with_shell("/home/phelipe/scripts/change-volume up")
-    end,
-    {description = "increase volume", group = "awesome"}
-  ),
-  awful.key(
-    {},
-    "XF86AudioLowerVolume",
-    function()
-      awful.util.spawn_with_shell("/home/phelipe/scripts/change-volume down")
-    end,
-    {description = "decrease volume", group = "awesome"}
-  ),
-  awful.key(
-    {},
-    "XF86AudioMute",
-    function()
-      awful.util.spawn_with_shell("/home/phelipe/scripts/change-volume mute")
-    end,
-    {description = "mute volume", group = "awesome"}
-  ),
-  awful.key(
-    {},
-    "XF86MonBrightnessUp",
-    function()
-      awful.util.spawn_with_shell("/home/phelipe/scripts/change-brightness up")
-    end,
-    {description = "increase screen brightness", group = "awesome"}
-  ),
-  awful.key(
-    {},
-    "XF86MonBrightnessDown",
-    function()
-      awful.util.spawn_with_shell("/home/phelipe/scripts/change-brightness down")
-    end,
-    {description = "decrease screen brightness", group = "awesome"}
   )
 )
 
