@@ -10,7 +10,10 @@ local function decode_json_with_comments(fname)
   end
   local file = vim.fn.readfile(fname)
   local json_without_comments = vim.tbl_map(remove_comments, file)
-  return vim.fn.json_decode(json_without_comments)
+  local _, json = pcall(vim.fn.json_decode, json_without_comments)
+  if json then
+    return json
+  end
 end
 
 local function find_file(fname, path)
