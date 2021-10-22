@@ -85,6 +85,7 @@
         - lm-sensors
         - alsa-utils
         - sxhkd
+        - awesome
       state: present
 
   - name: Install pip packages
@@ -249,6 +250,15 @@
     template:
       src: templates/dwm.desktop.j2
       dest: /usr/share/xsessions/dwm.desktop
+
+  - name: Configure awesome X Session
+    become: true
+    tags:
+      - awesome
+      - gui
+    template:
+      src: templates/awesome.desktop.j2
+      dest: /usr/share/xsessions/awesome.desktop
 
   - name: Activate slock before sleep
     become: true

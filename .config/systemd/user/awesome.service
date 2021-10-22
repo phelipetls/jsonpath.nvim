@@ -1,0 +1,8 @@
+[Unit]
+Description=awesome
+PartOf=graphical-session.target
+
+[Service]
+ExecStart=awesome
+ExecStopPost=systemctl --user stop graphical-session.target
+Restart=on-failure
