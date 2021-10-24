@@ -1,6 +1,9 @@
 setlocal path-=./node_modules/**,node_modules/**
 setlocal path=node_modules
 setlocal path+=cypress/fixtures
+
+let &l:path .= ',' . join(map(finddir('node_modules', '.;', -1), 'fnamemodify(resolve(v:val), ":p:s?[\\/]$??")'), ',')
+
 if has("nvim")
   let tsconfig_include = join(luaeval("require'tsconfig'.get_tsconfig_include()"), ',')
   if !empty(tsconfig_include) && stridx(&l:path, tsconfig_include) == -1
