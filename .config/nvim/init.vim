@@ -501,6 +501,20 @@ if executable("fzf")
 
   nnoremap <space>gb :call CheckoutBranchFzf()<CR>
 
+  function! FixupWith(commit)
+    exe '!' .. FugitivePrepare('git', 'commit', '--fixup', a:commit)
+  endfunction
+
+  function! FixupWithFzf()
+    call fzf#run(fzf#wrap({
+          \ 'source': FugitivePrepare('log', '--format=%h', '@{upstream}..'),
+          \ 'sink': function('FixupWith'),
+          \ 'options': '--prompt "Fixup with: " --preview "'..FugitivePrepare('show')..' {}"'
+          \ }))
+  endfunction
+
+  nnoremap <space>gf :call FixupWithFzf()<CR>
+
   let g:fzf_colors = {
         \ 'fg':      ['fg', 'Normal'],
         \ 'bg':      ['bg', 'Normal'],
