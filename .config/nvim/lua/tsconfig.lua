@@ -108,6 +108,10 @@ local function get_tsconfig_include(tsconfig_fname)
     return dir
   end, json_include)
 
+  include_list = vim.tbl_filter(function(v)
+    return v ~= nil
+  end, include_list)
+
   local extends  = json.extends
   local tsconfig_extends = find_tsconfig_extends(extends, tsconfig_fname)
 
