@@ -62,8 +62,25 @@ inoreabbrev {/* {/*  */}<left><left><left><left><C-r>=Eatchar('\s')<CR>
 inoreabbrev docuemnt document
 
 setlocal isfname+=@-@
-setlocal suffixesadd=.js,.jsx,.ts,.tsx,.d.ts,.vue
+setlocal suffixesadd=.js,.jsx,.ts,.tsx,.d.ts,.vue,/package.json
 
-if has("nvim")
-  setlocal includeexpr=luaeval(\"require'tsconfig'.includeexpr(_A)\",v:fname)
-endif
+function! JavascriptNodeFind(target, current) abort
+  let target = substitute(a:target, '^\~[^/]\@=', '', '')
+  if target =~# '^\.\.\=/'
+    let target = simplify(fnamemodify(resolve(a:current), ':p:h') . '/' . target)
+  endif
+  let found = findfile(target)
+  if found =~# '[\/]package\.json$' && target !~# '[\/]package\.json$'
+    try
+      let package = json_decode(join(readfile(found)))
+      let target .= '/' . substitute(get(package, 'main', 'index'), '\.js$', '', '')
+    catch
+    endtry
+  endif
+  if has("nvim")
+    return luaeval("require'tsconfig'.includeexpr(_A)", target)
+  endif
+  return target
+endfunction
+
+setlocal includeexpr=JavascriptNodeFind(v:fname,@%)
