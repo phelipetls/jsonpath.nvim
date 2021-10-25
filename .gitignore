@@ -14,3 +14,5 @@ suckless/**/*.o
 *.orig
 .mutt/aliases
 .vagrant
+roles/gantsign.visual-studio-code
+roles/geerlingguy.nodejs
