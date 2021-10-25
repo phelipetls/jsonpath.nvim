@@ -1,2 +1,0 @@
-#!/bin/bash
-systemctl --user start --wait dwm-session.target
