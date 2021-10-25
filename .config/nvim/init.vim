@@ -398,6 +398,8 @@ nmap <silent> gQ :call SameBufferWinDo("let w:view = winsaveview()")<CR>
       \ :keepjumps normal gqG<CR>
       \ :call SameBufferWinDo("keepjumps call winrestview(w:view)")<CR>
 
+nnoremap <space>c :compiler<space>
+
 "}}}
 "{{{ statusline and tabline
 
