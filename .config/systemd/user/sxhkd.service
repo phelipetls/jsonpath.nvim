@@ -4,4 +4,5 @@ PartOf=graphical-session.target
 
 [Service]
 ExecStart=sxhkd
-ExecReload=kill -SIGUSR1 $MAINPID
+KillMode=process
+ExecReload=/bin/kill -USR1 $MAINPID
