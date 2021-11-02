@@ -13,8 +13,8 @@ else
 endif
 
 "{{{ Syntax groups
-exe "hi Normal ctermbg=NONE guibg=NONE ctermfg=7 guifg=".color7
-exe "hi NormalFloat ctermbg=0 guibg=".color0." ctermfg=7 guifg=".color7
+exe "hi Normal ctermbg=NONE guibg=NONE ctermfg=15 guifg=".color15
+exe "hi NormalFloat ctermbg=0 guibg=".color0." ctermfg=15 guifg=".color15
 exe "hi link NormalFloat Normal"
 
 exe "hi Comment ctermfg=8 guifg=".color8
@@ -44,13 +44,13 @@ hi link SpecialComment SpecialChar
 
 exe "hi Underlined ctermfg=1 guifg=".color1." cterm=UNDERLINE gui=UNDERLINE"
 
-exe "hi Ignore ctermbg=NONE guibg=NONE ctermfg=7 guifg=".color7
+exe "hi Ignore ctermbg=NONE guibg=NONE ctermfg=15 guifg=".color15
 "}}}
 "{{{ Misc
 exe "hi DiffDelete ctermfg=1 ctermbg=NONE guibg=#572E33 guifg=NONE"
 exe "hi DiffAdd ctermfg=2 ctermbg=0 guibg=#26332c guifg=NONE"
 exe "hi DiffChange ctermfg=NONE ctermbg=NONE guifg=NONE guibg=#273842"
-exe "hi DiffText ctermfg=7 ctermbg=2 guibg=#314753 guifg=NONE"
+exe "hi DiffText ctermfg=15 ctermbg=2 guibg=#314753 guifg=NONE"
 
 exe "hi diffAdded ctermfg=2 guifg=".color2
 exe "hi diffRemoved ctermfg=1 guifg=".color1
@@ -62,11 +62,11 @@ hi link diffIsA WarningMsg
 hi link diffNoEOL WarningMsg
 hi link diffOnly WarningMsg
 
-exe "hi Error ctermbg=1 guibg=".color1." ctermfg=0 guifg=".color7
-exe "hi ErrorMsg ctermbg=1 guibg=".color1." ctermfg=0 guifg=".color7
-exe "hi WarningMsg ctermbg=1 guibg=".color1." ctermfg=0 guifg=".color7
+exe "hi Error ctermbg=1 guibg=".color1." ctermfg=0 guifg=".color15
+exe "hi ErrorMsg ctermbg=1 guibg=".color1." ctermfg=0 guifg=".color15
+exe "hi WarningMsg ctermbg=1 guibg=".color1." ctermfg=0 guifg=".color15
 
-exe "hi ModeMsg ctermfg=7 guifg=".color7." cterm=NONE gui=NONE"
+exe "hi ModeMsg ctermfg=15 guifg=".color15." cterm=NONE gui=NONE"
 exe "hi MoreMsg ctermfg=3 guifg=".color3." gui=NONE"
 exe "hi Title ctermfg=3 guifg=".color3." gui=NONE"
 exe "hi Question ctermfg=8 guifg=".color8." gui=NONE"
@@ -75,7 +75,7 @@ exe "hi Todo ctermbg=NONE guibg=NONE ctermfg=2 guifg=".color2." cterm=BOLD gui=B
 
 exe "hi LineNr ctermfg=8 guifg=".color8
 exe "hi CursorLineNr ctermfg=8 guifg=".color8
-exe "hi SignColumn ctermbg=NONE guibg=NONE ctermfg=7 guifg=".color7
+exe "hi SignColumn ctermbg=NONE guibg=NONE ctermfg=15 guifg=".color15
 
 exe "hi CursorColumn ctermbg=0 guibg=".color0
 
@@ -85,11 +85,11 @@ exe "hi NonText ctermbg=NONE guibg=NONE ctermfg=8 guifg=".color8
 
 exe "hi Visual ctermbg=4 guibg=".color4." ctermfg=0 guifg=".color0
 exe "hi VisualNOS ctermbg=NONE guibg=NONE ctermfg=1 guifg=".color1
-exe "hi Search ctermbg=8 guibg=".color8." ctermfg=7 guifg=".color7
-exe "hi IncSearch ctermbg=1 guibg=".color1." ctermfg=7 guifg=".color7." cterm=BOLD gui=BOLD"
+exe "hi Search ctermbg=8 guibg=".color8." ctermfg=15 guifg=".color15
+exe "hi IncSearch ctermbg=1 guibg=".color1." ctermfg=15 guifg=".color15." cterm=BOLD gui=BOLD"
 
-exe "hi Pmenu ctermbg=8 guibg=".color8." ctermfg=7 guifg=".color7
-exe "hi PmenuSbar ctermbg=6 guibg=".color6." ctermfg=7 guifg=".color7
+exe "hi Pmenu ctermbg=8 guibg=".color8." ctermfg=15 guifg=".color15
+exe "hi PmenuSbar ctermbg=6 guibg=".color6." ctermfg=15 guifg=".color15
 exe "hi PmenuSel ctermbg=4 guibg=".color4." ctermfg=0 guifg=".color0
 exe "hi PmenuThumb ctermbg=8 guibg=".color8." ctermfg=8 guifg=".color8
 
@@ -97,28 +97,28 @@ exe "hi CursorLine ctermbg=NONE guibg=NONE ctermfg=NONE cterm=BOLD gui=BOLD"
 
 exe "hi VertSplit ctermbg=NONE guibg=NONE ctermfg=0 guifg=".color0." cterm=NONE gui=NONE"
 
-exe "hi StatusLine ctermbg=8 guibg=".color8." ctermfg=7 guifg=".color7." cterm=BOLD gui=BOLD"
+exe "hi StatusLine ctermbg=8 guibg=".color8." ctermfg=15 guifg=".color15." cterm=BOLD gui=BOLD"
 exe "hi StatusLineNC ctermbg=0 guibg=".color0." ctermfg=7 guifg=".color7." cterm=NONE gui=NONE"
 exe "hi TabLine ctermbg=0 guibg=".color0." ctermfg=7 guifg=".color7." cterm=NONE gui=NONE"
 exe "hi TabLineFill ctermbg=0 guibg=".color0." cterm=NONE gui=NONE"
-exe "hi TabLineSel ctermbg=8 guibg=".color8." ctermfg=7 guifg=".color7
+exe "hi TabLineSel ctermbg=8 guibg=".color8." ctermfg=15 guifg=".color15
 
 exe "hi ColorColumn ctermbg=0 guibg=".color0." ctermfg=7 guifg=".color7." cterm=NONE gui=NONE"
 
-exe "hi MatchParen ctermbg=8 guibg=".color8." ctermfg=7 guifg=".color7
+exe "hi MatchParen ctermbg=8 guibg=".color8." ctermfg=15 guifg=".color15
 
 exe "hi SpellBad ctermbg=NONE guibg=NONE ctermfg=1 guifg=".color1." cterm=UNDERLINE gui=UNDERLINE"
 exe "hi SpellCap ctermbg=NONE guibg=NONE ctermfg=4 guifg=".color4." cterm=UNDERLINE gui=UNDERLINE"
 exe "hi SpellLocal ctermbg=NONE guibg=NONE ctermfg=5 guifg=".color5." cterm=UNDERLINE gui=UNDERLINE"
 exe "hi SpellRare ctermbg=NONE guibg=NONE ctermfg=6 guifg=".color6." cterm=UNDERLINE gui=UNDERLINE"
 
-exe "hi FoldColumn ctermbg=NONE guibg=NONE guibg=NONE ctermfg=7 guifg=".color7
+exe "hi FoldColumn ctermbg=NONE guibg=NONE guibg=NONE ctermfg=15 guifg=".color15
 exe "hi Folded ctermbg=NONE guibg=NONE guibg=NONE ctermfg=8 guifg=".color8
 
 exe "hi WildMenu ctermfg=0 guifg=".color0." ctermbg=11 guibg=".color11
 
 if has("nvim")
- exe "hi MsgArea ctermfg=7 guifg=".color7." ctermbg=NONE guibg=NONE gui=NONE"
+ exe "hi MsgArea ctermfg=15 guifg=".color15." ctermbg=NONE guibg=NONE gui=NONE"
  hi link QuickFixLine CursorLine
  exe "hi Whitespace ctermbg=NONE guibg=NONE ctermfg=8 guifg=".color8
 endif
