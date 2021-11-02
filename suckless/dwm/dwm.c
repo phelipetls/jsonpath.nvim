@@ -2063,12 +2063,10 @@ swapfocus(const Arg *arg)
 {
 	if (!selmon->sel)
 		return;
-	if(selmon->pertag->prevclient[selmon->pertag->curtag] != NULL 
-			&& ISVISIBLE(selmon->pertag->prevclient[selmon->pertag->curtag])){
+	if (selmon->pertag->prevclient[selmon->pertag->curtag] != NULL && ISVISIBLE(selmon->pertag->prevclient[selmon->pertag->curtag])) {
 		focus(selmon->pertag->prevclient[selmon->pertag->curtag]);
 		restack(selmon->pertag->prevclient[selmon->pertag->curtag]->mon);
-	}
-	else{
+	} else {
 		Client *c = NULL;
 		for (c = selmon->sel->next; c && !ISVISIBLE(c); c = c->next);
 		if (!c)
@@ -2098,8 +2096,8 @@ tag(const Arg *arg)
 		focus(NULL);
 		
 		selmon->pertag->prevclient[selmon->pertag->curtag] = NULL;
-		for(tagmask = arg->ui & TAGMASK, tagindex = 1; tagmask!=0; tagmask >>= 1, tagindex++)
-			if(tagmask & 1)
+		for (tagmask = arg->ui & TAGMASK, tagindex = 1; tagmask != 0; tagmask >>= 1, tagindex++)
+			if (tagmask & 1)
 				selmon->pertag->prevclient[tagindex] = NULL;
 		
 		arrange(selmon);
