@@ -214,7 +214,6 @@
   - name: Run Stow
     tags:
       - stow
-    # TODO: remove .bashrc and other files that may already exist
     block:
       - name: (Stow) Prevent conflicts
         command: "rm .bashrc"
