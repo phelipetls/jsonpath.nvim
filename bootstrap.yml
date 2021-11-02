@@ -106,10 +106,14 @@
 
   - name: Install node
     tags:
-      - deps
-      - node
+      - always
     include_role:
       name: geerlingguy.nodejs
+      apply:
+        become: true
+        tags:
+          - deps
+          - node
     vars:
       nodejs_generate_etc_profile: false
       nodejs_version: "12.x"
