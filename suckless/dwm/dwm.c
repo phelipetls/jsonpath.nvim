@@ -2070,7 +2070,7 @@ swapfocus(const Arg *arg)
 		Client *c = NULL;
 		for (c = selmon->sel->next; c && !ISVISIBLE(c); c = c->next);
 		if (!c)
-			for (c = selmon->clients; c && !ISVISIBLE(c); c = c->next);
+			for (c = selmon->clients; c && !ISVISIBLE(c) || HIDDEN(c); c = c->next);
 		if (c) {
 			focus(c);
 			restack(selmon);
@@ -2269,7 +2269,8 @@ unfocus(Client *c, int setfocus)
 {
 	if (!c)
 		return;
-	selmon->pertag->prevclient[selmon->pertag->curtag] = c;
+	if (!HIDDEN(c))
+		selmon->pertag->prevclient[selmon->pertag->curtag] = c;
 	grabbuttons(c, 0);
 	XSetWindowBorder(dpy, c->win, scheme[SchemeNorm][ColBorder].pixel);
 	if (setfocus) {
