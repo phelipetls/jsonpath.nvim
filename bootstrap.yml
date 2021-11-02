@@ -122,7 +122,6 @@
         - n
         - eslint_d
         - prettier
-        - yalc
         - diff-so-fancy
 
   - name: Build neovim from source
