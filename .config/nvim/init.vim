@@ -12,6 +12,9 @@ packadd! vim-lion
 packadd! tagalong.vim
 packadd! splitjoin.vim
 packadd! inline_edit.vim
+if has("nvim")
+  packadd! indent-o-matic
+endif
 
 " git
 packadd! vim-fugitive
