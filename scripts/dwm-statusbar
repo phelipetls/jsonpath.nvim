@@ -67,7 +67,7 @@ do
   get_memory
   get_battery
 
-  xsetroot -name "$mailcount | $cpu_temp | $memory | $battery | $volume | $date |"
+  xsetroot -name "$mailcount  $cpu_temp  $memory  $battery  $volume  $date "
 
   sleep 30 & wait
 done
