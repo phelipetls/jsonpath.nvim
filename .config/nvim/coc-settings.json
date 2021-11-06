@@ -24,5 +24,6 @@
       "filetypes": ["sh", "yaml", "lua", "python", "javascript", "typescript", "javascriptreact", "typescriptreact"],
       "formatterPriority": 100
     }
-  }
+  },
+  "workspace.workspaceFolderCheckCwd": true
 }

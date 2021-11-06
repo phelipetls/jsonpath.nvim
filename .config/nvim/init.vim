@@ -119,6 +119,10 @@ if has('nvim-0.5.0')
   command! OpenMR lua require'gitlab'.open_mr()
 endif
 
+" persist workspace folders
+" see https://github.com/neoclide/coc.nvim/wiki/Using-workspaceFolders#persist-workspace-folders
+set sessionoptions+=globals
+
 "}}}
 "{{{ plugins config
 

@@ -1,3 +1,5 @@
+let b:coc_root_patterns = ["package.json", ".git"]
+
 setlocal path-=./node_modules/**,node_modules/**
 setlocal path=node_modules
 setlocal path+=cypress/fixtures
