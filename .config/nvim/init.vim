@@ -756,6 +756,9 @@ augroup Coc
   autocmd User CocNvimInit nnoremap <silent><expr> <c-e> coc#float#has_scroll() ? coc#float#scroll(1) : "\<c-e>"
 
   autocmd User CocNvimInit let g:coc_quickfix_open_command = 'doautocmd QuickFixCmdPost | cfirst'
+
+  autocmd User CocNvimInit nnoremap <space>s :CocList symbols<CR>
+  autocmd User CocNvimInit nnoremap <space>d :CocList diagnostics<CR>
 augroup END
 
 "}}}
