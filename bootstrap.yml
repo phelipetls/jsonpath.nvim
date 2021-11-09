@@ -69,7 +69,7 @@
       - gui
     apt:
       name:
-        - scrot
+        - xfce4-screenshooter
         - sxiv
         - zathura
         - mpv

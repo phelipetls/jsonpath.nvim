@@ -23,8 +23,7 @@ XF86MonBrightness{Down,Up}
 	;~/scripts/change-brightness {down,up}
 
 Print
-	sleep 0.2; \
-	~/scripts/scrot-share -s
+	xfce4-screenshooter --window --clipboard --save "$HOME/Imagens/screenshots/$(date +"%Y-%m-%d-%s").png"
 
 control + Print
-	~/scripts/scrot-share
+	xfce4-screenshooter --region --clipboard --save "$HOME/Imagens/screenshots/$(date +"%Y-%m-%d-%s").png"
