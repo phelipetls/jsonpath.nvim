@@ -1,12 +1,12 @@
-static const char norm_fg[] = "{foreground}";
+static const char norm_fg[] = "{color15}";
 static const char norm_bg[] = "{background}";
 static const char norm_border[] = "{background}";
 
-static const char sel_fg[] = "{foreground}";
+static const char sel_fg[] = "{color15}";
 static const char sel_bg[] = "{color8}";
 static const char sel_border[] = "{color8}";
 
-static const char hid_fg[] = "{foreground}";
+static const char hid_fg[] = "{color15}";
 static const char hid_bg[] = "{color0}";
 static const char hid_border[] = "{color8}";
 
