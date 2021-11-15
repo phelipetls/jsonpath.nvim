@@ -406,6 +406,9 @@ nmap <silent> gQ :call SameBufferWinDo("let w:view = winsaveview()")<CR>
       \ :keepjumps normal gqG<CR>
       \ :call SameBufferWinDo("keepjumps call winrestview(w:view)")<CR>
 
+" use same mapping as tig to open to see all stash
+nnoremap <space>vy :Gclog -g stash<CR>
+
 "}}}
 "{{{ statusline and tabline
 
