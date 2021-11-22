@@ -234,7 +234,7 @@
     tags:
       - suckless
     become: true
-    become_flags: '--preserve-env=HOME'
+    become_flags: "--preserve-env=HOME"
     loop:
       - dmenu
       - dwm
@@ -283,7 +283,7 @@
     file:
       path: "{{ ansible_env.HOME }}/.local/share/fonts"
       state: directory
-      mode: '0775'
+      mode: "0775"
 
   - name: Install Font Awesome
     tags:
