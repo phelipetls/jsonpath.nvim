@@ -23,7 +23,7 @@ XF86MonBrightness{Down,Up}
 	;~/scripts/change-brightness {down,up}
 
 Print
-	xfce4-screenshooter --window --clipboard --save "$HOME/Imagens/screenshots/$(date +"%Y-%m-%d-%s").png"
+	flameshot full --clipboard --path "$HOME/Imagens/screenshots"
 
 control + Print
-	xfce4-screenshooter --region --clipboard --save "$HOME/Imagens/screenshots/$(date +"%Y-%m-%d-%s").png"
+	flameshot gui --path "$HOME/Imagens/screenshots"

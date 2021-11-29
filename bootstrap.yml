@@ -69,7 +69,7 @@
       - gui
     apt:
       name:
-        - xfce4-screenshooter
+        - flameshot
         - sxiv
         - zathura
         - mpv
