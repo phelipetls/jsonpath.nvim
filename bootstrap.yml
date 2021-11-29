@@ -123,6 +123,7 @@
         - eslint_d
         - prettier
         - diff-so-fancy
+        - npm-merge-driver
 
   - name: Build neovim from source
     become: true

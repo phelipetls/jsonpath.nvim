@@ -57,3 +57,6 @@
         oldHighlight = "red bold 52"
         newNormal = "green bold"
         newHighlight = "green bold 22"
+[merge "npm-merge-driver"]
+    name = automatically merge npm lockfiles
+    driver = npx npm-merge-driver merge %A %O %B %P

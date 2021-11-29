@@ -2,3 +2,5 @@
 *.md diff=markdown
 *.html diff=html
 *.css  diff=css
+npm-shrinkwrap.json merge=npm-merge-driver
+package-lock.json merge=npm-merge-driver
