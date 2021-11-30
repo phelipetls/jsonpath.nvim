@@ -459,7 +459,25 @@ augroup StatusLine
   autocmd WinLeave,BufLeave * setlocal statusline=%!StatusLine('inactive')
 augroup end
 
-function! Tabline()
+if has("nvim")
+lua << EOF
+  function _G.get_devicon_color(...)
+    local _, color = require"nvim-web-devicons".get_icon_color(...)
+    return color
+  end
+EOF
+endif
+
+function! ExtendHighlight(base, group, add)
+    redir => basehi
+    sil! exe 'highlight' a:base
+    redir END
+    let grphi = split(basehi, '\n')[0]
+    let grphi = substitute(grphi, '^'.a:base.'\s\+xxx', '', '')
+    exe 'highlight' a:group grphi a:add
+endfunction
+
+function! Tabline() abort
   let s = ''
   for tab in range(1, tabpagenr('$'))
     " Get tab infos
@@ -468,12 +486,23 @@ function! Tabline()
     let buflist = tabpagebuflist(tab)
     let bufspnr = buflist[winnr - 1]
     let bufname = bufname(bufspnr)
+    let fname = fnamemodify(bufname, ':t')
+    let ext = fnamemodify(bufname, ':e')
     " Set tab state
     let s .= '%' . tab . 'T'
-    let s .= (tab == tabpagenr() ? '%#TabLineSel#' : '%#TabLine#')
+
+    " Get tab highlight group
+    let hl = tab == tabpagenr() ? 'TabLineSel' : 'TabLine'
+
+    " Set tab icon
+    let icon = luaeval("require'nvim-web-devicons'.get_icon(_A[1],_A[2],{default=true})", [fname, ext])
+    let color = luaeval("get_devicon_color(_A[1], _A[2], {default=true})", [fname, ext])
+    call ExtendHighlight(hl, ext . 'DevIconStatusline', 'guifg='.color)
+    let s .= '%#' . ext . 'DevIconStatusline# ' . icon . ' %*'
+
     " Set tab label
-    let s .= ' ' . tab . ' '
-    let s .= (bufname != '' ? fnamemodify(bufname, ':t') : '[No Name]') . ' '
+    let s .= '%#' . hl . '#'
+    let s .= (!empty(bufname) ? fname : '[No Name]') . ' '
   endfor
   " Finalize tabline
   let s .= '%#TabLineFill#' | return s
