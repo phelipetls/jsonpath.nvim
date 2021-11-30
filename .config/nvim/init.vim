@@ -54,6 +54,9 @@ packadd! yats.vim
 packadd! vim-jsx-pretty
 packadd! vim-hugo
 
+" aesthetics
+packadd! nvim-web-devicons
+
 "}}}
 "{{{ settings
 
