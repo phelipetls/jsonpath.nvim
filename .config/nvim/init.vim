@@ -197,6 +197,10 @@ let g:inline_edit_autowrite=1
 " ranger.vim
 let g:ranger_map_keys = 0
 
+if has("nvim")
+  call dirvish#add_icon_fn({p -> luaeval("require'nvim-web-devicons'.get_icon(_A[1], _A[2], {default=true})", [fnamemodify(p, ':t'), fnamemodify(p, ':e')])})
+endif
+
 "}}}
 "{{{ autocommands
 
