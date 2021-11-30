@@ -462,19 +462,31 @@ augroup end
 if has("nvim")
 lua << EOF
   function _G.get_devicon_color(...)
-    local _, color = require"nvim-web-devicons".get_icon_color(...)
+    local _, color = require"nvim-web-devicons".get_icon(...)
     return color
   end
 EOF
 endif
 
-function! ExtendHighlight(base, group, add)
-    redir => basehi
-    sil! exe 'highlight' a:base
-    redir END
-    let grphi = split(basehi, '\n')[0]
-    let grphi = substitute(grphi, '^'.a:base.'\s\+xxx', '', '')
-    exe 'highlight' a:group grphi a:add
+function! GetParams(base)
+  redir => basehl
+  silent! exe 'highlight' a:base
+  redir END
+  let params = split(basehl, '\n')[0]
+  let params = substitute(params, '^' . a:base . '\s\+xxx', '', '')
+  return params
+endfunction
+
+function! GetFg(params)
+  return matchstr(a:params, 'guifg=\zs[^ ]\+')
+endfunction
+
+function! ReplaceHighlightParams(base, group, fg)
+  let params = GetParams(a:base)
+  if !empty(a:fg)
+    let params = substitute(params, 'guifg=\zs[^ ]\+', a:fg, '')
+  endif
+  exe 'highlight! ' a:group params
 endfunction
 
 function! Tabline() abort
@@ -482,30 +494,42 @@ function! Tabline() abort
   for tab in range(1, tabpagenr('$'))
     " Get tab infos
     let winnr = tabpagewinnr(tab)
+
     " Get buf infos
     let buflist = tabpagebuflist(tab)
     let bufspnr = buflist[winnr - 1]
     let bufname = bufname(bufspnr)
     let fname = fnamemodify(bufname, ':t')
     let ext = fnamemodify(bufname, ':e')
+
     " Set tab state
     let s .= '%' . tab . 'T'
 
     " Get tab highlight group
-    let hl = tab == tabpagenr() ? 'TabLineSel' : 'TabLine'
+    let selected = tab == tabpagenr()
+    let hl = selected ? 'StatusLine' : 'StatusLineNC'
+    let s .= '%#' . hl . '#'
 
     " Set tab icon
     let icon = luaeval("require'nvim-web-devicons'.get_icon(_A[1],_A[2],{default=true})", [fname, ext])
     let color = luaeval("get_devicon_color(_A[1], _A[2], {default=true})", [fname, ext])
-    call ExtendHighlight(hl, ext . 'DevIconStatusline', 'guifg='.color)
-    let s .= '%#' . ext . 'DevIconStatusline# ' . icon . ' %*'
+
+    let s .= ' '
+    let s .= ' '
+    let prefix = selected ? 'TabSel' : 'Tab'
+    call ReplaceHighlightParams(hl, prefix . color, GetFg(GetParams(color)))
+    let s .= '%#' . prefix . color . '#'
+    let s .=  icon
+    let s .= ' '
 
     " Set tab label
     let s .= '%#' . hl . '#'
-    let s .= (!empty(bufname) ? fname : '[No Name]') . ' '
+    let s .= (!empty(bufname) ? fname : '[No Name]')
+    let s .= ' '
+    let s .= ' '
   endfor
-  " Finalize tabline
-  let s .= '%#TabLineFill#' | return s
+  let s .= '%#TabLineFill#'
+  return s
 endfunction
 
 set tabline=%!Tabline()
