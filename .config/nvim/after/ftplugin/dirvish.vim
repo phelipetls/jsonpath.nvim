@@ -5,15 +5,19 @@ setlocal signcolumn=yes
 
 execute 'sign unplace *'
 
-for lnum in range(1, line('$'))
-  let line = getline(lnum)
-  let fname = fnamemodify(line, ':t')
-  let extension = fnamemodify(line, ':e')
-  let signname = empty(extension) ? 'default' : extension
-  let icon = luaeval("require'nvim-web-devicons'.get_icon(_A[1], _A[2], {default=true})", [fname, extension])
-  exe printf('sign define %s text=%s', signname, icon)
-  exe printf('sign place %d line=%d name=%s', lnum, lnum, signname)
-endfor
+lua << EOF
+for lnum = 1, vim.fn.line('$') do
+  local line = vim.fn.getline(lnum)
+  local fname = vim.fn.fnamemodify(line, ':t')
+  local extension = vim.fn.fnamemodify(line, ':e')
+  local name = extension == '' and 'default' or extension
+  local icon = require'nvim-web-devicons'.get_icon(fname, extension, {default=true})
+  vim.fn.sign_define(name, { text=icon })
+  vim.fn.sign_place(lnum, '', name, vim.fn.bufnr(), {
+    lnum=lnum
+  })
+end
+EOF
 
 if has("nvim")
 lua << EOF
