@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "SourceCodePro-Regular:pixelsize=14";
+static char *font = "SauceCodePro Nerd Font Mono:style=Medium,pixelsize=16";
 static int borderpx = 10;
 
 /*
