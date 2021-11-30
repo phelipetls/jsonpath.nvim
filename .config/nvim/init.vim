@@ -87,6 +87,7 @@ set updatetime=1000
 set breakindent
 set breakindentopt=shift:2
 set linebreak
+set showtabline=2
 
 " tell neovim where python3 is -- this improves startup time
 if has("nvim") && has("unix")
