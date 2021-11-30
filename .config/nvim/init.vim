@@ -469,27 +469,6 @@ lua << EOF
 EOF
 endif
 
-function! GetParams(base)
-  redir => basehl
-  silent! exe 'highlight' a:base
-  redir END
-  let params = split(basehl, '\n')[0]
-  let params = substitute(params, '^' . a:base . '\s\+xxx', '', '')
-  return params
-endfunction
-
-function! GetFg(params)
-  return matchstr(a:params, 'guifg=\zs[^ ]\+')
-endfunction
-
-function! ReplaceHighlightParams(base, group, fg)
-  let params = GetParams(a:base)
-  if !empty(a:fg)
-    let params = substitute(params, 'guifg=\zs[^ ]\+', a:fg, '')
-  endif
-  exe 'highlight! ' a:group params
-endfunction
-
 function! Tabline() abort
   let s = ''
   for tab in range(1, tabpagenr('$'))
@@ -517,9 +496,6 @@ function! Tabline() abort
 
     let s .= ' '
     let s .= ' '
-    let prefix = selected ? 'TabSel' : 'Tab'
-    call ReplaceHighlightParams(hl, prefix . color, GetFg(GetParams(color)))
-    let s .= '%#' . prefix . color . '#'
     let s .=  icon
     let s .= ' '
 
