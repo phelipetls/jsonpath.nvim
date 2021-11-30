@@ -231,6 +231,29 @@
       - pywal
     command: wal --theme custom-base16-railscasts -o .config/wal/done.sh
 
+  - name: Install Font Awesome
+    tags:
+      - fonts
+      - deps
+      - gui
+    get_url:
+      url: https://github.com/FortAwesome/Font-Awesome/blob/7d3d774145ac38663f6d1effc6def0334b68ab7e/otfs/Font%20Awesome%205%20Free-Solid-900.otf?raw=true
+      dest: "{{ ansible_env.HOME }}/.local/share/fonts/Font Awesome 5 Free-Solid-900.otf"
+      checksum: md5:8d531d92051cddac77556d0734b701f8
+
+  - name: Install Source Code Pro
+    tags:
+      - fonts
+      - deps
+    get_url:
+      url: https://github.com/adobe-fonts/source-code-pro/blob/29fdb884c6e9dc2a312f4a5e2bb3b2dad2350777/TTF/SourceCodePro-Regular.ttf?raw=true
+      dest: "{{ ansible_env.HOME }}/.local/share/fonts/SourceCodePro-Regular.ttf"
+
+  - name: Update font cache
+    tags:
+      - fonts
+    command: fc-cache -f
+
   - name: Build suckless tools
     tags:
       - suckless
@@ -285,30 +308,6 @@
       path: "{{ ansible_env.HOME }}/.local/share/fonts"
       state: directory
       mode: "0775"
-
-  - name: Install Font Awesome
-    tags:
-      - fonts
-      - deps
-      - gui
-    get_url:
-      url: https://github.com/FortAwesome/Font-Awesome/blob/7d3d774145ac38663f6d1effc6def0334b68ab7e/otfs/Font%20Awesome%205%20Free-Solid-900.otf?raw=true
-      dest: "{{ ansible_env.HOME }}/.local/share/fonts/Font Awesome 5 Free-Solid-900.otf"
-      checksum: md5:8d531d92051cddac77556d0734b701f8
-
-  - name: Install Source Code Pro
-    tags:
-      - fonts
-      - deps
-    get_url:
-      url: https://github.com/adobe-fonts/source-code-pro/blob/29fdb884c6e9dc2a312f4a5e2bb3b2dad2350777/TTF/SourceCodePro-Semibold.ttf?raw=true
-      dest: "{{ ansible_env.HOME }}/.local/share/fonts/SourceCodePro-Semibold.ttf"
-      checksum: md5:0a182fd5b03b7bc3bbc99a57ae8d8a45
-
-  - name: Update font cache
-    tags:
-      - fonts
-    command: fc-cache -f
 
   - name: Install efm-langserver
     tags:
