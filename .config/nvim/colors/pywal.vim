@@ -12,6 +12,10 @@ else
   finish
 endif
 
+if has("nvim")
+  call luaeval('require("nvim-web-devicons").set_default_icon("", _A[1])', [foreground])
+endif
+
 "{{{ Syntax groups
 exe "hi Normal ctermbg=NONE guibg=NONE ctermfg=15 guifg=".color15
 exe "hi NormalFloat ctermbg=0 guibg=".color0." ctermfg=15 guifg=".color15
