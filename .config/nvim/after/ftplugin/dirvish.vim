@@ -10,12 +10,9 @@ for lnum = 1, vim.fn.line('$') do
   local line = vim.fn.getline(lnum)
   local fname = vim.fn.fnamemodify(line, ':t')
   local extension = vim.fn.fnamemodify(line, ':e')
-  local name = extension == '' and 'default' or extension
   local icon, color = require'nvim-web-devicons'.get_icon(fname, extension, {default=true})
-  vim.fn.sign_define(name, { text=icon, texthl=color })
-  vim.fn.sign_place(lnum, '', name, vim.fn.bufnr(), {
-    lnum=lnum
-  })
+  vim.fn.sign_define(icon, { text=icon, texthl=color })
+  vim.fn.sign_place(lnum, '', icon, vim.fn.bufnr(), { lnum=lnum })
 end
 EOF
 
