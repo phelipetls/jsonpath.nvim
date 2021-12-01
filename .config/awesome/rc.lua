@@ -2,6 +2,8 @@
 -- found (e.g. lgi). If LuaRocks is not installed, do nothing.
 pcall(require, "luarocks.loader")
 
+local cyclefocus = require('awesome-cyclefocus')
+
 -- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
@@ -364,7 +366,14 @@ globalkeys =
   awful.key({modkey}, "s", hotkeys_popup.show_help, {description = "show help", group = "awesome"}),
   awful.key({modkey}, "Left", awful.tag.viewprev, {description = "view previous", group = "tag"}),
   awful.key({modkey}, "Right", awful.tag.viewnext, {description = "view next", group = "tag"}),
-  awful.key({modkey}, "Tab", awful.tag.history.restore, {description = "go back", group = "tag"}),
+  cyclefocus.key({ modkey, }, "Tab", {
+    cycle_filters = { cyclefocus.filters.same_screen, cyclefocus.filters.common_tag },
+    keys = {'Tab', 'ISO_Left_Tab'}  -- default, could be left out
+  }),
+  cyclefocus.key({ modkey, "Shift" }, "Tab", {
+    cycle_filters = { cyclefocus.filters.same_screen, cyclefocus.filters.common_tag },
+    keys = {'Tab', 'ISO_Left_Tab'}  -- default, could be left out
+  }),
   awful.key(
     {modkey},
     "j",
