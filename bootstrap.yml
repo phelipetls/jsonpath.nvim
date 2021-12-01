@@ -241,6 +241,14 @@
       dest: "{{ ansible_env.HOME }}/.local/share/fonts/Font Awesome 5 Free-Solid-900.otf"
       checksum: md5:8d531d92051cddac77556d0734b701f8
 
+  - name: Install Source Code Pro
+    tags:
+      - fonts
+      - deps
+    get_url:
+      url: https://github.com/adobe-fonts/source-code-pro/blob/29fdb884c6e9dc2a312f4a5e2bb3b2dad2350777/TTF/SourceCodePro-Medium.ttf?raw=true
+      dest: "{{ ansible_env.HOME }}/.local/share/fonts/SourceCodePro-Medium.ttf"
+
   - name: Install Sauce Code Pro
     tags:
       - fonts
