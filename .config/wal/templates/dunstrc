@@ -296,7 +296,7 @@
 [urgency_low]
     background = "{background}"
     foreground = "{foreground}"
-    frame_color = "{color0}"
+    frame_color = "{color8}"
     timeout = 10
 
 [urgency_normal]
