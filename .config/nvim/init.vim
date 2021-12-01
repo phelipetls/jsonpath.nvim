@@ -494,16 +494,14 @@ function! Tabline() abort
     let icon = luaeval("require'nvim-web-devicons'.get_icon(_A[1],_A[2],{default=true})", [fname, ext])
     let color = luaeval("get_devicon_color(_A[1], _A[2], {default=true})", [fname, ext])
 
-    let s .= ' '
-    let s .= ' '
+    let s .= repeat(' ', 2)
     let s .=  icon
-    let s .= ' '
+    let s .= repeat(' ', 2)
 
     " Set tab label
     let s .= '%#' . hl . '#'
     let s .= (!empty(bufname) ? fname : '[No Name]')
-    let s .= ' '
-    let s .= ' '
+    let s .= repeat(' ', 2)
   endfor
   let s .= '%#TabLineFill#'
   return s
