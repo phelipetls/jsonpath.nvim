@@ -99,7 +99,7 @@ exe "hi PmenuThumb ctermbg=8 guibg=".color8." ctermfg=8 guifg=".color8
 
 exe "hi CursorLine ctermbg=NONE guibg=NONE ctermfg=NONE cterm=BOLD gui=BOLD"
 
-exe "hi VertSplit ctermbg=NONE guibg=NONE ctermfg=0 guifg=".color0." cterm=NONE gui=NONE"
+exe "hi VertSplit ctermbg=NONE guibg=NONE ctermfg=8 guifg=".color8." cterm=NONE gui=NONE"
 
 exe "hi StatusLine ctermbg=8 guibg=".color8." ctermfg=15 guifg=".color15." cterm=BOLD gui=BOLD"
 exe "hi TabLineSel ctermbg=8 guibg=".color8." ctermfg=15 guifg=".color15
