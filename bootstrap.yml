@@ -246,8 +246,8 @@
       - fonts
       - deps
     get_url:
-      url: https://github.com/ryanoasis/nerd-fonts/blob/ab6fa3c562c552750dce08e638f1213d67b5b05c/patched-fonts/SourceCodePro/Medium/complete/Sauce%20Code%20Pro%20Medium%20Nerd%20Font%20Complete%20Mono.ttf?raw=true
-      dest: "{{ ansible_env.HOME }}/.local/share/fonts/Sauce Code Pro Medium Nerd Font Complete Mono.ttf"
+      url: https://github.com/ryanoasis/nerd-fonts/blob/ab6fa3c562c552750dce08e638f1213d67b5b05c/patched-fonts/SourceCodePro/Medium/complete/Sauce%20Code%20Pro%20Medium%20Nerd%20Font%20Complete.ttf?raw=true
+      dest: "{{ ansible_env.HOME }}/.local/share/fonts/Sauce Code Pro Medium Nerd Font Complete.ttf"
 
   - name: Update font cache
     tags:
