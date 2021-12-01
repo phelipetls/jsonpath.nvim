@@ -12,7 +12,7 @@ static const int showsystray        = 1;        /* 0 means no systray */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 0;        /* 0 means bottom bar */
 static const int focusonwheel       = 0;
-static const char *fonts[]          = { "SauceCodePro Nerd Font:style=Medium", "FontAwesome:style=Regular" };
+static const char *fonts[]          = { "SourceCodePro-Medium:pixelsize=12", "Font Awesome 5 Free-Soli:pixelsize=12" };
 static const char dmenufont[]       = "monospace:size=10";
 #include "colors-wal-dwm.h"
 
