@@ -229,7 +229,7 @@
   - name: Run pywal
     tags:
       - pywal
-    command: wal --theme custom-base16-railscasts -o .config/wal/done.sh
+    command: wal --theme tokyonight -o .config/wal/done.sh
 
   - name: Install Font Awesome
     tags:
