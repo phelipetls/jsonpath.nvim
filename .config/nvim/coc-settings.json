@@ -25,5 +25,8 @@
       "formatterPriority": 100
     }
   },
-  "coc.preferences.watchmanPath": "açlskfçsa"
+  "coc.preferences.watchmanPath": "açlskfçsa",
+  "signature.floatConfig": {"border": true, "borderhighlight": "VertSplit"},
+  "diagnostic.floatConfig": {"border": true, "borderhighlight": "VertSplit"},
+  "hover.floatConfig": {"border": true, "borderhighlight": "VertSplit"}
 }
