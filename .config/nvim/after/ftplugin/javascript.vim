@@ -40,8 +40,8 @@ if executable("node")
   noremap <buffer> <F5> :w !node<CR>
 endif
 
-if executable('prettier')
-  let &l:formatprg='prettier --parser=typescript'
+if executable('npx')
+  let &l:formatprg='npx prettier --parser=typescript'
 elseif executable('eslint_d')
   let &l:formatprg='eslint_d --fix-to-stdout --stdin'
 endif
