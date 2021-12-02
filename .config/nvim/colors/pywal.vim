@@ -13,7 +13,7 @@ else
 endif
 
 if has("nvim")
-  call luaeval('require("nvim-web-devicons").set_default_icon("", _A[1])', [foreground])
+  call luaeval('require("nvim-web-devicons").set_default_icon("", _A[1])', [foreground])
 endif
 
 "{{{ Syntax groups
