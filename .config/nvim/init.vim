@@ -524,7 +524,15 @@ function! Tabline() abort
 
     " Set tab label
     let s .= '%#' . hl . '#'
-    let s .= (!empty(bufname) ? fname : '[No Name]')
+
+    if (empty(bufname))
+      let s .= '[No Name]'
+    elseif isdirectory(bufname)
+      let s .= fnamemodify(bufname, ':~')
+    else
+      let s .= fname
+    endif
+
     let s .= repeat(' ', 2)
   endfor
   let s .= '%#TabLineFill#'
