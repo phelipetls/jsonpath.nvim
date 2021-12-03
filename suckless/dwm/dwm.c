@@ -2068,11 +2068,21 @@ swapfocus(const Arg *arg)
 void
 tag(const Arg *arg)
 {
-	Client *c;
+	Client *c, *t = NULL;
+	Window trans = None;
 	unsigned int tagmask, tagindex;
 
 	if (selmon->sel && arg->ui & TAGMASK) {
 		selmon->sel->tags = arg->ui & TAGMASK;
+
+		for (c = selmon->stack; c; c = c->snext) {
+			if (XGetTransientForHint(dpy, c->win, &trans) && (t = wintoclient(trans))) {
+				if (selmon->sel == t) {
+					c->tags = arg->ui & TAGMASK;
+				}
+			}
+		}
+
 		focus(NULL);
 		
 		selmon->pertag->prevclient[selmon->pertag->curtag] = NULL;
