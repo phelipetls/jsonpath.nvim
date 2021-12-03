@@ -2856,9 +2856,9 @@ zoom(const Arg *arg)
 	if (!selmon->lt[selmon->sellt]->arrange
 	|| (selmon->sel && selmon->sel->isfloating))
 		return;
- 	if (c == nexttiled(selmon->clients))
+	if (c == nexttiled(selmon->clients))
 		if (!c || !(c = selmon->pertag->prevclient[selmon->pertag->curtag] = nexttiled(c->next)))
- 			return;
+			return;
 	pop(c);
 }
 
