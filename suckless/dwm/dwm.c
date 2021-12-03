@@ -294,7 +294,6 @@ static int xerror(Display *dpy, XErrorEvent *ee);
 static int xerrordummy(Display *dpy, XErrorEvent *ee);
 static int xerrorstart(Display *dpy, XErrorEvent *ee);
 static void zoom(const Arg *arg);
-static int isemulator(Client *c);
 
 /* variables */
 static Systray *systray =  NULL;
@@ -883,7 +882,7 @@ drawbar(Monitor *m)
 
 	resizebarwin(m);
 	for (c = m->clients; c; c = c->next) {
-		if (ISVISIBLE(c) && !isemulator(c))
+		if (ISVISIBLE(c))
 			n++;
 		occ |= c->tags;
 		if (c->isurgent)
@@ -911,7 +910,7 @@ drawbar(Monitor *m)
 			int remainder = w % n;
 			int tabw = (1.0 / (double)n) * w + 1;
 			for (c = m->clients; c; c = c->next) {
-				if (!ISVISIBLE(c) || isemulator(c))
+				if (!ISVISIBLE(c))
 					continue;
 				if (m->sel == c)
 					scm = SchemeSel;
@@ -1032,11 +1031,6 @@ focusstackhid(const Arg *arg)
 	focusstack(arg->i, 1);
 }
 
-int isemulator(Client *c)
-{
-	return strcmp(c->name, "Emulator") == 0;
-}
-
 void
 focusstack(int inc, int hid)
 {
@@ -1050,22 +1044,22 @@ focusstack(int inc, int hid)
 	if (inc > 0) {
 		if (selmon->sel)
 			for (c = selmon->sel->next;
-					 c && (!ISVISIBLE(c) || isemulator(c) || (!hid && HIDDEN(c)));
+					 c && (!ISVISIBLE(c) || (!hid && HIDDEN(c)));
 					 c = c->next);
 		if (!c)
 			for (c = selmon->clients;
-					 c && (!ISVISIBLE(c) || isemulator(c) || (!hid && HIDDEN(c)));
+					 c && (!ISVISIBLE(c) || (!hid && HIDDEN(c)));
 					 c = c->next);
 	} else {
 		if (selmon->sel) {
 			for (i = selmon->clients; i != selmon->sel; i = i->next)
-				if (ISVISIBLE(i) && !isemulator(i) && !(!hid && HIDDEN(i)))
+				if (ISVISIBLE(i) && !(!hid && HIDDEN(i)))
 					c = i;
 		} else
 			c = selmon->clients;
 		if (!c)
 			for (; i; i = i->next)
-				if (ISVISIBLE(i) && !isemulator(i) && !(!hid && HIDDEN(i)))
+				if (ISVISIBLE(i) && !(!hid && HIDDEN(i)))
 					c = i;
 	}
 
@@ -1076,14 +1070,6 @@ focusstack(int inc, int hid)
 		if (HIDDEN(c)) {
 			showwin(c);
 			c->mon->hidsel = 1;
-		}
-
-		if (strstr(c->name, "Android Emulator")) {
-			for (c = selmon->stack; c; c = c->snext) {
-				if (isemulator(c)) {
-					XRaiseWindow(dpy, c->win);
-				}
-			}
 		}
 	}
 }
@@ -2087,13 +2073,6 @@ tag(const Arg *arg)
 
 	if (selmon->sel && arg->ui & TAGMASK) {
 		selmon->sel->tags = arg->ui & TAGMASK;
-		if (strstr(selmon->sel->name, "Android Emulator")) {
-			for (c = selmon->stack; c; c = c->snext) {
-				if (isemulator(c)) {
-					c->tags = arg->ui & TAGMASK;
-				}
-			}
-		}
 		focus(NULL);
 		
 		selmon->pertag->prevclient[selmon->pertag->curtag] = NULL;
