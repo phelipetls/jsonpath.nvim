@@ -1077,6 +1077,14 @@ focusstack(int inc, int hid)
 			showwin(c);
 			c->mon->hidsel = 1;
 		}
+
+		if (strstr(c->name, "Android Emulator")) {
+			for (c = selmon->stack; c; c = c->snext) {
+				if (isemulator(c)) {
+					XRaiseWindow(dpy, c->win);
+				}
+			}
+		}
 	}
 }
 
