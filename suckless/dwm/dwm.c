@@ -1538,7 +1538,6 @@ propertynotify(XEvent *e)
 			drawbars();
 			break;
 		}
-		/* if (ev->atom == XA_WM_NAME || ev->atom == netatom[NetWMName]) { */
 		if (ev->atom == XA_WM_NAME || ev->atom == netatom[NetWMName])
 			updatetitle(c);
 		if (ev->atom == netatom[NetWMWindowType])
