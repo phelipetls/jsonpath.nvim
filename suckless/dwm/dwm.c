@@ -869,6 +869,7 @@ drawbar(Monitor *m)
 	int boxw = drw->fonts->h / 6 + 2;
 	unsigned int i, occ = 0, urg = 0;
 	Client *c;
+	Window trans;
 
 	if(showsystray && m == systraytomon(m))
 		stw = getsystraywidth();
@@ -882,7 +883,7 @@ drawbar(Monitor *m)
 
 	resizebarwin(m);
 	for (c = m->clients; c; c = c->next) {
-		if (ISVISIBLE(c))
+		if (ISVISIBLE(c) && !(XGetTransientForHint(dpy, c->win, &trans)))
 			n++;
 		occ |= c->tags;
 		if (c->isurgent)
@@ -911,6 +912,8 @@ drawbar(Monitor *m)
 			int tabw = (1.0 / (double)n) * w + 1;
 			for (c = m->clients; c; c = c->next) {
 				if (!ISVISIBLE(c))
+					continue;
+				if (XGetTransientForHint(dpy, c->win, &trans))
 					continue;
 				if (m->sel == c)
 					scm = SchemeSel;
