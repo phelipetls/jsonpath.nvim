@@ -3,8 +3,6 @@ nnoremap <silent><buffer>
 
 setlocal signcolumn=yes
 
-execute 'sign unplace *'
-
 lua << EOF
 for lnum = 1, vim.fn.line('$') do
   local line = vim.fn.getline(lnum)
