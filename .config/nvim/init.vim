@@ -428,11 +428,19 @@ function CocStatus()
 endfunction
 
 function GetStatusLine(active) abort
-  let fugitive = a:active ? FugitiveStatusline() : ''
-  let coc = a:active ? CocStatus() : ''
-  let modified = !&modifiable ? '[-]' : &modified ? '[+]' : ''
-  let eol = &endofline ? '' : '[noeol]'
-  let async_make_status = get(g:, 'async_make_status', '')
+  let fugitive = ''
+  let coc = ''
+  let modified = ''
+  let eol = ''
+  let async_make_status = ''
+
+  if a:active
+    let fugitive = FugitiveStatusline()
+    let coc = CocStatus()
+    let modified = !&modifiable ? '[-]' : &modified ? '[+]' : ''
+    let eol = &endofline ? '' : '[noeol]'
+    let async_make_status = get(g:, 'async_make_status', '')
+  endif
 
   let items = [
         \ fugitive,
