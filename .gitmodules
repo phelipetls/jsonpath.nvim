@@ -165,3 +165,6 @@
 [submodule "nvim-web-devicons"]
 	path = .config/nvim/pack/plugins/opt/nvim-web-devicons
 	url = https://github.com/kyazdani42/nvim-web-devicons
+[submodule "awesome-cyclefocus"]
+	path = .config/awesome/awesome-cyclefocus
+	url = https://github.com/blueyed/awesome-cyclefocus
