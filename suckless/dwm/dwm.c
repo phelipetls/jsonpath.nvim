@@ -868,7 +868,7 @@ drawbar(Monitor *m)
 	int boxs = drw->fonts->h / 9;
 	int boxw = drw->fonts->h / 6 + 2;
 	unsigned int i, occ = 0, urg = 0;
-	Client *c;
+	Client *c, *t = NULL;
 	Window trans;
 
 	if(showsystray && m == systraytomon(m))
@@ -915,7 +915,7 @@ drawbar(Monitor *m)
 					continue;
 				if (XGetTransientForHint(dpy, c->win, &trans))
 					continue;
-				if (m->sel == c)
+				if (m->sel == c || (XGetTransientForHint(dpy, m->sel->win, &trans) && (t = wintoclient(trans)) && (t == c)))
 					scm = SchemeSel;
 				else if (HIDDEN(c))
 					scm = SchemeHid;
