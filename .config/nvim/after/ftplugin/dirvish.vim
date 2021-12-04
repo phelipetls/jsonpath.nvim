@@ -9,9 +9,14 @@ for lnum = 1, vim.fn.line('$') do
   if line ~= '' then
     local fname = vim.fn.fnamemodify(line, ':t')
     local extension = vim.fn.fnamemodify(line, ':e')
-    local icon, color = require'nvim-web-devicons'.get_icon(fname, extension, {default=true})
-    vim.fn.sign_define(icon, { text=icon, texthl=color })
-    vim.fn.sign_place(lnum, '', icon, vim.fn.bufnr(), { lnum=lnum })
+    if vim.fn.isdirectory(line) == 1 then
+      vim.fn.sign_define("", { text="", texthl=color })
+      vim.fn.sign_place(lnum, '', "", vim.fn.bufnr(), { lnum=lnum })
+    else
+      local icon, color = require'nvim-web-devicons'.get_icon(fname, extension, {default=true})
+      vim.fn.sign_define(icon, { text=icon, texthl=color })
+      vim.fn.sign_place(lnum, '', icon, vim.fn.bufnr(), { lnum=lnum })
+    end
   end
 end
 EOF
