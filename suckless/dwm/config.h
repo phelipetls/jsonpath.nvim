@@ -29,6 +29,7 @@ static const Rule rules[] = {
 	{ "Matplotlib",  NULL,     NULL,        0,         0,          1,          -1 },
 	{ "Thunar",      NULL,     NULL,        0,         1,          1,          -1 },
 	{ "Peek",        NULL,     NULL,        0,         0,          1,          -1 },
+	{ "sxiv",        NULL,     NULL,        0,         1,          1,          -1 },
 	{ "appfinder",   NULL,     NULL,        0,         1,          1,          -1 },
 	{ "scrcpy",      NULL,     NULL,        0,         0,          1,          -1 },
 	{ "mpv",         NULL,     NULL,        0,         1,          1,          -1 },
