@@ -1037,6 +1037,7 @@ focusstackhid(const Arg *arg)
 void
 focusstack(int inc, int hid)
 {
+	Window trans = None;
 	Client *c = NULL, *i;
 
 	if (!selmon->sel && !hid)
@@ -1047,22 +1048,22 @@ focusstack(int inc, int hid)
 	if (inc > 0) {
 		if (selmon->sel)
 			for (c = selmon->sel->next;
-					 c && (!ISVISIBLE(c) || (!hid && HIDDEN(c)));
+					 c && (!ISVISIBLE(c) || (!hid && HIDDEN(c)) || XGetTransientForHint(dpy, c->win, &trans));
 					 c = c->next);
 		if (!c)
 			for (c = selmon->clients;
-					 c && (!ISVISIBLE(c) || (!hid && HIDDEN(c)));
+					 c && (!ISVISIBLE(c) || (!hid && HIDDEN(c)) || XGetTransientForHint(dpy, c->win, &trans));
 					 c = c->next);
 	} else {
 		if (selmon->sel) {
 			for (i = selmon->clients; i != selmon->sel; i = i->next)
-				if (ISVISIBLE(i) && !(!hid && HIDDEN(i)))
+				if (ISVISIBLE(i) && !(!hid && HIDDEN(i)) && !(XGetTransientForHint(dpy, i->win, &trans)))
 					c = i;
 		} else
 			c = selmon->clients;
 		if (!c)
 			for (; i; i = i->next)
-				if (ISVISIBLE(i) && !(!hid && HIDDEN(i)))
+				if (ISVISIBLE(i) && !(!hid && HIDDEN(i)) && !(XGetTransientForHint(dpy, i->win, &trans)))
 					c = i;
 	}
 
