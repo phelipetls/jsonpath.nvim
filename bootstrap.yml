@@ -101,6 +101,7 @@
         - flake8
         - black
         - yamllint
+        - git+https://github.com/Vimjas/vint@master
       state: present
       executable: pip3
 
