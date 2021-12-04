@@ -426,7 +426,7 @@ function CocStatus()
     return ''
   endif
   let status = coc#status()
-  return !empty(status) ? '['.. status ..']' : ''
+  return !empty(status) ? '['. status .']' : ''
 endfunction
 
 function GetStatusLine(active) abort
@@ -578,28 +578,28 @@ if executable("fzf")
   nnoremap <space>r :History<CR>
 
   function! CheckoutBranch(branch)
-    exe '!' .. FugitivePrepare('checkout', a:branch)
+    exe '!' . FugitivePrepare('checkout', a:branch)
   endfunction
 
   function! CheckoutBranchFzf()
     call fzf#run(fzf#wrap({
           \ 'source': FugitivePrepare('branch', '-v', '--sort', '-committerdate', '--format', '%(refname:short)'),
           \ 'sink': function('CheckoutBranch'),
-          \ 'options': '--prompt "Checkout: " --preview "'..FugitivePrepare('log', '--oneline')..' {}"'
+          \ 'options': '--prompt "Checkout: " --preview "'. FugitivePrepare('log', '--oneline') .' {}"'
           \ }))
   endfunction
 
   nnoremap <space>gb :call CheckoutBranchFzf()<CR>
 
   function! FixupWith(commit)
-    exe '!' .. FugitivePrepare('git', 'commit', '--fixup', a:commit)
+    exe '!' . FugitivePrepare('git', 'commit', '--fixup', a:commit)
   endfunction
 
   function! FixupWithFzf()
     call fzf#run(fzf#wrap({
           \ 'source': FugitivePrepare('log', '--format=%h', '@{upstream}..'),
           \ 'sink': function('FixupWith'),
-          \ 'options': '--prompt "Fixup with: " --preview "'..FugitivePrepare('show')..' {}"'
+          \ 'options': '--prompt "Fixup with: " --preview "'. FugitivePrepare('show') .' {}"'
           \ }))
   endfunction
 
