@@ -55,7 +55,9 @@ packadd! vim-jsx-pretty
 packadd! vim-hugo
 
 " aesthetics
-packadd! nvim-web-devicons
+if has("nvim-0.5.0")
+  packadd! nvim-web-devicons
+endif
 
 "}}}
 "{{{ settings
@@ -522,16 +524,19 @@ function! Tabline() abort
     let hl = selected ? 'StatusLine' : 'StatusLineNC'
     let s .= '%#' . hl . '#'
 
-    " Set tab icon
-    let icon = luaeval("require'nvim-web-devicons'.get_icon(_A[1],_A[2],{default=true})", [fname, ext])
-    let color = luaeval("get_devicon_color(_A[1], _A[2], {default=true})", [fname, ext])
+    let s .= repeat(' ', 2)
 
-    let s .= repeat(' ', 2)
-    let prefix = selected ? 'TabSel' : 'Tab'
-    call ReplaceHighlightParams(hl, prefix . color, GetFg(GetParams(color)))
-    let s .= '%#' . prefix . color . '#'
-    let s .=  icon
-    let s .= repeat(' ', 2)
+    " Set tab icon
+    if has("nvim-0.5.0")
+      let icon = luaeval("require'nvim-web-devicons'.get_icon(_A[1],_A[2],{default=true})", [fname, ext])
+      let color = luaeval("get_devicon_color(_A[1], _A[2], {default=true})", [fname, ext])
+
+      let prefix = selected ? 'TabSel' : 'Tab'
+      call ReplaceHighlightParams(hl, prefix . color, GetFg(GetParams(color)))
+      let s .= '%#' . prefix . color . '#'
+      let s .=  icon
+      let s .= repeat(' ', 2)
+    endif
 
     " Set tab label
     let s .= '%#' . hl . '#'
