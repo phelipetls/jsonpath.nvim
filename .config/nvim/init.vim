@@ -206,32 +206,40 @@ let g:git_messenger_popup_content_margin = v:false
 "}}}
 "{{{ autocommands
 
-" don't autocomment on newline
-autocmd! FileType * set formatoptions-=cro
+augroup GlobalAutocmds
+  autocmd!
+  " don't autocomment on newline
+  autocmd FileType * set formatoptions-=cro
 
-" after reading a buffer, jump to last position before exiting it
-autocmd! BufReadPost *
-      \ if line("'\"") > 0 && line("'\"") <= line("$") && &ft !~ "git" |
-      \   exe "normal g`\"" |
-      \ endif
+  " after reading a buffer, jump to last position before exiting it
+  autocmd BufReadPost *
+        \ if line("'\"") > 0 && line("'\"") <= line("$") && &ft !~ "git" |
+        \   exe "normal g`\"" |
+        \ endif
 
-" autoresize splits when vim is resized
-autocmd! VimResized * wincmd =
+  " autoresize splits when vim is resized
+  autocmd VimResized * wincmd =
+
+  autocmd FocusGained * checktime
+
+  autocmd FileType javascript,typescript,javascriptreact,typescriptreact,sh,yaml,vim,lua,json,html,css set expandtab shiftwidth=2 softtabstop=2
+  autocmd FileType python set expandtab shiftwidth=4 softtabstop=4
+
+  " put the current file name under the f register
+  autocmd! BufEnter * let @f=expand("%:t:r")
+augroup END
 
 if has('nvim')
+  " VimResume is Neovim-only
   augroup FugitiveVimResume
-    au!
+    autocmd!
     " checktime when nvim resumes from suspended state
     autocmd VimResume * checktime
+
     " reload fugitive status buffer when vim resumes from background
     autocmd VimResume * call fugitive#ReloadStatus()
   augroup END
 endif
-
-autocmd! FocusGained * checktime
-
-autocmd FileType javascript,typescript,javascriptreact,typescriptreact,sh,yaml,vim,lua,json,html,css set expandtab shiftwidth=2 softtabstop=2
-autocmd FileType python set expandtab shiftwidth=4 softtabstop=4
 
 "}}}
 "{{{ mappings
@@ -309,9 +317,6 @@ endif
 
 " format paragraph
 nnoremap <M-q> gwip
-
-" put the current file name under the f register
-autocmd! BufEnter * let @f=expand("%:t:r")
 
 " function used for abbreviations
 function! Eatchar(pat)
