@@ -473,7 +473,7 @@ augroup end
 
 if has('nvim')
 lua << EOF
-  function _G.get_devicon_color(...)
+  function _G.get_icon_color(...)
     local _, color = require'nvim-web-devicons'.get_icon(...)
     return color
   end
@@ -527,7 +527,7 @@ function! Tabline() abort
     " Set tab icon
     if has('nvim-0.5.0')
       let icon = luaeval('require"nvim-web-devicons".get_icon(_A[1],_A[2],{default=true})', [fname, ext])
-      let color = luaeval('get_devicon_color(_A[1], _A[2], {default=true})', [fname, ext])
+      let color = luaeval('get_icon_color(_A[1], _A[2], {default=true})', [fname, ext])
 
       let prefix = selected ? 'TabSel' : 'Tab'
       call ReplaceHighlightParams(hl, prefix . color, GetFg(GetParams(color)))
