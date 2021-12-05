@@ -17,7 +17,7 @@ setlocal complete+=i
 " clean auxiliary files on exit
 augroup TexCleanUp
   autocmd!
-  autocmd VimLeave <buffer> call system('latexmk -c '.expand('<afile>'))
+  autocmd VimLeave <buffer> call system('latexmk -c ' . expand('<afile>'))
 augroup END
 
 " find .bib file

@@ -180,7 +180,7 @@ let g:tagalong_additional_filetypes = ['javascript']
 let g:obsession_no_bufenter = 1
 
 " colorizer config
-if has('nvim') && filereadable($HOME.'/.config/nvim/colorizer.lua')
+if has('nvim') && filereadable($HOME . '/.config/nvim/colorizer.lua')
   luafile $HOME/.config/nvim/colorizer.lua
 endif
 
@@ -308,7 +308,7 @@ command! -bang Qall qall<bang>
 nnoremap <silent> <c-n> *Ncgn
 
 " show information about highlight group under cursor
-command! Hi exe 'hi '.synIDattr(synID(line("."), col("."), 0), "name")
+command! Hi exe 'hi ' . synIDattr(synID(line("."), col("."), 0), "name")
 
 " highlight yanked region
 if has('nvim-0.5.0')
@@ -424,7 +424,7 @@ function! CocStatus()
     return ''
   endif
   let status = coc#status()
-  return !empty(status) ? '['. status .']' : ''
+  return !empty(status) ? '[' . status . ']' : ''
 endfunction
 
 function! GetStatusLine(active) abort
@@ -583,7 +583,7 @@ if executable('fzf')
     call fzf#run(fzf#wrap({
           \ 'source': FugitiveShellCommand('branch', '-v', '--sort', '-committerdate', '--format', '%(refname:short)'),
           \ 'sink': function('CheckoutBranch'),
-          \ 'options': '--prompt "Checkout: " --preview "'. FugitiveShellCommand('log', '--oneline') .' {}"'
+          \ 'options': '--prompt "Checkout: " --preview "' . FugitiveShellCommand('log', '--oneline') . ' {}"'
           \ }))
   endfunction
 
@@ -772,7 +772,7 @@ inoremap <silent><expr> <c-space>
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
+    execute 'h ' . expand('<cword>')
   elseif (coc#rpc#ready())
     call CocActionAsync('doHover')
   else

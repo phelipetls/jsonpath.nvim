@@ -23,7 +23,7 @@ let b:surround_{char2nr("*")} = "**\r**"
 
 setl conceallevel=0
 
-let b:match_words = b:match_words.',^```.\+$:^```$'
+let b:match_words = b:match_words . ',^```.\+$:^```$'
 
 " code block text object
 " ----------------------
