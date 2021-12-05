@@ -431,7 +431,7 @@ nnoremap <space>vy :Gclog -g stash<CR>
 "}}}
 "{{{ statusline and tabline
 
-function CocStatus()
+function! CocStatus()
   if !exists('*coc#status')
     return ''
   endif
@@ -439,7 +439,7 @@ function CocStatus()
   return !empty(status) ? '['. status .']' : ''
 endfunction
 
-function GetStatusLine(active) abort
+function! GetStatusLine(active) abort
   let fugitive = ''
   let coc = ''
   let modified = ''
