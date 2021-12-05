@@ -1,3 +1,9 @@
+"{{{ encoding
+
+set encoding=utf-8
+scriptencoding utf-8
+
+"}}}
 "{{{ plugins
 
 " text editing conveniences
@@ -82,7 +88,6 @@ set noshowcmd nocursorline
 set nojoinspaces
 set scrolloff=3
 set backspace=indent,eol,start
-set encoding=utf-8
 set laststatus=2
 set noshowmode
 set updatetime=1000

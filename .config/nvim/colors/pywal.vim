@@ -1,3 +1,5 @@
+scriptencoding utf-8
+
 hi clear
 set background=dark
 
