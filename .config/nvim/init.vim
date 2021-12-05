@@ -375,7 +375,7 @@ function! s:get_visual_selection()
     if len(lines) == 0
         return ''
     endif
-    let lines[-1] = lines[-1][: column_end - (&selection == 'inclusive' ? 1 : 2)]
+    let lines[-1] = lines[-1][: column_end - (&selection ==# 'inclusive' ? 1 : 2)]
     let lines[0] = lines[0][column_start - 1:]
     return join(lines, "\n")
 endfunction
@@ -457,7 +457,7 @@ endfunction
 
 function! StatusLine(type) abort
   let statusline = ' %t '
-  if a:type == 'active'
+  if a:type ==# 'active'
     let statusline.='%{GetStatusLine(1)}'
   else
     let statusline.='%{GetStatusLine(0)}'
@@ -688,7 +688,7 @@ nnoremap <silent> <space>m :call RunMake()<CR>
 
 function! OpenQuickfixList()
   botright cwindow 5
-  if &buftype == 'quickfix'
+  if &buftype ==# 'quickfix'
     wincmd p
   endif
 endfunction
@@ -710,7 +710,7 @@ function! OpenLocationList()
     botright lwindow 5
   catch /E776/
   endtry
-  if &buftype == 'quickfix'
+  if &buftype ==# 'quickfix'
     wincmd p
   endif
 endfunction

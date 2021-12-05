@@ -29,9 +29,9 @@ let b:match_words = b:match_words.',^```.\+$:^```$'
 " ----------------------
 function! SelectCodeBlock(inner)
   call search('^```.\+', 'bcW')
-  execute 'normal ' . (a:inner == 'i' ? 'jv' : 'v')
+  execute 'normal ' . (a:inner ==# 'i' ? 'jv' : 'v')
   call search('^```$', 'cW')
-  execute 'normal ' . (a:inner == 'i' ? 'k$' : '$')
+  execute 'normal ' . (a:inner ==# 'i' ? 'k$' : '$')
 endfunction
 
 xnoremap <silent> ac :<C-u>call SelectCodeBlock("a")<CR>

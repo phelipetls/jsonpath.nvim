@@ -2,10 +2,10 @@ if executable('yamllint')
   compiler yamllint
 endif
 
-if expand('%:r') == '.gitlab-ci' && executable('gitlab-ci-lint')
+if expand('%:r') ==# '.gitlab-ci' && executable('gitlab-ci-lint')
   function! OnStdout(_, data, __)
     let json = json_decode(join(a:data, ''))
-    if json.status == 'valid'
+    if json.status ==# 'valid'
       echomsg 'Configuration is valid'
     else
       echohl WarningMsg

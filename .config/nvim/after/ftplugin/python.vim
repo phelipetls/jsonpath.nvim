@@ -4,7 +4,7 @@ endif
 
 if executable('python3')
   let filename = expand('%:p:t')
-  if (filename[:3] == 'test') || (filename[-4:] == 'test')
+  if (filename[:3] ==# 'test') || (filename[-4:] ==# 'test')
     if executable('pytest') | compiler pytest | else | compiler pyunit | endif
   else
     compiler flake8
