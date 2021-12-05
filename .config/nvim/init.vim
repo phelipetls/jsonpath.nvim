@@ -350,12 +350,7 @@ omap <Tab> %
 xmap <Tab> %
 
 " copy active file name
-nnoremap yp :let @+=expand("%:p")<CR>
 nnoremap y<C-p> :let @+=expand("%:p")<CR>
-
-" copy active directory name
-nnoremap yd :let @+=expand("%:h")<CR>
-nnoremap y<C-d> :let @+=expand("%:h")<CR>
 
 " use ctrl-k to delete rest of line
 inoremap <C-k> <C-o>D
@@ -395,10 +390,6 @@ if executable('xdg-open')
   vnoremap <silent> gx :<C-U>call system(printf("xdg-open %s", shellescape(<SID>get_visual_selection())))<CR>
 endif
 
-" toggle autocomment on newline
-nnoremap [oc :set formatoptions+=cro<CR>
-nnoremap ]oc :set formatoptions-=cro<CR>
-
 " format range or whole file. try to not change the jumplist
 function! Format(type, ...)
   keepjumps normal! '[v']gq
@@ -424,9 +415,6 @@ nmap <silent> gQ :call SameBufferWinDo("let w:view = winsaveview()")<CR>
       \ :keepjumps normal gg<CR>
       \ :keepjumps normal gqG<CR>
       \ :call SameBufferWinDo('keepjumps call winrestview(w:view)')<CR>
-
-" use same mapping as tig to open to see all stash
-nnoremap <space>vy :Gclog -g stash<CR>
 
 "}}}
 "{{{ statusline and tabline
@@ -600,20 +588,6 @@ if executable('fzf')
   endfunction
 
   nnoremap <space>gb :call CheckoutBranchFzf()<CR>
-
-  function! FixupWith(commit)
-    exe '!' . FugitivePrepare('git', 'commit', '--fixup', a:commit)
-  endfunction
-
-  function! FixupWithFzf()
-    call fzf#run(fzf#wrap({
-          \ 'source': FugitivePrepare('log', '--format=%h', '@{upstream}..'),
-          \ 'sink': function('FixupWith'),
-          \ 'options': '--prompt "Fixup with: " --preview "'. FugitivePrepare('show') .' {}"'
-          \ }))
-  endfunction
-
-  nnoremap <space>gf :call FixupWithFzf()<CR>
 
   let g:fzf_colors = {
         \ 'fg':      ['fg', 'Normal'],
