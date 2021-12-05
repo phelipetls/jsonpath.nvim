@@ -860,7 +860,7 @@ augroup END
 " --------------------------------------
 function! VisualNumber()
   call search('\d\([^0-9\.]\|$\)', 'cW')
-  normal v
+  normal! v
   call search('\(^\|[^0-9\.]\d\)', 'becW')
 endfunction
 xnoremap <silent> in :<C-u>call VisualNumber()<CR>
