@@ -13,7 +13,7 @@ packadd! tagalong.vim
 packadd! splitjoin.vim
 packadd! inline_edit.vim
 packadd! jsonc.vim
-if has("nvim")
+if has('nvim')
   packadd! indent-o-matic
 endif
 
@@ -41,7 +41,7 @@ packadd! editorconfig-vim
 packadd! cfilter
 packadd! vim-slime
 packadd! vim-toml
-if has("nvim")
+if has('nvim')
   packadd! nvim-colorizer.lua
   packadd! coc.nvim
 endif
@@ -55,7 +55,7 @@ packadd! vim-jsx-pretty
 packadd! vim-hugo
 
 " aesthetics
-if has("nvim-0.5.0")
+if has('nvim-0.5.0')
   packadd! nvim-web-devicons
 endif
 
@@ -92,9 +92,9 @@ set linebreak
 set showtabline=2
 
 " tell neovim where python3 is -- this improves startup time
-if has("nvim") && has("unix")
+if has('nvim') && has('unix')
   let g:loaded_python_provider = 0
-  let g:python3_host_prog = "/usr/bin/python3"
+  let g:python3_host_prog = '/usr/bin/python3'
 endif
 
 " disable foldcolumn in diff mode
@@ -107,12 +107,12 @@ set listchars=tab:»\ ,nbsp:¬,trail:·,extends:…,precedes:‹
 set showbreak=↳\ 
 
 " use ripgrep as the external grep command
-if executable("rg")
+if executable('rg')
   set grepprg=rg\ --vimgrep\ --smart-case\ --hidden
   set grepformat=%f:%l:%c:%m
 endif
 
-if has("nvim")
+if has('nvim')
 lua << EOF
   function _G.dump(...)
     local objects = vim.tbl_map(vim.inspect, {...})
@@ -136,7 +136,7 @@ set sessionoptions+=globals
 let g:yats_host_keyword = 0
 
 " emmet trigger key
-let g:user_emmet_leader_key = "<C-c><C-e>"
+let g:user_emmet_leader_key = '<C-c><C-e>'
 
 let g:user_emmet_settings = {
       \  'javascript' : {
@@ -149,14 +149,14 @@ let g:user_emmet_settings = {
 let g:traces_abolish_integration = 1
 
 " slime
-if exists("$TMUX")
-  let g:slime_target = "tmux"
-  let g:slime_default_config = {"socket_name": "default", "target_pane": "{last}"}
+if exists('$TMUX')
+  let g:slime_target = 'tmux'
+  let g:slime_default_config = {'socket_name': 'default', 'target_pane': '{last}'}
   let g:slime_dont_ask_default = 1
-elseif has("unix")
-  let g:slime_target = "x11"
+elseif has('unix')
+  let g:slime_target = 'x11'
 else
-  let g:slime_target = "neovim"
+  let g:slime_target = 'neovim'
 endif
 
 nnoremap <silent> <C-c><C-c> <Plug>SLimeRegionSend
@@ -175,7 +175,7 @@ let g:tagalong_additional_filetypes = ['javascript']
 let g:obsession_no_bufenter = 1
 
 " colorizer config
-if has("nvim") && filereadable($HOME."/.config/nvim/colorizer.lua")
+if has('nvim') && filereadable($HOME.'/.config/nvim/colorizer.lua')
   luafile $HOME/.config/nvim/colorizer.lua
 endif
 
@@ -218,7 +218,7 @@ autocmd! BufReadPost *
 " autoresize splits when vim is resized
 autocmd! VimResized * wincmd =
 
-if has("nvim")
+if has('nvim')
   augroup FugitiveVimResume
     au!
     " checktime when nvim resumes from suspended state
@@ -298,7 +298,7 @@ nnoremap <silent> <c-n> *Ncgn
 command! Hi exe 'hi '.synIDattr(synID(line("."), col("."), 0), "name")
 
 " highlight yanked region
-if has("nvim-0.5.0")
+if has('nvim-0.5.0')
   augroup highlight_yank
       autocmd!
       autocmd TextYankPost * silent!
@@ -326,7 +326,7 @@ cnoremap <C-X><C-A> <C-A>
 inoremap <expr> <C-E> col('.')>strlen(getline('.'))?"\<Lt>C-E>":"\<Lt>End>"
 
 " cool mapping to get a list of dates
-let date_formats = ["%Y-%m-%d","%Y-%m-%dT%H:%M:%S%Z"]
+let date_formats = ['%Y-%m-%d','%Y-%m-%dT%H:%M:%S%Z']
 inoremap <silent> <C-G><C-T> <C-R>=repeat(complete(col('.'),map(date_formats,'strftime(v:val)')),0)<CR>
 
 " <space> should not move cursor in normal mode
@@ -380,7 +380,7 @@ function! s:get_visual_selection()
     return join(lines, "\n")
 endfunction
 
-if executable("xdg-open")
+if executable('xdg-open')
   nnoremap <silent> gx :call system(printf("xdg-open %s", shellescape(expand("<cWORD>"))))<CR>
   vnoremap <silent> gx :<C-U>call system(printf("xdg-open %s", shellescape(<SID>get_visual_selection())))<CR>
 endif
@@ -402,10 +402,10 @@ function! SameBufferWinDo(cmd)
   let initial_winnr = winnr()
   let windows = filter(getwininfo(), {_, win -> win.bufnr == bufnr() && win.tabnr == tabpagenr()})
   for winnr in map(windows, {_, win -> win.winnr})
-    execute winnr . "wincmd w"
+    execute winnr . 'wincmd w'
     execute a:cmd
   endfor
-  execute initial_winnr . "wincmd w"
+  execute initial_winnr . 'wincmd w'
 endfunction
 
 nmap <silent> gq :set opfunc=Format<CR>g@
@@ -413,7 +413,7 @@ nmap <silent> gQ :call SameBufferWinDo("let w:view = winsaveview()")<CR>
       \ :set opfunc=Format<CR>
       \ :keepjumps normal gg<CR>
       \ :keepjumps normal gqG<CR>
-      \ :call SameBufferWinDo("keepjumps call winrestview(w:view)")<CR>
+      \ :call SameBufferWinDo('keepjumps call winrestview(w:view)')<CR>
 
 " use same mapping as tig to open to see all stash
 nnoremap <space>vy :Gclog -g stash<CR>
@@ -422,7 +422,7 @@ nnoremap <space>vy :Gclog -g stash<CR>
 "{{{ statusline and tabline
 
 function CocStatus()
-  if !exists("*coc#status")
+  if !exists('*coc#status')
     return ''
   endif
   let status = coc#status()
@@ -452,7 +452,7 @@ function GetStatusLine(active) abort
         \ !empty(async_make_status) ? '[' . async_make_status . ']' : ''
         \ ]
 
-  return join(filter(items, "!empty(v:val)"), ' ')
+  return join(filter(items, '!empty(v:val)'), ' ')
 endfunction
 
 function! StatusLine(type) abort
@@ -473,10 +473,10 @@ augroup StatusLine
   autocmd WinLeave,BufLeave * setlocal statusline=%!StatusLine('inactive')
 augroup end
 
-if has("nvim")
+if has('nvim')
 lua << EOF
   function _G.get_devicon_color(...)
-    local _, color = require"nvim-web-devicons".get_icon(...)
+    local _, color = require'nvim-web-devicons'.get_icon(...)
     return color
   end
 EOF
@@ -527,9 +527,9 @@ function! Tabline() abort
     let s .= repeat(' ', 2)
 
     " Set tab icon
-    if has("nvim-0.5.0")
-      let icon = luaeval("require'nvim-web-devicons'.get_icon(_A[1],_A[2],{default=true})", [fname, ext])
-      let color = luaeval("get_devicon_color(_A[1], _A[2], {default=true})", [fname, ext])
+    if has('nvim-0.5.0')
+      let icon = luaeval('require"nvim-web-devicons".get_icon(_A[1],_A[2],{default=true})', [fname, ext])
+      let color = luaeval('get_devicon_color(_A[1], _A[2], {default=true})', [fname, ext])
 
       let prefix = selected ? 'TabSel' : 'Tab'
       call ReplaceHighlightParams(hl, prefix . color, GetFg(GetParams(color)))
@@ -568,7 +568,7 @@ set wildignore=venv*/,__pycache__/,.pytest_cache/,tags,htmlcov/.coverage,*.pyc,p
 "}}}
 "{{{ fuzzy finder
 
-if executable("fzf")
+if executable('fzf')
   let g:fzf_preview_window = ''
 
   nnoremap <space>b :Buffers<CR>
@@ -621,7 +621,7 @@ if executable("fzf")
         \ 'header':  ['fg', 'Comment']
         \ }
 
-  if has("nvim")
+  if has('nvim')
     let $FZF_DEFAULT_OPTS .= ' --margin=0,2'
 
     function! FloatingFZF()
@@ -666,7 +666,7 @@ nnoremap <silent> [q :call ListJump("c", "previous", "last")<CR>
 nnoremap <silent> ]w :call ListJump("l", "after", "first")<CR>
 nnoremap <silent> [w :call ListJump("l", "before", "last")<CR>
 
-if has("nvim")
+if has('nvim')
   command! -nargs=* -complete=file_in_path Make lua require'async_make'.make(<q-args>)
 else
   command! -nargs=* -complete=file_in_path Make silent make!
@@ -676,8 +676,8 @@ function! RunMake()
   if empty(&l:makeprg)
     return
   endif
-  let compiler = get(b:, "current_compiler", "")
-  if index(["jest", "pytest", "pyunit"], compiler) >= 0
+  let compiler = get(b:, 'current_compiler', '')
+  if index(['jest', 'pytest', 'pyunit'], compiler) >= 0
     make! %
     return
   endif
@@ -688,7 +688,7 @@ nnoremap <silent> <space>m :call RunMake()<CR>
 
 function! OpenQuickfixList()
   botright cwindow 5
-  if &buftype == "quickfix"
+  if &buftype == 'quickfix'
     wincmd p
   endif
 endfunction
@@ -710,7 +710,7 @@ function! OpenLocationList()
     botright lwindow 5
   catch /E776/
   endtry
-  if &buftype == "quickfix"
+  if &buftype == 'quickfix'
     wincmd p
   endif
 endfunction
@@ -727,7 +727,7 @@ function! ToggleLocationList()
   call OpenLocationList()
 endfunction
 
-if has("nvim")
+if has('nvim')
   nnoremap <silent> <space>q :call ToggleQuickfixList()<CR>
   nnoremap <silent> <space>w :call ToggleLocationList()<CR>
 endif
@@ -792,7 +792,7 @@ function! s:show_documentation()
   elseif (coc#rpc#ready())
     call CocActionAsync('doHover')
   else
-    execute '!' . &keywordprg . " " . expand('<cword>')
+    execute '!' . &keywordprg . ' ' . expand('<cword>')
   endif
 endfunction
 
@@ -881,19 +881,19 @@ endfor
 function! CloseTag()
   let b:old_omnifunc = &l:omnifunc
   set omnifunc=htmlcomplete#CompleteTags
-  return "\<C-x>\<C-o>\<C-n>\<C-y>"
+  return '\<C-x>\<C-o>\<C-n>\<C-y>'
 endfunction
 
 function! Reindent()
   if (len(&indentexpr) || &cindent)
-    return "\<C-F>"
+    return '\<C-F>'
   endif
-  return ""
+  return ''
 endfunction
 
 function! CleanUp()
   let &l:omnifunc = b:old_omnifunc
-  return ""
+  return ''
 endfunction
 
 inoremap <silent> <C-X>/ <Lt>/<C-r>=CloseTag()<CR><C-r>=Reindent()<CR><C-r>=CleanUp()<CR>

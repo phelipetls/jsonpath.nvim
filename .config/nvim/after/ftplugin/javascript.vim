@@ -1,4 +1,4 @@
-let b:coc_root_patterns = ["package.json", ".git"]
+let b:coc_root_patterns = ['package.json', '.git']
 
 setlocal path-=./node_modules/**,node_modules/**
 setlocal path=node_modules
@@ -6,7 +6,7 @@ setlocal path+=cypress/fixtures
 
 let &l:path .= ',' . join(map(finddir('node_modules', '.;', -1), 'fnamemodify(resolve(v:val), ":p:s?[\\/]$??")'), ',')
 
-if has("nvim")
+if has('nvim')
   let tsconfig_include = join(luaeval("require'tsconfig'.get_tsconfig_include()"), ',')
   if !empty(tsconfig_include) && stridx(&l:path, tsconfig_include) == -1
     let &l:path .= ',' . tsconfig_include
@@ -23,20 +23,20 @@ let &l:define = '^\s*\('
       \ . '\|\(\ze\i\+([^)]*).*{$\)'
       \ . '\)'
 
-if executable("jest") && match(expand("%:p:t"), 'test\.\(js\|ts\|jsx\|tsx\)$') != -1
+if executable('jest') && match(expand('%:p:t'), 'test\.\(js\|ts\|jsx\|tsx\)$') != -1
   compiler jest
-elseif !empty(findfile("tsconfig.json", ";.")) || !empty(findfile("jsconfig.json", ";."))
+elseif !empty(findfile('tsconfig.json', ';.')) || !empty(findfile('jsconfig.json', ';.'))
   compiler tsc_lint
-elseif executable("eslint_d")
+elseif executable('eslint_d')
   compiler eslint_d
-elseif executable("eslint")
+elseif executable('eslint')
   compiler eslint
 endif
 
 command! TSLint compiler tsc_lint | Make
 command! ESLint compiler eslint_d | Make "src/**/*.{js,tsx,ts,tsx}"
 
-if executable("node")
+if executable('node')
   noremap <buffer> <F5> :w !node<CR>
 endif
 
@@ -82,7 +82,7 @@ function! JavascriptNodeFind(target, current) abort
     catch
     endtry
   endif
-  if has("nvim")
+  if has('nvim')
     return luaeval("require'tsconfig'.includeexpr(_A)", target)
   endif
   return target

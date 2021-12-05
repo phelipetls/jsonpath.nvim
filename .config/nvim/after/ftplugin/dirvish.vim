@@ -10,8 +10,8 @@ for lnum = 1, vim.fn.line('$') do
     local fname = vim.fn.fnamemodify(line, ':t')
     local extension = vim.fn.fnamemodify(line, ':e')
     if vim.fn.isdirectory(line) == 1 then
-      vim.fn.sign_define("", { text="", texthl=color })
-      vim.fn.sign_place(lnum, '', "", vim.fn.bufnr(), { lnum=lnum })
+      vim.fn.sign_define('', { text='', texthl=color })
+      vim.fn.sign_place(lnum, '', '', vim.fn.bufnr(), { lnum=lnum })
     else
       local icon, color = require'nvim-web-devicons'.get_icon(fname, extension, {default=true})
       vim.fn.sign_define(icon, { text=icon, texthl=color })
@@ -21,7 +21,7 @@ for lnum = 1, vim.fn.line('$') do
 end
 EOF
 
-if has("nvim")
+if has('nvim')
 lua << EOF
 vim.api.nvim_buf_set_keymap(0, "n", "%", ":lua require'dirvish'.create_file()<CR>", { silent = true })
 vim.api.nvim_buf_set_keymap(0, "n", "d", ":lua require'dirvish'.create_dir()<CR>", { silent = true, nowait = true })

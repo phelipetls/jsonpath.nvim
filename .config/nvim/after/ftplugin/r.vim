@@ -3,7 +3,7 @@ inoremap <buffer> -- <-
 
 setlocal define=\\ze[A-Za-z_.]\\+\\s*\\\(<-\\\\|=\\)\\s*function.*
 
-if executable("Rscript")
+if executable('Rscript')
   setlocal formatprg=styler_stdin
 endif
 

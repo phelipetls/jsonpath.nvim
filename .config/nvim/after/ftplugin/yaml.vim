@@ -1,8 +1,8 @@
-if executable("yamllint")
+if executable('yamllint')
   compiler yamllint
 endif
 
-if expand("%:r") == ".gitlab-ci" && executable("gitlab-ci-lint")
+if expand('%:r') == '.gitlab-ci' && executable('gitlab-ci-lint')
   function! OnStdout(_, data, __)
     let json = json_decode(join(a:data, ''))
     if json.status == 'valid'
@@ -15,8 +15,8 @@ if expand("%:r") == ".gitlab-ci" && executable("gitlab-ci-lint")
   endfunction
 
   function! GitlabCILint()
-    call jobstart(expandcmd("gitlab-ci-lint %"), {
-        \ 'on_stdout': function("OnStdout"),
+    call jobstart(expandcmd('gitlab-ci-lint %'), {
+        \ 'on_stdout': function('OnStdout'),
         \ 'stdout_buffered': 1
         \ })
   endfunction

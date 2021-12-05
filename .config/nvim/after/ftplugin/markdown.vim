@@ -5,13 +5,13 @@ setlocal iskeyword+='
 let g:markdown_fenced_languages = ['python', 'js=javascript']
 
 " open pdf with the same filename - to use with pandoc
-if executable("zathura")
+if executable('zathura')
   nnoremap <space>op :!zathura %<.pdf<CR>
   nnoremap <space>oh :!firefox %<.html<CR>
 endif
 
 " format with markdown github style using pandoc
-if executable("pandoc")
+if executable('pandoc')
   setlocal formatprg=pandoc\ -f\ gfm\ -t\ gfm
 endif
 
@@ -28,10 +28,10 @@ let b:match_words = b:match_words.',^```.\+$:^```$'
 " code block text object
 " ----------------------
 function! SelectCodeBlock(inner)
-  call search('^```.\+', "bcW")
-  execute "normal " . (a:inner == "i" ? "jv" : "v")
-  call search('^```$', "cW")
-  execute "normal " . (a:inner == "i" ? "k$" : "$")
+  call search('^```.\+', 'bcW')
+  execute 'normal ' . (a:inner == 'i' ? 'jv' : 'v')
+  call search('^```$', 'cW')
+  execute 'normal ' . (a:inner == 'i' ? 'k$' : '$')
 endfunction
 
 xnoremap <silent> ac :<C-u>call SelectCodeBlock("a")<CR>
