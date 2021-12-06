@@ -966,6 +966,19 @@ expose(XEvent *e)
 }
 
 void
+raisetransients(Client *leader)
+{
+	Client *c, *t = NULL;
+	Window trans = None;
+
+	for (c = leader->mon->stack; c; c = c->snext) {
+		if (XGetTransientForHint(dpy, c->win, &trans) && (t = wintoclient(trans)) && (t == leader)) {
+			XRaiseWindow(dpy, c->win);
+		}
+	}
+}
+
+void
 focus(Client *c)
 {
 	if (!c || !ISVISIBLE(c))
@@ -990,6 +1003,8 @@ focus(Client *c)
 		grabbuttons(c, 1);
 		XSetWindowBorder(dpy, c->win, scheme[SchemeSel][ColBorder].pixel);
 		setfocus(c);
+
+		raisetransients(c);
 	} else {
 		XSetInputFocus(dpy, root, RevertToPointerRoot, CurrentTime);
 		XDeleteProperty(dpy, root, netatom[NetActiveWindow]);
