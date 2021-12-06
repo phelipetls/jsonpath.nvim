@@ -915,7 +915,7 @@ drawbar(Monitor *m)
 					continue;
 				if (XGetTransientForHint(dpy, c->win, &trans))
 					continue;
-				if (m->sel == c || (XGetTransientForHint(dpy, m->sel->win, &trans) && (t = wintoclient(trans)) && (t == c)))
+				if (m->sel == c || (m->sel && XGetTransientForHint(dpy, m->sel->win, &trans) && (t = wintoclient(trans)) && (t == c)))
 					scm = SchemeSel;
 				else if (HIDDEN(c))
 					scm = SchemeHid;
