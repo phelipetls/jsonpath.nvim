@@ -2189,6 +2189,8 @@ togglefloating(const Arg *arg)
 void
 toggletag(const Arg *arg)
 {
+	Client *c, *t = NULL;
+	Window trans = None;
 	unsigned int newtags, tagmask, tagindex;
 
 	if (!selmon->sel)
@@ -2196,6 +2198,15 @@ toggletag(const Arg *arg)
 	newtags = selmon->sel->tags ^ (arg->ui & TAGMASK);
 	if (newtags) {
 		selmon->sel->tags = newtags;
+
+		for (c = selmon->stack; c; c = c->snext) {
+			if (XGetTransientForHint(dpy, c->win, &trans) && (t = wintoclient(trans))) {
+				if (selmon->sel == t) {
+					c->tags = newtags;
+				}
+			}
+		}
+
 		focus(NULL);
 		
 		for(tagmask = arg->ui & TAGMASK, tagindex = 1; tagmask!=0; tagmask >>= 1, tagindex++)
