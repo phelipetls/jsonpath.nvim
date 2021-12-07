@@ -864,7 +864,17 @@ dirtomon(int dir)
 int
 skiptaskbar(Client *c)
 {
-	return getatomprop(c, netatom[NetWMState]) == netatom[NetWMSkipTaskbar];
+	int isskiptaskbar, issplash, isdialog, ismodal;
+
+	Atom state = getatomprop(c, netatom[NetWMState]);
+	Atom wtype = getatomprop(c, netatom[NetWMWindowType]);
+
+	isskiptaskbar = state == netatom[NetWMSkipTaskbar];
+	ismodal = state == netatom[NetWMStateModal];
+	issplash = wtype == netatom[NetWMWindowTypeSplash];
+	isdialog = wtype == netatom[NetWMWindowTypeSplash];
+
+	return isskiptaskbar || issplash || ismodal || isdialog;
 }
 
 void
