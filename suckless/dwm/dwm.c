@@ -88,7 +88,7 @@ enum { SchemeNorm, SchemeSel, SchemeHid }; /* color schemes */
 enum { NetSupported, NetWMName, NetWMState, NetWMCheck,
        NetSystemTray, NetSystemTrayOP, NetSystemTrayOrientation, NetSystemTrayOrientationHorz,
        NetWMFullscreen, NetActiveWindow, NetWMWindowType,
-       NetWMWindowTypeDialog, NetClientList, NetWMSkipTaskbar, NetWMStateModal, NetLast }; /* EWMH atoms */
+       NetWMWindowTypeDialog, NetClientList, NetWMSkipTaskbar, NetWMStateModal, NetWMWindowTypeSplash, NetLast }; /* EWMH atoms */
 enum { Manager, Xembed, XembedInfo, XLast }; /* Xembed atoms */
 enum { WMProtocols, WMDelete, WMState, WMTakeFocus, WMLast }; /* default atoms */
 enum { ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle,
@@ -1951,6 +1951,7 @@ setup(void)
 	netatom[NetClientList] = XInternAtom(dpy, "_NET_CLIENT_LIST", False);
 	netatom[NetWMSkipTaskbar] = XInternAtom(dpy, "_NET_WM_STATE_SKIP_TASKBAR", False);
 	netatom[NetWMStateModal] = XInternAtom(dpy, "_NET_WM_STATE_MODAL", False);
+	netatom[NetWMWindowTypeSplash] = XInternAtom(dpy, "_NET_WM_WINDOW_TYPE_SPLASH", False);
 	motifatom = XInternAtom(dpy, "_MOTIF_WM_HINTS", False);
 	xatom[Manager] = XInternAtom(dpy, "MANAGER", False);
 	xatom[Xembed] = XInternAtom(dpy, "_XEMBED", False);
@@ -2530,13 +2531,10 @@ updatesizehints(Client *c)
 {
 	long msize;
 	XSizeHints size;
-	int ismodal, isdialog;
+	int issplash;
 
-	Atom state = getatomprop(c, netatom[NetWMState]);
 	Atom wtype = getatomprop(c, netatom[NetWMWindowType]);
-
-	ismodal = state == netatom[NetWMStateModal];
-	isdialog = wtype == netatom[NetWMWindowTypeDialog];
+	issplash = wtype == netatom[NetWMWindowTypeSplash];
 
 	if (!XGetWMNormalHints(dpy, c->win, &size, &msize))
 		/* size is uninitialized, ensure that size.flags aren't used */
@@ -2572,11 +2570,9 @@ updatesizehints(Client *c)
 		c->maxa = (float)size.max_aspect.x / size.max_aspect.y;
 	} else
 		c->maxa = c->mina = 0.0;
-	if ((ismodal || isdialog) && (size.flags & PSize)) {
+	if ((issplash) && (size.flags & PSize)) {
 		c->basew = size.base_width;
 		c->baseh = size.base_height;
-		c->isfloating = 1;
-		c->iscentered = 1;
 	}
 	c->isfixed = (c->maxw && c->maxh && c->maxw == c->minw && c->maxh == c->minh);
 }
@@ -2723,6 +2719,10 @@ updatewindowtype(Client *c)
 		setfullscreen(c, 1);
 	if (state == netatom[NetWMStateModal])
 		c->isfloating = 1;
+	if (wtype == netatom[NetWMWindowTypeSplash]) {
+		c->isfloating = 1;
+		c->iscentered = 1;
+	}
 	if (wtype == netatom[NetWMWindowTypeDialog])
 		c->isfloating = 1;
 }
