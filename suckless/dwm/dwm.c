@@ -2082,7 +2082,7 @@ swapfocus(const Arg *arg)
 {
 	if (!selmon->sel)
 		return;
-	if (selmon->pertag->prevclient[selmon->pertag->curtag] != NULL && ISVISIBLE(selmon->pertag->prevclient[selmon->pertag->curtag])) {
+	if (selmon->pertag->prevclient[selmon->pertag->curtag] != NULL && ISVISIBLE(selmon->pertag->prevclient[selmon->pertag->curtag]) && !HIDDEN(selmon->pertag->prevclient[selmon->pertag->curtag])) {
 		focus(selmon->pertag->prevclient[selmon->pertag->curtag]);
 		restack(selmon->pertag->prevclient[selmon->pertag->curtag]->mon);
 	} else {
