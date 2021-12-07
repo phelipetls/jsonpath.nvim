@@ -88,7 +88,7 @@ enum { SchemeNorm, SchemeSel, SchemeHid }; /* color schemes */
 enum { NetSupported, NetWMName, NetWMState, NetWMCheck,
        NetSystemTray, NetSystemTrayOP, NetSystemTrayOrientation, NetSystemTrayOrientationHorz,
        NetWMFullscreen, NetActiveWindow, NetWMWindowType,
-       NetWMWindowTypeDialog, NetClientList, NetWMSkipTaskbar, NetLast }; /* EWMH atoms */
+       NetWMWindowTypeDialog, NetClientList, NetWMSkipTaskbar, NetWMStateModal, NetLast }; /* EWMH atoms */
 enum { Manager, Xembed, XembedInfo, XLast }; /* Xembed atoms */
 enum { WMProtocols, WMDelete, WMState, WMTakeFocus, WMLast }; /* default atoms */
 enum { ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle,
@@ -1942,6 +1942,7 @@ setup(void)
 	netatom[NetWMWindowTypeDialog] = XInternAtom(dpy, "_NET_WM_WINDOW_TYPE_DIALOG", False);
 	netatom[NetClientList] = XInternAtom(dpy, "_NET_CLIENT_LIST", False);
 	netatom[NetWMSkipTaskbar] = XInternAtom(dpy, "_NET_WM_STATE_SKIP_TASKBAR", False);
+	netatom[NetWMStateModal] = XInternAtom(dpy, "_NET_WM_STATE_MODAL", False);
 	motifatom = XInternAtom(dpy, "_MOTIF_WM_HINTS", False);
 	xatom[Manager] = XInternAtom(dpy, "MANAGER", False);
 	xatom[Xembed] = XInternAtom(dpy, "_XEMBED", False);
@@ -2704,6 +2705,8 @@ updatewindowtype(Client *c)
 
 	if (state == netatom[NetWMFullscreen])
 		setfullscreen(c, 1);
+	if (state == netatom[NetWMStateModal])
+		c->isfloating = 1;
 	if (wtype == netatom[NetWMWindowTypeDialog])
 		c->isfloating = 1;
 }
