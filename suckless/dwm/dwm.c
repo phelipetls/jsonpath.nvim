@@ -861,6 +861,12 @@ dirtomon(int dir)
 	return m;
 }
 
+int
+skiptaskbar(Client *c)
+{
+	return getatomprop(c, netatom[NetWMState]) == netatom[NetWMSkipTaskbar];
+}
+
 void
 drawbar(Monitor *m)
 {
@@ -883,7 +889,7 @@ drawbar(Monitor *m)
 
 	resizebarwin(m);
 	for (c = m->clients; c; c = c->next) {
-		if (ISVISIBLE(c) || (getatomprop(c, netatom[NetWMState]) == netatom[NetWMSkipTaskbar]))
+		if (ISVISIBLE(c) || skiptaskbar(c))
 			n++;
 		occ |= c->tags;
 		if (c->isurgent)
@@ -913,9 +919,11 @@ drawbar(Monitor *m)
 			for (c = m->clients; c; c = c->next) {
 				if (!ISVISIBLE(c))
 					continue;
-				if (getatomprop(c, netatom[NetWMState]) == netatom[NetWMSkipTaskbar])
+				if (skiptaskbar(c))
 					continue;
-				if ((m->sel == c) || (m->sel && !(getatomprop(m->sel, netatom[NetWMState]) == netatom[NetWMSkipTaskbar]) && XGetTransientForHint(dpy, m->sel->win, &trans) && (t = wintoclient(trans)) && (t == c)))
+				if (m->sel == c)
+					scm = SchemeSel;
+				else if (m->sel && !skiptaskbar(c) && XGetTransientForHint(dpy, m->sel->win, &trans) && (t = wintoclient(trans)) && (t == c))
 					scm = SchemeSel;
 				else if (HIDDEN(c))
 					scm = SchemeHid;
@@ -1047,22 +1055,22 @@ focusstack(int inc, int hid)
 	if (inc > 0) {
 		if (selmon->sel)
 			for (c = selmon->sel->next;
-					 c && (!ISVISIBLE(c) || (!hid && HIDDEN(c)) || (getatomprop(c, netatom[NetWMState]) == netatom[NetWMSkipTaskbar]));
+					 c && (!ISVISIBLE(c) || (!hid && HIDDEN(c)) || skiptaskbar(c));
 					 c = c->next);
 		if (!c)
 			for (c = selmon->clients;
-					 c && (!ISVISIBLE(c) || (!hid && HIDDEN(c)) || (getatomprop(c, netatom[NetWMState]) == netatom[NetWMSkipTaskbar]));
+					 c && (!ISVISIBLE(c) || (!hid && HIDDEN(c)) || skiptaskbar(c));
 					 c = c->next);
 	} else {
 		if (selmon->sel) {
 			for (i = selmon->clients; i != selmon->sel; i = i->next)
-				if (ISVISIBLE(i) && !(!hid && HIDDEN(i)) && !((getatomprop(i, netatom[NetWMState]) == netatom[NetWMSkipTaskbar])))
+				if (ISVISIBLE(i) && !(!hid && HIDDEN(i)) && !skiptaskbar(i))
 					c = i;
 		} else
 			c = selmon->clients;
 		if (!c)
 			for (; i; i = i->next)
-				if (ISVISIBLE(i) && !(!hid && HIDDEN(i)) && !((getatomprop(i, netatom[NetWMState]) == netatom[NetWMSkipTaskbar])))
+				if (ISVISIBLE(i) && !(!hid && HIDDEN(i)) && !skiptaskbar(i))
 					c = i;
 	}
 
