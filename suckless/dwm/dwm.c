@@ -88,7 +88,7 @@ enum { SchemeNorm, SchemeSel, SchemeHid }; /* color schemes */
 enum { NetSupported, NetWMName, NetWMState, NetWMCheck,
        NetSystemTray, NetSystemTrayOP, NetSystemTrayOrientation, NetSystemTrayOrientationHorz,
        NetWMFullscreen, NetActiveWindow, NetWMWindowType,
-       NetWMWindowTypeDialog, NetClientList, NetLast }; /* EWMH atoms */
+       NetWMWindowTypeDialog, NetClientList, NetWMSkipTaskbar, NetLast }; /* EWMH atoms */
 enum { Manager, Xembed, XembedInfo, XLast }; /* Xembed atoms */
 enum { WMProtocols, WMDelete, WMState, WMTakeFocus, WMLast }; /* default atoms */
 enum { ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle,
@@ -883,7 +883,7 @@ drawbar(Monitor *m)
 
 	resizebarwin(m);
 	for (c = m->clients; c; c = c->next) {
-		if (ISVISIBLE(c) && !(XGetTransientForHint(dpy, c->win, &trans)))
+		if (ISVISIBLE(c) || (getatomprop(c, netatom[NetWMState]) == netatom[NetWMSkipTaskbar]))
 			n++;
 		occ |= c->tags;
 		if (c->isurgent)
@@ -913,9 +913,9 @@ drawbar(Monitor *m)
 			for (c = m->clients; c; c = c->next) {
 				if (!ISVISIBLE(c))
 					continue;
-				if (XGetTransientForHint(dpy, c->win, &trans))
+				if (getatomprop(c, netatom[NetWMState]) == netatom[NetWMSkipTaskbar])
 					continue;
-				if (m->sel == c || (m->sel && XGetTransientForHint(dpy, m->sel->win, &trans) && (t = wintoclient(trans)) && (t == c)))
+				if ((m->sel == c) || (m->sel && !(getatomprop(m->sel, netatom[NetWMState]) == netatom[NetWMSkipTaskbar]) && XGetTransientForHint(dpy, m->sel->win, &trans) && (t = wintoclient(trans)) && (t == c)))
 					scm = SchemeSel;
 				else if (HIDDEN(c))
 					scm = SchemeHid;
@@ -1037,7 +1037,6 @@ focusstackhid(const Arg *arg)
 void
 focusstack(int inc, int hid)
 {
-	Window trans = None;
 	Client *c = NULL, *i;
 
 	if (!selmon->sel && !hid)
@@ -1048,22 +1047,22 @@ focusstack(int inc, int hid)
 	if (inc > 0) {
 		if (selmon->sel)
 			for (c = selmon->sel->next;
-					 c && (!ISVISIBLE(c) || (!hid && HIDDEN(c)) || XGetTransientForHint(dpy, c->win, &trans));
+					 c && (!ISVISIBLE(c) || (!hid && HIDDEN(c)) || (getatomprop(c, netatom[NetWMState]) == netatom[NetWMSkipTaskbar]));
 					 c = c->next);
 		if (!c)
 			for (c = selmon->clients;
-					 c && (!ISVISIBLE(c) || (!hid && HIDDEN(c)) || XGetTransientForHint(dpy, c->win, &trans));
+					 c && (!ISVISIBLE(c) || (!hid && HIDDEN(c)) || (getatomprop(c, netatom[NetWMState]) == netatom[NetWMSkipTaskbar]));
 					 c = c->next);
 	} else {
 		if (selmon->sel) {
 			for (i = selmon->clients; i != selmon->sel; i = i->next)
-				if (ISVISIBLE(i) && !(!hid && HIDDEN(i)) && !(XGetTransientForHint(dpy, i->win, &trans)))
+				if (ISVISIBLE(i) && !(!hid && HIDDEN(i)) && !((getatomprop(i, netatom[NetWMState]) == netatom[NetWMSkipTaskbar])))
 					c = i;
 		} else
 			c = selmon->clients;
 		if (!c)
 			for (; i; i = i->next)
-				if (ISVISIBLE(i) && !(!hid && HIDDEN(i)) && !(XGetTransientForHint(dpy, i->win, &trans)))
+				if (ISVISIBLE(i) && !(!hid && HIDDEN(i)) && !((getatomprop(i, netatom[NetWMState]) == netatom[NetWMSkipTaskbar])))
 					c = i;
 	}
 
@@ -1942,6 +1941,7 @@ setup(void)
 	netatom[NetWMWindowType] = XInternAtom(dpy, "_NET_WM_WINDOW_TYPE", False);
 	netatom[NetWMWindowTypeDialog] = XInternAtom(dpy, "_NET_WM_WINDOW_TYPE_DIALOG", False);
 	netatom[NetClientList] = XInternAtom(dpy, "_NET_CLIENT_LIST", False);
+	netatom[NetWMSkipTaskbar] = XInternAtom(dpy, "_NET_WM_STATE_SKIP_TASKBAR", False);
 	motifatom = XInternAtom(dpy, "_MOTIF_WM_HINTS", False);
 	xatom[Manager] = XInternAtom(dpy, "MANAGER", False);
 	xatom[Xembed] = XInternAtom(dpy, "_XEMBED", False);
