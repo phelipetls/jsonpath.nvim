@@ -2522,6 +2522,13 @@ updatesizehints(Client *c)
 {
 	long msize;
 	XSizeHints size;
+	int ismodal, isdialog;
+
+	Atom state = getatomprop(c, netatom[NetWMState]);
+	Atom wtype = getatomprop(c, netatom[NetWMWindowType]);
+
+	ismodal = state == netatom[NetWMStateModal];
+	isdialog = wtype == netatom[NetWMWindowTypeDialog];
 
 	if (!XGetWMNormalHints(dpy, c->win, &size, &msize))
 		/* size is uninitialized, ensure that size.flags aren't used */
@@ -2557,7 +2564,7 @@ updatesizehints(Client *c)
 		c->maxa = (float)size.max_aspect.x / size.max_aspect.y;
 	} else
 		c->maxa = c->mina = 0.0;
-	if ((size.flags & PSize)) {
+	if ((ismodal || isdialog) && (size.flags & PSize)) {
 		c->basew = size.base_width;
 		c->baseh = size.base_height;
 		c->isfloating = 1;
