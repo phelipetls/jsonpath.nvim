@@ -498,6 +498,22 @@ attachstack(Client *c)
 	c->mon->stack = c;
 }
 
+int
+skiptaskbar(Client *c)
+{
+	int isskiptaskbar, issplash, isdialog, ismodal;
+
+	Atom state = getatomprop(c, netatom[NetWMState]);
+	Atom wtype = getatomprop(c, netatom[NetWMWindowType]);
+
+	isskiptaskbar = state == netatom[NetWMSkipTaskbar];
+	ismodal = state == netatom[NetWMStateModal];
+	issplash = wtype == netatom[NetWMWindowTypeSplash];
+	isdialog = wtype == netatom[NetWMWindowTypeSplash];
+
+	return isskiptaskbar || issplash || ismodal || isdialog;
+}
+
 void
 buttonpress(XEvent *e)
 {
@@ -534,7 +550,7 @@ buttonpress(XEvent *e)
 
 			if (c) {
 				do {
-					if (!ISVISIBLE(c))
+					if (!ISVISIBLE(c) || skiptaskbar(c))
 						continue;
 					else
 						x += (1.0 / (double)m->bt) * m->btw;
@@ -861,22 +877,6 @@ dirtomon(int dir)
 	return m;
 }
 
-int
-skiptaskbar(Client *c)
-{
-	int isskiptaskbar, issplash, isdialog, ismodal;
-
-	Atom state = getatomprop(c, netatom[NetWMState]);
-	Atom wtype = getatomprop(c, netatom[NetWMWindowType]);
-
-	isskiptaskbar = state == netatom[NetWMSkipTaskbar];
-	ismodal = state == netatom[NetWMStateModal];
-	issplash = wtype == netatom[NetWMWindowTypeSplash];
-	isdialog = wtype == netatom[NetWMWindowTypeSplash];
-
-	return isskiptaskbar || issplash || ismodal || isdialog;
-}
-
 void
 drawbar(Monitor *m)
 {
@@ -899,7 +899,7 @@ drawbar(Monitor *m)
 
 	resizebarwin(m);
 	for (c = m->clients; c; c = c->next) {
-		if (ISVISIBLE(c) || skiptaskbar(c))
+		if (ISVISIBLE(c) && !skiptaskbar(c))
 			n++;
 		occ |= c->tags;
 		if (c->isurgent)
@@ -933,7 +933,7 @@ drawbar(Monitor *m)
 					continue;
 				if (m->sel == c)
 					scm = SchemeSel;
-				else if (m->sel && !skiptaskbar(c) && XGetTransientForHint(dpy, m->sel->win, &trans) && (t = wintoclient(trans)) && (t == c))
+				else if (m->sel && XGetTransientForHint(dpy, m->sel->win, &trans) && (t = wintoclient(trans)) && (t == c))
 					scm = SchemeSel;
 				else if (HIDDEN(c))
 					scm = SchemeHid;
