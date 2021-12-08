@@ -2085,7 +2085,7 @@ swapfocus(const Arg *arg)
 
 	Client *c = selmon->pertag->prevclient[selmon->pertag->curtag];
 
-	if (c != NULL && ISVISIBLE(c) && !HIDDEN(c)) {
+	if (c != NULL && c->mon && ISVISIBLE(c) && !HIDDEN(c)) {
 		focus(c);
 		restack(c->mon);
 	} else {
