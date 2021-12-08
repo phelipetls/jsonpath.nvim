@@ -2301,7 +2301,7 @@ unfocus(Client *c, int setfocus)
 {
 	if (!c)
 		return;
-	if (!HIDDEN(c))
+	if (!HIDDEN(c) && !skiptaskbar(c))
 		selmon->pertag->prevclient[selmon->pertag->curtag] = c;
 	grabbuttons(c, 0);
 	XSetWindowBorder(dpy, c->win, scheme[SchemeNorm][ColBorder].pixel);
