@@ -2090,9 +2090,9 @@ swapfocus(const Arg *arg)
 		restack(c->mon);
 	} else {
 		Client *c = NULL;
-		for (c = selmon->sel->next; c && !ISVISIBLE(c); c = c->next);
+		for (c = selmon->sel->next; c && !ISVISIBLE(c) && !HIDDEN(c); c = c->next);
 		if (!c)
-			for (c = selmon->clients; c && !ISVISIBLE(c) || HIDDEN(c); c = c->next);
+			for (c = selmon->clients; c && !ISVISIBLE(c) && HIDDEN(c); c = c->next);
 		if (c) {
 			focus(c);
 			restack(selmon);
