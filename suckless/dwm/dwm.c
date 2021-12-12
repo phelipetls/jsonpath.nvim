@@ -499,17 +499,8 @@ attachstack(Client *c)
 int
 skiptaskbar(Client *c)
 {
-	int isskiptaskbar, issplash, isdialog, ismodal;
-
 	Atom state = getatomprop(c, netatom[NetWMState]);
-	Atom wtype = getatomprop(c, netatom[NetWMWindowType]);
-
-	isskiptaskbar = state == netatom[NetWMSkipTaskbar];
-	ismodal = state == netatom[NetWMStateModal];
-	issplash = wtype == netatom[NetWMWindowTypeSplash];
-	isdialog = wtype == netatom[NetWMWindowTypeSplash];
-
-	return isskiptaskbar || issplash || ismodal || isdialog;
+	return state == netatom[NetWMSkipTaskbar];
 }
 
 void
