@@ -86,6 +86,7 @@
         - alsa-utils
         - sxhkd
         - awesome
+        - libimlib2-dev
       state: present
 
   - name: Install pip packages

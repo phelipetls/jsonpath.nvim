@@ -14,6 +14,8 @@ static const int topbar             = 0;        /* 0 means bottom bar */
 static const int focusonwheel       = 0;
 static const char *fonts[]          = { "SourceCodePro-Medium:pixelsize=12", "Font Awesome 5 Free-Soli:pixelsize=12" };
 static const char dmenufont[]       = "monospace:size=10";
+#define ICONSIZE 16   /* icon size */
+#define ICONSPACING 5 /* space between icon and title */
 #include "colors-wal-dwm.h"
 
 /* tagging */
