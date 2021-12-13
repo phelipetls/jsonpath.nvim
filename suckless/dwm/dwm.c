@@ -90,7 +90,7 @@ enum { SchemeNorm, SchemeSel, SchemeHid }; /* color schemes */
 enum { NetSupported, NetWMName, NetWMState, NetWMCheck,
        NetSystemTray, NetSystemTrayOP, NetSystemTrayOrientation, NetSystemTrayOrientationHorz,
        NetWMFullscreen, NetActiveWindow, NetWMWindowType,
-       NetWMWindowTypeDialog, NetClientList, NetWMSkipTaskbar, NetWMStateModal, NetWMWindowTypeSplash, NetWMIcon, NetLast }; /* EWMH atoms */
+       NetWMWindowTypeDialog, NetClientList, NetWMSkipTaskbar, NetWMStateModal, NetWMWindowTypeSplash, NetWMWindowTypeUtility, NetWMIcon, NetLast }; /* EWMH atoms */
 enum { Manager, Xembed, XembedInfo, XLast }; /* Xembed atoms */
 enum { WMProtocols, WMDelete, WMState, WMTakeFocus, WMLast }; /* default atoms */
 enum { ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle,
@@ -2026,6 +2026,7 @@ setup(void)
 	netatom[NetWMSkipTaskbar] = XInternAtom(dpy, "_NET_WM_STATE_SKIP_TASKBAR", False);
 	netatom[NetWMStateModal] = XInternAtom(dpy, "_NET_WM_STATE_MODAL", False);
 	netatom[NetWMWindowTypeSplash] = XInternAtom(dpy, "_NET_WM_WINDOW_TYPE_SPLASH", False);
+	netatom[NetWMWindowTypeUtility] = XInternAtom(dpy, "_NET_WM_WINDOW_TYPE_UTILITY", False);
 	netatom[NetWMIcon] = XInternAtom(dpy, "_NET_WM_ICON", False);
 	motifatom = XInternAtom(dpy, "_MOTIF_WM_HINTS", False);
 	xatom[Manager] = XInternAtom(dpy, "MANAGER", False);
@@ -2785,6 +2786,8 @@ updatewindowtype(Client *c)
 		c->isfloating = 1;
 		c->iscentered = 1;
 	}
+	if (wtype == netatom[NetWMWindowTypeUtility])
+		c->isfloating = 1;
 	if (wtype == netatom[NetWMWindowTypeDialog])
 		c->isfloating = 1;
 }
