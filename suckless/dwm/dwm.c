@@ -918,7 +918,7 @@ drawbar(Monitor *m)
 			for (c = m->clients; c; c = c->next) {
 				if (!ISVISIBLE(c))
 					continue;
-				if (skiptaskbar(c))
+				if (skiptaskbar(c) || XGetTransientForHint(dpy, c->win, &trans))
 					continue;
 				if (m->sel == c)
 					scm = SchemeSel;
