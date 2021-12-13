@@ -90,7 +90,8 @@ enum { SchemeNorm, SchemeSel, SchemeHid }; /* color schemes */
 enum { NetSupported, NetWMName, NetWMState, NetWMCheck,
        NetSystemTray, NetSystemTrayOP, NetSystemTrayOrientation, NetSystemTrayOrientationHorz,
        NetWMFullscreen, NetActiveWindow, NetWMWindowType,
-       NetWMWindowTypeDialog, NetClientList, NetWMSkipTaskbar, NetWMStateModal, NetWMWindowTypeSplash, NetWMWindowTypeUtility, NetWMIcon, NetLast }; /* EWMH atoms */
+       NetWMWindowTypeDialog, NetClientList, NetWMSkipTaskbar, NetWMStateModal,
+       NetWMWindowTypeSplash, NetWMWindowTypeUtility, NetWMIcon, NetLast }; /* EWMH atoms */
 enum { Manager, Xembed, XembedInfo, XLast }; /* Xembed atoms */
 enum { WMProtocols, WMDelete, WMState, WMTakeFocus, WMLast }; /* default atoms */
 enum { ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle,
