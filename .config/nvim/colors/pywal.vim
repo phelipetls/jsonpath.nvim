@@ -20,7 +20,7 @@ endif
 
 "{{{ Syntax groups
 exe 'hi Normal ctermbg=NONE guibg=NONE ctermfg=15 guifg='.color15
-exe 'hi NormalFloat ctermbg=0 guibg='.color0.' ctermfg=15 guifg='.color15
+exe 'hi NormalFloat ctermbg=NONE guibg=NONE ctermfg=15 guifg='.color15
 exe 'hi link NormalFloat Normal'
 
 exe 'hi Comment ctermfg=8 guifg='.color8
@@ -107,7 +107,7 @@ exe 'hi StatusLine ctermbg=8 guibg='.color8.' ctermfg=15 guifg='.color15.' cterm
 exe 'hi TabLineSel ctermbg=8 guibg='.color8.' ctermfg=15 guifg='.color15
 exe 'hi StatusLineNC ctermbg=0 guibg='.color0.' ctermfg=7 guifg='.color7.' cterm=NONE gui=NONE'
 exe 'hi TabLine ctermbg=0 guibg='.color0.' ctermfg=7 guifg='.color7.' cterm=NONE gui=NONE'
-exe 'hi TabLineFill ctermbg=0 guibg='.color0.' cterm=NONE gui=NONE'
+exe 'hi TabLineFill ctermbg=NONE guibg=NONE cterm=NONE gui=NONE'
 
 exe 'hi ColorColumn ctermbg=0 guibg='.color0.' cterm=NONE gui=NONE'
 
