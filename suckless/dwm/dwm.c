@@ -894,7 +894,7 @@ drawbar(Monitor *m)
 
 	resizebarwin(m);
 	for (c = m->clients; c; c = c->next) {
-		if (ISVISIBLE(c) && !skiptaskbar(c))
+		if (ISVISIBLE(c) && !skiptaskbar(c) && !XGetTransientForHint(dpy, c->win, &trans))
 			n++;
 		occ |= c->tags;
 		if (c->isurgent)
@@ -1053,6 +1053,7 @@ void
 focusstack(int inc, int hid)
 {
 	Client *c = NULL, *i;
+	Window trans = None;
 
 	if (!selmon->sel && !hid)
 		return;
@@ -1062,22 +1063,22 @@ focusstack(int inc, int hid)
 	if (inc > 0) {
 		if (selmon->sel)
 			for (c = selmon->sel->next;
-					 c && (!ISVISIBLE(c) || (!hid && HIDDEN(c)) || skiptaskbar(c));
+					 c && (!ISVISIBLE(c) || (!hid && HIDDEN(c)) || skiptaskbar(c) || XGetTransientForHint(dpy, c->win, &trans));
 					 c = c->next);
 		if (!c)
 			for (c = selmon->clients;
-					 c && (!ISVISIBLE(c) || (!hid && HIDDEN(c)) || skiptaskbar(c));
+					 c && (!ISVISIBLE(c) || (!hid && HIDDEN(c)) || skiptaskbar(c) || XGetTransientForHint(dpy, c->win, &trans));
 					 c = c->next);
 	} else {
 		if (selmon->sel) {
 			for (i = selmon->clients; i != selmon->sel; i = i->next)
-				if (ISVISIBLE(i) && !(!hid && HIDDEN(i)) && !skiptaskbar(i))
+				if (ISVISIBLE(i) && !(!hid && HIDDEN(i)) && !skiptaskbar(i) && !XGetTransientForHint(dpy, i->win, &trans))
 					c = i;
 		} else
 			c = selmon->clients;
 		if (!c)
 			for (; i; i = i->next)
-				if (ISVISIBLE(i) && !(!hid && HIDDEN(i)) && !skiptaskbar(i))
+				if (ISVISIBLE(i) && !(!hid && HIDDEN(i)) && !skiptaskbar(i) && !XGetTransientForHint(dpy, i->win, &trans))
 					c = i;
 	}
 
@@ -1473,7 +1474,7 @@ monocle(Monitor *m)
 	Window trans;
 
 	for (c = m->clients; c; c = c->next)
-		if (ISVISIBLE(c) && !(XGetTransientForHint(dpy, c->win, &trans)))
+		if (ISVISIBLE(c) && !skiptaskbar(c) && !XGetTransientForHint(dpy, c->win, &trans))
 			n++;
 	if (n > 0) /* override layout symbol */
 		snprintf(m->ltsymbol, sizeof m->ltsymbol, "[%d]", n);
