@@ -985,6 +985,9 @@ expose(XEvent *e)
 void
 focus(Client *c)
 {
+	Client *i = NULL, *t = NULL;
+	Window trans = None;
+
 	if (!c || !ISVISIBLE(c))
 		for (c = selmon->stack; c && (!ISVISIBLE(c) || HIDDEN(c)); c = c->snext);
 	if (selmon->sel && selmon->sel != c) {
@@ -1007,6 +1010,12 @@ focus(Client *c)
 		grabbuttons(c, 1);
 		XSetWindowBorder(dpy, c->win, scheme[SchemeSel][ColBorder].pixel);
 		setfocus(c);
+
+		for (i = selmon->stack; i; i = i->snext) {
+			if (ISVISIBLE(i) && XGetTransientForHint(dpy, i->win, &trans) && (t = wintoclient(trans)) && (t == c)) {
+				XRaiseWindow(dpy, i->win);
+			}
+		}
 	} else {
 		XSetInputFocus(dpy, root, RevertToPointerRoot, CurrentTime);
 		XDeleteProperty(dpy, root, netatom[NetActiveWindow]);
