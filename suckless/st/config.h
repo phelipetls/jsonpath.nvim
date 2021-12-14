@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "SauceCodePro Nerd Font:style=Medium,pixelsize=16";
+static char *font = "SauceCodePro Nerd Font:style=Medium:size=10";
 static int borderpx = 10;
 
 /*
