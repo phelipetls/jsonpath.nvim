@@ -4,5 +4,6 @@ PartOf=graphical-session.target
 
 [Service]
 ExecStart=dwm
+ExecStartPost=nitrogen --restore
 ExecStopPost=systemctl --user stop graphical-session.target
 Restart=on-failure

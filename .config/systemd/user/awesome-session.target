@@ -4,7 +4,6 @@ BindsTo=graphical-session.target
 Requires=awesome.service
 Wants=battery-notifier.timer
 Wants=offlineimap.timer
-Wants=nitrogen.service
 Wants=nm-applet.service
 Wants=compton.service
 Wants=numlockx.service

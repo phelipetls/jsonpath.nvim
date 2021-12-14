@@ -5,7 +5,6 @@ Requires=dwm.service
 Wants=dwm-statusbar.service
 Wants=battery-notifier.timer
 Wants=offlineimap.timer
-Wants=nitrogen.service
 Wants=nm-applet.service
 Wants=compton.service
 Wants=numlockx.service
