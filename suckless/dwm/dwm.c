@@ -518,6 +518,7 @@ buttonpress(XEvent *e)
 	Client *c;
 	Monitor *m;
 	XButtonPressedEvent *ev = &e->xbutton;
+	Window trans = None;
 
 	click = ClkRootWin;
 	/* focus monitor if necessary */
@@ -546,7 +547,7 @@ buttonpress(XEvent *e)
 
 			if (c) {
 				do {
-					if (!ISVISIBLE(c) || skiptaskbar(c))
+					if (!ISVISIBLE(c) || skiptaskbar(c) || XGetTransientForHint(dpy, c->win, &trans))
 						continue;
 					else
 						x += (1.0 / (double)m->bt) * m->btw;
