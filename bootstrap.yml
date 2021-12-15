@@ -231,7 +231,7 @@
   - name: Run pywal
     tags:
       - pywal
-    command: wal --theme base16-oceanicnext -o .config/wal/done.sh
+    command: wal --theme base16-tomorrow-night -o .config/wal/done.sh
 
   - name: Install Font Awesome
     tags:
