@@ -8,7 +8,7 @@ super + l
 	slock
 
 super + shift + Return
-	st
+	alacritty
 
 super + F4
 	~/scripts/shutdown
