@@ -62,7 +62,7 @@ function M.get_tsconfig_paths(tsconfig_fname, prev_base_url)
     return {}
   end
 
-  local base_url = json.compilerOptions and json.compilerOptions.baseUrl or prev_base_url
+  local base_url = json.compilerOptions and json.compilerOptions.baseUrl or prev_base_url or ""
 
   local alias_to_paths = {}
 
