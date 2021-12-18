@@ -21,6 +21,7 @@ packadd! inline_edit.vim
 packadd! jsonc.vim
 if has('nvim')
   packadd! indent-o-matic
+  packadd! copilot.vim
 endif
 
 " git
