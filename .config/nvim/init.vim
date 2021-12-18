@@ -299,8 +299,8 @@ nnoremap <silent> gy `[v`]
 nnoremap Q <nop>
 
 " handle annoying command line typos
-command! -bang -complete=file_in_path E e<bang>
-command! -bang -complete=file_in_path W w<bang>
+command! -bang -nargs=* -complete=file_in_path E e<bang>
+command! -bang W w<bang>
 command! -bang Q q<bang>
 command! -bang Qall qall<bang>
 
