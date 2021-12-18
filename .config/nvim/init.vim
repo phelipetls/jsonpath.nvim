@@ -865,12 +865,12 @@ endfor
 function! CloseTag()
   let b:old_omnifunc = &l:omnifunc
   set omnifunc=htmlcomplete#CompleteTags
-  return '\<C-x>\<C-o>\<C-n>\<C-y>'
+  return "\<C-x>\<C-o>\<C-n>\<C-y>"
 endfunction
 
 function! Reindent()
   if (len(&indentexpr) || &cindent)
-    return '\<C-F>'
+    return "\<C-F>"
   endif
   return ''
 endfunction
