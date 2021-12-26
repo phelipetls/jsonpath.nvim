@@ -19,6 +19,7 @@ packadd! tagalong.vim
 packadd! splitjoin.vim
 packadd! inline_edit.vim
 packadd! jsonc.vim
+packadd! vim-indentwise
 if has('nvim')
   packadd! indent-o-matic
   packadd! copilot.vim

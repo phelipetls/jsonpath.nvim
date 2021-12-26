@@ -171,3 +171,6 @@
 [submodule "copilot.vim"]
 	path = .config/nvim/pack/plugins/opt/copilot.vim
 	url = https://github.com/github/copilot.vim
+[submodule "vim-indentwise"]
+	path = .config/nvim/pack/plugins/opt/vim-indentwise
+	url = https://github.com/jeetsukumaran/vim-indentwise
