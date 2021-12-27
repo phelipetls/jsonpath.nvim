@@ -6,7 +6,6 @@
   - name: Add apt repositories
     become: true
     tags:
-      - deps
       - gui
       - apt
     loop:
@@ -18,7 +17,6 @@
   - name: Install Visual Studio Code
     tags:
       - always
-      - deps
       - gui
     include_role:
       name: gantsign.visual-studio-code
@@ -29,7 +27,6 @@
   - name: Install apt packages
     become: true
     tags:
-      - deps
       - apt
     apt:
       name:
@@ -53,7 +50,6 @@
   - name: Install deb packages
     become: true
     tags:
-      - deps
       - apt
     loop:
       - https://github.com/gohugoio/hugo/releases/download/v0.88.1/hugo_0.88.1_Linux-64bit.deb
@@ -64,7 +60,6 @@
   - name: Install apt GUI applications
     become: true
     tags:
-      - deps
       - apt
       - gui
     apt:
@@ -91,7 +86,6 @@
 
   - name: Install pip packages
     tags:
-      - deps
       - pip
     pip:
       name:
@@ -114,7 +108,6 @@
       apply:
         become: true
         tags:
-          - deps
           - node
     vars:
       nodejs_generate_etc_profile: false
@@ -130,7 +123,6 @@
   - name: Build neovim from source
     become: true
     tags:
-      - deps
       - neovim
     vars:
       clone_path: "{{ ansible_env.HOME }}/src/neovim"
@@ -171,14 +163,12 @@
 
   - name: Initialize git submodules
     tags:
-      - deps
       - submodules
     command: git submodule update --init --recursive --jobs 4
 
   - name: Build dunst from source
     become: true
     tags:
-      - deps
       - dunst
     vars:
       clone_path: "{{ ansible_env.HOME }}/src/dunst"
@@ -236,7 +226,6 @@
   - name: Install Font Awesome
     tags:
       - fonts
-      - deps
       - gui
     get_url:
       url: https://github.com/FortAwesome/Font-Awesome/blob/7d3d774145ac38663f6d1effc6def0334b68ab7e/otfs/Font%20Awesome%205%20Free-Solid-900.otf?raw=true
@@ -246,7 +235,6 @@
   - name: Install Source Code Pro
     tags:
       - fonts
-      - deps
     get_url:
       url: https://github.com/adobe-fonts/source-code-pro/blob/29fdb884c6e9dc2a312f4a5e2bb3b2dad2350777/TTF/SourceCodePro-Medium.ttf?raw=true
       dest: "{{ ansible_env.HOME }}/.local/share/fonts/SourceCodePro-Medium.ttf"
@@ -254,7 +242,6 @@
   - name: Install Sauce Code Pro
     tags:
       - fonts
-      - deps
     get_url:
       url: https://github.com/ryanoasis/nerd-fonts/blob/ab6fa3c562c552750dce08e638f1213d67b5b05c/patched-fonts/SourceCodePro/Medium/complete/Sauce%20Code%20Pro%20Medium%20Nerd%20Font%20Complete.ttf?raw=true
       dest: "{{ ansible_env.HOME }}/.local/share/fonts/Sauce Code Pro Medium Nerd Font Complete.ttf"
@@ -267,7 +254,6 @@
   - name: Install alacritty
     tags:
       - alacritty
-      - deps
     become: true
     block:
       - name: Add apt repository
@@ -338,7 +324,6 @@
   - name: Install efm-langserver
     tags:
       - efm-langserver
-      - deps
     unarchive:
       src: https://github.com/mattn/efm-langserver/releases/download/v0.0.37/efm-langserver_v0.0.37_linux_amd64.tar.gz
       dest: "{{ ansible_env.HOME }}/.local/bin"
