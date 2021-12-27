@@ -199,6 +199,8 @@ augroup FugitiveReadOnly
   autocmd BufRead fugitive://* set readonly
 augroup END
 
+let $LESS='RX'
+
 " inline_edit commands
 nnoremap <C-c>' :InlineEdit<CR>
 
