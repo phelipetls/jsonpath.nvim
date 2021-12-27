@@ -5,7 +5,6 @@ Before=sleep.target
 [Service]
 User=%i
 Environment=DISPLAY=:0
-ExecStartPre=xset dpms force suspend
 ExecStart=slock
 
 [Install]
