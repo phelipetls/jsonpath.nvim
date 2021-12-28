@@ -16,7 +16,22 @@ static const char *fonts[]          = { "SourceCodePro-Medium:pixelsize=12", "Fo
 static const char dmenufont[]       = "monospace:size=10";
 #define ICONSIZE 16   /* icon size */
 #define ICONSPACING 5 /* space between icon and title */
-#include "colors-wal-dwm.h"
+static char normbgcolor[]           = "#222222";
+static char normbordercolor[]       = "#444444";
+static char normfgcolor[]           = "#bbbbbb";
+static char selfgcolor[]            = "#eeeeee";
+static char selbordercolor[]        = "#005577";
+static char selbgcolor[]            = "#005577";
+static char hidfgcolor[]            = "#005577";
+static char hidbordercolor[]        = "#005577";
+static char hidbgcolor[]            = "#222222";
+
+static char *colors[][3] = {
+       /*               fg           bg           border   */
+       [SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
+       [SchemeSel]  = { selfgcolor,  selbgcolor,  selbordercolor  },
+       [SchemeHid]  = { hidfgcolor,  hidbgcolor,  hidbordercolor  }
+};
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7" };
@@ -102,6 +117,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period,                focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,                 tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period,                tagmon,         {.i = +1 } },
+	{ MODKEY,                       XK_F5,                    xrdb,           {.v = NULL } },
 	{ MODKEY,                       XK_s,                     show,           {0} },
 	{ MODKEY,                       XK_h,                     hide,           {0} },
 	TAGKEYS(                        XK_1,                     0)
