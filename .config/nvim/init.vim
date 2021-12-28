@@ -212,6 +212,9 @@ let g:ranger_map_keys = 0
 let g:git_messenger_floating_win_opts = {'border': 'single'}
 let g:git_messenger_popup_content_margin = v:false
 
+imap <silent><script><expr> <C-j> copilot#Accept("\<CR>")
+let g:copilot_no_tab_map = v:true
+
 "}}}
 "{{{ autocommands
 
