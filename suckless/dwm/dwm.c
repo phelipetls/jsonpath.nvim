@@ -924,9 +924,7 @@ drawbar(Monitor *m)
 			int remainder = w % n;
 			int tabw = (1.0 / (double)n) * w + 1;
 			for (c = m->clients; c; c = c->next) {
-				if (!ISVISIBLE(c))
-					continue;
-				if (skiptaskbar(c) || XGetTransientForHint(dpy, c->win, &trans))
+				if (!ISVISIBLE(c) || skiptaskbar(c) || XGetTransientForHint(dpy, c->win, &trans))
 					continue;
 				if (m->sel == c)
 					scm = SchemeSel;
