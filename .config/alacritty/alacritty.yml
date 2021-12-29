@@ -3,3 +3,6 @@ font:
     family: SauceCodePro Nerd Font
     style: Regular
   size: 9.0
+
+import:
+  - ~/.cache/wal/colors-alacritty.yml
