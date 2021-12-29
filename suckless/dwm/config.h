@@ -16,15 +16,15 @@ static const char *fonts[]          = { "SourceCodePro-Medium:pixelsize=12", "Fo
 static const char dmenufont[]       = "monospace:size=10";
 #define ICONSIZE 16   /* icon size */
 #define ICONSPACING 5 /* space between icon and title */
-static char normbgcolor[]           = "#222222";
-static char normbordercolor[]       = "#444444";
-static char normfgcolor[]           = "#bbbbbb";
-static char selfgcolor[]            = "#eeeeee";
-static char selbordercolor[]        = "#005577";
-static char selbgcolor[]            = "#005577";
-static char hidfgcolor[]            = "#005577";
-static char hidbordercolor[]        = "#005577";
-static char hidbgcolor[]            = "#222222";
+static char normbgcolor[]     = "#222222";
+static char normbordercolor[] = "#000000";
+static char normfgcolor[]     = "#ffffff";
+static char selfgcolor[]      = "#ffffff";
+static char selbordercolor[]  = "#535d6c";
+static char selbgcolor[]      = "#535d6c";
+static char hidfgcolor[]      = "#ffffff";
+static char hidbordercolor[]      = "#444444";
+static char hidbgcolor[]      = "#444444";
 
 static char *colors[][3] = {
        /*               fg           bg           border   */
