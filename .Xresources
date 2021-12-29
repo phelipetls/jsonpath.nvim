@@ -1,9 +1,9 @@
 #include "colors-wal.Xresources"
 
-dwm.normfgcolor: color15
+dwm.normfgcolor: foreground
 dwm.normbgcolor: background
 dwm.normbordercolor: background
-dwm.selfgcolor: color15
+dwm.selfgcolor: foreground
 dwm.selbgcolor: color8
 dwm.selbordercolor: color8
 dwm.hidfgcolor: color8
