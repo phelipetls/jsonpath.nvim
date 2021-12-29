@@ -9,4 +9,4 @@ fi
 ln -sf "$HOME/.cache/wal/dunstrc" "$HOME/.config/dunst/dunstrc"
 systemctl --user restart dunst
 
-xrdb ~/.Xresources
+xrdb -I$HOME/.cache/wal ~/.Xresources

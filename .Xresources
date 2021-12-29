@@ -1,8 +1,10 @@
-dwm.normbgcolor: #222222
-dwm.normbordercolor: #000000
-dwm.normfgcolor: #ffffff
-dwm.selfgcolor: #ffffff
-dwm.selbordercolor: #535d6c
-dwm.selbgcolor: #535d6c
-dwm.hidfgcolor: #ffffff
-dwm.hidbgcolor: #444444
+#include "colors-wal.Xresources"
+
+dwm.normfgcolor: color15
+dwm.normbgcolor: background
+dwm.normbordercolor: background
+dwm.selfgcolor: color15
+dwm.selbgcolor: color8
+dwm.selbordercolor: color8
+dwm.hidfgcolor: color8
+dwm.hidbgcolor: background
