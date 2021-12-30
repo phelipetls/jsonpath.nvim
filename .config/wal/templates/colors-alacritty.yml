@@ -2,7 +2,7 @@ colors:
   primary:
     background: '{background}'
     foreground: '{foreground}'
-  bright:
+  normal:
     black: '{color0}'
     red: '{color1}'
     green: '{color2}'
@@ -11,7 +11,7 @@ colors:
     magenta: '{color5}'
     cyan: '{color6}'
     white: '{color7}'
-  normal:
+  bright:
     black: '{color8}'
     red: '{color9}'
     green: '{color10}'
