@@ -149,3 +149,5 @@ export N_PREFIX="$HOME/.local"
 tmux() {
   systemd-run --scope --user tmux "$@"
 }
+
+export PATH="$HOME/.poetry/bin:$PATH"
