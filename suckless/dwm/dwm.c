@@ -1001,13 +1001,14 @@ expose(XEvent *e)
 void
 focus(Client *c)
 {
-	Client *i = NULL, *t = NULL;
+	Client *i, *t;
 	Window trans = None;
 
 	if (!c || !ISVISIBLE(c))
 		for (c = selmon->stack; c && (!ISVISIBLE(c) || HIDDEN(c)); c = c->snext);
 	if (selmon->sel && selmon->sel != c) {
-		unfocus(selmon->sel, 0);
+		if (!(XGetTransientForHint(dpy, c->win, &trans) && (t = wintoclient(trans)) && (t == selmon->sel)))
+			unfocus(selmon->sel, 0);
 
 		if (selmon->hidsel) {
 			hidewin(selmon->sel);
@@ -1027,8 +1028,12 @@ focus(Client *c)
 		XSetWindowBorder(dpy, c->win, scheme[SchemeSel][ColBorder].pixel);
 		setfocus(c);
 
+		if (XGetTransientForHint(dpy, c->win, &trans)) {
+			XRaiseWindow(dpy, c->win);
+		}
+
 		for (i = selmon->stack; i; i = i->snext) {
-			if (ISVISIBLE(i) && XGetTransientForHint(dpy, i->win, &trans) && (t = wintoclient(trans)) && (t == c)) {
+			if (ISVISIBLE(i) && (XGetTransientForHint(dpy, i->win, &trans) && (t = wintoclient(trans)) && (t == c))) {
 				XRaiseWindow(dpy, i->win);
 			}
 		}
@@ -1855,6 +1860,7 @@ restack(Monitor *m)
 				wc.sibling = c->win;
 			}
 	}
+
 	XSync(dpy, False);
 	while (XCheckMaskEvent(dpy, EnterWindowMask, &ev));
 }
@@ -2408,10 +2414,23 @@ freeicon(Client *c)
 void
 unfocus(Client *c, int setfocus)
 {
+	Client *i, *t;
+	Window trans = None;
+
 	if (!c)
 		return;
 	grabbuttons(c, 0);
 	XSetWindowBorder(dpy, c->win, scheme[SchemeNorm][ColBorder].pixel);
+
+	if (XGetTransientForHint(dpy, c->win, &trans))
+		XLowerWindow(dpy, c->win);
+
+	for (i = c->mon->stack; i; i = i->snext) {
+		if (ISVISIBLE(i) && (XGetTransientForHint(dpy, i->win, &trans) && (t = wintoclient(trans)) && (t == c))) {
+			XLowerWindow(dpy, i->win);
+		}
+	}
+
 	if (setfocus) {
 		XSetInputFocus(dpy, root, RevertToPointerRoot, CurrentTime);
 		XDeleteProperty(dpy, root, netatom[NetActiveWindow]);
