@@ -1,3 +1,5 @@
+let b:coc_root_patterns = ['.git', '.env', 'venv', '.venv', 'setup.cfg', 'setup.py', 'pyproject.toml', 'pyrightconfig.json']
+
 if executable('black')
   setlocal formatprg=black\ --quiet\ -\ 2>/dev/null
 endif
