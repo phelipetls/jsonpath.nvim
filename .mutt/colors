@@ -2,7 +2,6 @@
 color normal white default
 color index brightwhite default "~N"
 color indicator black brightgreen
-color sidebar_highlight black yellow
 color quoted cyan default
 color quoted1 magenta default
 color quoted2 blue default
@@ -10,6 +9,9 @@ color tree yellow default
 color status black brightblue
 color error red default
 color search magenta default
+
+color sidebar_highlight green default
+color sidebar_new brightwhite default
 
 color hdrdefault blue default
 color header blue default ^From:
