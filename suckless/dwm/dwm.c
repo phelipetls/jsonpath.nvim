@@ -1007,8 +1007,7 @@ focus(Client *c)
 	if (!c || !ISVISIBLE(c))
 		for (c = selmon->stack; c && (!ISVISIBLE(c) || HIDDEN(c)); c = c->snext);
 	if (selmon->sel && selmon->sel != c) {
-		if (!(XGetTransientForHint(dpy, c->win, &trans) && (t = wintoclient(trans)) && (t == selmon->sel)))
-			unfocus(selmon->sel, 0);
+		unfocus(selmon->sel, 0);
 
 		if (selmon->hidsel) {
 			hidewin(selmon->sel);
