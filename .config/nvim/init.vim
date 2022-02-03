@@ -368,6 +368,15 @@ nnoremap <silent> gD gD:nohlsearch<CR>
 nnoremap <silent> 1gd 1gd:nohlsearch<CR>
 nnoremap <silent> 1gD 1gD:nohlsearch<CR>
 
+augroup FugitiveMappings
+  autocmd!
+  autocmd User FugitiveIndex unmap <buffer> P
+  autocmd User FugitiveIndex nnoremap <buffer> P<space> :Git push<space>
+  autocmd User FugitiveIndex nnoremap <buffer> F<space> :Git pull<space>
+  autocmd User FugitiveIndex nnoremap <buffer> Fp :Git pull origin @{push}<space>
+  autocmd User FugitiveIndex nnoremap <buffer> Fu :Git pull origin @{upstream}<space>
+augroup end
+
 " convenient abbreviations
 inoreabbrev Taebl Table
 inoreabbrev taebl table
