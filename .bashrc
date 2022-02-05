@@ -109,22 +109,17 @@ _fzf_compgen_dir() {
 
 _fzf_setup_completion path npm
 
-# less config
 export LESS="FXRM"
 
-# configure PATH for texlive
 export PATH="/usr/local/texlive/2019/bin/x86_64-linux/:$PATH"
 export MANPATH="/usr/local/texlive/2019/texmf-dist/doc/man/:$MANPATH"
 export INFOPATH="/usr/local/texlive/2019/texmf-dist/doc/info/:$INFOPATH"
 
-# custom scripts, snap and cargo
 export PATH="$HOME/scripts/:/snap/bin:/.cargo/bin:$PATH"
 
-# and Go
 export GOPATH="$HOME/go"
 export PATH="/usr/local/go/bin:$GOPATH/bin:$PATH"
 
-# Android Studio config
 export PATH="$HOME/android-studio/bin:$PATH"
 
 export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
