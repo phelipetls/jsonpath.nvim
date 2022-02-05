@@ -29,7 +29,6 @@ packadd! vim-fugitive
 packadd! fugitive-gitlab.vim
 packadd! vim-rhubarb
 packadd! git-messenger.vim
-packadd! gv.vim
 
 " file navigation
 packadd! vim-dirvish
