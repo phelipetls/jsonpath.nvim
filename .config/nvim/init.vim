@@ -17,7 +17,6 @@ packadd! matchit
 packadd! vim-lion
 packadd! tagalong.vim
 packadd! splitjoin.vim
-packadd! inline_edit.vim
 packadd! jsonc.vim
 packadd! vim-indentwise
 if has('nvim')
@@ -193,11 +192,6 @@ let $NO_COLOR=0
 let g:fugitive_pty=0
 
 let $LESS='RX'
-
-" inline_edit commands
-nnoremap <C-c>' :InlineEdit<CR>
-
-let g:inline_edit_autowrite=1
 
 " ranger.vim
 let g:ranger_map_keys = 0
