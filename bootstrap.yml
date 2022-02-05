@@ -274,7 +274,6 @@
       - dmenu
       - dwm
       - slock
-      - st
       - tabbed
     shell:
       cmd: make clean install
