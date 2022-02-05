@@ -109,7 +109,7 @@ set diffopt+=foldcolumn:0,indent-heuristic,algorithm:patience,hiddenoff
 
 " visually show special characters
 set list
-set fillchars=fold:-,vert:│
+set fillchars=fold:-,vert:│,stlnc:-
 set listchars=tab:»\ ,nbsp:¬,trail:·,extends:…,precedes:‹
 set showbreak=↳\ 
 
@@ -476,7 +476,7 @@ function! StatusLine(type) abort
     let statusline.='%{GetStatusLine(0)}'
   endif
   let statusline.='%='
-  let statusline.='[%l/%L] %y'
+  let statusline.=' [%l/%L] %y '
   return statusline
 endfunction
 
