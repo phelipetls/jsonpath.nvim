@@ -33,7 +33,6 @@
         - git
         - tig
         - tmux
-        - fzf
         - stow
         - mutt
         - w3m
@@ -331,3 +330,11 @@
       extra_opts:
         - "--strip-components=1"
         - "efm-langserver_v0.0.37_linux_amd64/efm-langserver"
+
+  - name: Install fzf
+    tags:
+      - fzf
+    unarchive:
+      src: https://github.com/junegunn/fzf/releases/download/0.29.0/fzf-0.29.0-linux_amd64.tar.gz
+      dest: "{{ ansible_env.HOME }}/.local/bin"
+      remote_src: true
