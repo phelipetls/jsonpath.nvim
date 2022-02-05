@@ -8,13 +8,9 @@
     editor = nvim
     attributesfile = /home/phelipe/.gitattributes
 [merge]
-    tool = diffconflicts
+    tool = nvim
 [mergetool "nvim"]
     cmd = nvim -d "$LOCAL" "$MERGED" "$REMOTE"
-[mergetool "diffconflicts"]
-    cmd = nvim -c DiffConflicts "$MERGED" "$BASE" "$LOCAL" "$REMOTE"
-    trustExitCode = true
-    keepBackup = false
 [mergetool "vscode"]
     cmd = code --wait $MERGED
 [push]
