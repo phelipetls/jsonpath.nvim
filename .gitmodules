@@ -50,10 +50,6 @@
 	path = .config/nvim/pack/plugins/opt/emmet-vim
 	url = https://github.com/mattn/emmet-vim
 	ignore = dirty
-[submodule "vim-jinja"]
-	path = .config/nvim/pack/plugins/opt/vim-jinja
-	url = https://github.com/mitsuhiko/vim-jinja
-	ignore = dirty
 [submodule "vim-javascript"]
 	path = .config/nvim/pack/plugins/opt/vim-javascript
 	url = https://github.com/pangloss/vim-javascript

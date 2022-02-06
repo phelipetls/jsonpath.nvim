@@ -53,7 +53,6 @@ endif
 
 " web development
 packadd! emmet-vim
-packadd! vim-jinja
 packadd! vim-javascript
 packadd! yats.vim
 packadd! vim-jsx-pretty
