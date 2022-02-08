@@ -1001,9 +1001,6 @@ expose(XEvent *e)
 void
 focus(Client *c)
 {
-	Client *i, *t;
-	Window trans = None;
-
 	if (!c || !ISVISIBLE(c))
 		for (c = selmon->stack; c && (!ISVISIBLE(c) || HIDDEN(c)); c = c->snext);
 	if (selmon->sel && selmon->sel != c) {
@@ -1026,16 +1023,6 @@ focus(Client *c)
 		grabbuttons(c, 1);
 		XSetWindowBorder(dpy, c->win, scheme[SchemeSel][ColBorder].pixel);
 		setfocus(c);
-
-		if (XGetTransientForHint(dpy, c->win, &trans)) {
-			XRaiseWindow(dpy, c->win);
-		}
-
-		for (i = selmon->stack; i; i = i->snext) {
-			if (ISVISIBLE(i) && (XGetTransientForHint(dpy, i->win, &trans) && (t = wintoclient(trans)) && (t == c))) {
-				XRaiseWindow(dpy, i->win);
-			}
-		}
 	} else {
 		XSetInputFocus(dpy, root, RevertToPointerRoot, CurrentTime);
 		XDeleteProperty(dpy, root, netatom[NetActiveWindow]);
@@ -1841,9 +1828,10 @@ resizerequest(XEvent *e)
 void
 restack(Monitor *m)
 {
-	Client *c;
+	Client *c, *t = NULL;
 	XEvent ev;
 	XWindowChanges wc;
+	Window trans = None;
 
 	drawbar(m);
 	if (!m->sel)
@@ -1858,6 +1846,17 @@ restack(Monitor *m)
 				XConfigureWindow(dpy, c->win, CWSibling|CWStackMode, &wc);
 				wc.sibling = c->win;
 			}
+	}
+
+	if (XGetTransientForHint(dpy, m->sel->win, &trans)) {
+		XRaiseWindow(dpy, m->sel->win);
+	}
+
+	for (c = m->stack; c; c = c->snext) {
+		if (ISVISIBLE(c) && (XGetTransientForHint(dpy, c->win, &trans) && (t = wintoclient(trans)) && (t == m->sel))) {
+			fprintf(stderr, "Raising window %s.\n", t->name);
+			XRaiseWindow(dpy, c->win);
+		}
 	}
 
 	XSync(dpy, False);
