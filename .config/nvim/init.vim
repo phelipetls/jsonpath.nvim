@@ -18,7 +18,6 @@ packadd! vim-lion
 packadd! tagalong.vim
 packadd! splitjoin.vim
 packadd! jsonc.vim
-packadd! vim-indentwise
 if has('nvim')
   packadd! copilot.vim
 endif
