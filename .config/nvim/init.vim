@@ -20,7 +20,6 @@ packadd! splitjoin.vim
 packadd! jsonc.vim
 packadd! vim-indentwise
 if has('nvim')
-  packadd! indent-o-matic
   packadd! copilot.vim
 endif
 

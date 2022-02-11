@@ -140,9 +140,6 @@
 [submodule "bclose.vim"]
 	path = .config/nvim/pack/plugins/opt/bclose.vim
 	url = https://github.com/rbgrouleff/bclose.vim
-[submodule "indent-o-matic"]
-	path = .config/nvim/pack/plugins/opt/indent-o-matic
-	url = https://github.com/Darazaki/indent-o-matic
 [submodule "jsonc.vim"]
 	path = .config/nvim/pack/plugins/opt/jsonc.vim
 	url = https://github.com/neoclide/jsonc.vim
