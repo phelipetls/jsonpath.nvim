@@ -98,6 +98,10 @@
 	path = .config/nvim/pack/plugins/opt/vader.vim
 	url = https://github.com/junegunn/vader.vim
 	ignore = dirty
+[submodule "diffconflicts"]
+	path = .config/nvim/pack/plugins/opt/diffconflicts
+	url = https://github.com/whiteinge/diffconflicts
+	ignore = dirty
 [submodule "nvim-colorizer.lua"]
 	path = .config/nvim/pack/plugins/opt/nvim-colorizer.lua
 	url = https://github.com/norcalli/nvim-colorizer.lua
