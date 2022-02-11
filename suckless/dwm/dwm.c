@@ -1850,12 +1850,15 @@ restack(Monitor *m)
 
 	if (XGetTransientForHint(dpy, m->sel->win, &trans)) {
 		XRaiseWindow(dpy, m->sel->win);
-	}
-
-	for (c = m->stack; c; c = c->snext) {
-		if (ISVISIBLE(c) && (XGetTransientForHint(dpy, c->win, &trans) && (t = wintoclient(trans)) && (t == m->sel))) {
-			fprintf(stderr, "Raising window %s.\n", t->name);
-			XRaiseWindow(dpy, c->win);
+	} else {
+		for (c = m->clients; c; c = c->next) {
+			if (ISVISIBLE(c) && XGetTransientForHint(dpy, c->win, &trans)) {
+				if ((t = wintoclient(trans)) && (t == m->sel)) {
+					XRaiseWindow(dpy, c->win);
+				} else {
+					XLowerWindow(dpy, c->win);
+				}
+			}
 		}
 	}
 
@@ -2412,22 +2415,10 @@ freeicon(Client *c)
 void
 unfocus(Client *c, int setfocus)
 {
-	Client *i, *t;
-	Window trans = None;
-
 	if (!c)
 		return;
 	grabbuttons(c, 0);
 	XSetWindowBorder(dpy, c->win, scheme[SchemeNorm][ColBorder].pixel);
-
-	if (XGetTransientForHint(dpy, c->win, &trans))
-		XLowerWindow(dpy, c->win);
-
-	for (i = c->mon->stack; i; i = i->snext) {
-		if (ISVISIBLE(i) && (XGetTransientForHint(dpy, i->win, &trans) && (t = wintoclient(trans)) && (t == c))) {
-			XLowerWindow(dpy, i->win);
-		}
-	}
 
 	if (setfocus) {
 		XSetInputFocus(dpy, root, RevertToPointerRoot, CurrentTime);
