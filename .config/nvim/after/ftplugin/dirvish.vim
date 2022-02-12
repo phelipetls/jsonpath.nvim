@@ -12,7 +12,7 @@ for lnum = 1, vim.fn.line('$') do
     local fname = vim.fn.fnamemodify(line, ':t')
     local extension = vim.fn.fnamemodify(line, ':e')
     if vim.fn.isdirectory(line) == 1 then
-      vim.fn.sign_define('', { text='', texthl=color })
+      vim.fn.sign_define('', { text='' })
       vim.fn.sign_place(lnum, '', '', vim.fn.bufnr(), { lnum=lnum })
     else
       local icon, color = require'nvim-web-devicons'.get_icon(fname, extension, {default=true})
