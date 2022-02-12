@@ -370,6 +370,7 @@ augroup end
 " convenient abbreviations
 inoreabbrev Taebl Table
 inoreabbrev taebl table
+inoreabbrev github GitHub
 
 " git messenger mapping
 nnoremap <silent> gb :GitMessenger<CR>
