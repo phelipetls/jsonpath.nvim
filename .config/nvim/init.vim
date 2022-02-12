@@ -440,8 +440,9 @@ function! GetStatusLine(active) abort
   let eol = ''
   let async_make_status = ''
 
-  let revision = matchstr(FugitiveStatusline(), '\[Git:\zs.*\ze(')
-  let branch = matchstr(FugitiveStatusline(), '\[Git(\zs.*\ze)]')
+  let fugitivestl = FugitiveStatusline()
+  let revision = matchstr(fugitivestl, '\[Git:\zs.*\ze(')
+  let branch = matchstr(fugitivestl, '\[Git(\zs.*\ze)]')
 
   let fugitive = ''
   if !empty(revision)
