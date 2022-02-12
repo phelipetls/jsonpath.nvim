@@ -227,12 +227,12 @@ augroup GlobalAutocmds
   autocmd FileType python set expandtab shiftwidth=4 softtabstop=4
 
   " put the current file name under the f register
-  autocmd! BufEnter * let @f=expand("%:t:r")
+  autocmd BufEnter * let @f=expand("%:t:r")
 augroup END
 
 if has('nvim')
   " VimResume is Neovim-only
-  augroup FugitiveVimResume
+  augroup GlobalNeovimOnlyAutocmds
     autocmd!
     " checktime when nvim resumes from suspended state
     autocmd VimResume * checktime
@@ -345,14 +345,14 @@ cnoremap <C-R><C-L> <C-R>=substitute(getline('.'), '^\s*', '', '')<CR>
 omap <Tab> %
 xmap <Tab> %
 
-" copy active file name
+" copy current file name
 nnoremap y<C-p> :let @+=expand("%:p")<CR>
 
-" use ctrl-k to delete rest of line
+" use ctrl-k to delete until end of line in insert mode
 inoremap <C-k> <C-o>D
 inoremap <C-x><C-k> <C-k>
 
-" go to local/global declaration and turn off search highlight
+" go to local/global declaration and turn off search highlight afterwards
 nnoremap <silent> gd gd:nohlsearch<CR>
 nnoremap <silent> gD gD:nohlsearch<CR>
 nnoremap <silent> 1gd 1gd:nohlsearch<CR>
