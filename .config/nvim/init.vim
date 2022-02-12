@@ -476,6 +476,7 @@ function! StatusLine(type) abort
   else
     let statusline.='%{GetStatusLine(0)}'
   endif
+  let statusline.=' '
   let statusline.='%='
   let statusline.=' [%l/%L] %y '
   return statusline
