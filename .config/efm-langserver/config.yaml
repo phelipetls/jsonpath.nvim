@@ -49,6 +49,12 @@ tools:
     lint-formats:
       - '%f:%l:%c: %m'
 
+  markdown-proselint: &markdown-proselint
+    lint-command: 'proselint'
+    lint-stdin: true
+    lint-formats:
+      - '%f:%l:%c: %m'
+
 languages:
   yaml:
     - <<: *yaml-yamllint
@@ -77,3 +83,6 @@ languages:
 
   vim:
     - <<: *vim-vint
+
+  markdown:
+    - <<: *markdown-proselint

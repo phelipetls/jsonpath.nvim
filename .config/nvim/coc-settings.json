@@ -21,7 +21,7 @@
     "efm": {
       "command": "efm-langserver",
       "args": ["-c", "/home/phelipe/.config/efm-langserver/config.yaml"],
-      "filetypes": ["sh", "yaml", "lua", "python", "javascript", "typescript", "javascriptreact", "typescriptreact", "vim"],
+      "filetypes": ["sh", "yaml", "lua", "python", "javascript", "typescript", "javascriptreact", "typescriptreact", "vim", "markdown"],
       "formatterPriority": 100
     }
   },
