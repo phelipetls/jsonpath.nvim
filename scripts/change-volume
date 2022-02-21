@@ -22,10 +22,6 @@ function is_mute {
   amixer get Master | grep off
 }
 
-# if [[ -f "$HOME/.cache/wal/colors.sh" ]]; then
-#   source "$HOME/.cache/wal/colors.sh"
-# fi
-
 function notify() {
   volume=$(get_volume)
   icon='audio-volume-high-symbolic'
