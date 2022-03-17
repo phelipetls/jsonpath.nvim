@@ -869,7 +869,7 @@ xnoremap <silent> ar a[
 onoremap <silent> ir :normal vi[<CR>
 onoremap <silent> ar :normal va[<CR>
 
-for char in ['_', '-', '/', '*']
+for char in ['_', '-', '/', '*', ',']
   execute 'xnoremap <silent> i' . char . ' :<C-u>normal! T' . char . 'vt' . char . '<CR>'
   execute 'onoremap <silent> i' . char . ' :normal vi' . char . '<CR>'
   execute 'xnoremap <silent> a' . char . ' :<C-u>normal! F' . char . 'vf' . char . '<CR>'
