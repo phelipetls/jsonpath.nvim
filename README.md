@@ -9,4 +9,5 @@ git clone git@github.com:phelipetls/dotfiles.git
 cd dotfiles
 
 ./install
+ansible-playbook bootstrap.yml
 ```
