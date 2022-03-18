@@ -7,31 +7,7 @@
   "editor.minimap.enabled": false,
   "editor.renderWhitespace": "trailing",
   "editor.formatOnSaveMode": "modifications",
-  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
-  "eslint.format.enable": true,
   "editor.formatOnSave": true,
-  "eslint.codeActionsOnSave.mode": "problems",
-  "editor.codeActionsOnSave": [
-    "source.fixAll.eslint"
-  ],
-  "[javascript]": {
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
-  },
-  "[javascriptreact]": {
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
-  },
-  "[typescript]": {
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
-  },
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
-  },
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact"
-  ],
   "window.menuBarVisibility": "hidden",
   "workbench.startupEditor": "welcomePage",
   "workbench.sideBar.location": "right",
