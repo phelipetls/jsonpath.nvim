@@ -151,7 +151,6 @@
       ]
     }
   ],
-  "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
   "explorer.compactFolders": false,
   "javascript.updateImportsOnFileMove.enabled": "always",
   "typescript.updateImportsOnFileMove.enabled": "always",
