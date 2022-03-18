@@ -1,17 +1,19 @@
 {
   "window.zoomLevel": -1,
-  "workbench.colorTheme": "Default Dark+",
+  "window.menuBarVisibility": "hidden",
   "editor.fontFamily": "Consolas,'Source Code Pro','monospace', monospace",
   "editor.cursorStyle": "block",
   "editor.minimap.enabled": false,
   "editor.renderWhitespace": "trailing",
   "editor.formatOnSaveMode": "modifications",
   "editor.formatOnSave": true,
-  "window.menuBarVisibility": "hidden",
+  "editor.cursorBlinking": "solid",
+  "explorer.compactFolders": false,
+  "workbench.colorTheme": "Default Dark+",
   "workbench.startupEditor": "welcomePage",
   "workbench.sideBar.location": "right",
   "workbench.tree.indent": 12,
-  "editor.cursorBlinking": "solid",
+  "workbench.editor.enablePreview": false,
   "breadcrumbs.enabled": false,
   "scm.diffDecorations": "gutter",
   "files.enableTrash": false,
@@ -151,8 +153,6 @@
       ]
     }
   ],
-  "explorer.compactFolders": false,
   "javascript.updateImportsOnFileMove.enabled": "always",
-  "typescript.updateImportsOnFileMove.enabled": "always",
-  "workbench.editor.enablePreview": false
+  "typescript.updateImportsOnFileMove.enabled": "always"
 }
