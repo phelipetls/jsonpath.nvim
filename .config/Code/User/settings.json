@@ -24,134 +24,20 @@
     "<C-f>": false
   },
   "vim.normalModeKeyBindings": [
-    {
-      "before": [
-        "-"
-      ],
-      "commands": [
-        "workbench.view.explorer"
-      ]
-    },
-    {
-      "before": [
-        "[",
-        "d"
-      ],
-      "commands": [
-        "editor.action.revealDefinition"
-      ]
-    },
-    {
-      "before": [
-        "[",
-        "e"
-      ],
-      "commands": [
-        "editor.action.moveLinesUpAction"
-      ]
-    },
-    {
-      "before": [
-        "]",
-        "e"
-      ],
-      "commands": [
-        "editor.action.moveLinesDownAction"
-      ]
-    },
-    {
-      "before": [
-        "]",
-        "q"
-      ],
-      "commands": [
-        "search.action.focusNextSearchResult"
-      ]
-    },
-    {
-      "before": [
-        "[",
-        "q"
-      ],
-      "commands": [
-        "search.action.focusPreviousSearchResult"
-      ]
-    },
-    {
-      "before": [
-        "K"
-      ],
-      "commands": [
-        "editor.action.showHover"
-      ]
-    },
-    {
-      "before": [
-        "g",
-        "r"
-      ],
-      "commands": [
-        "workbench.action.previousEditor"
-      ]
-    },
-    {
-      "before": [
-        "[",
-        "g"
-      ],
-      "commands": [
-        "editor.action.marker.prevInFiles"
-      ]
-    },
-    {
-      "before": [
-        "]",
-        "g"
-      ],
-      "commands": [
-        "editor.action.marker.nextInFiles"
-      ]
-    },
-    {
-      "before": [
-        "[",
-        "b"
-      ],
-      "commands": [
-        "workbench.action.previousEditor"
-      ]
-    },
-    {
-      "before": [
-        "]",
-        "b"
-      ],
-      "commands": [
-        "workbench.action.nextEditor"
-      ]
-    },
-    {
-      "before": [
-        "[",
-        "f"
-      ],
-      "commands": [
-        "workbench.view.explorer",
-        "list.focusUp",
-        "explorer.openAndPassFocus"
-      ]
-    },
-    {
-      "before": [
-        "]",
-        "f"
-      ],
-      "commands": [
-        "workbench.view.explorer",
-        "list.focusDown",
-        "explorer.openAndPassFocus"
-      ]
-    }
+    {"before": ["-"], "commands": ["workbench.view.explorer"]},
+    {"before": ["[", "d"], "commands": ["editor.action.revealDefinition"]},
+    {"before": ["[", "e"], "commands": ["editor.action.moveLinesUpAction"]},
+    {"before": ["]", "e"], "commands": ["editor.action.moveLinesDownAction"]},
+    {"before": ["]", "q"], "commands": ["search.action.focusNextSearchResult"]},
+    {"before": ["[", "q"], "commands": ["search.action.focusPreviousSearchResult"]},
+    {"before": ["K"], "commands": ["editor.action.showHover"]},
+    {"before": ["g", "r"], "commands": ["workbench.action.previousEditor"]},
+    {"before": ["[", "g"], "commands": ["editor.action.marker.prevInFiles"]},
+    {"before": ["]", "g"], "commands": ["editor.action.marker.nextInFiles"]},
+    {"before": ["[", "b"], "commands": ["workbench.action.previousEditor"]},
+    {"before": ["]", "b"], "commands": ["workbench.action.nextEditor"]},
+    {"before": ["[", "f"], "commands": ["workbench.view.explorer", "list.focusUp", "explorer.openAndPassFocus"]},
+    {"before": ["]", "f"], "commands": ["workbench.view.explorer", "list.focusDown", "explorer.openAndPassFocus"]}
   ],
   "javascript.updateImportsOnFileMove.enabled": "always",
   "typescript.updateImportsOnFileMove.enabled": "always"
