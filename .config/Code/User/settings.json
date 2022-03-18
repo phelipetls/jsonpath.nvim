@@ -10,7 +10,7 @@
   "editor.cursorBlinking": "solid",
   "explorer.compactFolders": false,
   "workbench.colorTheme": "Default Dark+",
-  "workbench.startupEditor": "welcomePage",
+  "workbench.startupEditor": "none",
   "workbench.sideBar.location": "right",
   "workbench.tree.indent": 12,
   "workbench.editor.enablePreview": false,
