@@ -3,7 +3,6 @@
   "workbench.colorTheme": "Default Dark+",
   "editor.fontFamily": "Consolas,'Source Code Pro','monospace', monospace",
   "editor.cursorStyle": "block",
-  "editor.tabSize": 2,
   "editor.minimap.enabled": false,
   "editor.renderWhitespace": "trailing",
   "editor.formatOnSaveMode": "modifications",
