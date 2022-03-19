@@ -94,6 +94,13 @@ if [ -d "$HOME/.cargo/bin" ]; then
   export PATH="$HOME/.cargo/bin:$PATH"
 fi
 
+# Add default less options
+# -F to quit automatically if the file is shorter than the screen
+# -X to not clear the screen after quitting
+# -R to show only color escape sequences in raw form
+# -M to show a more verbose prompt
+export LESS="FXRM"
+
 alias r='ranger'
 alias ls='ls --color=auto --group-directories-first'
 alias ll='ls -alF'

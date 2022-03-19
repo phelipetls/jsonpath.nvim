@@ -93,13 +93,6 @@ if [[ "${terminfo[kcbt]}" != "" ]]; then
   bindkey "${terminfo[kcbt]}" reverse-menu-complete
 fi
 
-# Add default less options
-# -F to quit automatically if the file is shorter than the screen
-# -X to not clear the screen after quitting
-# -R to show only color escape sequences in raw form
-# -M to show a more verbose prompt
-export LESS="FXRM"
-
 export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
 
 export _JAVA_AWT_WM_NONREPARENTING=1 # Needed for Android Studio to work in DWM

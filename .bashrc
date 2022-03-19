@@ -92,8 +92,6 @@ _fzf_compgen_dir() {
 
 _fzf_setup_completion path npm
 
-export LESS="FXRM"
-
 export _JAVA_AWT_WM_NONREPARENTING=1 # Needed for Android Studio to work in DWM
 
 # Fix Intel graphics driver issue in Ubuntu 20.04
