@@ -75,4 +75,9 @@ autoload -z edit-command-line
 zle -N edit-command-line
 bindkey "^X^E" edit-command-line
 
+# Add Shift+Tab to move through completion menu backwards
+if [[ "${terminfo[kcbt]}" != "" ]]; then
+  bindkey "${terminfo[kcbt]}" reverse-menu-complete
+fi
+
 alias r='ranger'
