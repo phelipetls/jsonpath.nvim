@@ -28,7 +28,7 @@ zstyle ':completion:*' completer _expand _complete _correct _approximate
 # See https://zsh.sourceforge.io/Doc/Release/Completion-Widgets.html#Completion-Matching-Control
 zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
 
-# Do not group anything
+# Place items under their group description
 zstyle ':completion:*' group-name ''
 
 # Highlight currently selected item in completion list
