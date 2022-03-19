@@ -94,10 +94,6 @@ _fzf_setup_completion path npm
 
 export _JAVA_AWT_WM_NONREPARENTING=1 # Needed for Android Studio to work in DWM
 
-# Fix Intel graphics driver issue in Ubuntu 20.04
-# https://bugs.launchpad.net/ubuntu/+source/xserver-xorg-video-intel/+bug/1876219
-export MESA_LOADER_DRIVER_OVERRIDE=i965
-
 tmux() {
   systemd-run --scope --user tmux "$@"
 }
