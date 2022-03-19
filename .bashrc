@@ -78,7 +78,12 @@ fi
 [ -f ~/.tmux/tmux_bash_completion ] && source ~/.tmux/tmux_bash_completion
 
 # fzf
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+export PATH="$HOME/.fzf/bin:$PATH"
+
+[[ $- == *i* ]] && source "$HOME/.fzf/shell/completion.bash" 2> /dev/null
+
+source "$HOME/.fzf/shell/key-bindings.bash"
+
 export FZF_DEFAULT_COMMAND='rg --files --hidden --color=never'
 export FZF_ALT_C_COMMAND='fdfind --color=never --type d'
 
