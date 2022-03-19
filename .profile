@@ -93,3 +93,11 @@ fi
 if [ -d "$HOME/.cargo/bin" ]; then
   export PATH="$HOME/.cargo/bin:$PATH"
 fi
+
+alias r='ranger'
+alias ls='ls --color=auto --group-directories-first'
+alias ll='ls -alF'
+alias la='ls -A'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'

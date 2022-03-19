@@ -93,8 +93,6 @@ if [[ "${terminfo[kcbt]}" != "" ]]; then
   bindkey "${terminfo[kcbt]}" reverse-menu-complete
 fi
 
-alias r='ranger'
-
 # Add default less options
 # -F to quit automatically if the file is shorter than the screen
 # -X to not clear the screen after quitting
