@@ -2,7 +2,19 @@
 
 autoload -Uz promptinit
 promptinit
-prompt adam1
+
+[ -f /usr/lib/git-core/git-sh-prompt ] && source /usr/lib/git-core/git-sh-prompt
+
+setopt prompt_subst
+
+export PS1="\
+%B%F{green}%n %b%f\
+%B%F{yellow}@ %b%f\
+%B%F{blue}%~ %b%f\
+%B%F{yellow}$(__git_ps1 "(%s) ")%b%f\
+%B%F{green}%(1j.* .)%b%f\
+%B%F{black}%# %b%f\
+"
 
 export EDITOR=nvim
 
