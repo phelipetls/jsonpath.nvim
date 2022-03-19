@@ -88,3 +88,50 @@ alias r='ranger'
 # -R to show only color escape sequences in raw form
 # -M to show a more verbose prompt
 export LESS="FXRM"
+
+# Add local scripts folder into PATH
+export PATH="$HOME/scripts/:$PATH"
+
+# Add Ubuntu snap related PATH
+export PATH="/snap/bin:$PATH"
+
+# Add LaTeX related PATH
+export PATH="/usr/local/texlive/2019/bin/x86_64-linux/:$PATH"
+export MANPATH="/usr/local/texlive/2019/texmf-dist/doc/man/:$MANPATH"
+export INFOPATH="/usr/local/texlive/2019/texmf-dist/doc/info/:$INFOPATH"
+
+# Add Android Studio related PATH
+export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
+export ANDROID_HOME="$ANDROID_SDK_ROOT"
+
+export PATH="$HOME/android-studio/bin:$PATH"
+export PATH="$ANDROID_SDK_ROOT/emulator:$PATH"
+export PATH="$ANDROID_SDK_ROOT/tools:$PATH"
+export PATH="$ANDROID_SDK_ROOT/tools/bin:$PATH"
+export PATH="$ANDROID_SDK_ROOT/platform-tools:$PATH"
+
+export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
+
+export _JAVA_AWT_WM_NONREPARENTING=1 # Needed for Android Studio to work in DWM
+
+# Fix Intel graphics driver issue in Ubuntu 20.04
+# https://bugs.launchpad.net/ubuntu/+source/xserver-xorg-video-intel/+bug/1876219
+export MESA_LOADER_DRIVER_OVERRIDE=i965
+
+# Add npm related PATH
+NPM_PACKAGES="${HOME}/.npm-packages"
+export PATH="$PATH:$NPM_PACKAGES/bin"
+export MANPATH="$MANPATH:$NPM_PACKAGES/share/man"
+
+# Add n related variables
+export N_PREFIX="$HOME/.local"
+
+# Add Python related PATH
+export PATH="$HOME/.poetry/bin:$PATH"
+
+# Add Go related PATH
+export GOPATH="$HOME/go"
+export PATH="/usr/local/go/bin:$GOPATH/bin:$PATH"
+
+# Add Rust related PATH
+export PATH="$HOME/.cargo/bin:$PATH"
