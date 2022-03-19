@@ -18,20 +18,37 @@ HISTFILE=~/.zsh_history
 autoload -Uz compinit
 compinit
 
-zstyle ':completion:*' auto-description 'specify: %d'
+# Configure completion. See https://zsh.sourceforge.io/Doc/Release/Completion-System.html#Control-Functions
 zstyle ':completion:*' completer _expand _complete _correct _approximate
-zstyle ':completion:*' format 'Completing %d'
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*' menu select=2
-eval "$(dircolors -b)"
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' list-colors ''
-zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+
+# Match case insensitively
+# Also match "c.s.u" with "comp.source.unix"
+# See https://zsh.sourceforge.io/Doc/Release/Completion-Widgets.html#Completion-Matching-Control
 zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
-zstyle ':completion:*' menu select=long
+
+# Do not group anything
+zstyle ':completion:*' group-name ''
+
+# Highlight currently selected item in completion list
+zstyle ':completion:*' menu yes select
+
+# Show these messages when completion list is too long
+zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
 zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
-zstyle ':completion:*' use-compctl false
+
+# Show description for items in completion list
 zstyle ':completion:*' verbose true
 
+# Color kill command output
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+
+# Colored ls output
+eval "$(dircolors -b)"
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+
+# Do not use colors in other commands
+zstyle ':completion:*' list-colors ''
+
+# Some obscure setting I'm not removing
+zstyle ':completion:*' use-compctl false
