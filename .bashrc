@@ -31,14 +31,19 @@ shopt -s checkwinsize
 shopt -s globstar
 
 # make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+if [ -x /usr/bin/lesspipe ]; then
+  eval "$(SHELL=/bin/sh lesspipe)"
+fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
   xterm-color|*-256color) color_prompt=yes;;
 esac
 
-[ -f /usr/lib/git-core/git-sh-prompt ] && source /usr/lib/git-core/git-sh-prompt
+# source git file containing __git_ps1 function
+if [ -f /usr/lib/git-core/git-sh-prompt ]; then
+  source /usr/lib/git-core/git-sh-prompt
+fi
 
 export PS1='\
 \[\e[1;32m\]\u \
@@ -50,6 +55,8 @@ export PS1='\
 \[\e[0m\]\
 '
 
+# this is useful to color tmux windows with "activity" differently, so it
+# notifies me that something wrong happened in that window
 beep_on_error() {
   if [[ $? -gt 0 ]]; then
     echo -ne '\a'
@@ -74,13 +81,17 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# autocompletion
-[ -f ~/.tmux/tmux_bash_completion ] && source ~/.tmux/tmux_bash_completion
+# configure tmux
+if [ -f ~/.tmux/tmux_bash_completion ]; then
+  source ~/.tmux/tmux_bash_completion
+fi
 
-# fzf
+# configure fzf
 export PATH="$HOME/.fzf/bin:$PATH"
 
-[[ $- == *i* ]] && source "$HOME/.fzf/shell/completion.bash" 2> /dev/null
+if [[ $- == *i* ]]; then
+  source "$HOME/.fzf/shell/completion.bash" 2> /dev/null
+fi
 
 source "$HOME/.fzf/shell/key-bindings.bash"
 
@@ -97,8 +108,10 @@ _fzf_compgen_dir() {
 
 _fzf_setup_completion path npm
 
-export _JAVA_AWT_WM_NONREPARENTING=1 # Needed for Android Studio to work in DWM
+# needed for Android Studio to work in DWM
+export _JAVA_AWT_WM_NONREPARENTING=1
 
+# persist tmux sessions across x sessions
 tmux() {
   systemd-run --scope --user tmux "$@"
 }
