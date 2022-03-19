@@ -4,6 +4,8 @@ autoload -Uz promptinit
 promptinit
 prompt adam1
 
+export EDITOR=nvim
+
 # Use emacs keybindings even if our EDITOR is set to vi
 bindkey -e
 
