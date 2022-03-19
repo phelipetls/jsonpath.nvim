@@ -52,3 +52,11 @@ zstyle ':completion:*' list-colors ''
 
 # Some obscure setting I'm not removing
 zstyle ':completion:*' use-compctl false
+
+# Enable history search with up and down arrows
+autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+
+[[ -n "${key[Up]}"   ]] && bindkey -- "${key[Up]}"   up-line-or-beginning-search
+[[ -n "${key[Down]}" ]] && bindkey -- "${key[Down]}" down-line-or-beginning-search
