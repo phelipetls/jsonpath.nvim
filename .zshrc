@@ -4,7 +4,9 @@ source "$HOME/.profile"
 autoload -Uz promptinit
 promptinit
 
-[ -f /usr/lib/git-core/git-sh-prompt ] && source /usr/lib/git-core/git-sh-prompt
+if [[ -f /usr/lib/git-core/git-sh-prompt ]]; then
+  source /usr/lib/git-core/git-sh-prompt
+fi
 
 setopt prompt_subst
 
@@ -73,15 +75,25 @@ autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
 
-[[ -n "${key[Up]}"   ]] && bindkey -- "${key[Up]}"   up-line-or-beginning-search
-[[ -n "${key[Down]}" ]] && bindkey -- "${key[Down]}" down-line-or-beginning-search
+if [[ -n "${key[Up]}" ]]; then
+  bindkey -- "${key[Up]}"   up-line-or-beginning-search
+fi
+
+if [[ -n "${key[Down]}" ]]; then
+  bindkey -- "${key[Down]}" down-line-or-beginning-search
+fi
 
 # Enable Ctrl+Left and Ctrl+Right
 key[Control-Left]="${terminfo[kLFT5]}"
 key[Control-Right]="${terminfo[kRIT5]}"
 
-[[ -n "${key[Control-Left]}"  ]] && bindkey -- "${key[Control-Left]}"  backward-word
-[[ -n "${key[Control-Right]}" ]] && bindkey -- "${key[Control-Right]}" forward-word
+if [[ -n "${key[Control-Left]}"  ]]; then
+  bindkey -- "${key[Control-Left]}"  backward-word
+fi
+
+if [[ -n "${key[Control-Right]}" ]]; then
+  bindkey -- "${key[Control-Right]}" forward-word
+fi
 
 # Enable Ctrl-X + Ctrl-E to edit command in $EDITOR
 autoload -z edit-command-line
