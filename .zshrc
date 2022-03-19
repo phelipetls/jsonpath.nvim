@@ -96,3 +96,19 @@ fi
 export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
 
 export _JAVA_AWT_WM_NONREPARENTING=1 # Needed for Android Studio to work in DWM
+
+# Configure fzf
+export PATH="$HOME/.fzf/bin:$PATH"
+source "/home/phelipe/.fzf/shell/completion.zsh"
+source "/home/phelipe/.fzf/shell/key-bindings.zsh"
+
+export FZF_DEFAULT_COMMAND='rg --files --hidden --color=never'
+export FZF_ALT_C_COMMAND='fdfind --color=never --type d'
+
+function _fzf_compgen_path {
+  rg --files --hidden --color=never
+}
+
+function _fzf_compgen_dir {
+  fdfind --color=never --type d
+}
