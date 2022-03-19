@@ -17,11 +17,79 @@ if [ -n "$BASH_VERSION" ]; then
 fi
 
 # set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-  PATH="$HOME/bin:$PATH"
+if [ -d "$HOME/bin" ]; then
+  export PATH="$HOME/bin:$PATH"
 fi
 
 # set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/.local/bin" ] ; then
-  PATH="$HOME/.local/bin:$PATH"
+if [ -d "$HOME/.local/bin" ]; then
+  export PATH="$HOME/.local/bin:$PATH"
+fi
+
+# Add local scripts folder into PATH
+if [ -d "$HOME/scripts" ]; then
+  export PATH="$HOME/scripts/:$PATH"
+fi
+
+# Add Ubuntu snap related PATH
+if [ -d "/snap/bin" ]; then
+  export PATH="/snap/bin:$PATH"
+fi
+
+# Add LaTeX related PATH
+if [ -d "/usr/local/texlive" ]; then
+  export PATH="/usr/local/texlive/2019/bin/x86_64-linux/:$PATH"
+  export MANPATH="/usr/local/texlive/2019/texmf-dist/doc/man/:$MANPATH"
+  export INFOPATH="/usr/local/texlive/2019/texmf-dist/doc/info/:$INFOPATH"
+fi
+
+# Add Android SDK related PATH
+export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
+if [ -d "$ANDROID_SDK_ROOT" ]; then
+  export ANDROID_HOME="$ANDROID_SDK_ROOT"
+  export PATH="$ANDROID_SDK_ROOT/emulator:$PATH"
+  export PATH="$ANDROID_SDK_ROOT/tools:$PATH"
+  export PATH="$ANDROID_SDK_ROOT/tools/bin:$PATH"
+  export PATH="$ANDROID_SDK_ROOT/platform-tools:$PATH"
+fi
+
+# Add Android SDK related PATH
+if [ -d "$HOME/android-studio/bin" ]; then
+  export PATH="$HOME/android-studio/bin:$PATH"
+fi
+
+if [ -f "/usr/lib/jvm/java-11-openjdk-amd64" ]; then
+  export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
+fi
+
+# Add npm related PATH
+NPM_PACKAGES="$HOME/.npm-packages"
+
+if [ -d "$NPM_PACKAGES" ]; then
+  export PATH="$PATH:$NPM_PACKAGES/bin"
+  export MANPATH="$MANPATH:$NPM_PACKAGES/share/man"
+fi
+
+# Add n related variables
+export N_PREFIX="$HOME/.local"
+
+# Add Python related PATH
+if [ -d "$HOME/.poetry" ]; then
+  export PATH="$HOME/.poetry/bin:$PATH"
+fi
+
+# Add Go related PATH
+export GOPATH="$HOME/go"
+
+if [ -d "$GOPATH" ]; then
+  export PATH="$GOPATH/bin:$PATH"
+fi
+
+if [ -d "/usr/local/go/bin" ]; then
+  export PATH="/usr/local/go/bin:$PATH"
+fi
+
+# Add Rust related PATH
+if [ -d "$HOME/.cargo/bin" ]; then
+  export PATH="$HOME/.cargo/bin:$PATH"
 fi
