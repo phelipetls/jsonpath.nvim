@@ -1,0 +1,33 @@
+- name: Install dunst build dependencies
+  become: true
+  apt:
+    name:
+      - libdbus-1-dev
+      - libx11-dev
+      - libxinerama-dev
+      - libxrandr-dev
+      - libxss-dev
+      - libglib2.0-dev
+      - libpango1.0-dev
+      - libgtk-3-dev
+      - libxdg-basedir-dev
+      - libnotify-dev
+    state: present
+
+- name: Clone dunst repository
+  git:
+    repo: https://github.com/dunst-project/dunst
+    dest: "{{ ansible_env.HOME }}/usr/dunst"
+    clone: true
+    version: v1.6.1
+
+- name: Build dunst
+  become: true
+  community.general.make:
+    chdir: "{{ ansible_env.HOME }}/usr/dunst"
+
+- name: Install dunst
+  become: true
+  community.general.make:
+    chdir: "{{ ansible_env.HOME }}/usr/dunst"
+    target: install

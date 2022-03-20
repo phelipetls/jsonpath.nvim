@@ -1,0 +1,25 @@
+---
+- name: Create fonts directory
+  file:
+    path: "{{ fonts_path }}"
+    state: directory
+    mode: "0775"
+
+- name: Install Font Awesome
+  get_url:
+    url: "{{ font_awesome_url }}"
+    dest: "{{ fonts_path }}/Font Awesome 5 Free-Solid-900.otf"
+    checksum: md5:8d531d92051cddac77556d0734b701f8
+
+- name: Install Source Code Pro
+  get_url:
+    url: https://github.com/adobe-fonts/source-code-pro/blob/29fdb884c6e9dc2a312f4a5e2bb3b2dad2350777/TTF/SourceCodePro-Medium.ttf?raw=true
+    dest: "{{ fonts_path }}/SourceCodePro-Medium.ttf"
+
+- name: Install Sauce Code Pro
+  get_url:
+    url: https://github.com/ryanoasis/nerd-fonts/blob/ab6fa3c562c552750dce08e638f1213d67b5b05c/patched-fonts/SourceCodePro/Medium/complete/Sauce%20Code%20Pro%20Medium%20Nerd%20Font%20Complete.ttf?raw=true
+    dest: "{{ fonts_path }}/Sauce Code Pro Medium Nerd Font Complete.ttf"
+
+- name: Update font cache
+  command: fc-cache -f

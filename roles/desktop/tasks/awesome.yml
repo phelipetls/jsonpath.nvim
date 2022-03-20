@@ -1,0 +1,13 @@
+---
+- name: Install awesome
+  become: true
+  apt:
+    name:
+      - awesome
+    state: present
+
+- name: Configure awesome as a desktop entry in LightDM
+  become: true
+  template:
+    src: templates/awesome.desktop.j2
+    dest: /usr/share/xsessions/awesome.desktop

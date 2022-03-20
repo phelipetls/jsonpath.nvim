@@ -1,0 +1,15 @@
+- name: Build slock
+  become: true
+  shell:
+    cmd: make clean install
+    chdir: "$HOME/suckless/dmenu"
+
+- name: Configure systemd service
+  template:
+    src: templates/slock@.service.j2
+    dest: /etc/systemd/system/slock@.service
+
+- name: Activate systemd service for current user
+  systemd:
+    name: "slock@{{ ansible_env.USER }}"
+    enabled: true

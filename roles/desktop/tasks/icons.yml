@@ -1,0 +1,13 @@
+---
+- name: Add papirus icon theme PPA
+  become: true
+  apt_repository:
+    repo: ppa:papirus/papirus
+    state: present
+
+- name: Install papirus icon theme
+  become: true
+  apt:
+    name:
+      - papirus-icon-theme
+    state: present

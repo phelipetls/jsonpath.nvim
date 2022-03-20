@@ -1,0 +1,12 @@
+---
+- name: Install ueberzug build dependencies in Ubuntu
+  import_tasks: ubuntu.yml
+  when: ansible_distribution == "Ubuntu"
+
+- name: Install ranger
+  pip:
+    name:
+      - ranger-fm
+      - ueberzug
+    state: present
+    executable: pip3

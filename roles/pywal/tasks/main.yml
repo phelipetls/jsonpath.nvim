@@ -1,0 +1,10 @@
+---
+- name: Install pywal with pip
+  pip:
+    name:
+      - pywal
+    state: present
+    executable: pip3
+
+- name: Run pywal
+  command: wal --theme "{{ theme }}" -o "$HOME/.config/wal/done.sh"

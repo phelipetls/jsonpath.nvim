@@ -1,0 +1,1 @@
+clone_path: "{{ ansible_env.HOME }}/src/neovim"

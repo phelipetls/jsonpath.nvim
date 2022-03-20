@@ -1,0 +1,8 @@
+- name: Install ueberzug build dependencies
+  become: true
+  apt:
+    name:
+      - libx11-dev
+      - libxext-dev
+      - libxres-dev
+    state: present

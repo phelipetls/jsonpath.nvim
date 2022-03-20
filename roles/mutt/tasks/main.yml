@@ -1,0 +1,19 @@
+---
+- name: Install mutt and related programs in Ubuntu
+  become: true
+  apt:
+    name:
+      - mutt
+      - w3m
+      - offlineimap
+      - abook
+    state: present
+  when: ansible_distribution == "Ubuntu"
+
+- name: Install mutt related programs in pip
+  pip:
+    name:
+      - urlscan
+    state: present
+    executable: pip3
+  when: ansible_distribution == "Ubuntu"
