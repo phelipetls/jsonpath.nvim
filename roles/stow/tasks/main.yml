@@ -4,9 +4,9 @@
   when: ansible_distribution == "Ubuntu"
 
 - name: Prevent conflicts before running stow
-  command: "rm {{ ansible_env.HOME }}/.bashrc"
-  args:
-    chdir: "{{ ansible_env.HOME }}"
+  file:
+    path: "{{ ansible_env.HOME }}/.bashrc"
+    state: absent
 
 - name: Run stow
   shell: "stow . --target {{ ansible_env.HOME }} --verbose=2"
