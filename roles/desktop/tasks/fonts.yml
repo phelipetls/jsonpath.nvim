@@ -23,3 +23,4 @@
 
 - name: Update font cache
   command: fc-cache -f
+  changed_when: false
