@@ -4,5 +4,3 @@ collections:
 
 roles:
   - name: gantsign.visual-studio-code
-
-  - name: geerlingguy.nodejs

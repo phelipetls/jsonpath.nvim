@@ -1,0 +1,24 @@
+---
+- name: Install Node.js in Ubuntu
+  import_tasks: ubuntu.yml
+  when: ansible_distribution == "Ubuntu"
+
+- name: Create npm global directory
+  file:
+    path: "{{ npm_config_prefix }}"
+    state: directory
+    mode: 0755
+
+- name: Ensure npm global prefix is configured
+  lineinfile:
+    path: "{{ ansible_env.HOME }}/.npmrc"
+    line: "prefix={{ npm_config_prefix }}"
+    state: present
+    create: true
+
+- name: Install global packages
+  loop: "{{ nodejs_npm_global_packages }}"
+  community.general.npm:
+    name: "{{ item }}"
+    state: present
+    global: true
