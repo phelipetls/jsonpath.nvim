@@ -4,8 +4,11 @@
   when: ansible_distribution == "Ubuntu"
 
 - name: Prevent conflicts before running stow
+  loop:
+    - "{{ ansible_env.HOME }}/.bashrc"
+    - "{{ ansible_env.HOME }}/.profile"
   file:
-    path: "{{ ansible_env.HOME }}/.bashrc"
+    path: "{{ item }}"
     state: absent
 
 - name: Run stow
