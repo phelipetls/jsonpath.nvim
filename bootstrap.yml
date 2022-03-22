@@ -15,8 +15,6 @@
     - role: ranger
     - role: mutt
     - role: nvim
-      vars:
-        nvim_version: "0.6.0"
     - role: nodejs
       vars:
         nodejs_version: "14.x"

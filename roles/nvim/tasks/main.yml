@@ -2,12 +2,8 @@
 - name: Install nvim build dependencies in Ubuntu
   import_tasks: ubuntu.yml
 
-- name: Clone nvim repository
-  git:
-    repo: https://github.com/neovim/neovim
-    dest: "{{ ansible_env.HOME }}/src/nvim"
-    clone: true
-    version: "{{ 'v' + nvim_version }}"
+- name: Download neovim submodule
+  command: git submodule update --init deps/neovim
 
 - name: Build nvim release version
   community.general.make:

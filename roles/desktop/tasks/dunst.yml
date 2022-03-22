@@ -14,12 +14,8 @@
       - libnotify-dev
     state: present
 
-- name: Clone dunst repository
-  git:
-    repo: https://github.com/dunst-project/dunst
-    dest: "{{ ansible_env.HOME }}/usr/dunst"
-    clone: true
-    version: v1.6.1
+- name: Download dunst submodule
+  command: git submodule update --init deps/dunst
 
 - name: Build dunst
   become: true

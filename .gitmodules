@@ -156,3 +156,9 @@
 [submodule "copilot.vim"]
 	path = .config/nvim/pack/plugins/opt/copilot.vim
 	url = https://github.com/github/copilot.vim
+[submodule "neovim"]
+	path = deps/neovim
+	url = https://github.com/neovim/neovim
+[submodule "dunst"]
+	path = deps/dunst
+	url = https://github.com/dunst-project/dunst
