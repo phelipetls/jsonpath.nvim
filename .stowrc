@@ -8,3 +8,4 @@
 --ignore install
 --ignore .vagrant
 --ignore Vagrantfile
+--ignore deps
