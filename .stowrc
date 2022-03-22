@@ -1,7 +1,6 @@
 --ignore README.md
 --ignore bootstrap.yml
 --ignore requirements.yml
---ignore ^templates
 --ignore roles
 --ignore ansible.cfg
 --ignore hosts
