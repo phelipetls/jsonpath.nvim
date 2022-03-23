@@ -20,10 +20,10 @@
 - name: Build dunst
   become: true
   community.general.make:
-    chdir: "{{ ansible_env.HOME }}/usr/dunst"
+    chdir: deps/dunst
 
 - name: Install dunst
   become: true
   community.general.make:
-    chdir: "{{ ansible_env.HOME }}/usr/dunst"
+    chdir: deps/dunst
     target: install
