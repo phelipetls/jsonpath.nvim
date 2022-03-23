@@ -1,0 +1,16 @@
+\.git
+\.gitignore
+
+^/roles
+^/hosts
+^/deps
+
+^/README.md
+^/bootstrap.yml
+^/requirements.yml
+^/ansible.cfg
+^/Vagrantfile
+^/install
+
+^/\.stowrc
+^/\.vagrant
