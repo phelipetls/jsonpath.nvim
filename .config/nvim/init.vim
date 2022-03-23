@@ -35,7 +35,7 @@ packadd! ranger.vim
 packadd! bclose.vim
 
 " fuzzy finder
-set rtp+=~/.fzf
+packadd! fzf
 packadd! fzf.vim
 
 " vim specific improvements

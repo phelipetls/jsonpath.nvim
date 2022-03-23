@@ -7,8 +7,6 @@
     - role: alacritty
     - role: desktop
     - role: fzf
-      vars:
-        fzf_version: "0.29.0"
     - role: pywal
       vars:
         theme: tokyonight

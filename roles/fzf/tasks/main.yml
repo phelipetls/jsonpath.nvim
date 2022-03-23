@@ -1,3 +1,20 @@
-- name: Install fzf in Ubuntu
-  import_tasks: ubuntu.yml
-  when: ansible_distribution == "Ubuntu"
+- name: Download fzf submodule
+  command: git submodule update --init deps/fzf
+
+- name: Install fzf
+  command: ./deps/fzf/install
+  args:
+    creates:
+      - "{{ ansible_env.HOME }}/.fzf.bash"
+      - "{{ ansible_env.HOME }}/.fzf.zsh"
+
+- name: Create fzf plugin folder
+  file:
+    dest: "{{ ansible_env.HOME }}/.config/nvim/pack/plugins/opt/fzf/plugin"
+    state: directory
+    mode: "0755"
+
+- name: Copy fzf vim plugin into Neovim config
+  copy:
+    src: deps/fzf/plugin
+    dest: "{{ ansible_env.HOME }}/.config/nvim/pack/plugins/opt/fzf/plugin"

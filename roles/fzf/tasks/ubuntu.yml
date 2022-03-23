@@ -1,6 +1,0 @@
----
-- name: Install fzf
-  unarchive:
-    src: "https://github.com/junegunn/fzf/releases/download/{{ fzf_version }}/fzf-{{ fzf_version }}-linux_amd64.tar.gz"
-    dest: "{{ ansible_env.HOME }}/.local/bin"
-    remote_src: true

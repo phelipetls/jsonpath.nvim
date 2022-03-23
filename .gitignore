@@ -15,3 +15,4 @@ suckless/**/*.o
 .mutt/aliases
 .vagrant
 roles/gantsign.visual-studio-code
+.config/nvim/pack/plugins/opt/fzf
