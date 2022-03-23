@@ -1,5 +1,5 @@
 ---
-- name: Add apt repository
+- name: Add apt repository to install Alacritty
   become: true
   apt_repository:
     repo: ppa:aslatter/ppa
