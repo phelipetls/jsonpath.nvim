@@ -1,0 +1,12 @@
+---
+- name: Download zip file containing efm-langserver binary
+  unarchive:
+    src: https://github.com/mattn/efm-langserver/releases/download/v0.0.37/efm-langserver_v0.0.37_darwin_amd64.zip
+    dest: /tmp/efm-langserver
+    remote_src: true
+
+- name: Copy unzipped binary into PATH
+  copy:
+    src: /tmp/efm-langserver/efm-langserver
+    dest: "{{ ansible_env.HOME }}/.local/bin"
+    remote_src: true

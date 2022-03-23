@@ -3,6 +3,10 @@
   import_tasks: ubuntu.yml
   when: ansible_distribution == "Ubuntu"
 
+- name: Install stow in macOS
+  import_tasks: ubuntu.yml
+  when: ansible_distribution == "MacOSX"
+
 - name: Prevent conflicts before running stow
   loop:
     - "{{ ansible_env.HOME }}/.bashrc"

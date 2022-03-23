@@ -1,0 +1,5 @@
+---
+- name: Install alacritty in macOS
+  community.general.homebrew:
+    name: homebrew/cask/alacritty
+    state: present

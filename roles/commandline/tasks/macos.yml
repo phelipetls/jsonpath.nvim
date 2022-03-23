@@ -1,0 +1,12 @@
+---
+- name: Install CLI tools in Homebrew
+  loop:
+    - tig
+    - tmux
+    - ripgrep
+    - fd
+    - jq
+    - htop
+  community.general.homebrew:
+    name: "{{ item }}"
+    state: present
