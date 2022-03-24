@@ -44,7 +44,12 @@ if [ -d "/usr/local/texlive" ]; then
 fi
 
 # Add Android SDK related PATH
-export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
+if [ -d "$HOME/Android/Sdk" ]; then
+  export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
+elif [ -d "$HOME/Library/Android/sdk" ]; then
+  export ANDROID_SDK_ROOT="$HOME/Library/Android/Sdk"
+fi
+
 if [ -d "$ANDROID_SDK_ROOT" ]; then
   export ANDROID_HOME="$ANDROID_SDK_ROOT"
   export PATH="$ANDROID_SDK_ROOT/emulator:$PATH"
