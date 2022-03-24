@@ -112,7 +112,9 @@ fi
 export LESS="FXRM"
 
 alias r='ranger'
-alias ls='ls --color=auto --group-directories-first'
+if [[ $OSTYPE != 'darwin'* ]]; then
+  alias ls='ls --color=auto --group-directories-first'
+fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias grep='grep --color=auto'
