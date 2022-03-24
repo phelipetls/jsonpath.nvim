@@ -124,5 +124,3 @@ function _fzf_compgen_path {
 function _fzf_compgen_dir {
   fdfind --color=never --type d
 }
-
-_fzf_setup_completion path npm
