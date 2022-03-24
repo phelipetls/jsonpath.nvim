@@ -16,3 +16,4 @@ suckless/**/*.o
 .vagrant
 roles/gantsign.visual-studio-code
 .config/nvim/pack/plugins/opt/fzf
+venv
