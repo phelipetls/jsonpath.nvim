@@ -6,6 +6,8 @@ promptinit
 
 if [[ -f /usr/lib/git-core/git-sh-prompt ]]; then
   source /usr/lib/git-core/git-sh-prompt
+elif [[ -f /Library/Developer/CommandLineTools/usr/share/git-core/git-completion.zsh ]]; then
+  source /Library/Developer/CommandLineTools/usr/share/git-core/git-completion.zsh
 fi
 
 setopt prompt_subst
