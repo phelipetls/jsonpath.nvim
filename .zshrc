@@ -63,8 +63,13 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 # Colored ls output
-eval "$(dircolors -b)"
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+if [[ "$OSTYPE" == 'darwin'* ]]; then
+  export CLICOLOR=1
+  zstyle ':completion:*:default' list-colors ''
+else
+  eval "$(dircolors -b)"
+  zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+fi
 
 # Do not use colors in other commands
 zstyle ':completion:*' list-colors ''
