@@ -94,6 +94,11 @@ if [ -d "$HOME/.cargo/bin" ]; then
   export PATH="$HOME/.cargo/bin:$PATH"
 fi
 
+# Add git-toolbelt
+if [ -d "$HOME/git-toolbelt" ]; then
+  export PATH="$PATH:$HOME/git-toolbelt"
+fi
+
 # Add default less options
 # -F to quit automatically if the file is shorter than the screen
 # -X to not clear the screen after quitting

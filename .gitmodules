@@ -168,3 +168,6 @@
 [submodule "zsh-autosuggestions"]
 	path = zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
+[submodule "git-toolbelt"]
+	path = git-toolbelt
+	url = https://github.com/nvie/git-toolbelt

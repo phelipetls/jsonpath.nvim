@@ -5,6 +5,7 @@
     - role: stow
     - role: commandline
     - role: zsh
+    - role: git-toolbelt
     - role: alacritty
     - role: desktop
     - role: fzf
