@@ -4,7 +4,7 @@
   when: ansible_distribution == "Ubuntu"
 
 - name: Install stow in macOS
-  import_tasks: ubuntu.yml
+  import_tasks: macos.yml
   when: ansible_distribution == "MacOSX"
 
 - name: Prevent conflicts before running stow
