@@ -16,7 +16,6 @@
   when: ansible_distribution == "Ubuntu"
 
 - name: Install linters and formatters with homebrew
-  become: true
   loop:
     - shellcheck
   community.general.homebrew:
