@@ -63,7 +63,7 @@ if [ -d "$HOME/android-studio/bin" ]; then
   export PATH="$PATH:$HOME/android-studio/bin"
 fi
 
-if [ -f "/usr/lib/jvm/java-11-openjdk-amd64" ]; then
+if [ -x "/usr/lib/jvm/java-11-openjdk-amd64" ]; then
   export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
 fi
 
