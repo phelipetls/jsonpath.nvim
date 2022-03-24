@@ -99,8 +99,11 @@ if has('nvim') && has('unix')
   let g:python3_host_prog = '/usr/bin/python3'
 endif
 
-" disable foldcolumn in diff mode
-set diffopt+=foldcolumn:0,indent-heuristic,algorithm:patience,hiddenoff
+set diffopt+=foldcolumn:0,hiddenoff
+
+if has('nvim')
+  set diffopt+=indent-heuristic,internal,algorithm:patience
+endif
 
 " visually show special characters
 set list
