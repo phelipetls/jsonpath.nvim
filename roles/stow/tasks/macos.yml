@@ -1,4 +1,4 @@
-- name: Install Stow
+- name: Install Stow in macOS
   community.general.homebrew:
     name:
       - stow

@@ -1,5 +1,5 @@
 ---
-- name: Install CLI tools
+- name: Install CLI tools in Ubuntu
   become: true
   apt:
     name:

@@ -1,5 +1,5 @@
 ---
-- name: Install CLI tools in Homebrew
+- name: Install CLI tools in macOS with Homebrew
   loop:
     - tig
     - tmux

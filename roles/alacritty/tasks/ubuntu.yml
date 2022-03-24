@@ -5,7 +5,7 @@
     repo: ppa:aslatter/ppa
     state: present
 
-- name: Install Alacritty
+- name: Install Alacritty in Ubuntu
   become: true
   apt:
     name: alacritty

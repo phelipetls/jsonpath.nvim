@@ -7,7 +7,7 @@
   import_tasks: macos.yml
   when: ansible_distribution == "MacOSX"
 
-- name: Install linters and formatters in apt
+- name: Install linters and formatters with apt
   become: true
   apt:
     name:
@@ -15,7 +15,7 @@
     state: present
   when: ansible_distribution == "Ubuntu"
 
-- name: Install linters and formatters in homebrew
+- name: Install linters and formatters with homebrew
   become: true
   loop:
     - shellcheck
@@ -24,7 +24,7 @@
     state: present
   when: ansible_distribution == "MacOSX"
 
-- name: Install linters and formatters in pip
+- name: Install linters and formatters with pip
   pip:
     name:
       - flake8
@@ -34,7 +34,7 @@
     state: present
     executable: pip3
 
-- name: Install linters and formatters in npm
+- name: Install linters and formatters with npm
   loop:
     - eslint_d
     - prettier

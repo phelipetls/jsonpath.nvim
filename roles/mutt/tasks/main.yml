@@ -9,7 +9,7 @@
       - abook
     state: present
 
-- name: Install mutt related programs in pip
+- name: Install mutt related programs with pip in Ubuntu
   pip:
     name:
       - urlscan

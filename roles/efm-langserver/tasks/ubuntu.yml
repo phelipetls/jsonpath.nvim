@@ -1,5 +1,5 @@
 ---
-- name: Install efm-langserver
+- name: Install efm-langserver in Ubuntu
   unarchive:
     src: https://github.com/mattn/efm-langserver/releases/download/v0.0.37/efm-langserver_v0.0.37_linux_amd64.tar.gz
     dest: "{{ ansible_env.HOME }}/.local/bin"

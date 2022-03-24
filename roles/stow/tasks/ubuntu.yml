@@ -1,4 +1,4 @@
-- name: Install Stow
+- name: Install Stow in Ubuntu
   become: true
   apt:
     name:
