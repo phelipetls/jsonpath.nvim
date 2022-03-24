@@ -14,3 +14,15 @@
       - unzip
       - curl
     state: present
+
+- name: Build nvim release version
+  community.general.make:
+    chdir: deps/neovim
+    params:
+      CMAKE_BUILD_TYPE: Release
+
+- name: Install nvim release version
+  become: true
+  community.general.make:
+    chdir: deps/neovim
+    target: install

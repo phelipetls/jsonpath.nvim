@@ -1,9 +1,9 @@
 ---
-- name: Install nvim build dependencies in Ubuntu
-  import_tasks: ubuntu.yml
-
 - name: Download neovim submodule
   command: git submodule update --init deps/neovim
+
+- name: Build nvim from source in Ubuntu
+  import_tasks: ubuntu.yml
 
 - name: Build nvim release version
   community.general.make:
