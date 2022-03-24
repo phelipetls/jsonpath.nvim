@@ -12,14 +12,14 @@ fi
 
 setopt prompt_subst
 
-export PS1="\
+export PS1='\
 %B%F{green}%n %b%f\
 %B%F{yellow}@ %b%f\
 %B%F{blue}%~ %b%f\
 %B%F{yellow}$(__git_ps1 "(%s) ")%b%f\
 %B%F{green}%(1j.* .)%b%f\
 %B%F{black}%# %b%f\
-"
+'
 
 export EDITOR=nvim
 
