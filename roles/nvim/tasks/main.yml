@@ -4,18 +4,11 @@
 
 - name: Build nvim from source in Ubuntu
   import_tasks: ubuntu.yml
+  when: ansible_distribution == "Ubuntu"
 
-- name: Build nvim release version
-  community.general.make:
-    chdir: deps/neovim
-    params:
-      CMAKE_BUILD_TYPE: Release
-
-- name: Install nvim release version
-  become: true
-  community.general.make:
-    chdir: deps/neovim
-    target: install
+- name: Install nvim with Homebrew in macOS
+  import_tasks: macos.yml
+  when: ansible_distribution == "MacOSX"
 
 - name: Download nvim plugins
   command: git submodule update --init --recursive --jobs 4 .config/nvim/pack/plugins/opt/
