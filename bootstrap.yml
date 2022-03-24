@@ -2,20 +2,14 @@
 - name: Bootstrap development environment
   hosts: default
   roles:
-    - role: stow
     - role: commandline
-    - role: zsh
     - role: git-toolbelt
-    - role: alacritty
-    - role: desktop
-    - role: fzf
     - role: pywal
       vars:
         theme: tokyonight
+    - role: zsh
+    - role: fzf
     - role: ranger
-    - role: mutt
-      when: ansible_distribution == "Ubuntu"
-    - role: nvim
     - role: nodejs
       vars:
         nodejs_version: "14.x"
@@ -25,7 +19,13 @@
           - diff-so-fancy
           - npm-merge-driver
     - role: efm-langserver
+    - role: nvim
+    - role: mutt
+      when: ansible_distribution == "Ubuntu"
+    - role: stow
     - role: gantsign.visual-studio-code
     - role: hugo
       vars:
         hugo_version: "0.88.1"
+    - role: alacritty
+    - role: desktop
