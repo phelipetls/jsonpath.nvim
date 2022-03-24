@@ -165,3 +165,6 @@
 [submodule "fzf"]
 	path = deps/fzf
 	url = https://github.com/junegunn/fzf
+[submodule "zsh-autosuggestions"]
+	path = zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions

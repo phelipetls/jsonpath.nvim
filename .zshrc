@@ -124,3 +124,6 @@ function _fzf_compgen_path {
 function _fzf_compgen_dir {
   fdfind --color=never --type d
 }
+
+# enable zsh-autosuggestions
+source ~/zsh-autosuggestions/zsh-autosuggestions.zsh
