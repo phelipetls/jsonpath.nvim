@@ -1,12 +1,29 @@
 ---
+- name: Create temp dir to unzip efm-langserver
+  tempfile:
+    state: directory
+  register: tempdir
+
 - name: Download zip file containing efm-langserver binary
   unarchive:
     src: https://github.com/mattn/efm-langserver/releases/download/v0.0.37/efm-langserver_v0.0.37_darwin_amd64.zip
-    dest: /tmp/efm-langserver
+    dest: "{{ tempdir.path }}"
     remote_src: true
+  register: unzipped
+
+- name: Create directory ~/.local/bin/
+  file:
+    path: "{{ ansible_env.HOME }}/.local/bin"
+    state: directory
 
 - name: Copy unzipped binary into PATH
   copy:
-    src: /tmp/efm-langserver/efm-langserver
-    dest: "{{ ansible_env.HOME }}/.local/bin"
+    src: "{{ unzipped.dest }}/efm-langserver_v0.0.37_darwin_amd64/efm-langserver"
+    dest: "{{ ansible_env.HOME }}/.local/bin/efm-langserver"
     remote_src: true
+
+- name: Make efm-langserver program executable
+  file:
+    path: "{{ ansible_env.HOME }}/.local/bin/efm-langserver"
+    state: touch
+    mode: u+x
