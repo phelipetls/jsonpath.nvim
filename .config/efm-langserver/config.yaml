@@ -1,6 +1,4 @@
 version: 2
-log-file: ./efmlangserver.log
-log-level: 1
 
 tools:
   yaml-yamllint: &yaml-yamllint
