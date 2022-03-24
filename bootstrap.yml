@@ -4,6 +4,7 @@
   roles:
     - role: stow
     - role: commandline
+    - role: zsh
     - role: alacritty
     - role: desktop
     - role: fzf
