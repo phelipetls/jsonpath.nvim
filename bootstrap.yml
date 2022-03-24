@@ -14,6 +14,7 @@
         theme: tokyonight
     - role: ranger
     - role: mutt
+      when: ansible_distribution == "Ubuntu"
     - role: nvim
     - role: nodejs
       vars:

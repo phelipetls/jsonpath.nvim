@@ -8,7 +8,6 @@
       - offlineimap
       - abook
     state: present
-  when: ansible_distribution == "Ubuntu"
 
 - name: Install mutt related programs in pip
   pip:
@@ -16,4 +15,3 @@
       - urlscan
     state: present
     executable: pip3
-  when: ansible_distribution == "Ubuntu"
