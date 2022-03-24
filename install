@@ -2,5 +2,10 @@
 
 set -e
 
-sudo apt install -y ansible
-ansible-galaxy install -r requirements.yml
+if [[ $OSTYPE == 'darwin'* ]]; then
+  pip3 install ansible
+  ansible-galaxy install -r requirements.yml
+else
+  sudo apt install -y ansible
+  ansible-galaxy install -r requirements.yml
+fi
