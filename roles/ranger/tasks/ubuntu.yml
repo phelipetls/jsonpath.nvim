@@ -6,3 +6,10 @@
       - libxext-dev
       - libxres-dev
     state: present
+
+- name: Install ueberzug
+  pip:
+    name:
+      - ueberzug
+    state: present
+    executable: pip3
