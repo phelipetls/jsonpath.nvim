@@ -26,13 +26,6 @@
 [alias]
     co = checkout
     st = status
-    ci = commit
-    l = log --abbrev-commit --oneline --graph --decorate
-    rb = rebase
-    cp = cherry-pick
-    sw = switch
-    re = restore
-    ctags = !.git/hooks/ctags
     recent = branch -v --sort=-committerdate
     undo = reset --soft HEAD^
     recommit = commit -c ORIG_HEAD
