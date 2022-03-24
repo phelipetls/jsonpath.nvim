@@ -18,22 +18,22 @@ fi
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ]; then
-  export PATH="$HOME/bin:$PATH"
+  export PATH="$PATH:$HOME/bin"
 fi
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/.local/bin" ]; then
-  export PATH="$HOME/.local/bin:$PATH"
+  export PATH="$PATH:$HOME/.local/bin"
 fi
 
 # Add local scripts folder into PATH
 if [ -d "$HOME/scripts" ]; then
-  export PATH="$HOME/scripts/:$PATH"
+  export PATH="$PATH:$HOME/scripts/"
 fi
 
 # Add Ubuntu snap related PATH
 if [ -d "/snap/bin" ]; then
-  export PATH="/snap/bin:$PATH"
+  export PATH="$PATH:/snap/bin"
 fi
 
 # Add LaTeX related PATH
@@ -55,7 +55,7 @@ fi
 
 # Add Android SDK related PATH
 if [ -d "$HOME/android-studio/bin" ]; then
-  export PATH="$HOME/android-studio/bin:$PATH"
+  export PATH="$PATH:$HOME/android-studio/bin"
 fi
 
 if [ -f "/usr/lib/jvm/java-11-openjdk-amd64" ]; then
@@ -75,23 +75,23 @@ export N_PREFIX="$HOME/.local"
 
 # Add Python related PATH
 if [ -d "$HOME/.poetry" ]; then
-  export PATH="$HOME/.poetry/bin:$PATH"
+  export PATH="$PATH:$HOME/.poetry/bin"
 fi
 
 # Add Go related PATH
 export GOPATH="$HOME/go"
 
 if [ -d "$GOPATH" ]; then
-  export PATH="$GOPATH/bin:$PATH"
+  export PATH="$PATH:$GOPATH/bin"
 fi
 
 if [ -d "/usr/local/go/bin" ]; then
-  export PATH="/usr/local/go/bin:$PATH"
+  export PATH="$PATH:/usr/local/go/bin"
 fi
 
 # Add Rust related PATH
 if [ -d "$HOME/.cargo/bin" ]; then
-  export PATH="$HOME/.cargo/bin:$PATH"
+  export PATH="$PATH:$HOME/.cargo/bin"
 fi
 
 # Add git-toolbelt
