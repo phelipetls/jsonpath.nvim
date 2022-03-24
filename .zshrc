@@ -112,8 +112,6 @@ if [[ "${terminfo[kcbt]}" != "" ]]; then
   bindkey "${terminfo[kcbt]}" reverse-menu-complete
 fi
 
-export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
-
 export _JAVA_AWT_WM_NONREPARENTING=1 # Needed for Android Studio to work in DWM
 
 # Configure fzf
