@@ -6,7 +6,7 @@
 
 - name: Configure systemd service
   copy:
-    src: templates/slock@.service.j2
+    src: templates/slock@.service
     dest: /etc/systemd/system/slock@.service
 
 - name: Activate systemd service for current user
