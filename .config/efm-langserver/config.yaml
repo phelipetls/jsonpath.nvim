@@ -2,14 +2,14 @@ version: 2
 
 tools:
   yaml-yamllint: &yaml-yamllint
-    lint-command: 'yamllint -f parsable -'
+    lint-command: 'yamllint --format parsable -'
     lint-formats:
       - '%f:%l:%c: [%tarning] %m'
       - '%f:%l:%c: [%trror] %m'
     lint-stdin: true
 
   sh-shellcheck: &sh-shellcheck
-    lint-command: 'shellcheck -f gcc -x'
+    lint-command: 'shellcheck --format gcc --external-sources'
     lint-source: 'shellcheck'
     lint-formats:
       - '%f:%l:%c: %trror: %m'
