@@ -8,3 +8,6 @@
 
 - name: Run pywal
   command: wal --theme "{{ theme }}" -o "$HOME/.config/wal/done.sh"
+  args:
+    creates:
+      - "{{ ansible_env.HOME }}/.cache/colors"
