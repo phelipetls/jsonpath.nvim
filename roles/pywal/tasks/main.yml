@@ -7,7 +7,6 @@
     executable: pip3
 
 - name: Run pywal
-  command: wal --theme "{{ theme }}" -o "$HOME/.config/wal/done.sh"
-  args:
-    creates:
-      - "{{ ansible_env.HOME }}/.cache/colors"
+  command:
+    cmd: wal --theme "{{ theme }}" -o "$HOME/.config/wal/done.sh"
+    creates: "{{ ansible_env.HOME }}/.cache/colors"
