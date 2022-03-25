@@ -20,7 +20,7 @@
   "languageserver": {
     "efm": {
       "command": "efm-langserver",
-      "filetypes": ["sh", "yaml", "lua", "python", "javascript", "typescript", "javascriptreact", "typescriptreact", "vim"],
+      "filetypes": ["sh", "zsh", "yaml", "lua", "python", "javascript", "typescript", "javascriptreact", "typescriptreact", "vim"],
       "formatterPriority": 100
     }
   },

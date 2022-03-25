@@ -54,6 +54,9 @@ languages:
   sh:
     - <<: *sh-shellcheck
 
+  zsh:
+    - <<: *sh-shellcheck
+
   lua:
     - <<: *lua-luacheck
     - <<: *lua-luafmt
