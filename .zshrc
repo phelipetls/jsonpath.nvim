@@ -63,7 +63,7 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 # Colored ls output
-if [[ "$OSTYPE" == 'darwin'* ]]; then
+if uname | grep -q darwin; then
   export CLICOLOR=1
   zstyle ':completion:*:default' list-colors ''
 else

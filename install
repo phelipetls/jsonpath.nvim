@@ -2,7 +2,7 @@
 
 set -e
 
-if [[ $OSTYPE == 'darwin'* ]]; then
+if uname | grep -q darwin; then
   pip3 install ansible
   ansible-galaxy install -r requirements.yml
 else
