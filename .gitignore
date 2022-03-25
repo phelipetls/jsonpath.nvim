@@ -18,3 +18,4 @@ roles/gantsign.visual-studio-code
 .config/nvim/pack/plugins/opt/fzf
 venv
 .config/efm-langserver/efmlangserver.log
+.DS_Store
