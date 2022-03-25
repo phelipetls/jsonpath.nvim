@@ -67,19 +67,19 @@ if [ -x "/usr/lib/jvm/java-11-openjdk-amd64" ]; then
   export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
 fi
 
+# Add n related variables
+export N_PREFIX="$HOME/.n"
+
+if [ -d "$N_PREFIX" ]; then
+  export PATH="$PATH:$N_PREFIX/bin"
+fi
+
 # Add npm related PATH
 NPM_PACKAGES="$HOME/.npm-packages"
 
 if [ -d "$NPM_PACKAGES" ]; then
   export PATH="$PATH:$NPM_PACKAGES/bin"
   export MANPATH="$MANPATH:$NPM_PACKAGES/share/man"
-fi
-
-# Add n related variables
-export N_PREFIX="$HOME/.n"
-
-if [ -d "$N_PREFIX" ]; then
-  export PATH="$PATH:$N_PREFIX/bin"
 fi
 
 # Add Python related PATH
