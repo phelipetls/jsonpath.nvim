@@ -163,7 +163,7 @@
 	path = deps/dunst
 	url = https://github.com/dunst-project/dunst
 [submodule "fzf"]
-	path = deps/fzf
+	path = .fzf
 	url = https://github.com/junegunn/fzf
 [submodule "zsh-autosuggestions"]
 	path = zsh-autosuggestions
