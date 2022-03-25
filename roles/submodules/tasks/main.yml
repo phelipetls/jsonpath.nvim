@@ -1,7 +1,5 @@
 ---
 - name: Update all submodules
-  git:
-    repo: .
-    recursive: yes
-    clone: no
-    update: yes
+  command:
+    cmd: git submodule update --init --recursive --jobs 4
+  changed_when: false
