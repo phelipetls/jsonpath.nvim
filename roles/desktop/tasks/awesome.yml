@@ -9,5 +9,5 @@
 - name: Configure awesome as a desktop entry in LightDM
   become: true
   copy:
-    src: templates/awesome.desktop
+    src: awesome.desktop
     dest: /usr/share/xsessions/awesome.desktop

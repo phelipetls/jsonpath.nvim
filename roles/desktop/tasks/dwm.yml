@@ -16,7 +16,7 @@
 - name: Configure dwm as a desktop entry in LightDM
   become: true
   copy:
-    src: templates/dwm.desktop
+    src: dwm.desktop
     dest: /usr/share/xsessions/dwm.desktop
 
 - name: Install dwm status bar dependencies
