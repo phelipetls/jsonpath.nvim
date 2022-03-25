@@ -7,14 +7,6 @@
   import_tasks: macos.yml
   when: ansible_distribution == "MacOSX"
 
-- name: Prevent conflicts before running stow
-  loop:
-    - "{{ ansible_env.HOME }}/.bashrc"
-    - "{{ ansible_env.HOME }}/.profile"
-  file:
-    path: "{{ item }}"
-    state: absent
-
 - name: Run stow
   shell: "stow . --target {{ ansible_env.HOME }} --verbose=2"
   register: result
