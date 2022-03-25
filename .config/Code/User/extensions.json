@@ -1,9 +1,0 @@
-{
-    "recommendations": [
-        "eamodio.gitlens",
-        "kahole.magit",
-        "PhilHindle.errorlens",
-        "sleistner.vscode-fileutils",
-        "vscodevim.vim"
-    ]
-}
