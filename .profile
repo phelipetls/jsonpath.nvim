@@ -76,7 +76,11 @@ if [ -d "$NPM_PACKAGES" ]; then
 fi
 
 # Add n related variables
-export N_PREFIX="$HOME/.local"
+export N_PREFIX="$HOME/.n"
+
+if [ -d "$N_PREFIX" ]; then
+  export PATH="$PATH:$N_PREFIX/bin"
+fi
 
 # Add Python related PATH
 if [ -d "$HOME/.poetry" ]; then
