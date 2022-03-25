@@ -1,0 +1,17 @@
+---
+- name: Install mutt and related programs in Ubuntu
+  become: true
+  apt:
+    name:
+      - mutt
+      - w3m
+      - offlineimap
+      - abook
+    state: present
+
+- name: Install mutt related programs with pip in Ubuntu
+  pip:
+    name:
+      - urlscan
+    state: present
+    executable: pip3

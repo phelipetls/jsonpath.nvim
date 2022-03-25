@@ -20,7 +20,6 @@
     - role: efm-langserver
     - role: nvim
     - role: mutt
-      when: ansible_distribution == "Ubuntu"
     - role: stow
     - role: gantsign.visual-studio-code
       visual_studio_code_extensions:
