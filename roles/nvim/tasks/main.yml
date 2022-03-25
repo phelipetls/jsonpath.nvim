@@ -1,7 +1,4 @@
 ---
-- name: Download neovim submodule
-  command: git submodule update --init deps/neovim
-
 - name: Build nvim from source in Ubuntu
   import_tasks: ubuntu.yml
   when: ansible_distribution == "Ubuntu"
@@ -9,6 +6,3 @@
 - name: Install nvim with Homebrew in macOS
   import_tasks: macos.yml
   when: ansible_distribution == "MacOSX"
-
-- name: Download nvim plugins
-  command: git submodule update --init --recursive --jobs 4 .config/nvim/pack/plugins/opt/

@@ -3,12 +3,11 @@
   hosts: default
   roles:
     - role: commandline
-    - role: git-toolbelt
+    - role: submodules
     - role: pywal
       vars:
         theme: tokyonight
     - role: zsh
-    - role: fzf
     - role: ranger
     - role: nodejs
       vars:

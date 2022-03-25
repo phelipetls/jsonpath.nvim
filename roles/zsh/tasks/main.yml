@@ -4,8 +4,3 @@
       - zsh
     state: present
   when: ansible_distribution == "Ubuntu"
-
-- name: Download zsh plugins
-  loop:
-    - ./zsh-autosuggestions
-  command: "git submodule update --init {{ item }}"

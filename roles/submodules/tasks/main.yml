@@ -1,0 +1,7 @@
+---
+- name: Update all submodules
+  git:
+    repo: .
+    recursive: yes
+    clone: no
+    update: yes

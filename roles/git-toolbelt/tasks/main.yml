@@ -1,2 +1,0 @@
-- name: Download git-toolbelt submodule
-  command: git submodule update --init git-toolbelt

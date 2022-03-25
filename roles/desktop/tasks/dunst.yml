@@ -14,9 +14,6 @@
       - libnotify-dev
     state: present
 
-- name: Download dunst submodule
-  command: git submodule update --init deps/dunst
-
 - name: Build dunst
   become: true
   community.general.make:

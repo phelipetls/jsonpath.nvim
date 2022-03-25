@@ -1,2 +1,0 @@
-- name: Download fzf submodule
-  command: git submodule update --init .fzf
