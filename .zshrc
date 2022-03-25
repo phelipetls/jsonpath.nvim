@@ -71,6 +71,11 @@ else
   zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 fi
 
+# Use pip installed Python packages in macOS
+if [ -d "$HOME/Library/Python/3.8/bin" ]; then
+  export PATH="$PATH:$HOME/Library/Python/3.8/bin"
+fi
+
 # Do not use colors in other commands
 zstyle ':completion:*' list-colors ''
 
