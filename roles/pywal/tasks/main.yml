@@ -2,7 +2,7 @@
 - name: Install pywal with pip
   pip:
     name:
-      - pywal
+      - git+https://github.com/dylanaraps/pywal@236aa48e741ff8d65c4c3826db2813bf2ee6f352
     state: present
     executable: pip3
 
