@@ -1,5 +1,0 @@
----
-- name: Download and install fonts
-  import_tasks: fonts.yml
-  vars:
-    fonts_path: "{{ ansible_env.HOME }}/Library/Fonts"

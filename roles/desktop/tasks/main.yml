@@ -2,7 +2,3 @@
 - name: Set up Ubuntu desktop
   import_tasks: ubuntu.yml
   when: ansible_distribution == "Ubuntu"
-
-- name: Set up macOS desktop
-  import_tasks: macos.yml
-  when: ansible_distribution == "MacOSX"
