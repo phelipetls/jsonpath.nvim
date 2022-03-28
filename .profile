@@ -71,7 +71,7 @@ fi
 export N_PREFIX="$HOME/.n"
 
 if [ -d "$N_PREFIX" ]; then
-  export PATH="$PATH:$N_PREFIX/bin"
+  export PATH="$N_PREFIX/bin:$PATH"
 fi
 
 # Add npm related PATH
