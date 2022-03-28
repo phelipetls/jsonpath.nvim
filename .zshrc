@@ -4,9 +4,9 @@ source "$HOME/.profile"
 autoload -Uz promptinit
 promptinit
 
-if [[ -f /usr/lib/git-core/git-sh-prompt ]]; then
+if [ -f /usr/lib/git-core/git-sh-prompt ]; then
   source /usr/lib/git-core/git-sh-prompt
-elif [[ -f /Library/Developer/CommandLineTools/usr/share/git-core/git-prompt.sh ]]; then
+elif [ -f /Library/Developer/CommandLineTools/usr/share/git-core/git-prompt.sh ]; then
   source /Library/Developer/CommandLineTools/usr/share/git-core/git-prompt.sh
 fi
 
