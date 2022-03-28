@@ -22,12 +22,15 @@
     - role: mutt
     - role: stow
     - role: gantsign.visual-studio-code
-      visual_studio_code_extensions:
-        - "eamodio.gitlens"
-        - "kahole.magit"
-        - "PhilHindle.errorlens"
-        - "sleistner.vscode-fileutils"
-        - "vscodevim.vim"
+      users:
+        # TODO: change this to be dynamic
+        - username: phelipe
+          visual_studio_code_extensions:
+            - "eamodio.gitlens"
+            - "kahole.magit"
+            - "PhilHindle.errorlens"
+            - "sleistner.vscode-fileutils"
+            - "vscodevim.vim"
     - role: hugo
       vars:
         hugo_version: "0.88.1"
