@@ -1,6 +1,6 @@
-My configuration files for Linux.
+My configuration files for Ubuntu and macOS.
 
-# Setup in Linux
+# Setup in Ubuntu
 
 ```sh
 sudo apt install -y git
