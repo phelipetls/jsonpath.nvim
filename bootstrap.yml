@@ -33,7 +33,7 @@
             - "vscodevim.vim"
     - role: hugo
       vars:
-        hugo_version: "0.88.1"
+        hugo_version: "0.96.0"
     - role: fonts
     - role: alacritty
     - role: desktop
