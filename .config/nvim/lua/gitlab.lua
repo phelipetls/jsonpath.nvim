@@ -64,6 +64,11 @@ function M.open_mr(target_branch)
 
   local merge_requests = get_merge_request_by_source_branch(source_branch)
 
+  if #merge_requests == 0 then
+    echoerr('No merge requests found')
+    return
+  end
+
   local url
 
   if #merge_requests == 1 then
