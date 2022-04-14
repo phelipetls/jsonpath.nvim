@@ -6,3 +6,7 @@
 - name: Install CLI tools in Fedora
   import_tasks: fedora.yml
   when: ansible_distribution == "Fedora"
+
+- name: Install CLI tools in macOS
+  import_tasks: macos.yml
+  when: ansible_distribution == "MacOSX"
