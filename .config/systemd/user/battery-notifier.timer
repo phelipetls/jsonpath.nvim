@@ -1,5 +1,0 @@
-[Unit]
-Description=Notify about low battery every minute
-
-[Timer]
-OnCalendar=*-*-* *:*:00

@@ -3,21 +3,6 @@
   become: true
   apt:
     name:
-      - flameshot
-      - sxiv
       - mpv
-      - numlockx
-      - peek
-      - scrcpy
       - tlp
-      - sxhkd
     state: present
-
-- name: Build and install dunst
-  import_tasks: dunst.yml
-
-- name: Build, install and configure dwm
-  import_tasks: dwm.yml
-
-- name: Install an icon theme
-  import_tasks: icons.yml

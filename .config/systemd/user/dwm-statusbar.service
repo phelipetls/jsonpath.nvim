@@ -1,7 +1,0 @@
-[Unit]
-Description=dwm status bar
-PartOf=graphical-session.target
-
-[Service]
-ExecStart=%h/scripts/dwm-statusbar
-Restart=on-failure
