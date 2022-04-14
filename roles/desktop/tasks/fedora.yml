@@ -3,6 +3,5 @@
   become: true
   dnf:
     name:
-      - mpv
       - tlp
     state: present
