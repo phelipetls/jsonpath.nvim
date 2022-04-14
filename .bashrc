@@ -43,6 +43,8 @@ esac
 # source git file containing __git_ps1 function
 if [ -f /usr/lib/git-core/git-sh-prompt ]; then
   source /usr/lib/git-core/git-sh-prompt
+elif [ -f /usr/share/git-core/contrib/completion/git-prompt.sh ]; then
+  source /usr/share/git-core/contrib/completion/git-prompt.sh
 fi
 
 export PS1='\
