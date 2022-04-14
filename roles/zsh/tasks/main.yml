@@ -1,6 +1,15 @@
 - name: Install zsh in Ubuntu
+  become: true
   apt:
     name:
       - zsh
     state: present
   when: ansible_distribution == "Ubuntu"
+
+- name: Install zsh in Fedora
+  become: true
+  dnf:
+    name:
+      - zsh
+    state: present
+  when: ansible_distribution == "Fedora"

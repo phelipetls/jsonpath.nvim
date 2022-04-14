@@ -3,6 +3,10 @@
   import_tasks: ubuntu.yml
   when: ansible_distribution == "Ubuntu"
 
+- name: Install stow in Fedora
+  import_tasks: fedora.yml
+  when: ansible_distribution == "Fedora"
+
 - name: Install stow in macOS
   import_tasks: macos.yml
   when: ansible_distribution == "MacOSX"

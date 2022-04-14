@@ -1,0 +1,8 @@
+---
+- name: Install desktop apps in Fedora
+  become: true
+  dnf:
+    name:
+      - mpv
+      - tlp
+    state: present

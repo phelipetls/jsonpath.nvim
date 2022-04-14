@@ -1,0 +1,7 @@
+---
+- name: Install Hugo in Fedora
+  become: true
+  dnf:
+    name:
+      - hugo
+    state: present

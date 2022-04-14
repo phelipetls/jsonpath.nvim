@@ -1,8 +1,8 @@
 ---
-- name: Set fonts installation path as Ansible fact in Ubuntu
+- name: Set fonts installation path as Ansible fact in Linux
   set_fact:
     fonts_path: "{{ ansible_env.HOME }}/.local/share/fonts"
-  when: ansible_distribution == "Ubuntu"
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Fedora"
 
 - name: Set fonts installation path as Ansible fact in macOS
   set_fact:

@@ -3,6 +3,14 @@
   import_tasks: ubuntu.yml
   when: ansible_distribution == "Ubuntu"
 
+- name: Install Node.js in Fedora
+  become: true
+  dnf:
+    name:
+      - nodejs
+    state: present
+  when: ansible_distribution == "Fedora"
+
 - name: Create npm global directory
   file:
     path: "{{ npm_config_prefix }}"

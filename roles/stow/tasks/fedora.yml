@@ -1,0 +1,6 @@
+- name: Install Stow in Fedora
+  become: true
+  dnf:
+    name:
+      - stow
+    state: present
