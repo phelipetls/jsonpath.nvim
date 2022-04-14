@@ -1,6 +1,0 @@
-[Desktop Entry]
-Encoding=UTF-8
-Name=awesome
-Comment=Awesome window manager
-Exec=systemctl --user start --wait awesome-session.target
-Type=XSession

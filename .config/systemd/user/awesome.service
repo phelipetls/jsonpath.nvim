@@ -1,9 +1,0 @@
-[Unit]
-Description=awesome
-PartOf=graphical-session.target
-
-[Service]
-ExecStart=awesome
-ExecStartPost=nitrogen --restore
-ExecStopPost=systemctl --user stop graphical-session.target
-Restart=on-failure

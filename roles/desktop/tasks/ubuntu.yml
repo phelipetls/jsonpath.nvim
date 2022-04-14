@@ -19,8 +19,5 @@
 - name: Build, install and configure dwm
   import_tasks: dwm.yml
 
-- name: Install and configure awesome
-  import_tasks: awesome.yml
-
 - name: Install an icon theme
   import_tasks: icons.yml
