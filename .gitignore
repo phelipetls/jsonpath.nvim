@@ -19,3 +19,6 @@ roles/gantsign.visual-studio-code
 venv
 .config/efm-langserver/efmlangserver.log
 .DS_Store
+.config/Code/
+!.config/Code/User/settings.json
+!.config/Code/User/keybindings.json
