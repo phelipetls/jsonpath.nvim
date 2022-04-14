@@ -1,39 +1,46 @@
-My configuration files for Ubuntu and macOS.
+My configuration files for Linux and macOS.
 
-# Setup in Ubuntu
+# Install git
+
+## Ubuntu
 
 ```sh
 sudo apt install -y git
-git clone git@github.com:phelipetls/dotfiles.git
-
-cd dotfiles
-
-./install
-ansible-playbook bootstrap.yml
 ```
 
-# Setup in macOS
+## Fedora
 
-Install git with XCode Command Line Tools. This should work:
+```sh
+sudo dnf install -y git
+```
+
+## macOS
+
+Install git with XCode Command Line Tools:
 
 ```sh
 xcode-select --install
 ```
 
-Then clone the repository
+# Clone the repository
 
 ```sh
 git clone git@github.com:phelipetls/dotfiles.git
-
 cd dotfiles
 ```
 
-Create a Python virtual environment to install Ansible.
+# Install Ansible
+
+It's best to install Ansible using a virtual env
 
 ```sh
 python3 -m venv venv
 source venv/bin/activate
 ./install
+```
 
+# Run playbook
+
+```sh
 ansible-playbook bootstrap.yml
 ```
