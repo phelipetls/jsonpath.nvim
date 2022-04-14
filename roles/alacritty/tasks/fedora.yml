@@ -1,7 +1,0 @@
----
-- name: Install Alacritty
-  become: true
-  dnf:
-    name:
-      - alacritty
-    state: present

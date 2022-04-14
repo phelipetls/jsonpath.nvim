@@ -35,5 +35,4 @@
       vars:
         hugo_version: "0.96.0"
     - role: fonts
-    - role: alacritty
     - role: desktop
