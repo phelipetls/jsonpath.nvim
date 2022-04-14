@@ -8,7 +8,6 @@
     - role: ranger
     - role: nodejs
       vars:
-        nodejs_version: "14.x"
         npm_config_prefix: "{{ ansible_env.HOME }}/.npm-packages"
         nodejs_npm_global_packages:
           - n

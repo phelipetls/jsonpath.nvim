@@ -1,6 +1,8 @@
 ---
 - name: Install Node.js in Ubuntu
   import_tasks: ubuntu.yml
+  vars:
+    nodejs_version: "14.x"
   when: ansible_distribution == "Ubuntu"
 
 - name: Install Node.js in Fedora
