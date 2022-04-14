@@ -4,9 +4,6 @@
   roles:
     - role: commandline
     - role: submodules
-    - role: pywal
-      vars:
-        theme: tokyonight
     - role: zsh
     - role: ranger
     - role: nodejs
@@ -21,6 +18,9 @@
     - role: nvim
     - role: mutt
     - role: stow
+    - role: pywal
+      vars:
+        theme: tokyonight
     - role: gantsign.visual-studio-code
       users:
         # TODO: change this to be dynamic
