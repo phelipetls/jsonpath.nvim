@@ -17,6 +17,7 @@
     - role: nvim
     - role: mutt
     - role: stow
+    - role: fzf
     - role: pywal
       vars:
         theme: tokyonight

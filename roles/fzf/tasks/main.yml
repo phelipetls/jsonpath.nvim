@@ -1,0 +1,5 @@
+---
+- name: Install fzf
+  command:
+    cmd: ./install --no-update-rc
+    chdir: "{{ ansible_env.HOME }}/.fzf"
