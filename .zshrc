@@ -62,6 +62,9 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
+# Remove package-lock.json from completion items
+zstyle ':completion:*' ignored-patterns package-lock.json
+
 # Colored ls output
 if uname | grep -q darwin; then
   export CLICOLOR=1
