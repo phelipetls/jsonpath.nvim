@@ -1,5 +1,5 @@
 ---
-- name: Install apps
+- name: Install apps in Ubuntu
   become: true
   apt:
     name:
