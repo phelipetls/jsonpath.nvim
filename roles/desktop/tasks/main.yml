@@ -1,8 +1,4 @@
 ---
-- name: Set up Ubuntu desktop
-  import_tasks: ubuntu.yml
-  when: ansible_distribution == "Ubuntu"
-
-- name: Set up Fedora desktop
-  import_tasks: fedora.yml
-  when: ansible_distribution == "Fedora"
+- name: Install desktop apps in Linux
+  import_tasks: linux.yml
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Fedora"

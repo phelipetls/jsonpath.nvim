@@ -1,8 +1,0 @@
----
-- name: Install apps in Ubuntu
-  become: true
-  apt:
-    name:
-      - mpv
-      - tlp
-    state: present

@@ -1,7 +1,0 @@
----
-- name: Install desktop apps in Fedora
-  become: true
-  dnf:
-    name:
-      - tlp
-    state: present

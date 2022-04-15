@@ -1,0 +1,16 @@
+---
+- name: Install desktop apps in Ubuntu
+  become: true
+  apt:
+    name:
+      - tlp
+    state: present
+  when: ansible_distribution == "Ubuntu"
+
+- name: Install desktop apps in Fedora
+  become: true
+  dnf:
+    name:
+      - tlp
+    state: present
+  when: ansible_distribution == "Fedora"
