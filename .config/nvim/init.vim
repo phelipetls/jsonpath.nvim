@@ -607,7 +607,7 @@ if executable('fzf')
           \ }))
   endfunction
 
-  nnoremap <space>gb :call CheckoutBranchFzf()<CR>
+  nnoremap <space>cb :call CheckoutBranchFzf()<CR>
 
   let g:fzf_colors = {
         \ 'fg':      ['fg', 'Normal'],
