@@ -11,7 +11,7 @@ type = IMAP
 remotehost = outlook.office365.com
 remoteuser = phelipe_teles@hotmail.com
 remotepasseval = get_pass("outlook.live.com/phelipe_teles@hotmail.com")
-sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+sslcacertfile = OS-DEFAULT
 folderfilter = lambda folder: not (folder.startswith("Problemas de Sincroniza") or folder in ["Inbox/McAfee Antispam", "Scheduled", "Outbox", "Notes", "Adiado"])
 
 [Repository HotmailLocal]
@@ -27,7 +27,7 @@ type = Gmail
 remotehost = imap.gmail.com
 remoteuser = telesphelipe@gmail.com
 remotepasseval = get_pass("gmail/mutt-token")
-sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+sslcacertfile = OS-DEFAULT
 folderfilter = lambda folder: folder not in ["[Gmail]/Todos os e-mails", "Scheduled"]
 nametrans = lambda folder: folder.capitalize() if folder == 'INBOX' else re.sub('^\[Gmail\]/', '', folder)
 createfolders = False
