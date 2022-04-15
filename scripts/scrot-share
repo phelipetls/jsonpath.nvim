@@ -1,5 +1,0 @@
-#!/bin/bash
-# disable this warning because $f is not meant to be expanded by the shell, but
-# it is a special string used by scrot
-# shellcheck disable=SC2016
-scrot -e 'xclip -selection clipboard -target image/png -i $f' "$@" "$HOME/Imagens/screenshots/%Y-%m-%d-%s.png"

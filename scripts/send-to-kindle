@@ -1,2 +1,0 @@
-#!/bin/bash
-mutt "phelipe_teles_508b24@kindle.com" -s "sending file $1" -a "$1"
