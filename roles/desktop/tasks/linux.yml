@@ -41,3 +41,7 @@
       - org.chromium.Chromium
     state: present
     method: user
+
+- name: Configure GNOME
+  import_tasks: gnome.yml
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Fedora"

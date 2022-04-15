@@ -1,0 +1,16 @@
+---
+- name: Install psutil
+  pip:
+    name:
+      - psutil
+    state: present
+
+- name: Enable tap to click on touchpad
+  community.general.dconf:
+    key: "/org/gnome/desktop/peripherals/touchpad/tap-to-click"
+    value: "true"
+
+- name: Show battery percentage
+  community.general.dconf:
+    key: "/org/gnome/desktop/interface/show-battery-percentage"
+    value: "true"
