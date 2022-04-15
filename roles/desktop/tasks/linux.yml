@@ -42,6 +42,23 @@
     state: present
     method: user
 
+- name: Set up RPM Fusion
+  become: true
+  dnf:
+    name:
+      - "https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_major_version }}.noarch.rpm"
+    state: present
+    disable_gpg_check: true
+  when: ansible_distribution == "Fedora"
+
+- name: Install ffmpeg-libs
+  become: true
+  dnf:
+    name:
+      - ffmpeg-libs
+    state: present
+  when: ansible_distribution == "Fedora"
+
 - name: Configure GNOME
   import_tasks: gnome.yml
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Fedora"
