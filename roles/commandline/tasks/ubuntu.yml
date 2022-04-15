@@ -10,4 +10,5 @@
       - jq
       - htop
       - python3-pip
+      - pass
     state: present
