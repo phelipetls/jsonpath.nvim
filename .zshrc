@@ -87,6 +87,21 @@ zstyle ':completion:*' list-colors ''
 # Some obscure setting I'm not removing
 zstyle ':completion:*' use-compctl false
 
+# Set up zsh so that terminfo is not empty when configuring Zsh Line Editor
+# (ZSE). See https://gist.github.com/AbigailBuccaneer/1fcf12edf13e03e45030
+typeset -A key
+
+function zle-line-init () {
+    echoti smkx
+}
+
+function zle-line-finish () {
+    echoti rmkx
+}
+
+zle -N zle-line-init
+zle -N zle-line-finish
+
 # Enable history search with up and down arrows
 autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
 zle -N up-line-or-beginning-search
