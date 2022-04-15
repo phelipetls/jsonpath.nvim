@@ -93,7 +93,7 @@ zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
 
 if [[ -n "${key[Up]}" ]]; then
-  bindkey -- "${key[Up]}"   up-line-or-beginning-search
+  bindkey -- "${key[Up]}" up-line-or-beginning-search
 fi
 
 if [[ -n "${key[Down]}" ]]; then
@@ -105,7 +105,7 @@ key[Control-Left]="${terminfo[kLFT5]}"
 key[Control-Right]="${terminfo[kRIT5]}"
 
 if [[ -n "${key[Control-Left]}"  ]]; then
-  bindkey -- "${key[Control-Left]}"  backward-word
+  bindkey -- "${key[Control-Left]}" backward-word
 fi
 
 if [[ -n "${key[Control-Right]}" ]]; then
