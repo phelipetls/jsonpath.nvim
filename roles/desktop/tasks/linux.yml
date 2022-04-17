@@ -62,3 +62,6 @@
 - name: Configure GNOME
   import_tasks: gnome.yml
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Fedora"
+
+- name: Set up dwm
+  import_tasks: dwm.yml

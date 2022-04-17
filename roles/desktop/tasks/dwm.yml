@@ -1,10 +1,92 @@
 ---
-- name: Install dwm build dependencies
+- name: Install apps used in dwm environment in Ubuntu
+  become: true
+  apt:
+    name:
+      - flameshot
+      - numlockx
+      - sxhkd
+      - nitrogen
+    state: present
+  when: ansible_distribution == "Ubuntu"
+
+- name: Install apps used in dwm environment in Fedora
+  become: true
+  dnf:
+    name:
+      - flameshot
+      - numlockx
+      - sxhkd
+      - nitrogen
+    state: present
+  when: ansible_distribution == "Fedora"
+
+- name: Add papirus icon theme PPA in Ubuntu
+  become: true
+  apt_repository:
+    repo: ppa:papirus/papirus
+    state: present
+  when: ansible_distribution == "Ubuntu"
+
+- name: Install papirus icon theme in Ubuntu
+  become: true
+  apt:
+    name:
+      - papirus-icon-theme
+    state: present
+  when: ansible_distribution == "Ubuntu"
+
+- name: Install papirus icon theme in Fedora
+  become: true
+  dnf:
+    name:
+      - papirus-icon-theme
+    state: present
+  when: ansible_distribution == "Fedora"
+
+- name: Install dwm status bar dependencies in Ubuntu
+  become: true
+  apt:
+    name:
+      - acpi
+      - lm-sensors
+      - alsa-utils
+    state: present
+  when: ansible_distribution == "Ubuntu"
+
+- name: Install dwm status bar dependencies in Fedora
+  become: true
+  dnf:
+    name:
+      - acpi
+      - lm_sensors
+      - alsa-utils
+      - xsetroot
+    state: present
+  when: ansible_distribution == "Fedora"
+
+- name: Install dwm build dependencies in Ubuntu
   become: true
   apt:
     name:
       - libimlib2-dev
     state: present
+  when: ansible_distribution == "Ubuntu"
+
+- name: Install dwm build dependencies in Fedora
+  become: true
+  dnf:
+    name:
+      - imlib2-devel
+      - libX11-devel
+      - libXft-devel
+      - libXinerama-devel
+      - libXrandr-devel
+    state: present
+  when: ansible_distribution == "Fedora"
+
+- name: Install dunst
+  import_tasks: dunst.yml
 
 - name: Build dwm
   become: true
@@ -18,12 +100,3 @@
   copy:
     src: dwm.desktop
     dest: /usr/share/xsessions/dwm.desktop
-
-- name: Install dwm status bar dependencies
-  become: true
-  apt:
-    name:
-      - acpi
-      - lm-sensors
-      - alsa-utils
-    state: present

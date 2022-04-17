@@ -1,4 +1,4 @@
-- name: Install dunst build dependencies
+- name: Install dunst build dependencies in Ubuntu
   become: true
   apt:
     name:
@@ -13,6 +13,23 @@
       - libxdg-basedir-dev
       - libnotify-dev
     state: present
+  when: ansible_distribution == "Ubuntu"
+
+- name: Install dunst build dependencies in Fedora
+  become: true
+  dnf:
+    name:
+      - dbus-devel
+      - libX11-devel
+      - libXrandr-devel
+      - glib2-devel
+      - pango-devel
+      - gtk3-devel
+      - libxdg-basedir-devel
+      - libXScrnSaver-devel
+      - libnotify-devel
+    state: present
+  when: ansible_distribution == "Fedora"
 
 - name: Build dunst
   become: true
