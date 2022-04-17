@@ -14,3 +14,30 @@
       - tlp
     state: present
   when: ansible_distribution == "Fedora"
+
+- name: Install flatpak in Ubuntu
+  become: true
+  apt:
+    name:
+      - flatpak
+    state: present
+  when: ansible_distribution == "Ubuntu"
+
+- name: Add the flathub flatpak repository remote to the user installation
+  community.general.flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
+    method: user
+
+- name: Install apps in Flatpak
+  community.general.flatpak:
+    name:
+      - io.mpv.Mpv
+      - com.spotify.Client
+      - org.gimp.GIMP
+      - org.inkscape.Inkscape
+      - com.discordapp.Discord
+      - org.chromium.Chromium
+    state: present
+    method: user
