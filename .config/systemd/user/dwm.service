@@ -1,0 +1,10 @@
+[Unit]
+Description=dwm
+PartOf=graphical-session.target
+
+[Service]
+ExecStartPre=xrdb -I%h/.cache/wal %h/.Xresources
+ExecStart=dwm
+ExecStartPost=nitrogen --restore
+ExecStopPost=systemctl --user stop graphical-session.target
+Restart=on-failure

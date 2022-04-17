@@ -1,0 +1,6 @@
+[Unit]
+Description=Network Manager
+PartOf=graphical-session.target
+
+[Service]
+ExecStart=nm-applet

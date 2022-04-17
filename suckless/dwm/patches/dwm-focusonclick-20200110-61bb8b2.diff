@@ -1,0 +1,130 @@
+From 7ac0b812540e21b470f2f6947c6cc1e30bf24b42 Mon Sep 17 00:00:00 2001
+From: iofq <cjriddz@protonmail.com>
+Date: Sun, 10 Jan 2021 22:43:16 -0600
+Subject: [PATCH] tweak fixes floating window mouse controls
+
+---
+ config.def.h |  1 +
+ dwm.c        | 47 ++++-------------------------------------------
+ 2 files changed, 5 insertions(+), 43 deletions(-)
+
+diff --git a/config.def.h b/config.def.h
+index 1c0b587..4f2c946 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -5,6 +5,7 @@ static const unsigned int borderpx  = 1;        /* border pixel of windows */
+ static const unsigned int snap      = 32;       /* snap pixel */
+ static const int showbar            = 1;        /* 0 means no bar */
+ static const int topbar             = 1;        /* 0 means bottom bar */
++static const int focusonwheel       = 0;
+ static const char *fonts[]          = { "monospace:size=10" };
+ static const char dmenufont[]       = "monospace:size=10";
+ static const char col_gray1[]       = "#222222";
+diff --git a/dwm.c b/dwm.c
+index 664c527..de3e883 100644
+--- a/dwm.c
++++ b/dwm.c
+@@ -163,7 +163,6 @@ static void detachstack(Client *c);
+ static Monitor *dirtomon(int dir);
+ static void drawbar(Monitor *m);
+ static void drawbars(void);
+-static void enternotify(XEvent *e);
+ static void expose(XEvent *e);
+ static void focus(Client *c);
+ static void focusin(XEvent *e);
+@@ -182,7 +181,6 @@ static void manage(Window w, XWindowAttributes *wa);
+ static void mappingnotify(XEvent *e);
+ static void maprequest(XEvent *e);
+ static void monocle(Monitor *m);
+-static void motionnotify(XEvent *e);
+ static void movemouse(const Arg *arg);
+ static Client *nexttiled(Client *c);
+ static void pop(Client *);
+@@ -250,13 +248,11 @@ static void (*handler[LASTEvent]) (XEvent *) = {
+ 	[ConfigureRequest] = configurerequest,
+ 	[ConfigureNotify] = configurenotify,
+ 	[DestroyNotify] = destroynotify,
+-	[EnterNotify] = enternotify,
+ 	[Expose] = expose,
+ 	[FocusIn] = focusin,
+ 	[KeyPress] = keypress,
+ 	[MappingNotify] = mappingnotify,
+ 	[MapRequest] = maprequest,
+-	[MotionNotify] = motionnotify,
+ 	[PropertyNotify] = propertynotify,
+ 	[UnmapNotify] = unmapnotify
+ };
+@@ -425,7 +421,8 @@ buttonpress(XEvent *e)
+ 
+ 	click = ClkRootWin;
+ 	/* focus monitor if necessary */
+-	if ((m = wintomon(ev->window)) && m != selmon) {
++	if ((m = wintomon(ev->window)) && m != selmon
++	    && (focusonwheel || (ev->button != Button4 && ev->button != Button5))) {
+ 		unfocus(selmon->sel, 1);
+ 		selmon = m;
+ 		focus(NULL);
+@@ -445,8 +442,8 @@ buttonpress(XEvent *e)
+ 		else
+ 			click = ClkWinTitle;
+ 	} else if ((c = wintoclient(ev->window))) {
+-		focus(c);
+-		restack(selmon);
++		if (focusonwheel || (ev->button != Button4 && ev->button != Button5))
++			focus(c);
+ 		XAllowEvents(dpy, ReplayPointer, CurrentTime);
+ 		click = ClkClientWin;
+ 	}
+@@ -752,25 +749,6 @@ drawbars(void)
+ 		drawbar(m);
+ }
+ 
+-void
+-enternotify(XEvent *e)
+-{
+-	Client *c;
+-	Monitor *m;
+-	XCrossingEvent *ev = &e->xcrossing;
+-
+-	if ((ev->mode != NotifyNormal || ev->detail == NotifyInferior) && ev->window != root)
+-		return;
+-	c = wintoclient(ev->window);
+-	m = c ? c->mon : wintomon(ev->window);
+-	if (m != selmon) {
+-		unfocus(selmon->sel, 1);
+-		selmon = m;
+-	} else if (!c || c == selmon->sel)
+-		return;
+-	focus(c);
+-}
+-
+ void
+ expose(XEvent *e)
+ {
+@@ -1116,23 +1094,6 @@ monocle(Monitor *m)
+ 		resize(c, m->wx, m->wy, m->ww - 2 * c->bw, m->wh - 2 * c->bw, 0);
+ }
+ 
+-void
+-motionnotify(XEvent *e)
+-{
+-	static Monitor *mon = NULL;
+-	Monitor *m;
+-	XMotionEvent *ev = &e->xmotion;
+-
+-	if (ev->window != root)
+-		return;
+-	if ((m = recttomon(ev->x_root, ev->y_root, 1, 1)) != mon && mon) {
+-		unfocus(selmon->sel, 1);
+-		selmon = m;
+-		focus(NULL);
+-	}
+-	mon = m;
+-}
+-
+ void
+ movemouse(const Arg *arg)
+ {
+-- 
+2.30.0
+

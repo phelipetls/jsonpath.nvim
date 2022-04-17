@@ -1,0 +1,45 @@
+Author: Jan Christoph Ebersbach <jceb@e-jc.de>
+URL: http://dwm.suckless.org/patches/focusurgent
+focusurgent selects the next window having the urgent flag regardless of the tag
+it is on.  The urgent flag can be artificially set with the following xdotool
+command on any window: xdotool selectwindow -- set_window --urgency 1
+
+Index: clean/dwm/config.def.h
+===================================================================
+--- a/config.def.h
++++ b/config.def.h
+@@ -59,6 +59,7 @@ static char dmenumon[2] = "0"; /* compon
+ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+ static const char *termcmd[]  = { "st", NULL };
+ 
++#include "focusurgent.c"
+ static Key keys[] = {
+ 	/* modifier                     key        function        argument */
+ 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
+@@ -94,6 +95,7 @@ static Key keys[] = {
+ 	TAGKEYS(                        XK_8,                      7)
+ 	TAGKEYS(                        XK_9,                      8)
+ 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
++	{ MODKEY,                       XK_u,      focusurgent,    {0} },
+ };
+ 
+ /* button definitions */
+Index: clean/dwm/focusurgent.c
+===================================================================
+--- /dev/null
++++ b/focusurgent.c
+@@ -0,0 +1,14 @@
++static void
++focusurgent(const Arg *arg) {
++	Client *c;
++	int i;
++	for(c=selmon->clients; c && !c->isurgent; c=c->next);
++	if(c) {
++		for(i=0; i < LENGTH(tags) && !((1 << i) & c->tags); i++);
++		if(i < LENGTH(tags)) {
++			const Arg a = {.ui = 1 << i};
++			view(&a);
++			focus(c);
++		}
++	}
++}

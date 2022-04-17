@@ -15,6 +15,12 @@
     state: directory
     mode: "0775"
 
+- name: Install Font Awesome
+  get_url:
+    url: https://github.com/FortAwesome/Font-Awesome/blob/7d3d774145ac38663f6d1effc6def0334b68ab7e/otfs/Font%20Awesome%205%20Free-Solid-900.otf?raw=true
+    dest: "{{ fonts_path }}/Font Awesome 5 Free-Solid-900.otf"
+    checksum: md5:8d531d92051cddac77556d0734b701f8
+
 - name: Install Source Code Pro
   get_url:
     url: https://github.com/adobe-fonts/source-code-pro/blob/29fdb884c6e9dc2a312f4a5e2bb3b2dad2350777/TTF/SourceCodePro-Medium.ttf?raw=true

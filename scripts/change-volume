@@ -1,0 +1,37 @@
+#!/bin/bash
+
+case $1 in
+  up)
+    amixer -D pulse set Master on
+    amixer -D pulse set Master 5%+
+    ;;
+  down)
+    amixer -D pulse set Master on
+    amixer -D pulse set Master 5%-
+    ;;
+  mute)
+    amixer -D pulse set Master 1+ toggle
+    ;;
+esac
+
+function get_volume {
+  amixer get Master | grep -Eo '([0-9]+)%' | sed 's/%//'
+}
+
+function is_mute {
+  amixer get Master | grep off
+}
+
+function notify() {
+  volume=$(get_volume)
+  icon='audio-volume-high-symbolic'
+  [[ $(is_mute) || $volume -eq 0 ]] && icon='audio-volume-muted-symbolic'
+  notify-send -i "$icon" -h string:x-dunst-stack-tag:volume -h "int:value:$volume" -t 2000 -u low "Volume "
+}
+
+notify
+
+pid="$(pgrep dwm-statusbar)"
+if [ -n "$pid" ]; then
+  kill -SIGUSR1 "$pid"
+fi

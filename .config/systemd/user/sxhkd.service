@@ -1,0 +1,8 @@
+[Unit]
+Description=Simple X Hotkey Daemon
+PartOf=graphical-session.target
+
+[Service]
+ExecStart=sxhkd
+KillMode=process
+ExecReload=/bin/kill -USR1 $MAINPID

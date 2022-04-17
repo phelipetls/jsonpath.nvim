@@ -5,6 +5,7 @@ pythonfile = ~/.get_password_offlineimap
 [Account Hotmail]
 localrepository = HotmailLocal
 remoterepository = HotmailRemote
+postsynchook = $HOME/scripts/offlineimap-postsynchook
 
 [Repository HotmailRemote]
 type = IMAP
@@ -21,6 +22,7 @@ localfolders = ~/Mail/Hotmail
 [Account Gmail]
 localrepository = GmailLocal
 remoterepository = GmailRemote
+postsynchook = $HOME/scripts/offlineimap-postsynchook
 
 [Repository GmailRemote]
 type = Gmail

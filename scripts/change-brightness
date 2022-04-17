@@ -1,0 +1,23 @@
+#!/bin/bash
+
+function get_brightness {
+  xbacklight -get | awk '{print int($1)}'
+}
+
+function send_notification {
+  brightness=$(get_brightness)
+  icon='display-brightness-high-symbolic'
+  [[ $(is_mute) || $brightness -eq 0 ]] && icon='display-brightness-off-symbolic'
+  notify-send -i "$icon" -h string:x-dunst-stack-tag:brightness -t 2000 -u low -h "int:value:$brightness" "Brightness"
+}
+
+case $1 in
+  up)
+    xbacklight +1
+    send_notification
+    ;;
+  down)
+    xbacklight -1
+    send_notification
+    ;;
+esac

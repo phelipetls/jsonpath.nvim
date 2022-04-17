@@ -1,0 +1,76 @@
+#!/bin/bash
+
+function get_cpu_temp() {
+  icon=""
+  cpu_temp="$icon $(sensors | awk '/Core 0:/ { print $3 }' | tr -d '+.0')"
+}
+
+function get_date() {
+  icon=""
+  date="$icon $(date +"%d/%m/%y %R")"
+}
+
+function get_volume() {
+  icon=""
+  amixer get Master | grep -q off && icon=""
+  volume="$icon $(amixer get Master | awk '/Mono:/ { print $4 }' | tr -d '[]')"
+}
+
+function get_memory() {
+  icon=""
+  memory="$icon $(free | awk '/Mem.:/ { printf("%3.1f", $3/$2*100) }')%"
+}
+
+function get_battery() {
+  state=$(acpi | grep -Eo '(Discharging|Charging)')
+  level=$(acpi | sed -E 's/.* ([0-9]+)%.*/\1/')
+
+  charging_icon=""
+  if [ "$state" = "Charging" ]; then
+    charging_icon="+"
+  fi
+
+  if [ "$level" -lt 30 ]; then
+    icon=""
+  elif [ "$level" -lt 60 ]; then
+    icon=""
+  elif [ "$level" -lt 95 ]; then
+    icon=""
+  else
+    icon=""
+  fi
+
+  battery="$icon $charging_icon$level%"
+}
+
+function get_mailcount() {
+  count=$(find "$HOME"/Mail/ -type f -ipath "*inbox*new*" | wc -l)
+  icon=""
+  mailcount="$icon $count"
+}
+
+function get_all() {
+  get_cpu_temp
+  get_volume
+  get_memory
+  get_date
+  get_battery
+  get_mailcount
+}
+
+get_all
+
+trap "get_volume" "USR1"
+trap "get_mailcount" "USR2"
+
+while true
+do
+  get_date
+  get_cpu_temp
+  get_memory
+  get_battery
+
+  xsetroot -name "$mailcount  $cpu_temp  $memory  $battery  $volume  $date "
+
+  sleep 30 & wait
+done
