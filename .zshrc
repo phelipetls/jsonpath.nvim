@@ -69,7 +69,7 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 zstyle ':completion:*' ignored-patterns package-lock.json
 
 # Colored ls output
-if uname | grep -q darwin; then
+if uname | grep -iq darwin; then
   export CLICOLOR=1
   zstyle ':completion:*:default' list-colors ''
 else
