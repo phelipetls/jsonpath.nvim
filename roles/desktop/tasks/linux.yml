@@ -3,6 +3,7 @@
   become: true
   apt:
     name:
+      - redshift
       - tlp
     state: present
   when: ansible_distribution == "Ubuntu"
@@ -11,6 +12,7 @@
   become: true
   dnf:
     name:
+      - redshift
       - tlp
     state: present
   when: ansible_distribution == "Fedora"
