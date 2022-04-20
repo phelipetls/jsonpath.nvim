@@ -95,7 +95,7 @@
     cmd: make clean install
     chdir: ./suckless/dwm
 
-- name: Configure dwm as a desktop entry in LightDM
+- name: Configure dwm as a desktop entry
   become: true
   copy:
     src: dwm.desktop
