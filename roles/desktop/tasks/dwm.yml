@@ -88,12 +88,16 @@
 - name: Install dunst
   import_tasks: dunst.yml
 
-- name: Build dwm
+- name: Build suckless tools
   become: true
   become_flags: "--preserve-env=HOME"
+  loop:
+    - "dwm"
+    - "slock"
+    - "dmenu"
   shell:
     cmd: make clean install
-    chdir: ./suckless/dwm
+    chdir: "./suckless/{{ item }}"
 
 - name: Configure dwm as a desktop entry
   become: true
