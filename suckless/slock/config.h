@@ -1,6 +1,6 @@
 /* user and group to drop privileges to */
 static const char *user  = "nobody";
-static const char *group = "nogroup";
+static const char *group = "nobody";
 
 #include "colors-wal-slock.h"
 
