@@ -1,7 +1,8 @@
 ---
 - name: Install Hugo in Fedora
-  become: true
-  dnf:
-    name:
-      - hugo
-    state: present
+  unarchive:
+    src: "https://github.com/gohugoio/hugo/releases/download/v{{ hugo_version }}/hugo_{{ hugo_version }}_Linux-64bit.tar.gz"
+    dest: "{{ ansible_env.HOME }}/.local/bin"
+    remote_src: true
+    extra_opts:
+      - "hugo"

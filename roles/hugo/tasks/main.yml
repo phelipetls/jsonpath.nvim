@@ -2,3 +2,7 @@
 - name: Install Hugo in Ubuntu
   import_tasks: ubuntu.yml
   when: ansible_distribution == "Ubuntu"
+
+- name: Install Hugo in Fedora
+  import_tasks: fedora.yml
+  when: ansible_distribution == "Fedora"
