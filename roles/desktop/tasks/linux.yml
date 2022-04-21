@@ -5,6 +5,7 @@
     name:
       - redshift
       - tlp
+      - compton
     state: present
   when: ansible_distribution == "Ubuntu"
 
@@ -14,6 +15,7 @@
     name:
       - redshift
       - tlp
+      - compton
     state: present
   when: ansible_distribution == "Fedora"
 
