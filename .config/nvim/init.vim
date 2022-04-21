@@ -394,7 +394,7 @@ function! s:get_visual_selection()
     return join(lines, "\n")
 endfunction
 
-function Open(is_visual_mode)
+function! s:OpenFileUnderCursor(is_visual_mode)
   let s:open_command =
         \ has('darwin') && executable('open') ?
         \ 'open'
@@ -419,8 +419,8 @@ function Open(is_visual_mode)
   call system(printf('%s %s', s:open_command, shellescape(s:fname)))
 endfunction
 
-nnoremap <silent> gx :call Open(v:false)<CR>
-vnoremap <silent> gx :<C-U>call Open(v:true)<CR>
+nnoremap <silent> gx :call <SID>OpenFileUnderCursor(v:false)<CR>
+vnoremap <silent> gx :<C-U>call <SID>OpenFileUnderCursor(v:true)<CR>
 
 " format range or whole file. try to not change the jumplist
 function! Format(type, ...)
