@@ -402,15 +402,21 @@ function Open(is_visual_mode)
         \ ? 'xdg-open'
         \ : ''
 
+  if empty(s:open_command)
+    echohl ErrorMsg
+    echo 'Could not determine a command to open file'
+    echohl None
+
+    return
+  endif
+
   if a:is_visual_mode
     let s:fname = <SID>get_visual_selection()
   else
     let s:fname = expand('<cfile>')
   endif
 
-  if !empty(s:open_command)
-    call system(printf('%s %s', s:open_command, shellescape(s:fname)))
-  endif
+  call system(printf('%s %s', s:open_command, shellescape(s:fname)))
 endfunction
 
 nnoremap <silent> gx :call Open(v:false)<CR>
