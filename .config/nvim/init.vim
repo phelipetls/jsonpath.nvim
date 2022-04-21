@@ -394,17 +394,27 @@ function! s:get_visual_selection()
     return join(lines, "\n")
 endfunction
 
-let open_command =
-      \ has('darwin') && executable('open') ?
-      \ 'open'
-      \ : has('unix') && executable('xdg-open')
-      \ ? 'xdg-open'
-      \ : ''
+function Open(is_visual_mode)
+  let s:open_command =
+        \ has('darwin') && executable('open') ?
+        \ 'open'
+        \ : has('unix') && executable('xdg-open')
+        \ ? 'xdg-open'
+        \ : ''
 
-if !empty(open_command)
-  nnoremap <silent> gx :call system(printf("%s %s", open_command, shellescape(expand("<cfile>"))))<CR>
-  vnoremap <silent> gx :<C-U>call system(printf("%s %s", open_command, shellescape(<SID>get_visual_selection())))<CR>
-endif
+  if a:is_visual_mode
+    let s:fname = <SID>get_visual_selection()
+  else
+    let s:fname = expand('<cfile>')
+  endif
+
+  if !empty(s:open_command)
+    call system(printf('%s %s', s:open_command, shellescape(s:fname)))
+  endif
+endfunction
+
+nnoremap <silent> gx :call Open(v:false)<CR>
+vnoremap <silent> gx :<C-U>call Open(v:true)<CR>
 
 " format range or whole file. try to not change the jumplist
 function! Format(type, ...)
