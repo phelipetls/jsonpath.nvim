@@ -394,9 +394,16 @@ function! s:get_visual_selection()
     return join(lines, "\n")
 endfunction
 
-if executable('xdg-open')
-  nnoremap <silent> gx :call system(printf("xdg-open %s", shellescape(expand("<cWORD>"))))<CR>
-  vnoremap <silent> gx :<C-U>call system(printf("xdg-open %s", shellescape(<SID>get_visual_selection())))<CR>
+let open_command =
+      \ has('darwin') && executable('open') ?
+      \ 'open'
+      \ : has('unix') && executable('xdg-open')
+      \ ? 'xdg-open'
+      \ : ''
+
+if !empty(open_command)
+  nnoremap <silent> gx :call system(printf("%s %s", open_command, shellescape(expand("<cWORD>"))))<CR>
+  vnoremap <silent> gx :<C-U>call system(printf("%s %s", open_command, shellescape(<SID>get_visual_selection())))<CR>
 endif
 
 " format range or whole file. try to not change the jumplist
