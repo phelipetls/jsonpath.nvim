@@ -1,5 +1,7 @@
 scriptencoding utf-8
 
+set isfname+=32
+
 nnoremap <silent><buffer>
         \ zh :silent keeppatterns g@\v/\.[^\/]+/?$@d _<cr>:setl cole=3<cr>
 
