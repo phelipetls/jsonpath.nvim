@@ -13,6 +13,14 @@
     state: present
   when: ansible_distribution == "Fedora"
 
+- name: Install Node.js in macOS
+  become: true
+  community.general.homebrew:
+    name:
+      - node
+    state: present
+  when: ansible_distribution == "MacOSX"
+
 - name: Create npm global directory
   file:
     path: "{{ npm_config_prefix }}"
