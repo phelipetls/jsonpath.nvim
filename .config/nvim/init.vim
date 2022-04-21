@@ -402,7 +402,7 @@ let open_command =
       \ : ''
 
 if !empty(open_command)
-  nnoremap <silent> gx :call system(printf("%s %s", open_command, shellescape(expand("<cWORD>"))))<CR>
+  nnoremap <silent> gx :call system(printf("%s %s", open_command, shellescape(expand("<cfile>"))))<CR>
   vnoremap <silent> gx :<C-U>call system(printf("%s %s", open_command, shellescape(<SID>get_visual_selection())))<CR>
 endif
 
