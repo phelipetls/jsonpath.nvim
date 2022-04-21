@@ -381,7 +381,7 @@ nnoremap <silent> gb :GitMessenger<CR>
 " fix netrw gx being broken
 let g:netrw_nogx=1
 
-function! s:get_visual_selection()
+function! s:getVisualSelection()
     " Why is this not a built-in Vim script function?!
     let [line_start, column_start] = getpos("'<")[1:2]
     let [line_end, column_end] = getpos("'>")[1:2]
@@ -411,7 +411,7 @@ function! s:OpenFileUnderCursor(is_visual_mode)
   endif
 
   if a:is_visual_mode
-    let s:fname = <SID>get_visual_selection()
+    let s:fname = <SID>getVisualSelection()
   else
     let s:fname = expand('<cfile>')
   endif
@@ -796,14 +796,14 @@ set completeopt=menuone,noselect,noinsert
 set shortmess+=c
 set pumheight=10
 
-function! s:check_back_space() abort
+function! s:checkBackSpace() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
+      \ <SID>checkBackSpace() ? "\<TAB>" :
       \ coc#rpc#ready() ? coc#refresh() :
       \ !empty(&omnifunc) ? "\<C-x>\<C-o>" :
       \ "\<C-n>"
@@ -813,7 +813,7 @@ inoremap <silent><expr> <c-space>
       \ coc#rpc#ready() ? coc#refresh() :
       \ ""
 
-function! s:show_documentation()
+function! s:showDocumentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h ' . expand('<cword>')
   elseif (coc#rpc#ready())
@@ -848,7 +848,7 @@ augroup Coc
   autocmd User CocNvimInit command! -nargs=0 References :call CocActionAsync('jumpReferences')
   autocmd User CocNvimInit command! -nargs=0 Fmt :call CocAction('format')
   autocmd User CocNvimInit nnoremap <silent> <M-S-O> :call CocActionAsync('runCommand', 'editor.action.organizeImport')<CR>
-  autocmd User CocNvimInit nnoremap <silent> K :call <SID>show_documentation()<CR>
+  autocmd User CocNvimInit nnoremap <silent> K :call <SID>showDocumentation()<CR>
 
   autocmd User CocNvimInit inoremap <silent> <C-c><C-p> <C-r>=CocActionAsync('showSignatureHelp')<CR>
 
