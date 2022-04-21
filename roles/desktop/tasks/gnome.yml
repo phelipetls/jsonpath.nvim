@@ -15,14 +15,7 @@
     key: "/org/gnome/desktop/interface/show-battery-percentage"
     value: "true"
 
-- name: Generate gnome terminal profile with pywal colors
-  vars:
-    colors: "{{ lookup('file', '~/.cache/wal/gnome-terminal-profile-colors') }}"
-  template:
-    src: gnome-terminal-profile.j2
-    dest: "/tmp/gnome-terminal-profile"
-
-- name: Load gnome terminal profile with dconf
+- name: Load gnome terminal profile generated with pywal with dconf
   command:
     cmd: "dconf load /org/gnome/terminal/legacy/profiles:/"
-    stdin: "{{ lookup('file', '/tmp/gnome-terminal-profile') }}"
+    stdin: "{{ lookup('file', '{{ ansible_env.HOME }}/.cache/wal/gnome-terminal-profile') }}"
