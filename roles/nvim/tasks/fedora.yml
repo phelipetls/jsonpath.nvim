@@ -1,0 +1,7 @@
+---
+- name: Install nvim in Fedora
+  become: true
+  dnf:
+    name:
+      - neovim
+    state: present

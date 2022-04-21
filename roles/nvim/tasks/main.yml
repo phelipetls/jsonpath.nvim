@@ -3,6 +3,10 @@
   import_tasks: ubuntu.yml
   when: ansible_distribution == "Ubuntu"
 
+- name: Build nvim from source in Fedora
+  include_tasks: fedora.yml
+  when: ansible_distribution == "Fedora"
+
 - name: Install nvim with Homebrew in macOS
   import_tasks: macos.yml
   when: ansible_distribution == "MacOSX"
