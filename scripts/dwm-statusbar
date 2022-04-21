@@ -18,7 +18,7 @@ function get_volume() {
 
 function get_memory() {
   icon=""
-  memory="$icon $(free | awk '/Mem.:/ { printf("%3.1f", $3/$2*100) }')%"
+  memory="$icon $(free | awk '/Mem.?:/ { printf("%3.1f", $3/$2*100) }')%"
 }
 
 function get_battery() {
