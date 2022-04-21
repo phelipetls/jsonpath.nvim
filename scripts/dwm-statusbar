@@ -13,7 +13,7 @@ function get_date() {
 function get_volume() {
   icon=""
   amixer get Master | grep -q off && icon=""
-  volume="$icon $(amixer get Master | awk '/Mono:/ { print $4 }' | tr -d '[]')"
+  volume="$icon $(amixer get Master | awk '/\[on\]/ { print $(NF-1) }' | head -n 1 | tr -d '[]')"
 }
 
 function get_memory() {
