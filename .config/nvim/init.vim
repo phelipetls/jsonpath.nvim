@@ -615,7 +615,6 @@ if executable('fzf')
   nnoremap <space>b :Buffers<CR>
   nnoremap <space>f :Files<CR>
   nnoremap <space>h :Help<CR>
-  nnoremap <space>t :Tags<CR>
   nnoremap <space>r :History<CR>
 
   function! CheckoutBranch(branch)
