@@ -42,10 +42,6 @@
 	path = .config/nvim/pack/plugins/opt/vim-toml
 	url = https://github.com/cespare/vim-toml
 	ignore = dirty
-[submodule "vim-dadbod"]
-	path = .config/nvim/pack/plugins/opt/vim-dadbod
-	url = https://github.com/tpope/vim-dadbod
-	ignore = dirty
 [submodule "emmet-vim"]
 	path = .config/nvim/pack/plugins/opt/emmet-vim
 	url = https://github.com/mattn/emmet-vim
