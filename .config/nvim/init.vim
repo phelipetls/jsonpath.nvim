@@ -617,6 +617,16 @@ if executable('fzf')
   nnoremap <space>h :Help<CR>
   nnoremap <space>r :History<CR>
 
+  function! GoIntoDirectory()
+    call fzf#run(fzf#wrap({
+          \ 'source': $FZF_ALT_C_COMMAND .. " --full-path " .. getcwd(),
+          \ 'sink': 'edit',
+          \ 'options': '--prompt "Directory: " --preview "tree {}"'
+          \ }))
+  endfunction
+
+  nnoremap <space>cd :call GoIntoDirectory()<CR>
+
   function! CheckoutBranch(branch)
     execute '!' FugitiveShellCommand('checkout', a:branch)
   endfunction
