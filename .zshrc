@@ -148,7 +148,7 @@ source "$HOME/.fzf/shell/completion.zsh"
 source "$HOME/.fzf/shell/key-bindings.zsh"
 
 export FZF_DEFAULT_COMMAND='rg --files --hidden --color=never'
-export FZF_ALT_C_COMMAND='fdfind --color=never --type d'
+export FZF_ALT_C_COMMAND='fd --color=never --type d'
 
 function _fzf_compgen_path {
   rg --files --hidden --color=never

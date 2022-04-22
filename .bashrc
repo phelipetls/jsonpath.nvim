@@ -104,7 +104,7 @@ source "$HOME/.fzf/shell/completion.bash"
 source "$HOME/.fzf/shell/key-bindings.bash"
 
 export FZF_DEFAULT_COMMAND='rg --files --hidden --color=never'
-export FZF_ALT_C_COMMAND='fdfind --color=never --type d'
+export FZF_ALT_C_COMMAND='fd --color=never --type d'
 
 _fzf_compgen_path() {
   rg --files --hidden --color=never
