@@ -82,10 +82,6 @@
 	path = .config/nvim/pack/plugins/opt/nvim-treesitter
 	url = https://github.com/nvim-treesitter/nvim-treesitter
 	ignore = dirty
-[submodule "playground"]
-	path = .config/nvim/pack/plugins/opt/playground
-	url = https://github.com/nvim-treesitter/playground
-	ignore = dirty
 [submodule "yats.vim"]
 	path = .config/nvim/pack/plugins/opt/yats.vim
 	url = https://github.com/HerringtonDarkholme/yats.vim/
