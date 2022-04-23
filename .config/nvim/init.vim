@@ -410,7 +410,9 @@ function! s:OpenFileUnderCursor(is_visual_mode)
     return
   endif
 
-  if a:is_visual_mode
+  if &ft ==? 'dirvish'
+    let s:fname = getline('.')
+  elseif a:is_visual_mode
     let s:fname = <SID>getVisualSelection()
   else
     let s:fname = expand('<cfile>')
