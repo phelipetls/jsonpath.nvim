@@ -1,4 +1,11 @@
 ---
+- name: Install nvim treesitter dependencies
+  become: true
+  dnf:
+    name:
+      - gcc-g++
+    state: present
+
 - name: Install nvim in Fedora
   become: true
   dnf:
