@@ -2,3 +2,7 @@
 - name: Install desktop apps in Linux
   import_tasks: linux.yml
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Fedora"
+
+- name: Install apps in macOS
+  import_tasks: macos.yml
+  when: ansible_distribution == "MacOSX"

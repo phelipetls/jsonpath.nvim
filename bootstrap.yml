@@ -2,7 +2,6 @@
 - name: Bootstrap development environment
   hosts: default
   roles:
-    - role: commandline
     - role: submodules
     - role: zsh
     - role: ranger
