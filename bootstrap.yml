@@ -20,7 +20,7 @@
     - role: fzf
     - role: pywal
       vars:
-        theme: sexy-nancy
+        theme: sexy-belge
     - role: gantsign.visual-studio-code
       users:
         # TODO: change this to be dynamic
