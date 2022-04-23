@@ -108,6 +108,10 @@ autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
 
+# Enable Ctrl+Left and Ctrl+Right
+key[Up]="${terminfo[kcuu1]}"
+key[Down]="${terminfo[kcud1]}"
+
 if [[ -n "${key[Up]}" ]]; then
   bindkey -- "${key[Up]}" up-line-or-beginning-search
 fi
