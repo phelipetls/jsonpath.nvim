@@ -19,3 +19,4 @@
   command:
     cmd: "dconf load /org/gnome/terminal/legacy/profiles:/"
     stdin: "{{ lookup('file', '{{ ansible_env.HOME }}/.cache/wal/gnome-terminal-profile') }}"
+  changed_when: false
