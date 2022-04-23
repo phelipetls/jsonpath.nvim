@@ -15,7 +15,7 @@
     key: "/org/gnome/desktop/interface/show-battery-percentage"
     value: "true"
 
-- name: Load gnome terminal profile generated with pywal with dconf
+- name: Load gnome terminal profile generated with pywal
   command:
     cmd: "dconf load /org/gnome/terminal/legacy/profiles:/"
     stdin: "{{ lookup('file', '{{ ansible_env.HOME }}/.cache/wal/gnome-terminal-profile') }}"
