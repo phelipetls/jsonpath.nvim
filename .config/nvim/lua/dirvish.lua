@@ -2,10 +2,6 @@ local M = {}
 
 local path_utils = require "path"
 
-local function get_path_under_cursor()
-  return vim.fn.getline(".")
-end
-
 local function echoerr(msg)
   vim.cmd("echohl WarningMsg")
   vim.cmd(string.format("echomsg '%s'", msg))
@@ -53,7 +49,7 @@ local function delete_path(path)
 end
 
 function M.delete()
-  local path = get_path_under_cursor()
+  local path = vim.fn.getline(".")
   local option = vim.fn.confirm("Delete " .. path, "&Yes\n&No", 2)
 
   if option == 0 or option == 2 then
@@ -131,7 +127,7 @@ local function get_basename(path)
 end
 
 function M.rename()
-  local old_path = get_path_under_cursor()
+  local old_path = vim.fn.getline(".")
   local old_basename = get_basename(old_path)
 
   local new_name = get_input("Rename: ", old_basename)
