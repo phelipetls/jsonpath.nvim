@@ -39,5 +39,5 @@
 - name: Install dunst
   become: true
   community.general.make:
-    chdir: deps/dunst
     target: install
+    chdir: deps/dunst
