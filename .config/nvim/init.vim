@@ -882,13 +882,6 @@ augroup Coc
 augroup END
 
 "}}}
-"{{{ treesitter
-
-if has('nvim-0.5.0') && filereadable($HOME.'/.config/nvim/treesitter.lua')
-  luafile $HOME/.config/nvim/treesitter.lua
-endif
-
-"}}}
 "{{{ text objects
 
 " number text object (integer and float)
