@@ -10,8 +10,25 @@ let pywal_file = '$HOME/.cache/wal/colors-wal.vim'
 if filereadable(expand(pywal_file))
   exe 'source '.pywal_file
 else
-  echoerr 'No pywal generated file'
-  finish
+  set notermguicolors
+  let background = '#000000'
+  let foreground = '#000000'
+  let color0 = '#000000'
+  let color1 = '#000000'
+  let color2 = '#000000'
+  let color3 = '#000000'
+  let color4 = '#000000'
+  let color5 = '#000000'
+  let color6 = '#000000'
+  let color7 = '#000000'
+  let color8 = '#000000'
+  let color9 = '#000000'
+  let color10 = '#000000'
+  let color11 = '#000000'
+  let color12 = '#000000'
+  let color13 = '#000000'
+  let color14 = '#000000'
+  let color15 = '#000000'
 endif
 
 if has('nvim')
