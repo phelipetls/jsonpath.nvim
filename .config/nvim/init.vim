@@ -449,6 +449,8 @@ nmap <silent> gQ :call SameBufferWinDo("let w:view = winsaveview()")<CR>
       \ :keepjumps normal gqG<CR>
       \ :call SameBufferWinDo('keepjumps call winrestview(w:view)')<CR>
 
+nmap <space>g :Git<space>
+
 "}}}
 "{{{ statusline and tabline
 
