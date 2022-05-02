@@ -14,7 +14,6 @@
   when: ansible_distribution == "Fedora"
 
 - name: Install Node.js in macOS
-  become: true
   community.general.homebrew:
     name:
       - node
