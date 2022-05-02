@@ -12,6 +12,7 @@
     extra_opts:
       - "--strip-components=1"
       - "efm-langserver_v0.0.37_linux_amd64/efm-langserver"
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Fedora"
 
 - name: Install efm-langserver in macOS
   import_tasks: macos.yml
