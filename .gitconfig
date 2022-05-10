@@ -8,7 +8,7 @@
     editor = nvim
     attributesfile = /home/phelipe/.gitattributes
 [merge]
-    tool = nvimdiff2
+    tool = diffconflicts
 [mergetool "nvimdiff2"]
     cmd = nvim -d -c 'wincmd l' "$LOCAL" "$MERGED" "$REMOTE"
 [mergetool "diffconflicts"]
