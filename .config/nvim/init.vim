@@ -395,7 +395,7 @@ endfunction
 
 function! s:OpenFileUnderCursor(is_visual_mode)
   let s:open_command =
-        \ has('darwin') && executable('open') ?
+        \ has('mac') && executable('open') ?
         \ 'open'
         \ : has('unix') && executable('xdg-open')
         \ ? 'xdg-open'
