@@ -14,7 +14,7 @@
   "coc.preferences.formatOnSaveFiletypes": ["javascript", "typescript", "javascriptreact", "typescriptreact"],
   "javascript.format.enabled": false,
   "typescript.format.enabled": false,
-  "typescript.updateImportsOnFileMove.enable": false,
+  "typescript.updateImportsOnFileMove.enable": true,
   "coc.preferences.useQuickfixForLocations": true,
   "coc.preferences.bracketEnterImprove": false,
   "languageserver": {
@@ -24,7 +24,6 @@
       "formatterPriority": 100
     }
   },
-  "coc.preferences.watchmanPath": "açlskfçsa",
   "signature.floatConfig": {"border": true, "borderhighlight": "VertSplit"},
   "diagnostic.floatConfig": {"border": true, "borderhighlight": "VertSplit"},
   "hover.floatConfig": {"border": true, "borderhighlight": "VertSplit"}
