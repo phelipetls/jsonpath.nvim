@@ -46,10 +46,10 @@ elseif executable('eslint_d')
   let &l:formatprg='eslint_d --fix-to-stdout --stdin'
 endif
 
-let b:surround_{char2nr("c")} = "console.log(\r)"
-let b:surround_{char2nr("C")} = "console.log(JSON.stringify(\r, null, 2))"
-let b:surround_{char2nr("j")} = "JSON.stringify(\r, null, 2)"
-let b:surround_{char2nr("e")} = "${\r}"
+let b:surround_{char2nr('c')} = 'console.log(\r)'
+let b:surround_{char2nr('C')} = 'console.log(JSON.stringify(\r, null, 2))'
+let b:surround_{char2nr('j')} = 'JSON.stringify(\r, null, 2)'
+let b:surround_{char2nr('e')} = '${\r}'
 
 nnoremap <buffer> [<C-c> "zyiwOconsole.log(z)<Esc>
 nnoremap <buffer> ]<C-c> "zyiwoconsole.log(z)<Esc>
