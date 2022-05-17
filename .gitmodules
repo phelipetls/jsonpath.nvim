@@ -140,3 +140,6 @@
 [submodule "git-toolbelt"]
 	path = git-toolbelt
 	url = https://github.com/nvie/git-toolbelt
+[submodule "vim-sleuth"]
+	path = .config/nvim/pack/plugins/opt/vim-sleuth
+	url = https://github.com/tpope/vim-sleuth
