@@ -1,6 +1,6 @@
 ---
 - name: Bootstrap development environment
-  hosts: default
+  hosts: localhost
   roles:
     - role: submodules
     - role: zsh
