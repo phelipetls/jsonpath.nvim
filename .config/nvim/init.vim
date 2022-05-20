@@ -28,7 +28,7 @@ packadd! vim-fugitive
 packadd! fugitive-gitlab.vim
 packadd! vim-rhubarb
 packadd! diffconflicts
-packadd! CTRLGGitBlame.vim
+packadd! git-messenger.vim
 
 " file navigation
 packadd! vim-dirvish
@@ -195,6 +195,14 @@ let $LESS='RX'
 
 " ranger.vim
 let g:ranger_map_keys = 0
+
+let g:git_messenger_floating_win_opts = {'border': 'single'}
+let g:git_messenger_popup_content_margin = v:false
+
+augroup GitMessenger
+  autocmd!
+  autocmd FileType gitmessengerpopup setlocal keywordprg=git\ show
+augroup END
 
 imap <silent><script><expr> <C-j> copilot#Accept("\<CR>")
 let g:copilot_no_tab_map = v:true
@@ -366,6 +374,9 @@ augroup end
 inoreabbrev Taebl Table
 inoreabbrev taebl table
 inoreabbrev github GitHub
+
+" git messenger mapping
+nnoremap <silent> gb :GitMessenger<CR>
 
 " fix netrw gx being broken
 let g:netrw_nogx=1
