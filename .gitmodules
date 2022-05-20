@@ -90,10 +90,6 @@
 	path = .config/nvim/pack/plugins/opt/nvim-colorizer.lua
 	url = https://github.com/norcalli/nvim-colorizer.lua
 	ignore = dirty
-[submodule "git-messenger.vim"]
-	path = .config/nvim/pack/plugins/opt/git-messenger.vim
-	url = https://github.com/rhysd/git-messenger.vim
-	ignore = dirty
 [submodule "splitjoin.vim"]
 	path = .config/nvim/pack/plugins/opt/splitjoin.vim
 	url = https://github.com/AndrewRadev/splitjoin.vim
@@ -143,3 +139,6 @@
 [submodule "vim-sleuth"]
 	path = .config/nvim/pack/plugins/opt/vim-sleuth
 	url = https://github.com/tpope/vim-sleuth
+[submodule "CTRLGGitBlame.vim"]
+	path = .config/nvim/pack/plugins/opt/CTRLGGitBlame.vim
+	url = https://github.com/andlrc/CTRLGGitBlame.vim
