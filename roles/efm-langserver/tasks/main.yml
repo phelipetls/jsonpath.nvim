@@ -43,7 +43,7 @@
   when: ansible_distribution == "MacOSX"
 
 - name: Install linters and formatters with pip
-  pip:
+  ansible.builtin.pip:
     name:
       - flake8
       - black
