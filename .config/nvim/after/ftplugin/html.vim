@@ -6,5 +6,3 @@ if executable('prettier')
 endif
 
 nnoremap <silent><buffer> <F5> :silent !firefox --new-window "%" &<CR>
-
-setl omnifunc=emmet#completeTag
