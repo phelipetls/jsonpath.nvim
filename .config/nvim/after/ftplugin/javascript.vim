@@ -33,9 +33,6 @@ elseif executable('eslint')
   compiler eslint
 endif
 
-command! TSLint compiler tsc_lint | Make
-command! ESLint compiler eslint_d | Make "src/**/*.{js,tsx,ts,tsx}"
-
 if executable('node')
   noremap <buffer> <F5> :w !node<CR>
 endif

@@ -167,7 +167,6 @@ endif
 nnoremap <silent> <C-c><C-c> <Plug>SLimeRegionSend
 nnoremap <silent> <C-c><C-w> :exe ":SlimeSend1 " . expand('<cword>')<CR>
 nnoremap <silent> <C-c>% :%SlimeSend<CR>
-nnoremap <silent> <C-c><C-a> :%SlimeSend<CR>
 nnoremap <silent> <C-c><C-l> :exe ":silent !tmux send-keys -t " . b:slime_config['target_pane'] . " '^L'"<CR>
 
 " disable editorconfig for these file patterns

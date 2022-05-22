@@ -14,15 +14,6 @@ syn sync minlines=50
 " search included files when completing
 setlocal complete+=i
 
-" clean auxiliary files on exit
-augroup TexCleanUp
-  autocmd!
-  autocmd VimLeave <buffer> call system('latexmk -c ' . expand('<afile>'))
-augroup END
-
-" find .bib file
-nnoremap gb :find *.bib<Tab><CR>
-
 setlocal textwidth=80
 
 setlocal formatlistpat=^\\\s*\\\\item\\s*
