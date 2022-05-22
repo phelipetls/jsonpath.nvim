@@ -788,8 +788,6 @@ augroup END
 "}}}
 "{{{ coc
 
-let g:coc_start_at_startup = 0
-
 nmap <space>cc :CocStart<CR>
 nmap <space>cr :CocRestart<CR>
 nmap <space>cs :CocRestart<CR>
