@@ -59,8 +59,6 @@ inoreabbrev improt import
 inoreabbrev Obejct Object
 inoreabbrev entires entries
 inoreabbrev cosnt const
-inoreabbrev /** /****/<Up>
-inoreabbrev {/* {/*  */}<left><left><left><left><C-r>=Eatchar('\s')<CR>
 inoreabbrev docuemnt document
 
 setlocal isfname+=@-@
