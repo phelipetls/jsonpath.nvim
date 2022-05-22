@@ -136,16 +136,6 @@ set sessionoptions+=globals
 " disable javascript browser-related keywords
 let g:yats_host_keyword = 0
 
-" emmet trigger key
-let g:user_emmet_leader_key = '<C-c><C-e>'
-
-let g:user_emmet_settings = {
-      \  'javascript' : {
-      \      'extends' : 'jsx',
-      \      'empty_element_suffix': ' />',
-      \  }
-      \}
-
 " integrate traces.vim with vim-subvert
 let g:traces_abolish_integration = 1
 
