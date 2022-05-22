@@ -15,11 +15,11 @@ if executable('pandoc')
   setlocal formatprg=pandoc\ -f\ gfm\ -t\ gfm
 endif
 
-let b:surround_{char2nr("c")} = "```\r\n```"
-let b:surround_{char2nr("l")} = "[\r](\1link: \1)"
-let b:surround_{char2nr("s")} = "{{< \1shortcode: \1 >}}\r\n{{< /\1\1 >}}"
-let b:surround_{char2nr("8")} = "*\r*"
-let b:surround_{char2nr("*")} = "**\r**"
+let b:surround_{char2nr('c')} = "```\r\n```"
+let b:surround_{char2nr('l')} = "[\r](\1link: \1)"
+let b:surround_{char2nr('s')} = "{{< \1shortcode: \1 >}}\r\n{{< /\1\1 >}}"
+let b:surround_{char2nr('8')} = "*\r*"
+let b:surround_{char2nr('*')} = "**\r**"
 
 setl conceallevel=0
 
