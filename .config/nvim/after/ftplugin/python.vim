@@ -20,7 +20,7 @@ endif
 setlocal define=^\\s*\\(class\\\|def\\\)
 setlocal path+=./tests,./templates,./tests/conftest.py
 
-let b:surround_{char2nr('p')} = 'print(\r)'  " surround things with print
+let b:surround_{char2nr('p')} = "print(\r)"  " surround things with print
 
 nnoremap <buffer> ]<C-p> "zyiwoprint(z)<Esc>
 nnoremap <buffer> [<C-p> "zyiwOprint(z)<Esc>
