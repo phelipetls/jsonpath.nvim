@@ -33,8 +33,6 @@ endif
 
 if has('nvim')
   call luaeval('require("nvim-web-devicons").set_default_icon("", _A[1])', [foreground])
-
-  autocmd VimResume * source <sfile>
 endif
 
 "{{{ Syntax groups
