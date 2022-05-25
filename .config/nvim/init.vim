@@ -483,6 +483,21 @@ require('lualine').setup({
   extensions = {
     'quickfix',
     'fugitive',
+    {
+      sections = {
+        lualine_a = {function()
+          return vim.fn.fnamemodify(vim.fn.getline('.'), ':.')
+        end},
+        lualine_b = {},
+        lualine_c = {},
+        lualine_x = {},
+        lualine_y = {},
+        lualine_z = {function()
+          return #vim.fn.argv()
+        end},
+      },
+      filetypes = {'dirvish'}
+    }
   },
 })
 END
