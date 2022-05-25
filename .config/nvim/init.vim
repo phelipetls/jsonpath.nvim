@@ -58,6 +58,7 @@ packadd! vim-hugo
 " aesthetics
 if has('nvim-0.5.0')
   packadd! nvim-web-devicons
+  packadd! lualine.nvim
 endif
 
 "}}}
@@ -435,150 +436,57 @@ nmap <space>g :Git<space>
 "}}}
 "{{{ statusline and tabline
 
-function! CocStatus()
-  if !exists('*coc#status')
-    return ''
-  endif
-  let status = coc#status()
-  return !empty(status) ? '[' . status . ']' : ''
-endfunction
-
-function! GetStatusLine(active) abort
-  let fugitive = ''
-  let coc = ''
-  let modified = ''
-  let eol = ''
-  let async_make_status = ''
-
-  let fugitivestl = FugitiveStatusline()
-  let revision = matchstr(fugitivestl, '\[Git:\zs.*\ze(')
-  let branch = matchstr(fugitivestl, '\[Git(\zs.*\ze)]')
-
-  let fugitive = ''
-  if !empty(revision)
-    let fugitive = '[' . revision . ']'
-  elseif !empty(branch)
-    let fugitive = '[' . branch . ']'
-  endif
-
-  if a:active
-    let coc = CocStatus()
-    let modified = !&modifiable ? '[-]' : &modified ? '[+]' : ''
-    let eol = &endofline ? '' : '[noeol]'
-    let async_make_status = get(g:, 'async_make_status', '')
-  endif
-
-  let items = [
-        \ fugitive,
-        \ coc,
-        \ modified,
-        \ eol,
-        \ !empty(async_make_status) ? '[' . async_make_status . ']' : ''
-        \ ]
-
-  return join(filter(items, '!empty(v:val)'), ' ')
-endfunction
-
-function! StatusLine(type) abort
-  let statusline = ' %t '
-  if a:type ==# 'active'
-    let statusline.='%{GetStatusLine(1)}'
-  else
-    let statusline.='%{GetStatusLine(0)}'
-  endif
-  let statusline.=' '
-  let statusline.='%='
-  let statusline.=' [%l/%L] %y '
-  return statusline
-endfunction
-
-augroup StatusLine
-  autocmd!
-  autocmd WinEnter,BufEnter * setlocal statusline=%!StatusLine('active')
-  autocmd WinLeave,BufLeave * setlocal statusline=%!StatusLine('inactive')
-augroup end
-
 if has('nvim')
-lua << EOF
-  function _G.get_icon_color(...)
-    local _, color = require'nvim-web-devicons'.get_icon(...)
-    return color
-  end
-EOF
+lua << END
+require('lualine').setup({
+  options = {
+    theme = 'pywal',
+  },
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'branch', 'diff', 'diagnostics', 'coc#status', 'g:async_make_status'},
+    lualine_c = {
+      {
+        'filename',
+        symbols = {
+          modified = ' [+]',
+          readonly = ' [-]',
+          unnamed = ' [No Name]',
+        }
+      }
+    },
+    lualine_x = {'encoding', 'fileformat', 'filetype'},
+    lualine_y = {},
+    lualine_z = {'location'}
+  },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {'filename'},
+    lualine_x = {'location'},
+    lualine_y = {},
+    lualine_z = {}
+  },
+  tabline = {
+    lualine_a = {
+      {
+        'tabs',
+        mode = 2
+      }
+    },
+    lualine_b = {},
+    lualine_c = {},
+    lualine_x = {},
+    lualine_y = {},
+    lualine_z = {}
+  },
+  extensions = {
+    'quickfix',
+    'fugitive',
+  },
+})
+END
 endif
-
-function! GetParams(base)
-  redir => basehl
-  silent! exe 'highlight' a:base
-  redir END
-  let params = split(basehl, '\n')[0]
-  let params = substitute(params, '^' . a:base . '\s\+xxx', '', '')
-  return params
-endfunction
-
-function! GetFg(params)
-  return matchstr(a:params, 'guifg=\zs[^ ]\+')
-endfunction
-
-function! ReplaceHighlightParams(base, group, fg)
-  let params = GetParams(a:base)
-  if !empty(a:fg)
-    let params = substitute(params, 'guifg=\zs[^ ]\+', a:fg, '')
-  endif
-  exe 'highlight! ' a:group params
-endfunction
-
-function! Tabline() abort
-  let s = ''
-  for tab in range(1, tabpagenr('$'))
-    " Get tab infos
-    let winnr = tabpagewinnr(tab)
-
-    " Get buf infos
-    let buflist = tabpagebuflist(tab)
-    let bufspnr = buflist[winnr - 1]
-    let bufname = bufname(bufspnr)
-    let fname = fnamemodify(bufname, ':t')
-    let ext = fnamemodify(bufname, ':e')
-
-    " Set tab state
-    let s .= '%' . tab . 'T'
-
-    " Get tab highlight group
-    let selected = tab == tabpagenr()
-    let hl = selected ? 'StatusLine' : 'StatusLineNC'
-    let s .= '%#' . hl . '#'
-
-    let s .= repeat(' ', 2)
-
-    " Set tab icon
-    if has('nvim-0.5.0')
-      let icon = luaeval('require"nvim-web-devicons".get_icon(_A[1],_A[2],{default=true})', [fname, ext])
-      let color = luaeval('get_icon_color(_A[1], _A[2], {default=true})', [fname, ext])
-
-      let prefix = selected ? 'TabSel' : 'Tab'
-      call ReplaceHighlightParams(hl, prefix . color, GetFg(GetParams(color)))
-      let s .= '%#' . prefix . color . '#'
-      let s .=  icon
-      let s .= repeat(' ', 2)
-    endif
-
-    " Set tab label
-    let s .= '%#' . hl . '#'
-
-    if (empty(bufname))
-      let s .= '[No Name]'
-    else
-      let s .= '%-0.20f'
-    endif
-
-    let s .= repeat(' ', 2)
-  endfor
-  let s .= '%#TabLineFill#'
-  return s
-endfunction
-
-set tabline=%!Tabline()
 
 ""}}}
 "{{{ file navigation

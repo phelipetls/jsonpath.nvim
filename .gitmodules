@@ -137,3 +137,6 @@
 [submodule "vim-sleuth"]
 	path = .config/nvim/pack/plugins/opt/vim-sleuth
 	url = https://github.com/tpope/vim-sleuth
+[submodule "lualine.nvim"]
+	path = .config/nvim/pack/plugins/opt/lualine.nvim
+	url = https://github.com/nvim-lualine/lualine.nvim
