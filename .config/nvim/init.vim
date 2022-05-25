@@ -444,7 +444,13 @@ require('lualine').setup({
   },
   sections = {
     lualine_a = {'mode'},
-    lualine_b = {'branch', 'diff', 'diagnostics', 'coc#status', 'g:async_make_status'},
+    lualine_b = {
+      'branch',
+      'diff',
+      'diagnostics',
+      'coc#status',
+      'g:async_make_status',
+    },
     lualine_c = {
       {
         'filename',
