@@ -770,11 +770,6 @@ nmap <space>cc :CocStart<CR>
 nmap <space>cr :CocRestart<CR>
 nmap <space>cs :CocRestart<CR>
 
-augroup AutoStartCoc
-  au!
-  autocmd FileType lua,json,yaml CocStart
-augroup END
-
 let g:coc_global_extensions = [
       \'coc-tsserver',
       \'coc-json'
