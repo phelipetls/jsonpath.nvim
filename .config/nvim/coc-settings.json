@@ -22,6 +22,46 @@
       "command": "efm-langserver",
       "filetypes": ["sh", "zsh", "yaml", "lua", "python", "javascript", "typescript", "javascriptreact", "typescriptreact", "vim"],
       "formatterPriority": 100
+    },
+    "tailwindcss-lsp": {
+      "command": "tailwindcss-language-server",
+      "args": ["--stdio"],
+      "filetypes": [
+        "css",
+        "html",
+        "htmlhugo",
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact"
+      ],
+      "rootPatterns": [
+        "tailwind.config.js",
+        "tailwind.config.ts",
+        "postcss.config.js",
+        "postcss.config.ts"
+      ],
+      "initializationOptions": {
+        "userLanguages": {
+          "htmlhugo": "html"
+        }
+      },
+      "settings": {
+        "tailwindCSS": {
+          "validate": true,
+          "lint": {
+            "cssConflict": "warning",
+            "invalidApply": "error",
+            "invalidScreen": "error",
+            "invalidVariant": "error",
+            "invalidConfigPath": "error",
+            "invalidTailwindDirective": "error",
+            "recommendedVariantOrder": "warning"
+          },
+          "classAttributes": ["class", "className", "classList", "ngClass"],
+          "experimental": {}
+        }
+      }
     }
   },
   "signature.floatConfig": {"border": true, "borderhighlight": "VertSplit"},

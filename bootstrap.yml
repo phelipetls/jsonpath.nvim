@@ -12,6 +12,7 @@
           - n
           - diff-so-fancy
           - npm-merge-driver
+          - "@tailwindcss/language-server"
     - role: efm-langserver
     - role: nvim
     - role: mutt
