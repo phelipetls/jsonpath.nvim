@@ -32,8 +32,6 @@ packadd! git-messenger.vim
 
 " file navigation
 packadd! vim-dirvish
-packadd! ranger.vim
-packadd! bclose.vim
 
 " fuzzy finder
 set rtp+=~/.fzf
@@ -177,9 +175,6 @@ let $NO_COLOR=0
 let g:fugitive_pty=0
 
 let $LESS='RX'
-
-" ranger.vim
-let g:ranger_map_keys = 0
 
 let g:git_messenger_floating_win_opts = {'border': 'single'}
 let g:git_messenger_popup_content_margin = v:false

@@ -110,12 +110,6 @@
 	path = .config/nvim/pack/plugins/opt/vim-rhubarb
 	url = https://github.com/tpope/vim-rhubarb
 	ignore = dirty
-[submodule "ranger.vim"]
-	path = .config/nvim/pack/plugins/opt/ranger.vim
-	url = https://github.com/francoiscabrol/ranger.vim
-[submodule "bclose.vim"]
-	path = .config/nvim/pack/plugins/opt/bclose.vim
-	url = https://github.com/rbgrouleff/bclose.vim
 [submodule "jsonc.vim"]
 	path = .config/nvim/pack/plugins/opt/jsonc.vim
 	url = https://github.com/neoclide/jsonc.vim
