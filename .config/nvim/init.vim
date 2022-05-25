@@ -568,10 +568,8 @@ function! Tabline() abort
 
     if (empty(bufname))
       let s .= '[No Name]'
-    elseif isdirectory(bufname)
-      let s .= fnamemodify(bufname, ':~')
     else
-      let s .= fname
+      let s .= '%-0.20f'
     endif
 
     let s .= repeat(' ', 2)
