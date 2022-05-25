@@ -165,7 +165,7 @@ let g:tagalong_additional_filetypes = ['javascript']
 let g:obsession_no_bufenter = 1
 
 " colorizer config
-if has('nvim') && filereadable($HOME . '/.config/nvim/colorizer.lua') && !empty(&termguicolors)
+if has('nvim') && filereadable(printf('%s/%s', fnamemodify(expand('<sfile>'),':h'), 'colorizer.lua')) && !empty(&termguicolors)
   luafile $HOME/.config/nvim/colorizer.lua
 endif
 
