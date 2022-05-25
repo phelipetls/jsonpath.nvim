@@ -447,7 +447,6 @@ require('lualine').setup({
     lualine_b = {
       'branch',
       'diff',
-      'diagnostics',
       'coc#status',
       'g:async_make_status',
     },
