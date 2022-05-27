@@ -462,7 +462,12 @@ require('lualine').setup({
     },
     lualine_x = {'encoding', 'fileformat', 'filetype'},
     lualine_y = {},
-    lualine_z = {'location'}
+    lualine_z = {
+      {
+        '%l:%L',
+        type = 'stl'
+      }
+    }
   },
   inactive_sections = {
     lualine_a = {},
