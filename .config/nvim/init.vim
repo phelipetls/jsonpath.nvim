@@ -19,6 +19,7 @@ packadd! tagalong.vim
 packadd! splitjoin.vim
 packadd! jsonc.vim
 packadd! vim-sleuth
+packadd! inline_edit.vim
 if has('nvim')
   packadd! copilot.vim
 endif
