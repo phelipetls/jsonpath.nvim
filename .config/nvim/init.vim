@@ -787,7 +787,7 @@ augroup Coc
   autocmd User CocNvimInit let g:coc_quickfix_open_command = 'doautocmd QuickFixCmdPost | cfirst'
 
   autocmd User CocNvimInit nnoremap <space>s :CocList symbols<CR>
-  autocmd User CocNvimInit nnoremap <space>d :CocList diagnostics<CR>
+  autocmd User CocNvimInit nnoremap <space>d :CocDiagnostics<CR>
 augroup END
 
 "}}}
