@@ -189,6 +189,10 @@ augroup END
 imap <silent><script><expr> <C-j> copilot#Accept("\<CR>")
 let g:copilot_no_tab_map = v:true
 
+nnoremap <C-c>' :InlineEdit<CR>
+
+let g:inline_edit_autowrite=1
+
 "}}}
 "{{{ autocommands
 
