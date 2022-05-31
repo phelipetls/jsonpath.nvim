@@ -772,12 +772,13 @@ augroup Coc
   autocmd User CocNvimInit nmap <silent> [t <Plug>(coc-type-definition)
 
   autocmd User CocNvimInit nmap <silent> <C-space> :call CocActionAsync("diagnosticInfo")<CR>
-  autocmd User CocNvimInit inoremap <silent> <C-space> <C-r>=CocActionAsync('showSignatureHelp')<CR>
 
   autocmd User CocNvimInit command! -nargs=0 References :call CocActionAsync('jumpReferences')
   autocmd User CocNvimInit command! -nargs=0 Fmt :call CocAction('format')
   autocmd User CocNvimInit nnoremap <silent> <M-S-O> :call CocActionAsync('runCommand', 'editor.action.organizeImport')<CR>
   autocmd User CocNvimInit nnoremap <silent> K :call <SID>showDocumentation()<CR>
+
+  autocmd User CocNvimInit inoremap <silent> <C-c><C-p> <C-r>=CocActionAsync('showSignatureHelp')<CR>
 
   autocmd User CocNvimInit nmap <F2> <Plug>(coc-rename)
 
