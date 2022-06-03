@@ -450,7 +450,9 @@ require('lualine').setup({
     component_separators = { left = '', right = '' },
   },
   sections = {
-    lualine_a = {'mode'},
+    lualine_a = {
+      { 'mode', fmt = function(str) return ' ' end }
+    },
     lualine_b = {
       'branch',
       'diagnostics',
