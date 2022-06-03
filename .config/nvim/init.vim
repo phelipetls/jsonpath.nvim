@@ -238,17 +238,17 @@ endif
 nnoremap gr gT
 
 " escape also cancels search highlight and redraw screen
-nnoremap <silent> <esc> :nohlsearch<cr>:redraw!<cr><<esc>
+nnoremap <silent> <esc> :nohlsearch<CR>:redraw!<CR><<esc>
 
 " go to vimrc file
-nnoremap <silent> <space>ev :edit $MYVIMRC<cr>
+nnoremap <silent> <space>ev :edit $MYVIMRC<CR>
 
 " source current file, only if it is .vim file
-nnoremap <silent><expr> <space>ss (&ft == "vim" ? ":source %<cr>" : "")
+nnoremap <silent><expr> <space>ss (&ft == "vim" ? ":source %<CR>" : "")
 
 " make <c-u> and <c-w> undoable
-inoremap <c-u> <c-g>u<c-u>
-inoremap <c-w> <c-g>u<c-w>
+inoremap <C-u> <C-g>u<C-u>
+inoremap <C-w> <C-g>u<C-w>
 
 " vertical movement
 nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
@@ -261,17 +261,17 @@ nnoremap Y y$
 nnoremap ' `
 
 " better maps to move between splits
-nnoremap <silent> <c-w><c-q> :close<cr>
-nnoremap <silent> <c-j> <c-w><c-j>
-nnoremap <silent> <c-k> <c-w><c-k>
-nnoremap <silent> <c-l> <c-w><c-l>
-nnoremap <silent> <c-h> <c-w><c-h>
+nnoremap <silent> <C-w><C-q> :close<CR>
+nnoremap <silent> <C-j> <C-w><C-j>
+nnoremap <silent> <C-k> <C-w><C-k>
+nnoremap <silent> <C-l> <C-w><C-l>
+nnoremap <silent> <C-h> <C-w><C-h>
 
 " resize splits with arrow keys
-nnoremap <silent> <c-left>  <c-w>>
-nnoremap <silent> <c-right> <c-w><
-nnoremap <silent> <c-down>  <c-w>-
-nnoremap <silent> <c-up>    <c-w>+
+nnoremap <silent> <c-left>  <C-w>>
+nnoremap <silent> <c-right> <C-w><
+nnoremap <silent> <c-down>  <C-w>-
+nnoremap <silent> <c-up>    <C-w>+
 
 " re-select region when indenting
 vnoremap <silent> > >gv
@@ -290,7 +290,7 @@ command! -bang Q q<bang>
 command! -bang Qall qall<bang>
 
 " mapping to change the word under the cursor. use . to repeat
-nnoremap <silent> <c-n> *Ncgn
+nnoremap <silent> <C-n> *Ncgn
 
 " show information about highlight group under cursor
 command! Hi exe 'hi ' . synIDattr(synID(line("."), col("."), 0), "name")
@@ -751,9 +751,9 @@ function! s:showDocumentation()
   endif
 endfunction
 
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <expr><s-tab> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() :"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm() :"\<C-g>u\<CR>\<C-r>=coc#on_enter()\<CR>"
 
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
@@ -765,7 +765,7 @@ nmap <silent> <C-w>d :call CocActionAsync('jumpDefinition', 'split')<CR>
 nmap <silent> <C-w><C-d> :call CocActionAsync('jumpDefinition', 'split')<CR>
 
 nmap <silent> <C-c><C-p> :call CocActionAsync("jumpDefinition", 'pedit')<CR>
-nmap <silent> <c-w>} :call CocActionAsync('jumpDefinition', 'pedit')<CR>
+nmap <silent> <C-w>} :call CocActionAsync('jumpDefinition', 'pedit')<CR>
 
 nmap <silent> [t <Plug>(coc-type-definition)
 
@@ -785,8 +785,8 @@ nmap <M-CR> <Plug>(coc-codeaction-cursor)
 nmap <silent> <C-s> <Plug>(coc-range-select)
 xmap <silent> <C-s> <Plug>(coc-range-select)
 
-nnoremap <silent><expr> <c-y> coc#float#has_scroll() ? coc#float#scroll(0) : "\<c-y>"
-nnoremap <silent><expr> <c-e> coc#float#has_scroll() ? coc#float#scroll(1) : "\<c-e>"
+nnoremap <silent><expr> <C-y> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-y>"
+nnoremap <silent><expr> <C-e> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-e>"
 
 let g:coc_quickfix_open_command = 'doautocmd QuickFixCmdPost | cfirst'
 
@@ -841,7 +841,7 @@ function! CleanUp()
   return ''
 endfunction
 
-inoremap <silent> <C-X>/ <Lt>/<C-r>=CloseTag()<CR><C-r>=Reindent()<CR><C-r>=CleanUp()<CR>
+inoremap <silent> <C-x>/ <Lt>/<C-r>=CloseTag()<CR><C-r>=Reindent()<CR><C-r>=CleanUp()<CR>
 
 "}}}
 " vim: foldmethod=marker
