@@ -36,8 +36,8 @@ if has('nvim')
 endif
 
 "{{{ Syntax groups
-exe 'hi Normal ctermbg=NONE guibg=NONE ctermfg=15 guifg='.color15
-exe 'hi NormalFloat ctermbg=NONE guibg=NONE ctermfg=15 guifg='.color15
+exe 'hi Normal ctermbg=NONE guibg='.background.' ctermfg=15 guifg='.color15
+exe 'hi NormalFloat ctermbg=NONE guibg='.background.' ctermfg=15 guifg='.color15
 exe 'hi link NormalFloat Normal'
 
 exe 'hi Comment ctermfg=8 guifg='.color8
@@ -180,6 +180,27 @@ if has('nvim-0.5.0')
  hi link CocWarningFloat Normal
  hi link CocHintFloat Normal
  hi link CocInfoFloat Normal
+
+ hi link NotifyERRORBorder LspError
+ hi link NotifyWARNBorder LspWarn
+ hi link NotifyINFOBorder LspInfo
+ hi link NotifyDEBUGBorder LspInfo
+ hi link NotifyTRACEBorder LspInfo
+ hi link NotifyERRORIcon LspError
+ hi link NotifyWARNIcon LspWarn
+ hi link NotifyINFOIcon LspInfo
+ hi link NotifyDEBUGIcon LspInfo
+ hi link NotifyTRACEIcon LspInfo
+ hi link NotifyERRORTitle LspError
+ hi link NotifyWARNTitle LspWarn
+ hi link NotifyINFOTitle LspInfo
+ hi link NotifyDEBUGTitle LspInfo
+ hi link NotifyTRACETitle LspInfo
+ hi link NotifyERRORBody Normal
+ hi link NotifyWARNBody Normal
+ hi link NotifyINFOBody Normal
+ hi link NotifyDEBUGBody Normal
+ hi link NotifyTRACEBody Normal
 
  exe 'hi CocFadeOut ctermbg=NONE guibg=NONE ctermfg=8 guifg='.color8
 endif
