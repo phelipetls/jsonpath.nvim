@@ -154,17 +154,17 @@ if has('nvim-0.5.0')
 
  hi link LspDiagnosticsSignError LspError
  hi link LspDiagnosticsSignWarning LspWarning
- hi link LspDiagnosticsSignInformation LspInformation
+ hi link LspDiagnosticsSignInformation LspInfo
  hi link LspDiagnosticsSignHint LspHint
 
  hi link LspDiagnosticsVirtualTextError LspError
  hi link LspDiagnosticsVirtualTextWarning LspWarning
- hi link LspDiagnosticsVirtualTextInformation LspInformation
+ hi link LspDiagnosticsVirtualTextInformation LspInfo
  hi link LspDiagnosticsVirtualTextHint LspHint
 
  hi link LspDiagnosticsUnderlineError LspError
  hi link LspDiagnosticsUnderlineWarning LspWarning
- hi link LspDiagnosticsUnderlineInformation LspInformation
+ hi link LspDiagnosticsUnderlineInformation LspInfo
  hi link LspDiagnosticsUnderlineHint LspHint
 
  hi link LspReferenceText Search
