@@ -751,50 +751,47 @@ function! s:showDocumentation()
   endif
 endfunction
 
-augroup Coc
-  autocmd!
-  autocmd User CocNvimInit inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-  autocmd User CocNvimInit inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() :"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() :"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
-  autocmd User CocNvimInit nmap <silent> [g <Plug>(coc-diagnostic-prev)
-  autocmd User CocNvimInit nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
-  autocmd User CocNvimInit set tagfunc=CocTagFunc
+set tagfunc=CocTagFunc
 
-  autocmd User CocNvimInit nmap <silent> [d <Plug>(coc-definition)
-  autocmd User CocNvimInit nmap <silent> <C-w>d :call CocActionAsync('jumpDefinition', 'split')<CR>
-  autocmd User CocNvimInit nmap <silent> <C-w><C-d> :call CocActionAsync('jumpDefinition', 'split')<CR>
+nmap <silent> [d <Plug>(coc-definition)
+nmap <silent> <C-w>d :call CocActionAsync('jumpDefinition', 'split')<CR>
+nmap <silent> <C-w><C-d> :call CocActionAsync('jumpDefinition', 'split')<CR>
 
-  autocmd User CocNvimInit nmap <silent> <C-c><C-p> :call CocActionAsync("jumpDefinition", 'pedit')<CR>
-  autocmd User CocNvimInit nmap <silent> <c-w>} :call CocActionAsync('jumpDefinition', 'pedit')<CR>
+nmap <silent> <C-c><C-p> :call CocActionAsync("jumpDefinition", 'pedit')<CR>
+nmap <silent> <c-w>} :call CocActionAsync('jumpDefinition', 'pedit')<CR>
 
-  autocmd User CocNvimInit nmap <silent> [t <Plug>(coc-type-definition)
+nmap <silent> [t <Plug>(coc-type-definition)
 
-  autocmd User CocNvimInit nmap <silent> <C-space> :call CocActionAsync("diagnosticInfo")<CR>
+nmap <silent> <C-space> :call CocActionAsync("diagnosticInfo")<CR>
 
-  autocmd User CocNvimInit command! -nargs=0 References :call CocActionAsync('jumpReferences')
-  autocmd User CocNvimInit command! -nargs=0 Fmt :call CocAction('format')
-  autocmd User CocNvimInit nnoremap <silent> <M-S-O> :call CocActionAsync('runCommand', 'editor.action.organizeImport')<CR>
-  autocmd User CocNvimInit nnoremap <silent> K :call <SID>showDocumentation()<CR>
+command! -nargs=0 References :call CocActionAsync('jumpReferences')
+command! -nargs=0 Fmt :call CocAction('format')
+nnoremap <silent> <M-S-O> :call CocActionAsync('runCommand', 'editor.action.organizeImport')<CR>
+nnoremap <silent> K :call <SID>showDocumentation()<CR>
 
-  autocmd User CocNvimInit inoremap <silent> <C-c><C-p> <C-r>=CocActionAsync('showSignatureHelp')<CR>
+inoremap <silent> <C-c><C-p> <C-r>=CocActionAsync('showSignatureHelp')<CR>
 
-  autocmd User CocNvimInit nmap <F2> <Plug>(coc-rename)
+nmap <F2> <Plug>(coc-rename)
 
-  autocmd User CocNvimInit nmap <M-CR> <Plug>(coc-codeaction-cursor)
+nmap <M-CR> <Plug>(coc-codeaction-cursor)
 
-  autocmd User CocNvimInit nmap <silent> <C-s> <Plug>(coc-range-select)
-  autocmd User CocNvimInit xmap <silent> <C-s> <Plug>(coc-range-select)
+nmap <silent> <C-s> <Plug>(coc-range-select)
+xmap <silent> <C-s> <Plug>(coc-range-select)
 
-  autocmd User CocNvimInit nnoremap <silent><expr> <c-y> coc#float#has_scroll() ? coc#float#scroll(0) : "\<c-y>"
-  autocmd User CocNvimInit nnoremap <silent><expr> <c-e> coc#float#has_scroll() ? coc#float#scroll(1) : "\<c-e>"
+nnoremap <silent><expr> <c-y> coc#float#has_scroll() ? coc#float#scroll(0) : "\<c-y>"
+nnoremap <silent><expr> <c-e> coc#float#has_scroll() ? coc#float#scroll(1) : "\<c-e>"
 
-  autocmd User CocNvimInit let g:coc_quickfix_open_command = 'doautocmd QuickFixCmdPost | cfirst'
+let g:coc_quickfix_open_command = 'doautocmd QuickFixCmdPost | cfirst'
 
-  autocmd User CocNvimInit nnoremap <space>s :CocList symbols<CR>
-  autocmd User CocNvimInit nnoremap <space>d :CocDiagnostics<CR>
-augroup END
+nnoremap <space>s :CocList symbols<CR>
+nnoremap <space>d :CocDiagnostics<CR>
 
 "}}}
 "{{{ text objects
