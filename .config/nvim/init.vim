@@ -747,7 +747,7 @@ function! s:showDocumentation()
   elseif (coc#rpc#ready())
     call CocActionAsync('doHover')
   else
-    execute '!' . &keywordprg . ' ' . expand('<cword>')
+    call feedkeys('K', 'in')
   endif
 endfunction
 
