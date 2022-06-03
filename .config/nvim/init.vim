@@ -454,7 +454,18 @@ require('lualine').setup({
       { 'mode', fmt = function(str) return ' ' end }
     },
     lualine_b = {
-      'branch',
+      function()
+        local fugitive = vim.fn['FugitiveStatusline']()
+
+        local _, _, revision = string.find(fugitive, '%[Git:(%w+)%(')
+        local _, _, branch = string.find(fugitive, '%[Git%((.+)%)')
+
+        if revision or branch then
+          return string.format('  %s', revision or branch)
+        end
+
+        return ''
+      end,
       'diagnostics',
       'g:coc_status',
       'g:async_make_status',
