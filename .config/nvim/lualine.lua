@@ -34,6 +34,7 @@ require("lualine").setup({
           return vim.fn.winwidth(0) == vim.o.columns
         end,
       },
+      "g:coc_status",
       "g:async_make_status",
     },
     lualine_c = {

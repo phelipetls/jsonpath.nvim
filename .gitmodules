@@ -144,6 +144,3 @@
 	path = .config/nvim/pack/plugins/opt/inline_edit.vim
 	url = https://github.com/AndrewRadev/inline_edit.vim
 	ignore = dirty
-[submodule "nvim-notify"]
-	path = .config/nvim/pack/plugins/opt/nvim-notify
-	url = https://github.com/rcarriga/nvim-notify
