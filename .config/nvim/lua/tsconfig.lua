@@ -68,13 +68,9 @@ function M.get_tsconfig_paths(tsconfig_fname, prev_base_url)
 
   if json.compilerOptions and json.compilerOptions.paths then
     for alias, paths in pairs(json.compilerOptions.paths) do
-      alias_to_paths[alias] =
-        vim.tbl_map(
-        function(path)
-          return vim.fn.simplify(get_dir(tsconfig_fname) .. "/" .. base_url .. "/" .. path:gsub("*", ""))
-        end,
-        paths
-      )
+      alias_to_paths[alias] = vim.tbl_map(function(path)
+        return vim.fn.simplify(get_dir(tsconfig_fname) .. "/" .. base_url .. "/" .. path:gsub("*", ""))
+      end, paths)
     end
   end
 
@@ -112,7 +108,7 @@ local function get_tsconfig_include(tsconfig_fname)
     return v ~= nil
   end, include_list)
 
-  local extends  = json.extends
+  local extends = json.extends
   local tsconfig_extends = find_tsconfig_extends(extends, tsconfig_fname)
 
   if tsconfig_extends then

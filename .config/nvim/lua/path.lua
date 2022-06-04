@@ -5,7 +5,7 @@ function M.path_exists(path)
 end
 
 function M.path_join(...)
-  return vim.fn.simplify(table.concat({...}, "/"))
+  return vim.fn.simplify(table.concat({ ... }, "/"))
 end
 
 return M

@@ -444,87 +444,91 @@ nmap <space>g :Git<space>
 
 if has('nvim')
 lua << END
-
 local fugitivestatusline = function()
-  local fugitive = vim.fn['FugitiveStatusline']()
+  local fugitive = vim.fn["FugitiveStatusline"]()
 
-  local _, _, revision = string.find(fugitive, '%[Git:(.+)%(')
-  local _, _, branch = string.find(fugitive, '%[Git%((.+)%)')
+  local _, _, revision = string.find(fugitive, "%[Git:(.+)%(")
+  local _, _, branch = string.find(fugitive, "%[Git%((.+)%)")
 
-  if revision == '0' then
-    return 'worktree'
+  if revision == "0" then
+    return "worktree"
   end
 
-  return revision or branch or ''
+  return revision or branch or ""
 end
 
-require('lualine').setup({
+require("lualine").setup({
   options = {
-    theme = 'pywal',
-    section_separators = { left = '', right = '' },
-    component_separators = { left = '', right = '' },
+    theme = "pywal",
+    section_separators = { left = "", right = "" },
+    component_separators = { left = "", right = "" },
   },
   sections = {
     lualine_a = {
-      { 'mode', fmt = function(str) return ' ' end }
+      {
+        "mode",
+        fmt = function(str)
+          return " "
+        end,
+      },
     },
     lualine_b = {
       {
         fugitivestatusline,
-        icon = { '' },
+        icon = { "" },
         cond = function()
           return vim.fn.winwidth(0) == vim.o.columns
-        end
+        end,
       },
-      'g:async_make_status',
+      "g:async_make_status",
     },
     lualine_c = {
       {
-        'filename',
+        "filename",
         path = 0,
         symbols = {
-          modified = ' [+]',
-          readonly = ' [-]',
-        }
-      }
+          modified = " [+]",
+          readonly = " [-]",
+        },
+      },
     },
-    lualine_x = {'fileformat', 'filetype'},
+    lualine_x = { "fileformat", "filetype" },
     lualine_y = {},
     lualine_z = {
       {
-        '%l:%L',
-        type = 'stl'
-      }
-    }
+        "%l:%L",
+        type = "stl",
+      },
+    },
   },
   inactive_sections = {
     lualine_a = {},
     lualine_b = {},
-    lualine_c = {'filename'},
+    lualine_c = { "filename" },
     lualine_x = {},
     lualine_y = {},
     lualine_z = {
-      'filetype',
-      'location',
-    }
+      "filetype",
+      "location",
+    },
   },
   tabline = {
     lualine_a = {
       {
-        'tabs',
+        "tabs",
         max_length = vim.o.columns,
-        mode = 2
-      }
+        mode = 2,
+      },
     },
     lualine_b = {},
     lualine_c = {},
     lualine_x = {},
     lualine_y = {},
-    lualine_z = {}
+    lualine_z = {},
   },
   extensions = {
-    'quickfix',
-    'fugitive',
+    "quickfix",
+    "fugitive",
     {
       sections = {
         lualine_a = {
@@ -533,9 +537,9 @@ require('lualine').setup({
               return #vim.fn.argv()
             end,
             fmt = function(args)
-              return string.format('%d args', args)
-            end
-          }
+              return string.format("%d args", args)
+            end,
+          },
         },
         lualine_b = {},
         lualine_c = {},
@@ -543,8 +547,8 @@ require('lualine').setup({
         lualine_y = {},
         lualine_z = {},
       },
-      filetypes = {'dirvish'}
-    }
+      filetypes = { "dirvish" },
+    },
   },
 })
 END
