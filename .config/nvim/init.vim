@@ -471,6 +471,9 @@ require('lualine').setup({
     lualine_b = {
       {
         fugitivestatusline,
+        cond = function()
+          return vim.fn.winwidth(0) == vim.o.columns
+        end
       },
       'g:async_make_status',
     },
