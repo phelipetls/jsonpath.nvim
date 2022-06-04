@@ -483,6 +483,7 @@ require('lualine').setup({
     lualine_c = {
       {
         'filename',
+        path = 0,
         symbols = {
           modified = ' [+]',
           readonly = ' [-]',
