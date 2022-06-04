@@ -22,10 +22,6 @@ tools:
       - '    %f:%l:%c: %m'
     lint-stdin: true
 
-  lua-luafmt: &lua-luafmt
-    format-command: 'luafmt --indent-count 2 --stdin ${INPUT}'
-    format-stdin: true
-
   python-flake8: &python-flake8
     lint-command: 'flake8 --stdin-display-name ${INPUT} -'
     lint-stdin: true
@@ -63,7 +59,6 @@ languages:
 
   lua:
     - <<: *lua-luacheck
-    - <<: *lua-luafmt
     - <<: *lua-stylua
 
   python:
