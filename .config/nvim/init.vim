@@ -467,13 +467,7 @@ require('lualine').setup({
     lualine_b = {
       {
         fugitivestatusline,
-        fmt = function(commit)
-          if commit == '' then
-            return ''
-          end
-
-          return string.format(' %s', commit)
-        end,
+        icon = { '' },
         cond = function()
           return vim.fn.winwidth(0) == vim.o.columns
         end
