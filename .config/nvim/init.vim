@@ -448,8 +448,12 @@ lua << END
 local fugitivestatusline = function()
   local fugitive = vim.fn['FugitiveStatusline']()
 
-  local _, _, revision = string.find(fugitive, '%[Git:(%w+)%(')
+  local _, _, revision = string.find(fugitive, '%[Git:(.+)%(')
   local _, _, branch = string.find(fugitive, '%[Git%((.+)%)')
+
+  if revision == '0' then
+    return 'worktree'
+  end
 
   return revision or branch or ''
 end
