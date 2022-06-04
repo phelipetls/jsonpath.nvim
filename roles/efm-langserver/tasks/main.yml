@@ -60,3 +60,10 @@
     name: "{{ item }}"
     global: true
     state: present
+
+- name: Install stylua from GitHub releases
+  unarchive:
+    src: "https://github.com/JohnnyMorganz/StyLua/releases/download/v0.13.1/stylua-{{ 'macos' if ansible_facts['os_family'] == 'Darwin' else 'linux' }}.zip"
+    dest: "~/.local/bin"
+    mode: "u+x"
+    remote_src: true

@@ -47,6 +47,10 @@ tools:
     lint-formats:
       - '%f:%l:%c: %m'
 
+  lua-stylua: &lua-stylua
+    format-command: 'stylua -'
+    format-stdin: true
+
 languages:
   yaml:
     - <<: *yaml-yamllint
@@ -60,6 +64,7 @@ languages:
   lua:
     - <<: *lua-luacheck
     - <<: *lua-luafmt
+    - <<: *lua-stylua
 
   python:
     - <<: *python-flake8
