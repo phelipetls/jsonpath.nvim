@@ -529,16 +529,21 @@ require('lualine').setup({
     'fugitive',
     {
       sections = {
-        lualine_a = {function()
-          return vim.fn.fnamemodify(vim.fn.getline('.'), ':.')
-        end},
+        lualine_a = {
+          {
+            function()
+              return #vim.fn.argv()
+            end,
+            fmt = function(args)
+              return string.format('%d args', args)
+            end
+          }
+        },
         lualine_b = {},
         lualine_c = {},
         lualine_x = {},
         lualine_y = {},
-        lualine_z = {function()
-          return #vim.fn.argv()
-        end},
+        lualine_z = {},
       },
       filetypes = {'dirvish'}
     }
