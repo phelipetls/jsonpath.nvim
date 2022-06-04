@@ -444,6 +444,20 @@ nmap <space>g :Git<space>
 
 if has('nvim')
 lua << END
+
+local fugitivestatusline = function()
+  local fugitive = vim.fn['FugitiveStatusline']()
+
+  local _, _, revision = string.find(fugitive, '%[Git:(%w+)%(')
+  local _, _, branch = string.find(fugitive, '%[Git%((.+)%)')
+
+  if revision or branch then
+    return string.format('  %s', revision or branch)
+  end
+
+  return ''
+end
+
 require('lualine').setup({
   options = {
     theme = 'pywal',
@@ -455,18 +469,9 @@ require('lualine').setup({
       { 'mode', fmt = function(str) return ' ' end }
     },
     lualine_b = {
-      function()
-        local fugitive = vim.fn['FugitiveStatusline']()
-
-        local _, _, revision = string.find(fugitive, '%[Git:(%w+)%(')
-        local _, _, branch = string.find(fugitive, '%[Git%((.+)%)')
-
-        if revision or branch then
-          return string.format('  %s', revision or branch)
-        end
-
-        return ''
-      end,
+      {
+        fugitivestatusline,
+      },
       'g:async_make_status',
     },
     lualine_c = {
