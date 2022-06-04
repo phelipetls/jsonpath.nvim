@@ -451,11 +451,7 @@ local fugitivestatusline = function()
   local _, _, revision = string.find(fugitive, '%[Git:(%w+)%(')
   local _, _, branch = string.find(fugitive, '%[Git%((.+)%)')
 
-  if revision or branch then
-    return string.format('  %s', revision or branch)
-  end
-
-  return ''
+  return revision or branch or ''
 end
 
 require('lualine').setup({
@@ -471,6 +467,13 @@ require('lualine').setup({
     lualine_b = {
       {
         fugitivestatusline,
+        fmt = function(commit)
+          if commit == '' then
+            return ''
+          end
+
+          return string.format(' %s', commit)
+        end,
         cond = function()
           return vim.fn.winwidth(0) == vim.o.columns
         end
