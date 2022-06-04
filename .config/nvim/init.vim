@@ -486,7 +486,7 @@ require('lualine').setup({
         }
       }
     },
-    lualine_x = {'encoding', 'fileformat', 'filetype'},
+    lualine_x = {'fileformat', 'filetype'},
     lualine_y = {},
     lualine_z = {
       {
