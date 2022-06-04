@@ -3,6 +3,7 @@
   hosts: localhost
   roles:
     - role: elliotweiser.osx-command-line-tools
+      when: ansible_distribution == "MacOSX"
     - role: submodules
     - role: zsh
     - role: ranger
