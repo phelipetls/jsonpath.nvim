@@ -2,6 +2,7 @@
 - name: Bootstrap development environment
   hosts: localhost
   roles:
+    - role: elliotweiser.osx-command-line-tools
     - role: submodules
     - role: zsh
     - role: ranger
