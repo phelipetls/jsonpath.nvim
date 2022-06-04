@@ -475,7 +475,6 @@ require('lualine').setup({
         symbols = {
           modified = ' [+]',
           readonly = ' [-]',
-          unnamed = ' [No Name]',
         }
       }
     },
