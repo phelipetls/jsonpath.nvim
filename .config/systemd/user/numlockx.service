@@ -1,6 +1,0 @@
-[Unit]
-Description=Activate Num Lock at startup
-PartOf=graphical-session.target
-
-[Service]
-ExecStart=numlockx

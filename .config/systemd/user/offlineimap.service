@@ -1,6 +1,0 @@
-[Unit]
-Description=Offlineimap
-PartOf=graphical-session.target
-
-[Service]
-ExecStart=offlineimap

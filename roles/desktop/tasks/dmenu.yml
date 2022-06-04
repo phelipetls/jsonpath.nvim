@@ -1,5 +1,0 @@
-- name: Build dmenu
-  become: true
-  shell:
-    cmd: make clean install
-    chdir: "$HOME/suckless/dmenu"
