@@ -145,3 +145,6 @@
 	path = .config/nvim/pack/plugins/opt/inline_edit.vim
 	url = https://github.com/AndrewRadev/inline_edit.vim
 	ignore = dirty
+[submodule "nvim-ts-context-commentstring"]
+	path = .config/nvim/pack/plugins/opt/nvim-ts-context-commentstring
+	url = https://github.com/JoosepAlviste/nvim-ts-context-commentstring
