@@ -50,7 +50,7 @@ require("lualine").setup({
           end
 
           local modified = vim.bo.modified and "[+]" or ""
-          local readonly = (vim.bo.modifiable == false or vim.bo.readonly == true) and "[-]" or ""
+          local readonly = (not vim.bo.modifiable or vim.bo.readonly) and "[-]" or ""
 
           return string.format("%s %s %s", fname, modified, readonly)
         end,
