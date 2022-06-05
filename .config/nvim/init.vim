@@ -173,11 +173,6 @@ let $LESS='RX'
 let g:git_messenger_floating_win_opts = {'border': 'single'}
 let g:git_messenger_popup_content_margin = v:false
 
-augroup GitMessenger
-  autocmd!
-  autocmd FileType gitmessengerpopup setlocal keywordprg=git\ show
-augroup END
-
 imap <silent><script><expr> <C-j> copilot#Accept("\<CR>")
 let g:copilot_no_tab_map = v:true
 
