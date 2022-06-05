@@ -127,10 +127,10 @@ set sessionoptions+=globals
 "}}}
 "{{{ plugins config
 
-" integrate traces.vim with vim-subvert
+" integrate traces.vim with vim-abolish
 let g:traces_abolish_integration = 1
 
-" slime
+" vim-slime configuration
 if exists('$TMUX')
   let g:slime_target = 'tmux'
   let g:slime_default_config = {'socket_name': 'default', 'target_pane': '{last}'}
@@ -157,23 +157,27 @@ if has('nvim') && !empty(&termguicolors)
   luafile $HOME/.config/nvim/colorizer.lua
 endif
 
-" disable colors in deno and nodejs
+" disable colors in deno and nodejs terminal output
 let $NO_COLOR=0
 
 " avoid showing ansi escape sequences in nvim terminal
 " such as in lint-staged output before committing
 let g:fugitive_pty=0
 
+" remove -F flag I use in my .profile, that would automatically close terminal
+" window if output in less is too short
 let $LESS='RX'
 
+" git-messenger.vim configuration
 let g:git_messenger_floating_win_opts = {'border': 'single'}
 let g:git_messenger_popup_content_margin = v:false
 
+" copilot.vim configuration
 imap <silent><script><expr> <C-j> copilot#Accept("\<CR>")
 let g:copilot_no_tab_map = v:true
 
+" inline_edit.vim
 nnoremap <C-c>' :InlineEdit<CR>
-
 let g:inline_edit_autowrite=1
 
 "}}}
