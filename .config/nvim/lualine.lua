@@ -39,12 +39,21 @@ require("lualine").setup({
     },
     lualine_c = {
       {
-        "filename",
-        path = 0,
-        symbols = {
-          modified = " [+]",
-          readonly = " [-]",
-        },
+        function()
+          local fullpath = vim.fn.expand("%:p")
+          local fname = vim.fn.expand("%:t")
+
+          if fullpath:find("^fugitive://") then
+            local _, _, revision = fullpath:find("%.git//([^/]+)/")
+            local revisionlabel = revision == "0" and "worktree" or string.sub(revision, 0, 7)
+            fname = string.format("%s:%s", revisionlabel, fname)
+          end
+
+          local modified = vim.bo.modified and "[+]" or ""
+          local readonly = (vim.bo.modifiable == false or vim.bo.readonly == true) and "[-]" or ""
+
+          return string.format("%s %s %s", fname, modified, readonly)
+        end,
       },
     },
     lualine_x = { "fileformat", "filetype" },
