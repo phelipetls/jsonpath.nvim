@@ -284,11 +284,9 @@ command! Hi exe 'hi ' . synIDattr(synID(line("."), col("."), 0), "name")
 
 " highlight yanked region
 if has('nvim-0.5.0')
-  augroup highlight_yank
+  augroup HeighlightYankedRegion
       autocmd!
-      autocmd TextYankPost * silent!
-            \ au TextYankPost * silent!
-            \ lua vim.highlight.on_yank {higroup="Search", on_visual=false}
+      autocmd TextYankPost * silent! lua vim.highlight.on_yank{higroup="Search", on_visual=false}
   augroup END
 endif
 
