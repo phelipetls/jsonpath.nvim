@@ -157,7 +157,7 @@ let g:tagalong_additional_filetypes = ['javascript']
 let g:obsession_no_bufenter = 1
 
 " colorizer config
-if has('nvim') && filereadable(expand('~/.config/nvim/colorizer.lua')) && !empty(&termguicolors)
+if has('nvim') && !empty(&termguicolors)
   luafile $HOME/.config/nvim/colorizer.lua
 endif
 
@@ -433,7 +433,7 @@ nmap <space>g :Git<space>
 "}}}
 "{{{ statusline and tabline
 
-if has('nvim') && filereadable(expand('~/.config/nvim/lualine.lua'))
+if has('nvim')
   luafile $HOME/.config/nvim/lualine.lua
 endif
 
@@ -712,7 +712,7 @@ nnoremap <space>d :CocDiagnostics<CR>
 "}}}
 "{{{ treesitter
 
-if has('nvim-0.5.0') && filereadable(expand('~/.config/nvim/treesitter.lua'))
+if has('nvim-0.5.0')
   luafile $HOME/.config/nvim/treesitter.lua
 endif
 
