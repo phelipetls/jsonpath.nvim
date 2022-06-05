@@ -21,7 +21,7 @@ require("lualine").setup({
     lualine_a = {
       {
         "mode",
-        fmt = function(str)
+        fmt = function()
           return " "
         end,
       },
