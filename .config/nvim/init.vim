@@ -543,20 +543,6 @@ else
   command! -nargs=* -complete=file_in_path Make silent make!
 endif
 
-function! RunMake()
-  if empty(&l:makeprg)
-    return
-  endif
-  let compiler = get(b:, 'current_compiler', '')
-  if index(['jest', 'pytest', 'pyunit'], compiler) >= 0
-    make! %
-    return
-  endif
-  Make %
-endfunction
-
-nnoremap <silent> <space>m :call RunMake()<CR>
-
 function! OpenQuickfixList()
   botright cwindow 5
   if &buftype ==# 'quickfix'
