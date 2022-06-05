@@ -51,9 +51,6 @@ if has('nvim')
 endif
 
 " web development
-packadd! vim-javascript
-packadd! yats.vim
-packadd! vim-jsx-pretty
 packadd! vim-hugo
 
 " aesthetics
@@ -132,9 +129,6 @@ set sessionoptions+=globals
 
 "}}}
 "{{{ plugins config
-
-" disable javascript browser-related keywords
-let g:yats_host_keyword = 0
 
 " integrate traces.vim with vim-subvert
 let g:traces_abolish_integration = 1

@@ -42,14 +42,6 @@
 	path = .config/nvim/pack/plugins/opt/vim-toml
 	url = https://github.com/cespare/vim-toml
 	ignore = dirty
-[submodule "vim-javascript"]
-	path = .config/nvim/pack/plugins/opt/vim-javascript
-	url = https://github.com/pangloss/vim-javascript
-	ignore = dirty
-[submodule "vim-jsx-pretty"]
-	path = .config/nvim/pack/plugins/opt/vim-jsx-pretty
-	url = https://github.com/MaxMEllon/vim-jsx-pretty
-	ignore = dirty
 [submodule "vim-slime"]
 	path = .config/nvim/pack/plugins/opt/vim-slime
 	url = https://github.com/jpalardy/vim-slime
@@ -77,10 +69,6 @@
 [submodule "nvim-treesitter"]
 	path = .config/nvim/pack/plugins/opt/nvim-treesitter
 	url = https://github.com/nvim-treesitter/nvim-treesitter
-	ignore = dirty
-[submodule "yats.vim"]
-	path = .config/nvim/pack/plugins/opt/yats.vim
-	url = https://github.com/HerringtonDarkholme/yats.vim/
 	ignore = dirty
 [submodule "vader.vim"]
 	path = .config/nvim/pack/plugins/opt/vader.vim
