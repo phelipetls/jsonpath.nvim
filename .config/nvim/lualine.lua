@@ -98,10 +98,7 @@ require("lualine").setup({
         lualine_a = {
           {
             function()
-              return #vim.fn.argv()
-            end,
-            fmt = function(args)
-              return string.format("%d args", args)
+              return string.format("%d args", #vim.fn.argv())
             end,
           },
         },
