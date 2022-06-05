@@ -58,10 +58,6 @@
 	path = .config/nvim/pack/plugins/opt/vim-lion
 	url = https://github.com/tommcdo/vim-lion
 	ignore = dirty
-[submodule "tagalong.vim"]
-	path = .config/nvim/pack/plugins/opt/tagalong.vim
-	url = https://github.com/AndrewRadev/tagalong.vim
-	ignore = dirty
 [submodule "nvim-treesitter"]
 	path = .config/nvim/pack/plugins/opt/nvim-treesitter
 	url = https://github.com/nvim-treesitter/nvim-treesitter
@@ -129,3 +125,6 @@
 [submodule "nvim-ts-context-commentstring"]
 	path = .config/nvim/pack/plugins/opt/nvim-ts-context-commentstring
 	url = https://github.com/JoosepAlviste/nvim-ts-context-commentstring
+[submodule "nvim-ts-autotag"]
+	path = .config/nvim/pack/plugins/opt/nvim-ts-autotag
+	url = https://github.com/windwp/nvim-ts-autotag

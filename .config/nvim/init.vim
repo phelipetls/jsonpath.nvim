@@ -15,7 +15,6 @@ packadd! vim-speeddating
 packadd! vim-abolish
 packadd! matchit
 packadd! vim-lion
-packadd! tagalong.vim
 packadd! splitjoin.vim
 packadd! vim-sleuth
 packadd! inline_edit.vim
@@ -149,9 +148,6 @@ nnoremap <silent> <C-c><C-l> :exe ":silent !tmux send-keys -t " . b:slime_config
 
 " disable editorconfig for these file patterns
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
-
-" enable tagalong in javascript, not only jsx
-let g:tagalong_additional_filetypes = ['javascript']
 
 " disable saving session on BufEnter
 let g:obsession_no_bufenter = 1
