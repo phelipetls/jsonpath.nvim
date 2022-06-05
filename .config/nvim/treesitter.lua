@@ -18,5 +18,3 @@ require("nvim-treesitter.configs").setup({
     enable = true,
   },
 })
-
-vim.api.nvim_command([[hi link TSConstructor Function]])
