@@ -17,7 +17,6 @@ packadd! matchit
 packadd! vim-lion
 packadd! tagalong.vim
 packadd! splitjoin.vim
-packadd! jsonc.vim
 packadd! vim-sleuth
 packadd! inline_edit.vim
 if has('nvim')
@@ -44,7 +43,6 @@ packadd! vim-obsession
 packadd! editorconfig-vim
 packadd! cfilter
 packadd! vim-slime
-packadd! vim-toml
 if has('nvim')
   packadd! nvim-colorizer.lua
   packadd! coc.nvim
