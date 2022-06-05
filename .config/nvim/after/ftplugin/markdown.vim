@@ -2,7 +2,15 @@ setlocal spell spelllang=pt,en_us
 setlocal iskeyword+='
 
 " allow syntax highlight inside code blocks for these languages
-let g:markdown_fenced_languages = ['python', 'js=javascript']
+let g:markdown_fenced_languages = [
+      \ 'python',
+      \ 'javascript',
+      \ 'js=javascript',
+      \ 'jsx=javascriptreact',
+      \ 'typescript',
+      \ 'ts=typescript',
+      \ 'tsx=typescriptreact',
+      \ ]
 
 let b:surround_{char2nr('c')} = "```\r\n```"
 let b:surround_{char2nr('l')} = "[\r](\1link: \1)"
