@@ -85,9 +85,9 @@ hi link diffIsA WarningMsg
 hi link diffNoEOL WarningMsg
 hi link diffOnly WarningMsg
 
-exe 'hi Error ctermbg=1 guibg='.color1.' ctermfg=0 guifg='.color15
-exe 'hi ErrorMsg ctermbg=1 guibg='.color1.' ctermfg=0 guifg='.color15
-exe 'hi WarningMsg ctermbg=1 guibg='.color1.' ctermfg=0 guifg='.color15
+exe 'hi Error ctermbg=0 guibg='.background.' ctermfg=1 guifg='.color1
+exe 'hi ErrorMsg ctermbg=0 guibg='.background.' ctermfg=1 guifg='.color1
+exe 'hi WarningMsg ctermbg=0 guibg='.background.' ctermfg=1 guifg='.color1
 
 exe 'hi ModeMsg ctermfg=15 guifg='.color15.' cterm=NONE gui=NONE'
 exe 'hi MoreMsg ctermfg=3 guifg='.color3.' gui=NONE'
