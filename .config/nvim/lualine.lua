@@ -5,7 +5,7 @@ local fugitivestatusline = function()
   local _, _, branch = string.find(fugitive, "%[Git%((.+)%)")
 
   if revision == "0" then
-    return "worktree"
+    return "index"
   end
 
   return revision or branch or ""
@@ -45,7 +45,7 @@ require("lualine").setup({
 
           if fullpath:find("^fugitive://") then
             local _, _, revision = fullpath:find("%.git//([^/]+)/")
-            local revisionlabel = revision == "0" and "worktree" or string.sub(revision, 0, 7)
+            local revisionlabel = revision == "0" and "index" or string.sub(revision, 0, 7)
             fname = string.format("%s:%s", revisionlabel, fname)
           end
 
