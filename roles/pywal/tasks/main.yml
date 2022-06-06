@@ -6,7 +6,12 @@
     state: present
     executable: pip3
 
+- name: Get pywal last used theme
+  slurp:
+    src: "{{ ansible_env.HOME }}/.cache/wal/last_used_theme"
+  register: last_used_theme
+
 - name: Run pywal
   command:
     cmd: wal --theme "{{ theme }}" -o "$HOME/.config/wal/done.sh"
-    creates: "{{ ansible_env.HOME }}/.cache/colors"
+  changed_when: "(last_used_theme.content | b64decode) != theme ~ '.json'"
