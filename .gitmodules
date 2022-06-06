@@ -128,3 +128,6 @@
 [submodule "nvim-ts-autotag"]
 	path = .config/nvim/pack/plugins/opt/nvim-ts-autotag
 	url = https://github.com/windwp/nvim-ts-autotag
+[submodule "playground"]
+	path = .config/nvim/pack/plugins/opt/playground
+	url = https://github.com/nvim-treesitter/playground

@@ -1,6 +1,7 @@
 vim.api.nvim_command([[packadd! nvim-treesitter]])
 vim.api.nvim_command([[packadd! nvim-ts-context-commentstring]])
 vim.api.nvim_command([[packadd! nvim-ts-autotag]])
+vim.api.nvim_command([[packadd! playground]])
 
 require("nvim-treesitter.configs").setup({
   ensure_installed = { "typescript", "javascript", "tsx", "toml", "jsonc", "python", "yaml", "jsdoc" },
