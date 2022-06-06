@@ -43,6 +43,8 @@ require("lualine").setup({
           local fullpath = vim.fn.expand("%:p")
           local fname = vim.fn.expand("%:t")
 
+          fname = fname ~= "" and fname or "[No Name]"
+
           if fullpath:find("^fugitive://") then
             local _, _, revision = fullpath:find("%.git//([^/]+)/")
             local revisionlabel = revision == "0" and "index" or string.sub(revision, 0, 7)
