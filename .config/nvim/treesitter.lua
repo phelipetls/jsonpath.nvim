@@ -39,3 +39,11 @@ require("nvim-treesitter.configs").setup({
     max_file_lines = nil,
   }
 })
+
+vim.api.nvim_command([[hi link rainbowcol1 User2]])
+vim.api.nvim_command([[hi link rainbowcol2 User3]])
+vim.api.nvim_command([[hi link rainbowcol3 User4]])
+vim.api.nvim_command([[hi link rainbowcol4 User5]])
+vim.api.nvim_command([[hi link rainbowcol5 User6]])
+vim.api.nvim_command([[hi link rainbowcol6 User7]])
+vim.api.nvim_command([[hi link rainbowcol7 User8]])

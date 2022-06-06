@@ -36,6 +36,15 @@ if has('nvim')
 endif
 
 "{{{ Syntax groups
+exe 'hi User1 ctermfg=1 guifg='.color0
+exe 'hi User2 ctermfg=2 guifg='.color1
+exe 'hi User3 ctermfg=3 guifg='.color2
+exe 'hi User4 ctermfg=4 guifg='.color3
+exe 'hi User5 ctermfg=5 guifg='.color4
+exe 'hi User6 ctermfg=6 guifg='.color5
+exe 'hi User7 ctermfg=7 guifg='.color6
+exe 'hi User8 ctermfg=8 guifg='.color7
+
 exe 'hi Normal ctermbg=NONE guibg=NONE ctermfg=15 guifg='.color15
 exe 'hi NormalFloat ctermbg=NONE guibg=NONE ctermfg=15 guifg='.color15
 exe 'hi link NormalFloat Normal'
