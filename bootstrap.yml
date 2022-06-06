@@ -17,7 +17,7 @@
           - "@tailwindcss/language-server"
     - role: efm-langserver
       vars:
-        efm_langserver_version: "0.0.37"
+        efm_langserver_version: "0.0.44"
     - role: nvim
     - role: mutt
     - role: stow
