@@ -131,3 +131,6 @@
 [submodule "playground"]
 	path = .config/nvim/pack/plugins/opt/playground
 	url = https://github.com/nvim-treesitter/playground
+[submodule "nvim-ts-rainbow"]
+	path = .config/nvim/pack/plugins/opt/nvim-ts-rainbow
+	url = https://github.com/p00f/nvim-ts-rainbow

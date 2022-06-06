@@ -1,6 +1,7 @@
 vim.api.nvim_command([[packadd! nvim-treesitter]])
 vim.api.nvim_command([[packadd! nvim-ts-context-commentstring]])
 vim.api.nvim_command([[packadd! nvim-ts-autotag]])
+vim.api.nvim_command([[packadd! nvim-ts-rainbow]])
 vim.api.nvim_command([[packadd! playground]])
 
 require("nvim-treesitter.configs").setup({
@@ -32,4 +33,9 @@ require("nvim-treesitter.configs").setup({
       'markdown',
     },
   },
+  rainbow = {
+    enable = true,
+    extended_mode = true,
+    max_file_lines = nil,
+  }
 })
