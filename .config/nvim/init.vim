@@ -228,7 +228,7 @@ nnoremap gr gT
 nnoremap <silent> <esc> :nohlsearch<CR>:redraw!<CR><<esc>
 
 " go to vimrc file
-nnoremap <silent> <space>ev :edit $MYVIMRC<CR>
+nnoremap <silent> <space>ev :execute ":edit ".resolve($MYVIMRC)<CR>
 
 " source current file, only if it is .vim file
 nnoremap <silent><expr> <space>ss (&ft == "vim" ? ":source %<CR>" : "")
