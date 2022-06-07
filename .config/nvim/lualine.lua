@@ -11,6 +11,24 @@ local fugitivestatusline = function()
   return revision or branch or ""
 end
 
+local filename = function()
+  local fullpath = vim.fn.expand("%:p")
+  local fname = vim.fn.expand("%:t")
+
+  fname = fname ~= "" and fname or "[No Name]"
+
+  if fullpath:find("^fugitive://") then
+    local _, _, revision = fullpath:find("%.git//([^/]+)/")
+    local revisionlabel = revision == "0" and "index" or string.sub(revision, 0, 7)
+    fname = string.format("%s:%s", revisionlabel, fname)
+  end
+
+  local modified = vim.bo.modified and "[+]" or ""
+  local readonly = (not vim.bo.modifiable or vim.bo.readonly) and "[-]" or ""
+
+  return string.format("%s %s %s", fname, modified, readonly)
+end
+
 require("lualine").setup({
   options = {
     theme = "pywal",
@@ -39,23 +57,7 @@ require("lualine").setup({
     },
     lualine_c = {
       {
-        function()
-          local fullpath = vim.fn.expand("%:p")
-          local fname = vim.fn.expand("%:t")
-
-          fname = fname ~= "" and fname or "[No Name]"
-
-          if fullpath:find("^fugitive://") then
-            local _, _, revision = fullpath:find("%.git//([^/]+)/")
-            local revisionlabel = revision == "0" and "index" or string.sub(revision, 0, 7)
-            fname = string.format("%s:%s", revisionlabel, fname)
-          end
-
-          local modified = vim.bo.modified and "[+]" or ""
-          local readonly = (not vim.bo.modifiable or vim.bo.readonly) and "[-]" or ""
-
-          return string.format("%s %s %s", fname, modified, readonly)
-        end,
+        filename,
       },
     },
     lualine_x = { "fileformat", "filetype" },
@@ -70,7 +72,7 @@ require("lualine").setup({
   inactive_sections = {
     lualine_a = {},
     lualine_b = {},
-    lualine_c = { "filename" },
+    lualine_c = { filename },
     lualine_x = {},
     lualine_y = {},
     lualine_z = {
