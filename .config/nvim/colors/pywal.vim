@@ -95,10 +95,10 @@ exe 'hi Underlined ctermfg=1 guifg='.color1.' cterm=UNDERLINE gui=UNDERLINE'
 exe 'hi Ignore ctermbg=NONE guibg=NONE ctermfg=15 guifg='.color15
 "}}}
 "{{{ Misc
-exe 'hi DiffDelete ctermfg=1 ctermbg=NONE guibg=#572E33 guifg=NONE'
-exe 'hi DiffAdd ctermfg=2 ctermbg=0 guibg=#26332c guifg=NONE'
-exe 'hi DiffChange ctermfg=NONE ctermbg=NONE guifg=NONE guibg=#273842'
-exe 'hi DiffText ctermfg=15 ctermbg=2 guibg=#314753 guifg=NONE'
+exe 'hi DiffDelete ctermfg=1 ctermbg=NONE guibg=#2a0a09 guifg=NONE'
+exe 'hi DiffAdd ctermfg=2 ctermbg=0 guibg=#15260d guifg=NONE'
+exe 'hi DiffChange ctermfg=NONE ctermbg=NONE guifg=NONE guibg=#2f1a04'
+exe 'hi DiffText ctermfg=15 ctermbg=2 guibg=#5e3308 guifg=NONE'
 
 exe 'hi diffAdded ctermfg=2 guifg='.color2
 exe 'hi diffRemoved ctermfg=1 guifg='.color1
