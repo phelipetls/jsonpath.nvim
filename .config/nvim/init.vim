@@ -413,6 +413,17 @@ nmap <silent> gQ :call SameBufferWinDo("let w:view = winsaveview()")<CR>
 
 nmap <space>g :Git<space>
 
+" add unimapaired-like mappings to ignore whitespace in vimdiff
+function! IwhiteToggle()
+  if &diffopt =~# 'iwhite'
+    set diffopt-=iwhite
+  else
+    set diffopt+=iwhite
+  endif
+endfunction
+
+command ToggleIgnoreWhitespace :call IwhiteToggle()
+
 "}}}
 "{{{ statusline and tabline
 
