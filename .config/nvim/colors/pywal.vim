@@ -31,10 +31,6 @@ else
   let color15 = '#000000'
 endif
 
-if has('nvim')
-  call luaeval('require("nvim-web-devicons").set_default_icon("", _A[1])', [foreground])
-endif
-
 "{{{ Syntax groups
 exe 'hi User1 ctermfg=1 guifg='.color0
 exe 'hi User2 ctermfg=2 guifg='.color1
