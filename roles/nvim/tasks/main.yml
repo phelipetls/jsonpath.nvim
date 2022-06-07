@@ -10,3 +10,10 @@
 - name: Install nvim with Homebrew in macOS
   import_tasks: macos.yml
   when: ansible_distribution == "MacOSX"
+
+- name: Install pynvim
+  ansible.builtin.pip:
+    name:
+      - pynvim
+    state: present
+    executable: pip3

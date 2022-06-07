@@ -137,3 +137,6 @@
 [submodule "nvim-ts-rainbow"]
 	path = .config/nvim/pack/plugins/opt/nvim-ts-rainbow
 	url = https://github.com/p00f/nvim-ts-rainbow
+[submodule "rnvimr"]
+	path = .config/nvim/pack/plugins/opt/rnvimr
+	url = https://github.com/kevinhwang91/rnvimr

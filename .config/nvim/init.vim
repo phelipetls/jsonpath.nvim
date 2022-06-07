@@ -31,6 +31,7 @@ packadd! git-messenger.vim
 
 " file navigation
 packadd! vim-dirvish
+packadd! rnvimr
 
 " fuzzy finder
 set rtp+=~/.fzf
