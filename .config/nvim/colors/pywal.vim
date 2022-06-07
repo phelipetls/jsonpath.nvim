@@ -41,6 +41,43 @@ exe 'hi User6 ctermfg=6 guifg='.color5
 exe 'hi User7 ctermfg=7 guifg='.color6
 exe 'hi User8 ctermfg=8 guifg='.color7
 
+if has('nvim')
+  let g:terminal_color_0 = color0
+  let g:terminal_color_1 = color1
+  let g:terminal_color_2 = color2
+  let g:terminal_color_3 = color3
+  let g:terminal_color_4 = color4
+  let g:terminal_color_5 = color5
+  let g:terminal_color_6 = color6
+  let g:terminal_color_7 = color7
+  let g:terminal_color_8 = color8
+  let g:terminal_color_9 = color9
+  let g:terminal_color_10 = color10
+  let g:terminal_color_11 = color11
+  let g:terminal_color_12 = color12
+  let g:terminal_color_13 = color13
+  let g:terminal_color_14 = color14
+  let g:terminal_color_15 = color15
+else
+  let g:terminal_ansi_colors = [
+        \ color1,
+        \ color2,
+        \ color3,
+        \ color4,
+        \ color5,
+        \ color6,
+        \ color7,
+        \ color8,
+        \ color9,
+        \ color10,
+        \ color11,
+        \ color12,
+        \ color13,
+        \ color14,
+        \ color15,
+        \ ]
+endif
+
 exe 'hi Normal ctermbg=NONE guibg=NONE ctermfg=15 guifg='.color15
 exe 'hi NormalFloat ctermbg=NONE guibg=NONE ctermfg=15 guifg='.color15
 exe 'hi link NormalFloat Normal'
