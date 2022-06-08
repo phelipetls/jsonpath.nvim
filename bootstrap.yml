@@ -35,6 +35,7 @@
             - "PhilHindle.errorlens"
             - "sleistner.vscode-fileutils"
             - "vscodevim.vim"
+            - "EditorConfig.EditorConfig"
     - role: hugo
       vars:
         hugo_version: "0.96.0"
