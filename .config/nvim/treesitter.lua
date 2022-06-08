@@ -1,7 +1,6 @@
 vim.api.nvim_command([[packadd! nvim-treesitter]])
 vim.api.nvim_command([[packadd! nvim-ts-context-commentstring]])
 vim.api.nvim_command([[packadd! nvim-ts-autotag]])
-vim.api.nvim_command([[packadd! nvim-ts-rainbow]])
 vim.api.nvim_command([[packadd! playground]])
 
 require("nvim-treesitter.configs").setup({
@@ -42,17 +41,4 @@ require("nvim-treesitter.configs").setup({
       'markdown',
     },
   },
-  rainbow = {
-    enable = true,
-    extended_mode = true,
-    max_file_lines = nil,
-  }
 })
-
-vim.api.nvim_command([[hi link rainbowcol1 User3]])
-vim.api.nvim_command([[hi link rainbowcol2 User1]])
-vim.api.nvim_command([[hi link rainbowcol3 User4]])
-vim.api.nvim_command([[hi link rainbowcol4 User3]])
-vim.api.nvim_command([[hi link rainbowcol5 User1]])
-vim.api.nvim_command([[hi link rainbowcol6 User4]])
-vim.api.nvim_command([[hi link rainbowcol7 User1]])
