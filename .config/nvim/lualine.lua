@@ -18,9 +18,12 @@ local filename = function()
   fname = fname ~= "" and fname or "[No Name]"
 
   if fullpath:find("^fugitive://") then
-    local _, _, revision = fullpath:find("%.git//([^/]+)/")
-    local revisionlabel = revision == "0" and "index" or string.sub(revision, 0, 7)
-    fname = string.format("%s:%s", revisionlabel, fname)
+    local matches = vim.fn.matchlist(fullpath, [[\c^fugitive:\%(//\)\=\(.\{-\}\)\%(//\|::\)\(\x\{40,\}\|[0-3]\)\(/.*\)\=$]])
+    local revision = matches[3]
+    if revision and revision ~= "" then
+      local revisionlabel = revision == "0" and "index" or string.sub(revision, 0, 7)
+      fname = string.format("%s:%s", revisionlabel, fname)
+    end
   end
 
   local modified = vim.bo.modified and "[+]" or ""
