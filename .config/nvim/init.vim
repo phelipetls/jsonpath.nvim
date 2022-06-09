@@ -172,7 +172,7 @@ let $LESS='RX'
 
 " git-messenger.vim configuration
 let g:git_messenger_floating_win_opts = {'border': 'single'}
-let g:git_messenger_popup_content_margin = v:false
+let g:git_messenger_popup_content_margins = v:false
 
 " copilot.vim configuration
 imap <silent><script><expr> <C-j> copilot#Accept("\<CR>")
