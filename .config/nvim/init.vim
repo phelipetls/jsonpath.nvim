@@ -647,8 +647,10 @@ inoremap <silent><expr> <c-space>
       \ ""
 
 function! s:showDocumentation()
-  if (index(['vim', 'help', 'gitcommit', 'gitrebase'], &filetype) >= 0)
+  if (index(['vim', 'help'], &filetype) >= 0)
     execute 'h ' . expand('<cword>')
+  elseif (index(['gitcommit', 'gitrebase'], &filetype) >= 0)
+    call feedkeys('K', 'in')
   elseif (coc#rpc#ready())
     call CocActionAsync('doHover')
   else
