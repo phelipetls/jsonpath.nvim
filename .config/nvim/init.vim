@@ -183,6 +183,8 @@ nnoremap <C-c>' :InlineEdit<CR>
 let g:inline_edit_autowrite=1
 
 " indent-blankline.nvim
+let g:indent_blankline_filetype_exclude = ['vim', 'help']
+
 lua << EOF
 require("indent_blankline").setup({
   show_end_of_line = true,
