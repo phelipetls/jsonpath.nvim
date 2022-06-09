@@ -166,47 +166,47 @@ exe 'hi Folded ctermbg=NONE guibg=NONE guibg=NONE ctermfg=8 guifg='.color8
 exe 'hi WildMenu ctermfg=0 guifg='.color0.' ctermbg=11 guibg='.color11
 
 if has('nvim')
- exe 'hi MsgArea ctermfg=15 guifg='.color15.' ctermbg=NONE guibg=NONE gui=NONE'
- hi link QuickFixLine CursorLine
- exe 'hi Whitespace ctermbg=NONE guibg=NONE ctermfg=8 guifg='.color8
+  exe 'hi MsgArea ctermfg=15 guifg='.color15.' ctermbg=NONE guibg=NONE gui=NONE'
+  hi link QuickFixLine CursorLine
+  exe 'hi Whitespace ctermbg=NONE guibg=NONE ctermfg=8 guifg='.color8
 endif
 
 if has('nvim-0.5.0')
- exe 'hi LspError ctermfg=1 guifg='.color1
- exe 'hi LspWarning ctermfg=1 guifg='.color3
- exe 'hi LspInfo ctermfg=1 guifg='.color4
- exe 'hi LspHint ctermfg=1 guifg='.color4
+  exe 'hi LspError ctermfg=1 guifg='.color1
+  exe 'hi LspWarning ctermfg=1 guifg='.color3
+  exe 'hi LspInfo ctermfg=1 guifg='.color4
+  exe 'hi LspHint ctermfg=1 guifg='.color4
 
- hi link LspDiagnosticsSignError LspError
- hi link LspDiagnosticsSignWarning LspWarning
- hi link LspDiagnosticsSignInformation LspInfo
- hi link LspDiagnosticsSignHint LspHint
+  hi link LspDiagnosticsSignError LspError
+  hi link LspDiagnosticsSignWarning LspWarning
+  hi link LspDiagnosticsSignInformation LspInfo
+  hi link LspDiagnosticsSignHint LspHint
 
- hi link LspDiagnosticsVirtualTextError LspError
- hi link LspDiagnosticsVirtualTextWarning LspWarning
- hi link LspDiagnosticsVirtualTextInformation LspInfo
- hi link LspDiagnosticsVirtualTextHint LspHint
+  hi link LspDiagnosticsVirtualTextError LspError
+  hi link LspDiagnosticsVirtualTextWarning LspWarning
+  hi link LspDiagnosticsVirtualTextInformation LspInfo
+  hi link LspDiagnosticsVirtualTextHint LspHint
 
- hi link LspDiagnosticsUnderlineError LspError
- hi link LspDiagnosticsUnderlineWarning LspWarning
- hi link LspDiagnosticsUnderlineInformation LspInfo
- hi link LspDiagnosticsUnderlineHint LspHint
+  hi link LspDiagnosticsUnderlineError LspError
+  hi link LspDiagnosticsUnderlineWarning LspWarning
+  hi link LspDiagnosticsUnderlineInformation LspInfo
+  hi link LspDiagnosticsUnderlineHint LspHint
 
- hi link LspReferenceText Search
- hi link LspReferenceRead Search
- hi link LspReferenceWrite Search
+  hi link LspReferenceText Search
+  hi link LspReferenceRead Search
+  hi link LspReferenceWrite Search
 
- hi link CocErrorSign LspError
- hi link CocWarningSign LspWarning
- hi link CocHintSign LspHint
- hi link CocInfoSign LspInfo
+  hi link CocErrorSign LspError
+  hi link CocWarningSign LspWarning
+  hi link CocHintSign LspHint
+  hi link CocInfoSign LspInfo
 
- hi link CocErrorFloat Normal
- hi link CocWarningFloat Normal
- hi link CocHintFloat Normal
- hi link CocInfoFloat Normal
+  hi link CocErrorFloat Normal
+  hi link CocWarningFloat Normal
+  hi link CocHintFloat Normal
+  hi link CocInfoFloat Normal
 
- exe 'hi CocFadeOut ctermbg=NONE guibg=NONE ctermfg=8 guifg='.color8
+  exe 'hi CocFadeOut ctermbg=NONE guibg=NONE ctermfg=8 guifg='.color8
 endif
 
 "}}}
