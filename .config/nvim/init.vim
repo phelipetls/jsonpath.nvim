@@ -55,6 +55,7 @@ packadd! vim-hugo
 if has('nvim-0.5.0')
   packadd! nvim-web-devicons
   packadd! lualine.nvim
+  packadd! indent-blankline.nvim
 endif
 
 "}}}
@@ -180,6 +181,13 @@ let g:copilot_no_tab_map = v:true
 " inline_edit.vim
 nnoremap <C-c>' :InlineEdit<CR>
 let g:inline_edit_autowrite=1
+
+" indent-blankline.nvim
+lua << EOF
+require("indent_blankline").setup({
+  show_end_of_line = true,
+})
+EOF
 
 "}}}
 "{{{ autocommands

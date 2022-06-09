@@ -137,3 +137,7 @@
 [submodule "rnvimr"]
 	path = .config/nvim/pack/plugins/opt/rnvimr
 	url = https://github.com/kevinhwang91/rnvimr
+[submodule "indent-blankline.nvim"]
+	path = .config/nvim/pack/plugins/opt/indent-blankline.nvim
+	url = https://github.com/lukas-reineke/indent-blankline.nvim
+	ignore = dirty
