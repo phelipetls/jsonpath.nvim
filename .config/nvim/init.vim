@@ -698,6 +698,12 @@ let g:coc_quickfix_open_command = 'doautocmd QuickFixCmdPost | cfirst'
 nnoremap <space>s :<C-u>CocList -I symbols<CR>
 nnoremap <space>d :CocDiagnostics<CR>
 
+augroup CocNvim
+  autocmd!
+  " highlight the symbol and its references when holding the cursor
+  autocmd CursorHold * silent call CocActionAsync('highlight')
+augroup END
+
 "}}}
 "{{{ treesitter
 
