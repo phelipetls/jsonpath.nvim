@@ -679,8 +679,14 @@ nmap <F2> <Plug>(coc-rename)
 nmap <M-CR> <Plug>(coc-codeaction-cursor)
 
 " scroll through hover floating window
-nnoremap <silent><expr> <C-y> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-y>"
-nnoremap <silent><expr> <C-e> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-e>"
+if has('nvim-0.4.0') || has('patch-8.2.0750')
+  nnoremap <silent><nowait><expr> <C-d> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  nnoremap <silent><nowait><expr> <C-u> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+  inoremap <silent><nowait><expr> <C-d> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+  inoremap <silent><nowait><expr> <C-u> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+  vnoremap <silent><nowait><expr> <C-d> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  vnoremap <silent><nowait><expr> <C-u> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+endif
 
 " symbols and diagnostics
 nnoremap <space>s :<C-u>CocList -I symbols<CR>
