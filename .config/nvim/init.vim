@@ -681,14 +681,9 @@ command! -nargs=0 Fmt :call CocAction('format')
 nnoremap <silent> <M-S-O> :call CocActionAsync('runCommand', 'editor.action.organizeImport')<CR>
 nnoremap <silent> K :call <SID>showDocumentation()<CR>
 
-inoremap <silent> <C-c><C-p> <C-r>=CocActionAsync('showSignatureHelp')<CR>
-
 nmap <F2> <Plug>(coc-rename)
 
 nmap <M-CR> <Plug>(coc-codeaction-cursor)
-
-nmap <silent> <C-s> <Plug>(coc-range-select)
-xmap <silent> <C-s> <Plug>(coc-range-select)
 
 nnoremap <silent><expr> <C-y> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-y>"
 nnoremap <silent><expr> <C-e> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-e>"
