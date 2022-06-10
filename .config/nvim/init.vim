@@ -697,12 +697,6 @@ let g:coc_quickfix_open_command = 'doautocmd QuickFixCmdPost | cfirst'
 command! -nargs=0 References :call CocActionAsync('jumpReferences')
 command! -nargs=0 Fmt :call CocAction('format')
 
-augroup CocNvim
-  autocmd!
-  " highlight the symbol and its references when holding the cursor
-  autocmd CursorHold * silent call CocActionAsync('highlight')
-augroup END
-
 "}}}
 "{{{ treesitter
 
