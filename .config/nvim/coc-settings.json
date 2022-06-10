@@ -65,6 +65,7 @@
     }
   },
   "signature.floatConfig": {"border": true, "borderhighlight": "VertSplit"},
+  "suggest.floatConfig": {"border": true, "borderhighlight": "VertSplit"},
   "diagnostic.floatConfig": {"border": true, "borderhighlight": "VertSplit"},
   "hover.floatConfig": {"border": true, "borderhighlight": "VertSplit"}
 }
