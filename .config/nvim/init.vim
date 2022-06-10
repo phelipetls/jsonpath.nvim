@@ -630,7 +630,9 @@ set updatetime=300
 set completeopt=menuone,noselect,noinsert
 set shortmess+=c
 set pumheight=10
+set tagfunc=CocTagFunc
 
+" autocomplete
 function! s:checkBackSpace() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
@@ -642,12 +644,14 @@ inoremap <silent><expr> <TAB>
       \ coc#rpc#ready() ? coc#refresh() :
       \ !empty(&omnifunc) ? "\<C-x>\<C-o>" :
       \ "\<C-n>"
-
 inoremap <silent><expr> <c-space>
       \ !empty(&omnifunc) ? "\<C-x>\<C-o>" :
       \ coc#rpc#ready() ? coc#refresh() :
       \ ""
+inoremap <expr><s-tab> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm() :"\<C-g>u\<CR>\<C-r>=coc#on_enter()\<CR>"
 
+" hover
 function! s:showDocumentation()
   if CocAction('hasProvider', 'hover')
     call CocActionAsync('doHover')
@@ -655,43 +659,37 @@ function! s:showDocumentation()
     call feedkeys('K', 'in')
   endif
 endfunction
-
-inoremap <expr><s-tab> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm() :"\<C-g>u\<CR>\<C-r>=coc#on_enter()\<CR>"
+nnoremap <silent> K :call <SID>showDocumentation()<CR>
 
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
-set tagfunc=CocTagFunc
-
+" jump to defition
 nmap <silent> [d <Plug>(coc-definition)
 nmap <silent> <C-w>d :call CocActionAsync('jumpDefinition', 'split')<CR>
 nmap <silent> <C-w><C-d> :call CocActionAsync('jumpDefinition', 'split')<CR>
-
-nmap <silent> <C-c><C-p> :call CocActionAsync("jumpDefinition", 'pedit')<CR>
 nmap <silent> <C-w>} :call CocActionAsync('jumpDefinition', 'pedit')<CR>
-
 nmap <silent> [t <Plug>(coc-type-definition)
-
 nmap <silent> <C-space> :call CocActionAsync("diagnosticInfo")<CR>
 
-command! -nargs=0 References :call CocActionAsync('jumpReferences')
-command! -nargs=0 Fmt :call CocAction('format')
 nnoremap <silent> <M-S-O> :call CocActionAsync('runCommand', 'editor.action.organizeImport')<CR>
-nnoremap <silent> K :call <SID>showDocumentation()<CR>
-
 nmap <F2> <Plug>(coc-rename)
 
+" open code actions menu at cursor on Alt-Enter
 nmap <M-CR> <Plug>(coc-codeaction-cursor)
 
+" scroll through hover floating window
 nnoremap <silent><expr> <C-y> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-y>"
 nnoremap <silent><expr> <C-e> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-e>"
 
-let g:coc_quickfix_open_command = 'doautocmd QuickFixCmdPost | cfirst'
-
+" symbols and diagnostics
 nnoremap <space>s :<C-u>CocList -I symbols<CR>
 nnoremap <space>d :CocDiagnostics<CR>
+let g:coc_quickfix_open_command = 'doautocmd QuickFixCmdPost | cfirst'
+
+" miscellaneous commands
+command! -nargs=0 References :call CocActionAsync('jumpReferences')
+command! -nargs=0 Fmt :call CocAction('format')
 
 augroup CocNvim
   autocmd!
