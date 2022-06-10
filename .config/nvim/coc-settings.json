@@ -17,6 +17,10 @@
   "typescript.updateImportsOnFileMove.enable": true,
   "coc.preferences.useQuickfixForLocations": true,
   "coc.preferences.bracketEnterImprove": false,
+  "signature.floatConfig": {"border": true, "borderhighlight": "VertSplit"},
+  "suggest.floatConfig": {"border": true, "borderhighlight": "VertSplit"},
+  "diagnostic.floatConfig": {"border": true, "borderhighlight": "VertSplit"},
+  "hover.floatConfig": {"border": true, "borderhighlight": "VertSplit"},
   "languageserver": {
     "efm": {
       "command": "efm-langserver",
@@ -63,9 +67,5 @@
         }
       }
     }
-  },
-  "signature.floatConfig": {"border": true, "borderhighlight": "VertSplit"},
-  "suggest.floatConfig": {"border": true, "borderhighlight": "VertSplit"},
-  "diagnostic.floatConfig": {"border": true, "borderhighlight": "VertSplit"},
-  "hover.floatConfig": {"border": true, "borderhighlight": "VertSplit"}
+  }
 }
