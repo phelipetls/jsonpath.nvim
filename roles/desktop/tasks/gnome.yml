@@ -15,6 +15,11 @@
     key: "/org/gnome/desktop/interface/show-battery-percentage"
     value: "true"
 
+- name: Show apps in current workspace only on Alt+Tab
+  community.general.dconf:
+    key: "/org/gnome/shell/app-switcher/current-workspace-only"
+    value: "true"
+
 - name: Load gnome terminal profile generated with pywal
   command:
     cmd: "dconf load /org/gnome/terminal/legacy/profiles:/"
