@@ -38,7 +38,7 @@ if executable('node')
 endif
 
 if executable('npx')
-  let &l:formatprg='npx prettier --parser=typescript'
+  set formatprg=npx\ prettier\ --stdin-filepath\ %
 elseif executable('eslint_d')
   let &l:formatprg='eslint_d --fix-to-stdout --stdin'
 endif
