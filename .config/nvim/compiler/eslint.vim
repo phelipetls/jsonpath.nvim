@@ -7,5 +7,5 @@ if exists(':CompilerSet') != 2		" older Vim always used :setlocal
   command -nargs=* CompilerSet setlocal <args>
 endif
 
-CompilerSet makeprg=eslint\ --format\ unix
+CompilerSet makeprg=npx\ eslint\ --format\ unix
 CompilerSet errorformat=%f:%l:%c:\ %m,%-G%.%#
