@@ -193,8 +193,6 @@ augroup GlobalAutocmds
   " autoresize splits when vim is resized
   autocmd VimResized * wincmd =
 
-  autocmd FocusGained * checktime
-
   autocmd FileType javascript,typescript,javascriptreact,typescriptreact,sh,yaml,vim,lua,json,html,css set expandtab shiftwidth=2 softtabstop=2
   autocmd FileType python set expandtab shiftwidth=4 softtabstop=4
 
@@ -209,8 +207,9 @@ if has('nvim')
   " VimResume is Neovim-only
   augroup GlobalNeovimOnlyAutocmds
     autocmd!
-    " checktime when nvim resumes from suspended state
+    " autoupdate file when nvim resumes from suspended state or gains focus
     autocmd VimResume * checktime
+    autocmd FocusGained * checktime
 
     " reload fugitive status buffer when vim resumes from background
     autocmd VimResume * call fugitive#ReloadStatus()
