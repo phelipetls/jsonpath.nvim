@@ -200,6 +200,9 @@ augroup GlobalAutocmds
 
   " put the current file name under the f register
   autocmd BufEnter * let @f=expand("%:t:r")
+
+  " allows me to preview a commit when rebasing with K
+  autocmd FileType gitrebase setlocal keywordprg=:Git!\ show
 augroup END
 
 if has('nvim')
