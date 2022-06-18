@@ -266,17 +266,8 @@ nnoremap <silent> gy `[v`]
 " disable key to Ex mode and command-line window (press c_CTRL-F instead)
 nnoremap Q <nop>
 
-" handle annoying command line typos
-command! -bang -nargs=* -complete=file_in_path E e<bang>
-command! -bang W w<bang>
-command! -bang Q q<bang>
-command! -bang Qall qall<bang>
-
 " mapping to change the word under the cursor. use . to repeat
 nnoremap <silent> <C-n> *Ncgn
-
-" show information about highlight group under cursor
-command! Hi exe 'hi ' . synIDattr(synID(line("."), col("."), 0), "name")
 
 " highlight yanked region
 if has('nvim-0.5.0')
@@ -408,6 +399,18 @@ nmap <silent> gQ :call SameBufferWinDo("let w:view = winsaveview()")<CR>
       \ :call SameBufferWinDo('keepjumps call winrestview(w:view)')<CR>
 
 nmap <space>g :Git<space>
+
+"}}}
+"{{{ commands
+
+" handle annoying command line typos
+command! -bang -nargs=* -complete=file_in_path E e<bang>
+command! -bang W w<bang>
+command! -bang Q q<bang>
+command! -bang Qall qall<bang>
+
+" show information about highlight group under cursor
+command! Hi exe 'hi ' . synIDattr(synID(line("."), col("."), 0), "name")
 
 " add unimapaired-like mappings to ignore whitespace in vimdiff
 function! IwhiteToggle()
