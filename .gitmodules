@@ -137,3 +137,6 @@
 [submodule "rnvimr"]
 	path = .config/nvim/pack/plugins/opt/rnvimr
 	url = https://github.com/kevinhwang91/rnvimr
+[submodule "LargeFile"]
+	path = .config/nvim/pack/plugins/opt/LargeFile
+	url = https://github.com/vim-scripts/LargeFile

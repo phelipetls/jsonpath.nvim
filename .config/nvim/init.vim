@@ -43,6 +43,7 @@ packadd! vim-obsession
 packadd! editorconfig-vim
 packadd! cfilter
 packadd! vim-slime
+packadd! LargeFile
 if has('nvim')
   packadd! nvim-colorizer.lua
   packadd! coc.nvim
