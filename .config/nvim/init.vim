@@ -45,7 +45,6 @@ packadd! cfilter
 packadd! vim-slime
 packadd! LargeFile
 if has('nvim')
-  packadd! nvim-colorizer.lua
   packadd! coc.nvim
 endif
 
@@ -153,11 +152,6 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
 " disable saving session on BufEnter
 let g:obsession_no_bufenter = 1
-
-" colorizer config
-if has('nvim') && !empty(&termguicolors)
-  luafile $HOME/.config/nvim/colorizer.lua
-endif
 
 " disable colors in deno and nodejs terminal output
 let $NO_COLOR=0
