@@ -25,3 +25,8 @@
     cmd: "dconf load /org/gnome/terminal/legacy/profiles:/"
     stdin: "{{ lookup('file', '{{ ansible_env.HOME }}/.cache/wal/gnome-terminal-profile') }}"
   changed_when: false
+
+- name: Don't download updates automatically with GNOME software
+  community.general.dconf:
+    key: "/org/gnome/software/download-updates"
+    value: "false"
