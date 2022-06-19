@@ -30,3 +30,8 @@
   community.general.dconf:
     key: "/org/gnome/software/download-updates"
     value: "false"
+
+- name: Disable GNOME search providers
+  community.general.dconf:
+    key: "/org/gnome/desktop/search-providers"
+    value: "['org.gnome.Contacts.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Boxes.desktop', 'org.gnome.Calculator.desktop', 'org.gnome.Calendar.desktop', 'org.gnome.Characters.desktop', 'firefox.desktop', 'org.gnome.Photos.desktop', 'org.gnome.clocks.desktop', 'org.gnome.Terminal.desktop']"
