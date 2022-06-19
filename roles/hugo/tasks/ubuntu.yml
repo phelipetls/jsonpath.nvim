@@ -2,5 +2,5 @@
 - name: Install Hugo in Ubuntu
   become: true
   apt:
-    deb: "https://github.com/gohugoio/hugo/releases/download/v{{ hugo_version }}/hugo_{{ hugo_version }}_Linux-64bit.deb"
+    deb: "https://github.com/gohugoio/hugo/releases/download/v{{ hugo_version }}/hugo_extended_{{ hugo_version }}_Linux-64bit.deb"
     state: present

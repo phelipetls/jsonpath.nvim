@@ -1,7 +1,7 @@
 ---
 - name: Install Hugo in Fedora
   unarchive:
-    src: "https://github.com/gohugoio/hugo/releases/download/v{{ hugo_version }}/hugo_{{ hugo_version }}_Linux-64bit.tar.gz"
+    src: "https://github.com/gohugoio/hugo/releases/download/v{{ hugo_version }}/hugo_extended_{{ hugo_version }}_Linux-64bit.tar.gz"
     dest: "{{ ansible_env.HOME }}/.local/bin"
     remote_src: true
     extra_opts:
