@@ -686,6 +686,7 @@ let g:coc_quickfix_open_command = 'doautocmd QuickFixCmdPost | cfirst'
 " miscellaneous commands
 command! -nargs=0 References :call CocActionAsync('jumpReferences')
 command! -nargs=0 Fmt :call CocAction('format')
+command! -nargs=0 OR :call CocActionAsync('runCommand', 'editor.action.organizeImport')
 
 "}}}
 "{{{ treesitter
