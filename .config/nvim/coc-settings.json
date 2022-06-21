@@ -1,5 +1,6 @@
 {
   "coc.preferences.floatActions": false,
+  "coc.preferences.promptInput": false,
   "diagnostic.enableMessage": "jump",
   "diagnostic.checkCurrentLine": true,
   "signature.hideOnTextChange": true,
