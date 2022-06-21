@@ -18,9 +18,6 @@ packadd! vim-lion
 packadd! splitjoin.vim
 packadd! vim-sleuth
 packadd! inline_edit.vim
-if has('nvim')
-  packadd! copilot.vim
-endif
 
 " git
 packadd! vim-fugitive
@@ -167,10 +164,6 @@ let $LESS='RX'
 " git-messenger.vim configuration
 let g:git_messenger_floating_win_opts = {'border': 'single'}
 let g:git_messenger_popup_content_margins = v:false
-
-" copilot.vim configuration
-imap <silent><script><expr> <C-j> copilot#Accept("\<CR>")
-let g:copilot_no_tab_map = v:true
 
 " inline_edit.vim
 nnoremap <C-c>' :InlineEdit<CR>
