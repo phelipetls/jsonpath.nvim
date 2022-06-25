@@ -201,8 +201,8 @@ if has('nvim')
   augroup GlobalNeovimOnlyAutocmds
     autocmd!
     " autoupdate file when nvim resumes from suspended state or gains focus
-    autocmd VimResume * checktime
-    autocmd FocusGained * checktime
+    autocmd VimResume * if empty(getcmdwintype()) | checktime | endif
+    autocmd FocusGained * if empty(getcmdwintype()) | checktime | endif
 
     " reload fugitive status buffer when vim resumes from background
     autocmd VimResume * call fugitive#ReloadStatus()
