@@ -38,8 +38,8 @@ end
 require("lualine").setup({
   options = {
     theme = "pywal",
-    section_separators = { left = "", right = "" },
-    component_separators = { left = "", right = "" },
+    section_separators = { left = "", right = "" },
+    component_separators = { left = "", right = "" },
   },
   sections = {
     lualine_a = {
