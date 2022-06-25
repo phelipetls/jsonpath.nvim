@@ -20,6 +20,7 @@
   "suggest.floatConfig": {"border": true, "borderhighlight": "VertSplit"},
   "diagnostic.floatConfig": {"border": true, "borderhighlight": "VertSplit"},
   "hover.floatConfig": {"border": true, "borderhighlight": "VertSplit"},
+  "css.lint.unknownAtRules": "ignore",
   "suggest.completionItemKindLabels": {
     "function": "\uf794",
     "method": "\uf6a6",
