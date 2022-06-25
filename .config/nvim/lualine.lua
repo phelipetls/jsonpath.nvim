@@ -45,8 +45,8 @@ require("lualine").setup({
     lualine_a = {
       {
         "mode",
-        fmt = function()
-          return " "
+        fmt = function(mode)
+          return mode:sub(1, 1)
         end,
       },
     },
