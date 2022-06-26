@@ -376,22 +376,14 @@ function! Format(type, ...)
   endif
 endfunction
 
-function! SameBufferWinDo(cmd)
-  let initial_winnr = winnr()
-  let windows = filter(getwininfo(), {_, win -> win.bufnr == bufnr() && win.tabnr == tabpagenr()})
-  for winnr in map(windows, {_, win -> win.winnr})
-    execute winnr . 'wincmd w'
-    execute a:cmd
-  endfor
-  execute initial_winnr . 'wincmd w'
-endfunction
-
 nmap <silent> gq :set opfunc=Format<CR>g@
-nmap <silent> gQ :call SameBufferWinDo("let w:view = winsaveview()")<CR>
+nmap <silent> gQ
+      \ :let w:view = winsaveview()<CR>
       \ :set opfunc=Format<CR>
       \ :keepjumps normal gg<CR>
       \ :keepjumps normal gqG<CR>
-      \ :call SameBufferWinDo('keepjumps call winrestview(w:view)')<CR>
+      \ :keepjumps call winrestview(w:view)<CR>
+      \ :unlet w:view
 
 nmap <space>g :Git<space>
 
