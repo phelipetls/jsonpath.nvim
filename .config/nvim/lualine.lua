@@ -35,9 +35,26 @@ local filename = function()
   return string.format("%s %s %s", fname, modified, readonly)
 end
 
+package.path = package.path .. ";" .. table.concat({ os.getenv("HOME"), ".cache", "wal", "?.lua" }, "/")
+local wal_colors = require("colors")
+
 require("lualine").setup({
   options = {
-    theme = "pywal",
+    theme = {
+      normal = {
+        a = { fg = wal_colors.foreground, bg = wal_colors.color4 },
+        b = { fg = wal_colors.foreground, bg = wal_colors.color8 },
+        c = { fg = wal_colors.foreground, bg = wal_colors.background },
+      },
+      insert = { a = { fg = wal_colors.background, bg = wal_colors.color2 } },
+      visual = { a = { fg = wal_colors.background, bg = wal_colors.color3 } },
+      replace = { a = { fg = wal_colors.background, bg = wal_colors.color1 } },
+      inactive = {
+        a = { fg = wal_colors.foreground, bg = wal_colors.color8 },
+        b = { fg = wal_colors.foreground, bg = wal_colors.color8 },
+        c = { fg = wal_colors.foreground, bg = wal_colors.color8 },
+      },
+    },
     section_separators = { left = "", right = "" },
     component_separators = { left = "", right = "" },
   },
