@@ -393,6 +393,7 @@ nmap <silent> gq :set operatorfunc=<SID>Format<CR>g@
 vmap <silent> gq :<C-U>set operatorfunc=<SID>Format<CR>gvg@
 nmap <silent> gQ :call <SID>FormatFile()<CR>
 
+" add mapping to do fugitive related tasks more quickly
 nmap <space>g :Git<space>
 
 "}}}
