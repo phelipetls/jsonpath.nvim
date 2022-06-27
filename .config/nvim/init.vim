@@ -140,9 +140,9 @@ else
 endif
 
 nnoremap <silent> <C-c><C-c> <Plug>SlimeRegionSend
-nnoremap <silent> <C-c><C-w> :exe ":SlimeSend1 " . expand('<cword>')<CR>
+nnoremap <silent> <C-c><C-w> :execute ":SlimeSend1 " . expand('<cword>')<CR>
 nnoremap <silent> <C-c>% :%SlimeSend<CR>
-nnoremap <silent> <C-c><C-l> :exe ":silent !tmux send-keys -t " . b:slime_config['target_pane'] . " '^L'"<CR>
+nnoremap <silent> <C-c><C-l> :execute ":silent !tmux send-keys -t " . b:slime_config['target_pane'] . " '^L'"<CR>
 
 " disable editorconfig for these file patterns
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
@@ -180,7 +180,7 @@ augroup GlobalAutocmds
   " after reading a buffer, jump to last position before exiting it
   autocmd BufReadPost *
         \ if line("'\"") > 0 && line("'\"") <= line("$") && &ft !~ "git" |
-        \   exe "normal g`\"" |
+        \   execute "normal g`\"" |
         \ endif
 
   " autoresize splits when vim is resized
@@ -370,7 +370,7 @@ vnoremap <silent> gx :<C-U>call <SID>OpenFileUnderCursor(v:true)<CR>
 " format range or whole file. try to not change the jumplist
 function! s:Format(type, ...)
   let motions = #{line: "'[V']", char: '`[v`]', block: '`[\<c-v>`]'}
-  silent exe 'noautocmd keepjumps normal! ' .. get(motions, a:type, '') .. 'gq'
+  silent execute 'noautocmd keepjumps normal! ' .. get(motions, a:type, '') .. 'gq'
 
   if v:shell_error > 0
     keepjumps silent undo
@@ -405,7 +405,7 @@ command! -bang Q q<bang>
 command! -bang Qall qall<bang>
 
 " show information about highlight group under cursor
-command! Hi exe 'hi ' . synIDattr(synID(line("."), col("."), 0), "name")
+command! Hi execute 'hi ' . synIDattr(synID(line("."), col("."), 0), "name")
 
 " add unimapaired-like mappings to ignore whitespace in vimdiff
 function! IwhiteToggle()
@@ -515,9 +515,9 @@ endif
 
 function! ListJump(list_type, direction, wrap)
   try
-    exe a:list_type . a:direction
+    execute a:list_type . a:direction
   catch /E553/ " wrap around last item
-    exe a:list_type . a:wrap
+    execute a:list_type . a:wrap
   catch /E42/
     return
   catch /E163/
