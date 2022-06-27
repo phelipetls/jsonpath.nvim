@@ -368,7 +368,7 @@ nnoremap <silent> gx :call <SID>OpenFileUnderCursor(v:false)<CR>
 vnoremap <silent> gx :<C-U>call <SID>OpenFileUnderCursor(v:true)<CR>
 
 " format range or whole file. try to not change the jumplist
-function! Format(type, ...)
+function! s:Format(type, ...)
   let motions = #{line: "'[V']", char: '`[v`]', block: '`[\<c-v>`]'}
   silent exe 'noautocmd keepjumps normal! ' .. get(motions, a:type, '') .. 'gq'
 
@@ -380,17 +380,17 @@ function! Format(type, ...)
   endif
 endfunction
 
-function! FormatFile()
+function! s:FormatFile()
   let w:view = winsaveview()
   keepjumps normal! gg
-  set operatorfunc=Format
+  set operatorfunc=<SID>Format
   keepjumps normal! g@G
   keepjumps call winrestview(w:view)
   unlet w:view
 endfunction
 
-nmap <silent> gq :set operatorfunc=Format<CR>g@
-nmap <silent> gQ :call FormatFile()<CR>
+nmap <silent> gq :set operatorfunc=<SID>Format<CR>g@
+nmap <silent> gQ :call <SID>FormatFile()<CR>
 
 nmap <space>g :Git<space>
 
