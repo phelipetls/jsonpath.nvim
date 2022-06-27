@@ -695,7 +695,6 @@ endif
 "{{{ text objects
 
 " number text object (integer and float)
-" --------------------------------------
 function! VisualNumber()
   call search('\d\([^0-9\.]\|$\)', 'cW')
   normal! v
@@ -705,7 +704,6 @@ xnoremap <silent> in :<C-u>call VisualNumber()<CR>
 onoremap <silent> in :<C-u>normal vin<CR>
 
 " square brackets text objects
-" ----------------------------
 xnoremap <silent> ir i[
 xnoremap <silent> ar a[
 onoremap <silent> ir :normal vi[<CR>
