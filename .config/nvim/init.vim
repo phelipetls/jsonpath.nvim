@@ -222,7 +222,7 @@ nnoremap <silent> <esc> :nohlsearch<CR>:redraw!<CR><<esc>
 nnoremap <silent> <space>ev :execute ":edit ".resolve($MYVIMRC)<CR>
 
 " source current file, only if it is .vim file
-nnoremap <silent><expr> <space>ss (&ft == "vim" ? ":source %<CR>" : "")
+nnoremap <silent><expr> <space>ss (&ft == "vim" ? ":source %<CR>" : &ft == "lua" ? ":luafile %<CR>" : "")
 
 " make <c-u> and <c-w> undoable
 inoremap <C-u> <C-g>u<C-u>
