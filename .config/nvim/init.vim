@@ -369,21 +369,28 @@ vnoremap <silent> gx :<C-U>call <SID>OpenFileUnderCursor(v:true)<CR>
 
 " format range or whole file. try to not change the jumplist
 function! Format(type, ...)
-  keepjumps normal! '[v']gq
+  let motions = #{line: "'[V']", char: '`[v`]', block: '`[\<c-v>`]'}
+  silent exe 'noautocmd keepjumps normal! ' .. get(motions, a:type, '') .. 'gq'
+
   if v:shell_error > 0
     keepjumps silent undo
+    echohl ErrorMsg
     echomsg 'formatprg "' . &formatprg . '" exited with status ' . v:shell_error
+    echohl None
   endif
 endfunction
 
-nmap <silent> gq :set opfunc=Format<CR>g@
-nmap <silent> gQ
-      \ :let w:view = winsaveview()<CR>
-      \ :set opfunc=Format<CR>
-      \ :keepjumps normal gg<CR>
-      \ :keepjumps normal gqG<CR>
-      \ :keepjumps call winrestview(w:view)<CR>
-      \ :unlet w:view
+function! FormatFile()
+  let w:view = winsaveview()
+  keepjumps normal! gg
+  set operatorfunc=Format
+  keepjumps normal! g@G
+  keepjumps call winrestview(w:view)
+  unlet w:view
+endfunction
+
+nmap <silent> gq :set operatorfunc=Format<CR>g@
+nmap <silent> gQ :call FormatFile()<CR>
 
 nmap <space>g :Git<space>
 
