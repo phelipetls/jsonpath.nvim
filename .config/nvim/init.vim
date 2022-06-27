@@ -99,7 +99,7 @@ endif
 
 " visually show special characters
 set list
-set fillchars=fold:-,vert:│
+set fillchars=fold:-,vert:│,stlnc:-
 set listchars=tab:»\ ,nbsp:¬,trail:·,extends:…,precedes:‹
 set showbreak=↳\ 
 
