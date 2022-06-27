@@ -390,6 +390,7 @@ function! s:FormatFile()
 endfunction
 
 nmap <silent> gq :set operatorfunc=<SID>Format<CR>g@
+vmap <silent> gq :<C-U>set operatorfunc=<SID>Format<CR>gvg@
 nmap <silent> gQ :call <SID>FormatFile()<CR>
 
 nmap <space>g :Git<space>
