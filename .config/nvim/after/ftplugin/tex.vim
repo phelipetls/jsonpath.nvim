@@ -20,15 +20,3 @@ setlocal formatlistpat=^\\\s*\\\\item\\s*
 
 setlocal spell spelllang=pt,en_us
 let g:tex_comment_nospell=1
-
-if executable('zathura')
-  " open document with zathura
-  nnoremap <buffer><silent> <F5> :silent !zathura %<.pdf<CR>
-
-  " synctex forward (go from line in vim to pdf)
-  nnoremap <buffer><silent> <space><space> :execute ":silent !zathura --synctex-forward " .
-        \ line(".") . ":" .
-        \ col(".") . ":" .
-        \ expand("%:t") . " " .
-        \ expand("%:r") . ".pdf"<CR>
-endif
