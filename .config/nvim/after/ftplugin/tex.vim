@@ -21,9 +21,6 @@ setlocal formatlistpat=^\\\s*\\\\item\\s*
 setlocal spell spelllang=pt,en_us
 let g:tex_comment_nospell=1
 
-" activate latexmk compiler
-compiler latexmk
-
 if executable('zathura')
   " open document with zathura
   nnoremap <buffer><silent> <F5> :silent !zathura %<.pdf<CR>
