@@ -42,7 +42,7 @@ require("lualine").setup({
   options = {
     theme = {
       normal = {
-        a = { fg = wal_colors.foreground, bg = wal_colors.color4, gui = "bold" },
+        a = { fg = wal_colors.background, bg = wal_colors.color4, gui = "bold" },
         b = { fg = wal_colors.foreground, bg = wal_colors.color8 },
         c = { fg = wal_colors.foreground, bg = wal_colors.background },
       },
