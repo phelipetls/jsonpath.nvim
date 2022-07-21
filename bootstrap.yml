@@ -24,7 +24,7 @@
     - role: fzf
     - role: pywal
       vars:
-        theme: sexy-hund
+        theme: base16-gruvbox-hard
     - role: gantsign.visual-studio-code
       users:
         # TODO: change this to be dynamic
