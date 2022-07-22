@@ -1,4 +1,4 @@
-- name: Install nvim build dependencies
+- name: Install nvim build dependencies in Ubuntu
   become: true
   apt:
     name:
@@ -15,13 +15,13 @@
       - curl
     state: present
 
-- name: Build nvim release version
+- name: Build nvim release version in Ubuntu
   community.general.make:
     chdir: deps/neovim
     params:
       CMAKE_BUILD_TYPE: Release
 
-- name: Install nvim release version
+- name: Install nvim release version in Ubuntu
   become: true
   community.general.make:
     chdir: deps/neovim

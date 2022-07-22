@@ -1,5 +1,5 @@
 ---
-- name: Add NodeSource repositories for Node.js
+- name: Add NodeSource repositories for Node.js in Ubuntu
   become: true
   loop:
     - "deb https://deb.nodesource.com/node_{{ nodejs_version }} focal main"
@@ -8,7 +8,7 @@
     repo: "{{ item }}"
     state: present
 
-- name: Install Node.js and npm
+- name: Install Node.js and npm in Ubuntu
   become: true
   apt:
     name: "nodejs={{ nodejs_version|regex_replace('x', '') }}*"
