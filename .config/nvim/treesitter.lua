@@ -42,3 +42,5 @@ require("nvim-treesitter.configs").setup({
     },
   },
 })
+
+vim.api.nvim_command([[hi link TSConstructor Function]])
