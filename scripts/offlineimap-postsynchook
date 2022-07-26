@@ -1,8 +1,2 @@
 #!/bin/bash
 set -euo pipefail
-
-pid=$(pgrep dwm-statusbar)
-
-if [[ -n "$pid" ]]; then
-  kill -SIGUSR2 "$(pgrep dwm-statusbar)"
-fi
