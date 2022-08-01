@@ -631,8 +631,8 @@ inoremap <silent><expr> <TAB>
       \ !empty(&omnifunc) ? "\<C-x>\<C-o>" :
       \ "\<C-n>"
 inoremap <silent><expr> <c-space>
-      \ !empty(&omnifunc) ? "\<C-x>\<C-o>" :
       \ coc#rpc#ready() ? coc#refresh() :
+      \ !empty(&omnifunc) ? "\<C-x>\<C-o>" :
       \ ""
 inoremap <expr><s-tab> pumvisible() ? "\<C-p>" : "\<C-h>"
 inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm() :"\<C-g>u\<CR>\<C-r>=coc#on_enter()\<CR>"
