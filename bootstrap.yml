@@ -38,6 +38,6 @@
             - "EditorConfig.EditorConfig"
     - role: hugo
       vars:
-        hugo_version: "0.96.0"
+        hugo_version: "0.101.0"
     - role: fonts
     - role: desktop
