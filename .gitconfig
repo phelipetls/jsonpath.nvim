@@ -29,9 +29,7 @@
     recent = branch -v --sort=-committerdate
     undo = reset --soft HEAD^
     recommit = commit -c ORIG_HEAD
-    current-branch = rev-parse --abbrev-ref HEAD
     track = branch --set-upstream-to
-    cb = !git-cb
 [credential]
     helper = cache
 [credential "https://github.com"]
