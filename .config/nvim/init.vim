@@ -612,7 +612,8 @@ function! s:checkBackSpace() abort
 endfunction
 
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ pumvisible() ? "\<C-n>"  :
       \ <SID>checkBackSpace() ? "\<TAB>" :
       \ coc#rpc#ready() ? coc#refresh() :
       \ !empty(&omnifunc) ? "\<C-x>\<C-o>" :
@@ -621,8 +622,8 @@ inoremap <silent><expr> <c-space>
       \ coc#rpc#ready() ? coc#refresh() :
       \ !empty(&omnifunc) ? "\<C-x>\<C-o>" :
       \ ""
-inoremap <expr><s-tab> pumvisible() ? "\<C-p>" : "\<C-h>"
-inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm() :"\<C-g>u\<CR>\<C-r>=coc#on_enter()\<CR>"
+inoremap <expr><s-tab> coc#pum#visible() ? coc#pum#prev : pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<C-r>=coc#on_enter()\<CR>"
 
 " hover
 function! s:showDocumentation()
