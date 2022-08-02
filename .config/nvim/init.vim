@@ -445,26 +445,13 @@ if executable('fzf')
   nnoremap <space>h :Help<CR>
   nnoremap <space>r :History<CR>
 
-  function! GoIntoDirectory(...)
-    let s:path = get(a:, 1, getcwd())
-    let s:source = printf('%s . %s', $FZF_ALT_C_COMMAND, shellescape(expand(s:path)))
-    call fzf#run(fzf#wrap({
-          \ 'source': s:source,
-          \ 'sink': 'edit',
-          \ 'options': '--prompt "Directory: " --preview "tree {}"'
-          \ }))
-  endfunction
-
-  nnoremap <space>cd :call GoIntoDirectory()<CR>
-  command! -complete=dir -nargs=? Cd :call GoIntoDirectory(<q-args>)
-
   function! CheckoutBranch(branch)
     execute '!' FugitiveShellCommand('checkout', a:branch)
   endfunction
 
   function! CheckoutBranchFzf()
     call fzf#run(fzf#wrap({
-          \ 'source': FugitiveShellCommand('branch', '-v', '--sort', '-committerdate', '--format', '%(refname:short)'),
+          \ 'source': FugitiveShellCommand('cb'),
           \ 'sink': function('CheckoutBranch'),
           \ 'options': '--prompt "Checkout: " --preview "' . FugitiveShellCommand('log', '--oneline') . ' {}"'
           \ }))
