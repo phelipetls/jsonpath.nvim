@@ -28,7 +28,7 @@
     st = status
     recent = branch -v --sort=-committerdate
     undo = reset --soft HEAD^
-    recommit = commit -c ORIG_HEAD
+    recommit = commit --reedit-message ORIG_HEAD
     track = branch --set-upstream-to
 [credential]
     helper = cache
