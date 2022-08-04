@@ -1,8 +1,5 @@
 scriptencoding utf-8
 
-nnoremap <silent><buffer>
-        \ zh :silent keeppatterns g@\v/\.[^\/]+/?$@d _<cr>:setl cole=3<cr>
-
 setlocal signcolumn=yes
 
 lua << EOF
