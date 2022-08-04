@@ -5,3 +5,4 @@ collections:
 roles:
   - name: gantsign.visual-studio-code
   - name: elliotweiser.osx-command-line-tools
+  - name: geerlingguy.nodejs

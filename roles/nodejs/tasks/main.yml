@@ -1,6 +1,9 @@
 ---
-- name: Install Node.js in Ubuntu
-  import_tasks: ubuntu.yml
+- name: Install Node in Ubuntu
+  include_role:
+    name: geerlingguy.nodejs
+    apply:
+      become: true
   vars:
     nodejs_version: "14.x"
   when: ansible_distribution == "Ubuntu"
