@@ -6,10 +6,16 @@
     state: present
     executable: pip3
 
+- name: Check if last_used_theme exists
+  stat:
+    path: "{{ ansible_env.HOME }}/.cache/wal/last_used_theme"
+  register: last_used_theme_result
+
 - name: Get pywal last used theme
   slurp:
     src: "{{ ansible_env.HOME }}/.cache/wal/last_used_theme"
   register: last_used_theme
+  when: last_used_theme_result.stat.exists
 
 - name: Run pywal
   command:
