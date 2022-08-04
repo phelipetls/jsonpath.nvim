@@ -6,6 +6,7 @@
       when: ansible_distribution == "MacOSX"
     - role: submodules
     - role: zsh
+    - role: cli
     - role: ranger
     - role: nodejs
       vars:
