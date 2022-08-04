@@ -61,6 +61,14 @@
     global: true
     state: present
 
+- name: Install unzip in Ubuntu
+  become: true
+  ansible.builtin.apt:
+    name:
+      - unzip
+    state: present
+  when: ansible_distribution == "Ubuntu"
+
 - name: Install stylua from GitHub releases
   unarchive:
     src: "https://github.com/JohnnyMorganz/StyLua/releases/download/v0.13.1/stylua-{{ 'macos' if ansible_facts['os_family'] == 'Darwin' else 'linux' }}.zip"
