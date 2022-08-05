@@ -1,11 +1,7 @@
 ---
 - name: Install nvim in Ubuntu
-  import_tasks: ubuntu.yml
-  when: ansible_distribution == "Ubuntu"
-
-- name: Install nvim in Fedora
-  include_tasks: fedora.yml
-  when: ansible_distribution == "Fedora"
+  import_tasks: linux.yml
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Fedora"
 
 - name: Install nvim in macOS
   import_tasks: macos.yml

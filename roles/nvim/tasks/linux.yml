@@ -1,3 +1,4 @@
+---
 - name: Install nvim build dependencies in Ubuntu
   become: true
   apt:
@@ -14,6 +15,28 @@
       - unzip
       - curl
     state: present
+  when: ansible_distribution == "Ubuntu"
+
+- name: Install nvim build dependencies
+  become: true
+  dnf:
+    name:
+      - gcc-g++
+      - ninja-build
+      - libtool
+      - autoconf
+      - automake
+      - cmake
+      - gcc
+      - gcc-c++
+      - make
+      - pkgconfig
+      - unzip
+      - patch
+      - gettext
+      - curl
+    state: present
+  when: ansible_distribution == "Fedora"
 
 - name: Build nvim release version in Ubuntu
   community.general.make:
