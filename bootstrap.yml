@@ -26,17 +26,6 @@
     - role: pywal
       vars:
         theme: base16-gruvbox-hard
-    - role: gantsign.visual-studio-code
-      users:
-        # TODO: change this to be dynamic
-        - username: phelipe
-          visual_studio_code_extensions:
-            - "eamodio.gitlens"
-            - "kahole.magit"
-            - "PhilHindle.errorlens"
-            - "sleistner.vscode-fileutils"
-            - "vscodevim.vim"
-            - "EditorConfig.EditorConfig"
     - role: hugo
       vars:
         hugo_version: "0.101.0"
