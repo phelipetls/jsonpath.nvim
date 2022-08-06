@@ -21,6 +21,7 @@
   "diagnostic.floatConfig": {"border": true, "borderhighlight": "VertSplit"},
   "hover.floatConfig": {"border": true, "borderhighlight": "VertSplit"},
   "css.lint.unknownAtRules": "ignore",
+  "html.filetypes": ["html", "htmlhugo", "htmldjango"],
   "languageserver": {
     "efm": {
       "command": "efm-langserver",
