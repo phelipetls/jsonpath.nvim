@@ -22,6 +22,8 @@
   "hover.floatConfig": {"border": true, "borderhighlight": "VertSplit"},
   "css.lint.unknownAtRules": "ignore",
   "html.filetypes": ["html", "htmlhugo", "htmldjango"],
+  "prettier.requireConfig": true,
+  "prettier.formatterPriority": 101,
   "languageserver": {
     "efm": {
       "command": "efm-langserver",
