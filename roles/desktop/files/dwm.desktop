@@ -1,6 +1,0 @@
-[Desktop Entry]
-Encoding=UTF-8
-Name=dwm
-Comment=dynamic window manager
-Exec=systemctl --user start --wait dwm-session.target
-Type=XSession
