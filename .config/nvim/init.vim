@@ -444,6 +444,7 @@ if executable('fzf')
   nnoremap <space>f :Files<CR>
   nnoremap <space>h :Help<CR>
   nnoremap <space>r :History<CR>
+  nnoremap <space>p :Commands<CR>
 
   function! CheckoutBranch(branch)
     execute '!' FugitiveShellCommand('checkout', a:branch)
