@@ -37,6 +37,22 @@ tools:
     format-command: 'eslint_d --fix-to-stdout --stdin --stdin-filename ${INPUT}'
     format-stdin: true
 
+  prettierd: &prettierd
+    format-command: 'prettierd "${INPUT}"'
+    format-stdin: true
+    require-marker: true
+    root-markers:
+      - .prettierrc
+      - .prettierrc.json
+      - .prettierrc.json5
+      - .prettierrc.yml
+      - .prettierrc.yaml
+      - .prettierrc.toml
+      - .prettierrc.js
+      - .prettierrc.cjs
+      - .prettierrc.config.js
+      - .prettierrc.config.cjs
+
   vim-vint: &vim-vint
     lint-command: 'vint --enable-neovim --stdin-display-name ${INPUT} -'
     lint-stdin: true
@@ -66,15 +82,19 @@ languages:
 
   javascript:
     - <<: *eslint_d
+    - <<: *prettierd
 
   typescript:
     - <<: *eslint_d
+    - <<: *prettierd
 
   javascriptreact:
     - <<: *eslint_d
+    - <<: *prettierd
 
   typescriptreact:
     - <<: *eslint_d
+    - <<: *prettierd
 
   vim:
     - <<: *vim-vint

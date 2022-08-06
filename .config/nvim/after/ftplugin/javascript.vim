@@ -37,7 +37,9 @@ if executable('node')
   noremap <buffer> <F5> :w !node<CR>
 endif
 
-if executable('npx')
+if executable('prettierd')
+  set formatprg=prettierd\ %
+elseif executable('npx')
   set formatprg=npx\ prettier\ --stdin-filepath\ %
 elseif executable('eslint_d')
   let &l:formatprg='eslint_d --fix-to-stdout --stdin'
