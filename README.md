@@ -31,11 +31,7 @@ cd dotfiles
 
 # Install Ansible
 
-It's best to install Ansible using a virtual env
-
 ```sh
-python3 -m venv venv
-source venv/bin/activate
 ./install
 ```
 
