@@ -519,8 +519,8 @@ endfunction
 " wrap around when navigating the quickfix list
 nnoremap <silent> ]q :call ListJump("c", "next", "first")<CR>
 nnoremap <silent> [q :call ListJump("c", "previous", "last")<CR>
-nnoremap <silent> ]w :call ListJump("l", "after", "first")<CR>
-nnoremap <silent> [w :call ListJump("l", "before", "last")<CR>
+nnoremap <silent> ]l :call ListJump("l", "after", "first")<CR>
+nnoremap <silent> [l :call ListJump("l", "before", "last")<CR>
 
 if has('nvim')
   command! -nargs=* -complete=file_in_path Make lua require'async_make'.make(<q-args>)
@@ -571,7 +571,7 @@ endfunction
 
 if has('nvim')
   nnoremap <silent> <space>q :call ToggleQuickfixList()<CR>
-  nnoremap <silent> <space>w :call ToggleLocationList()<CR>
+  nnoremap <silent> <space>l :call ToggleLocationList()<CR>
 endif
 
 augroup QuickFix
