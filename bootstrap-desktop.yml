@@ -1,0 +1,6 @@
+---
+- name: Bootstrap desktop environment
+  hosts: localhost
+  roles:
+    - role: fonts
+    - role: desktop
