@@ -43,6 +43,7 @@ packadd! vim-slime
 packadd! LargeFile
 if has('nvim')
   packadd! coc.nvim
+  packadd! coc-fzf
 endif
 
 " web development
@@ -673,6 +674,9 @@ let g:coc_quickfix_open_command = 'doautocmd QuickFixCmdPost | cfirst'
 command! -nargs=0 References :call CocActionAsync('jumpReferences')
 command! -nargs=0 Fmt :call CocAction('format')
 command! -nargs=0 OR :call CocActionAsync('runCommand', 'editor.action.organizeImport')
+
+" coc-fzf
+nnoremap <space>c :CocFzfList commands<CR>
 
 "}}}
 "{{{ treesitter

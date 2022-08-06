@@ -137,3 +137,6 @@
 [submodule "LargeFile"]
 	path = .config/nvim/pack/plugins/opt/LargeFile
 	url = https://github.com/vim-scripts/LargeFile
+[submodule "coc-fzf"]
+	path = .config/nvim/pack/plugins/opt/coc-fzf
+	url = https://github.com/antoinemadec/coc-fzf
