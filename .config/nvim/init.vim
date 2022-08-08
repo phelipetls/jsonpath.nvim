@@ -370,6 +370,11 @@ vnoremap <silent> gx :<C-U>call <SID>OpenFileUnderCursor(v:true)<CR>
 
 " format range or whole file. try to not change the jumplist
 function! s:Format(type, ...)
+  if CocHasProvider('formatRange')
+    call CocAction('formatSelected', a:type)
+    return
+  endif
+
   let motions = #{line: "'[V']", char: '`[v`]', block: '`[\<c-v>`]'}
   silent execute 'noautocmd keepjumps normal! ' .. get(motions, a:type, '') .. 'gq'
 
