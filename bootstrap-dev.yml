@@ -23,9 +23,6 @@
     - role: mutt
     - role: stow
     - role: fzf
-    - role: pywal
-      vars:
-        theme: base16-gruvbox-hard
     - role: hugo
       vars:
         hugo_version: "0.101.0"
