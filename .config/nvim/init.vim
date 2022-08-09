@@ -59,7 +59,7 @@ endif
 "{{{ settings
 
 set termguicolors
-colorscheme pywal
+colorscheme github_dark_default
 
 filetype plugin indent on
 

@@ -40,21 +40,6 @@ local wal_colors = require("colors")
 
 require("lualine").setup({
   options = {
-    theme = {
-      normal = {
-        a = { fg = wal_colors.background, bg = wal_colors.color4, gui = "bold" },
-        b = { fg = wal_colors.foreground, bg = wal_colors.color8 },
-        c = { fg = wal_colors.foreground, bg = wal_colors.background },
-      },
-      insert = { a = { fg = wal_colors.background, bg = wal_colors.color2, gui = "bold" } },
-      visual = { a = { fg = wal_colors.background, bg = wal_colors.color3, gui = "bold" } },
-      replace = { a = { fg = wal_colors.background, bg = wal_colors.color1, gui = "bold" } },
-      inactive = {
-        a = { fg = wal_colors.foreground, bg = wal_colors.background },
-        b = { fg = wal_colors.foreground, bg = wal_colors.background },
-        c = { fg = wal_colors.foreground, bg = wal_colors.background },
-      },
-    },
     section_separators = { left = "", right = "" },
     component_separators = { left = "", right = "" },
   },
