@@ -24,6 +24,7 @@
   "html.filetypes": ["html", "htmlhugo", "htmldjango"],
   "prettier.requireConfig": true,
   "prettier.formatterPriority": 101,
+  "eslint.autoFixOnSave": true,
   "languageserver": {
     "efm": {
       "command": "efm-langserver",
