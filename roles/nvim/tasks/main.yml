@@ -1,5 +1,5 @@
 ---
-- name: Install nvim in Ubuntu
+- name: Install nvim in Linux
   import_tasks: linux.yml
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Fedora"
 
