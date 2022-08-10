@@ -122,6 +122,20 @@ endif
 " see https://github.com/neoclide/coc.nvim/wiki/Using-workspaceFolders#persist-workspace-folders
 set sessionoptions+=globals
 
+if has('wsl')
+  let g:clipboard = {
+        \   'name': 'Windows',
+        \   'copy': {
+        \     '+': 'clip.exe',
+        \     '*': 'clip.exe',
+        \   },
+        \   'paste': {
+        \     '+': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+        \     '*': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+        \   },
+        \ }
+endif
+
 "}}}
 "{{{ plugins config
 
