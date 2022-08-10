@@ -43,7 +43,6 @@ packadd! vim-slime
 packadd! LargeFile
 if has('nvim')
   packadd! coc.nvim
-  packadd! coc-fzf
 endif
 
 " web development
