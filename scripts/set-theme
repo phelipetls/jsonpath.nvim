@@ -1,3 +1,0 @@
-#!/bin/bash
-theme=$(wal --theme | awk '/-/ { print $2 }' | fzf --height 40%)
-wal -f "$theme"
