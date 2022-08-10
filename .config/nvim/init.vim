@@ -631,7 +631,7 @@ inoremap <silent><expr> <c-space>
       \ coc#rpc#ready() ? coc#refresh() :
       \ !empty(&omnifunc) ? "\<C-x>\<C-o>" :
       \ ""
-inoremap <expr><s-tab> coc#pum#visible() ? coc#pum#prev : pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <expr><s-tab> coc#pum#visible() ? coc#pum#prev(1) : pumvisible() ? "\<C-p>" : "\<C-h>"
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<C-r>=coc#on_enter()\<CR>"
 
 " hover
