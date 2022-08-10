@@ -113,6 +113,11 @@ if [ -d "/opt/homebrew/bin" ]; then
   export PATH="$PATH:/opt/homebrew/bin"
 fi
 
+# Persist ssh session across shells in WSL
+if [ -f "$HOME/.keychain/$HOSTNAME-sh" ]; then
+  source "$HOME/.keychain/$HOSTNAME-sh"
+fi
+
 # Add default less options
 # -F to quit automatically if the file is shorter than the screen
 # -X to not clear the screen after quitting
