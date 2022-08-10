@@ -25,6 +25,7 @@
   "prettier.requireConfig": true,
   "prettier.formatterPriority": 101,
   "eslint.autoFixOnSave": true,
+  "suggest.noselect": true,
   "languageserver": {
     "efm": {
       "command": "efm-langserver",
