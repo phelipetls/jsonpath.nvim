@@ -681,8 +681,8 @@ command! -nargs=0 References :call CocActionAsync('jumpReferences')
 command! -nargs=0 Fmt :call CocAction('format')
 command! -nargs=0 OR :call CocActionAsync('runCommand', 'editor.action.organizeImport')
 
-" coc-fzf
-nnoremap <space>c :CocFzfList commands<CR>
+" better ui to run coc command
+nnoremap <space>c :CocList commands<CR>
 
 "}}}
 "{{{ treesitter
