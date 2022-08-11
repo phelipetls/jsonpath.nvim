@@ -26,6 +26,7 @@
       - htop
       - python3-pip
       - pass
+      - git-delta
     state: present
   when: ansible_distribution == "Fedora"
 
@@ -37,7 +38,16 @@
     - fd
     - jq
     - htop
+    - git-delta
   community.general.homebrew:
     name: "{{ item }}"
     state: present
   when: ansible_distribution == "MacOSX"
+
+- name: Install git-delta in Ubuntu
+  become: true
+  apt:
+    deb: "https://github.com/dandavison/delta/releases/download/{{ git_delta_version }}/git-delta_{{ git_delta_version }}_arm64.deb"
+  vars:
+    git_delta_version: 0.13.0
+  when: ansible_distribution == "Ubuntu"

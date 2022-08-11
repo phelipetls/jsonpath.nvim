@@ -13,7 +13,6 @@
         npm_config_prefix: "{{ ansible_env.HOME }}/.npm-packages"
         nodejs_npm_global_packages:
           - n
-          - diff-so-fancy
           - npm-merge-driver
           - "@tailwindcss/language-server"
     - role: efm-langserver

@@ -4,7 +4,7 @@
 [commit]
     verbose = true
 [core]
-    pager = diff-so-fancy | less --tabs=4
+    pager = delta
     editor = nvim
     attributesfile = ~/.gitattributes
 [merge]
@@ -34,21 +34,17 @@
     helper = cache
 [credential "https://github.com"]
     username = phelipetls
-[color]
-    [diff]
-        meta = "11"
-        frag = "magenta bold"
-        commit = "yellow bold"
-        old = "red bold"
-        new = "green bold"
-        whitespace = "red reverse"
-    [diff-highlight]
-        oldNormal = "red bold"
-        oldHighlight = "red bold 52"
-        newNormal = "green bold"
-        newHighlight = "green bold 22"
 [merge "npm-merge-driver"]
     name = automatically merge npm lockfiles
     driver = npx npm-merge-driver merge %A %O %B %P
 [includeIf "gitdir:~/work/"]
     path = ~/work/.gitconfig
+[interactive]
+    diffFilter = delta --color-only
+[add.interactive]
+    useBuiltin = false # required for git 2.37.0
+[delta]
+    navigate = true    # use n and N to move between diff sections
+    light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+[diff]
+    colorMoved = default
