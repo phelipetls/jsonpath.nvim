@@ -6,7 +6,7 @@
 [core]
     pager = diff-so-fancy | less --tabs=4
     editor = nvim
-    attributesfile = /home/phelipe/.gitattributes
+    attributesfile = ~/.gitattributes
 [merge]
     tool = diffconflicts
 [mergetool "nvimdiff2"]
