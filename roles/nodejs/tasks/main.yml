@@ -1,5 +1,5 @@
 ---
-- name: Install Node in Ubuntu
+- name: Install Node.js in Ubuntu
   include_role:
     name: geerlingguy.nodejs
     apply:
