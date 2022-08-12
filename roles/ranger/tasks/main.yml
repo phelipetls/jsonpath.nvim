@@ -5,8 +5,3 @@
       - ranger-fm
     state: present
     executable: pip3
-
-- name: Set up ranger desktop entry
-  copy:
-    src: ranger.desktop
-    dest: "{{ ansible_env.HOME }}/.local/share/applications/"
