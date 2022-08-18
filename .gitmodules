@@ -97,24 +97,31 @@
 [submodule "nvim-web-devicons"]
 	path = .config/nvim/pack/plugins/opt/nvim-web-devicons
 	url = https://github.com/kyazdani42/nvim-web-devicons
+	ignore = dirty
 [submodule "neovim"]
 	path = deps/neovim
 	url = https://github.com/neovim/neovim
+	ignore = dirty
 [submodule "fzf"]
 	path = .fzf
 	url = https://github.com/junegunn/fzf
+	ignore = dirty
 [submodule "zsh-autosuggestions"]
 	path = zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
+	ignore = dirty
 [submodule "git-toolbelt"]
 	path = git-toolbelt
 	url = https://github.com/nvie/git-toolbelt
+	ignore = dirty
 [submodule "vim-sleuth"]
 	path = .config/nvim/pack/plugins/opt/vim-sleuth
 	url = https://github.com/tpope/vim-sleuth
+	ignore = dirty
 [submodule "lualine.nvim"]
 	path = .config/nvim/pack/plugins/opt/lualine.nvim
 	url = https://github.com/nvim-lualine/lualine.nvim
+	ignore = dirty
 [submodule "inline_edit.vim"]
 	path = .config/nvim/pack/plugins/opt/inline_edit.vim
 	url = https://github.com/AndrewRadev/inline_edit.vim
@@ -122,21 +129,28 @@
 [submodule "nvim-ts-context-commentstring"]
 	path = .config/nvim/pack/plugins/opt/nvim-ts-context-commentstring
 	url = https://github.com/JoosepAlviste/nvim-ts-context-commentstring
+	ignore = dirty
 [submodule "nvim-ts-autotag"]
 	path = .config/nvim/pack/plugins/opt/nvim-ts-autotag
 	url = https://github.com/windwp/nvim-ts-autotag
+	ignore = dirty
 [submodule "playground"]
 	path = .config/nvim/pack/plugins/opt/playground
 	url = https://github.com/nvim-treesitter/playground
+	ignore = dirty
 [submodule "plenary.nvim"]
 	path = .config/nvim/pack/plugins/opt/plenary.nvim
 	url = https://github.com/nvim-lua/plenary.nvim
+	ignore = dirty
 [submodule "rnvimr"]
 	path = .config/nvim/pack/plugins/opt/rnvimr
 	url = https://github.com/kevinhwang91/rnvimr
+	ignore = dirty
 [submodule "LargeFile"]
 	path = .config/nvim/pack/plugins/opt/LargeFile
 	url = https://github.com/vim-scripts/LargeFile
+	ignore = dirty
 [submodule "github-nvim-theme"]
 	path = .config/nvim/pack/plugins/start/github-nvim-theme
 	url = https://github.com/projekt0n/github-nvim-theme
+	ignore = dirty
