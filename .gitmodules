@@ -142,10 +142,6 @@
 	path = .config/nvim/pack/plugins/opt/plenary.nvim
 	url = https://github.com/nvim-lua/plenary.nvim
 	ignore = dirty
-[submodule "rnvimr"]
-	path = .config/nvim/pack/plugins/opt/rnvimr
-	url = https://github.com/kevinhwang91/rnvimr
-	ignore = dirty
 [submodule "LargeFile"]
 	path = .config/nvim/pack/plugins/opt/LargeFile
 	url = https://github.com/vim-scripts/LargeFile
