@@ -378,6 +378,12 @@ function! s:OpenFileUnderCursor(is_visual_mode)
   endif
 
   call system(printf('%s %s', s:open_command, shellescape(s:fname)))
+
+  if v:shell_error > 0
+    echohl ErrorMsg
+    echo 'Could not open ' .. s:fname .. ' with program ' .. s:open_command
+    echohl None
+  endif
 endfunction
 
 nnoremap <silent> gx :call <SID>OpenFileUnderCursor(v:false)<CR>
