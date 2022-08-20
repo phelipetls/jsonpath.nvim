@@ -352,20 +352,27 @@ function! s:getVisualSelection()
 endfunction
 
 function! s:OpenFileUnderCursor(is_visual_mode)
-  let s:open_command =
-        \ has('mac') && executable('open') ?
-        \ 'open'
-        \ : has('unix') && executable('xdg-open')
-        \ ? 'xdg-open'
-        \ : has('wsl') && executable('wslview') ?
-        \ 'wslview'
-        \ : ''
+  let s:open_command = ''
+
+  if has('mac')
+    let s:open_command = 'open'
+  elseif has('unix')
+    let s:open_command = 'xdg-open'
+  elseif has('wsl')
+    let s:open_command = 'wslview'
+  endif
 
   if empty(s:open_command)
     echohl ErrorMsg
     echo 'Could not determine a command to open file'
     echohl None
+    return
+  endif
 
+  if !executable(s:open_command)
+    echohl ErrorMsg
+    echo 'The program ' .. s:open_command .. ' is not executable'
+    echohl None
     return
   endif
 
@@ -377,7 +384,7 @@ function! s:OpenFileUnderCursor(is_visual_mode)
     let s:fname = expand('<cfile>')
   endif
 
-  call system(printf('%s %s', s:open_command, shellescape(s:fname)))
+  call system(s:open_command .. ' ' .. shellescape(s:fname))
 
   if v:shell_error > 0
     echohl ErrorMsg
