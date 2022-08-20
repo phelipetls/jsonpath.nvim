@@ -1,5 +1,3 @@
-source "$HOME/.profile"
-
 # Set up the prompt
 autoload -Uz promptinit
 promptinit
@@ -164,3 +162,5 @@ function _fzf_compgen_dir {
 
 # enable zsh-autosuggestions
 source ~/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+source "$HOME/.profile"
