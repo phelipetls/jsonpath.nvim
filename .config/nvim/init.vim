@@ -471,7 +471,7 @@ if executable('fzf')
 
   function! CheckoutBranchFzf()
     call fzf#run(fzf#wrap({
-          \ 'source': FugitiveShellCommand('cb'),
+          \ 'source': FugitiveShellCommand('branch', '-v', '--sort', '-committerdate', '--format', '%(refname:short)'),
           \ 'sink': function('CheckoutBranch'),
           \ 'options': '--prompt "Checkout: " --preview "' . FugitiveShellCommand('log', '--oneline') . ' {}"'
           \ }))
