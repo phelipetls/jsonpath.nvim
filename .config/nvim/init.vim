@@ -357,6 +357,8 @@ function! s:OpenFileUnderCursor(is_visual_mode)
         \ 'open'
         \ : has('unix') && executable('xdg-open')
         \ ? 'xdg-open'
+        \ : has('wsl') && executable('wslview') ?
+        \ 'wslview'
         \ : ''
 
   if empty(s:open_command)
