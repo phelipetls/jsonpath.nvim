@@ -150,3 +150,7 @@
 	path = .config/nvim/pack/plugins/start/github-nvim-theme
 	url = https://github.com/projekt0n/github-nvim-theme
 	ignore = dirty
+[submodule "fzf-git"]
+	path = fzf-git.sh
+	url = https://github.com/junegunn/fzf-git.sh
+	ignore = dirty
