@@ -91,11 +91,11 @@ zstyle ':completion:*' use-compctl false
 typeset -A key
 
 function zle-line-init () {
-    echoti smkx
+  echoti smkx
 }
 
 function zle-line-finish () {
-    echoti rmkx
+  echoti rmkx
 }
 
 zle -N zle-line-init
