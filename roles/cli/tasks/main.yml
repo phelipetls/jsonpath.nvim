@@ -14,6 +14,14 @@
     state: present
   when: ansible_distribution == "Ubuntu"
 
+- name: Install git-delta in Ubuntu
+  become: true
+  apt:
+    deb: "https://github.com/dandavison/delta/releases/download/{{ git_delta_version }}/git-delta_{{ git_delta_version }}_amd64.deb"
+  vars:
+    git_delta_version: 0.13.0
+  when: ansible_distribution == "Ubuntu"
+
 - name: Install CLI tools in Fedora
   become: true
   dnf:
@@ -43,11 +51,3 @@
     name: "{{ item }}"
     state: present
   when: ansible_distribution == "MacOSX"
-
-- name: Install git-delta in Ubuntu
-  become: true
-  apt:
-    deb: "https://github.com/dandavison/delta/releases/download/{{ git_delta_version }}/git-delta_{{ git_delta_version }}_amd64.deb"
-  vars:
-    git_delta_version: 0.13.0
-  when: ansible_distribution == "Ubuntu"
