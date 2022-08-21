@@ -90,6 +90,8 @@ zstyle ':completion:*' use-compctl false
 # (ZSE). See https://gist.github.com/AbigailBuccaneer/1fcf12edf13e03e45030
 typeset -A key
 
+# Finally, make sure the terminal is in application mode, when zle is
+# active. Only then are the values from $terminfo valid.
 function zle-line-init () {
   echoti smkx
 }
