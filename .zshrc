@@ -108,9 +108,10 @@ autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
 
-# Enable Ctrl+Left and Ctrl+Right
 key[Up]="${terminfo[kcuu1]}"
 key[Down]="${terminfo[kcud1]}"
+key[Control-Left]="${terminfo[kLFT5]}"
+key[Control-Right]="${terminfo[kRIT5]}"
 
 if [[ -n "${key[Up]}" ]]; then
   bindkey -- "${key[Up]}" up-line-or-beginning-search
@@ -120,10 +121,6 @@ if [[ -n "${key[Down]}" ]]; then
   bindkey -- "${key[Down]}" down-line-or-beginning-search
 fi
 
-# Enable Ctrl+Left and Ctrl+Right
-key[Control-Left]="${terminfo[kLFT5]}"
-key[Control-Right]="${terminfo[kRIT5]}"
-
 if [[ -n "${key[Control-Left]}"  ]]; then
   bindkey -- "${key[Control-Left]}" backward-word
 fi
@@ -132,15 +129,15 @@ if [[ -n "${key[Control-Right]}" ]]; then
   bindkey -- "${key[Control-Right]}" forward-word
 fi
 
-# Enable Ctrl-X + Ctrl-E to edit command in $EDITOR
-autoload -z edit-command-line
-zle -N edit-command-line
-bindkey "^X^E" edit-command-line
-
 # Add Shift+Tab to move through completion menu backwards
 if [[ "${terminfo[kcbt]}" != "" ]]; then
   bindkey "${terminfo[kcbt]}" reverse-menu-complete
 fi
+
+# Enable Ctrl-X + Ctrl-E to edit command in $EDITOR
+autoload -z edit-command-line
+zle -N edit-command-line
+bindkey "^X^E" edit-command-line
 
 export _JAVA_AWT_WM_NONREPARENTING=1 # Needed for Android Studio to work in DWM
 
