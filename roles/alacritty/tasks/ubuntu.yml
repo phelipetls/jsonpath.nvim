@@ -1,0 +1,12 @@
+---
+- name: Add apt repository to install Alacritty
+  become: true
+  apt_repository:
+    repo: ppa:aslatter/ppa
+    state: present
+
+- name: Install Alacritty in Ubuntu
+  become: true
+  apt:
+    name: alacritty
+    state: present
