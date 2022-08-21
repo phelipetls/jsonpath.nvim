@@ -114,8 +114,8 @@ if [ -d "/opt/homebrew/bin" ]; then
 fi
 
 # Persist ssh session across shells in WSL
-if [ -f "$HOME/.keychain/$HOSTNAME-sh" ]; then
-  source "$HOME/.keychain/$HOSTNAME-sh"
+if uname -a | grep -iq Microsoft && keychain --quiet; then
+  eval "$(keychain --quiet --eval id_rsa)"
 fi
 
 # Add default less options
