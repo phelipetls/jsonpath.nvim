@@ -102,6 +102,10 @@ fi
 
 if [ -f "$HOME/fzf-git.sh/fzf-git.sh" ]; then
   source "$HOME/fzf-git.sh/fzf-git.sh"
+
+  if [[ -n "$ZSH_VERSION" ]]; then
+    bindkey "^g^g" fzf-git-branches-widget
+  fi
 fi
 
 # Add default less options
