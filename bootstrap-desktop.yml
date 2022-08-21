@@ -4,4 +4,3 @@
   roles:
     - role: fonts
     - role: desktop
-    - role: alacritty
