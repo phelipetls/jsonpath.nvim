@@ -460,6 +460,99 @@ if has('nvim')
   luafile $HOME/.config/nvim/lualine.lua
 endif
 
+function! GetHighlightParams(base)
+  redir => l:basehl
+    silent! exe 'highlight' a:base
+  redir END
+
+  let l:linkstohl = matchlist(l:basehl, 'links to \(\k*\)')
+  if (len(l:linkstohl) > 2 && !empty(l:linkstohl[1]))
+    return GetHighlightParams(l:linkstohl[1])
+  endif
+
+  let l:params = split(l:basehl, '\n')[0]
+  let l:params = substitute(l:params, '^' . a:base . '\s\+xxx', '', '')
+  return l:params
+endfunction
+
+function! GetFg(params)
+  return matchstr(a:params, 'guifg=\zs[^ ]\+')
+endfunction
+
+function! CreateHighlightWithDifferentForeground(base, group, fg)
+  let l:params = GetHighlightParams(a:base)
+  if !empty(a:fg)
+    let l:params = substitute(l:params, 'guifg=\zs[^ ]\+', a:fg, '')
+  endif
+  exe 'highlight! ' a:group l:params
+endfunction
+
+lua << EOF
+  function _G.get_icon_color(...)
+    local _, color = require'nvim-web-devicons'.get_icon(...)
+    return color
+  end
+EOF
+
+function! Tabline() abort
+  let l:tabline = ''
+  for tab in range(1, tabpagenr('$'))
+    " Get tab infos
+    let l:winnr = tabpagewinnr(tab)
+
+    " Get buf infos
+    let l:buflist = tabpagebuflist(tab)
+    let l:bufspnr = buflist[l:winnr - 1]
+    let l:bufname = bufname(l:bufspnr)
+    let l:fname = fnamemodify(l:bufname, ':t')
+    let l:ext = fnamemodify(l:bufname, ':e')
+
+    " Set tab state
+    let l:tabline .= '%' . tab . 'T'
+
+    " Get tab highlight group
+    let l:is_tab_selected = tab == tabpagenr()
+    let l:tabline_hl = l:is_tab_selected ? 'TabLineSel' : 'TabLine'
+    let l:tabline .= '%#' . l:tabline_hl . '#'
+
+    let l:spacing = repeat(' ', 2)
+
+    let l:tabline .= l:spacing
+
+    " Set tab icon
+    if has('nvim-0.5.0')
+      let l:tab_icon = luaeval('require"nvim-web-devicons".get_icon(_A[1],_A[2],{default=true})', [l:fname, l:ext])
+      let l:tab_icon_color = luaeval('get_icon_color(_A[1], _A[2], {default=true})', [l:fname, l:ext])
+
+      let l:new_highlight_name = l:tabline_hl . l:tab_icon_color
+      call CreateHighlightWithDifferentForeground(
+            \ l:tabline_hl,
+            \ l:new_highlight_name,
+            \ GetFg(GetHighlightParams(l:tab_icon_color))
+            \ )
+      let l:tabline .= '%#' . l:new_highlight_name . '#'
+      let l:tabline .=  l:tab_icon
+      let l:tabline .= ' '
+    endif
+
+    " Set tab highlight
+    let l:tabline .= '%#' . l:tabline_hl . '#'
+
+    " Set tab label
+    if (empty(bufname))
+      let l:tabline .= '[No Name]'
+    else
+      let l:tabline .= '%-0.20f'
+    endif
+
+    let l:tabline .= l:spacing
+  endfor
+  let l:tabline .= '%#TabLineFill#'
+  return l:tabline
+endfunction
+
+set tabline=%!Tabline()
+
 ""}}}
 "{{{ file navigation
 
