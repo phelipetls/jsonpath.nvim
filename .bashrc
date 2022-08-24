@@ -4,8 +4,6 @@ case $- in
   *) return;;
 esac
 
-source "$HOME/.profile"
-
 export EDITOR=nvim
 
 # don't put duplicate lines or lines starting with space in the history.
