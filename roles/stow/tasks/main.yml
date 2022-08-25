@@ -11,6 +11,14 @@
   import_tasks: macos.yml
   when: ansible_distribution == "MacOSX"
 
+- name: Remove file that will conflict with Stow
+  loop:
+    - .bashrc
+    - .profile
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/{{ item }}"
+    state: absent
+
 - name: Run stow
   shell: "stow . --target {{ ansible_env.HOME }} --verbose=2"
   register: result
