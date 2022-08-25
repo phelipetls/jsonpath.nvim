@@ -471,13 +471,14 @@ function! Tabline() abort
   let l:tabline = ''
   for tab in range(1, tabpagenr('$'))
     " Get tab infos
-    let l:winnr = tabpagewinnr(tab)
+    let l:tabwinnr = tabpagewinnr(tab)
 
     " Get buf infos
     let l:buflist = tabpagebuflist(tab)
-    let l:bufspnr = buflist[l:winnr - 1]
-    let l:bufname = bufname(l:bufspnr)
+    let l:tabbufnr = l:buflist[l:tabwinnr - 1]
+    let l:bufname = bufname(l:tabbufnr)
     let l:fname = fnamemodify(l:bufname, ':t')
+    let l:dir = fnamemodify(l:bufname, ':h:r')
     let l:ext = fnamemodify(l:bufname, ':e')
 
     " Set tab state
@@ -496,10 +497,10 @@ function! Tabline() abort
     let l:tabline .= '%#' . l:tabline_hl . '#'
 
     " Set tab label
-    if (empty(bufname))
+    if (empty(l:bufname))
       let l:tabline .= '[No Name]'
     else
-      let l:tabline .= '%-0.20f'
+      let l:tabline .= l:fname
     endif
 
     let l:tabline .= l:spacing
