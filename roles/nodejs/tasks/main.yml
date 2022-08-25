@@ -37,7 +37,7 @@
     create: true
 
 - name: Install global packages
-  loop: "{{ nodejs_npm_global_packages }}"
+  loop: "{{ npm_global_packages }}"
   community.general.npm:
     name: "{{ item }}"
     state: present
