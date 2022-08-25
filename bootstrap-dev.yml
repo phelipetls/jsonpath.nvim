@@ -11,7 +11,7 @@
     - role: nodejs
       vars:
         npm_config_prefix: "{{ ansible_env.HOME }}/.npm-packages"
-        nodejs_npm_global_packages:
+        npm_global_packages:
           - n
           - npm-merge-driver
           - "@tailwindcss/language-server"
