@@ -25,8 +25,3 @@
   get_url:
     url: https://github.com/adobe-fonts/source-code-pro/blob/29fdb884c6e9dc2a312f4a5e2bb3b2dad2350777/TTF/SourceCodePro-Medium.ttf?raw=true
     dest: "{{ fonts_path }}/SourceCodePro-Medium.ttf"
-
-- name: Install Sauce Code Pro
-  get_url:
-    url: https://github.com/ryanoasis/nerd-fonts/blob/ab6fa3c562c552750dce08e638f1213d67b5b05c/patched-fonts/SourceCodePro/Medium/complete/Sauce%20Code%20Pro%20Medium%20Nerd%20Font%20Complete.ttf?raw=true
-    dest: "{{ fonts_path }}/Sauce Code Pro Medium Nerd Font Complete.ttf"
