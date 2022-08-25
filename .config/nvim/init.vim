@@ -478,7 +478,7 @@ function! Tabline() abort
     let l:tabbufnr = l:buflist[l:tabwinnr - 1]
     let l:bufname = bufname(l:tabbufnr)
     let l:fname = fnamemodify(l:bufname, ':t')
-    let l:dir = fnamemodify(l:bufname, ':h:r')
+    let l:dir = fnamemodify(l:bufname, ':p:h:t')
     let l:ext = fnamemodify(l:bufname, ':e')
 
     " Set tab state
@@ -499,6 +499,8 @@ function! Tabline() abort
     " Set tab label
     if (empty(l:bufname))
       let l:tabline .= '[No Name]'
+    elseif l:fname =~# '^index\.\k\+$'
+      let l:tabline .= l:dir . '/' . l:fname
     else
       let l:tabline .= l:fname
     endif
