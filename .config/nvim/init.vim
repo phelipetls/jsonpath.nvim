@@ -499,6 +499,8 @@ function! Tabline() abort
     " Set tab label
     if (empty(l:bufname))
       let l:tabline .= '[No Name]'
+    elseif l:bufname =~# '^fugitive'
+      let l:tabline .= 'fugitive'
     elseif l:fname =~# '^index\.\k\+$'
       let l:tabline .= l:dir . '/' . l:fname
     else
