@@ -57,7 +57,11 @@ endif
 "{{{ settings
 
 set termguicolors
-colorscheme github_dark_default
+if has('nvim')
+  colorscheme github_dark_default
+else
+  colorscheme evening
+endif
 
 filetype plugin indent on
 
