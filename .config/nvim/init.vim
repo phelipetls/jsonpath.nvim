@@ -30,7 +30,7 @@ packadd! git-messenger.vim
 packadd! vim-dirvish
 
 " fuzzy finder
-set rtp+=~/.fzf
+set runtimepath+=~/.fzf
 packadd! fzf.vim
 
 " vim specific improvements
