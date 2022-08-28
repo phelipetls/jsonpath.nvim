@@ -94,10 +94,6 @@
 	path = .config/nvim/pack/plugins/opt/vim-rhubarb
 	url = https://github.com/tpope/vim-rhubarb
 	ignore = dirty
-[submodule "nvim-web-devicons"]
-	path = .config/nvim/pack/plugins/opt/nvim-web-devicons
-	url = https://github.com/kyazdani42/nvim-web-devicons
-	ignore = dirty
 [submodule "neovim"]
 	path = deps/neovim
 	url = https://github.com/neovim/neovim

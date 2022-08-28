@@ -49,7 +49,6 @@ packadd! vim-hugo
 
 " aesthetics
 if has('nvim-0.5.0')
-  packadd! nvim-web-devicons
   packadd! lualine.nvim
 endif
 
