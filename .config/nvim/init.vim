@@ -500,6 +500,8 @@ function! Tabline() abort
     " Set tab label
     if (empty(l:bufname))
       let l:tabline .= '[No Name]'
+    elseif getbufvar(l:tabbufnr, '&filetype') ==# 'dirvish'
+      let l:tabline .= fnamemodify(l:bufname, ':p')
     elseif l:bufname =~# '^fugitive'
       let l:tabline .= 'fugitive'
     elseif l:fname =~# '^index\.\k\+$'
