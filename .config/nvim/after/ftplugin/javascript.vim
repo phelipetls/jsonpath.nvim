@@ -40,8 +40,6 @@ if executable('npx')
 endif
 
 let b:surround_{char2nr('c')} = "console.log(\r)"
-let b:surround_{char2nr('C')} = "console.log(JSON.stringify(\r, null, 2))"
-let b:surround_{char2nr('j')} = "JSON.stringify(\r, null, 2)"
 let b:surround_{char2nr('e')} = "${\r}"
 
 nnoremap <buffer> [<C-c> "zyiwOconsole.log(z)<Esc>
