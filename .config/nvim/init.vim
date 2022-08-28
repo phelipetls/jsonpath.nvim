@@ -40,9 +40,7 @@ packadd! editorconfig-vim
 packadd! cfilter
 packadd! vim-slime
 packadd! LargeFile
-if has('nvim')
-  packadd! coc.nvim
-endif
+packadd! coc.nvim
 
 " web development
 packadd! vim-hugo
