@@ -23,7 +23,7 @@ let &l:define = '^\s*\('
       \ . '\|\(\ze\i\+([^)]*).*{$\)'
       \ . '\)'
 
-if executable('jest') && match(expand('%:p:t'), 'test\.\(js\|ts\|jsx\|tsx\)$') != -1
+if match(expand('%:p:t'), 'test\.\(js\|ts\|jsx\|tsx\)$') != -1
   compiler jest
 elseif !empty(findfile('tsconfig.json', ';.')) || !empty(findfile('jsconfig.json', ';.'))
   compiler tsc
