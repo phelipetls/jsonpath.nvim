@@ -134,10 +134,6 @@
 	path = .config/nvim/pack/plugins/opt/playground
 	url = https://github.com/nvim-treesitter/playground
 	ignore = dirty
-[submodule "plenary.nvim"]
-	path = .config/nvim/pack/plugins/opt/plenary.nvim
-	url = https://github.com/nvim-lua/plenary.nvim
-	ignore = dirty
 [submodule "LargeFile"]
 	path = .config/nvim/pack/plugins/opt/LargeFile
 	url = https://github.com/vim-scripts/LargeFile
