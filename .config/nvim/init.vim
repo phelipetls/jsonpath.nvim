@@ -678,9 +678,7 @@ augroup END
 "}}}
 "{{{ coc
 
-nmap <space>cc :CocStart<CR>
 nmap <space>cr :CocRestart<CR>
-nmap <space>cs :CocRestart<CR>
 
 let g:coc_global_extensions = [
       \'coc-tsserver',
