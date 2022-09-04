@@ -46,7 +46,7 @@ packadd! coc.nvim
 packadd! vim-hugo
 
 " aesthetics
-if has('nvim-0.5.0')
+if has('nvim')
   packadd! lualine.nvim
   packadd! nvim-colorizer.lua
 endif
@@ -281,7 +281,7 @@ nnoremap Q <nop>
 nnoremap <silent> <C-n> *Ncgn
 
 " highlight yanked region
-if has('nvim-0.5.0')
+if has('nvim')
   augroup HeighlightYankedRegion
       autocmd!
       autocmd TextYankPost * silent! lua vim.highlight.on_yank{higroup="Search", on_visual=false}
@@ -773,7 +773,7 @@ nnoremap <space>c :CocList commands<CR>
 "}}}
 "{{{ treesitter
 
-if has('nvim-0.5.0')
+if has('nvim')
   luafile $HOME/.config/nvim/treesitter.lua
 endif
 
