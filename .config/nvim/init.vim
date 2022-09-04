@@ -25,6 +25,7 @@ packadd! fugitive-gitlab.vim
 packadd! vim-rhubarb
 packadd! diffconflicts
 packadd! git-messenger.vim
+packadd! gitsigns.nvim
 
 " file navigation
 packadd! vim-dirvish
@@ -85,6 +86,12 @@ set breakindent
 set breakindentopt=shift:2
 set linebreak
 set showtabline=2
+set signcolumn=yes
+
+augroup DisableSignColumn
+  autocmd!
+  autocmd FileType fugitive,dirvish,gitcommit set signcolumn=no
+augroup END
 
 " tell neovim where python3 is -- this improves startup time
 if has('nvim') && has('unix')
@@ -184,6 +191,10 @@ let g:git_messenger_popup_content_margins = v:false
 " inline_edit.vim
 nnoremap <C-c>' :InlineEdit<CR>
 let g:inline_edit_autowrite=1
+
+lua <<EOF
+require('gitsigns').setup()
+EOF
 
 "}}}
 "{{{ autocommands

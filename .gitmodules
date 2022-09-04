@@ -146,3 +146,6 @@
 	path = fzf-git.sh
 	url = https://github.com/junegunn/fzf-git.sh
 	ignore = dirty
+[submodule "gitsigns.nvim"]
+	path = .config/nvim/pack/plugins/opt/gitsigns.nvim
+	url = https://github.com/lewis6991/gitsigns.nvim
