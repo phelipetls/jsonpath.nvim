@@ -742,9 +742,9 @@ nmap <silent> <C-space> :call CocActionAsync("diagnosticInfo")<CR>
 nnoremap <silent> <M-S-O> :call CocActionAsync('runCommand', 'editor.action.organizeImport')<CR>
 nmap <F2> <Plug>(coc-rename)
 
-" open code actions menu at cursor on Alt-Enter or C-.
+" code actions
 nmap <M-CR> <Plug>(coc-codeaction-cursor)
-nmap <C-.> <Plug>(coc-codeaction-cursor)
+nmap <space>a <Plug>(coc-codeaction-cursor)
 
 " scroll through hover floating window
 if has('nvim-0.4.0') || has('patch-8.2.0750')
