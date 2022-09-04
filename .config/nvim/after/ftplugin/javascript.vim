@@ -1,5 +1,9 @@
 let b:coc_root_patterns = ['package.json', '.git']
 
+if bufname() =~# '\.min\.js$'
+  let b:coc_enabled = 0
+endif
+
 setlocal path-=./node_modules/**,node_modules/**
 setlocal path=node_modules
 setlocal path+=cypress/fixtures
