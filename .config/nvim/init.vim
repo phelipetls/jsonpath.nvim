@@ -48,6 +48,7 @@ packadd! vim-hugo
 " aesthetics
 if has('nvim-0.5.0')
   packadd! lualine.nvim
+  packadd! nvim-colorizer.lua
 endif
 
 "}}}

@@ -72,7 +72,7 @@
 	ignore = dirty
 [submodule "nvim-colorizer.lua"]
 	path = .config/nvim/pack/plugins/opt/nvim-colorizer.lua
-	url = https://github.com/norcalli/nvim-colorizer.lua
+	url = https://github.com/NvChad/nvim-colorizer.lua
 	ignore = dirty
 [submodule "git-messenger.vim"]
 	path = .config/nvim/pack/plugins/opt/git-messenger.vim
