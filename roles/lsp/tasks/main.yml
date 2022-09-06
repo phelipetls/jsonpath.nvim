@@ -61,6 +61,7 @@
 - name: Install linters and formatters with npm
   loop:
     - prettier
+    - "@tailwindcss/language-server"
   community.general.npm:
     name: "{{ item }}"
     global: true
