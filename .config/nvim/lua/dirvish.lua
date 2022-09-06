@@ -170,14 +170,4 @@ function M.clear_arglist()
   reload_dirvish()
 end
 
-function M.explore()
-  if vim.fn.has('mac') == 1 then
-    vim.cmd(string.format("silent !open %s", vim.fn.expand('%')))
-  elseif vim.fn.has('linux') == 1 then
-    vim.cmd(string.format("silent !xdg-open %s", vim.fn.expand('%')))
-  elseif vim.fn.has('wsl') == 1 then
-    vim.cmd(string.format("silent !explorer.exe %s", vim.fn.expand('%')))
-  end
-end
-
 return M

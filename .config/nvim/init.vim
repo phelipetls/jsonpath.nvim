@@ -365,22 +365,7 @@ function! s:getVisualSelection()
 endfunction
 
 function! s:OpenFileUnderCursor(is_visual_mode)
-  let s:open_command = ''
-
-  if has('mac')
-    let s:open_command = 'open'
-  elseif has('unix')
-    let s:open_command = 'xdg-open'
-  elseif has('wsl')
-    let s:open_command = 'wslview'
-  endif
-
-  if empty(s:open_command)
-    echohl ErrorMsg
-    echo 'Could not determine a command to open file'
-    echohl None
-    return
-  endif
+  let s:open_command = utils#get_open_command()
 
   if !executable(s:open_command)
     echohl ErrorMsg
@@ -442,6 +427,11 @@ nmap <silent> gQ :call <SID>FormatFile()<CR>
 
 " add mapping to do fugitive related tasks more quickly
 nmap <space>g :Git<space>
+
+augroup OpenFileWithF5
+  autocmd!
+  autocmd FileType html,dirvish,svg nnoremap <silent><buffer> <F5> :execute printf(':silent !%s "%s"', utils#get_open_command(), bufname())<CR>
+augroup END
 
 "}}}
 "{{{ commands
