@@ -91,6 +91,7 @@ set signcolumn=yes
 augroup DisableSignColumn
   autocmd!
   autocmd FileType fugitive,dirvish,gitcommit set signcolumn=no
+  autocmd BufEnter * if !&modifiable || &readonly | set signcolumn=no | endif
 augroup END
 
 " tell neovim where python3 is -- this improves startup time
