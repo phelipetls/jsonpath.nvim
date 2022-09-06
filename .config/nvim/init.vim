@@ -468,13 +468,6 @@ if has('nvim')
   luafile $HOME/.config/nvim/lualine.lua
 endif
 
-lua << EOF
-  function _G.get_icon_color(...)
-    local _, color = require'nvim-web-devicons'.get_icon(...)
-    return color
-  end
-EOF
-
 function! Tabline() abort
   let l:tabline = ''
   for tab in range(1, tabpagenr('$'))
