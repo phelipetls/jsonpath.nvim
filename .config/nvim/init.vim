@@ -246,7 +246,7 @@ endif
 nnoremap gr gT
 
 " escape also cancels search highlight and redraw screen
-nnoremap <silent> <esc> :nohlsearch<CR>:redraw!<CR><<esc>
+nnoremap <silent> <esc> :nohlsearch<CR>:redraw!<CR><esc>
 
 " go to vimrc file
 nnoremap <silent> <space>ev :execute ":edit ".resolve($MYVIMRC)<CR>
