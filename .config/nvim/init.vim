@@ -365,7 +365,7 @@ function! s:getVisualSelection()
   return join(lines, "\n")
 endfunction
 
-function! s:OpenFileUnderCursor(is_visual_mode)
+function s:OpenFile(fname)
   let s:open_command = utils#get_open_command()
 
   if !executable(s:open_command)
@@ -375,6 +375,21 @@ function! s:OpenFileUnderCursor(is_visual_mode)
     return
   endif
 
+  call system(s:open_command . ' ' . shellescape(a:fname))
+
+  if v:shell_error > 0
+    echohl ErrorMsg
+    echo 'Could not open ' .. s:fname .. ' with program ' .. s:open_command
+    echohl None
+  endif
+endfunction
+
+augroup OpenFileWithF5
+  autocmd!
+  autocmd FileType html,dirvish,svg nnoremap <silent><buffer> <F5> :call <SID>OpenFile(bufname())<CR>
+augroup END
+
+function! s:OpenFileUnderCursor(is_visual_mode)
   if &ft ==? 'dirvish'
     let s:fname = getline('.')
   elseif a:is_visual_mode
@@ -383,13 +398,7 @@ function! s:OpenFileUnderCursor(is_visual_mode)
     let s:fname = expand('<cfile>')
   endif
 
-  call system(s:open_command .. ' ' .. shellescape(s:fname))
-
-  if v:shell_error > 0
-    echohl ErrorMsg
-    echo 'Could not open ' .. s:fname .. ' with program ' .. s:open_command
-    echohl None
-  endif
+  call s:OpenFile(s:fname)
 endfunction
 
 nnoremap <silent> gx :call <SID>OpenFileUnderCursor(v:false)<CR>
@@ -428,11 +437,6 @@ nmap <silent> gQ :call <SID>FormatFile()<CR>
 
 " add mapping to do fugitive related tasks more quickly
 nmap <space>g :Git<space>
-
-augroup OpenFileWithF5
-  autocmd!
-  autocmd FileType html,dirvish,svg nnoremap <silent><buffer> <F5> :execute printf(':silent !%s "%s"', utils#get_open_command(), bufname())<CR>
-augroup END
 
 "}}}
 "{{{ commands
