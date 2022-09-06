@@ -14,7 +14,7 @@
     flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
     method: user
 
-- name: Install apps in Flatpak
+- name: Install apps with Flatpak
   community.general.flatpak:
     name:
       - io.mpv.Mpv
