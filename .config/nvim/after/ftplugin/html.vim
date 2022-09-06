@@ -9,4 +9,6 @@ if has('darwin')
   nnoremap <silent><buffer> <F5> :silent !open "%" &<CR>
 elseif has('unix')
   nnoremap <silent><buffer> <F5> :silent !xdg-open "%" &<CR>
+elseif has('wsl')
+  nnoremap <silent><buffer> <F5> :silent !wslview "%" &<CR>
 endif
