@@ -193,9 +193,11 @@ let g:git_messenger_popup_content_margins = v:false
 nnoremap <C-c>' :InlineEdit<CR>
 let g:inline_edit_autowrite=1
 
+if has('nvim')
 lua <<EOF
 require('gitsigns').setup()
 EOF
+endif
 
 "}}}
 "{{{ autocommands
