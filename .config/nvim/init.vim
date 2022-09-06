@@ -90,7 +90,7 @@ set signcolumn=yes
 
 augroup DisableSignColumn
   autocmd!
-  autocmd FileType fugitive,dirvish,gitcommit set signcolumn=no
+  autocmd FileType fugitive,dirvish,gitcommit,fzf set signcolumn=no
   autocmd BufEnter * if !&modifiable || &readonly | set signcolumn=no | endif
 augroup END
 
