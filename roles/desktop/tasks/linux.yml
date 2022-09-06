@@ -1,22 +1,4 @@
 ---
-- name: Install desktop apps in Ubuntu
-  become: true
-  apt:
-    name:
-      - redshift
-      - tlp
-    state: present
-  when: ansible_distribution == "Ubuntu"
-
-- name: Install desktop apps in Fedora
-  become: true
-  dnf:
-    name:
-      - redshift
-      - tlp
-    state: present
-  when: ansible_distribution == "Fedora"
-
 - name: Install flatpak in Ubuntu
   become: true
   apt:
