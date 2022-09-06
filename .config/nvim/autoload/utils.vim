@@ -3,10 +3,10 @@ function! utils#get_open_command() abort
 
   if has('mac')
     let s:open_command = 'open'
-  elseif has('unix')
-    let s:open_command = 'xdg-open'
   elseif has('wsl')
     let s:open_command = 'wslview'
+  elseif has('unix')
+    let s:open_command = 'xdg-open'
   endif
 
   if empty(s:open_command)
