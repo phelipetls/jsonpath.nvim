@@ -17,7 +17,6 @@
 - name: Install apps with Flatpak
   community.general.flatpak:
     name:
-      - io.mpv.Mpv
       - com.spotify.Client
       - org.gimp.GIMP
       - org.inkscape.Inkscape
