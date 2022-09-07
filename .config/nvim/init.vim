@@ -368,7 +368,7 @@ function! s:getVisualSelection()
 endfunction
 
 function s:OpenFile(fname)
-  let s:open_command = utils#get_open_command()
+  let s:open_command = os#get_open_command()
 
   if !executable(s:open_command)
     echohl ErrorMsg

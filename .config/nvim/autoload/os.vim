@@ -1,4 +1,4 @@
-function! utils#get_open_command() abort
+function! os#get_open_command() abort
   let s:open_command = ''
 
   if has('mac')
