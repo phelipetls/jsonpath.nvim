@@ -32,12 +32,12 @@ endfunction
 
 function! s:get_fg(hlgroup_unparsed) abort
   let l:guifg_matches = matchlist(a:hlgroup_unparsed, 'guifg=\([^ ]\+\)')
-  if !empty(l:guifg_matches)
+  if !empty(l:guifg_matches) && len(l:guifg_matches) > 1
     return l:guifg_matches[1]
   endif
 
   let l:ctermfg_matches = matchlist(a:hlgroup_unparsed, 'ctermfg=\([^ ]\+\)')
-  if !empty(l:ctermfg_matches)
+  if !empty(l:ctermfg_matches) && len(l:ctermfg_matches) > 1
     return l:ctermfg_matches[1]
   endif
 
@@ -46,12 +46,12 @@ endfunction
 
 function! s:get_bg(hlgroup_unparsed) abort
   let l:guibg_matches = matchlist(a:hlgroup_unparsed, 'guibg=\([^ ]\+\)')
-  if !empty(l:guibg_matches)
+  if !empty(l:guibg_matches) && len(l:guibg_matches) > 1
     return l:guibg_matches[1]
   endif
 
   let l:ctermbg_matches = matchlist(a:hlgroup_unparsed, 'ctermbg=\([^ ]\+\)')
-  if !empty(l:ctermbg_matches)
+  if !empty(l:ctermbg_matches) && len(l:ctermbg_matches) > 1
     return l:ctermbg_matches[1]
   endif
 
