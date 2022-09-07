@@ -46,6 +46,7 @@ local readonly = {
     return not vim.bo.modifiable or vim.bo.readonly
   end,
   padding = { left = 0, right = 1 },
+  color = { fg = vim.fn['highlight#get_hlgroup_params']('Special').fg }
 }
 
 require("lualine").setup({
