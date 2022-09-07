@@ -56,7 +56,7 @@ endif
 
 set termguicolors
 if has('nvim')
-  colorscheme github_dark_default
+  colorscheme vscode
 else
   colorscheme evening
 endif
