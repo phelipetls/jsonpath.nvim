@@ -377,7 +377,7 @@ function s:OpenFile(fname)
     return
   endif
 
-  call system(s:open_command . ' ' . shellescape(a:fname))
+  call system(s:open_command . ' ' . shellescape(a:fname) . ' &')
 
   if v:shell_error > 0
     echohl ErrorMsg
