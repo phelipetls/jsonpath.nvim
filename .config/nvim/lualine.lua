@@ -16,7 +16,9 @@ local filename = {
     local fullpath = vim.fn.expand("%:p")
     local fname = vim.fn.expand("%:t")
 
-    fname = fname ~= "" and fname or "[No Name]"
+    if fname == "" then
+      return "[No Name]"
+    end
 
     return fname
   end,
