@@ -615,12 +615,6 @@ nnoremap <silent> [q :call ListJump("c", "previous", "last")<CR>
 nnoremap <silent> ]l :call ListJump("l", "after", "first")<CR>
 nnoremap <silent> [l :call ListJump("l", "before", "last")<CR>
 
-if has('nvim')
-  command! -nargs=* -complete=file_in_path Make lua require'async_make'.make(<q-args>)
-else
-  command! -nargs=* -complete=file_in_path Make silent make!
-endif
-
 function! OpenQuickfixList()
   botright cwindow 5
   if &buftype ==# 'quickfix'
