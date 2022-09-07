@@ -6,7 +6,7 @@ function M.make(arg)
   local bufnr = vim.api.nvim_win_get_buf(winnr)
 
   local makeprg = vim.api.nvim_buf_get_option(bufnr, "makeprg")
-  if not makeprg then
+  if makeprg == "" then
     return
   end
 
