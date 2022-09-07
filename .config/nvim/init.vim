@@ -188,6 +188,7 @@ let $LESS='RX'
 " git-messenger.vim configuration
 let g:git_messenger_floating_win_opts = {'border': 'single'}
 let g:git_messenger_popup_content_margins = v:false
+let g:git_messenger_no_default_mappings = v:true
 
 " inline_edit.vim
 nnoremap <C-c>' :InlineEdit<CR>
