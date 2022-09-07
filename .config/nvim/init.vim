@@ -236,6 +236,9 @@ if has('nvim')
 
     " reload fugitive status buffer when vim resumes from background
     autocmd VimResume * call fugitive#ReloadStatus()
+
+    " highlight yanked region
+    autocmd TextYankPost * silent! lua vim.highlight.on_yank{higroup="Search", on_visual=false}
   augroup END
 endif
 
@@ -293,14 +296,6 @@ nnoremap Q <nop>
 
 " mapping to change the word under the cursor. use . to repeat
 nnoremap <silent> <C-n> *Ncgn
-
-" highlight yanked region
-if has('nvim')
-  augroup HeighlightYankedRegion
-      autocmd!
-      autocmd TextYankPost * silent! lua vim.highlight.on_yank{higroup="Search", on_visual=false}
-  augroup END
-endif
 
 " format paragraph
 nnoremap <M-q> gwip
