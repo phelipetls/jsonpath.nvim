@@ -372,7 +372,7 @@ function s:OpenFile(fname)
 
   if !executable(s:open_command)
     echohl ErrorMsg
-    echo 'The program ' .. s:open_command .. ' is not executable'
+    echo 'The program ' . s:open_command . ' is not executable'
     echohl None
     return
   endif
@@ -381,7 +381,7 @@ function s:OpenFile(fname)
 
   if v:shell_error > 0
     echohl ErrorMsg
-    echo 'Could not open ' .. s:fname .. ' with program ' .. s:open_command
+    echo 'Could not open ' . s:fname . ' with program ' . s:open_command
     echohl None
   endif
 endfunction
@@ -414,7 +414,7 @@ function! s:Format(type, ...)
   endif
 
   let motions = #{line: "'[V']", char: '`[v`]', block: '`[\<c-v>`]'}
-  silent execute 'noautocmd keepjumps normal! ' .. get(motions, a:type, '') .. 'gq'
+  silent execute 'noautocmd keepjumps normal! ' . get(motions, a:type, '') . 'gq'
 
   if v:shell_error > 0
     keepjumps silent undo
