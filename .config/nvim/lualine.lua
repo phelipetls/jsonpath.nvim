@@ -2,14 +2,14 @@ local fugitivestatusline = {
   function()
     local fugitive = vim.fn["FugitiveStatusline"]()
 
-    local _, _, revision = string.find(fugitive, "%[Git:(.+)%(")
-    local _, _, branch = string.find(fugitive, "%[Git%((.+)%)")
+    local file_revision = string.match(fugitive, "Git:(.+)%(")
+    local checked_out_branch = string.match(fugitive, "Git%((.+)%)")
 
-    if revision == "0" then
+    if file_revision == "0" then
       return "index"
     end
 
-    return revision or branch or ""
+    return file_revision or checked_out_branch or ""
   end,
   icon = { "" },
 }
