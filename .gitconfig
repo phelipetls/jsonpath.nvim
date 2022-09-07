@@ -14,7 +14,7 @@
     trustExitCode = true
     keepBackup = false
 [mergetool "vscode"]
-    cmd = code --wait $MERGED
+    cmd = code --wait --merge "$LOCAL" "$REMOTE" "$BASE" "$MERGED"
 [push]
     default = current
 [rebase]
