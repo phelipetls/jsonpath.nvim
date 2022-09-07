@@ -9,10 +9,6 @@
     attributesfile = ~/.gitattributes
 [merge]
     tool = nvimdiff
-[mergetool "diffconflicts"]
-    cmd = nvim -c DiffConflicts "$MERGED" "$BASE" "$LOCAL" "$REMOTE"
-    trustExitCode = true
-    keepBackup = false
 [mergetool "vscode"]
     cmd = code --wait --merge "$LOCAL" "$REMOTE" "$BASE" "$MERGED"
 [push]

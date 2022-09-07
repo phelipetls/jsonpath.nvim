@@ -23,7 +23,6 @@ packadd! inline_edit.vim
 packadd! vim-fugitive
 packadd! fugitive-gitlab.vim
 packadd! vim-rhubarb
-packadd! diffconflicts
 packadd! git-messenger.vim
 packadd! gitsigns.nvim
 
