@@ -350,7 +350,7 @@ inoreabbrev Taebl Table
 inoreabbrev taebl table
 
 " git messenger mapping
-nnoremap <silent> gb :GitMessenger<CR>
+nnoremap <silent> gb <Plug>(git-messenger)
 
 " fix netrw gx being broken
 let g:netrw_nogx=1
