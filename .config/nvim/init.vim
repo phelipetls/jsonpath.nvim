@@ -89,7 +89,7 @@ set signcolumn=yes
 
 augroup DisableSignColumn
   autocmd!
-  autocmd FileType fugitive,dirvish,gitcommit,fzf setlocal signcolumn=no
+  autocmd FileType fugitive,dirvish,gitcommit,gitrebase,fzf setlocal signcolumn=no
   autocmd BufEnter * if !&modifiable || &readonly | setlocal signcolumn=no | endif
 augroup END
 
