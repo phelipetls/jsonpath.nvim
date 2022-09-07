@@ -19,14 +19,16 @@ local filename = {
     fname = fname ~= "" and fname or "[No Name]"
 
     if fullpath:find("^fugitive://") then
-      local matches = vim.fn.matchlist(
-        fullpath,
-        [[\c^fugitive:\%(//\)\=\(.\{-\}\)\%(//\|::\)\(\x\{40,\}\|[0-3]\)\(/.*\)\=$]]
-      )
-      local revision = matches[3]
-      if revision and revision ~= "" then
-        local revisionlabel = revision == "0" and "index" or string.sub(revision, 0, 7)
-        fname = string.format("%s:%s", revisionlabel, fname)
+      local commit = vim.fn.FugitiveStatusline():match("Git:(%d+)")
+
+      if commit and commit ~= "" then
+        local label = commit
+
+        if commit == "0" then
+          label = "index"
+        end
+
+        return string.format("%s:%s", label, fname)
       end
     end
 
