@@ -1,14 +1,14 @@
 function! highlight#get_hlgroup_params(hlgroup) abort
-  let l:hlgroup_unparsed = s:get_hlgroup_unparsed(a:hlgroup)
+  let l:hlgroup_unparsed = <SID>get_hlgroup_unparsed(a:hlgroup)
 
-  let l:linked_hlgroup = s:get_linked_hlgroup(l:hlgroup_unparsed)
+  let l:linked_hlgroup = <SID>get_linked_hlgroup(l:hlgroup_unparsed)
   if !empty(l:linked_hlgroup)
     return highlight#get_hlgroup_params(l:linked_hlgroup)
   endif
 
   return {
-        \ 'fg': s:get_fg(l:hlgroup_unparsed),
-        \ 'bg': s:get_bg(l:hlgroup_unparsed),
+        \ 'fg': <SID>get_fg(l:hlgroup_unparsed),
+        \ 'bg': <SID>get_bg(l:hlgroup_unparsed),
         \ }
 endfunction
 

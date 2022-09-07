@@ -400,7 +400,7 @@ function! s:OpenFileUnderCursor(is_visual_mode)
     let s:fname = expand('<cfile>')
   endif
 
-  call s:OpenFile(s:fname)
+  call <SID>OpenFile(s:fname)
 endfunction
 
 nnoremap <silent> gx :call <SID>OpenFileUnderCursor(v:false)<CR>
