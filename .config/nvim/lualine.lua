@@ -1,15 +1,21 @@
-local fugitivestatusline = function()
-  local fugitive = vim.fn["FugitiveStatusline"]()
+local fugitivestatusline = {
+  function()
+    local fugitive = vim.fn["FugitiveStatusline"]()
 
-  local _, _, revision = string.find(fugitive, "%[Git:(.+)%(")
-  local _, _, branch = string.find(fugitive, "%[Git%((.+)%)")
+    local _, _, revision = string.find(fugitive, "%[Git:(.+)%(")
+    local _, _, branch = string.find(fugitive, "%[Git%((.+)%)")
 
-  if revision == "0" then
-    return "index"
-  end
+    if revision == "0" then
+      return "index"
+    end
 
-  return revision or branch or ""
-end
+    return revision or branch or ""
+  end,
+  icon = { "" },
+  cond = function()
+    return vim.fn.winwidth(0) == vim.o.columns
+  end,
+}
 
 local filename = {
   function()
@@ -58,13 +64,7 @@ require("lualine").setup({
       },
     },
     lualine_b = {
-      {
-        fugitivestatusline,
-        icon = { "" },
-        cond = function()
-          return vim.fn.winwidth(0) == vim.o.columns
-        end,
-      },
+      fugitivestatusline,
       "g:coc_status",
       "g:async_make_status",
     },
