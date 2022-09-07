@@ -55,9 +55,6 @@ local readonly = {
   padding = { left = 0, right = 1 },
 }
 
-package.path = package.path .. ";" .. table.concat({ os.getenv("HOME"), ".cache", "wal", "?.lua" }, "/")
-local wal_colors = require("colors")
-
 require("lualine").setup({
   options = {
     icons_enabled = false,
