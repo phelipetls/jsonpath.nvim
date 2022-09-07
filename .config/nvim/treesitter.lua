@@ -15,6 +15,8 @@ require("nvim-treesitter.configs").setup({
     "yaml",
     "jsdoc",
     "lua",
+    "bash",
+    "vim",
   },
   highlight = {
     enable = true,
