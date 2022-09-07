@@ -14,7 +14,6 @@ require("nvim-treesitter.configs").setup({
     "python",
     "yaml",
     "jsdoc",
-    "css",
     "lua",
   },
   highlight = {
