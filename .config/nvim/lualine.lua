@@ -18,20 +18,6 @@ local filename = {
 
     fname = fname ~= "" and fname or "[No Name]"
 
-    if fullpath:find("^fugitive://") then
-      local commit = vim.fn.FugitiveStatusline():match("Git:(%d+)")
-
-      if commit and commit ~= "" then
-        local label = commit
-
-        if commit == "0" then
-          label = "index"
-        end
-
-        return string.format("%s:%s", label, fname)
-      end
-    end
-
     return fname
   end,
   padding = { left = 1, right = 1 },
