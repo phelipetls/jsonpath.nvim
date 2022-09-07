@@ -12,9 +12,6 @@ local fugitivestatusline = {
     return revision or branch or ""
   end,
   icon = { "" },
-  cond = function()
-    return vim.fn.winwidth(0) == vim.o.columns
-  end,
 }
 
 local filename = {
