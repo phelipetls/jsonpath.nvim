@@ -38,7 +38,7 @@
     state: present
   when: ansible_distribution == "Fedora"
 
-- name: Install CLI tools in macOS with Homebrew
+- name: Install CLI tools in macOS
   loop:
     - tig
     - tmux
