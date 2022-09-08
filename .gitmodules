@@ -149,3 +149,4 @@
 [submodule "vscode.nvim"]
 	path = .config/nvim/pack/plugins/start/vscode.nvim
 	url = https://github.com/Mofiqul/vscode.nvim
+	ignore = dirty
