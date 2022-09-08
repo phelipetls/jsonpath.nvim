@@ -35,7 +35,7 @@ tools:
       - '%f:%l:%c: %m'
 
   lua-stylua: &lua-stylua
-    format-command: 'stylua -'
+    format-command: 'stylua --search-parent-directories -'
     format-stdin: true
 
 languages:
