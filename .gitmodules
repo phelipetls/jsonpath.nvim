@@ -141,6 +141,8 @@
 [submodule "gitsigns.nvim"]
 	path = .config/nvim/pack/plugins/opt/gitsigns.nvim
 	url = https://github.com/lewis6991/gitsigns.nvim
+	ignore = dirty
 [submodule "nvim-treesitter-textobjects"]
 	path = .config/nvim/pack/plugins/opt/nvim-treesitter-textobjects
 	url = https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+	ignore = dirty
