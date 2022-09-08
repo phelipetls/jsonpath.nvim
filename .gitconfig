@@ -24,6 +24,7 @@
     undo = reset --soft HEAD^
     recommit = commit --reedit-message ORIG_HEAD
     track = branch --set-upstream-to
+    difft = difftool -t difft
 [credential]
     helper = cache
 [credential "https://github.com"]
@@ -43,3 +44,9 @@
     side-by-side = true
 [diff]
     colorMoved = default
+[difftool]
+    prompt = false
+[difftool "difft"]
+    cmd = difft "$LOCAL" "$REMOTE"
+[pager]
+    difftool = true

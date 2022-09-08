@@ -51,3 +51,8 @@
     name: "{{ item }}"
     state: present
   when: ansible_distribution == "MacOSX"
+
+- name: Install diffstatic
+  import_tasks: diffstatic.yml
+  vars:
+    diffstatic_version: 0.35.0
