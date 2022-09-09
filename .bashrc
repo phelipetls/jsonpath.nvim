@@ -44,11 +44,11 @@ elif [ -f /usr/share/git-core/contrib/completion/git-prompt.sh ]; then
 fi
 
 export PS1='\
-\[\e[1;32m\]\u \
-\[\e[1;33m\]@ \
-\[\e[1;94m\]\w \
-\[\e[1;33m\]$(__git_ps1 "(%s) ")\
-\[\e[1;32m\]$([ \j -gt 0 ] && echo "* ")\
+\[\e[0;32m\]\u \
+\[\e[0;33m\]@ \
+\[\e[0;94m\]\w \
+\[\e[0;33m\]$(__git_ps1 "(%s) ")\
+\[\e[0;32m\]$([ \j -gt 0 ] && echo "* ")\
 \[\e[1;90m\]\$ \
 \[\e[0m\]\
 '

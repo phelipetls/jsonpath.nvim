@@ -13,11 +13,11 @@ fi
 setopt prompt_subst
 
 export PS1='\
-%B%F{green}%n %b%f\
-%B%F{yellow}@ %b%f\
-%B%F{blue}%~ %b%f\
-%B%F{yellow}$(__git_ps1 "(%s) ")%b%f\
-%B%F{green}%(1j.* .)%b%f\
+%F{green}%n %f\
+%F{yellow}@ %f\
+%F{blue}%~ %f\
+%F{yellow}$(__git_ps1 "(%s) ")%f\
+%F{green}%(1j.* .)%f\
 %B%F{%(?.black.red)}%# %b%f\
 '
 
