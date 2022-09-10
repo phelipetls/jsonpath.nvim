@@ -1,5 +1,0 @@
-text/html; w3m -T text/html -I 'utf-8' -dump %s; copiousoutput; nametemplate=%s.html
-application/pdf; zathura %s; copiousoutput
-application/msword; lowriter %s; copiousoutput
-video/*; mpv %s
-image/*; sxiv %s

@@ -18,7 +18,6 @@
       vars:
         efm_langserver_version: "0.0.44"
     - role: nvim
-    - role: mutt
     - role: stow
     - role: fzf
     - role: hugo
