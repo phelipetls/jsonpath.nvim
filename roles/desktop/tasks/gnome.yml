@@ -42,3 +42,18 @@
   community.general.dconf:
     key: "/org/gnome/desktop/search-providers/disabled"
     value: "['org.gnome.Photos.desktop', 'firefox.desktop', 'org.gnome.Characters.desktop', 'org.gnome.Calendar.desktop', 'org.gnome.Boxes.desktop', 'org.gnome.Contacts.desktop', 'org.gnome.clocks.desktop', 'org.gnome.Terminal.desktop']"
+
+- name: Enable night light
+  community.general.dconf:
+    key: "/org/gnome/settings-daemon/plugins/color/night-light-enabled"
+    value: "true"
+
+- name: Enable night mode automatic schedule
+  community.general.dconf:
+    key: "/org/gnome/settings-daemon/plugins/color/night-light-schedule-automatic"
+    value: "true"
+
+- name: Configure night light temperature mode
+  community.general.dconf:
+    key: "/org/gnome/settings-daemon/plugins/color/night-light-temperature"
+    value: "uint32 4220"
