@@ -58,5 +58,6 @@
     diffstatic_version: 0.35.0
 
 - name: Install GitHub CLI
-  include_role:
-    name: gotmax23.github_cli
+  import_tasks: github-cli.yml
+  vars:
+    github_cli_version: 2.15.0
