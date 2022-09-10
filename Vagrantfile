@@ -64,7 +64,7 @@ Vagrant.configure("2") do |config|
   # Ansible, Chef, Docker, Puppet and Salt are also available. Please see the
   # documentation for more information about their specific syntax and use.
   config.vm.provision "ansible_local" do |ansible|
-    ansible.playbook = "bootstrap.yml"
+    ansible.playbook = "bootstrap-dev.yml"
     ansible.verbose = true
     ansible.galaxy_role_file = "requirements.yml"
     # Hacky fix for collection not being installed
