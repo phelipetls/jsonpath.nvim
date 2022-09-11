@@ -55,8 +55,8 @@ endif
 "{{{ settings
 
 set termguicolors
-if has('nvim')
-  colorscheme vscode
+if has('nvim-0.7.0')
+  colorscheme tokyodark
 else
   colorscheme evening
 endif

@@ -146,7 +146,6 @@
 	path = .config/nvim/pack/plugins/opt/nvim-treesitter-textobjects
 	url = https://github.com/nvim-treesitter/nvim-treesitter-textobjects
 	ignore = dirty
-[submodule "vscode.nvim"]
-	path = .config/nvim/pack/plugins/start/vscode.nvim
-	url = https://github.com/Mofiqul/vscode.nvim
-	ignore = dirty
+[submodule "tokyodark.nvim"]
+	path = .config/nvim/pack/plugins/start/tokyodark.nvim
+	url = https://github.com/tiagovla/tokyodark.nvim
