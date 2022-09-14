@@ -750,7 +750,6 @@ endif
 
 " symbols and diagnostics
 nnoremap <space>s :<C-u>CocList -I symbols<CR>
-nnoremap <space>d :CocDiagnostics<CR>
 let g:coc_quickfix_open_command = 'doautocmd QuickFixCmdPost | cfirst'
 
 " miscellaneous commands
