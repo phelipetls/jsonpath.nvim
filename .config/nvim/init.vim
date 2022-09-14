@@ -440,6 +440,11 @@ nmap <silent> gQ :call <SID>FormatFile()<CR>
 " add mapping to do fugitive related tasks more quickly
 nmap <space>g :Git<space>
 
+" add unimpaired-style mappings ignore whitespace on diffs
+nmap [oi :set diffopt+=iwhite
+nmap ]oi :set diffopt-=iwhite
+nmap yoi :call iwhite#toggle()
+
 "}}}
 "{{{ commands
 
@@ -451,17 +456,6 @@ command! -bang Qall qall<bang>
 
 " show information about highlight group under cursor
 command! Hi execute 'hi ' . synIDattr(synID(line("."), col("."), 0), "name")
-
-" add unimapaired-like mappings to ignore whitespace in vimdiff
-function! IwhiteToggle()
-  if &diffopt =~# 'iwhite'
-    set diffopt-=iwhite
-  else
-    set diffopt+=iwhite
-  endif
-endfunction
-
-command ToggleIgnoreWhitespace :call IwhiteToggle()
 
 "}}}
 "{{{ statusline and tabline
