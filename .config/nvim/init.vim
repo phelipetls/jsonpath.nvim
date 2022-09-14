@@ -56,7 +56,8 @@ endif
 
 set termguicolors
 if has('nvim-0.7.0')
-  colorscheme tokyodark
+  let g:onedark_config = {'style': 'darker'}
+  colorscheme onedark
 else
   colorscheme evening
 endif
