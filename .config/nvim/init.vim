@@ -350,6 +350,14 @@ nnoremap <silent> gb <Plug>(git-messenger)
 " fix netrw gx being broken
 let g:netrw_nogx=1
 
+function s:HandleOpenFileError(fname, open_command, job, status, event) dict
+  if a:status > 0
+    echohl ErrorMsg
+    echo 'Failed to open ' . fnamemodify(a:fname, ':.') . ' with ' . a:open_command
+    echohl None
+  endif
+endfunction
+
 function s:OpenFile(fname)
   let s:open_command = os#get_open_command()
 
@@ -360,13 +368,9 @@ function s:OpenFile(fname)
     return
   endif
 
-  call system(s:open_command . ' ' . shellescape(a:fname) . ' &')
-
-  if v:shell_error > 0
-    echohl ErrorMsg
-    echo 'Could not open ' . s:fname . ' with program ' . s:open_command
-    echohl None
-  endif
+  call jobstart(s:open_command . ' ' . shellescape(a:fname), {
+        \ 'on_exit': function('s:HandleOpenFileError', [a:fname, s:open_command])
+        \ })
 endfunction
 
 augroup OpenFileWithF5
