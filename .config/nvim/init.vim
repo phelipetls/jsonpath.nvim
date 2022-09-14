@@ -301,12 +301,6 @@ nnoremap <silent> <C-n> *Ncgn
 " format paragraph
 nnoremap <M-q> gwip
 
-" function used for abbreviations
-function! Eatchar(pat)
-  let c = nr2char(getchar(0))
-  return (c =~ a:pat) ? '' : c
-endfunction
-
 " emacs keybindings that I use
 inoremap <C-A> <Home>
 cnoremap <C-A> <Home>
@@ -350,92 +344,17 @@ nnoremap <silent> gb <Plug>(git-messenger)
 " fix netrw gx being broken
 let g:netrw_nogx=1
 
-function s:HandleOpenFileError(fname, open_command, job, status, event) dict
-  if a:status > 0
-    echohl ErrorMsg
-    echo 'Failed to open ' . fnamemodify(a:fname, ':.') . ' with ' . a:open_command
-    echohl None
-  endif
-endfunction
-
-function s:OpenFile(fname)
-  let s:open_command = os#get_open_command()
-
-  if !executable(s:open_command)
-    echohl ErrorMsg
-    echo 'The program ' . s:open_command . ' is not executable'
-    echohl None
-    return
-  endif
-
-  call jobstart(s:open_command . ' ' . shellescape(a:fname), {
-        \ 'on_exit': function('s:HandleOpenFileError', [a:fname, s:open_command])
-        \ })
-endfunction
-
 augroup OpenFileWithF5
   autocmd!
-  autocmd FileType html,dirvish,svg nnoremap <silent><buffer> <F5> :call <SID>OpenFile(bufname())<CR>
+  autocmd FileType html,dirvish,svg nnoremap <silent><buffer> <F5> :call os#open_file(bufname())<CR>
 augroup END
 
-function! s:getVisualSelection()
-  " Why is this not a built-in Vim script function?!
-  let [line_start, column_start] = getpos("'<")[1:2]
-  let [line_end, column_end] = getpos("'>")[1:2]
-  let lines = getline(line_start, line_end)
-  if len(lines) == 0
-    return ''
-  endif
-  let lines[-1] = lines[-1][: column_end - (&selection ==# 'inclusive' ? 1 : 2)]
-  let lines[0] = lines[0][column_start - 1:]
-  return join(lines, "\n")
-endfunction
+nnoremap <silent> gx :call os#open_file_under_cursor(v:false)<CR>
+vnoremap <silent> gx :<C-U>call os#open_file_under_cursor(v:true)<CR>
 
-function! s:OpenFileUnderCursor(is_visual_mode)
-  if &ft ==? 'dirvish'
-    let s:fname = getline('.')
-  elseif a:is_visual_mode
-    let s:fname = <SID>getVisualSelection()
-  else
-    let s:fname = expand('<cfile>')
-  endif
-
-  call <SID>OpenFile(s:fname)
-endfunction
-
-nnoremap <silent> gx :call <SID>OpenFileUnderCursor(v:false)<CR>
-vnoremap <silent> gx :<C-U>call <SID>OpenFileUnderCursor(v:true)<CR>
-
-" format range or whole file. try to not change the jumplist
-function! s:Format(type, ...)
-  if CocHasProvider('formatRange')
-    call CocAction('formatSelected', a:type)
-    return
-  endif
-
-  let motions = #{line: "'[V']", char: '`[v`]', block: '`[\<c-v>`]'}
-  silent execute 'noautocmd keepjumps normal! ' . get(motions, a:type, '') . 'gq'
-
-  if v:shell_error > 0
-    keepjumps silent undo
-    echohl ErrorMsg
-    echomsg 'formatprg "' . &formatprg . '" exited with status ' . v:shell_error
-    echohl None
-  endif
-endfunction
-
-function! s:FormatFile()
-  let w:view = winsaveview()
-  keepjumps normal! gg
-  set operatorfunc=<SID>Format
-  keepjumps normal! g@G
-  keepjumps call winrestview(w:view)
-  unlet w:view
-endfunction
-
-nmap <silent> gq :set operatorfunc=<SID>Format<CR>g@
-vmap <silent> gq :<C-U>set operatorfunc=<SID>Format<CR>gvg@
-nmap <silent> gQ :call <SID>FormatFile()<CR>
+nmap <silent> gq :set operatorfunc=format#operatorfunc<CR>g@
+vmap <silent> gq :<C-U>set operatorfunc=format#operatorfunc<CR>gvg@
+nmap <silent> gQ :call format#file()<CR>
 
 " add mapping to do fugitive related tasks more quickly
 nmap <space>g :Git<space>
@@ -590,79 +509,25 @@ endif
 "}}}
 "{{{ quickfix config
 
-function! ListJump(list_type, direction, wrap)
-  try
-    execute a:list_type . a:direction
-  catch /E553/ " wrap around last item
-    execute a:list_type . a:wrap
-  catch /E42/
-    return
-  catch /E163/
-    return
-  endtry
-  normal! zz
-endfunction
-
 " wrap around when navigating the quickfix list
-nnoremap <silent> ]q :call ListJump("c", "next", "first")<CR>
-nnoremap <silent> [q :call ListJump("c", "previous", "last")<CR>
-nnoremap <silent> ]l :call ListJump("l", "after", "first")<CR>
-nnoremap <silent> [l :call ListJump("l", "before", "last")<CR>
-
-function! OpenQuickfixList()
-  botright cwindow 5
-  if &buftype ==# 'quickfix'
-    wincmd p
-  endif
-endfunction
-
-function! IsQuickfixOpen()
-  return !empty(filter(getwininfo(), {_, win -> win.tabnr == tabpagenr() && win.quickfix == 1 && win.loclist == 0}))
-endfunction
-
-function! ToggleQuickfixList()
-  if IsQuickfixOpen()
-    cclose
-    return
-  endif
-  call OpenQuickfixList()
-endfunction
-
-function! OpenLocationList()
-  try
-    botright lwindow 5
-  catch /E776/
-  endtry
-  if &buftype ==# 'quickfix'
-    wincmd p
-  endif
-endfunction
-
-function! IsLoclistOpen()
-  return !empty(filter(getwininfo(), {_, win -> win.tabnr == tabpagenr() && win.quickfix == 1 && win.loclist == 1}))
-endfunction
-
-function! ToggleLocationList()
-  if IsLoclistOpen()
-    lclose
-    return
-  endif
-  call OpenLocationList()
-endfunction
+nnoremap <silent> ]q :call qflist#jump("cnext")<CR>
+nnoremap <silent> [q :call qflist#jump("cprevious")<CR>
+nnoremap <silent> ]l :call loclist#jump("lnext")<CR>
+nnoremap <silent> [l :call loclist#jump("lprevious")<CR>
 
 if has('nvim')
-  nnoremap <silent> <space>q :call ToggleQuickfixList()<CR>
-  nnoremap <silent> <space>l :call ToggleLocationList()<CR>
+  nnoremap <silent> <space>q :call qflist#toggle()<CR>
+  nnoremap <silent> <space>l :call loclist#toggle()<CR>
 endif
 
 augroup QuickFix
   autocmd!
-  autocmd QuickFixCmdPost * call OpenQuickfixList()
+  autocmd QuickFixCmdPost * call qflist#open()
 augroup END
 
 augroup CloseQuickFix
-  au!
-  autocmd WinEnter * if winnr('$') == 1 && &buftype == "quickfix" | q | endif
+  autocmd!
+  autocmd WinEnter * if winnr('$') == 1 && &buftype == "quickfix" | quit | endif
 augroup END
 
 "}}}
@@ -688,16 +553,10 @@ set shortmess+=c
 set pumheight=10
 set tagfunc=CocTagFunc
 
-" autocomplete
-function! s:checkBackSpace() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
 inoremap <silent><expr> <TAB>
       \ coc#pum#visible() ? coc#pum#next(1) :
       \ pumvisible() ? "\<C-n>"  :
-      \ <SID>checkBackSpace() ? "\<TAB>" :
+      \ utils#check_back_space() ? "\<TAB>" :
       \ coc#rpc#ready() ? coc#refresh() :
       \ !empty(&omnifunc) ? "\<C-x>\<C-o>" :
       \ "\<C-n>"
@@ -708,14 +567,14 @@ inoremap <silent><expr> <c-space>
 inoremap <expr><s-tab> coc#pum#visible() ? coc#pum#prev(1) : pumvisible() ? "\<C-p>" : "\<C-h>"
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<C-r>=coc#on_enter()\<CR>"
 
-" hover
-function! s:showDocumentation()
+function! s:showDocumentation() abort
   if CocAction('hasProvider', 'hover')
     call CocActionAsync('doHover')
   else
     call feedkeys('K', 'in')
   endif
 endfunction
+
 nnoremap <silent> K :call <SID>showDocumentation()<CR>
 
 nmap <silent> [g <Plug>(coc-diagnostic-prev)

@@ -49,7 +49,7 @@ let b:surround_{char2nr('e')} = "${\r}"
 nnoremap <buffer> [<C-c> "zyiwOconsole.log(z)<Esc>
 nnoremap <buffer> ]<C-c> "zyiwoconsole.log(z)<Esc>
 
-inoreabbrev <buffer><silent> clog console.log()<Left><C-R>=Eatchar('\s')<CR>
+inoreabbrev <buffer><silent> clog console.log()<Left><C-R>=utils#eatchar('\s')<CR>
 inoreabbrev consoel console
 inoreabbrev lenght length
 inoreabbrev edf export default function

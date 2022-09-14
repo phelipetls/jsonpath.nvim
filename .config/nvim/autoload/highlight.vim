@@ -1,18 +1,18 @@
 function! highlight#get_hlgroup_params(hlgroup) abort
-  let l:hlgroup_unparsed = <SID>get_hlgroup_unparsed(a:hlgroup)
+  let l:hlgroup_unparsed = <SID>getHlgroupUnparsed(a:hlgroup)
 
-  let l:linked_hlgroup = <SID>get_linked_hlgroup(l:hlgroup_unparsed)
+  let l:linked_hlgroup = <SID>getLinkedHlgroup(l:hlgroup_unparsed)
   if !empty(l:linked_hlgroup)
     return highlight#get_hlgroup_params(l:linked_hlgroup)
   endif
 
   return {
-        \ 'fg': <SID>get_fg(l:hlgroup_unparsed),
-        \ 'bg': <SID>get_bg(l:hlgroup_unparsed),
+        \ 'fg': <SID>getFg(l:hlgroup_unparsed),
+        \ 'bg': <SID>getBg(l:hlgroup_unparsed),
         \ }
 endfunction
 
-function! s:get_hlgroup_unparsed(hlgroup) abort
+function! s:getHlgroupUnparsed(hlgroup) abort
   redir => l:hlgroup_unparsed
     silent! execute 'highlight ' . a:hlgroup
   redir END
@@ -20,7 +20,7 @@ function! s:get_hlgroup_unparsed(hlgroup) abort
   return l:hlgroup_unparsed
 endfunction
 
-function! s:get_linked_hlgroup(hlgroup_unparsed) abort
+function! s:getLinkedHlgroup(hlgroup_unparsed) abort
   let matches = matchlist(a:hlgroup_unparsed, 'links to \(\k*\)')
 
   if !empty(matches)
@@ -30,7 +30,7 @@ function! s:get_linked_hlgroup(hlgroup_unparsed) abort
   return ''
 endfunction
 
-function! s:get_fg(hlgroup_unparsed) abort
+function! s:getFg(hlgroup_unparsed) abort
   let l:guifg_matches = matchlist(a:hlgroup_unparsed, 'guifg=\([^ ]\+\)')
   if !empty(l:guifg_matches) && len(l:guifg_matches) > 1
     return l:guifg_matches[1]
@@ -44,7 +44,7 @@ function! s:get_fg(hlgroup_unparsed) abort
   return ''
 endfunction
 
-function! s:get_bg(hlgroup_unparsed) abort
+function! s:getBg(hlgroup_unparsed) abort
   let l:guibg_matches = matchlist(a:hlgroup_unparsed, 'guibg=\([^ ]\+\)')
   if !empty(l:guibg_matches) && len(l:guibg_matches) > 1
     return l:guibg_matches[1]
