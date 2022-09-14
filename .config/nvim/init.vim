@@ -668,7 +668,7 @@ augroup END
 
 augroup CloseQuickFix
   au!
-  autocmd WinEnter * if winnr('$') == 1 && &buftype == "quickfix" | q |endif
+  autocmd WinEnter * if winnr('$') == 1 && &buftype == "quickfix" | q | endif
 augroup END
 
 "}}}
