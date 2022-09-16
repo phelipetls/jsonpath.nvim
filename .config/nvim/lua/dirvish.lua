@@ -44,10 +44,6 @@ local function get_clear_buffers_function(expr)
   return delete_file_buffer
 end
 
-local function delete_path(path)
-  return vim.fn.delete(path, vim.fn.isdirectory(path) == 1 and "rf" or "")
-end
-
 function M.delete()
   local path = vim.fn.getline(".")
   local option = vim.fn.confirm("Delete " .. path, "&Yes\n&No", 2)
@@ -57,7 +53,13 @@ function M.delete()
   end
 
   local clear_buffers = get_clear_buffers_function(path)
-  local result = delete_path(path)
+
+  local result
+  if vim.fn.isdirectory(path) == 1 then
+    result = vim.fn.delete(path, "rf")
+  else
+    result = vim.fn.delete(path, "")
+  end
 
   if result == -1 then
     echoerr("Failed to delete " .. path)
