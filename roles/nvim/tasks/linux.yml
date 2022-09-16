@@ -38,6 +38,11 @@
     state: present
   when: ansible_distribution == "Fedora"
 
+- name: Clean git repository
+  ansible.builtin.command:
+    cmd: git clean -fdx
+  changed_when: false
+
 - name: Build nvim release version in Linux
   community.general.make:
     chdir: deps/neovim
