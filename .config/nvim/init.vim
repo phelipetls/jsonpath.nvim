@@ -194,11 +194,35 @@ let g:git_messenger_no_default_mappings = v:true
 nnoremap <C-c>' :InlineEdit<CR>
 let g:inline_edit_autowrite=1
 
+" gitsigns
 if has('nvim')
 lua <<EOF
 require('gitsigns').setup()
 EOF
 endif
+
+" colorizer
+if has('nvim')
+lua << EOF
+require("colorizer").setup({
+  filetypes = {
+    javascript = { names = false },
+    typescript = { names = false },
+    typescriptreact = { names = false },
+    javascriptreact = { names = false },
+    css = { names = false },
+    html = { names = false },
+    vim = { names = false },
+    json = { names = false },
+  },
+  rgb_fn = true,
+})
+EOF
+endif
+
+" dirvish
+" show directories first
+let g:dirvish_mode = ':sort ,^.*[\/],'
 
 "}}}
 "{{{ autocommands
