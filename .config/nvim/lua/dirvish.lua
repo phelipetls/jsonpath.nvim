@@ -20,7 +20,7 @@ end
 
 local function delete_dir_buffers(deleted_dir)
   for bufnr = 1, vim.fn.bufnr("$") do
-    if vim.fn.bufexists(bufnr) == 1 then
+    if vim.fn.buflisted(bufnr) == 1 then
       local buf_path = vim.api.nvim_buf_get_name(bufnr)
 
       if buf_path:find(deleted_dir, 1, true) then
