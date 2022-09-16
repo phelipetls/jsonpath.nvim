@@ -24,7 +24,7 @@ local function delete_dir_buffers(deleted_dir)
       local buf_path = vim.api.nvim_buf_get_name(bufnr)
 
       if buf_path:find(deleted_dir, 1, true) then
-        vim.cmd("silent! bd " .. bufnr)
+        vim.cmd("silent! bdelete " .. bufnr)
       end
     end
   end
@@ -32,7 +32,7 @@ end
 
 local function delete_file_buffer(fname)
   if vim.fn.buflisted(fname) == 1 then
-    vim.cmd("silent! bd " .. vim.fn.bufnr(fname))
+    vim.cmd("silent! bdelete " .. vim.fn.bufnr(fname))
   end
 end
 
