@@ -150,3 +150,6 @@
 	path = .config/nvim/pack/plugins/start/onedark.nvim
 	url = https://github.com/navarasu/onedark.nvim
 	ignore = dirty
+[submodule "vim-eunuch"]
+	path = .config/nvim/pack/plugins/opt/vim-eunuch
+	url = https://github.com/tpope/vim-eunuch
