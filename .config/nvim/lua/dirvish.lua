@@ -148,10 +148,6 @@ function M.rename()
     return
   end
 
-  if _G.rename_hook and vim.is_callable(_G.rename_hook) then
-    pcall(_G.rename_hook, old_path, new_path)
-  end
-
   for winnr = 1, vim.fn.winnr("$") do
     local winbuf = vim.api.nvim_buf_get_name(vim.fn.winbufnr(winnr))
     if winbuf == old_path then
