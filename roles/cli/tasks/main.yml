@@ -55,7 +55,7 @@
 - name: Install diffstatic
   import_tasks: diffstatic.yml
   vars:
-    diffstatic_version: 0.35.0
+    diffstatic_version: 0.36.1
 
 - name: Install GitHub CLI
   import_tasks: github-cli.yml
