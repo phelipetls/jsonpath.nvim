@@ -153,3 +153,6 @@
 [submodule "vim-eunuch"]
 	path = .config/nvim/pack/plugins/opt/vim-eunuch
 	url = https://github.com/tpope/vim-eunuch
+[submodule "vim-fugitive-blame-ext"]
+	path = .config/nvim/pack/plugins/opt/vim-fugitive-blame-ext
+	url = https://github.com/tommcdo/vim-fugitive-blame-ext

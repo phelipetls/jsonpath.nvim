@@ -25,6 +25,7 @@ packadd! fugitive-gitlab.vim
 packadd! vim-rhubarb
 packadd! git-messenger.vim
 packadd! gitsigns.nvim
+packadd! vim-fugitive-blame-ext
 
 " file navigation
 packadd! vim-dirvish
