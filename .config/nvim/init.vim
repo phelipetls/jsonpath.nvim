@@ -443,7 +443,12 @@ function! Tabline() abort
     elseif getbufvar(l:tabbufnr, '&filetype') ==# 'dirvish'
       let l:tabline .= fnamemodify(l:bufname, ':p')
     elseif l:bufname =~# '^fugitive'
-      let l:tabline .= 'fugitive'
+      let l:fugitiveparse = FugitiveParse(l:bufname)
+      if !empty(l:fugitiveparse)
+        let l:tabline .= l:fugitiveparse[0]
+      else
+        let l:tabline = 'fugitive'
+      endif
     elseif l:fname =~# '^index\.\k\+$'
       let l:tabline .= l:dir . '/' . l:fname
     else

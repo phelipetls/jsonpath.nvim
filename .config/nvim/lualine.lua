@@ -18,9 +18,25 @@ local filename = {
   function()
     local fullpath = vim.fn.expand("%:p")
     local fname = vim.fn.expand("%:t")
+    local dir = vim.fn.expand("%:p:h:t")
 
     if fname == "" then
       return "[No Name]"
+    end
+
+    if fname:match('^fugitive') then
+      local fugitiveparse = vim.fn["FugitiveParse"](fullpath)
+      print(fugitiveparse)
+
+      if fugitiveparse[1] then
+        return fugitiveparse[1]
+      end
+
+      return 'fugitive'
+    end
+
+    if fname:match('^index%.%a+$') then
+      return dir .. '/' .. fname
     end
 
     return fname
