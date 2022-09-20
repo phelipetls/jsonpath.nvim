@@ -80,7 +80,6 @@ require("lualine").setup({
     lualine_b = {
       fugitivestatusline,
       "g:coc_status",
-      "g:async_make_status",
     },
     lualine_c = {
       filename,
