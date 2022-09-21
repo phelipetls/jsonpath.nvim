@@ -42,6 +42,7 @@ packadd! cfilter
 packadd! vim-slime
 packadd! LargeFile
 packadd! coc.nvim
+packadd! vim-visual-star-search
 
 " web development
 packadd! vim-hugo

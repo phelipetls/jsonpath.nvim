@@ -158,3 +158,6 @@
 	path = .config/nvim/pack/plugins/opt/vim-fugitive-blame-ext
 	url = https://github.com/tommcdo/vim-fugitive-blame-ext
 	ignore = dirty
+[submodule "vim-visual-star-search"]
+	path = .config/nvim/pack/plugins/opt/vim-visual-star-search
+	url = https://github.com/bronson/vim-visual-star-search
