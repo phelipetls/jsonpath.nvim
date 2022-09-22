@@ -13,6 +13,7 @@ packadd! vim-repeat
 packadd! vim-unimpaired
 packadd! vim-speeddating
 packadd! vim-abolish
+packadd! vim-eunuch
 packadd! matchit
 packadd! vim-lion
 packadd! splitjoin.vim
