@@ -25,10 +25,10 @@ local filename = {
     end
 
     if fname:match('^fugitive') then
-      local fugitiveparse = vim.fn["FugitiveParse"](fullpath)
+      local fugitive_parsed = vim.fn["FugitiveParse"](fullpath)
 
-      if fugitiveparse[1] then
-        return fugitiveparse[1]
+      if fugitive_parsed[1] then
+        return fugitive_parsed[1]
       end
 
       return 'fugitive'

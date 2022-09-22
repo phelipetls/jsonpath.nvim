@@ -436,10 +436,10 @@ function! Tabline() abort
       let l:tabline .= '[No Name]'
     elseif getbufvar(l:tabbufnr, '&filetype') ==# 'dirvish'
       let l:tabline .= fnamemodify(l:bufname, ':p')
-    elseif l:bufname =~# '^fugitive'
-      let l:fugitiveparse = FugitiveParse(l:bufname)
-      if !empty(l:fugitiveparse)
-        let l:tabline .= l:fugitiveparse[0]
+    elseif l:bufname =~# '^fugitive://'
+      let l:fugitive_parsed = FugitiveParse(l:bufname)
+      if !empty(l:fugitive_parsed)
+        let l:tabline .= l:fugitive_parsed[0]
       else
         let l:tabline = 'fugitive'
       endif
