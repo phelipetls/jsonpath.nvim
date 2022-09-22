@@ -62,10 +62,6 @@
 	path = .config/nvim/pack/plugins/opt/nvim-treesitter
 	url = https://github.com/nvim-treesitter/nvim-treesitter
 	ignore = dirty
-[submodule "vader.vim"]
-	path = .config/nvim/pack/plugins/opt/vader.vim
-	url = https://github.com/junegunn/vader.vim
-	ignore = dirty
 [submodule "nvim-colorizer.lua"]
 	path = .config/nvim/pack/plugins/opt/nvim-colorizer.lua
 	url = https://github.com/NvChad/nvim-colorizer.lua
