@@ -24,7 +24,7 @@ local filename = {
       return "[No Name]"
     end
 
-    if fname:match('^fugitive') then
+    if fname:match('^fugitive://') then
       local fugitive_parsed = vim.fn["FugitiveParse"](fullpath)
 
       if fugitive_parsed[1] then
