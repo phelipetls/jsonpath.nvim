@@ -108,14 +108,6 @@ if uname -a | grep -iq Microsoft && keychain --quiet; then
   eval "$(keychain --quiet --eval id_rsa)"
 fi
 
-if [ -f "$HOME/fzf-git.sh/fzf-git.sh" ]; then
-  source "$HOME/fzf-git.sh/fzf-git.sh"
-
-  if [[ -n "$ZSH_VERSION" ]]; then
-    bindkey "^g^g" fzf-git-branches-widget
-  fi
-fi
-
 # Add default less options
 # -F to quit automatically if the file is shorter than the screen
 # -X to not clear the screen after quitting
