@@ -1,4 +1,9 @@
 ---
+- name: Create directory ~/.local/bin/
+  file:
+    path: "{{ ansible_env.HOME }}/.local/bin"
+    state: directory
+
 - name: Install diffstatic in Linux
   unarchive:
     src: https://github.com/Wilfred/difftastic/releases/download/{{ diffstatic_version }}/difft-x86_64-unknown-linux-gnu.tar.gz
