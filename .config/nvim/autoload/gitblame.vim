@@ -1,7 +1,31 @@
 function! gitblame#BlameLine() abort
-  let l:line = line('.')
   let l:fullpath = expand('%:p')
-  let l:result = FugitiveExecute('blame', '--porcelain', printf('-L %s,%s', l:line, l:line), l:fullpath)
+  let l:revision = 'HEAD'
+
+  if l:fullpath =~# '^fugitive://'
+    let l:fullpath = FugitiveReal()
+
+    let l:fugitive_parsed = FugitiveParse()
+
+    if !empty(l:fugitive_parsed)
+      let l:commitfile = l:fugitive_parsed[0]
+      let l:revision = matchstr(l:commitfile, '\x\+')
+    else
+      echohl ErrorMsg
+      echomsg 'Unexpected empty list returned by FugitiveParse'
+      echohl None
+      return
+    endif
+  endif
+
+  let l:result = FugitiveExecute(
+        \ 'blame',
+        \ '--porcelain',
+        \ '-L', printf('%s,+1', line('.')),
+        \ l:revision,
+        \ '--',
+        \ l:fullpath
+        \ )
 
   if l:result.exit_status > 0
     echohl ErrorMsg
