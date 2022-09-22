@@ -364,8 +364,7 @@ nnoremap <silent> 1gD 1gD:nohlsearch<CR>
 inoreabbrev Taebl Table
 inoreabbrev taebl table
 
-" git messenger mapping
-nnoremap <silent> gb <Plug>(git-messenger)
+nnoremap <silent> gb :call gitblame#BlameLine()<CR>
 
 " fix netrw gx being broken
 let g:netrw_nogx=1
