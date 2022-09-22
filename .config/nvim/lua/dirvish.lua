@@ -1,7 +1,5 @@
 local M = {}
 
-local path_utils = require("path")
-
 local function echoerr(msg)
   vim.cmd("echohl WarningMsg")
   vim.cmd(string.format("echomsg '%s'", msg))
