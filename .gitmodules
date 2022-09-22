@@ -70,10 +70,6 @@
 	path = .config/nvim/pack/plugins/opt/nvim-colorizer.lua
 	url = https://github.com/NvChad/nvim-colorizer.lua
 	ignore = dirty
-[submodule "git-messenger.vim"]
-	path = .config/nvim/pack/plugins/opt/git-messenger.vim
-	url = https://github.com/rhysd/git-messenger.vim
-	ignore = dirty
 [submodule "splitjoin.vim"]
 	path = .config/nvim/pack/plugins/opt/splitjoin.vim
 	url = https://github.com/AndrewRadev/splitjoin.vim
