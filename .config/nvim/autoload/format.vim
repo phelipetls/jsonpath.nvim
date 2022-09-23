@@ -4,8 +4,7 @@ function! format#operatorfunc(type, ...) abort
     return
   endif
 
-  let motions = #{line: "'[V']", char: '`[v`]', block: '`[\<c-v>`]'}
-  silent execute 'noautocmd keepjumps normal! ' . get(motions, a:type, '') . 'gq'
+  silent noautocmd keepjumps normal! '[v']gq
 
   if v:shell_error > 0
     keepjumps silent undo
