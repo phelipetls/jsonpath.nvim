@@ -116,7 +116,7 @@ fi
 export LESS="FXRM"
 
 alias r='ranger'
-if uname | grep -q darwin; then
+if uname | grep -vq darwin; then
   alias ls='ls --color=auto --group-directories-first'
 fi
 alias ll='ls -alF'
