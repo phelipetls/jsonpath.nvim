@@ -24,7 +24,6 @@ packadd! inline_edit.vim
 packadd! vim-fugitive
 packadd! fugitive-gitlab.vim
 packadd! vim-rhubarb
-packadd! gitsigns.nvim
 packadd! vim-fugitive-blame-ext
 
 " file navigation
@@ -88,13 +87,6 @@ set breakindent
 set breakindentopt=shift:2
 set linebreak
 set showtabline=2
-set signcolumn=yes
-
-augroup DisableSignColumn
-  autocmd!
-  autocmd FileType fugitive,dirvish,gitcommit,gitrebase,fzf setlocal signcolumn=no
-  autocmd BufEnter * if !&modifiable || &readonly | setlocal signcolumn=no | endif
-augroup END
 
 " tell neovim where python3 is -- this improves startup time
 if has('nvim') && has('unix')
@@ -190,13 +182,6 @@ let $LESS='RX'
 " inline_edit.vim
 nnoremap <C-c>' :InlineEdit<CR>
 let g:inline_edit_autowrite=1
-
-" gitsigns
-if has('nvim')
-lua <<EOF
-require('gitsigns').setup()
-EOF
-endif
 
 " colorizer
 if has('nvim')
