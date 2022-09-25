@@ -26,6 +26,8 @@
   "prettier.formatterPriority": 101,
   "eslint.autoFixOnSave": true,
   "suggest.noselect": true,
+  "html.autoCreateQuotes": false,
+  "html.autoClosingTags": false,
   "languageserver": {
     "efm": {
       "command": "efm-langserver",
