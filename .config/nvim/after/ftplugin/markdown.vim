@@ -3,6 +3,7 @@ setlocal iskeyword+='
 
 " allow syntax highlight inside code blocks for these languages
 let g:markdown_fenced_languages = [
+      \ 'vim',
       \ 'python',
       \ 'javascript',
       \ 'js=javascript',
