@@ -28,6 +28,8 @@
   "suggest.noselect": true,
   "html.autoCreateQuotes": false,
   "html.autoClosingTags": false,
+  "coc.source.syntax.enable": true,
+  "coc.source.syntax.filetypes": ["htmlhugo"],
   "languageserver": {
     "efm": {
       "command": "efm-langserver",

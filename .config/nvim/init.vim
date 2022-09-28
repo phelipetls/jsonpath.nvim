@@ -552,6 +552,7 @@ let g:coc_global_extensions = [
       \'coc-css',
       \'coc-prettier',
       \'coc-eslint',
+      \'coc-syntax',
       \]
 
 set nobackup
