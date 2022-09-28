@@ -423,12 +423,13 @@ function! Tabline() abort
     elseif getbufvar(l:tabbufnr, '&filetype') ==# 'dirvish'
       let l:tabline .= fnamemodify(l:bufname, ':p')
     elseif l:bufname =~# '^fugitive://'
-      let l:fugitive_parsed = FugitiveParse(l:bufname)
-      if !empty(l:fugitive_parsed)
-        if l:fugitive_parsed[0] == ':'
+      let l:fugitive_commitfile = get(FugitiveParse(l:bufname), 0, '')
+
+      if !empty(l:fugitive_commitfile)
+        if l:fugitive_commitfile == ':'
           let l:tabline .= 'fugitive-summary'
         else
-          let l:tabline .= l:fugitive_parsed[0]
+          let l:tabline .= l:fugitive_commitfile
         endif
       else
         let l:tabline = 'fugitive'
