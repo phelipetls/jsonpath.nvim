@@ -425,7 +425,11 @@ function! Tabline() abort
     elseif l:bufname =~# '^fugitive://'
       let l:fugitive_parsed = FugitiveParse(l:bufname)
       if !empty(l:fugitive_parsed)
-        let l:tabline .= l:fugitive_parsed[0]
+        if l:fugitive_parsed[0] == ':'
+          let l:tabline .= 'fugitive-summary'
+        else
+          let l:tabline .= l:fugitive_parsed[0]
+        endif
       else
         let l:tabline = 'fugitive'
       endif

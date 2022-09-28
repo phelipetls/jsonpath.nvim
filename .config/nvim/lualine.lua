@@ -28,6 +28,9 @@ local filename = {
       local fugitive_parsed = vim.fn["FugitiveParse"](fullpath)
 
       if fugitive_parsed[1] then
+        if fugitive_parsed[1] == ':' then
+          return 'fugitive-summary'
+        end
         return fugitive_parsed[1]
       end
 
