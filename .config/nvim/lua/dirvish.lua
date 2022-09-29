@@ -126,6 +126,10 @@ local function get_basename(path)
   return vim.fn.fnamemodify(path, ":t")
 end
 
+function go_to_window(win_nr)
+  vim.cmd(win_nr .. "wincmd w")
+end
+
 function M.rename()
   local old_path = vim.fn.getline(".")
   local old_basename = get_basename(old_path)
@@ -152,13 +156,13 @@ function M.rename()
     local buf_name = vim.api.nvim_buf_get_name(vim.fn.winbufnr(win_nr))
 
     if buf_name == old_path then
-      vim.cmd(string.format("%dwincmd w", win_nr))
+      go_to_window(win_nr)
       vim.cmd(string.format("edit %s", new_path))
-      vim.cmd(string.format("%dwincmd w", inital_win_buf_nr))
+      go_to_window(inital_win_buf_nr)
     elseif vim.startswith(buf_name, old_path) then
-      vim.cmd(string.format("%dwincmd w", win_nr))
+      go_to_window(win_nr)
       vim.cmd(string.format("edit %s", new_path .. "/" .. vim.fn.fnamemodify(buf_name, ':t')))
-      vim.cmd(string.format("%dwincmd w", inital_win_buf_nr))
+      go_to_window(inital_win_buf_nr)
     end
   end
 
