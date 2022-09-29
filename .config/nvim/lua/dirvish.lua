@@ -146,10 +146,11 @@ function M.rename()
     return
   end
 
-  for winnr = 1, vim.fn.winnr("$") do
-    local winbuf = vim.api.nvim_buf_get_name(vim.fn.winbufnr(winnr))
-    if winbuf == old_path then
-      vim.cmd(string.format("%dwincmd w", winnr))
+  for win_nr = 1, vim.fn.winnr("$") do
+    local buf_name = vim.api.nvim_buf_get_name(vim.fn.winbufnr(win_nr))
+
+    if buf_name == old_path then
+      vim.cmd(string.format("%dwincmd w", win_nr))
       vim.cmd(string.format("edit %s", new_path))
       vim.cmd("wincmd p")
     end
