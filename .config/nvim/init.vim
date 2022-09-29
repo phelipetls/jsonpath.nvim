@@ -425,14 +425,14 @@ function! Tabline() abort
     elseif l:bufname =~# '^fugitive://'
       let l:fugitive_commitfile = get(FugitiveParse(l:bufname), 0, '')
 
-      if !empty(l:fugitive_commitfile)
+      if empty(l:fugitive_commitfile)
+        let l:tabline = 'fugitive'
+      else
         if l:fugitive_commitfile == ':'
           let l:tabline .= 'fugitive-summary'
         else
           let l:tabline .= l:fugitive_commitfile
         endif
-      else
-        let l:tabline = 'fugitive'
       endif
     elseif l:fname =~# '^index\.\k\+$'
       let l:tabline .= l:dir . '/' . l:fname

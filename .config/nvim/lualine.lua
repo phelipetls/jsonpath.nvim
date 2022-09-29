@@ -27,14 +27,15 @@ local filename = {
     if fname:match('^fugitive://') then
       local fugitive_commitfile = unpack(vim.fn["FugitiveParse"](fullpath))
 
-      if fugitive_commitfile then
-        if fugitive_commitfile == ':' then
-          return 'fugitive-summary'
-        end
-        return fugitive_commitfile
+      if not fugitive_commitfile then
+        return 'fugitive'
       end
 
-      return 'fugitive'
+      if fugitive_commitfile == ':' then
+        return 'fugitive-summary'
+      end
+
+      return fugitive_commitfile
     end
 
     if fname:match('^index%.%a+$') then
