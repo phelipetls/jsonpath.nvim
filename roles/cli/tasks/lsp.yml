@@ -1,9 +1,4 @@
 ---
-- name: Create directory ~/.local/bin/
-  file:
-    path: "{{ ansible_env.HOME }}/.local/bin"
-    state: directory
-
 - name: Install efm-langserver in Linux
   unarchive:
     src: https://github.com/mattn/efm-langserver/releases/download/v{{ efm_langserver_version }}/efm-langserver_v{{ efm_langserver_version }}_linux_amd64.tar.gz

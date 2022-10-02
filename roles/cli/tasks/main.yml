@@ -52,6 +52,16 @@
     state: present
   when: ansible_distribution == "MacOSX"
 
+- name: Create directory ~/.local/bin/
+  file:
+    path: "{{ ansible_env.HOME }}/.local/bin"
+    state: directory
+
+- name: Install language servers, linters and formatters
+  import_tasks: lsp.yml
+  vars:
+    efm_langserver_version: "0.0.44"
+
 - name: Install diffstatic
   import_tasks: diffstatic.yml
   vars:

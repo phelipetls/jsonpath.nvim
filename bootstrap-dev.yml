@@ -14,9 +14,6 @@
         npm_global_packages:
           - n
           - npm-merge-driver
-    - role: lsp
-      vars:
-        efm_langserver_version: "0.0.44"
     - role: nvim
     - role: stow
     - role: fzf
