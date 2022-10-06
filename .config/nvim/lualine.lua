@@ -42,7 +42,7 @@ local filename = {
       return dir .. '/' .. fname
     end
 
-    return fname
+    return vim.fn.expand("%")
   end,
   padding = { left = 1, right = 1 },
 }
