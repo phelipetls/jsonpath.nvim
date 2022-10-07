@@ -1,7 +1,7 @@
 function! gitblame#BlameLine() abort
   if empty(FugitiveGitDir())
     echohl ErrorMsg
-    echomsg 'Not in a git repository'
+    echomsg 'not in a git repository'
     echohl None
     return
   endif
@@ -17,11 +17,6 @@ function! gitblame#BlameLine() abort
     if !empty(l:fugitive_parsed)
       let l:commitfile = l:fugitive_parsed[0]
       let l:revision = matchstr(l:commitfile, '\x\+')
-    else
-      echohl ErrorMsg
-      echomsg 'Unexpected empty list returned by FugitiveParse'
-      echohl None
-      return
     endif
   endif
 
@@ -42,7 +37,7 @@ function! gitblame#BlameLine() abort
 
   if l:blame_result.exit_status > 0
     echohl ErrorMsg
-    echomsg 'Failed to run git blame: ' l:blame_result.stderr[0]
+    echomsg 'git blame failed: ' l:blame_result.stderr[0]
     echohl None
     return
   endif
