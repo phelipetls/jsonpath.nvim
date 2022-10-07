@@ -89,8 +89,8 @@ if [ -d "/usr/local/go/bin" ]; then
 fi
 
 # Add Rust related PATH
-if [ -d "$HOME/.cargo/bin" ]; then
-  export PATH="$PATH:$HOME/.cargo/bin"
+if [ -d "$HOME/.cargo/env" ]; then
+  export PATH="$PATH:$HOME/.cargo/env"
 fi
 
 # Add git-toolbelt
