@@ -1,3 +1,3 @@
-inoreabbrev {{ {{<space><space>}}<left><left><left><C-R>=utils#eatchar('\s')<CR>
+inoreabbrev <buffer> {{ {{<space><space>}}<left><left><left><C-R>=utils#eatchar('\s')<CR>
 
 setlocal omnifunc=syntaxcomplete#Complete

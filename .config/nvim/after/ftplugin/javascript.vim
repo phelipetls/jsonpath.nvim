@@ -50,14 +50,14 @@ nnoremap <buffer> [<C-c> "zyiwOconsole.log(z)<Esc>
 nnoremap <buffer> ]<C-c> "zyiwoconsole.log(z)<Esc>
 
 inoreabbrev <buffer><silent> clog console.log()<Left><C-R>=utils#eatchar('\s')<CR>
-inoreabbrev consoel console
-inoreabbrev lenght length
-inoreabbrev edf export default function
-inoreabbrev improt import
-inoreabbrev Obejct Object
-inoreabbrev entires entries
-inoreabbrev cosnt const
-inoreabbrev docuemnt document
+inoreabbrev <buffer> consoel console
+inoreabbrev <buffer> lenght length
+inoreabbrev <buffer> edf export default function
+inoreabbrev <buffer> improt import
+inoreabbrev <buffer> Obejct Object
+inoreabbrev <buffer> entires entries
+inoreabbrev <buffer> cosnt const
+inoreabbrev <buffer> docuemnt document
 
 setlocal isfname+=@-@
 setlocal suffixesadd=.js,.jsx,.ts,.tsx,.d.ts,.vue,/package.json
