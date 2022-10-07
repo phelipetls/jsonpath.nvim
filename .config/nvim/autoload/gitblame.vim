@@ -1,4 +1,11 @@
 function! gitblame#BlameLine() abort
+  if empty(FugitiveGitDir())
+    echohl ErrorMsg
+    echomsg 'Not in a git repository'
+    echohl None
+    return
+  endif
+
   let l:fullpath = expand('%:p')
   let l:revision = 'HEAD'
 
