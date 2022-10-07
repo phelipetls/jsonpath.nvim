@@ -145,3 +145,6 @@
 [submodule "vim-visual-star-search"]
 	path = .config/nvim/pack/plugins/opt/vim-visual-star-search
 	url = https://github.com/bronson/vim-visual-star-search
+[submodule "vim-jqplay"]
+	path = .config/nvim/pack/plugins/opt/vim-jqplay
+	url = https://github.com/phelipetls/vim-jqplay

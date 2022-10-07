@@ -42,6 +42,7 @@ packadd! vim-slime
 packadd! LargeFile
 packadd! coc.nvim
 packadd! vim-visual-star-search
+packadd! vim-jqplay
 
 " web development
 packadd! vim-hugo
@@ -205,6 +206,11 @@ endif
 " dirvish
 " show directories first
 let g:dirvish_mode = ':sort ,^.*[\/],'
+
+" open jqplay buffers in vertical splits
+let g:jqplay = {
+    \ 'mods': 'vertical'
+    \ }
 
 "}}}
 "{{{ autocommands
