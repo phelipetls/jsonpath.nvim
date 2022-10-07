@@ -18,23 +18,29 @@ function! gitblame#BlameLine() abort
     endif
   endif
 
-  let l:result = FugitiveExecute(
-        \ 'blame',
-        \ '--porcelain',
-        \ '-L', printf('%s,+1', line('.')),
-        \ l:revision,
-        \ '--',
-        \ l:fullpath
-        \ )
+  let l:diff_result = FugitiveExecute('diff', 'HEAD', '--exit-code', '--', l:fullpath)
+  let l:is_different = l:diff_result.exit_status > 0
 
-  if l:result.exit_status > 0
+  let l:args = ['blame', '--porcelain', '-L', printf('%s,+1', line('.'))]
+
+  if &modified || l:is_different
+    let l:args += ['--contents', l:fullpath]
+  else
+    let l:args += [l:revision]
+  endif
+
+  let l:args += ['--', l:fullpath]
+
+  let l:blame_result = call('FugitiveExecute', l:args)
+
+  if l:blame_result.exit_status > 0
     echohl ErrorMsg
-    echomsg 'Failed to run git blame: ' l:result.stderr[0]
+    echomsg 'Failed to run git blame: ' l:blame_result.stderr[0]
     echohl None
     return
   endif
 
-  let l:stdout = l:result.stdout
+  let l:stdout = l:blame_result.stdout
   if empty(l:stdout)
     return
   endif
