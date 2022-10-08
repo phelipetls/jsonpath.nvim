@@ -130,10 +130,6 @@
 	path = .config/nvim/pack/plugins/opt/nvim-treesitter-textobjects
 	url = https://github.com/nvim-treesitter/nvim-treesitter-textobjects
 	ignore = dirty
-[submodule "onedark.nvim"]
-	path = .config/nvim/pack/plugins/start/onedark.nvim
-	url = https://github.com/navarasu/onedark.nvim
-	ignore = dirty
 [submodule "vim-eunuch"]
 	path = .config/nvim/pack/plugins/opt/vim-eunuch
 	url = https://github.com/tpope/vim-eunuch
@@ -148,3 +144,7 @@
 [submodule "vim-jqplay"]
 	path = .config/nvim/pack/plugins/opt/vim-jqplay
 	url = https://github.com/phelipetls/vim-jqplay
+[submodule "vim-moonfly-colors"]
+	path = .config/nvim/pack/plugins/start/vim-moonfly-colors
+	url = https://github.com/bluz71/vim-moonfly-colors
+	ignore = dirty

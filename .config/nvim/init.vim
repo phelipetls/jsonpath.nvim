@@ -58,8 +58,8 @@ endif
 
 set termguicolors
 if has('nvim-0.7.0')
-  let g:onedark_config = {'style': 'darker'}
-  colorscheme onedark
+  let g:moonflyWinSeparator = 2
+  colorscheme moonfly
 else
   colorscheme evening
 endif
@@ -104,6 +104,9 @@ endif
 " visually show special characters
 set list
 set fillchars=fold:-,vert:│,stlnc:-
+if has('nvim')
+  set fillchars=horiz:━,horizup:┻,horizdown:┳,vert:┃,vertleft:┨,vertright:┣,verthoriz:╋
+endif
 set listchars=tab:»\ ,nbsp:¬,trail:·,extends:…,precedes:‹
 set showbreak=↳\ 
 
