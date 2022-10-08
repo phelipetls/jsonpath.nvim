@@ -20,7 +20,7 @@ local filename = {
     local fname = vim.fn.expand("%:t")
     local dir = vim.fn.expand("%:p:h:t")
 
-    if fname == "" then
+    if fullpath == "" then
       return "[No Name]"
     end
 
