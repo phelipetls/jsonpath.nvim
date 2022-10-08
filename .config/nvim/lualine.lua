@@ -49,6 +49,10 @@ local readonly = function()
   return "[-]"
 end
 
+local only_one_window_visible = function()
+  return vim.fn.winwidth(0) == vim.o.columns
+end
+
 require("lualine").setup({
   options = {
     icons_enabled = false,
@@ -65,9 +69,11 @@ require("lualine").setup({
       {
         fugitivestatusline,
         padding = { left = 1, right = 1 },
+        cond = only_one_window_visible,
       },
       {
         "g:coc_status",
+        cond = only_one_window_visible,
       },
     },
     lualine_c = {
