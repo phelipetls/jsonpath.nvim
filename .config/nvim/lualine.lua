@@ -24,22 +24,22 @@ local filename = {
       return "[No Name]"
     end
 
-    if fname:match('^fugitive://') then
+    if fname:match("^fugitive://") then
       local fugitive_commitfile = unpack(vim.fn["FugitiveParse"](fullpath))
 
       if not fugitive_commitfile then
-        return 'fugitive'
+        return "fugitive"
       end
 
-      if fugitive_commitfile == ':' then
-        return 'fugitive-summary'
+      if fugitive_commitfile == ":" then
+        return "fugitive-summary"
       end
 
       return fugitive_commitfile
     end
 
-    if fname:match('^index%.%a+$') then
-      return dir .. '/' .. fname
+    if fname:match("^index%.%a+$") then
+      return dir .. "/" .. fname
     end
 
     return vim.fn.expand("%")
@@ -65,7 +65,7 @@ local readonly = {
     return not vim.bo.modifiable or vim.bo.readonly
   end,
   padding = { left = 0, right = 1 },
-  color = { fg = vim.fn['highlight#get_hlgroup_params']('Debug').fg }
+  color = { fg = vim.fn["highlight#get_hlgroup_params"]("Debug").fg },
 }
 
 require("lualine").setup({
