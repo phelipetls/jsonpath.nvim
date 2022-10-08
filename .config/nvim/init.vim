@@ -395,61 +395,61 @@ if has('nvim')
 endif
 
 function! Tabline() abort
-  let l:tabline = ''
+  let tabline = ''
   for tab in range(1, tabpagenr('$'))
     " Get tab infos
-    let l:tabwinnr = tabpagewinnr(tab)
+    let tabwinnr = tabpagewinnr(tab)
 
     " Get buf infos
-    let l:buflist = tabpagebuflist(tab)
-    let l:tabbufnr = l:buflist[l:tabwinnr - 1]
-    let l:bufname = bufname(l:tabbufnr)
-    let l:fname = fnamemodify(l:bufname, ':t')
-    let l:dir = fnamemodify(l:bufname, ':p:h:t')
-    let l:ext = fnamemodify(l:bufname, ':e')
+    let buflist = tabpagebuflist(tab)
+    let tabbufnr = buflist[tabwinnr - 1]
+    let bufname = bufname(tabbufnr)
+    let fname = fnamemodify(bufname, ':t')
+    let dir = fnamemodify(bufname, ':p:h:t')
+    let ext = fnamemodify(bufname, ':e')
 
     " Set tab state
-    let l:tabline .= '%' . tab . 'T'
+    let tabline .= '%' . tab . 'T'
 
     " Get tab highlight group
-    let l:is_tab_selected = tab == tabpagenr()
-    let l:tabline_hl = l:is_tab_selected ? 'TabLineSel' : 'TabLine'
-    let l:tabline .= '%#' . l:tabline_hl . '#'
+    let is_tab_selected = tab == tabpagenr()
+    let tabline_hl = is_tab_selected ? 'TabLineSel' : 'TabLine'
+    let tabline .= '%#' . tabline_hl . '#'
 
-    let l:spacing = repeat(' ', 2)
+    let spacing = repeat(' ', 2)
 
-    let l:tabline .= l:spacing
+    let tabline .= spacing
 
     " Set tab highlight
-    let l:tabline .= '%#' . l:tabline_hl . '#'
+    let tabline .= '%#' . tabline_hl . '#'
 
     " Set tab label
-    if empty(l:bufname)
-      let l:tabline .= '[No Name]'
-    elseif getbufvar(l:tabbufnr, '&filetype') ==# 'dirvish'
-      let l:tabline .= fnamemodify(l:bufname, ':p')
-    elseif l:bufname =~# '^fugitive://'
-      let l:fugitive_commitfile = get(FugitiveParse(l:bufname), 0, '')
+    if empty(bufname)
+      let tabline .= '[No Name]'
+    elseif getbufvar(tabbufnr, '&filetype') ==# 'dirvish'
+      let tabline .= fnamemodify(bufname, ':p')
+    elseif bufname =~# '^fugitive://'
+      let fugitive_commitfile = get(FugitiveParse(bufname), 0, '')
 
-      if empty(l:fugitive_commitfile)
-        let l:tabline = 'fugitive'
+      if empty(fugitive_commitfile)
+        let tabline = 'fugitive'
       else
-        if l:fugitive_commitfile == ':'
-          let l:tabline .= 'fugitive-summary'
+        if fugitive_commitfile == ':'
+          let tabline .= 'fugitive-summary'
         else
-          let l:tabline .= l:fugitive_commitfile
+          let tabline .= fugitive_commitfile
         endif
       endif
-    elseif l:fname =~# '^index\.\k\+$'
-      let l:tabline .= l:dir . '/' . l:fname
+    elseif fname =~# '^index\.\k\+$'
+      let tabline .= dir . '/' . fname
     else
-      let l:tabline .= l:fname
+      let tabline .= fname
     endif
 
-    let l:tabline .= l:spacing
+    let tabline .= spacing
   endfor
-  let l:tabline .= '%#TabLineFill#'
-  return l:tabline
+  let tabline .= '%#TabLineFill#'
+  return tabline
 endfunction
 
 set tabline=%!Tabline()

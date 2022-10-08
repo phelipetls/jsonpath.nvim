@@ -6,58 +6,58 @@ function! gitblame#BlameLine() abort
     return
   endif
 
-  let l:fullpath = expand('%:p')
-  let l:revision = 'HEAD'
+  let fullpath = expand('%:p')
+  let revision = 'HEAD'
 
-  if l:fullpath =~# '^fugitive://'
-    let l:fullpath = FugitiveReal()
+  if fullpath =~# '^fugitive://'
+    let fullpath = FugitiveReal()
 
-    let l:fugitive_parsed = FugitiveParse()
+    let fugitive_parsed = FugitiveParse()
 
-    if !empty(l:fugitive_parsed)
-      let l:commitfile = l:fugitive_parsed[0]
-      let l:revision = matchstr(l:commitfile, '\x\+')
+    if !empty(fugitive_parsed)
+      let commitfile = fugitive_parsed[0]
+      let revision = matchstr(commitfile, '\x\+')
     endif
   endif
 
-  let l:diff_result = FugitiveExecute('diff', 'HEAD', '--exit-code', '--', l:fullpath)
-  let l:is_different = l:diff_result.exit_status > 0
+  let diff_result = FugitiveExecute('diff', 'HEAD', '--exit-code', '--', fullpath)
+  let is_different = diff_result.exit_status > 0
 
-  let l:args = ['blame', '--porcelain', '-L', printf('%s,+1', line('.'))]
+  let args = ['blame', '--porcelain', '-L', printf('%s,+1', line('.'))]
 
-  if &modified || l:is_different
-    let l:args += ['--contents', l:fullpath]
+  if &modified || is_different
+    let args += ['--contents', fullpath]
   else
-    let l:args += [l:revision]
+    let args += [revision]
   endif
 
-  let l:args += ['--', l:fullpath]
+  let args += ['--', fullpath]
 
-  let l:blame_result = call('FugitiveExecute', l:args)
+  let blame_result = call('FugitiveExecute', args)
 
-  if l:blame_result.exit_status > 0
+  if blame_result.exit_status > 0
     echohl ErrorMsg
-    echomsg 'git blame failed: ' l:blame_result.stderr[0]
+    echomsg 'git blame failed: ' blame_result.stderr[0]
     echohl None
     return
   endif
 
-  let l:stdout = l:blame_result.stdout
-  if empty(l:stdout)
+  let stdout = blame_result.stdout
+  if empty(stdout)
     return
   endif
 
-  let l:firstline = l:stdout[0]
+  let firstline = stdout[0]
 
-  let l:commit = matchstr(l:firstline, '\x\+')
-  if empty(l:commit)
+  let commit = matchstr(firstline, '\x\+')
+  if empty(commit)
     return
   endif
 
-  if l:commit =~# '^0\+$'
+  if commit =~# '^0\+$'
     echomsg 'Not Commmitted Yet'
     return
   endif
 
-  execute fugitive#Open('pedit', 0, '', l:commit, [])
+  execute fugitive#Open('pedit', 0, '', commit, [])
 endfunction
