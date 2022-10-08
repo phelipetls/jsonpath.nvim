@@ -43,6 +43,12 @@
     cmd: git clean -fdx
   changed_when: false
 
+- name: Clean previous nvim builds
+  community.general.make:
+    chdir: deps/neovim
+    target: clean
+  changed_when: false
+
 - name: Build nvim release version in Linux
   community.general.make:
     chdir: deps/neovim
