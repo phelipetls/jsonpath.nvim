@@ -141,9 +141,11 @@
 [submodule "vim-visual-star-search"]
 	path = .config/nvim/pack/plugins/opt/vim-visual-star-search
 	url = https://github.com/bronson/vim-visual-star-search
+	ignore = dirty
 [submodule "vim-jqplay"]
 	path = .config/nvim/pack/plugins/opt/vim-jqplay
 	url = https://github.com/phelipetls/vim-jqplay
+	ignore = dirty
 [submodule "vim-moonfly-colors"]
 	path = .config/nvim/pack/plugins/start/vim-moonfly-colors
 	url = https://github.com/bluz71/vim-moonfly-colors
