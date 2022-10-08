@@ -68,7 +68,6 @@ require("lualine").setup({
     lualine_b = {
       {
         fugitivestatusline,
-        padding = { left = 1, right = 1 },
         cond = only_one_window_visible,
       },
       {
@@ -79,7 +78,6 @@ require("lualine").setup({
     lualine_c = {
       {
         filename,
-        padding = { left = 1, right = 1 },
       },
       {
         modified,
@@ -109,7 +107,6 @@ require("lualine").setup({
     lualine_c = {
       {
         filename,
-        padding = { left = 1, right = 1 },
       },
       {
         modified,
