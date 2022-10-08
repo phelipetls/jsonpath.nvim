@@ -83,7 +83,7 @@
 	url = https://github.com/tpope/vim-rhubarb
 	ignore = dirty
 [submodule "neovim"]
-	path = deps/neovim
+	path = deps/nvim
 	url = https://github.com/neovim/neovim
 	ignore = dirty
 [submodule "fzf"]
