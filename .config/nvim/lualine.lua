@@ -1,72 +1,53 @@
-local fugitivestatusline = {
-  function()
-    local fugitive = vim.fn["FugitiveStatusline"]()
+local fugitivestatusline = function()
+  local fugitive = vim.fn["FugitiveStatusline"]()
 
-    local file_revision = string.match(fugitive, "Git:(.+)%(")
-    local checked_out_branch = string.match(fugitive, "Git%((.+)%)")
+  local file_revision = string.match(fugitive, "Git:(.+)%(")
+  local checked_out_branch = string.match(fugitive, "Git%((.+)%)")
 
-    if file_revision == "0" then
-      return "index"
+  if file_revision == "0" then
+    return "index"
+  end
+
+  return file_revision or checked_out_branch or ""
+end
+
+local filename = function()
+  local fullpath = vim.fn.expand("%:p")
+  local fname = vim.fn.expand("%:t")
+  local dir = vim.fn.expand("%:p:h:t")
+
+  if fullpath == "" then
+    return "[No Name]"
+  end
+
+  if fname:match("^fugitive://") then
+    local fugitive_commitfile = unpack(vim.fn["FugitiveParse"](fullpath))
+
+    if not fugitive_commitfile then
+      return "fugitive"
     end
 
-    return file_revision or checked_out_branch or ""
-  end,
-  icon = { "" },
-}
-
-local filename = {
-  function()
-    local fullpath = vim.fn.expand("%:p")
-    local fname = vim.fn.expand("%:t")
-    local dir = vim.fn.expand("%:p:h:t")
-
-    if fullpath == "" then
-      return "[No Name]"
+    if fugitive_commitfile == ":" then
+      return "fugitive-summary"
     end
 
-    if fname:match("^fugitive://") then
-      local fugitive_commitfile = unpack(vim.fn["FugitiveParse"](fullpath))
+    return fugitive_commitfile
+  end
 
-      if not fugitive_commitfile then
-        return "fugitive"
-      end
+  if fname:match("^index%.%a+$") then
+    return dir .. "/" .. fname
+  end
 
-      if fugitive_commitfile == ":" then
-        return "fugitive-summary"
-      end
+  return vim.fn.expand("%")
+end
 
-      return fugitive_commitfile
-    end
+local modified = function()
+  return "[+]"
+end
 
-    if fname:match("^index%.%a+$") then
-      return dir .. "/" .. fname
-    end
-
-    return vim.fn.expand("%")
-  end,
-  padding = { left = 1, right = 1 },
-}
-
-local modified = {
-  function()
-    return "[+]"
-  end,
-  cond = function()
-    return vim.bo.modified
-  end,
-  padding = { left = 0, right = 1 },
-}
-
-local readonly = {
-  function()
-    return "[-]"
-  end,
-  cond = function()
-    return not vim.bo.modifiable or vim.bo.readonly
-  end,
-  padding = { left = 0, right = 1 },
-  color = { fg = vim.fn["highlight#get_hlgroup_params"]("Debug").fg },
-}
+local readonly = function()
+  return "[-]"
+end
 
 require("lualine").setup({
   options = {
@@ -81,13 +62,31 @@ require("lualine").setup({
       },
     },
     lualine_b = {
-      fugitivestatusline,
-      "g:coc_status",
+      {
+        fugitivestatusline,
+        padding = { left = 1, right = 1 },
+      },
+      {
+        "g:coc_status",
+      },
     },
     lualine_c = {
-      filename,
-      modified,
-      readonly,
+      {
+        filename,
+        padding = { left = 1, right = 1 },
+      },
+      {
+        modified,
+        cond = function()
+          return vim.bo.modified
+        end,
+        padding = { left = 0, right = 1 },
+      },
+      {
+        readonly,
+        padding = { left = 0, right = 1 },
+        color = { fg = vim.fn["highlight#get_hlgroup_params"]("Debug").fg },
+      },
     },
     lualine_x = { "diagnostics", "fileformat", "filetype" },
     lualine_y = {},
@@ -102,9 +101,21 @@ require("lualine").setup({
     lualine_a = {},
     lualine_b = {},
     lualine_c = {
-      filename,
-      modified,
-      readonly,
+      {
+        filename,
+        padding = { left = 1, right = 1 },
+      },
+      {
+        modified,
+        cond = function()
+          return vim.bo.modified
+        end,
+        padding = { left = 0, right = 1 },
+      },
+      {
+        readonly,
+        padding = { left = 0, right = 1 },
+      },
     },
     lualine_x = {},
     lualine_y = {},
