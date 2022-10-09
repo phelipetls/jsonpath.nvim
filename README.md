@@ -6,7 +6,7 @@ A "JSON path" is a [jq](https://github.com/stedolan/jq)-like expression, such
 as `.` for root, `.[0]` for the first array item, `.name` for the property
 "name" of an object.
 
-[Demonstration](https://user-images.githubusercontent.com/39670535/194752997-f6048859-44b8-447c-935f-99808771d924.webm)
+[jsonpath-nvim-demo.webm](https://user-images.githubusercontent.com/39670535/194754315-57601183-fd1e-4633-982b-66c0c77fea29.webm)
 
 # Dependencies
 
