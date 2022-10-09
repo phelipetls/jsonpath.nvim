@@ -43,6 +43,9 @@ packadd! LargeFile
 packadd! coc.nvim
 packadd! vim-visual-star-search
 packadd! vim-jqplay
+if has('nvim')
+  packadd! plenary.nvim
+endif
 
 " web development
 packadd! vim-hugo
@@ -271,7 +274,7 @@ nnoremap <silent> <esc> :nohlsearch<CR>:redraw!<CR><esc>
 nnoremap <silent> <space>ev :execute ":edit ".resolve($MYVIMRC)<CR>
 
 " source current file, only if it is .vim file
-nnoremap <expr> <space>ss (&ft == "vim" ? ":source %<CR>" : &ft == "lua" ? ":luafile %<CR>" : "")
+nnoremap <expr> <space>ss (&ft == "vim" ? ":source %<CR>" : &ft == "lua" ? ":lua require('plenary.reload').reload_module(vim.fn.expand('%:t:r'))<CR>" : "")
 
 " make <c-u> and <c-w> undoable
 inoremap <C-u> <C-g>u<C-u>
