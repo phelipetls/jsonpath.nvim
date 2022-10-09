@@ -50,14 +50,14 @@ M.get = function()
       if starts_with_number(key) or contains_special_characters(key) then
         accessor = string.format('["%s"]', key)
       else
-        accessor = string.format(".%s", key)
+        accessor = string.format("%s", key)
       end
     end
 
     if node:type() == "array" then
       for i, child in ipairs(ts_utils.get_named_children(node)) do
         if ts_utils.is_parent(child, current_node) then
-          accessor = string.format(".[%d]", i - 1)
+          accessor = string.format("[%d]", i - 1)
         end
       end
     end
@@ -69,11 +69,15 @@ M.get = function()
     node = node:parent()
   end
 
-  if #accessors == 0 then
-    return "."
-  end
+  local path = "."
 
-  local path = table.concat(accessors, "")
+  for _, accessor in ipairs(accessors) do
+    if vim.startswith(accessor, "[") then
+      path = path .. accessor
+    else
+      path = path .. "." .. accessor
+    end
+  end
 
   if #path > 100 then
     path = "..." .. path:sub(#path - 100, #path)
