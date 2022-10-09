@@ -7,8 +7,6 @@ local get_node_text = function(node)
   return vim.treesitter.get_node_text(node, 0)
 end
 
-local get_node_at_cursor = ts_utils.get_node_at_cursor
-
 local get_string_content = function(node)
   for _, child in ipairs(ts_utils.get_named_children(node)) do
     if child:type() == "string_content" then
@@ -32,7 +30,7 @@ M.get = function()
     return ""
   end
 
-  local current_node = get_node_at_cursor()
+  local current_node = ts_utils.get_node_at_cursor()
   if not current_node then
     return ""
   end
@@ -78,8 +76,9 @@ M.get = function()
   local path = ""
 
   for i, accessor in ipairs(accessors) do
-    local isfirst = i == 1
-    if vim.startswith(accessor, "[") and not isfirst then
+    if i == 1 then
+      path = path .. "." .. accessor
+    elseif vim.startswith(accessor, "[") then
       path = path .. accessor
     else
       path = path .. "." .. accessor
