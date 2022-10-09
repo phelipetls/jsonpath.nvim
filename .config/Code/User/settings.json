@@ -14,7 +14,6 @@
   "workbench.sideBar.location": "right",
   "workbench.tree.indent": 12,
   "workbench.editor.enablePreview": false,
-  "breadcrumbs.enabled": false,
   "scm.diffDecorations": "gutter",
   "files.enableTrash": false,
   "vim.incsearch": true,
