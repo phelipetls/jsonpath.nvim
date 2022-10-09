@@ -85,10 +85,6 @@ M.get = function()
     end
   end
 
-  if #path > 100 then
-    path = "..." .. path:sub(#path - 100, #path)
-  end
-
   return path
 end
 
