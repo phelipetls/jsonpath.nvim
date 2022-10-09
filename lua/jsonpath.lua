@@ -77,8 +77,9 @@ M.get = function()
 
   local path = ""
 
-  for _, accessor in ipairs(accessors) do
-    if vim.startswith(accessor, "[") then
+  for i, accessor in ipairs(accessors) do
+    local isfirst = i == 1
+    if vim.startswith(accessor, "[") and not isfirst then
       path = path .. accessor
     else
       path = path .. "." .. accessor
