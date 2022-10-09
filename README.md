@@ -8,6 +8,8 @@ as `.` for root, `.[0]` for the first array item, `.name` for the property
 
 [jsonpath-nvim-demo.webm](https://user-images.githubusercontent.com/39670535/194754315-57601183-fd1e-4633-982b-66c0c77fea29.webm)
 
+*Colorscheme is [vim-moonfly-colors](https://github.com/bluz71/vim-moonfly-colors)*
+
 # Dependencies
 
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter/).
