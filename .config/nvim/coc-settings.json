@@ -76,5 +76,8 @@
         }
       }
     }
-  }
+  },
+  "Lua.telemetry.enable": true,
+  "Lua.hint.enable": false,
+  "sumneko-lua.enableNvimLuaDev": true
 }
