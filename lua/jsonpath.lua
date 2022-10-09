@@ -69,7 +69,11 @@ M.get = function()
     node = node:parent()
   end
 
-  local path = "."
+  if #accessors == 0 then
+    return "."
+  end
+
+  local path = ""
 
   for _, accessor in ipairs(accessors) do
     if vim.startswith(accessor, "[") then
