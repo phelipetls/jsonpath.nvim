@@ -55,6 +55,8 @@ M.get = function()
     end
 
     if node:type() == "array" then
+      accessor = "[]"
+
       for i, child in ipairs(ts_utils.get_named_children(node)) do
         if ts_utils.is_parent(child, current_node) then
           accessor = string.format("[%d]", i - 1)
