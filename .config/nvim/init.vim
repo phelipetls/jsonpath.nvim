@@ -576,6 +576,7 @@ let g:coc_global_extensions = [
       \'coc-syntax',
       \'coc-styled-components',
       \'coc-sumneko-lua',
+      \'coc-rust-analyzer',
       \]
 
 set nobackup
