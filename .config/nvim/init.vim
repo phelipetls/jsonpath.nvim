@@ -45,6 +45,7 @@ packadd! vim-visual-star-search
 packadd! vim-jqplay
 if has('nvim')
   packadd! plenary.nvim
+  packadd! jsonpath.nvim
 endif
 
 " web development

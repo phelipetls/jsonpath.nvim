@@ -5,7 +5,7 @@ elseif executable('python3')
 endif
 
 if exists('+winbar')
-  setlocal winbar=%{luaeval('require\"jsonpath\".get_json_path()')}
+  setlocal winbar=%{luaeval('require\"jsonpath\".get()')}
 endif
 
-nnoremap y<C-p> :let @+=luaeval('require"jsonpath".get_json_path()')<CR>
+nnoremap <buffer> y<C-p> :let @+=luaeval('require"jsonpath".get()')<CR>

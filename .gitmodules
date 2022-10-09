@@ -153,3 +153,6 @@
 [submodule "plenary.nvim"]
 	path = .config/nvim/pack/plugins/opt/plenary.nvim
 	url = https://github.com/nvim-lua/plenary.nvim
+[submodule "jsonpath.nvim"]
+	path = .config/nvim/pack/plugins/opt/jsonpath.nvim
+	url = https://github.com/phelipetls/jsonpath.nvim
