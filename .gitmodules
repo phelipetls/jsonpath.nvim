@@ -150,3 +150,6 @@
 	path = .config/nvim/pack/plugins/start/vim-moonfly-colors
 	url = https://github.com/bluz71/vim-moonfly-colors
 	ignore = dirty
+[submodule "plenary.nvim"]
+	path = .config/nvim/pack/plugins/opt/plenary.nvim
+	url = https://github.com/nvim-lua/plenary.nvim
