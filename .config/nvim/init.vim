@@ -372,7 +372,10 @@ vnoremap <silent> gx :<C-U>call os#open_file_under_cursor(v:true)<CR>
 
 nmap <silent> gq :set operatorfunc=format#operatorfunc<CR>g@
 vmap <silent> gq :<C-U>set operatorfunc=format#operatorfunc<CR>gvg@
-nmap <silent> gQ :call format#file()<CR>
+
+command! -bang FormatPrg call format#file(<bang>0)
+nmap <silent> gQ :FormatPrg<CR>
+nmap <silent> <space>gQ :FormatPrg!<CR>
 
 " add mapping to do fugitive related tasks more quickly
 nmap <space>g :Git<space>

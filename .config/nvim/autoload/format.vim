@@ -14,11 +14,18 @@ function! format#operatorfunc(type, ...) abort
   endif
 endfunction
 
-function! format#file() abort
+function! format#file(forceformatprg) abort
+  let bang = get(a:, 0, 0)
+
   let w:view = winsaveview()
   keepjumps normal! gg
-  set operatorfunc=format#operatorfunc
-  keepjumps normal! g@G
+
+  if a:forceformatprg
+    keepjumps normal! gqG
+  else
+    set operatorfunc=format#operatorfunc
+    keepjumps normal! g@G
+  end
   keepjumps call winrestview(w:view)
   unlet w:view
 endfunction
