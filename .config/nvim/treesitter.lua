@@ -20,7 +20,7 @@ require("nvim-treesitter.configs").setup({
   },
   highlight = {
     enable = true,
-    disable = function(lang, bufnr)
+    disable = function(_, bufnr)
       if vim.fn.bufname(bufnr):match(".min.js$") then
         return true
       end
