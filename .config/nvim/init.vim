@@ -41,7 +41,6 @@ packadd! cfilter
 packadd! vim-slime
 packadd! LargeFile
 packadd! coc.nvim
-packadd! vim-visual-star-search
 packadd! vim-jqplay
 if has('nvim')
   packadd! plenary.nvim
