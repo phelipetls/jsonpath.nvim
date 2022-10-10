@@ -243,6 +243,9 @@ augroup GlobalAutocmds
 
   " allows me to preview a commit when rebasing with K
   autocmd FileType gitrebase setlocal keywordprg=:Git!\ show
+
+  " create intermediate directories if necessary before saving file
+  autocmd BufWritePre * call mkdir(expand("<afile>:p:h"), "p")
 augroup END
 
 if has('nvim')
