@@ -40,23 +40,24 @@
 
 - name: Clean git repository
   ansible.builtin.command:
+    chdir: deps/nvim
     cmd: git clean -fdx
   changed_when: false
 
 - name: Clean previous nvim builds
   community.general.make:
-    chdir: deps/neovim
+    chdir: deps/nvim
     target: clean
   changed_when: false
 
 - name: Build nvim release version in Linux
   community.general.make:
-    chdir: deps/neovim
+    chdir: deps/nvim
     params:
       CMAKE_BUILD_TYPE: Release
 
 - name: Install nvim release version in Linux
   become: true
   community.general.make:
-    chdir: deps/neovim
+    chdir: deps/nvim
     target: install
