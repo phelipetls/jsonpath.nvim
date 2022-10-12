@@ -65,6 +65,8 @@ require("nvim-treesitter.configs").setup({
         ["ic"] = "@class.inner",
         ["aa"] = "@parameter.outer",
         ["ia"] = "@parameter.inner",
+        ["i`"] = "@templatestring-inner",
+        ["a`"] = "@templatestring-outer",
       },
       -- You can choose the select mode (default is charwise 'v')
       selection_modes = {
