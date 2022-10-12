@@ -6,13 +6,9 @@ vim.api.nvim_command([[packadd! playground]])
 
 require("nvim-treesitter.configs").setup({
   ensure_installed = {
-    "typescript",
-    "javascript",
-    "tsx",
     "toml",
     "jsonc",
     "python",
-    "yaml",
     "jsdoc",
     "lua",
     "bash",
@@ -20,13 +16,6 @@ require("nvim-treesitter.configs").setup({
   },
   highlight = {
     enable = true,
-    disable = function(_, bufnr)
-      if vim.fn.bufname(bufnr):match(".min.js$") then
-        return true
-      end
-
-      return false
-    end,
     additional_vim_regex_highlighting = false,
   },
   indent = {
@@ -34,22 +23,6 @@ require("nvim-treesitter.configs").setup({
   },
   context_commentstring = {
     enable = true,
-  },
-  autotag = {
-    enable = true,
-    filetypes = {
-      "html",
-      "htmlhugo",
-      "javascript",
-      "typescript",
-      "javascriptreact",
-      "typescriptreact",
-      "svelte",
-      "vue",
-      "tsx",
-      "jsx",
-      "markdown",
-    },
   },
   textobjects = {
     select = {
