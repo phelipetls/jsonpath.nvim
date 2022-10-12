@@ -126,10 +126,6 @@
 	path = .config/nvim/pack/plugins/opt/LargeFile
 	url = https://github.com/vim-scripts/LargeFile
 	ignore = dirty
-[submodule "nvim-treesitter-textobjects"]
-	path = .config/nvim/pack/plugins/opt/nvim-treesitter-textobjects
-	url = https://github.com/nvim-treesitter/nvim-treesitter-textobjects
-	ignore = dirty
 [submodule "vim-eunuch"]
 	path = .config/nvim/pack/plugins/opt/vim-eunuch
 	url = https://github.com/tpope/vim-eunuch
