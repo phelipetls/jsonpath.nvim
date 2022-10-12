@@ -60,7 +60,7 @@
 	ignore = dirty
 [submodule "nvim-treesitter"]
 	path = .config/nvim/pack/plugins/opt/nvim-treesitter
-	url = https://github.com/nvim-treesitter/nvim-treesitter
+	url = https://github.com/phelipetls/nvim-treesitter.git
 	ignore = dirty
 [submodule "nvim-colorizer.lua"]
 	path = .config/nvim/pack/plugins/opt/nvim-colorizer.lua
