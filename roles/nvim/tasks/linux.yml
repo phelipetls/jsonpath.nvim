@@ -38,6 +38,18 @@
     state: present
   when: ansible_distribution == "Fedora"
 
+- name: Check if previous build exist
+  ansible.builtin.stat:
+    path: deps/nvim/build
+  register: nvim_build
+
+- name: Uninstall previous installation of nvim
+  become: true
+  ansible.builtin.command:
+    chdir: deps/nvim
+    cmd: cmake --build build/ --target uninstall
+  when: nvim_build.stat.exists
+
 - name: Clean git repository
   ansible.builtin.command:
     chdir: deps/nvim
