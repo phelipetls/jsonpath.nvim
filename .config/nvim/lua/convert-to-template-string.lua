@@ -13,17 +13,14 @@ M.convert = function()
   local node = ts_utils.get_node_at_cursor()
 
   local is_string = node:type() == "string"
+  local is_parent_string = node:parent() ~= nil and node:parent():type() == "string"
 
-  if not is_string then
-    local parent = node:parent()
+  if not (is_string or is_parent_string) then
+    return
+  end
 
-    if parent:type() == "string" then
-      node = parent
-    else
-      -- the node under the cursor is not a string, nor a child of a string.
-      -- nothing to be done.
-      return
-    end
+  if is_parent_string then
+    node = node:parent()
   end
 
   local has_interpolation = false
