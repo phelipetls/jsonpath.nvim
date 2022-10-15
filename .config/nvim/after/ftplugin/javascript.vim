@@ -84,8 +84,8 @@ endfunction
 setlocal includeexpr=JavascriptNodeFind(v:fname,@%)
 
 if has('nvim')
-augroup ConvertToTemplateString
-  autocmd!
-  autocmd InsertLeave,TextChanged <buffer> lua require("convert-to-template-string").convert()
-augroup END
+  augroup TemplateStringConverter
+    autocmd!
+    autocmd InsertLeave,TextChanged <buffer> lua require("template-string-converter").convert()
+  augroup END
 endif
