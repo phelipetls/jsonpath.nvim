@@ -1,7 +1,5 @@
 local M = {}
 
-local ts_utils = require("nvim-treesitter.ts_utils")
-
 local replace_surroundings_with = function(node, char)
   local start_row, start_col, end_row, end_col = node:range()
 
@@ -10,7 +8,7 @@ local replace_surroundings_with = function(node, char)
 end
 
 M.convert = function()
-  local node = ts_utils.get_node_at_cursor()
+  local node = require("nvim-treesitter.ts_utils").get_node_at_cursor()
 
   local is_string = node:type() == "string"
   local is_parent_string = node:parent() ~= nil and node:parent():type() == "string"
