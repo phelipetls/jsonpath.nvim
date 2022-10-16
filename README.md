@@ -16,8 +16,24 @@ as `.` for root, `.[0]` for the first array item, `.name` for the property
 
 # Usage
 
+Using lua:
+```lua
+-- in after/ftplugin/json.lua
+
+-- show json path in the winbar
+if vim.fn.exists("+winbar") == 1 then
+  vim.opt.winbar = "%{%v:lua.require'jsonpath'.get()%}"
+end
+
+-- send json path to clipboard
+vim.keymap.set("n", "y<C-p>", function()
+  vim.fn.setreg("+", require("jsonpath").get())
+end, { desc = "copy json path", buffer = true })
+```
+
+Using vim:
 ```vim
-" in ~/after/ftplugin/json.vim
+" in after/ftplugin/json.vim
 
 " show json path in the winbar
 if exists('+winbar')
