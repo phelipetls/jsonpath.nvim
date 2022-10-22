@@ -4,6 +4,9 @@ vim.api.nvim_command([[packadd! nvim-ts-autotag]])
 vim.api.nvim_command([[packadd! nvim-treesitter-textobjects]])
 vim.api.nvim_command([[packadd! playground]])
 
+local ft_to_parser = require"nvim-treesitter.parsers".filetype_to_parsername
+ft_to_parser.css = "scss"
+
 require("nvim-treesitter.configs").setup({
   ensure_installed = {
     "typescript",
@@ -16,6 +19,7 @@ require("nvim-treesitter.configs").setup({
     "lua",
     "bash",
     "vim",
+    "scss",
   },
   highlight = {
     enable = true,
