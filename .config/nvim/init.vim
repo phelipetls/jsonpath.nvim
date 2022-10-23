@@ -377,7 +377,7 @@ vmap <silent> gq :<C-U>set operatorfunc=format#operatorfunc<CR>gvg@
 
 command! -bang FormatPrg call format#file(<bang>0)
 nmap <silent> gQ :FormatPrg<CR>
-nmap <silent> <space>gQ :FormatPrg!<CR>
+nmap <silent> <space>Q :FormatPrg!<CR>
 
 " add mapping to do fugitive related tasks more quickly
 nmap <space>g :Git<space>
