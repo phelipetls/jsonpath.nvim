@@ -26,6 +26,7 @@ function! format#file(forceformatprg) abort
     set operatorfunc=format#operatorfunc
     keepjumps normal! g@G
   end
+
   keepjumps call winrestview(w:view)
   unlet w:view
 endfunction
