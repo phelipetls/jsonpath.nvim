@@ -245,7 +245,7 @@ augroup GlobalAutocmds
   autocmd FileType gitrebase setlocal keywordprg=:Git!\ show
 
   " create intermediate directories if necessary before saving file
-  autocmd BufWritePre * call mkdir(expand("<afile>:p:h"), "p")
+  autocmd BufWritePre * call utils#create_dir_on_save(expand("<afile>"))
 augroup END
 
 if has('nvim')

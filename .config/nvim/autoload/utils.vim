@@ -19,3 +19,13 @@ function! utils#check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
+function! utils#create_dir_on_save(filename) abort
+  let dir = fnamemodify(a:filename, ':p:h')
+
+  if dir =~# '^fugitive://'
+    return
+  endif
+
+  call mkdir(dir, 'p')
+endfunction
