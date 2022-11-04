@@ -195,17 +195,20 @@ if has('nvim')
 lua << EOF
 require("colorizer").setup({
   filetypes = {
-    javascript = { names = false },
-    typescript = { names = false },
-    typescriptreact = { names = false },
-    javascriptreact = { names = false },
-    css = { names = false },
-    html = { names = false },
-    vim = { names = false },
-    json = { names = false },
+    "javascript",
+    "typescript",
+    "typescriptreact",
+    "javascriptreact",
+    "css",
+    "html",
+    "vim",
+    "json",
   },
-  rgb_fn = true,
-  tailwind = true,
+  user_default_options = {
+    rgb_fn = true,
+    tailwind = "lsp",
+    names = false,
+  },
 })
 EOF
 endif
