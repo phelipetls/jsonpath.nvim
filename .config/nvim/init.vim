@@ -606,7 +606,7 @@ inoremap <expr><s-tab> coc#pum#visible() ? coc#pum#prev(1) : pumvisible() ? "\<C
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<C-r>=coc#on_enter()\<CR>"
 
 function! s:showDocumentation() abort
-  if CocAction('hasProvider', 'hover')
+  if CocHasProvider('hover')
     call CocActionAsync('doHover')
   else
     call feedkeys('K', 'in')
