@@ -205,6 +205,7 @@ require("colorizer").setup({
     json = { names = false },
   },
   rgb_fn = true,
+  tailwind = true,
 })
 EOF
 endif
