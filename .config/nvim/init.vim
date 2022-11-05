@@ -658,6 +658,11 @@ command! -nargs=0 OR :call CocActionAsync('runCommand', 'editor.action.organizeI
 " better ui to run coc command
 nnoremap <space>c :CocList commands<CR>
 
+augroup CocUserAutocmds
+  autocmd!
+  autocmd User CocNvimInit call coc_document_color#setup_autocmds()
+augroup END
+
 "}}}
 "{{{ treesitter
 
