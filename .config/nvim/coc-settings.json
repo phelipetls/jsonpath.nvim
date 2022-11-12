@@ -79,6 +79,5 @@
   },
   "Lua.telemetry.enable": true,
   "Lua.hint.enable": false,
-  "sumneko-lua.enableNvimLuaDev": true,
-  "rust-analyzer.inlayHints.enable": false
+  "sumneko-lua.enableNvimLuaDev": true
 }
