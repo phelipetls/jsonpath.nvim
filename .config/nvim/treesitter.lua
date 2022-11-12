@@ -20,6 +20,7 @@ require("nvim-treesitter.configs").setup({
     "bash",
     "vim",
     "scss",
+    "astro",
   },
   highlight = {
     enable = true,

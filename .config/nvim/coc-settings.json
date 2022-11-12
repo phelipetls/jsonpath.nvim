@@ -46,7 +46,8 @@
         "javascript",
         "javascriptreact",
         "typescript",
-        "typescriptreact"
+        "typescriptreact",
+        "astro"
       ],
       "rootPatterns": [
         "tailwind.config.js",
@@ -71,10 +72,23 @@
             "invalidTailwindDirective": "error",
             "recommendedVariantOrder": "warning"
           },
-          "classAttributes": ["class", "className", "classList", "ngClass"],
+          "classAttributes": ["class", "className", "classList", "ngClass", "class:list"],
           "experimental": {}
         }
       }
+    },
+    "astro-ls": {
+      "command": "astro-ls",
+      "args": ["--stdio"],
+      "filetypes": [
+        "astro"
+      ],
+      "rootPatterns": [
+        "astro.config.js",
+        "astro.config.mjs",
+        "astro.config.ts",
+        "astro.config.mts"
+      ]
     }
   },
   "Lua.telemetry.enable": true,

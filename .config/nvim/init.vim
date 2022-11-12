@@ -203,6 +203,7 @@ require("colorizer").setup({
     "html",
     "vim",
     "json",
+    "astro",
   },
   user_default_options = {
     rgb_fn = true,
@@ -662,6 +663,14 @@ augroup CocUserAutocmds
   autocmd!
   autocmd User CocNvimInit call coc_document_color#setup_autocmds()
 augroup END
+
+call coc#config('languageserver.astro-ls', {
+      \ 'initializationOptions': {
+      \   'typescript': {
+      \      'serverPath': fnamemodify(findfile('./node_modules/typescript/lib/tsserverlibrary.js', ',,'), ':p')
+      \    }
+      \  }
+      \})
 
 "}}}
 "{{{ treesitter
