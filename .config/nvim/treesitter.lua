@@ -6,12 +6,14 @@ vim.api.nvim_command([[packadd! playground]])
 
 local ft_to_parser = require"nvim-treesitter.parsers".filetype_to_parsername
 ft_to_parser.css = "scss"
+ft_to_parser.mdx = "markdown"
 
 require("nvim-treesitter.configs").setup({
   ensure_installed = {
     "typescript",
     "javascript",
     "tsx",
+    "yaml",
     "toml",
     "jsonc",
     "python",
@@ -21,6 +23,8 @@ require("nvim-treesitter.configs").setup({
     "vim",
     "scss",
     "astro",
+    "markdown",
+    "markdown_inline",
   },
   highlight = {
     enable = true,
