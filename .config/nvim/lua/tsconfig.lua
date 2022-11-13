@@ -94,7 +94,7 @@ local function get_tsconfig_include(tsconfig_fname)
   end
 
   local include_list = vim.tbl_map(function(fname)
-    local fname_without_globs = fname:gsub("%*%*/%*%..+$", "")
+    local fname_without_globs = fname:gsub("%*%*/%*%..+$", ""):gsub("%*%*/%*$", ""):gsub("%*$", "")
     local dir = vim.fn.simplify(get_dir(tsconfig_fname) .. "/" .. fname_without_globs)
 
     if vim.fn.isdirectory(dir) == 0 then
