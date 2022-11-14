@@ -128,5 +128,8 @@ if is_linux && ! is_wsl; then
   alias ls='ls --color=auto --group-directories-first'
   alias open='xdg-open'
 fi
+if is_wsl; then
+  alias open='wslview'
+fi
 alias ll='ls -alF'
 alias la='ls -A'
