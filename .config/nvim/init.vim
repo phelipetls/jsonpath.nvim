@@ -60,12 +60,8 @@ endif
 "{{{ settings
 
 set termguicolors
-if has('nvim-0.7.0')
-  let g:moonflyWinSeparator = 2
-  colorscheme moonfly
-else
-  colorscheme evening
-endif
+let g:moonflyWinSeparator = 2
+colorscheme moonfly
 
 filetype plugin indent on
 
