@@ -103,8 +103,16 @@ if [ -d "/opt/homebrew/bin" ]; then
   export PATH="$PATH:/opt/homebrew/bin"
 fi
 
+function is_linux() {
+  uname | grep -iq linux
+}
+
+function is_wsl() {
+  uname -a | grep -iq microsoft
+}
+
 # Persist ssh session across shells in WSL
-if uname -a | grep -iq Microsoft && keychain --quiet; then
+if is_wsl && keychain --quiet; then
   eval "$(keychain --quiet --eval id_rsa)"
 fi
 
@@ -114,14 +122,6 @@ fi
 # -R to show only color escape sequences in raw form
 # -M to show a more verbose prompt
 export LESS="FXRM"
-
-function is_linux() {
-  uname | grep -iq linux
-}
-
-function is_wsl() {
-  uname -a | grep -iq microsoft
-}
 
 alias r='ranger'
 if is_linux && ! is_wsl; then
