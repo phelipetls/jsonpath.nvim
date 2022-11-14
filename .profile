@@ -115,8 +115,16 @@ fi
 # -M to show a more verbose prompt
 export LESS="FXRM"
 
+function is_linux() {
+  uname | grep -iq linux
+}
+
+function is_wsl() {
+  uname -a | grep -iq microsoft
+}
+
 alias r='ranger'
-if uname | grep -vq darwin; then
+if is_linux && ! is_wsl; then
   alias ls='ls --color=auto --group-directories-first'
   alias open='xdg-open'
 fi
