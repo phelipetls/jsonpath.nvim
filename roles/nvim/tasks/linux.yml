@@ -50,18 +50,18 @@
     path: deps/nvim/build
   register: nvim_build
 
+- name: Build nvim release version in Linux
+  community.general.make:
+    chdir: deps/nvim
+    params:
+      CMAKE_BUILD_TYPE: Release
+
 - name: Uninstall previous installation of nvim
   become: true
   ansible.builtin.command:
     chdir: deps/nvim
     cmd: cmake --build build/ --target uninstall
   when: nvim_build.stat.exists
-
-- name: Build nvim release version in Linux
-  community.general.make:
-    chdir: deps/nvim
-    params:
-      CMAKE_BUILD_TYPE: Release
 
 - name: Install nvim release version in Linux
   become: true
