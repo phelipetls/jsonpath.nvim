@@ -236,9 +236,6 @@ augroup GlobalAutocmds
   " autoresize splits when vim is resized
   autocmd VimResized * wincmd =
 
-  autocmd FileType javascript,typescript,javascriptreact,typescriptreact,sh,yaml,vim,lua,json,html,css set expandtab shiftwidth=2 softtabstop=2
-  autocmd FileType python set expandtab shiftwidth=4 softtabstop=4
-
   " put the current file name under the f register
   autocmd BufEnter * let @f=expand("%:t:r")
 
