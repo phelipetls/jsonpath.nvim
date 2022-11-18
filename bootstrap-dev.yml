@@ -9,6 +9,6 @@
     - role: nodejs
     - role: lsp
     - role: nvim
-    - role: stow
     - role: cli
+    - role: stow
     - role: hugo
