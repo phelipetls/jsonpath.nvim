@@ -1,0 +1,2 @@
+---
+npm_config_prefix: "{{ ansible_env.HOME }}/.npm-packages"
