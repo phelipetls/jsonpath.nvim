@@ -1,0 +1,23 @@
+- name: Install shellcheck in Fedora
+  become: true
+  dnf:
+    name:
+      - ShellCheck
+    state: present
+  when: ansible_distribution == "Fedora"
+
+- name: Install shellcheck in Ubuntu
+  become: true
+  apt:
+    name:
+      - shellcheck
+    state: present
+  when: ansible_distribution == "Ubuntu"
+
+- name: Install shellcheck in macOS
+  loop:
+    - shellcheck
+  community.general.homebrew:
+    name: "{{ item }}"
+    state: present
+  when: ansible_distribution == "MacOSX"

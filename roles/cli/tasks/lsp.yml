@@ -19,29 +19,8 @@
       - "-j"  # do not create any directories
   when: ansible_distribution == "MacOSX"
 
-- name: Install linters and formatters with dnf
-  become: true
-  dnf:
-    name:
-      - ShellCheck
-    state: present
-  when: ansible_distribution == "Fedora"
-
-- name: Install linters and formatters with apt
-  become: true
-  apt:
-    name:
-      - shellcheck
-    state: present
-  when: ansible_distribution == "Ubuntu"
-
-- name: Install linters and formatters with homebrew
-  loop:
-    - shellcheck
-  community.general.homebrew:
-    name: "{{ item }}"
-    state: present
-  when: ansible_distribution == "MacOSX"
+- name: Install shellcheck
+  import_tasks: shellcheck.yml
 
 - name: Install linters and formatters with pip
   ansible.builtin.pip:
