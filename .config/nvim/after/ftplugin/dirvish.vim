@@ -1,5 +1,3 @@
-scriptencoding utf-8
-
 if has('nvim')
 lua << EOF
 vim.api.nvim_buf_set_keymap(0, "n", "%", ":lua require'dirvish'.create_file()<CR>", { silent = true })
