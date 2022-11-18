@@ -1,0 +1,39 @@
+---
+- name: Install git-delta in Ubuntu
+  become: true
+  apt:
+    deb: "https://github.com/dandavison/delta/releases/download/{{ git_delta_version }}/git-delta_{{ git_delta_version }}_amd64.deb"
+  vars:
+    git_delta_version: 0.13.0
+  when: ansible_distribution == "Ubuntu"
+
+- name: Install CLI tools in Ubuntu
+  become: true
+  apt:
+    name:
+      - tig
+      - tmux
+      - ripgrep
+      - fd-find
+      - jq
+      - htop
+      - python3-pip
+      - pass
+    state: present
+  when: ansible_distribution == "Ubuntu"
+
+- name: Install CLI tools in Fedora
+  become: true
+  dnf:
+    name:
+      - git-delta
+    state: present
+  when: ansible_distribution == "Fedora"
+
+- name: Install CLI tools in macOS
+  loop:
+    - git-delta
+  community.general.homebrew:
+    name: "{{ item }}"
+    state: present
+  when: ansible_distribution == "MacOSX"

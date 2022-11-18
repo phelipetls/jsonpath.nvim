@@ -14,14 +14,6 @@
     state: present
   when: ansible_distribution == "Ubuntu"
 
-- name: Install git-delta in Ubuntu
-  become: true
-  apt:
-    deb: "https://github.com/dandavison/delta/releases/download/{{ git_delta_version }}/git-delta_{{ git_delta_version }}_amd64.deb"
-  vars:
-    git_delta_version: 0.13.0
-  when: ansible_distribution == "Ubuntu"
-
 - name: Install CLI tools in Fedora
   become: true
   dnf:
@@ -34,7 +26,6 @@
       - htop
       - python3-pip
       - pass
-      - git-delta
     state: present
   when: ansible_distribution == "Fedora"
 
@@ -46,7 +37,6 @@
     - fd
     - jq
     - htop
-    - git-delta
   community.general.homebrew:
     name: "{{ item }}"
     state: present
@@ -61,6 +51,9 @@
   import_tasks: lsp.yml
   vars:
     efm_langserver_version: "0.0.44"
+
+- name: Install git-delta
+  import_tasks: git-delta.yml
 
 - name: Install diffstatic
   import_tasks: diffstatic.yml
