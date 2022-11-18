@@ -66,3 +66,9 @@
       - ranger-fm
     state: present
     executable: pip3
+
+- name: Install fzf
+  command:
+    cmd: ./install --no-update-rc
+    chdir: "{{ ansible_env.HOME }}/.fzf"
+    creates: "{{ ansible_env.HOME }}/.fzf/bin/fzf"

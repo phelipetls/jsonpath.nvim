@@ -6,13 +6,12 @@
       when: ansible_distribution == "MacOSX"
     - role: submodules
     - role: zsh
-    - role: cli
     - role: nodejs
       vars:
         npm_config_prefix: "{{ ansible_env.HOME }}/.npm-packages"
     - role: nvim
     - role: stow
-    - role: fzf
+    - role: cli
     - role: hugo
       vars:
         hugo_version: "0.101.0"
