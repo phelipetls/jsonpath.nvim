@@ -47,11 +47,6 @@
     path: "{{ ansible_env.HOME }}/.local/bin"
     state: directory
 
-- name: Install language servers, linters and formatters
-  import_tasks: lsp.yml
-  vars:
-    efm_langserver_version: "0.0.44"
-
 - name: Install git-delta
   import_tasks: git-delta.yml
 

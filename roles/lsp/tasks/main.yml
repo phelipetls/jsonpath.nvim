@@ -1,0 +1,41 @@
+---
+- name: Install efm-langserver
+  import_tasks: efm-langserver.yml
+
+- name: Install shellcheck
+  import_tasks: shellcheck.yml
+
+- name: Install linters and formatters with pip
+  ansible.builtin.pip:
+    name:
+      - flake8
+      - black
+      - yamllint
+      - git+https://github.com/Vimjas/vint@master
+    state: present
+    executable: pip3
+
+- name: Install linters and formatters with npm
+  loop:
+    - eslint_d
+    - prettier
+    - "@tailwindcss/language-server"
+  community.general.npm:
+    name: "{{ item }}"
+    global: true
+    state: present
+
+- name: Install unzip in Ubuntu
+  become: true
+  ansible.builtin.apt:
+    name:
+      - unzip
+    state: present
+  when: ansible_distribution == "Ubuntu"
+
+- name: Install stylua from GitHub releases
+  unarchive:
+    src: "https://github.com/JohnnyMorganz/StyLua/releases/download/v0.13.1/stylua-{{ 'macos' if ansible_facts['os_family'] == 'Darwin' else 'linux' }}.zip"
+    dest: "~/.local/bin"
+    mode: "u+x"
+    remote_src: true

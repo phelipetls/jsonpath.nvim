@@ -9,6 +9,7 @@
     - role: nodejs
       vars:
         npm_config_prefix: "{{ ansible_env.HOME }}/.npm-packages"
+    - role: lsp
     - role: nvim
     - role: stow
     - role: cli
