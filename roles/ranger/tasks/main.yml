@@ -1,7 +1,0 @@
----
-- name: Install ranger in Ubuntu
-  pip:
-    name:
-      - ranger-fm
-    state: present
-    executable: pip3

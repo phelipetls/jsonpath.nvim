@@ -7,7 +7,6 @@
     - role: submodules
     - role: zsh
     - role: cli
-    - role: ranger
     - role: nodejs
       vars:
         npm_config_prefix: "{{ ansible_env.HOME }}/.npm-packages"

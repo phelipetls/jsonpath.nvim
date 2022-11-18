@@ -66,3 +66,10 @@
   import_tasks: diffstatic.yml
   vars:
     diffstatic_version: 0.36.1
+
+- name: Install ranger
+  pip:
+    name:
+      - ranger-fm
+    state: present
+    executable: pip3
