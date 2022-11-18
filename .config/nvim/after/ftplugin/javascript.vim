@@ -31,7 +31,9 @@ if match(expand('%:p:t'), 'test\.\(js\|ts\|jsx\|tsx\)$') != -1
   compiler jest
 elseif !empty(findfile('tsconfig.json', ';.')) || !empty(findfile('jsconfig.json', ';.'))
   compiler tsc
-elseif executable('npx')
+elseif executable('eslint_d')
+  compiler eslint_d
+elseif executable('eslint')
   compiler eslint
 endif
 
@@ -41,6 +43,8 @@ endif
 
 if executable('npx')
   set formatprg=npx\ prettier\ --stdin-filepath\ %
+elseif executable('eslint_d')
+  let &l:formatprg='eslint_d --fix-to-stdout --stdin'
 endif
 
 let b:surround_{char2nr('c')} = "console.log(\r)"

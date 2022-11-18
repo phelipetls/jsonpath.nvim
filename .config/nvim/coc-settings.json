@@ -24,15 +24,6 @@
   "html.filetypes": ["html", "htmlhugo", "htmldjango"],
   "prettier.requireConfig": true,
   "prettier.formatterPriority": 101,
-  "eslint.autoFixOnSave": true,
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact",
-    "astro",
-    "mdx"
-  ],
   "suggest.noselect": true,
   "html.autoCreateQuotes": false,
   "html.autoClosingTags": false,
@@ -41,7 +32,7 @@
   "languageserver": {
     "efm": {
       "command": "efm-langserver",
-      "filetypes": ["sh", "zsh", "yaml", "lua", "python", "javascript", "typescript", "javascriptreact", "typescriptreact", "vim"],
+      "filetypes": ["sh", "zsh", "yaml", "lua", "python", "javascript", "typescript", "javascriptreact", "typescriptreact", "vim", "astro", "mdx"],
       "formatterPriority": 100
     },
     "tailwindcss-lsp": {

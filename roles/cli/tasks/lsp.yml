@@ -55,6 +55,7 @@
 
 - name: Install linters and formatters with npm
   loop:
+    - eslint_d
     - prettier
     - "@tailwindcss/language-server"
   community.general.npm:
