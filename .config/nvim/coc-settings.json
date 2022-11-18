@@ -32,7 +32,20 @@
   "languageserver": {
     "efm": {
       "command": "efm-langserver",
-      "filetypes": ["sh", "zsh", "yaml", "lua", "python", "javascript", "typescript", "javascriptreact", "typescriptreact", "vim", "astro", "mdx"],
+      "filetypes": [
+        "sh",
+        "zsh",
+        "yaml",
+        "lua",
+        "python",
+        "javascript",
+        "typescript",
+        "javascriptreact",
+        "typescriptreact",
+        "vim",
+        "astro",
+        "mdx"
+      ],
       "formatterPriority": 100
     },
     "tailwindcss-lsp": {
