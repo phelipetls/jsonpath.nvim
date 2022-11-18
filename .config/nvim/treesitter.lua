@@ -4,7 +4,7 @@ vim.api.nvim_command([[packadd! nvim-ts-autotag]])
 vim.api.nvim_command([[packadd! nvim-treesitter-textobjects]])
 vim.api.nvim_command([[packadd! playground]])
 
-local ft_to_parser = require"nvim-treesitter.parsers".filetype_to_parsername
+local ft_to_parser = require("nvim-treesitter.parsers").filetype_to_parsername
 ft_to_parser.css = "scss"
 ft_to_parser.mdx = "markdown"
 
@@ -118,7 +118,7 @@ require("nvim-treesitter.configs").setup({
   query_linter = {
     enable = true,
     use_virtual_text = true,
-    lint_events = {"BufWrite", "CursorHold"},
+    lint_events = { "BufWrite", "CursorHold" },
   },
 })
 
