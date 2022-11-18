@@ -8,6 +8,18 @@ local ft_to_parser = require("nvim-treesitter.parsers").filetype_to_parsername
 ft_to_parser.css = "scss"
 ft_to_parser.mdx = "markdown"
 
+local treesitter_augroup = vim.api.nvim_create_augroup("TreesitterAugroup", { clear = true })
+
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  group = treesitter_augroup,
+  pattern = { "javascript", "typescript", "typescriptreact", "javascriptreact", "json", "yaml", "astro" },
+  callback = function()
+    vim.opt_local.foldmethod = "expr"
+    vim.opt_local.foldexpr = "nvim_treesitter#foldexpr()"
+    vim.opt_local.foldenable = false
+  end,
+})
+
 require("nvim-treesitter.configs").setup({
   ensure_installed = {
     "typescript",
