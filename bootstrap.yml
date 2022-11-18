@@ -12,5 +12,5 @@
     - role: cli
     - role: stow
     - role: hugo
-    - role: desktop
+    - role: linux-desktop
       when: (ansible_distribution == "Fedora" or ansible_distribution == "Ubuntu") and (not ansible_kernel is search("microsoft"))
