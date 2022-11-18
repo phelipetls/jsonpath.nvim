@@ -1,45 +1,9 @@
 ---
-- name: Install flatpak in Ubuntu
-  become: true
-  apt:
-    name:
-      - flatpak
-    state: present
-  when: ansible_distribution == "Ubuntu"
+- name: Setup Flatpak and apps
+  import_tasks: flatpak.yml
 
-- name: Add the flathub flatpak repository remote to the user installation
-  community.general.flatpak_remote:
-    name: flathub
-    state: present
-    flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
-    method: user
-
-- name: Install apps with Flatpak
-  community.general.flatpak:
-    name:
-      - com.spotify.Client
-      - org.gimp.GIMP
-      - org.inkscape.Inkscape
-      - com.discordapp.Discord
-      - org.chromium.Chromium
-    state: present
-    method: user
-
-- name: Set up RPM Fusion
-  become: true
-  dnf:
-    name:
-      - "https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_major_version }}.noarch.rpm"
-    state: present
-    disable_gpg_check: true
-  when: ansible_distribution == "Fedora"
-
-- name: Install ffmpeg-libs
-  become: true
-  dnf:
-    name:
-      - ffmpeg-libs
-    state: present
+- name: Setup Fedora
+  import_tasks: fedora.yml
   when: ansible_distribution == "Fedora"
 
 - name: Configure GNOME
