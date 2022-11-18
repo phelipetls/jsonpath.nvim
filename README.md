@@ -39,8 +39,5 @@ cd dotfiles
 
 ```sh
 # Bootstrap development environntment in Linux, WSL and macOS
-ansible-playbook bootstrap-dev.yml
-
-# Linux desktop
-ansible-playbook bootstrap-desktop.yml
+ansible-playbook bootstrap.yml
 ```
