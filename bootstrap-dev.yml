@@ -11,9 +11,6 @@
     - role: nodejs
       vars:
         npm_config_prefix: "{{ ansible_env.HOME }}/.npm-packages"
-        npm_global_packages:
-          - n
-          - npm-merge-driver
     - role: nvim
     - role: stow
     - role: fzf

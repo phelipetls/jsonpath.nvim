@@ -37,7 +37,9 @@
     create: true
 
 - name: Install global packages
-  loop: "{{ npm_global_packages }}"
+  loop:
+    - n
+    - npm-merge-driver
   community.general.npm:
     name: "{{ item }}"
     state: present
