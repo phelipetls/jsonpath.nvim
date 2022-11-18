@@ -24,9 +24,7 @@ endfunction
 
 function! coc_document_color#request() abort
   if !CocHasProvider('documentColor')
-    echohl ErrorMsg
-    echomsg 'Buffer without a documentColor provider'
-    echohl None
+    return
   endif
 
   call <SID>Delay(function('s:RequestDocumentColor'), s:DELAY_INTERVAL)
