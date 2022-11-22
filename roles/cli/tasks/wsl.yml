@@ -1,0 +1,14 @@
+---
+- name: Add PPA repository with most recent version of wslu
+  become: true
+  ansible.builtin.apt_repository:
+    repo: 'ppa:wslutilities/wslu'
+    state: present
+  when: ansible_distribution == "Ubuntu"
+
+- name: Install wslu in Ubuntu
+  become: true
+  ansible.builtin.apt:
+    name:
+      - wslu
+    update_cache: yes

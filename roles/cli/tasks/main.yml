@@ -69,3 +69,7 @@
 
 - name: Install git-absorb
   import_tasks: git-absorb.yml
+
+- name: Install WSL utilities
+  import_tasks: wsl.yml
+  when: ansible_kernel is search("microsoft")
