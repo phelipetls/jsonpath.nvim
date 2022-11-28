@@ -7,10 +7,10 @@
     - role: submodules
     - role: zsh
     - role: nodejs
+    - role: stow
     - role: cli
     - role: lsp
     - role: nvim
-    - role: stow
     - role: hugo
     - role: linux-desktop
       when: (ansible_distribution == "Fedora" or ansible_distribution == "Ubuntu") and (not ansible_kernel is search("microsoft"))
