@@ -7,8 +7,6 @@
     extra_opts:
       - "--strip-components=1"
       - "git-absorb-{{ git_absorb_version }}-x86_64-unknown-linux-musl/git-absorb"
-  vars:
-    git_absorb_version: "0.6.9"
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Fedora"
 
 - name: Install git-absorb in macOS
