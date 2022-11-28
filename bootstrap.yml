@@ -7,9 +7,9 @@
     - role: submodules
     - role: zsh
     - role: nodejs
+    - role: cli
     - role: lsp
     - role: nvim
-    - role: cli
     - role: stow
     - role: hugo
     - role: linux-desktop
