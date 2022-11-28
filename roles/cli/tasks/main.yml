@@ -1,4 +1,9 @@
 ---
+- name: Create directory ~/.local/bin/
+  file:
+    path: "{{ ansible_env.HOME }}/.local/bin"
+    state: directory
+
 - name: Install CLI tools in Ubuntu
   become: true
   apt:
@@ -41,11 +46,6 @@
     name: "{{ item }}"
     state: present
   when: ansible_distribution == "MacOSX"
-
-- name: Create directory ~/.local/bin/
-  file:
-    path: "{{ ansible_env.HOME }}/.local/bin"
-    state: directory
 
 - name: Install git-delta
   import_tasks: git-delta.yml
