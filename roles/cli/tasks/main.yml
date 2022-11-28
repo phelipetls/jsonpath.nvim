@@ -67,3 +67,6 @@
     cmd: ./install --no-update-rc
     chdir: "{{ ansible_env.HOME }}/.fzf"
     creates: "{{ ansible_env.HOME }}/.fzf/bin/fzf"
+
+- name: Install git-absorb
+  import_tasks: git-absorb.yml

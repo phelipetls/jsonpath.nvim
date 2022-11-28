@@ -1,0 +1,19 @@
+---
+- name: Install git-absorb in Linux
+  unarchive:
+    src: "https://github.com/tummychow/git-absorb/releases/download/{{ git_absorb_version }}/git-absorb-{{ git_absorb_version }}-x86_64-unknown-linux-musl.tar.gz"
+    remote_src: true
+    dest: "{{ ansible_env.HOME }}/.local/bin"
+    extra_opts:
+      - "--strip-components=1"
+      - "git-absorb-{{ git_absorb_version }}-x86_64-unknown-linux-musl/git-absorb"
+  vars:
+    git_absorb_version: "0.6.9"
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Fedora"
+
+- name: Install git-absorb in macOS
+  community.general.homebrew:
+    name:
+      - git-absorb
+    state: present
+  when: ansible_distribution == "MacOSX"
