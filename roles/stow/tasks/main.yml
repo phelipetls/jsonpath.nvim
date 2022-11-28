@@ -11,7 +11,7 @@
   import_tasks: macos.yml
   when: ansible_distribution == "MacOSX"
 
-- name: Remove file that will conflict with Stow
+- name: Remove files that will conflict with Stow
   loop:
     - .bashrc
     - .profile
