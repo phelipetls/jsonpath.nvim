@@ -16,6 +16,7 @@
       - htop
       - python3-pip
       - pass
+      - unzip
     state: present
   when: ansible_distribution == "Ubuntu"
 
