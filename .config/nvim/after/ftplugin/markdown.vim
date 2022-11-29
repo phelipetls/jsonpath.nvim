@@ -15,8 +15,7 @@ let g:markdown_fenced_languages = [
 
 let b:surround_{char2nr('c')} = "```\r\n```"
 let b:surround_{char2nr('l')} = "[\r](\1link: \1)"
-let b:surround_{char2nr('8')} = "*\r*"
-let b:surround_{char2nr('*')} = "**\r**"
+let b:surround_{char2nr('*')} = "*\r*"
 
 setl conceallevel=0
 
