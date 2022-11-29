@@ -5,6 +5,13 @@
       - psutil
     state: present
 
+- name: Install dconf in Ubuntu
+  apt:
+    name:
+      - dconf-cli
+    state: present
+  when: ansible_distribution == "Ubuntu"
+
 - name: Enable tap to click on touchpad
   community.general.dconf:
     key: "/org/gnome/desktop/peripherals/touchpad/tap-to-click"
