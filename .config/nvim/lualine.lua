@@ -13,12 +13,12 @@ end
 
 local filename = function()
   local fullpath = vim.fn.expand("%:p")
-  local fname = vim.fn.expand("%:t")
-  local dir = vim.fn.expand("%:p:h:t")
 
   if fullpath == "" then
     return "[No Name]"
   end
+
+  local fname = vim.fn.expand("%:t")
 
   if fname:match("^fugitive://") then
     local fugitive_commitfile = unpack(vim.fn["FugitiveParse"](fullpath))
@@ -35,6 +35,7 @@ local filename = function()
   end
 
   if fname:match("^index%.%a+$") then
+    local dir = vim.fn.expand("%:p:h:t")
     return dir .. "/" .. fname
   end
 
