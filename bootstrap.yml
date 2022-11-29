@@ -13,4 +13,7 @@
     - role: nvim
     - role: hugo
     - role: linux-desktop
-      when: (ansible_distribution == "Fedora" or ansible_distribution == "Ubuntu") and (not ansible_kernel is search("microsoft"))
+      when: >
+        (not 'CI' in ansible_env) and
+        (ansible_system is search("Linux")) and
+        (not ansible_kernel is search("microsoft"))
