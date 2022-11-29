@@ -13,3 +13,24 @@
       - pynvim
     state: present
     executable: pip3
+
+- name: Install treesitter parsers
+  shell: nvim -c 'TSUpdateSync {{ parsers | join(" ") }}' -c quit
+  vars:
+    parsers:
+      - typescript
+      - javascript
+      - tsx
+      - yaml
+      - toml
+      - jsonc
+      - python
+      - jsdoc
+      - lua
+      - bash
+      - vim
+      - scss
+      - astro
+      - markdown
+      - markdown_inline
+  changed_when: False
