@@ -95,7 +95,18 @@ require("lualine").setup({
         end
       },
     },
-    lualine_x = { "diagnostics", "fileformat", "filetype" },
+    lualine_x = {
+      {
+        "diagnostics",
+      },
+      {
+        "fileformat",
+        cond = only_one_window_visible
+      },
+      {
+        "filetype",
+      },
+    },
     lualine_y = {},
     lualine_z = {
       {
