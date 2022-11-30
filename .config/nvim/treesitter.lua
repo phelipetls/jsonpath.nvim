@@ -120,3 +120,7 @@ require("nvim-treesitter.configs").setup({
 })
 
 vim.api.nvim_command([[hi link TSConstructor Function]])
+
+require("headlines").setup({
+  mdx = require("headlines").config.markdown
+})

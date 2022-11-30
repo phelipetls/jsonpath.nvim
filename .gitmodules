@@ -154,3 +154,7 @@
 	path = .config/nvim/pack/plugins/opt/jsonpath.nvim
 	url = https://github.com/phelipetls/jsonpath.nvim
 	ignore = dirty
+[submodule "headlines.nvim"]
+	path = .config/nvim/pack/plugins/opt/headlines.nvim
+	url = https://github.com/lukas-reineke/headlines.nvim
+	ignore = dirty

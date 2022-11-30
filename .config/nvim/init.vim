@@ -54,6 +54,7 @@ packadd! vim-hugo
 if has('nvim')
   packadd! lualine.nvim
   packadd! nvim-colorizer.lua
+  packadd! headlines.nvim
 endif
 
 "}}}
