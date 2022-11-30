@@ -15,7 +15,8 @@
     executable: pip3
 
 - name: Install treesitter parsers
-  shell: nvim -c 'TSUpdateSync {{ parsers | join(" ") }}' -c quit
+  shell:
+    cmd: nvim --headless -c 'TSInstallSync! {{ parsers | join(" ") }}' -c quit
   vars:
     parsers:
       - typescript
@@ -33,4 +34,4 @@
       - astro
       - markdown
       - markdown_inline
-  changed_when: False
+  changed_when: false
