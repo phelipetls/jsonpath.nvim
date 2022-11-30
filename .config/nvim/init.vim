@@ -55,6 +55,7 @@ if has('nvim')
   packadd! lualine.nvim
   packadd! nvim-colorizer.lua
   packadd! headlines.nvim
+  packadd! indent-blankline.nvim
 endif
 
 "}}}
@@ -216,6 +217,17 @@ let g:dirvish_mode = ':sort ,^.*[\/],'
 let g:jqplay = {
     \ 'mods': 'vertical'
     \ }
+
+" indent-blankline.nvim
+let g:indent_blankline_filetype_exclude = ['help', 'fugitive']
+
+if has('nvim')
+lua << EOF
+require("indent_blankline").setup({
+  show_end_of_line = true,
+})
+EOF
+endif
 
 "}}}
 "{{{ autocommands
