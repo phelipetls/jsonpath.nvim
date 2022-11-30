@@ -1,3 +1,7 @@
+local only_one_window_visible = function()
+  return vim.fn.winwidth(0) == vim.o.columns
+end
+
 local fugitivestatusline = function()
   local fugitive = vim.fn["FugitiveStatusline"]()
 
@@ -39,7 +43,7 @@ local filename = function()
     return dir .. "/" .. fname
   end
 
-  return vim.fn.expand("%")
+  return only_one_window_visible() and fullpath or fname
 end
 
 local modified = function()
@@ -48,10 +52,6 @@ end
 
 local readonly = function()
   return "[-]"
-end
-
-local only_one_window_visible = function()
-  return vim.fn.winwidth(0) == vim.o.columns
 end
 
 require("lualine").setup({
