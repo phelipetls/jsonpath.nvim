@@ -30,8 +30,9 @@ packadd! vim-fugitive-blame-ext
 packadd! vim-dirvish
 
 " fuzzy finder
-set runtimepath+=~/.fzf
-packadd! fzf.vim
+if has('nvim')
+  packadd! fzf-lua
+endif
 
 " vim specific improvements
 packadd! traces.vim
@@ -485,66 +486,13 @@ set wildignore=venv*/,__pycache__/,.pytest_cache/,tags,htmlcov/.coverage,*.pyc,p
 "}}}
 "{{{ fuzzy finder
 
-if executable('fzf')
-  let g:fzf_preview_window = ''
-
-  nnoremap <space>b :Buffers<CR>
-  nnoremap <space>f :Files<CR>
-  nnoremap <space>h :Help<CR>
-  nnoremap <space>r :History<CR>
-  nnoremap <space>p :Commands<CR>
-
-  function! CheckoutBranch(branch)
-    execute '!' FugitiveShellCommand('checkout', a:branch)
-  endfunction
-
-  function! CheckoutBranchFzf()
-    call fzf#run(fzf#wrap({
-          \ 'source': FugitiveShellCommand('branch', '-v', '--sort', '-committerdate', '--format', '%(refname:short)'),
-          \ 'sink': function('CheckoutBranch'),
-          \ 'options': '--prompt "Checkout: " --preview "' . FugitiveShellCommand('log', '--oneline') . ' {}"'
-          \ }))
-  endfunction
-
-  nnoremap <space>cb :call CheckoutBranchFzf()<CR>
-
-  let g:fzf_colors = {
-        \ 'fg':      ['fg', 'Normal'],
-        \ 'bg':      ['bg', 'Normal'],
-        \ 'hl':      ['fg', 'Comment'],
-        \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-        \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-        \ 'hl+':     ['fg', 'Statement'],
-        \ 'info':    ['fg', 'PreProc'],
-        \ 'border':  ['fg', 'Ignore'],
-        \ 'prompt':  ['fg', 'Conditional'],
-        \ 'pointer': ['fg', 'Exception'],
-        \ 'marker':  ['fg', 'Keyword'],
-        \ 'spinner': ['fg', 'Label'],
-        \ 'header':  ['fg', 'Comment']
-        \ }
-
-  if has('nvim')
-    let $FZF_DEFAULT_OPTS .= ' --margin=0,2'
-
-    function! FloatingFZF()
-      let width = float2nr(&columns * 0.9)
-      let height = float2nr(&lines * 0.6)
-      let opts = {
-            \ 'relative': 'editor',
-            \ 'border': 'single',
-            \ 'row': (&lines - height) / 2,
-            \ 'col': (&columns - width) / 2,
-            \ 'width': width,
-            \ 'height': height
-            \ }
-
-      let win = nvim_open_win(nvim_create_buf(v:false, v:true), v:true, opts)
-      call setwinvar(win, '&winhighlight', 'NormalFloat:Normal')
-    endfunction
-
-    let g:fzf_layout = { 'window': 'call FloatingFZF()' }
-  endif
+if has('nvim') && executable('fzf')
+  nnoremap <space>b :FzfLua buffers<CR>
+  nnoremap <space>f :FzfLua files<CR>
+  nnoremap <space>h :FzfLua help_tags<CR>
+  nnoremap <space>r :FzfLua oldfiles<CR>
+  nnoremap <space>p :FzfLua commands<CR>
+  nnoremap <space>cb :FzfLua branches<CR>
 endif
 
 "}}}

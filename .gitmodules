@@ -2,10 +2,6 @@
 	path = .config/nvim/pack/plugins/opt/vim-hugo
 	url = https://github.com/phelipetls/vim-hugo
 	ignore = dirty
-[submodule "fzf.vim"]
-	path = .config/nvim/pack/plugins/opt/fzf.vim
-	url = https://github.com/junegunn/fzf.vim
-	ignore = dirty
 [submodule "vim-fugitive"]
 	path = .config/nvim/pack/plugins/opt/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive
@@ -161,4 +157,8 @@
 [submodule "indent-blankline.nvim"]
 	path = .config/nvim/pack/plugins/opt/indent-blankline.nvim
 	url = https://github.com/lukas-reineke/indent-blankline.nvim
+	ignore = dirty
+[submodule "fzf-lua"]
+	path = .config/nvim/pack/plugins/opt/fzf-lua
+	url = https://github.com/ibhagwan/fzf-lua
 	ignore = dirty
