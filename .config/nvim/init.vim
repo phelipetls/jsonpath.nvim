@@ -386,10 +386,10 @@ vmap <silent> gq :<C-U>set operatorfunc=format#operatorfunc<CR>gvg@
 
 command! -bang FormatPrg call format#file(<bang>0)
 nmap <silent> gQ :FormatPrg<CR>
-nmap <silent> <space>Q :FormatPrg!<CR>
+nmap <silent> <space>gQ :FormatPrg!<CR>
 
 " add mapping to do fugitive related tasks more quickly
-nmap <space>g :Git<space>
+nmap <space>gg :Git<space>
 
 " add unimpaired-style mappings ignore whitespace on diffs
 nmap [oi :set diffopt+=iwhite
@@ -492,7 +492,8 @@ if has('nvim') && executable('fzf')
   nnoremap <space>h :FzfLua help_tags<CR>
   nnoremap <space>r :FzfLua oldfiles<CR>
   nnoremap <space>p :FzfLua commands<CR>
-  nnoremap <space>cb :FzfLua branches<CR>
+  nnoremap <space>gb :FzfLua git_branches<CR>
+  nnoremap <space>gs :FzfLua git_stash<CR>
 endif
 
 "}}}
@@ -607,7 +608,7 @@ command! -nargs=0 Fmt :call CocAction('format')
 command! -nargs=0 OR :call CocActionAsync('runCommand', 'editor.action.organizeImport')
 
 " better ui to run coc command
-nnoremap <space>c :CocList commands<CR>
+nnoremap <space>cc :CocList commands<CR>
 
 augroup CocUserAutocmds
   autocmd!
