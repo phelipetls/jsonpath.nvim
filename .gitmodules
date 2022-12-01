@@ -62,10 +62,6 @@
 	path = .config/nvim/pack/plugins/opt/nvim-colorizer.lua
 	url = https://github.com/NvChad/nvim-colorizer.lua
 	ignore = dirty
-[submodule "splitjoin.vim"]
-	path = .config/nvim/pack/plugins/opt/splitjoin.vim
-	url = https://github.com/AndrewRadev/splitjoin.vim
-	ignore = dirty
 [submodule "coc.nvim"]
 	path = .config/nvim/pack/plugins/opt/coc.nvim
 	url = https://github.com/neoclide/coc.nvim
@@ -162,3 +158,6 @@
 	path = .config/nvim/pack/plugins/opt/fzf-lua
 	url = https://github.com/ibhagwan/fzf-lua
 	ignore = dirty
+[submodule "treesj"]
+	path = .config/nvim/pack/plugins/opt/treesj
+	url = https://github.com/Wansmer/treesj

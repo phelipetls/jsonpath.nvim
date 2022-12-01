@@ -16,9 +16,11 @@ packadd! vim-abolish
 packadd! vim-eunuch
 packadd! matchit
 packadd! vim-lion
-packadd! splitjoin.vim
 packadd! vim-sleuth
 packadd! inline_edit.vim
+if has('nvim-0.8.0')
+  packadd! treesj
+endif
 
 " git
 packadd! vim-fugitive
@@ -226,6 +228,18 @@ if has('nvim')
 lua << EOF
 require("indent_blankline").setup({
   show_end_of_line = true,
+})
+EOF
+endif
+
+" treesj
+if has('nvim-0.8.0')
+  nmap gJ :TSJJoin<CR>
+  nmap gS :TSJSplit<CR>
+
+lua << EOF
+require("treesj").setup({
+  use_default_keymaps = false,
 })
 EOF
 endif
