@@ -1,0 +1,18 @@
+#!/bin/bash
+set -euo pipefail
+
+urls=$(tmux capture-pane -J -p | grep -oE '(https?):\/\/.*[^>]' | sort -u)
+url=$(echo "$urls" | fzf-tmux -p 50%,50%)
+
+# a URL for easy testing:
+# https://google.com
+
+if [[ -n $url ]]; then
+  if uname -a | grep -iq microsoft; then
+    wslview "$url"
+  elif [[ $OSTYPE == "linux"* ]]; then
+    xdg-open "$url"
+  elif [[ $OSTYPE == "darwin"* ]]; then
+    open "$url"
+  fi
+fi
