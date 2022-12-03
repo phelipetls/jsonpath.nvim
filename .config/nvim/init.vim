@@ -539,10 +539,6 @@ endif
 augroup QuickFix
   autocmd!
   autocmd QuickFixCmdPost * call qflist#open()
-augroup END
-
-augroup CloseQuickFix
-  autocmd!
   autocmd WinEnter * if winnr('$') == 1 && &buftype == "quickfix" | quit | endif
 augroup END
 
