@@ -503,6 +503,17 @@ set wildignore=venv*/,__pycache__/,.pytest_cache/,tags,htmlcov/.coverage,*.pyc,p
 "}}}
 "{{{ fuzzy finder
 
+lua << EOF
+require("fzf-lua").setup({
+  files = {
+    previewer = false,
+  },
+  buffers = {
+    previewer = false,
+  },
+})
+EOF
+
 if has('nvim') && executable('fzf')
   nnoremap <space>b :FzfLua buffers<CR>
   nnoremap <space>f :FzfLua files<CR>
