@@ -9,3 +9,8 @@ if exists('+winbar')
 endif
 
 nnoremap <buffer> y<C-p> :let @+=luaeval('require"jsonpath".get()')<CR>
+
+if expand('%:t') ==# 'package.json'
+  " remove file: prefix
+  setlocal includeexpr=substitute(v:fname,'file:','')
+endif
