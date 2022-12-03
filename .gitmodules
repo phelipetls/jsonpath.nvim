@@ -161,3 +161,6 @@
 [submodule "treesj"]
 	path = .config/nvim/pack/plugins/opt/treesj
 	url = https://github.com/Wansmer/treesj
+[submodule "live-command.nvim"]
+	path = .config/nvim/pack/plugins/opt/live-command.nvim
+	url = https://github.com/smjonas/live-command.nvim

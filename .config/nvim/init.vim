@@ -48,6 +48,7 @@ packadd! vim-jqplay
 if has('nvim')
   packadd! plenary.nvim
   packadd! jsonpath.nvim
+  packadd! live-command.nvim
 endif
 
 " web development
@@ -241,6 +242,17 @@ lua << EOF
 require("treesj").setup({
   use_default_keymaps = false,
 })
+EOF
+endif
+
+" live-command.nvim
+if has('nvim-0.8.0')
+lua << EOF
+require("live-command").setup {
+  commands = {
+    Norm = { cmd = "norm" },
+  },
+}
 EOF
 endif
 
