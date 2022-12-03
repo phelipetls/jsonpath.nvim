@@ -107,7 +107,7 @@ endif
 
 " visually show special characters
 set list
-set fillchars=fold:-,vert:│,stlnc:-
+set fillchars=fold:-,vert:┃,stlnc:━
 if has('nvim')
   set fillchars=horiz:━,horizup:┻,horizdown:┳,vert:┃,vertleft:┨,vertright:┣,verthoriz:╋
 endif
