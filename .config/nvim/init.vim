@@ -93,6 +93,12 @@ set breakindentopt=shift:2
 set linebreak
 set showtabline=2
 
+" file navigation
+set path=.,,..
+
+" ignore these files while browsing
+set wildignore=venv*/,__pycache__/,.pytest_cache/,tags,htmlcov/.coverage,*.pyc,package-lock.json
+
 " tell neovim where python3 is -- this improves startup time
 if has('nvim') && has('unix')
   let g:loaded_python_provider = 0
@@ -493,14 +499,6 @@ endfunction
 set tabline=%!Tabline()
 
 ""}}}
-"{{{ file navigation
-
-set path=.,,..
-
-" ignore these files while browsing
-set wildignore=venv*/,__pycache__/,.pytest_cache/,tags,htmlcov/.coverage,*.pyc,package-lock.json
-
-"}}}
 "{{{ fuzzy finder
 
 lua << EOF
