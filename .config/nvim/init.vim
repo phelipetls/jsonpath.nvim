@@ -621,7 +621,7 @@ if has('nvim-0.4.0') || has('patch-8.2.0750')
 endif
 
 " symbols and diagnostics
-nnoremap <space>s :<C-u>CocList -I symbols<CR>
+nnoremap <space>cs :<C-u>CocList -I symbols<CR>
 let g:coc_quickfix_open_command = 'doautocmd QuickFixCmdPost | cfirst'
 
 " miscellaneous commands
