@@ -22,6 +22,7 @@
       - typescript
       - javascript
       - tsx
+      - html
       - yaml
       - toml
       - jsonc
