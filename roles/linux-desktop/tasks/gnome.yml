@@ -27,10 +27,10 @@
     key: "/org/gnome/shell/app-switcher/current-workspace-only"
     value: "true"
 
-- name: Don't download updates automatically with GNOME software
+- name: Download updates automatically with GNOME software
   community.general.dconf:
     key: "/org/gnome/software/download-updates"
-    value: "false"
+    value: "true"
 
 - name: Enable jle64/gnome-pass-search-provider
   become: true
