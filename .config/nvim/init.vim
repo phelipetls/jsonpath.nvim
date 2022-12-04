@@ -129,6 +129,7 @@ endif
 if has('nvim')
 lua << EOF
   _G.dump = vim.pretty_print
+  _G.pp = vim.pretty_print
 EOF
 endif
 
