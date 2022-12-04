@@ -2,4 +2,4 @@
 
 ((inline) @_inline (#match? @_inline "^\(import\|export\)")) @nospell
 
-((paragraph) @_paragraph (#match? @_paragraph "^ *..\?[A-Z]")) @nospell
+((html_block) @_block (#match? @_block "\s*[<]/\?[A-Z]")) @nospell
