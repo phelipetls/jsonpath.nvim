@@ -228,7 +228,7 @@ let g:jqplay = {
     \ }
 
 " indent-blankline.nvim
-let g:indent_blankline_filetype_exclude = ['help', 'fugitive']
+let g:indent_blankline_filetype_exclude = ['help', 'fugitive', 'markdown', 'mdx']
 
 if has('nvim')
 lua << EOF
