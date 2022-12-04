@@ -501,6 +501,7 @@ set tabline=%!Tabline()
 ""}}}
 "{{{ fuzzy finder
 
+if has('nvim')
 lua << EOF
 require("fzf-lua").setup({
   files = {
@@ -511,6 +512,7 @@ require("fzf-lua").setup({
   },
 })
 EOF
+endif
 
 if has('nvim') && executable('fzf')
   nnoremap <space>b :FzfLua buffers<CR>
