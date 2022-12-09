@@ -29,6 +29,8 @@
   "html.autoClosingTags": false,
   "coc.source.syntax.enable": true,
   "coc.source.syntax.filetypes": ["htmlhugo"],
+  "colors.enable": true,
+  "highlight.colorNames.enable": false,
   "languageserver": {
     "efm": {
       "command": "efm-langserver",

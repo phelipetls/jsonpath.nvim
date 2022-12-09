@@ -36,3 +36,8 @@
       - markdown
       - markdown_inline
   changed_when: false
+
+- name: Install plugins with packer.nvim
+  shell:
+    cmd: nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+  changed_when: false

@@ -14,18 +14,3 @@ function! utils#get_visual_selection() abort
   let lines[0] = lines[0][column_start - 1:]
   return join(lines, "\n")
 endfunction
-
-function! utils#check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-function! utils#create_dir_on_save(filename) abort
-  let dir = fnamemodify(a:filename, ':p:h')
-
-  if dir =~# '^fugitive://'
-    return
-  endif
-
-  call mkdir(dir, 'p')
-endfunction
