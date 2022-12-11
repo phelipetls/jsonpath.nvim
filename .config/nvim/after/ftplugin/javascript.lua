@@ -27,7 +27,7 @@ vim.b[string.format("surround_%s", vim.fn.char2nr("e"))] = "${\r}"
 vim.keymap.set("n", "[<C-c>", "zyiwOconsole.log(z)<Esc>", { buffer = true, noremap = true })
 vim.keymap.set("n", "]<C-c>", "zyiwoconsole.log(z)<Esc>", { buffer = true, noremap = true })
 
-vim.cmd("inoreabbrev <buffer><silent> clog console.log()<Left><C-R>=utils#eatchar('\\s')<CR>")
+vim.cmd("inoreabbrev <buffer><silent> clog console.log()<Left><C-R>=helpers#eatchar('\\s')<CR>")
 vim.cmd("inoreabbrev <buffer> consoel console")
 vim.cmd("inoreabbrev <buffer> lenght length")
 vim.cmd("inoreabbrev <buffer> edf export default function")

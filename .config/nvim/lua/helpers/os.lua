@@ -46,7 +46,7 @@ M.open_under_cursor = function()
   local fname = vim.fn.expand("<cfile>")
 
   if vim.fn.mode() ~= "n" then
-    fname = vim.fn["utils#get_visual_selection"]()
+    fname = vim.fn["helpers#get_visual_selection"]()
   end
 
   M.open(fname)

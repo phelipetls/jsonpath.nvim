@@ -1,9 +1,9 @@
-function! utils#eatchar(pat) abort
+function! helpers#eatchar(pat) abort
   let c = nr2char(getchar(0))
   return (c =~ a:pat) ? '' : c
 endfunction
 
-function! utils#get_visual_selection() abort
+function! helpers#get_visual_selection() abort
   let [line_start, column_start] = getpos("'<")[1:2]
   let [line_end, column_end] = getpos("'>")[1:2]
   let lines = getline(line_start, line_end)
