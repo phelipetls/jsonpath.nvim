@@ -144,8 +144,32 @@ require("lualine").setup({
     },
   },
   extensions = {
-    "quickfix",
     "fugitive",
+    {
+      sections = {
+        lualine_a = {
+          {
+            "%q",
+            type = "stl",
+          },
+        },
+        lualine_b = {
+          {
+            "w:quickfix_title",
+          },
+        },
+        lualine_c = {},
+        lualine_x = {},
+        lualine_y = {},
+        lualine_z = {
+          {
+            "%l/%L",
+            type = "stl",
+          },
+        },
+      },
+      filetypes = { "qf" },
+    },
     {
       sections = {
         lualine_a = {
