@@ -1,4 +1,6 @@
-local packer_augroup = vim.api.nvim_create_augroup('PackerAutocmds', { clear = true })
+require("impatient")
+
+local packer_augroup = vim.api.nvim_create_augroup("PackerAutocmds", { clear = true })
 
 vim.api.nvim_create_autocmd("BufWritePost", {
   group = packer_augroup,
@@ -19,6 +21,7 @@ vim.g.loaded_netrwPlugin = 1
 return require("packer").startup(function(use)
   -- optimization
   use("vim-scripts/LargeFile")
+  use("lewis6991/impatient.nvim")
 
   -- misc
   use("nvim-lua/plenary.nvim")
