@@ -16,7 +16,7 @@ local fugitivestatusline = function()
 end
 
 local filename = function()
-  local full_path = vim.fn.expand("%:p")
+  local path = vim.fn.expand("%:p:.")
 
   if path == "" then
     return "[No Name]"
