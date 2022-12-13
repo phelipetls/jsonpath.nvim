@@ -10,12 +10,6 @@ local function reload_dirvish()
   vim.cmd("Dirvish %")
 end
 
-local function get_input(...)
-  local input = vim.fn.trim(vim.fn.input(...))
-  vim.cmd("redraw!")
-  return input
-end
-
 local function delete_dir_buffers(deleted_dir)
   for bufnr = 1, vim.fn.bufnr("$") do
     if vim.fn.buflisted(bufnr) == 1 then
@@ -74,9 +68,13 @@ local function search(basename)
 end
 
 function M.create_file()
-  local fname = get_input("File: ")
+  local fname
 
-  if fname == "" then
+  vim.ui.input({ prompt = "File: " }, function(input)
+    fname = input
+  end)
+
+  if not fname or fname == "" then
     return
   end
 
@@ -99,9 +97,13 @@ function M.create_file()
 end
 
 function M.create_dir()
-  local dirname = get_input("Directory: ")
+  local dirname
 
-  if dirname == "" then
+  vim.ui.input({ prompt = "Directory: " }, function(input)
+    dirname = input
+  end)
+
+  if not dirname or dirname == "" then
     return
   end
 
@@ -127,12 +129,16 @@ local function get_basename(path)
 end
 
 function M.rename()
-  local old_path = vim.fn.getline(".")
-  local old_basename = get_basename(old_path)
+  local old_path = vim.api.nvim_get_current_line()
+  local old_name = get_basename(old_path)
 
-  local new_name = get_input("Rename: ", old_basename)
+  local new_name
 
-  if not new_name or new_name == "" or new_name == old_basename then
+  vim.ui.input({ prompt = "Rename: ", default = old_name }, function(input)
+    new_name = input
+  end)
+
+  if not new_name or new_name == "" or new_name == old_name then
     return
   end
 
