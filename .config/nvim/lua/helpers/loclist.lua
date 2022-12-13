@@ -1,10 +1,10 @@
 local M = {}
 
 M.open = function()
-  vim.cmd("botright lwindow 5")
+  vim.cmd.lwindow({ args = { "5" }, mods = { split = "botright" } })
 
   if vim.bo.buftype == "quickfix" then
-    vim.cmd("wincmd p")
+    vim.cmd.wincmd("p")
   end
 end
 
@@ -25,7 +25,7 @@ end
 
 M.toggle = function()
   if is_loclist_open_in_current_tab() then
-    vim.cmd("cclose")
+    vim.cmd.cclose()
     return
   end
 

@@ -1,13 +1,13 @@
 local M = {}
 
 local function echoerr(msg)
-  vim.cmd("echohl WarningMsg")
-  vim.cmd(string.format("echomsg '%s'", msg))
-  vim.cmd("echohl None")
+  vim.cmd.echohl("'WarningMsg'")
+  vim.cmd.echomsg(string.format("'%s'", msg))
+  vim.cmd.echohl("'None'")
 end
 
 local function reload_dirvish()
-  vim.cmd("Dirvish %")
+  vim.cmd.Dirvish("%")
 end
 
 local function delete_dir_buffers(deleted_dir)
@@ -16,7 +16,7 @@ local function delete_dir_buffers(deleted_dir)
       local buf_path = vim.api.nvim_buf_get_name(bufnr)
 
       if buf_path:find(deleted_dir, 1, true) then
-        vim.cmd("silent! bdelete " .. bufnr)
+        vim.cmd.bdelete({ args = { bufnr }, mods = { emsg_silent = true } })
       end
     end
   end
@@ -24,7 +24,7 @@ end
 
 local function delete_file_buffer(fname)
   if vim.fn.buflisted(fname) == 1 then
-    vim.cmd("silent! bdelete " .. vim.fn.bufnr(fname))
+    vim.cmd.bdelete({ args = { vim.fn.bufnr(fname) }, mods = { emsg_silent = true } })
   end
 end
 
@@ -160,13 +160,13 @@ function M.rename()
     if buf_name == old_path then
       vim.api.nvim_set_current_win(win_nr)
 
-      vim.cmd(string.format("edit %s", new_path))
+      vim.cmd.edit(new_path)
 
       vim.api.nvim_set_current_win(inital_win_buf_nr)
     elseif vim.startswith(buf_name, old_path) then
       vim.api.nvim_set_current_win(win_nr)
 
-      vim.cmd(string.format("edit %s", new_path .. "/" .. vim.fn.fnamemodify(buf_name, ":t")))
+      vim.cmd.edit(new_path .. "/" .. vim.fn.fnamemodify(buf_name, ":t"))
 
       vim.api.nvim_set_current_win(inital_win_buf_nr)
     end
@@ -179,7 +179,7 @@ end
 
 function M.clear_arglist()
   vim.cmd("%argdelete")
-  vim.cmd("echomsg 'arglist: cleared'")
+  vim.cmd.echomsg("'arglist: cleared'")
   reload_dirvish()
 end
 

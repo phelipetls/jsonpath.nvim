@@ -1,1 +1,1 @@
-vim.cmd("compiler yamllint")
+vim.cmd.compiler("yamllint")

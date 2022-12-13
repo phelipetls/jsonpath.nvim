@@ -9,13 +9,13 @@ vim.opt_local.path:append(require("helpers.tsconfig").get_tsconfig_include())
 
 local fname = vim.fn.expand("%:p:t")
 if fname:match("test%..+$") == 1 then
-  vim.cmd("compiler jest")
+  vim.cmd.compiler("jest")
 elseif not vim.tbl_isempty(vim.fs.find({ "tsconfig.json", "jsconfig.json" }, { upward = true })) then
-  vim.cmd("compiler tsc")
+  vim.cmd.compiler("tsc")
 elseif vim.fn.executable("eslint_d") == 1 then
-  vim.cmd("compiler eslint_d")
+  vim.cmd.compiler("eslint_d")
 elseif vim.fn.executable("eslint") == 1 then
-  vim.cmd("compiler eslint")
+  vim.cmd.compiler("eslint")
 end
 
 vim.keymap.set("n", "<F5>", "<cmd>w !node<CR>", { buffer = true })

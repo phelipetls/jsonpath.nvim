@@ -14,7 +14,7 @@ vim.api.nvim_create_autocmd({ "BufReadPost" }, {
   pattern = { "*" },
   callback = function()
     if vim.fn.line("'\"") > 0 and vim.fn.line("'\"") <= vim.fn.line("$") and not vim.bo.filetype:match("git") then
-      vim.cmd([[normal g`"]])
+      vim.cmd.normal('g`"')
     end
   end,
   desc = "Recover last cursor position when opening a file, except on git commits etc.",
@@ -94,7 +94,7 @@ vim.api.nvim_create_autocmd({ "VimResume", "FocusGained" }, {
   pattern = { "*" },
   callback = function()
     if vim.fn.getcmdwintype() == "" then
-      vim.cmd([[checktime]])
+      vim.cmd.checktime()
     end
   end,
   desc = "Automatically update file when Neovim resumes",
@@ -137,7 +137,7 @@ vim.api.nvim_create_autocmd({ "WinEnter" }, {
   pattern = { "*" },
   callback = function()
     if vim.fn.winnr("$") == 1 and vim.o.buftype == "quickfix" then
-      vim.cmd("quit")
+      vim.cmd.quit()
     end
   end,
   desc = "Close quickfix list if it's the last window",

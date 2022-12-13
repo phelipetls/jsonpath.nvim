@@ -1,1 +1,1 @@
-vim.cmd("compiler shellcheck")
+vim.cmd.compiler("shellcheck")

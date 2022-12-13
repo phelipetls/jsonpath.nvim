@@ -4,7 +4,12 @@ vim.api.nvim_create_user_command("Q", "q<bang>", { bang = true })
 vim.api.nvim_create_user_command("Qall", "qall<bang>", { bang = true })
 
 vim.api.nvim_create_user_command("Hi", function()
-  vim.cmd(string.format("hi %s", vim.fn.synIDattr(vim.fn.synID(vim.fn.line("."), vim.fn.col("."), 0), "name")))
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+
+  local syn_id = vim.fn.synID(line, col, 0)
+  local highlight_name = vim.fn.synIDattr(syn_id, "name")
+
+  vim.cmd.hi(highlight_name ~= "" and highlight_name or nil)
 end, { desc = "Show information about highlight group under cursor" })
 
 vim.api.nvim_create_user_command("Browse", function(opts)

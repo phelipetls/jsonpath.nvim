@@ -1,9 +1,9 @@
 local M = {}
 
 local show_error = function(error_message)
-  vim.cmd("echohl ErrorMsg")
-  vim.cmd(string.format([[echo "%s"]], error_message))
-  vim.cmd("echohl None")
+  vim.cmd.echohl("'ErrorMsg'")
+  vim.cmd.echo(string.format("'%s'", error_message))
+  vim.cmd.echohl("'None'")
 end
 
 local is_different = function(path)
@@ -77,7 +77,7 @@ M.blame_current_line = function()
   end
 
   if commit:match("^0+$") then
-    vim.cmd("echomsg 'Not Committed Yet'")
+    vim.cmd.echomsg("Not Committed Yet")
     return
   end
 

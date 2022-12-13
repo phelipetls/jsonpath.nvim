@@ -1,9 +1,9 @@
 local M = {}
 
 local show_error = function(error_message)
-  vim.cmd("echohl ErrorMsg")
-  vim.cmd(string.format("echo '%s'", error_message))
-  vim.cmd("echohl None")
+  vim.cmd.echohl("ErrorMsg")
+  vim.cmd.echo(error_message)
+  vim.cmd.echohl("None")
 end
 
 local get_open_command = function()

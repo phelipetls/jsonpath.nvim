@@ -12,7 +12,7 @@ vim.keymap.set("n", "<space>ev", "<cmd>edit $MYVIMRC<CR>", {
 
 vim.keymap.set("n", "<space>ss", function()
   if vim.bo.filetype == "vim" or vim.fn.expand("%:t") == "init.lua" then
-    vim.cmd("source %")
+    vim.cmd.source("%")
     return
   end
 
@@ -203,7 +203,7 @@ vim.keymap.set(
 -- textobjects
 _G.select_number = function()
   vim.fn.search([[\d\>]], "cW")
-  vim.cmd("normal! v")
+  vim.cmd.normal({ args = "v", bang = true })
   vim.fn.search([[\<\d]], "becW")
 end
 

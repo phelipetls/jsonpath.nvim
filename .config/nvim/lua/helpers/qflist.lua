@@ -25,7 +25,7 @@ end
 
 M.toggle = function()
   if is_qflist_open_in_current_tab() then
-    vim.cmd("cclose")
+    vim.cmd.cclose()
     return
   end
 

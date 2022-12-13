@@ -18,12 +18,12 @@ if vim.fn.executable("python3") == 1 then
 
   if vim.startswith(fname, "test") or vim.endswith(fname, "test") then
     if vim.fn.executable("pytest") == 1 then
-      vim.cmd("compiler pytest")
+      vim.cmd.compiler("pytest")
     else
-      vim.cmd("compiler pyunit")
+      vim.cmd.compiler("pyunit")
     end
   else
-    vim.cmd("compiler flake8")
+    vim.cmd.compiler("flake8")
   end
 end
 
