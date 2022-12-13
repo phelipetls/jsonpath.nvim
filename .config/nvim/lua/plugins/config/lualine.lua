@@ -1,4 +1,4 @@
-local only_one_window_visible = function()
+local window_is_full_width = function()
   return vim.fn.winwidth(0) == vim.o.columns
 end
 
@@ -43,7 +43,7 @@ local filename = function()
     return dir .. "/" .. fname
   end
 
-  return only_one_window_visible() and full_path or file_name
+  return window_is_full_width() and path or fname
 end
 
 local modified = function()
@@ -69,11 +69,11 @@ require("lualine").setup({
     lualine_b = {
       {
         fugitivestatusline,
-        cond = only_one_window_visible,
+        cond = window_is_full_width,
       },
       {
         "g:coc_status",
-        cond = only_one_window_visible,
+        cond = window_is_full_width,
       },
     },
     lualine_c = {
@@ -101,7 +101,7 @@ require("lualine").setup({
       },
       {
         "fileformat",
-        cond = only_one_window_visible,
+        cond = window_is_full_width,
       },
       {
         "filetype",
