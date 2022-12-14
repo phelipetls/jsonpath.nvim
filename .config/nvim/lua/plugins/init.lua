@@ -150,6 +150,13 @@ return require("packer").startup(function(use)
   })
 
   use({
+    "https://gitlab.com/yorickpeterse/nvim-pqf",
+    config = function()
+      require("pqf").setup()
+    end,
+  })
+
+  use({
     "lukas-reineke/headlines.nvim",
     config = function()
       require("headlines").setup({
