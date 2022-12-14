@@ -190,4 +190,14 @@ return require("packer").startup(function(use)
   use("windwp/nvim-ts-autotag")
   use("nvim-treesitter/nvim-treesitter-textobjects")
   use("nvim-treesitter/playground")
+
+  -- debugging
+  use({
+    "andrewferrier/debugprint.nvim",
+    config = function()
+      require("debugprint").setup({
+        create_keymaps = false,
+      })
+    end,
+  })
 end)

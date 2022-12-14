@@ -34,6 +34,3 @@ end
 vim.opt_local.path:append({ "./tests", "./templates", "./tests/conftest.py" })
 
 vim.b[string.format("surround_%s", vim.fn.char2nr("p"))] = "print(\r)"
-
-vim.keymap.set("n", "]<C-p>", "zyiwoprint(z)<Esc>", { buffer = true, noremap = true })
-vim.keymap.set("n", "[<C-p>", "zyiwOprint(z)<Esc>", { buffer = true, noremap = true })
