@@ -44,6 +44,7 @@ return require("packer").startup(function(use)
   use("tpope/vim-abolish")
   use("tommcdo/vim-lion")
   use("tpope/vim-sleuth")
+  use("andymass/vim-matchup")
 
   use({
     "AndrewRadev/inline_edit.vim",
