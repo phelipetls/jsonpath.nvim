@@ -1,191 +1,115 @@
-vim.keymap.set("n", "<space>ss", function()
-  vim.cmd.source(vim.api.nvim_buf_get_name(0))
-  vim.cmd.PackerCompile()
-end, {
-  buffer = true,
-  desc = "Reload plugins.lua and run Packer compile",
-})
-
 require("impatient")
-
-vim.cmd("packadd! cfilter")
 
 -- prevent loading netrw
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
-return require("packer").startup(function(use)
-  -- optimization
-  use("vim-scripts/LargeFile")
-  use("lewis6991/impatient.nvim")
+vim.cmd("packadd! cfilter")
 
-  -- misc
-  use("nvim-lua/plenary.nvim")
+-- optimization
+vim.cmd("packadd! LargeFile")
+vim.cmd("packadd! impatient.nvim")
 
-  -- colorscheme
-  use({
-    "bluz71/vim-moonfly-colors",
-    config = function()
-      vim.g.moonflyWinSeparator = 2
-      vim.cmd.colorscheme("moonfly")
-    end,
-  })
+-- misc
+vim.cmd("packadd! plenary.nvim")
 
-  -- text editing
-  use("tpope/vim-surround")
-  use("tpope/vim-commentary")
-  use("tpope/vim-repeat")
-  use("tpope/vim-unimpaired")
-  use("tpope/vim-speeddating")
+-- colorscheme
+vim.cmd("packadd! vim-moonfly-colors")
+vim.g.moonflyWinSeparator = 2
+vim.cmd.colorscheme("moonfly")
 
-  use("tpope/vim-abolish")
+-- text editing
+vim.cmd("packadd! vim-surround")
+vim.cmd("packadd! vim-commentary")
+vim.cmd("packadd! vim-repeat")
+vim.cmd("packadd! vim-unimpaired")
+vim.cmd("packadd! vim-speeddating")
 
-  use("tommcdo/vim-lion")
-  use("tpope/vim-sleuth")
-  use("andymass/vim-matchup")
+vim.cmd("packadd! vim-abolish")
 
-  use({
-    "AndrewRadev/inline_edit.vim",
-    config = function()
-      vim.keymap.set("n", "<C-c>", "<cmd>InlineEdit<CR>")
-      vim.g.inline_edit_autowrite = 1
-    end,
-  })
+vim.cmd("packadd! vim-lion")
+vim.cmd("packadd! vim-sleuth")
+vim.cmd("packadd! vim-matchup")
 
-  use({
-    "Wansmer/treesj",
-    config = function()
-      vim.keymap.set("n", "gJ", "<cmd>TSJJoin<CR>")
-      vim.keymap.set("n", "gS", "<cmd>TSJSplit<CR>")
+vim.cmd("packadd! inline_edit.vim")
+vim.keymap.set("n", "<C-c>", "<cmd>InlineEdit<CR>")
+vim.g.inline_edit_autowrite = 1
 
-      require("treesj").setup({
-        use_default_keymaps = false,
-      })
-    end,
-  })
+vim.cmd("packadd! treesj")
+vim.keymap.set("n", "gJ", "<cmd>TSJJoin<CR>")
+vim.keymap.set("n", "gS", "<cmd>TSJSplit<CR>")
+require("treesj").setup({
+  use_default_keymaps = false,
+})
 
-  use({
-    "editorconfig/editorconfig-vim",
-    config = function()
-      vim.g.EditorConfig_exclude_patterns = { "fugitive://.*", "scp://.*" }
-    end,
-  })
+vim.cmd("packadd! editorconfig-vim")
+vim.g.EditorConfig_exclude_patterns = { "fugitive://.*", "scp://.*" }
 
-  -- git
-  use("tpope/vim-fugitive")
-  use("tpope/vim-rhubarb")
-  use("shumphrey/fugitive-gitlab.vim")
-  use("tommcdo/vim-fugitive-blame-ext")
+-- git
+vim.cmd("packadd! vim-fugitive")
+vim.cmd("packadd! vim-rhubarb")
+vim.cmd("packadd! fugitive-gitlab.vim")
+vim.cmd("packadd! vim-fugitive-blame-ext")
 
-  -- file navigation
-  use({
-    "justinmk/vim-dirvish",
-    config = function()
-      vim.g.dirvish_mode = [[:sort ,^.*[\/],]]
-    end,
-  })
+-- file navigation
+vim.cmd("packadd! vim-dirvish")
+vim.g.dirvish_mode = [[:sort ,^.*[\/],]]
 
-  use({
-    "ibhagwan/fzf-lua",
-    config = function()
-      require("plugins.config.fzf_lua")
-    end,
-  })
+vim.cmd("packadd! fzf-lua")
+require("plugins.config.fzf_lua")
 
-  -- lsp
-  use({
-    "neoclide/coc.nvim",
-    branch = "release",
-    run = "yarn install --frozen-lockfile",
-    config = function()
-      require("plugins.config.coc")
-    end,
-  })
+-- lsp
+vim.cmd("packadd! coc.nvim")
+require("plugins.config.coc")
 
-  -- incremental search/substitute highlighting
-  use({
-    "markonm/traces.vim",
-    config = function()
-      vim.g.traces_abolish_integration = 1
-    end,
-  })
+-- incremental search/substitute highlighting
+vim.cmd("packadd traces.vim")
+vim.g.traces_abolish_integration = 1
 
-  -- session management
-  use({
-    "tpope/vim-obsession",
-    config = function()
-      vim.g.obsession_no_bufenter = 1
-    end,
-  })
+-- session management
+vim.cmd("packadd! vim-obsession")
+vim.g.obsession_no_bufenter = 1
 
-  -- repl
-  use({
-    "jpalardy/vim-slime",
-    config = function()
-      require("plugins.config.slime")
-    end,
-  })
+-- repl
+vim.cmd("packadd! vim-slime")
+require("plugins.config.slime")
 
-  -- json
-  use({
-    "phelipetls/vim-jqplay",
-    config = function()
-      vim.g.jqplay = {
-        mods = "vertical",
-      }
-    end,
-  })
-  use({ "phelipetls/jsonpath.nvim", requires = "phelipetls/nvim-treesitter" })
+-- json
+vim.cmd("packadd! vim-jqplay")
+vim.g.jqplay = {
+  mods = "vertical",
+}
 
-  -- web development with hugo
-  use("phelipetls/vim-hugo")
+vim.cmd("packadd! jsonpath.nvim")
 
-  -- appearance
-  use({
-    "nvim-lualine/lualine.nvim",
-    config = function()
-      require("plugins.config.lualine")
-    end,
-  })
+-- web development with hugo
+vim.cmd("packadd! vim-hugo")
 
-  use({
-    "https://gitlab.com/yorickpeterse/nvim-pqf",
-    config = function()
-      require("pqf").setup()
-    end,
-  })
+-- appearance
+vim.cmd("packadd! lualine.nvim")
+require("plugins.config.lualine")
 
-  use({
-    "lukas-reineke/headlines.nvim",
-    config = function()
-      require("headlines").setup({
-        mdx = vim.tbl_deep_extend("force", require("headlines").config.markdown, {
-          treesitter_language = "markdown",
-        }),
-      })
-    end,
-  })
+vim.cmd("packadd! nvim-pqf")
+require("pqf").setup()
 
-  -- treesitter
-  use({
-    "phelipetls/nvim-treesitter",
-    run = "<cmd>TSUpdate",
-    config = function()
-      require("plugins.config.treesitter")
-    end,
-  })
-  use("JoosepAlviste/nvim-ts-context-commentstring")
-  use("windwp/nvim-ts-autotag")
-  use("nvim-treesitter/nvim-treesitter-textobjects")
-  use("nvim-treesitter/playground")
+vim.cmd("packadd! headlines.nvim")
+require("headlines").setup({
+  mdx = vim.tbl_deep_extend("force", require("headlines").config.markdown, {
+    treesitter_language = "markdown",
+  }),
+})
 
-  -- debugging
-  use({
-    "andrewferrier/debugprint.nvim",
-    config = function()
-      require("debugprint").setup({
-        create_keymaps = false,
-      })
-    end,
-  })
-end)
+-- treesitter
+vim.cmd("packadd! nvim-treesitter")
+require("plugins.config.treesitter")
+
+vim.cmd("packadd! nvim-ts-context-commentstring")
+vim.cmd("packadd! nvim-ts-autotag")
+vim.cmd("packadd! nvim-treesitter-textobjects")
+vim.cmd("packadd! playground")
+
+-- debugging
+vim.cmd("packadd! debugprint.nvim")
+require("debugprint").setup({
+  create_keymaps = false,
+})
