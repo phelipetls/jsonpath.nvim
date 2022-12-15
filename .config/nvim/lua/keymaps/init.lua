@@ -22,11 +22,11 @@ vim.keymap.set("n", "<space>ss", function()
   end
 end, { desc = "Reload current Lua/VimScript file" })
 
-vim.keymap.set("n", "k", function()
+vim.keymap.set({ "x", "n" }, "k", function()
   return vim.v.count == 0 and "gk" or "k"
 end, { expr = true, desc = "Skip wrapped lines when using a count to jump lines up" })
 
-vim.keymap.set("n", "j", function()
+vim.keymap.set({ "x", "n" }, "j", function()
   return vim.v.count == 0 and "gj" or "j"
 end, { expr = true, desc = "Skip wrapped lines when using a count to jump lines down" })
 
