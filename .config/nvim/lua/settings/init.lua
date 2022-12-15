@@ -101,7 +101,6 @@ if vim.fn.executable("rg") == 1 then
 end
 
 -- alias for vim.pretty_print
-_G.dump = vim.pretty_print
 _G.pp = vim.pretty_print
 
 -- persist workspace folders
