@@ -1,3 +1,11 @@
+vim.keymap.set("n", "<space>ss", function()
+  vim.cmd.source(vim.api.nvim_buf_get_name(0))
+  vim.cmd.PackerCompile()
+end, {
+  buffer = true,
+  desc = "Reload plugins.lua and run Packer compile",
+})
+
 require("impatient")
 
 vim.cmd("packadd! cfilter")
