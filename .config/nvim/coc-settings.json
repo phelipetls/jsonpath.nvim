@@ -12,7 +12,9 @@
   "diagnostic.warningSign": "▎",
   "diagnostic.hintSign": "▎",
   "diagnostic.infoSign": "▎",
-  "coc.preferences.formatOnSaveFiletypes": ["javascript", "typescript", "javascriptreact", "typescriptreact"],
+  "[javascript][typescript][javascripreact][typescriptreact]": {
+    "coc.preferences.formatOnSave": true,
+  },
   "typescript.updateImportsOnFileMove.enable": true,
   "coc.preferences.useQuickfixForLocations": true,
   "coc.preferences.bracketEnterImprove": false,
