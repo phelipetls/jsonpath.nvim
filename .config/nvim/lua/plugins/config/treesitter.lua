@@ -1,6 +1,7 @@
 vim.api.nvim_command([[hi link TSConstructor Function]])
 
 local ft_to_parser = require("nvim-treesitter.parsers").filetype_to_parsername
+ft_to_parser.json = "jsonc"
 ft_to_parser.css = "scss"
 ft_to_parser.mdx = "markdown"
 
