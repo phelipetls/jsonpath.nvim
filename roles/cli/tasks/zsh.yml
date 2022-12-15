@@ -1,3 +1,4 @@
+---
 - name: Install zsh in Ubuntu
   become: true
   apt:
