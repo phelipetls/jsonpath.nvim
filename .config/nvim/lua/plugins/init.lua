@@ -37,7 +37,23 @@ return require("packer").startup(function(use)
   use("tpope/vim-repeat")
   use("tpope/vim-unimpaired")
   use("tpope/vim-speeddating")
-  use("tpope/vim-abolish")
+
+  use({
+    "tpope/vim-abolish",
+    config = function()
+      vim.cmd.Abolish("taebl table")
+      vim.cmd.Abolish("paramater parameter")
+      vim.cmd.Abolish("consoel console")
+      vim.cmd.Abolish("lenght length")
+      vim.cmd.Abolish("improt import")
+      vim.cmd.Abolish("obejct object")
+      vim.cmd.Abolish("entires entries")
+      vim.cmd.Abolish("cosnt const")
+      vim.cmd.Abolish("docuemnt document")
+      vim.cmd.Abolish("funciton function")
+    end,
+  })
+
   use("tommcdo/vim-lion")
   use("tpope/vim-sleuth")
   use("andymass/vim-matchup")

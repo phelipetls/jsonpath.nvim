@@ -25,14 +25,6 @@ vim.b[string.format("surround_%s", vim.fn.char2nr("c"))] = "console.log(\r)"
 vim.b[string.format("surround_%s", vim.fn.char2nr("e"))] = "${\r}"
 
 vim.cmd("inoreabbrev <buffer><silent> clog console.log()<Left><C-R>=helpers#eatchar('\\s')<CR>")
-vim.cmd("inoreabbrev <buffer> consoel console")
-vim.cmd("inoreabbrev <buffer> lenght length")
-vim.cmd("inoreabbrev <buffer> edf export default function")
-vim.cmd("inoreabbrev <buffer> improt import")
-vim.cmd("inoreabbrev <buffer> Obejct Object")
-vim.cmd("inoreabbrev <buffer> entires entries")
-vim.cmd("inoreabbrev <buffer> cosnt const")
-vim.cmd("inoreabbrev <buffer> docuemnt document")
 
 vim.opt_local.isfname:append({ "@-@" })
 vim.opt_local.suffixesadd = {
