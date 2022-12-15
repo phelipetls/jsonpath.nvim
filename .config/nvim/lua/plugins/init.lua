@@ -36,6 +36,7 @@ return require("packer").startup(function(use)
   })
 
   -- text editing
+  use("tpope/vim-surround")
   use("tpope/vim-commentary")
   use("tpope/vim-repeat")
   use("tpope/vim-unimpaired")
@@ -44,16 +45,6 @@ return require("packer").startup(function(use)
   use("tommcdo/vim-lion")
   use("tpope/vim-sleuth")
   use("andymass/vim-matchup")
-
-  use({
-    "kylechui/nvim-surround",
-    tag = "*",
-    config = function()
-      require("nvim-surround").setup({})
-
-      vim.keymap.set("i", "<C-s>", "<C-g>s", { silent = true, remap = true })
-    end,
-  })
 
   use({
     "AndrewRadev/inline_edit.vim",
