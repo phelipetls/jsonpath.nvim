@@ -35,6 +35,8 @@ local path = table.concat({
 vim.opt_local.isfname:append({ "@-@" })
 vim.opt_local.suffixesadd = {
   ".js",
+  ".mjs",
+  ".cjs",
   ".jsx",
   ".ts",
   ".tsx",
