@@ -1,17 +1,5 @@
 require("impatient")
 
-local packer_augroup = vim.api.nvim_create_augroup("PackerAutocmds", { clear = true })
-
-vim.api.nvim_create_autocmd("BufWritePost", {
-  group = packer_augroup,
-  pattern = "*/lua/plugins/init.lua",
-  callback = function()
-    local file_name = vim.fn.expand("<afile>")
-    vim.cmd.source(file_name)
-    vim.cmd.PackerCompile()
-  end,
-})
-
 vim.cmd("packadd! cfilter")
 
 -- prevent loading netrw
