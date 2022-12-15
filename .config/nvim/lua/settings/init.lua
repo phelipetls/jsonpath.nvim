@@ -57,7 +57,7 @@ vim.opt.wildignore = {
 }
 
 -- tell neovim where python3 is -- this improves startup time
-if vim.fn.has("unix") == 1 then
+if vim.fn.executable("/usr/bin/python3") == 1 then
   vim.g.loaded_python_provider = 0
   vim.g.python3_host_prog = "/usr/bin/python3"
 end
