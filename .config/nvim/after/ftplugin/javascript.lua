@@ -4,9 +4,6 @@ if vim.fn.bufname():match("%.min%.js$") then
   vim.b.coc_enabled = 0
 end
 
-vim.opt_local.path:append({ "node_modules", "cypress/fixtures" })
-vim.opt_local.path:append(require("helpers.tsconfig").get_tsconfig_include())
-
 local fname = vim.fn.expand("%:p:t")
 if fname:match("test%..+$") == 1 then
   vim.cmd.compiler("jest")
@@ -26,6 +23,15 @@ vim.b[string.format("surround_%s", vim.fn.char2nr("e"))] = "${\r}"
 
 vim.cmd("inoreabbrev <buffer><silent> clog console.log()<Left><C-R>=helpers#eatchar('\\s')<CR>")
 
+vim.bo.path = ""
+
+local path = table.concat({
+  vim.go.path,
+  "node_modules",
+  "cypress/fixtures",
+  table.concat(require("helpers.tsconfig").get_tsconfig_include() or {}, ","),
+}, ",")
+
 vim.opt_local.isfname:append({ "@-@" })
 vim.opt_local.suffixesadd = {
   ".js",
@@ -38,10 +44,33 @@ vim.opt_local.suffixesadd = {
 }
 
 _G.javascript_node_find = function(target)
+  if vim.fn.isdirectory(target) == 1 then
+    return vim.fn.findfile("index", target)
+  end
+
+  local found = vim.fn.findfile(target, path)
+
+  if vim.fs.basename(found) == "package.json" and vim.fs.basename(target) ~= "package.json" then
+    local ok, package_json = pcall(vim.fn.readfile, found)
+
+    if not ok then
+      return found
+    end
+
+    local ok_, json = pcall(vim.fn.json_decode, table.concat(package_json, ""))
+
+    if not ok_ then
+      return found
+    end
+
+    local main = json and json["main"] or "index.js"
+    return vim.fn.findfile(target .. "/" .. main, path)
+  end
+
   return require("helpers.tsconfig").includeexpr(target)
 end
 
-vim.opt_local.includeexpr = 'v:lua.javascript_node_find(v:fname)'
+vim.opt_local.includeexpr = "v:lua.javascript_node_find(v:fname)"
 
 local javascript_autocmds = vim.api.nvim_create_augroup("JavaScriptAutocmds", { clear = true })
 
