@@ -144,7 +144,7 @@ vim.keymap.set("n", "<space>gQ", "<cmd>call format#file(1)<CR>", { silent = true
 
 -- git
 for _, lhs in ipairs({ "<space>gg", "<space>g<space>" }) do
-  vim.keymap.set("n", lhs, ":Git ", { silent = true, nowait = true })
+  vim.api.nvim_set_keymap("n", lhs, ":Git<space>", { noremap = true })
 end
 
 -- unimpaired-like mappings to ignore whitespace in diff
