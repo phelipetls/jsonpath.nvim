@@ -168,17 +168,6 @@ return require("packer").startup(function(use)
     end,
   })
 
-  use({
-    "lukas-reineke/indent-blankline.nvim",
-    config = function()
-      vim.g.indent_blankline_filetype_exclude = { "help", "fugitive", "markdown", "mdx" }
-
-      require("indent_blankline").setup({
-        show_end_of_line = true,
-      })
-    end,
-  })
-
   -- treesitter
   use({
     "phelipetls/nvim-treesitter",
