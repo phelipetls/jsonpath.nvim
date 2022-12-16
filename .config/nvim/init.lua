@@ -44,11 +44,11 @@ vim.keymap.set("n", "<C-c>", "<cmd>InlineEdit<CR>")
 vim.g.inline_edit_autowrite = 1
 
 vim.cmd("packadd! treesj")
-vim.keymap.set("n", "gJ", "<cmd>TSJJoin<CR>")
-vim.keymap.set("n", "gS", "<cmd>TSJSplit<CR>")
 require("treesj").setup({
   use_default_keymaps = false,
 })
+vim.keymap.set("n", "gJ", "<cmd>TSJJoin<CR>")
+vim.keymap.set("n", "gS", "<cmd>TSJSplit<CR>")
 
 vim.cmd("packadd! editorconfig-vim")
 vim.g.EditorConfig_exclude_patterns = { "fugitive://.*", "scp://.*" }
