@@ -1,33 +1,34 @@
 local M = {}
 
-local get_tablabel = function(tabbufnr)
-  local tabbufname = vim.fn.bufname(tabbufnr)
-
-  if tabbufname == "" then
+local get_tablabel = function(bufname, bufnr)
+  if bufname == "" then
     return "[No Name]"
   end
 
-  local basename = vim.fs.basename(tabbufname)
-  local dirname = vim.fs.dirname(tabbufname)
+  local basename = vim.fs.basename(bufname)
 
-  if vim.fn.getbufvar(tabbufnr, "&filetype") == "dirvish" then
-    return vim.fn.fnamemodify(tabbufname, ":p")
+  if vim.startswith(basename, "index.") then
+    return vim.fs.dirname(bufname) .. "/" .. basename
   end
 
-  if vim.startswith(tabbufname, "fugitive:///") then
-    local fugitive_commitfile = vim.fn.FugitiveParse(tabbufname)[1]
+  if vim.startswith(bufname, "fugitive:///") then
+    local fugitive_parsed = vim.fn["FugitiveParse"](bufname)[1]
 
-    if fugitive_commitfile == "" then
+    if fugitive_parsed == "" then
       return "fugitive"
     end
 
-    if fugitive_commitfile == ":" then
+    if fugitive_parsed == ":" then
       return "fugitive-summary"
     end
+
+    bufname = vim.split(fugitive_parsed, ":", { trimempty = true })[2]
   end
 
-  if basename:match("^index%.+$") then
-    return dirname .. "/" .. basename
+  local buffiletype = vim.fn.getbufvar(bufnr, "&filetype")
+
+  if buffiletype == "dirvish" then
+    return vim.fn.fnamemodify(bufname, ":p:.")
   end
 
   return basename
@@ -47,8 +48,8 @@ M.get = function()
     local tabwinnr = vim.fn.tabpagewinnr(tab)
     local tabbuflist = vim.fn.tabpagebuflist(tab)
     local tabbufnr = tabbuflist[tabwinnr]
-    local tablabel = get_tablabel(tabbufnr)
-    table.insert(tabline, tablabel)
+    local tabbufname = vim.fn.bufname(tabbufnr)
+    table.insert(tabline, get_tablabel(tabbufname, tabbufnr))
 
     table.insert(tabline, "  ")
   end

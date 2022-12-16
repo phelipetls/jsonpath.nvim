@@ -5,45 +5,34 @@ end
 local fugitivestatusline = function()
   local fugitive = vim.fn["FugitiveStatusline"]()
 
-  local file_revision = string.match(fugitive, "Git:(.+)%(")
+  local revision = string.match(fugitive, "Git:(.+)%(")
   local checked_out_branch = string.match(fugitive, "Git%((.+)%)")
 
-  if file_revision == "0" then
+  if revision == "0" then
     return "index"
   end
 
-  return file_revision or checked_out_branch or ""
+  return revision or checked_out_branch or ""
 end
 
 local filename = function()
-  local path = vim.fn.expand("%:p:.")
+  local bufname = vim.api.nvim_buf_get_name(0)
 
-  if path == "" then
-    return "[No Name]"
-  end
+  if vim.startswith(bufname, "fugitive:///") then
+    local fugitive_parsed = vim.fn["FugitiveParse"](bufname)[1]
 
-  local fname = vim.fn.expand("%:t")
-
-  if fname:match("^fugitive://") then
-    local fugitive_commitfile = unpack(vim.fn["FugitiveParse"](path))
-
-    if not fugitive_commitfile then
+    if fugitive_parsed == "" then
       return "fugitive"
     end
 
-    if fugitive_commitfile == ":" then
+    if fugitive_parsed == ":" then
       return "fugitive-summary"
     end
 
-    return fugitive_commitfile
+    bufname = vim.split(fugitive_parsed, ":", { trimempty = true })[2]
   end
 
-  if fname:match("^index%.%a+$") then
-    local dir = vim.fn.expand("%:p:h:t")
-    return dir .. "/" .. fname
-  end
-
-  return window_is_full_width() and path or fname
+  return vim.fn.fnamemodify(bufname, ":.")
 end
 
 local modified = function()
@@ -69,7 +58,6 @@ require("lualine").setup({
     lualine_b = {
       {
         fugitivestatusline,
-        cond = window_is_full_width,
       },
       {
         "g:coc_status",
@@ -117,7 +105,11 @@ require("lualine").setup({
   },
   inactive_sections = {
     lualine_a = {},
-    lualine_b = {},
+    lualine_b = {
+      {
+        fugitivestatusline,
+      },
+    },
     lualine_c = {
       {
         filename,
