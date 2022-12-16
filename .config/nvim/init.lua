@@ -371,7 +371,7 @@ vim.keymap.set(
 vim.keymap.set(
   "v",
   "gq",
-  "<C-U><cmd>set operatorfunc=format#operatorfunc<CR>gvg@",
+  "<cmd>set operatorfunc=format#operatorfunc<CR>gvg@",
   { silent = true, desc = "Visual-mode operator to format lines" }
 )
 
