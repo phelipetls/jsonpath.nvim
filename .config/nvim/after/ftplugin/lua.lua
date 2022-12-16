@@ -8,7 +8,7 @@ vim.opt_local.suffixesadd = { ".lua" }
 -- force Neovim to always use includeexpr
 vim.opt_local.path = ""
 
-local lua_path = table.concat({ "lua" }, ",")
+local lua_path = table.concat({ vim.go.path, "lua", "./lua" }, ",")
 
 _G.find_lua_file = function(target)
   local file_path = target:gsub("%.", "/")
