@@ -356,9 +356,6 @@ vim.keymap.set("n", "gD", "gD:nohlsearch<CR>", { silent = true })
 vim.keymap.set("n", "1gd", "1gd:nohlsearch<CR>", { silent = true })
 vim.keymap.set("n", "1gD", "1gD:nohlsearch<CR>", { silent = true })
 
-vim.cmd([[inoreabbrev Taebl Table]])
-vim.cmd([[inoreabbrev taebl table]])
-
 vim.keymap.set("n", "gb", function()
   require("helpers.gitblame").blame_current_line()
 end, { silent = true, desc = "Blame current line with fugitive" })
