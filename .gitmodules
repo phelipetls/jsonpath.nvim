@@ -170,3 +170,6 @@
 [submodule "debugprint.nvim"]
 	path = .config/nvim/pack/plugins/opt/debugprint.nvim
 	url = https://github.com/andrewferrier/debugprint.nvim
+[submodule "vim-matchup"]
+	path = .config/nvim/pack/plugins/opt/vim-matchup
+	url = https://github.com/andymass/vim-matchup
