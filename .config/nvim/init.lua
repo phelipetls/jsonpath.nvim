@@ -26,9 +26,7 @@ vim.cmd("packadd! vim-commentary")
 vim.cmd("packadd! vim-repeat")
 vim.cmd("packadd! vim-unimpaired")
 vim.cmd("packadd! vim-speeddating")
-
 vim.cmd("packadd! vim-abolish")
-
 vim.cmd("packadd! vim-lion")
 vim.cmd("packadd! vim-sleuth")
 vim.cmd("packadd! vim-matchup")
