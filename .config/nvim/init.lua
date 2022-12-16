@@ -31,6 +31,11 @@ vim.cmd("packadd! vim-lion")
 vim.cmd("packadd! vim-sleuth")
 vim.cmd("packadd! vim-matchup")
 
+vim.cmd("packadd! dsf.vim")
+vim.g.dsf_no_mappings = 1
+vim.keymap.set("n", "dsf", "<Plug>DsfNextDelete")
+vim.keymap.set("n", "csf", "<Plug>DsfNextChange")
+
 vim.cmd("packadd! inline_edit.vim")
 vim.keymap.set("n", "<C-c>", "<cmd>InlineEdit<CR>")
 vim.g.inline_edit_autowrite = 1
