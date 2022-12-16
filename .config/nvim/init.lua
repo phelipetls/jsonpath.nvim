@@ -351,11 +351,6 @@ vim.keymap.set("n", "y<C-p>", function()
   vim.fn.setreg("+", vim.fn.expand("%:p"))
 end, { desc = "Copy current file name" })
 
-vim.keymap.set("n", "gd", "gd:nohlsearch<CR>", { silent = true })
-vim.keymap.set("n", "gD", "gD:nohlsearch<CR>", { silent = true })
-vim.keymap.set("n", "1gd", "1gd:nohlsearch<CR>", { silent = true })
-vim.keymap.set("n", "1gD", "1gD:nohlsearch<CR>", { silent = true })
-
 vim.keymap.set("n", "gb", function()
   require("helpers.gitblame").blame_current_line()
 end, { silent = true, desc = "Blame current line with fugitive" })
