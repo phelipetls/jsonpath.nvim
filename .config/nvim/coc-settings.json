@@ -33,6 +33,7 @@
   "coc.source.syntax.filetypes": ["htmlhugo"],
   "colors.enable": true,
   "highlight.colorNames.enable": false,
+  "inlayHint.enable": false,
   "languageserver": {
     "efm": {
       "command": "efm-langserver",
