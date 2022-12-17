@@ -30,6 +30,10 @@ end
 local filename = function()
   local bufname = vim.api.nvim_buf_get_name(0)
 
+  if not bufname or bufname == "" then
+    return "[No Name]"
+  end
+
   if vim.startswith(bufname, "fugitive:///") then
     local fugitive_parsed = vim.fn["FugitiveParse"](bufname)[1]
 

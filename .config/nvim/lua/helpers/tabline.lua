@@ -1,7 +1,7 @@
 local M = {}
 
 local get_tablabel = function(bufname, bufnr)
-  if bufname == "" then
+  if not bufname or bufname == "" then
     return "[No Name]"
   end
 
