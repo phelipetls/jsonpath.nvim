@@ -9,7 +9,7 @@ local treesitter_augroup = vim.api.nvim_create_augroup("TreesitterAugroup", { cl
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
   group = treesitter_augroup,
-  pattern = { "javascript", "typescript", "typescriptreact", "javascriptreact", "json", "yaml", "astro" },
+  pattern = { "javascript", "lua", "typescript", "typescriptreact", "javascriptreact", "json", "yaml", "astro" },
   callback = function()
     vim.wo.foldmethod = "expr"
     vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
