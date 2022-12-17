@@ -389,22 +389,28 @@ for _, lhs in ipairs({ "<space>gg", "<space>g<space>" }) do
   vim.api.nvim_set_keymap("n", lhs, ":Git<space>", { noremap = true })
 end
 
--- unimpaired-like mappings to ignore whitespace in diff
-vim.keymap.set("n", "[oi", function()
-  vim.opt.diffopt:append({ "iwhite" })
-end, { silent = true, desc = "Ignore whitespace in diff" })
+local ignore_whitespace_in_diff = function()
+  vim.opt_local.diffopt:append({ "iwhite" })
+  vim.cmd.echomsg("'setlocal diffopt+=iwhite'")
+end
 
-vim.keymap.set("n", "]oi", function()
-  vim.opt.diffopt:remove({ "iwhite" })
-end, { silent = true, desc = "Don't ignore whitespace in diff" })
+local show_whitespace_in_diff = function()
+  vim.opt_local.diffopt:remove({ "iwhite" })
+  vim.cmd.echomsg("'setlocal diffopt-=iwhite'")
+end
+
+-- unimpaired-like mappings to ignore whitespace in diff
+vim.keymap.set("n", "[oi", ignore_whitespace_in_diff, { desc = "Ignore whitespace in diff" })
+
+vim.keymap.set("n", "]oi", show_whitespace_in_diff, { desc = "Don't ignore whitespace in diff" })
 
 vim.keymap.set("n", "yoi", function()
   if vim.o.diffopt:match("iwhite") then
-    vim.opt.diffopt:remove({ "iwhite" })
+    ignore_whitespace_in_diff()
   else
-    vim.opt.diffopt:append({ "iwhite" })
+    show_whitespace_in_diff()
   end
-end, { silent = true, desc = "Toggle ignoring whitespace in diff" })
+end, { desc = "Toggle ignoring whitespace in diff" })
 
 -- quickfix and location list
 local qflist = require("helpers.qflist")
