@@ -55,6 +55,10 @@ vim.g.EditorConfig_exclude_patterns = { "fugitive://.*", "scp://.*" }
 
 -- git
 vim.cmd("packadd! vim-fugitive")
+-- avoid showing ansi escape sequences in nvim terminal
+-- such as in lint-staged output before committing
+vim.g.fugitive_pty = 0
+
 vim.cmd("packadd! vim-rhubarb")
 vim.cmd("packadd! fugitive-gitlab.vim")
 vim.cmd("packadd! vim-fugitive-blame-ext")
@@ -230,16 +234,8 @@ end
 -- alias for vim.pretty_print
 _G.pp = vim.pretty_print
 
--- persist workspace folders
--- see https://github.com/neoclide/coc.nvim/wiki/Using-workspaceFolders#persist-workspace-folders
-vim.opt.sessionoptions:append({ "globals" })
-
 -- disable colors in deno and nodejs terminal output
 vim.env.NO_COLOR = 0
-
--- avoid showing ansi escape sequences in nvim terminal
--- such as in lint-staged output before committing
-vim.g.fugitive_pty = 0
 
 -- remove -F flag I use in my .profile, that would automatically close terminal
 -- window if output in less is too short

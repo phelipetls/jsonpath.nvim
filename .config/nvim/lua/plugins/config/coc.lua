@@ -22,6 +22,10 @@ vim.o.pumheight = 10
 vim.o.tagfunc = "CocTagFunc"
 vim.g.coc_quickfix_open_command = "doautocmd QuickFixCmdPost | cfirst"
 
+-- persist workspace folders
+-- see https://github.com/neoclide/coc.nvim/wiki/Using-workspaceFolders#persist-workspace-folders
+vim.opt.sessionoptions:append({ "globals" })
+
 local is_preceded_by_whitespace = function()
   local col = vim.api.nvim_win_get_cursor(0)[2]
   local current_line = vim.api.nvim_get_current_line()
