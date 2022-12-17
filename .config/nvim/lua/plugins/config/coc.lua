@@ -2,6 +2,7 @@ vim.keymap.set("n", "<space>cr", "<cmd>CocRestart<CR>")
 
 vim.g.coc_global_extensions = {
   "coc-tsserver",
+  "coc-pyright",
   "coc-json",
   "coc-html",
   "coc-css",
