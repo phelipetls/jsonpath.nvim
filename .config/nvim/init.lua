@@ -32,7 +32,7 @@ vim.cmd("packadd! vim-sleuth")
 vim.cmd("packadd! vim-matchup")
 
 vim.cmd("packadd! undotree")
-vim.keymap.set("n", "<space>u", vim.cmd.UndotreeToggle, { silent = true })
+vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { silent = true })
 
 vim.cmd("packadd! dsf.vim")
 vim.g.dsf_no_mappings = 1
@@ -245,18 +245,20 @@ vim.env.LESS = "RX"
 -- {{{ keymaps
 
 -- general keymaps
+vim.g.mapleader = " "
+
 vim.keymap.set("n", "gr", "gT", { desc = "Go to previous tab" })
 
 vim.keymap.set("n", "<Esc>", function()
   vim.o.hlsearch = false
 end, { silent = true, desc = "Disable highlight search" })
 
-vim.keymap.set("n", "<space>ev", "<cmd>edit $MYVIMRC<CR>", {
+vim.keymap.set("n", "<leader>ev", "<cmd>edit $MYVIMRC<CR>", {
   silent = true,
   desc = "Edit Neovim configuration file",
 })
 
-vim.keymap.set("n", "<space>ss", function()
+vim.keymap.set("n", "<leader>ss", function()
   if vim.bo.filetype == "vim" or vim.fn.expand("%:t") == "init.lua" then
     vim.cmd.source("%")
     return
@@ -338,7 +340,7 @@ vim.keymap.set("i", "<C-g><C-t>", "<C-r>=repeat(complete(col('.'),v:lua.get_form
 })
 
 -- <space> should not move cursor in normal mode
-vim.keymap.set("n", "<space>", "")
+vim.keymap.set("n", "<leader>", "")
 
 vim.keymap.set(
   "c",
@@ -378,11 +380,11 @@ vim.keymap.set(
 )
 
 vim.keymap.set("n", "gQ", "<cmd>call format#file(0)<CR>", { silent = true })
-vim.keymap.set("n", "<space>gQ", "<cmd>call format#file(1)<CR>", { silent = true })
+vim.keymap.set("n", "<leader>gQ", "<cmd>call format#file(1)<CR>", { silent = true })
 
 -- git
-for _, lhs in ipairs({ "<space>gg", "<space>g<space>" }) do
-  vim.api.nvim_set_keymap("n", lhs, ":Git<space>", { noremap = true })
+for _, lhs in ipairs({ "<leader>gg", "<leader>g<leader>" }) do
+  vim.api.nvim_set_keymap("n", lhs, ":Git<leader>", { noremap = true })
 end
 
 local ignore_whitespace_in_diff = function()
@@ -428,11 +430,11 @@ vim.keymap.set("n", "[l", function()
   loclist.prev()
 end, { silent = true, desc = "Wrap around when navigating the location list backwards" })
 
-vim.keymap.set("n", "<space>q", function()
+vim.keymap.set("n", "<leader>q", function()
   qflist.toggle()
 end, { silent = true, desc = "Toggle location list" })
 
-vim.keymap.set("n", "<space>l", function()
+vim.keymap.set("n", "<leader>l", function()
   loclist.toggle()
 end, { silent = true, desc = "Toggle location list" })
 
