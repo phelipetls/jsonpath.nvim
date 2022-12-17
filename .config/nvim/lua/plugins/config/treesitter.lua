@@ -11,9 +11,10 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   group = treesitter_augroup,
   pattern = { "javascript", "lua", "typescript", "typescriptreact", "javascriptreact", "json", "yaml", "astro" },
   callback = function()
+    vim.wo.foldenable = true
+    vim.wo.foldlevel = 99
     vim.wo.foldmethod = "expr"
     vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
-    vim.wo.foldenable = false
   end,
 })
 
