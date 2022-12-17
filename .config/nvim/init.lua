@@ -447,7 +447,7 @@ vim.keymap.set(
 -- textobjects
 _G.select_number = function()
   vim.fn.search([[\d\>]], "cW")
-  vim.cmd.normal({ args = "v", bang = true })
+  vim.cmd("normal! v")
   vim.fn.search([[\<\d]], "becW")
 end
 
