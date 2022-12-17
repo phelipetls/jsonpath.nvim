@@ -1,15 +1,46 @@
 ---
 - name: Bootstrap development environment
   hosts: localhost
-  roles:
-    - role: submodules
-    - role: nodejs
-    - role: stow
-    - role: cli
-    - role: lsp
-    - role: nvim
-    - role: hugo
-    - role: linux-desktop
+  tasks:
+    - name: Update all submodules
+      command:
+        cmd: git submodule update --init --recursive --jobs 4
+      changed_when: false
+
+    - name: Node.js
+      tags: nodejs
+      import_role:
+        name: nodejs
+
+    - name: Stow
+      tags: stow
+      import_role:
+        name: stow
+
+    - name: Command-line
+      tags: cli
+      import_role:
+        name: cli
+
+    - name: LSP
+      tags: lsp
+      import_role:
+        name: lsp
+
+    - name: Neovim
+      tags: nvim
+      import_role:
+        name: nvim
+
+    - name: Hugo
+      tags: hugo
+      import_role:
+        name: hugo
+
+    - name: Linux Desktop
+      tags: linux
+      import_role:
+        name: linux-desktop
       when: >
         (not 'CI' in ansible_env) and
         (ansible_system is search("Linux")) and
