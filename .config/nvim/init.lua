@@ -96,7 +96,7 @@ vim.cmd("packadd! coc.nvim")
 require("plugins.config.coc")
 
 -- incremental search/substitute highlighting
-vim.cmd("packadd traces.vim")
+vim.cmd("packadd! traces.vim")
 vim.g.traces_abolish_integration = 1
 
 -- session management
