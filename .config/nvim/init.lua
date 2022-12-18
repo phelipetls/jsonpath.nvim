@@ -215,7 +215,7 @@ if vim.fn.executable("/usr/bin/python3") == 1 then
 end
 
 vim.opt.diffopt:append({
-  foldcolumn = 0,
+  foldcolumn = 2,
   hiddenoff = true,
   ["indent-heuristic"] = true,
   internal = true,
