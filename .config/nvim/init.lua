@@ -227,6 +227,9 @@ vim.o.list = true
 
 vim.opt.fillchars = {
   fold = "-",
+  foldopen = "⌄",
+  foldclose = "›",
+  foldsep = "┆",
   vert = "┃",
   horiz = "━",
   horizup = "┻",
