@@ -58,10 +58,6 @@
 	path = .config/nvim/pack/plugins/opt/nvim-treesitter
 	url = https://github.com/phelipetls/nvim-treesitter.git
 	ignore = dirty
-[submodule "nvim-colorizer.lua"]
-	path = .config/nvim/pack/plugins/opt/nvim-colorizer.lua
-	url = https://github.com/NvChad/nvim-colorizer.lua
-	ignore = dirty
 [submodule "coc.nvim"]
 	path = .config/nvim/pack/plugins/opt/coc.nvim
 	url = https://github.com/neoclide/coc.nvim
@@ -122,10 +118,6 @@
 	path = .config/nvim/pack/plugins/opt/nvim-treesitter-textobjects
 	url = https://github.com/nvim-treesitter/nvim-treesitter-textobjects
 	ignore = dirty
-[submodule "vim-eunuch"]
-	path = .config/nvim/pack/plugins/opt/vim-eunuch
-	url = https://github.com/tpope/vim-eunuch
-	ignore = dirty
 [submodule "vim-fugitive-blame-ext"]
 	path = .config/nvim/pack/plugins/opt/vim-fugitive-blame-ext
 	url = https://github.com/tommcdo/vim-fugitive-blame-ext
@@ -149,10 +141,6 @@
 [submodule "headlines.nvim"]
 	path = .config/nvim/pack/plugins/opt/headlines.nvim
 	url = https://github.com/lukas-reineke/headlines.nvim
-	ignore = dirty
-[submodule "indent-blankline.nvim"]
-	path = .config/nvim/pack/plugins/opt/indent-blankline.nvim
-	url = https://github.com/lukas-reineke/indent-blankline.nvim
 	ignore = dirty
 [submodule "fzf-lua"]
 	path = .config/nvim/pack/plugins/opt/fzf-lua
