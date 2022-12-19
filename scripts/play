@@ -5,22 +5,16 @@ import subprocess
 ansible_cmd = ["ansible-playbook", "--ask-become-pass", "bootstrap.yml"]
 
 parser = argparse.ArgumentParser(description="Run playbook")
-parser.add_argument("tags", nargs="*", help="play tasks with these tags.")
-
+parser.add_argument("tags", nargs="*", help="play tasks tagged with passed values.")
 parser.add_argument(
     "--skip",
-    dest="skip_tags",
-    metavar="tags",
-    nargs="*",
-    help="skip tasks with these tags.",
+    action="store_true",
+    help="if present, will skip tagged tasks instead.",
 )
 
 args = parser.parse_args()
 
 if args.tags:
-    ansible_cmd.extend(["--tags", *args.tags])
-
-if args.skip_tags:
-    ansible_cmd.extend(["--skip-tags", *args.skip_tags])
+    ansible_cmd.extend(["--skip-tags" if args.skip else "--tags", *args.tags])
 
 subprocess.run(ansible_cmd)
