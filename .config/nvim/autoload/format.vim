@@ -21,7 +21,10 @@ function! format#file(forceformatprg) abort
   keepjumps normal! gg
 
   if a:forceformatprg
+    let oldformatexpr = &l:formatexpr
+    let &l:formatexpr = ''
     keepjumps normal! gqG
+    let &l:formatexpr = oldformatexpr
   else
     set operatorfunc=format#operatorfunc
     keepjumps normal! g@G
