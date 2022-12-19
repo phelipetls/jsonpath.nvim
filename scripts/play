@@ -12,9 +12,14 @@ parser.add_argument(
     help="if present, will skip tagged tasks instead.",
 )
 
-args = parser.parse_args()
+args, unknown_args = parser.parse_known_args()
 
-if args.tags:
-    ansible_cmd.extend(["--skip-tags" if args.skip else "--tags", *args.tags])
+skip = args.skip
+tags = args.tags
+
+if tags:
+    ansible_cmd.extend(["--skip-tags" if skip else "--tags", ",".join(tags)])
+
+ansible_cmd.extend(unknown_args)
 
 subprocess.run(ansible_cmd)
