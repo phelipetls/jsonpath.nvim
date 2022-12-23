@@ -125,13 +125,6 @@ require("plugins.config.lualine")
 vim.cmd("packadd! nvim-pqf")
 require("pqf").setup()
 
-vim.cmd("packadd! headlines.nvim")
-require("headlines").setup({
-  mdx = vim.tbl_deep_extend("force", require("headlines").config.markdown, {
-    treesitter_language = "markdown",
-  }),
-})
-
 -- treesitter
 vim.cmd("packadd! nvim-treesitter")
 require("plugins.config.treesitter")
