@@ -77,7 +77,7 @@ M.blame_current_line = function()
   end
 
   if commit:match("^0+$") then
-    vim.cmd.echomsg("Not Committed Yet")
+    vim.cmd.echomsg("'Not Committed Yet'")
     return
   end
 
