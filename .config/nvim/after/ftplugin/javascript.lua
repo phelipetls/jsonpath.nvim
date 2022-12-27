@@ -75,12 +75,3 @@ end
 vim.opt_local.includeexpr = "v:lua.javascript_node_find(v:fname)"
 
 local javascript_autocmds = vim.api.nvim_create_augroup("JavaScriptAutocmds", { clear = true })
-
-vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
-  group = javascript_autocmds,
-  buffer = 0,
-  callback = function()
-    require("helpers.template_string_converter").convert()
-  end,
-  desc = "Automatically convert string to template string if there is an interpolation character",
-})
