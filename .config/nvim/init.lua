@@ -134,12 +134,6 @@ vim.cmd("packadd! nvim-ts-autotag")
 vim.cmd("packadd! nvim-treesitter-textobjects")
 vim.cmd("packadd! playground")
 
--- debugging
-vim.cmd("packadd! debugprint.nvim")
-require("debugprint").setup({
-  create_keymaps = false,
-})
-
 -- }}}
 -- {{{ settings
 

@@ -158,10 +158,6 @@
 	path = .config/nvim/pack/plugins/start/impatient.nvim
 	url = https://github.com/lewis6991/impatient.nvim
 	ignore = dirty
-[submodule "debugprint.nvim"]
-	path = .config/nvim/pack/plugins/opt/debugprint.nvim
-	url = https://github.com/andrewferrier/debugprint.nvim
-	ignore = dirty
 [submodule "vim-matchup"]
 	path = .config/nvim/pack/plugins/opt/vim-matchup
 	url = https://github.com/andymass/vim-matchup
