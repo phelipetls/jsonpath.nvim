@@ -367,7 +367,7 @@ vim.keymap.set(
   { desc = "Use current line in command-line mode, but strip trailing space" }
 )
 
-vim.keymap.set({ "o", "x" }, "<Tab>", "%", { desc = "Use matchit to go to matching brackets etc." })
+vim.keymap.set({ "o", "x" }, "<Tab>", "%", { desc = "Use matchit to go to matching brackets etc.", remap = true })
 
 vim.keymap.set("n", "y<C-p>", function()
   vim.fn.setreg("+", vim.fn.expand("%:p"))
