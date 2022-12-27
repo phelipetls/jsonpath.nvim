@@ -3,7 +3,7 @@
   "coc.preferences.promptInput": false,
   "diagnostic.enableMessage": "jump",
   "diagnostic.checkCurrentLine": true,
-  "signature.hideOnTextChange": true,
+  "signature.hideOnTextChange": false,
   "diagnostic.virtualText": true,
   "diagnostic.virtualTextCurrentLineOnly": false,
   "diagnostic.virtualTextPrefix": "▪  ",
