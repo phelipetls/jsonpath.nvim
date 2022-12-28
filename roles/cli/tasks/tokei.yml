@@ -1,0 +1,19 @@
+- name: Install tokei in Fedora
+  dnf:
+    name:
+      - tokei
+    state: present
+  when: ansible_distribution == "Fedora"
+
+- name: Install tokei in Ubuntu
+  apt:
+    name:
+      - tokei
+    state: present
+  when: ansible_distribution == "Ubuntu"
+
+- name: Install tokei in macOS
+  community.general.homebrew:
+    name: tokei
+    state: present
+  when: ansible_distribution == "MacOSX"

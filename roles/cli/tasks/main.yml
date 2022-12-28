@@ -81,3 +81,6 @@
 - name: Install WSL utilities
   import_tasks: wsl.yml
   when: ansible_kernel is search("microsoft")
+
+- name: Install tokei
+  import_tasks: tokei.yml
