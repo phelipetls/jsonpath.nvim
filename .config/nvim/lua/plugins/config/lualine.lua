@@ -54,7 +54,8 @@ local filename = function()
     bufname = diffview_bufname or bufname
   end
 
-  return vim.fn.fnamemodify(bufname, ":.")
+  local relativebufname =vim.fn.fnamemodify(bufname, ":.")
+  return #relativebufname > 30 and vim.fn.pathshorten(relativebufname) or relativebufname
 end
 
 local modified = function()

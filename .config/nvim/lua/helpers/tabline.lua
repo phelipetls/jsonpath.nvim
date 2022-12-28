@@ -29,7 +29,8 @@ local get_tablabel = function(bufname, bufnr)
   local buffiletype = vim.fn.getbufvar(bufnr, "&filetype")
 
   if buffiletype == "dirvish" then
-    return vim.fn.fnamemodify(bufname, ":p:.")
+    local relativebufname = vim.fn.fnamemodify(bufname, ":p:.")
+    return #relativebufname > 30 and vim.fn.pathshorten(relativebufname) or relativebufname
   end
 
   return basename
