@@ -3,6 +3,7 @@
   hosts: localhost
   tasks:
     - name: Update all submodules
+      tags: submodules
       command:
         cmd: git submodule update --init --recursive --jobs 4
       changed_when: false
