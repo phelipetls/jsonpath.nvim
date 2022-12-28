@@ -162,8 +162,6 @@ vim.o.linebreak = true
 vim.o.showtabline = 2
 
 -- clipboard
-vim.opt.clipboard:append({ "unnamedplus" })
-
 if vim.fn.has("wsl") == 1 then
   vim.g.clipboard = {
     name = "Windows",
@@ -457,6 +455,9 @@ vim.keymap.set(
   "</<C-r>=v:lua.require('helpers.close_tag').close_tag()<CR><C-r>=v:lua.require('helpers.close_tag').reindent()<CR><C-r>=v:lua.require('helpers.close_tag').cleanup()<CR>",
   { silent = true }
 )
+
+-- copy text to system clipboard
+vim.keymap.set({ "x", "n" }, "<leader>y", '"+y', { silent = true })
 
 -- textobjects
 _G.select_number = function()
