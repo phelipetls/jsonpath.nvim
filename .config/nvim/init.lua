@@ -281,9 +281,7 @@ vim.g.mapleader = " "
 
 vim.keymap.set("n", "gr", "gT", { desc = "Go to previous tab" })
 
-vim.keymap.set("n", "<Esc>", function()
-  vim.o.hlsearch = false
-end, { silent = true, desc = "Disable highlight search" })
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", { silent = true, desc = "Disable highlight search" })
 
 vim.keymap.set("n", "<leader>ev", "<cmd>edit $MYVIMRC<CR>", {
   silent = true,
