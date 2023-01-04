@@ -166,6 +166,8 @@ vim.o.breakindent = true
 vim.o.breakindentopt = "shift:2"
 vim.o.linebreak = true
 vim.o.showtabline = 2
+vim.o.sidescroll = 1
+vim.o.sidescrolloff = 1
 
 -- clipboard
 if vim.fn.has("wsl") == 1 then
