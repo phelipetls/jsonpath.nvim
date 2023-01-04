@@ -1,3 +1,10 @@
+function! s:HandleError() abort
+  keepjumps silent undo
+  echohl ErrorMsg
+  echomsg 'formatprg "' . &formatprg . '" exited with status ' . v:shell_error
+  echohl None
+endfunction
+
 function! format#operatorfunc(type, ...) abort
   if CocHasProvider('formatRange')
     call CocAction('formatSelected', a:type)
@@ -7,10 +14,7 @@ function! format#operatorfunc(type, ...) abort
   silent noautocmd keepjumps normal! '[v']gq
 
   if v:shell_error > 0
-    keepjumps silent undo
-    echohl ErrorMsg
-    echomsg 'formatprg "' . &formatprg . '" exited with status ' . v:shell_error
-    echohl None
+    call <SID>HandleError()
   endif
 endfunction
 
@@ -23,7 +27,13 @@ function! format#file(forceformatprg) abort
   if a:forceformatprg
     let oldformatexpr = &l:formatexpr
     let &l:formatexpr = ''
+
     keepjumps normal! gqG
+
+    if v:shell_error > 0
+      call <SID>HandleError()
+    endif
+
     let &l:formatexpr = oldformatexpr
   else
     set operatorfunc=format#operatorfunc
