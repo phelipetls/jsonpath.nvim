@@ -481,9 +481,9 @@ vim.keymap.set({ "x", "n" }, "<leader>y", '"+y', { silent = true })
 
 -- textobjects
 _G.select_number = function()
-  vim.fn.search([[\d\>]], "cW")
+  vim.fn.search([[\d\([^0-9\.]\|$\)]], "cW")
   vim.cmd("normal! v")
-  vim.fn.search([[\<\d]], "becW")
+  vim.fn.search([[\(^\|[^0-9\.]\d\)]], "becW")
 end
 
 vim.keymap.set("x", "in", ":<C-u>lua=select_number()<CR>", { silent = true, desc = "Select nearest number" })
