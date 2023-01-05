@@ -6,10 +6,12 @@
   when: ansible_distribution == "Fedora"
 
 - name: Install tokei in Ubuntu
-  apt:
-    name:
+  unarchive:
+    src: https://github.com/XAMPPRocky/tokei/releases/download/v12.1.2/tokei-x86_64-unknown-linux-gnu.tar.gz
+    dest: "{{ ansible_env.HOME }}/.local/bin"
+    remote_src: true
+    include:
       - tokei
-    state: present
   when: ansible_distribution == "Ubuntu"
 
 - name: Install tokei in macOS
