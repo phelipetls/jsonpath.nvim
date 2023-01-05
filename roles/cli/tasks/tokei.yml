@@ -12,6 +12,8 @@
     remote_src: true
     include:
       - tokei
+    extra_opts:
+      - "-z"
   when: ansible_distribution == "Ubuntu"
 
 - name: Install tokei in macOS
