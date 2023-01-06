@@ -25,6 +25,7 @@
       - html
       - yaml
       - toml
+      - json
       - jsonc
       - python
       - jsdoc
