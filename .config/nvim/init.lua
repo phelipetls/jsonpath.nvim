@@ -29,7 +29,6 @@ vim.cmd("packadd! vim-speeddating")
 vim.cmd("packadd! vim-abolish")
 vim.cmd("packadd! vim-lion")
 vim.cmd("packadd! vim-sleuth")
-vim.cmd("packadd! vim-matchup")
 
 vim.cmd("packadd! undotree")
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { silent = true })
