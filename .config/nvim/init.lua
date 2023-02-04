@@ -387,8 +387,7 @@ vim.keymap.set(
   { silent = true, desc = "Visual-mode operator to format lines" }
 )
 
-vim.keymap.set("n", "gQ", "<cmd>call format#file(0)<CR>", { silent = true })
-vim.keymap.set("n", "<leader>gQ", "<cmd>call format#file(1)<CR>", { silent = true })
+vim.keymap.set("n", "gQ", "<cmd>call format#file()<CR>", { silent = true })
 
 -- git
 for _, lhs in ipairs({ "<leader>gg", "<leader>g<leader>" }) do

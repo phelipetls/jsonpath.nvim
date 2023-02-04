@@ -13,28 +13,21 @@ function! format#operatorfunc(type, ...) abort
   endif
 endfunction
 
-function! format#file(forceformatprg) abort
-  let bang = get(a:, 0, 0)
-
+function! format#file() abort
   let w:view = winsaveview()
   keepjumps normal! gg
 
-  if a:forceformatprg
-    let oldformatexpr = &l:formatexpr
-    let &l:formatexpr = ''
+  let oldformatexpr = &l:formatexpr
+  let &l:formatexpr = ''
 
-    keepjumps normal! gqG
-
-    let &l:formatexpr = oldformatexpr
-  else
-    set operatorfunc=format#operatorfunc
-    keepjumps normal! g@G
-  end
+  set operatorfunc=format#operatorfunc
+  keepjumps normal! g@G
 
   if v:shell_error > 0
     call <SID>HandleError()
   endif
 
+  let &l:formatexpr = oldformatexpr
   keepjumps call winrestview(w:view)
   unlet w:view
 endfunction
