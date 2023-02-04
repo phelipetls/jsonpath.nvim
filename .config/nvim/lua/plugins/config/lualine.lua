@@ -1,7 +1,3 @@
-local function window_is_full_width()
-  return vim.fn.winwidth(0) == vim.o.columns
-end
-
 local function fugitivestatusline()
   return vim.fn["FugitiveStatusline"]()
 end
@@ -42,7 +38,6 @@ require("lualine").setup({
       },
       {
         "g:coc_status",
-        cond = window_is_full_width,
       },
     },
     lualine_c = {
@@ -70,7 +65,6 @@ require("lualine").setup({
       },
       {
         "fileformat",
-        cond = window_is_full_width,
       },
       {
         "filetype",
