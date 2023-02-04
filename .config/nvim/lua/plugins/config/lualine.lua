@@ -13,16 +13,6 @@ local filename = function()
     return "[No Name]"
   end
 
-  if vim.startswith(bufname, "fugitive:///") then
-    local fugitive_parsed = vim.fn["FugitiveParse"](bufname)[1]
-
-    if fugitive_parsed == ":" then
-      return "fugitive-summary"
-    end
-
-    bufname = vim.split(fugitive_parsed, ":", { trimempty = true })[2]
-  end
-
   return vim.fn.fnamemodify(bufname, ":.")
 end
 

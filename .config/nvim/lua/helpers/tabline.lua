@@ -12,16 +12,6 @@ local get_tablabel = function(bufname, bufnr)
     return directory .. "/" .. basename
   end
 
-  if vim.startswith(bufname, "fugitive:///") then
-    local fugitive_parsed = vim.fn["FugitiveParse"](bufname)[1]
-
-    if fugitive_parsed == ":" then
-      return "fugitive-summary"
-    end
-
-    bufname = vim.split(fugitive_parsed, ":", { trimempty = true })[2]
-  end
-
   local buffiletype = vim.fn.getbufvar(bufnr, "&filetype")
 
   if buffiletype == "dirvish" then
