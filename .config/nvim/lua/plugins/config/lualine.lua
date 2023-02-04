@@ -3,18 +3,6 @@ local window_is_full_width = function()
 end
 
 local fugitivestatusline = function()
-  local bufname = vim.api.nvim_buf_get_name(0)
-
-  if vim.startswith(bufname, "diffview:///") then
-    local revision = bufname:match("%.git/([:%x]+)/.+")
-
-    if revision == ":0:" then
-      return "index"
-    end
-
-    return revision or ""
-  end
-
   local fugitive = vim.fn["FugitiveStatusline"]()
 
   local revision = string.match(fugitive, "Git:(.+)%(")
@@ -46,12 +34,6 @@ local filename = function()
     end
 
     bufname = vim.split(fugitive_parsed, ":", { trimempty = true })[2]
-  end
-
-  if vim.startswith(bufname, "diffview:///") then
-    -- diffview:///home/phelipe/dotfiles/.git/baa551dc9b5/.config/nvim/init.lua
-    local diffview_bufname = bufname:match("%.git/[:%x]+/(.+)")
-    bufname = diffview_bufname or bufname
   end
 
   return vim.fn.fnamemodify(bufname, ":.")

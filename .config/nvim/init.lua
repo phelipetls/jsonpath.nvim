@@ -62,27 +62,6 @@ vim.cmd("packadd! vim-rhubarb")
 vim.cmd("packadd! fugitive-gitlab.vim")
 vim.cmd("packadd! vim-fugitive-blame-ext")
 
-vim.cmd("packadd! diffview.nvim")
-
-require("diffview").setup({
-  use_icons = false,
-  view = {
-    merge_tool = {
-      layout = "diff4_mixed",
-    },
-  },
-  signs = {
-    fold_closed = "› ",
-    fold_open = "⌄ ",
-    done = "✓",
-  },
-})
-
-vim.api.nvim_create_user_command("DO", "DiffviewOpen", {})
-vim.api.nvim_create_user_command("DC", "DiffviewClose", {})
-vim.cmd("cnoreabbrev DO DiffviewOpen")
-vim.cmd("cnoreabbrev DC DiffviewClose")
-
 -- file navigation
 vim.cmd("packadd! vim-dirvish")
 vim.g.dirvish_mode = [[:sort ,^.*[\/],]]
@@ -637,7 +616,7 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   callback = function()
     local path = vim.fn.expand("<afile>:p")
 
-    if vim.startswith(path, "fugitive:///") or vim.startswith(path, "diffview:///") then
+    if vim.startswith(path, "fugitive:///") then
       return
     end
 

@@ -166,10 +166,6 @@
 	path = .config/nvim/pack/plugins/opt/undotree
 	url = https://github.com/mbbill/undotree
 	ignore = dirty
-[submodule "diffview.nvim"]
-	path = .config/nvim/pack/plugins/opt/diffview.nvim
-	url = https://github.com/sindrets/diffview.nvim
-	ignore = dirty
 [submodule "printer.nvim"]
 	path = .config/nvim/pack/plugins/opt/printer.nvim
 	url = https://github.com/rareitems/printer.nvim
