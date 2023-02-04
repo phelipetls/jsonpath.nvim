@@ -15,10 +15,6 @@ local get_tablabel = function(bufname, bufnr)
   if vim.startswith(bufname, "fugitive:///") then
     local fugitive_parsed = vim.fn["FugitiveParse"](bufname)[1]
 
-    if fugitive_parsed == "" then
-      return "fugitive"
-    end
-
     if fugitive_parsed == ":" then
       return "fugitive-summary"
     end
