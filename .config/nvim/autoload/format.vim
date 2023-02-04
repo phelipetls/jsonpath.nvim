@@ -25,15 +25,15 @@ function! format#file(forceformatprg) abort
 
     keepjumps normal! gqG
 
-    if v:shell_error > 0
-      call <SID>HandleError()
-    endif
-
     let &l:formatexpr = oldformatexpr
   else
     set operatorfunc=format#operatorfunc
     keepjumps normal! g@G
   end
+
+  if v:shell_error > 0
+    call <SID>HandleError()
+  endif
 
   keepjumps call winrestview(w:view)
   unlet w:view
