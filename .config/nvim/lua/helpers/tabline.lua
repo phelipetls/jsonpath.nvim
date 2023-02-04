@@ -18,6 +18,10 @@ local get_tablabel = function(bufname, bufnr)
     return vim.fn.fnamemodify(bufname, ":p:.")
   end
 
+  if buffiletype == "fugitive" then
+    return "fugitive"
+  end
+
   return basename
 end
 
