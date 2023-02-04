@@ -6,11 +6,6 @@ function! s:HandleError() abort
 endfunction
 
 function! format#operatorfunc(type, ...) abort
-  if CocHasProvider('formatRange')
-    call CocAction('formatSelected', a:type)
-    return
-  endif
-
   silent noautocmd keepjumps normal! '[v']gq
 
   if v:shell_error > 0
