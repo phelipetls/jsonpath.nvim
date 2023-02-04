@@ -7,7 +7,7 @@ local get_tablabel = function(bufname, bufnr)
 
   local basename = vim.fs.basename(bufname)
 
-  if vim.startswith(basename, "index.") then
+  if vim.startswith(basename, "index") then
     local directory = vim.fs.basename(vim.fs.dirname(bufname))
     return directory .. "/" .. basename
   end
