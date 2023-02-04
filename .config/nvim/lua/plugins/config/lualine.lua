@@ -3,16 +3,7 @@ local window_is_full_width = function()
 end
 
 local fugitivestatusline = function()
-  local fugitive = vim.fn["FugitiveStatusline"]()
-
-  local revision = string.match(fugitive, "Git:(.+)%(")
-  local checked_out_branch = string.match(fugitive, "Git%((.+)%)")
-
-  if revision == "0" then
-    return "index"
-  end
-
-  return revision or checked_out_branch or ""
+  return vim.fn["FugitiveStatusline"]()
 end
 
 local filename = function()
