@@ -1,12 +1,12 @@
-local window_is_full_width = function()
+local function window_is_full_width()
   return vim.fn.winwidth(0) == vim.o.columns
 end
 
-local fugitivestatusline = function()
+local function fugitivestatusline()
   return vim.fn["FugitiveStatusline"]()
 end
 
-local filename = function()
+local function filename()
   local bufname = vim.api.nvim_buf_get_name(0)
 
   if not bufname or bufname == "" then
@@ -16,11 +16,11 @@ local filename = function()
   return vim.fn.fnamemodify(bufname, ":.")
 end
 
-local modified = function()
+local function modified()
   return "[+]"
 end
 
-local readonly = function()
+local function readonly()
   return "[-]"
 end
 

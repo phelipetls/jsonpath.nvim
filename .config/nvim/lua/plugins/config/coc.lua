@@ -27,7 +27,7 @@ vim.g.coc_quickfix_open_command = "doautocmd QuickFixCmdPost | cfirst"
 -- see https://github.com/neoclide/coc.nvim/wiki/Using-workspaceFolders#persist-workspace-folders
 vim.opt.sessionoptions:append({ "globals" })
 
-local is_preceded_by_whitespace = function()
+local function is_preceded_by_whitespace()
   local col = vim.api.nvim_win_get_cursor(0)[2]
   local current_line = vim.api.nvim_get_current_line()
   local prev_char = current_line:sub(col, col)

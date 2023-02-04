@@ -8,7 +8,7 @@ M.open = function()
   end
 end
 
-local is_loclist_open_in_current_tab = function()
+local function is_loclist_open_in_current_tab()
   local windows = vim.fn.getwininfo()
 
   local current_tabnr = vim.fn.tabpagenr()

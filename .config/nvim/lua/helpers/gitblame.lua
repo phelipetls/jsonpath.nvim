@@ -1,17 +1,17 @@
 local M = {}
 
-local show_error = function(error_message)
+local function show_error(error_message)
   vim.cmd.echohl("'ErrorMsg'")
   vim.cmd.echo(string.format("'%s'", error_message))
   vim.cmd.echohl("'None'")
 end
 
-local is_different = function(path)
+local function is_different(path)
   local diff_result = vim.fn.FugitiveExecute("diff", "HEAD", "--exit-code", "--", path)
   return diff_result.exit_status > 0
 end
 
-local get_hexadecimal = function(str)
+local function get_hexadecimal(str)
   return str:match("%x+")
 end
 

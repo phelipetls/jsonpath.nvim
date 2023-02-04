@@ -1,6 +1,6 @@
 local M = {}
 
-local get_tablabel = function(bufname, bufnr)
+local function get_tablabel(bufname, bufnr)
   if not bufname or bufname == "" then
     return "[No Name]"
   end

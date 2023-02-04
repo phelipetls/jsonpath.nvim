@@ -1,12 +1,12 @@
 local M = {}
 
-local show_error = function(error_message)
+local function show_error(error_message)
   vim.cmd.echohl("ErrorMsg")
   vim.cmd.echo(error_message)
   vim.cmd.echohl("None")
 end
 
-local get_open_command = function()
+local function get_open_command()
   local open_command = ""
 
   if vim.fn.has("mac") == 1 then

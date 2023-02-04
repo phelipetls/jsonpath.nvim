@@ -80,7 +80,7 @@ function M.get_tsconfig_paths(tsconfig_fname, prev_base_url)
   return vim.tbl_extend("force", alias_to_paths, M.get_tsconfig_paths(tsconfig_extends, base_url))
 end
 
-local strip_glob_patterns = function(glob_pattern)
+local function strip_glob_patterns(glob_pattern)
   -- transform src/**/* into src/
   glob_pattern = glob_pattern:gsub("%*%*/%*$", "")
 
