@@ -31,7 +31,7 @@ vim.cmd("packadd! vim-lion")
 vim.cmd("packadd! vim-sleuth")
 
 vim.cmd("packadd! undotree")
-vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { silent = true })
+vim.keymap.set("n", "<leader>u", "<cmd>UndotreeToggle<CR>", { silent = true })
 
 vim.cmd("packadd! dsf.vim")
 vim.g.dsf_no_mappings = 1
