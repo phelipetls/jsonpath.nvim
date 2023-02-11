@@ -58,6 +58,7 @@ vim.cmd("packadd! vim-fugitive")
 -- such as in lint-staged output before committing
 vim.g.fugitive_pty = 0
 
+vim.cmd("packadd! gv.vim")
 vim.cmd("packadd! vim-rhubarb")
 vim.cmd("packadd! fugitive-gitlab.vim")
 vim.cmd("packadd! vim-fugitive-blame-ext")
