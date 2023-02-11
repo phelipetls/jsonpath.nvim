@@ -151,8 +151,8 @@ bindkey "^X^E" edit-command-line
 
 # Configure fzf
 export PATH="$HOME/.fzf/bin:$PATH"
-source "$HOME/.fzf/shell/completion.zsh"
-source "$HOME/.fzf/shell/key-bindings.zsh"
+source ~/.fzf/shell/completion.zsh
+source ~/.fzf/shell/key-bindings.zsh
 
 export FZF_DEFAULT_COMMAND='rg --files --hidden --color=never'
 export FZF_ALT_C_COMMAND='fd --color=never --type d'
@@ -171,4 +171,5 @@ source ~/zsh-autosuggestions/zsh-autosuggestions.zsh
 # disable flow control keybindings Ctrl-Q and Ctrl-S. This is necessary to make
 # the Ctrl-G + Ctrl-S keybinding (to open fzf window with git stashes) work
 setopt noflowcontrol
-source "$HOME/.profile"
+
+source ~/.profile
