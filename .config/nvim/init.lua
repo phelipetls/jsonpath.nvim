@@ -411,9 +411,9 @@ vim.keymap.set("n", "]oi", show_whitespace_in_diff, { desc = "Don't ignore white
 
 vim.keymap.set("n", "yoi", function()
   if vim.o.diffopt:match("iwhite") then
-    ignore_whitespace_in_diff()
-  else
     show_whitespace_in_diff()
+  else
+    ignore_whitespace_in_diff()
   end
 end, { desc = "Toggle ignoring whitespace in diff" })
 
