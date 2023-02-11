@@ -1,5 +1,6 @@
 -- {{{ plugins
 
+vim.cmd("packadd! impatient.nvim")
 require("impatient")
 
 -- prevent loading netrw
@@ -10,7 +11,6 @@ vim.cmd("packadd! cfilter")
 
 -- optimization
 vim.cmd("packadd! LargeFile")
-vim.cmd("packadd! impatient.nvim")
 
 -- misc
 vim.cmd("packadd! plenary.nvim")

@@ -151,7 +151,7 @@
 	url = https://gitlab.com/yorickpeterse/nvim-pqf
 	ignore = dirty
 [submodule "impatient.nvim"]
-	path = .config/nvim/pack/plugins/start/impatient.nvim
+	path = .config/nvim/pack/plugins/opt/impatient.nvim
 	url = https://github.com/lewis6991/impatient.nvim
 	ignore = dirty
 [submodule "dsf.vim"]
