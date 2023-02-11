@@ -149,8 +149,6 @@ autoload -z edit-command-line
 zle -N edit-command-line
 bindkey "^X^E" edit-command-line
 
-export _JAVA_AWT_WM_NONREPARENTING=1 # Needed for Android Studio to work in DWM
-
 # Configure fzf
 export PATH="$HOME/.fzf/bin:$PATH"
 source "$HOME/.fzf/shell/completion.zsh"
