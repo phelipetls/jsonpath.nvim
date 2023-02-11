@@ -679,4 +679,4 @@ vim.api.nvim_create_autocmd({ "WinEnter" }, {
 })
 
 -- }}}
--- vim: foldmethod=marker foldlevel=0
+-- vim: foldmethod=marker foldlevel=999
