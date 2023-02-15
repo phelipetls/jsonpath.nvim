@@ -15,7 +15,7 @@
   "[javascript][typescript][javascripreact][typescriptreact]": {
     "coc.preferences.formatOnSave": true,
   },
-  "typescript.updateImportsOnFileMove.enable": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
   "coc.preferences.useQuickfixForLocations": true,
   "coc.preferences.bracketEnterImprove": false,
   "signature.floatConfig": {"border": true, "borderhighlight": "VertSplit"},
