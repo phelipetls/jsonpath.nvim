@@ -168,3 +168,6 @@
 [submodule "gv.vim"]
 	path = .config/nvim/pack/plugins/opt/gv.vim
 	url = https://github.com/junegunn/gv.vim
+[submodule "vim-twiggy"]
+	path = .config/nvim/pack/plugins/opt/vim-twiggy
+	url = https://github.com/sodapopcan/vim-twiggy

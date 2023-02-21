@@ -62,6 +62,7 @@ vim.cmd("packadd! gv.vim")
 vim.cmd("packadd! vim-rhubarb")
 vim.cmd("packadd! fugitive-gitlab.vim")
 vim.cmd("packadd! vim-fugitive-blame-ext")
+vim.cmd("packadd! vim-twiggy")
 
 -- file navigation
 vim.cmd("packadd! vim-dirvish")
