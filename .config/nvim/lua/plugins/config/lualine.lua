@@ -36,9 +36,6 @@ require("lualine").setup({
       {
         fugitivestatusline,
       },
-      {
-        "g:coc_status",
-      },
     },
     lualine_c = {
       {
