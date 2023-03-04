@@ -24,7 +24,6 @@ require("nvim-treesitter.configs").setup({
       if vim.fn.bufname(bufnr):match(".min.js$") then
         return true
       end
-
       return false
     end,
     additional_vim_regex_highlighting = false,
