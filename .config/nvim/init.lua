@@ -111,12 +111,12 @@ require("pqf").setup()
 
 -- treesitter
 vim.cmd("packadd! nvim-treesitter")
-require("plugins.config.treesitter")
-
 vim.cmd("packadd! nvim-ts-context-commentstring")
 vim.cmd("packadd! nvim-ts-autotag")
 vim.cmd("packadd! nvim-treesitter-textobjects")
+vim.cmd("packadd! nvim-ts-rainbow2")
 vim.cmd("packadd! playground")
+require("plugins.config.treesitter")
 
 -- debugging
 vim.cmd("packadd! printer.nvim")
