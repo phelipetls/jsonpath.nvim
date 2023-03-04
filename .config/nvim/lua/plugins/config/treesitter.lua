@@ -121,5 +121,14 @@ require("nvim-treesitter.configs").setup({
     disable = {},
     query = "rainbow-parens",
     strategy = require("ts-rainbow.strategy.global"),
+    hlgroups = {
+      "MoonflyRed",
+      "MoonflyYellow",
+      "MoonflyBlue",
+      "MoonflyOrange",
+      "MoonflyGreen",
+      "MoonflyViolet",
+      "MoonflySky",
+    },
   },
 })
