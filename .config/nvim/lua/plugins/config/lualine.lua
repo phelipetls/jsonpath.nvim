@@ -1,5 +1,18 @@
 local function fugitivestatusline()
-  return vim.fn["FugitiveStatusline"]()
+  local raw = vim.fn["FugitiveStatusline"]()
+
+  -- transform [Git:(branch)] into branch
+  local branch = raw:match("%([^)]+%)"):sub(2, -2)
+
+  -- truncate branch name
+  local MAX_LENGTH = 25
+
+  local truncated_branch = branch:sub(1, MAX_LENGTH)
+  if branch ~= truncated_branch then
+    truncated_branch = truncated_branch .. "…"
+  end
+
+  return string.format("[Git:(%s)]", truncated_branch)
 end
 
 local function filename()
