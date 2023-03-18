@@ -50,7 +50,10 @@ vim.keymap.set("n", "gJ", "<cmd>TSJJoin<CR>")
 vim.keymap.set("n", "gS", "<cmd>TSJSplit<CR>")
 
 vim.cmd("packadd! editorconfig-vim")
-vim.g.EditorConfig_exclude_patterns = { "fugitive://.*", "scp://.*" }
+vim.g.EditorConfig_exclude_patterns = {
+  "fugitive://.*",
+  "scp://.*",
+}
 
 -- git
 vim.cmd("packadd! vim-fugitive")
