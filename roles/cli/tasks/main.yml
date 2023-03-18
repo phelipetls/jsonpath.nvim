@@ -23,7 +23,6 @@
       - jq
       - htop
       - python3-pip
-      - pass
       - unzip
     state: present
   when: ansible_distribution == "Ubuntu"
@@ -39,7 +38,6 @@
       - jq
       - htop
       - python3-pip
-      - pass
     state: present
   when: ansible_distribution == "Fedora"
 

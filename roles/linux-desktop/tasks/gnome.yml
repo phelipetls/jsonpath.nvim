@@ -32,19 +32,6 @@
     key: "/org/gnome/software/download-updates"
     value: "true"
 
-- name: Enable jle64/gnome-pass-search-provider
-  become: true
-  community.general.copr:
-    name: jle64/gnome-pass-search-provider
-    state: enabled
-
-- name: Install gnome-pass-search-provider
-  become: true
-  dnf:
-    name:
-      - gnome-pass-search-provider
-    state: present
-
 - name: Disable GNOME search providers
   community.general.dconf:
     key: "/org/gnome/desktop/search-providers/disabled"
