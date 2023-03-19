@@ -24,6 +24,7 @@
       - htop
       - python3-pip
       - unzip
+      - xclip
     state: present
   when: ansible_distribution == "Ubuntu"
 
@@ -38,6 +39,7 @@
       - jq
       - htop
       - python3-pip
+      - xclip
     state: present
   when: ansible_distribution == "Fedora"
 
