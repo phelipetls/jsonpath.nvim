@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 import argparse
 import subprocess
+import os
 
-ansible_cmd = ["ansible-playbook", "--ask-become-pass", "bootstrap.yml"]
+ansible_cmd = ["ansible-playbook", "--ask-become-pass", os.path.expanduser("~/dotfiles/bootstrap.yml")]
 
 parser = argparse.ArgumentParser(description="Run playbook")
 parser.add_argument("tags", nargs="*", help="play tasks tagged with passed values.")
