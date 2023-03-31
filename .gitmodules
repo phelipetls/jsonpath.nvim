@@ -174,7 +174,3 @@
 	path = .config/nvim/pack/plugins/opt/vim-twiggy
 	url = https://github.com/sodapopcan/vim-twiggy
 	ignore = dirty
-[submodule "nvim-ts-rainbow"]
-	path = .config/nvim/pack/plugins/opt/nvim-ts-rainbow2
-	url = https://github.com/HiPhish/nvim-ts-rainbow2
-	ignore = dirty
