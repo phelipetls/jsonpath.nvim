@@ -120,12 +120,6 @@ vim.cmd("packadd! nvim-treesitter-textobjects")
 vim.cmd("packadd! playground")
 require("plugins.config.treesitter")
 
--- debugging
-vim.cmd("packadd! printer.nvim")
-require("printer").setup({
-  keymap = "gp",
-})
-
 -- }}}
 -- {{{ settings
 
