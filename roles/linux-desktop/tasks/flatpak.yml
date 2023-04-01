@@ -20,7 +20,6 @@
       - com.spotify.Client
       - org.gimp.GIMP
       - org.inkscape.Inkscape
-      - com.discordapp.Discord
       - org.chromium.Chromium
     state: present
     method: user
