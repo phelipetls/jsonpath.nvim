@@ -21,5 +21,6 @@
       - org.gimp.GIMP
       - org.inkscape.Inkscape
       - org.chromium.Chromium
+      - org.keepassxc.KeePassXC
     state: present
     method: user
