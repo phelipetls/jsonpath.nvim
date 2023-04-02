@@ -45,7 +45,7 @@ M.get = function()
       local key_node = unpack(node:field("key"))
       local key = get_string_content(key_node)
 
-      if starts_with_number(key) or contains_special_characters(key) then
+      if key and starts_with_number(key) or contains_special_characters(key) then
         accessor = string.format('["%s"]', key)
       else
         accessor = string.format("%s", key)
