@@ -49,12 +49,6 @@ require("treesj").setup({
 vim.keymap.set("n", "gJ", "<cmd>TSJJoin<CR>")
 vim.keymap.set("n", "gS", "<cmd>TSJSplit<CR>")
 
-vim.cmd("packadd! editorconfig-vim")
-vim.g.EditorConfig_exclude_patterns = {
-  "fugitive://.*",
-  "scp://.*",
-}
-
 -- git
 vim.cmd("packadd! vim-fugitive")
 -- avoid showing ansi escape sequences in nvim terminal
@@ -117,7 +111,6 @@ vim.cmd("packadd! nvim-treesitter")
 vim.cmd("packadd! nvim-ts-context-commentstring")
 vim.cmd("packadd! nvim-ts-autotag")
 vim.cmd("packadd! nvim-treesitter-textobjects")
-vim.cmd("packadd! playground")
 require("plugins.config.treesitter")
 
 -- }}}

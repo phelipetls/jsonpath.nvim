@@ -1,8 +1,7 @@
 vim.api.nvim_command([[hi link TSConstructor Function]])
 
-local ft_to_parser = require("nvim-treesitter.parsers").filetype_to_parsername
-ft_to_parser.css = "scss"
-ft_to_parser.mdx = "markdown"
+vim.treesitter.language.register('css', { 'scss' })
+vim.treesitter.language.register('markdown', { 'mdx' })
 
 local treesitter_augroup = vim.api.nvim_create_augroup("TreesitterAugroup", { clear = true })
 

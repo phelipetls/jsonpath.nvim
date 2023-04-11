@@ -46,10 +46,6 @@
 	path = .config/nvim/pack/plugins/opt/vim-dirvish
 	url = https://github.com/justinmk/vim-dirvish
 	ignore = dirty
-[submodule "editorconfig.vim"]
-	path = .config/nvim/pack/plugins/opt/editorconfig-vim
-	url = https://github.com/editorconfig/editorconfig-vim
-	ignore = dirty
 [submodule "vim-lion"]
 	path = .config/nvim/pack/plugins/opt/vim-lion
 	url = https://github.com/tommcdo/vim-lion
@@ -105,10 +101,6 @@
 [submodule "nvim-ts-autotag"]
 	path = .config/nvim/pack/plugins/opt/nvim-ts-autotag
 	url = https://github.com/windwp/nvim-ts-autotag
-	ignore = dirty
-[submodule "playground"]
-	path = .config/nvim/pack/plugins/opt/playground
-	url = https://github.com/nvim-treesitter/playground
 	ignore = dirty
 [submodule "LargeFile"]
 	path = .config/nvim/pack/plugins/opt/LargeFile
