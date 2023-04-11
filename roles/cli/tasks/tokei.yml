@@ -1,4 +1,5 @@
 - name: Install tokei in Fedora
+  become: true
   dnf:
     name:
       - tokei
