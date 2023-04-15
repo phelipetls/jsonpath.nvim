@@ -4,3 +4,17 @@
   apt:
     deb: "https://github.com/dandavison/delta/releases/download/{{ git_delta_version }}/git-delta_{{ git_delta_version }}_amd64.deb"
   when: ansible_distribution == "Ubuntu"
+
+- name: Install bat in Fedora
+  become: true
+  dnf:
+    name:
+      - git-delta
+    state: present
+  when: ansible_distribution == "Fedora"
+
+- name: Install bat in macOS
+  community.general.homebrew:
+    name: git-delta
+    state: present
+  when: ansible_distribution == "MacOSX"
