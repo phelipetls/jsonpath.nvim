@@ -21,11 +21,6 @@ if [ -d "$HOME/scripts" ]; then
   export PATH="$PATH:$HOME/scripts/"
 fi
 
-# Add Ubuntu snap related PATH
-if [ -d "/snap/bin" ]; then
-  export PATH="$PATH:/snap/bin"
-fi
-
 # Add Android SDK related PATH
 if [ -d "$HOME/Android/Sdk" ]; then
   export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
