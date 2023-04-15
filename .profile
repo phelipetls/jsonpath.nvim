@@ -26,13 +26,6 @@ if [ -d "/snap/bin" ]; then
   export PATH="$PATH:/snap/bin"
 fi
 
-# Add LaTeX related PATH
-if [ -d "/usr/local/texlive" ]; then
-  export PATH="/usr/local/texlive/2019/bin/x86_64-linux/:$PATH"
-  export MANPATH="/usr/local/texlive/2019/texmf-dist/doc/man/:$MANPATH"
-  export INFOPATH="/usr/local/texlive/2019/texmf-dist/doc/info/:$INFOPATH"
-fi
-
 # Add Android SDK related PATH
 if [ -d "$HOME/Android/Sdk" ]; then
   export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
