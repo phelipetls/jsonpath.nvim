@@ -261,16 +261,7 @@ vim.keymap.set("n", "<leader>ev", "<cmd>edit $MYVIMRC<CR>", {
 })
 
 vim.keymap.set("n", "<leader>ss", function()
-  if vim.bo.filetype == "vim" or vim.fn.expand("%:t") == "init.lua" then
-    vim.cmd.source("%")
-    return
-  end
-
-  if vim.bo.filetype == "lua" then
-    local module = vim.fn.expand("%:p")
-    require("plenary.reload").reload_module(module)
-    vim.cmd.source("%")
-  end
+  vim.cmd.source("%")
 end, { desc = "Reload current Lua/VimScript file" })
 
 vim.keymap.set({ "x", "n" }, "k", function()
