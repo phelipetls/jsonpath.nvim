@@ -84,3 +84,6 @@
 
 - name: Install tokei
   import_tasks: tokei.yml
+
+- name: Install bat
+  import_tasks: bat.yml

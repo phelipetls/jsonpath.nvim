@@ -1,0 +1,21 @@
+- name: Install bat in Ubuntu
+  become: true
+  apt:
+    deb: https://github.com/sharkdp/bat/releases/download/v{{ bar_version }}/bat-musl_{{ bar_version }}_amd64.deb
+  when: ansible_distribution == "Ubuntu"
+
+- name: Install bat in Fedora
+  become: true
+  dnf:
+    name:
+      - bat
+    state: present
+  when: ansible_distribution == "Fedora"
+
+- name: Install bat in macOS
+  become: true
+  dnf:
+    name:
+      - bat
+    state: present
+  when: ansible_distribution == "Fedora"
