@@ -20,6 +20,7 @@
     - eslint_d
     - prettier
     - "@tailwindcss/language-server"
+    - "@astrojs/language-server"
   community.general.npm:
     name: "{{ item }}"
     global: true
