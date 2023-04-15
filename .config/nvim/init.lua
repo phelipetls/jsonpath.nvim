@@ -267,8 +267,9 @@ vim.keymap.set("n", "<leader>ss", function()
   end
 
   if vim.bo.filetype == "lua" then
-    local module = vim.fn.expand("%:t:r")
+    local module = vim.fn.expand("%:p")
     require("plenary.reload").reload_module(module)
+    vim.cmd.source("%")
   end
 end, { desc = "Reload current Lua/VimScript file" })
 
