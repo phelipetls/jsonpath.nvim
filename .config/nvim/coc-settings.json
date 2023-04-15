@@ -53,47 +53,6 @@
       ],
       "formatterPriority": 100
     },
-    "tailwindcss-lsp": {
-      "command": "tailwindcss-language-server",
-      "args": ["--stdio"],
-      "filetypes": [
-        "css",
-        "html",
-        "htmlhugo",
-        "javascript",
-        "javascriptreact",
-        "typescript",
-        "typescriptreact",
-        "astro"
-      ],
-      "rootPatterns": [
-        "tailwind.config.js",
-        "tailwind.config.ts",
-        "postcss.config.js",
-        "postcss.config.ts"
-      ],
-      "initializationOptions": {
-        "userLanguages": {
-          "htmlhugo": "html"
-        }
-      },
-      "settings": {
-        "tailwindCSS": {
-          "validate": true,
-          "lint": {
-            "cssConflict": "warning",
-            "invalidApply": "error",
-            "invalidScreen": "error",
-            "invalidVariant": "error",
-            "invalidConfigPath": "error",
-            "invalidTailwindDirective": "error",
-            "recommendedVariantOrder": "warning"
-          },
-          "classAttributes": ["class", "className", "classList", "ngClass", "class:list"],
-          "experimental": {}
-        }
-      }
-    },
     "astro-ls": {
       "command": "astro-ls",
       "args": ["--stdio"],
