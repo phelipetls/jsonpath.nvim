@@ -162,3 +162,6 @@
 	path = .config/nvim/pack/plugins/opt/vim-twiggy
 	url = https://github.com/sodapopcan/vim-twiggy
 	ignore = dirty
+[submodule "nightfox.nvim"]
+	path = .config/nvim/pack/plugins/opt/nightfox.nvim
+	url = https://github.com/EdenEast/nightfox.nvim

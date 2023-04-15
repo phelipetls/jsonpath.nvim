@@ -16,9 +16,8 @@ vim.cmd("packadd! LargeFile")
 vim.cmd("packadd! plenary.nvim")
 
 -- colorscheme
-vim.cmd("packadd! vim-moonfly-colors")
-vim.g.moonflyWinSeparator = 2
-vim.cmd.colorscheme("moonfly")
+vim.cmd("packadd! nightfox.nvim")
+vim.cmd.colorscheme("duskfox")
 
 -- text editing
 vim.cmd("packadd! vim-surround")
