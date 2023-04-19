@@ -17,7 +17,7 @@ vim.cmd("packadd! plenary.nvim")
 
 -- colorscheme
 vim.cmd("packadd! nightfox.nvim")
-vim.cmd.colorscheme("duskfox")
+vim.cmd.colorscheme("nightfox")
 
 -- text editing
 vim.cmd("packadd! vim-surround")
