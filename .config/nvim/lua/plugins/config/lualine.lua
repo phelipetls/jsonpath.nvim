@@ -1,8 +1,8 @@
-local function fugitivestatusline()
+local function fugitive()
   local raw = vim.fn["FugitiveStatusline"]()
 
-  -- extract from [Git:(branch)] pattern
-  local branch = raw:match("%([^)]+%)"):sub(2, -2)
+  -- extract branch from [Git(branch)] pattern
+  local branch = raw:match("%(.+%)"):sub(2, -2)
 
   -- truncate branch name
   local MAX_LENGTH = 25
@@ -11,7 +11,7 @@ local function fugitivestatusline()
     truncated_branch = truncated_branch .. "…"
   end
 
-  return string.format("[Git:(%s)]", truncated_branch)
+  return string.gsub(raw, branch, truncated_branch, 1)
 end
 
 require("lualine").setup({
@@ -25,7 +25,7 @@ require("lualine").setup({
       "mode",
     },
     lualine_b = {
-      fugitivestatusline,
+      fugitive,
     },
     lualine_c = {
       {
