@@ -73,5 +73,3 @@ _G.javascript_node_find = function(target)
 end
 
 vim.opt_local.includeexpr = "v:lua.javascript_node_find(v:fname)"
-
-local javascript_autocmds = vim.api.nvim_create_augroup("JavaScriptAutocmds", { clear = true })
