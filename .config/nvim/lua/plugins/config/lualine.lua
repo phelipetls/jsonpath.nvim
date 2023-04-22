@@ -91,16 +91,21 @@ require("lualine").setup({
     },
     {
       sections = {
-        lualine_a = {
+        lualine_a = {},
+        lualine_b = {},
+        lualine_c = {
+          {
+            "%f",
+            type = "stl",
+          },
+        },
+        lualine_x = {},
+        lualine_y = {},
+        lualine_z = {
           function()
             return string.format("%d args", #vim.fn.argv())
           end,
         },
-        lualine_b = {},
-        lualine_c = {},
-        lualine_x = {},
-        lualine_y = {},
-        lualine_z = {},
       },
       filetypes = { "dirvish" },
     },
