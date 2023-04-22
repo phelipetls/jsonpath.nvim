@@ -22,6 +22,7 @@ vim.b[string.format("surround_%s", vim.fn.char2nr("c"))] = "console.log(\r)"
 vim.b[string.format("surround_%s", vim.fn.char2nr("e"))] = "${\r}"
 
 vim.cmd("inoreabbrev <buffer><silent> clog console.log()<Left><C-R>=helpers#eatchar('\\s')<CR>")
+vim.cmd("inoreabbrev <buffer><silent> cn className<C-R>=helpers#eatchar('\\s')<CR>")
 
 vim.bo.path = ""
 
