@@ -35,7 +35,6 @@ require("lualine").setup({
       {
         "%m",
         type = "stl",
-        padding = { left = 0, right = 1 },
       },
     },
     lualine_x = {},
@@ -58,7 +57,6 @@ require("lualine").setup({
       {
         "%m",
         type = "stl",
-        padding = { left = 0, right = 1 },
       },
     },
     lualine_x = {},
