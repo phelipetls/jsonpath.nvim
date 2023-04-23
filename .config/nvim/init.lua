@@ -19,6 +19,14 @@ vim.cmd("packadd! plenary.nvim")
 vim.cmd("packadd! nightfox.nvim")
 vim.cmd.colorscheme("nightfox")
 
+local colorscheme_autocmds = vim.api.nvim_create_augroup("ColorSchemeOverrideAutocmds", { clear = true })
+
+vim.api.nvim_create_autocmd({ "ColorScheme" }, {
+  group = colorscheme_autocmds,
+  pattern = "nightfox",
+  command = "hi! link EndOfBuffer NonText",
+})
+
 -- text editing
 vim.cmd("packadd! vim-surround")
 vim.cmd("packadd! vim-commentary")
