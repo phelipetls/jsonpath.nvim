@@ -527,10 +527,10 @@ end, { bar = true, range = true, nargs = 1, complete = "command", desc = "Redire
 -- }}}
 -- {{{ autocmds
 
-local global_autocmds_augroup = vim.api.nvim_create_augroup("GlobalAutocmds", {})
+local global_autocmds = vim.api.nvim_create_augroup("GlobalAutocmds", {})
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
-  group = global_autocmds_augroup,
+  group = global_autocmds,
   pattern = { "*" },
   callback = function()
     vim.opt.formatoptions:remove({ "c", "r", "o" })
@@ -539,7 +539,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 })
 
 vim.api.nvim_create_autocmd({ "BufReadPost" }, {
-  group = global_autocmds_augroup,
+  group = global_autocmds,
   pattern = { "*" },
   callback = function()
     if vim.fn.line("'\"") > 0 and vim.fn.line("'\"") <= vim.fn.line("$") and not vim.bo.filetype:match("git") then
@@ -550,14 +550,14 @@ vim.api.nvim_create_autocmd({ "BufReadPost" }, {
 })
 
 vim.api.nvim_create_autocmd({ "VimResized" }, {
-  group = global_autocmds_augroup,
+  group = global_autocmds,
   pattern = { "*" },
   command = "wincmd =",
   desc = "Automatically resize splits when Neovim is resized",
 })
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
-  group = global_autocmds_augroup,
+  group = global_autocmds,
   pattern = {
     "javascript",
     "typescript",
@@ -580,7 +580,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 })
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
-  group = global_autocmds_augroup,
+  group = global_autocmds,
   pattern = {
     "python",
   },
@@ -593,7 +593,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 })
 
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
-  group = global_autocmds_augroup,
+  group = global_autocmds,
   pattern = { "*" },
   callback = function()
     local bufname = vim.api.nvim_buf_get_name(0)
@@ -604,7 +604,7 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
 })
 
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-  group = global_autocmds_augroup,
+  group = global_autocmds,
   pattern = { "*" },
   callback = function()
     local path = vim.fn.expand("<afile>:p")
@@ -619,7 +619,7 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 })
 
 vim.api.nvim_create_autocmd({ "VimResume", "FocusGained" }, {
-  group = global_autocmds_augroup,
+  group = global_autocmds,
   pattern = { "*" },
   callback = function()
     if vim.fn.getcmdwintype() == "" then
@@ -630,7 +630,7 @@ vim.api.nvim_create_autocmd({ "VimResume", "FocusGained" }, {
 })
 
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {
-  group = global_autocmds_augroup,
+  group = global_autocmds,
   pattern = { "*" },
   callback = function()
     vim.highlight.on_yank({ higroup = "Search", on_visual = false })
@@ -638,10 +638,10 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
   desc = "Highlight yanked region",
 })
 
-local open_file_with_f5_autocmd = vim.api.nvim_create_augroup("OpenFileWithF5", { clear = true })
+local open_file_autocmds = vim.api.nvim_create_augroup("OpenFileWithF5", { clear = true })
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
-  group = open_file_with_f5_autocmd,
+  group = open_file_autocmds,
   pattern = { "html", "dirvish", "svg" },
   callback = function()
     vim.keymap.set("n", "<F5>", function()
@@ -650,10 +650,10 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   end,
 })
 
-local quickfix_augroup = vim.api.nvim_create_augroup("Quickfix", { clear = true })
+local quickfix_autocmds = vim.api.nvim_create_augroup("Quickfix", { clear = true })
 
 vim.api.nvim_create_autocmd({ "QuickFixCmdPost" }, {
-  group = quickfix_augroup,
+  group = quickfix_autocmds,
   pattern = { "*" },
   callback = function()
     require("helpers.qflist").open()
@@ -662,7 +662,7 @@ vim.api.nvim_create_autocmd({ "QuickFixCmdPost" }, {
 })
 
 vim.api.nvim_create_autocmd({ "WinEnter" }, {
-  group = quickfix_augroup,
+  group = quickfix_autocmds,
   pattern = { "*" },
   callback = function()
     if vim.fn.winnr("$") == 1 and vim.o.buftype == "quickfix" then
