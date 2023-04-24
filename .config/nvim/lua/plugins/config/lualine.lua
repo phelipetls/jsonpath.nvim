@@ -11,7 +11,8 @@ local function fugitive()
     truncated_branch = truncated_branch .. "…"
   end
 
-  return string.gsub(raw, branch, truncated_branch, 1)
+  local result = string.gsub(raw, vim.pesc(branch), truncated_branch, 1)
+  return result
 end
 
 require("lualine").setup({
