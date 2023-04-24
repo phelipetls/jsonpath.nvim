@@ -243,9 +243,6 @@ if vim.fn.executable("rg") == 1 then
   vim.o.grepformat = "%f:%l:%c:%m"
 end
 
--- alias for vim.pretty_print
-_G.pp = vim.pretty_print
-
 -- disable colors in deno and nodejs terminal output
 vim.env.NO_COLOR = 0
 
