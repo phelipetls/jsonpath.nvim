@@ -7,12 +7,13 @@ require("impatient")
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+-- builtin plugin
 vim.cmd("packadd! cfilter")
 
 -- optimization
 vim.cmd("packadd! LargeFile")
 
--- misc
+-- utilities/dependencies
 vim.cmd("packadd! plenary.nvim")
 
 -- colorscheme
@@ -20,7 +21,6 @@ vim.cmd("packadd! nightfox.nvim")
 vim.cmd.colorscheme("nightfox")
 
 local colorscheme_autocmds = vim.api.nvim_create_augroup("ColorSchemeOverrideAutocmds", { clear = true })
-
 vim.api.nvim_create_autocmd({ "ColorScheme" }, {
   group = colorscheme_autocmds,
   pattern = "nightfox",
@@ -66,6 +66,7 @@ vim.cmd("packadd! gv.vim")
 vim.cmd("packadd! vim-rhubarb")
 vim.cmd("packadd! fugitive-gitlab.vim")
 vim.cmd("packadd! vim-fugitive-blame-ext")
+
 vim.cmd("packadd! vim-twiggy")
 vim.g.twiggy_group_locals_by_slash = 0
 vim.g.twiggy_local_branch_sort = "mru"
@@ -76,6 +77,7 @@ vim.g.twiggy_show_full_ui = 0
 vim.cmd("packadd! vim-dirvish")
 vim.g.dirvish_mode = [[:sort ,^.*[\/],]]
 
+-- fuzzy finder
 vim.cmd("packadd! fzf-lua")
 require("plugins.config.fzf_lua")
 
@@ -96,14 +98,13 @@ vim.cmd("packadd! vim-slime")
 require("plugins.config.slime")
 
 -- json
+vim.cmd("packadd! jsonpath.nvim")
 vim.cmd("packadd! vim-jqplay")
 vim.g.jqplay = {
   mods = "vertical",
 }
 
-vim.cmd("packadd! jsonpath.nvim")
-
--- web development with hugo
+-- web development
 vim.cmd("packadd! vim-hugo")
 
 -- appearance
@@ -193,9 +194,10 @@ vim.opt.wildignore = {
   "htmlcov/.coverage",
   "*.pyc",
   "package-lock.json",
+  "yarn.lock",
 }
 
--- tell neovim where python3 is -- this improves startup time
+-- tell neovim where python3, to improves startup time
 if vim.fn.executable("/usr/bin/python3") == 1 then
   vim.g.loaded_python_provider = 0
   vim.g.python3_host_prog = "/usr/bin/python3"
