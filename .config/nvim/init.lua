@@ -15,6 +15,7 @@ vim.cmd("packadd! LargeFile")
 
 -- utilities/dependencies
 vim.cmd("packadd! plenary.nvim")
+vim.cmd("packadd! vim-dispatch")
 
 -- colorscheme
 vim.cmd("packadd! nightfox.nvim")

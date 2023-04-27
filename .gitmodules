@@ -161,3 +161,6 @@
 [submodule "nightfox.nvim"]
 	path = .config/nvim/pack/plugins/opt/nightfox.nvim
 	url = https://github.com/EdenEast/nightfox.nvim
+[submodule "vim-dispatch"]
+	path = .config/nvim/pack/plugins/opt/vim-dispatch
+	url = https://github.com/tpope/vim-dispatch
