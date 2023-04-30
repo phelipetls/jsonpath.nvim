@@ -17,9 +17,6 @@ vim.cmd("packadd! LargeFile")
 vim.cmd("packadd! plenary.nvim")
 vim.cmd("packadd! vim-dispatch")
 
--- colorscheme
-vim.cmd.colorscheme("carbonfox")
-
 local colorscheme_autocmds = vim.api.nvim_create_augroup("ColorSchemeOverrideAutocmds", { clear = true })
 vim.api.nvim_create_autocmd({ "ColorScheme" }, {
   group = colorscheme_autocmds,
@@ -149,6 +146,13 @@ vim.o.linebreak = true
 vim.o.showtabline = 2
 vim.o.sidescroll = 1
 vim.o.sidescrolloff = 1
+
+-- colorscheme
+vim.cmd.colorscheme("kanagawa-wave")
+require("kanagawa").setup({
+  commentStyle = { italic = false },
+  keywordStyle = { italic = false },
+})
 
 -- clipboard
 if vim.fn.has("wsl") == 1 then

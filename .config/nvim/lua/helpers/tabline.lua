@@ -45,9 +45,8 @@ M.get = function()
     table.insert(tabline, "  ")
   end
 
-  table.insert(tabline, "%#TabLineFill#")
-  table.insert(tabline, "%=")
   table.insert(tabline, "%#TabLine#")
+  table.insert(tabline, "%=")
   table.insert(tabline, vim.g.coc_status)
 
   return table.concat(tabline, "")
