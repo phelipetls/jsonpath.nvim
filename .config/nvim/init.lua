@@ -18,8 +18,7 @@ vim.cmd("packadd! plenary.nvim")
 vim.cmd("packadd! vim-dispatch")
 
 -- colorscheme
-vim.cmd("packadd! nightfox.nvim")
-vim.cmd.colorscheme("nightfox")
+vim.cmd.colorscheme("carbonfox")
 
 local colorscheme_autocmds = vim.api.nvim_create_augroup("ColorSchemeOverrideAutocmds", { clear = true })
 vim.api.nvim_create_autocmd({ "ColorScheme" }, {
