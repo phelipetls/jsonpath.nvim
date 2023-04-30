@@ -23,10 +23,8 @@ require("lualine").setup({
   },
   sections = {
     lualine_a = {
-      "mode",
     },
     lualine_b = {
-      fugitive,
     },
     lualine_c = {
       {
@@ -39,7 +37,9 @@ require("lualine").setup({
       },
     },
     lualine_x = {},
-    lualine_y = {},
+    lualine_y = {
+      fugitive,
+    },
     lualine_z = {
       {
         "%l:%L",
