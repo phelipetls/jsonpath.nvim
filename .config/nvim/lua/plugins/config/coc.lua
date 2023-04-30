@@ -13,6 +13,7 @@ vim.g.coc_global_extensions = {
   "coc-rust-analyzer",
   "coc-highlight",
   "@yaegassy/coc-astro",
+  "@yaegassy/coc-tailwindcss3",
 }
 
 vim.o.backup = false

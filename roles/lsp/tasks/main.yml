@@ -19,7 +19,6 @@
   loop:
     - eslint_d
     - prettier
-    - "@tailwindcss/language-server"
   community.general.npm:
     name: "{{ item }}"
     global: true
