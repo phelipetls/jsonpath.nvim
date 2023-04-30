@@ -53,19 +53,6 @@
       ],
       "formatterPriority": 100
     },
-    "astro-ls": {
-      "command": "astro-ls",
-      "args": ["--stdio"],
-      "filetypes": [
-        "astro"
-      ],
-      "rootPatterns": [
-        "astro.config.js",
-        "astro.config.mjs",
-        "astro.config.ts",
-        "astro.config.mts"
-      ]
-    }
   },
   "Lua.hint.enable": false,
   "sumneko-lua.enableNvimLuaDev": true

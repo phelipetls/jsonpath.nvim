@@ -12,6 +12,7 @@ vim.g.coc_global_extensions = {
   "coc-sumneko-lua",
   "coc-rust-analyzer",
   "coc-highlight",
+  "@yaegassy/coc-astro",
 }
 
 vim.o.backup = false
@@ -200,23 +201,3 @@ end, {
 })
 
 vim.keymap.set("n", "<space>cc", "<cmd>CocList commands<CR>", { desc = "Open list with all coc commands" })
-
-local coc_augroup = vim.api.nvim_create_augroup("CocAutocmds", { clear = true })
-
-vim.api.nvim_create_autocmd({ "FileType" }, {
-  group = coc_augroup,
-  pattern = { "astro" },
-  callback = function()
-    vim.fn["coc#config"]("languageserver.astro-ls", {
-      initializationOptions = {
-        typescript = {
-          serverPath = vim.fn.fnamemodify(
-            vim.fs.find("./node_modules/typescript/lib/tsserverlibrary.js", { upward = true })[1] or "",
-            ":p"
-          ),
-        },
-      },
-    })
-  end,
-  desc = "Configure astro-ls with tsserver path",
-})
