@@ -141,11 +141,11 @@ vim.o.sidescroll = 1
 vim.o.sidescrolloff = 1
 
 -- colorscheme
-vim.cmd.colorscheme("kanagawa-wave")
 require("kanagawa").setup({
   commentStyle = { italic = false },
   keywordStyle = { italic = false },
 })
+vim.cmd.colorscheme("kanagawa-wave")
 
 -- clipboard
 if vim.fn.has("wsl") == 1 then
