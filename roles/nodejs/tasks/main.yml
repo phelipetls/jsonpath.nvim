@@ -39,7 +39,6 @@
 - name: Install global packages
   loop:
     - n
-    - npm-merge-driver
   community.general.npm:
     name: "{{ item }}"
     state: present
