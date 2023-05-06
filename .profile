@@ -114,7 +114,8 @@ export LESS="FXRM"
 alias r='ranger'
 
 if is_linux; then
-  alias ls='ls --color=auto --group-directories-first'
+  alias ls='ls -A --color=auto --group-directories-first --time-style=long-iso --human-readable -v'
+  alias ll='ls -l'
 fi
 
 if is_linux && ! is_wsl; then
