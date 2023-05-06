@@ -119,6 +119,4 @@ fi
 if is_wsl; then
   alias open='wslview'
 fi
-alias ll='ls -alF'
-alias la='ls -A'
 alias cat='bat'
