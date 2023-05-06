@@ -545,7 +545,7 @@ end, { bar = true, range = true, nargs = 1, complete = "command", desc = "Redire
 -- }}}
 -- {{{ autocmds
 
-local global_autocmds = vim.api.nvim_create_augroup("GlobalAutocmds", {})
+local global_autocmds = vim.api.nvim_create_augroup("Global", {})
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
   group = global_autocmds,
