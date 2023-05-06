@@ -112,11 +112,16 @@ fi
 export LESS="FXRM"
 
 alias r='ranger'
-if is_linux && ! is_wsl; then
+
+if is_linux; then
   alias ls='ls --color=auto --group-directories-first'
+fi
+
+if is_linux && ! is_wsl; then
   alias open='xdg-open'
 fi
 if is_wsl; then
   alias open='wslview'
 fi
+
 alias cat='bat'
