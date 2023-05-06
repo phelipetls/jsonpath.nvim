@@ -172,4 +172,7 @@ source ~/zsh-autosuggestions/zsh-autosuggestions.zsh
 # the Ctrl-G + Ctrl-S keybinding (to open fzf window with git stashes) work
 setopt noflowcontrol
 
+# Enable zoxide
+eval "$(zoxide init zsh)"
+
 source ~/.profile

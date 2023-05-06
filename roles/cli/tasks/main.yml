@@ -25,6 +25,7 @@
       - python3-pip
       - unzip
       - xclip
+      - zoxide
     state: present
   when: ansible_distribution == "Ubuntu"
 
@@ -40,6 +41,7 @@
       - htop
       - python3-pip
       - xclip
+      - zoxide
     state: present
   when: ansible_distribution == "Fedora"
 
@@ -51,6 +53,7 @@
     - fd
     - jq
     - htop
+    - zoxide
   community.general.homebrew:
     name: "{{ item }}"
     state: present
