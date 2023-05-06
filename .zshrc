@@ -165,10 +165,10 @@ function _fzf_compgen_dir {
   fdfind --color=never --type d
 }
 
-# enable zsh-autosuggestions
+# Enable zsh-autosuggestions
 source ~/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-# disable flow control keybindings Ctrl-Q and Ctrl-S. This is necessary to make
+# Disable flow control keybindings Ctrl-Q and Ctrl-S. This is necessary to make
 # the Ctrl-G + Ctrl-S keybinding (to open fzf window with git stashes) work
 setopt noflowcontrol
 
