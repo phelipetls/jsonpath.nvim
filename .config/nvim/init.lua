@@ -111,6 +111,10 @@ vim.cmd("packadd! nvim-ts-autotag")
 vim.cmd("packadd! nvim-treesitter-textobjects")
 require("plugins.config.treesitter")
 
+-- testing
+vim.cmd("packadd! vim-test")
+vim.g["test#strategy"] = "dispatch"
+
 -- }}}
 -- {{{ settings
 
