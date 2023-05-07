@@ -162,3 +162,7 @@
 	path = .config/nvim/pack/plugins/start/kanagawa.nvim
 	url = https://github.com/rebelot/kanagawa.nvim
 	ignore = dirty
+[submodule "vim-test"]
+	path = .config/nvim/pack/plugins/opt/vim-test
+	url = https://github.com/vim-test/vim-test
+	ignore = dirty
