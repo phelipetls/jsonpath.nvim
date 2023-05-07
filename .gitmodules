@@ -157,6 +157,8 @@
 [submodule "vim-dispatch"]
 	path = .config/nvim/pack/plugins/opt/vim-dispatch
 	url = https://github.com/tpope/vim-dispatch
+	ignore = dirty
 [submodule "kanagawa.nvim"]
 	path = .config/nvim/pack/plugins/start/kanagawa.nvim
 	url = https://github.com/rebelot/kanagawa.nvim
+	ignore = dirty
