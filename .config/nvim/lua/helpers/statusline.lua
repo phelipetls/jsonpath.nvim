@@ -21,7 +21,7 @@ _G.get_fugitive_statusline = function()
   return string.format("%s | ", result)
 end
 
-M.get = function(_opts)
+M.get = function(opts)
   local statusline = {}
 
   table.insert(statusline, " ")
@@ -29,7 +29,6 @@ M.get = function(_opts)
   table.insert(statusline, " ")
   table.insert(statusline, "%m")
 
-  local opts = _opts or { active = false }
   if opts.active then
     table.insert(statusline, "%=")
     table.insert(statusline, "%{v:lua.get_fugitive_statusline()}")
