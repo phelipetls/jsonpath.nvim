@@ -32,8 +32,7 @@ M.get = function()
     table.insert(tabline, "%" .. tab .. "T")
 
     local is_selected = tab == vim.fn.tabpagenr()
-    local tabline_hl = is_selected and "TabLineSel" or "TabLine"
-    table.insert(tabline, "%#" .. tabline_hl .. "#")
+    table.insert(tabline, "%#" .. (is_selected and "TabLineSel" or "TabLine") .. "#")
     table.insert(tabline, " ")
 
     local tabwinnr = vim.fn.tabpagewinnr(tab)
