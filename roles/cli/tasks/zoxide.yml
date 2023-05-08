@@ -1,0 +1,25 @@
+- name: Install CLI tools in Ubuntu
+  become: true
+  unarchive:
+    src: https://github.com/ajeetdsouza/zoxide/releases/download/v{{ zoxide_version }}/zoxide-{{ zoxide_version }}-x86_64-unknown-linux-musl.tar.gz
+    dest: "{{ ansible_env.HOME }}/.local/bin"
+    remote_src: true
+    extra_opts:
+      - "zoxide"
+  when: ansible_distribution == "Ubuntu"
+
+- name: Install CLI tools in Fedora
+  become: true
+  dnf:
+    name:
+      - zoxide
+    state: present
+  when: ansible_distribution == "Fedora"
+
+- name: Install CLI tools in macOS
+  loop:
+    - zoxide
+  community.general.homebrew:
+    name: "{{ item }}"
+    state: present
+  when: ansible_distribution == "MacOSX"

@@ -25,7 +25,6 @@
       - python3-pip
       - unzip
       - xclip
-      - zoxide
     state: present
   when: ansible_distribution == "Ubuntu"
 
@@ -41,7 +40,6 @@
       - htop
       - python3-pip
       - xclip
-      - zoxide
     state: present
   when: ansible_distribution == "Fedora"
 
@@ -53,7 +51,6 @@
     - fd
     - jq
     - htop
-    - zoxide
   community.general.homebrew:
     name: "{{ item }}"
     state: present
@@ -90,3 +87,6 @@
 
 - name: Install bat
   import_tasks: bat.yml
+
+- name: Install zoxide
+  import_tasks: zoxide.yml
