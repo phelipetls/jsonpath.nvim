@@ -18,22 +18,23 @@ _G.get_fugitive_statusline = function()
   end
 
   local result = string.gsub(raw, vim.pesc(branch), truncated_branch, 1)
-  return string.format("%s | ", result)
+  return string.format("%s", result)
+end
+
+local grouped = function(s)
+  return "%(" .. s .. "%)"
 end
 
 M.get = function(opts)
   local statusline = {}
 
-  table.insert(statusline, " ")
-  table.insert(statusline, "%f")
-  table.insert(statusline, " ")
-  table.insert(statusline, "%m")
+  table.insert(statusline, grouped(" %f"))
+  table.insert(statusline, grouped(" %m"))
 
   if opts.active then
     table.insert(statusline, "%=")
-    table.insert(statusline, "%{v:lua.get_fugitive_statusline()}")
-    table.insert(statusline, "%l:%L")
-    table.insert(statusline, " ")
+    table.insert(statusline, grouped(" %{v:lua.get_fugitive_statusline()} |"))
+    table.insert(statusline, grouped(" %l:%L"))
   end
 
   return table.concat(statusline, "")
