@@ -42,10 +42,14 @@ M.open = function(fname)
   }))
 end
 
+local function is_normal_mode()
+  return vim.fn.mode() == "n"
+end
+
 M.open_under_cursor = function()
   local fname = vim.fn.expand("<cfile>")
 
-  if vim.fn.mode() ~= "n" then
+  if not is_normal_mode() then
     fname = vim.fn["helpers#get_visual_selection"]()
   end
 
