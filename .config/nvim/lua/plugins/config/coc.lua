@@ -1,4 +1,4 @@
-vim.keymap.set("n", "<space>cr", "<cmd>CocRestart<CR>")
+-- {{{ settings
 
 vim.g.coc_global_extensions = {
   "coc-tsserver",
@@ -28,6 +28,10 @@ vim.g.coc_quickfix_open_command = "doautocmd QuickFixCmdPost | cfirst"
 -- persist workspace folders
 -- see https://github.com/neoclide/coc.nvim/wiki/Using-workspaceFolders#persist-workspace-folders
 vim.opt.sessionoptions:append({ "globals" })
+
+-- }}}
+-- {{{ keymaps
+vim.keymap.set("n", "<space>cr", "<cmd>CocRestart<CR>")
 
 local function is_preceded_by_whitespace()
   local col = vim.api.nvim_win_get_cursor(0)[2]
@@ -59,11 +63,11 @@ vim.keymap.set("i", "<Tab>", function()
 
   return vim.api.nvim_replace_termcodes("<C-n>", true, true, true)
 end, {
-  silent = true,
-  expr = true,
-  replace_keycodes = false,
-  desc = "Navigate to next completion item, unless there is only whitespace before cursor",
-})
+    silent = true,
+    expr = true,
+    replace_keycodes = false,
+    desc = "Navigate to next completion item, unless there is only whitespace before cursor",
+  })
 
 vim.keymap.set("i", "<S-Tab>", function()
   if vim.fn["coc#pum#visible"]() == 1 then
@@ -76,11 +80,11 @@ vim.keymap.set("i", "<S-Tab>", function()
 
   return vim.api.nvim_replace_termcodes("<S-Tab>", true, true, true)
 end, {
-  silent = true,
-  expr = true,
-  replace_keycodes = false,
-  desc = "Navigate to previous completion item",
-})
+    silent = true,
+    expr = true,
+    replace_keycodes = false,
+    desc = "Navigate to previous completion item",
+  })
 
 vim.keymap.set("i", "<C-Space>", function()
   if vim.fn["coc#rpc#ready"]() then
@@ -93,11 +97,11 @@ vim.keymap.set("i", "<C-Space>", function()
 
   return ""
 end, {
-  silent = true,
-  expr = true,
-  replace_keycodes = false,
-  desc = "Show completion items",
-})
+    silent = true,
+    expr = true,
+    replace_keycodes = false,
+    desc = "Show completion items",
+  })
 
 vim.keymap.set("i", "<CR>", function()
   if vim.fn["coc#pum#visible"]() == 1 then
@@ -106,11 +110,11 @@ vim.keymap.set("i", "<CR>", function()
 
   return vim.api.nvim_replace_termcodes("<C-g>u<CR><C-r>=coc#on_enter()<CR>", true, true, true)
 end, {
-  silent = true,
-  expr = true,
-  replace_keycodes = false,
-  desc = "Confirm selection of a completion item with coc",
-})
+    silent = true,
+    expr = true,
+    replace_keycodes = false,
+    desc = "Confirm selection of a completion item with coc",
+  })
 
 vim.keymap.set("n", "K", function()
   if vim.fn.CocHasProvider("hover") then
@@ -187,6 +191,10 @@ end, { silent = true, expr = true, nowait = true, desc = "Scroll up within coc f
 
 vim.keymap.set("n", "<space>cs", "<cmd>CocList -I symbols<CR>", { desc = "Open list with workspace symbols" })
 
+vim.keymap.set("n", "<space>cc", "<cmd>CocList -I commands<CR>", { desc = "Open list with all coc commands" })
+
+-- }}}
+-- {{{ commands
 vim.api.nvim_create_user_command("References", function()
   vim.fn.CocActionAsync("jumpReferences")
 end, {
@@ -201,4 +209,5 @@ end, {
   desc = "Format document with LSP",
 })
 
-vim.keymap.set("n", "<space>cc", "<cmd>CocList commands<CR>", { desc = "Open list with all coc commands" })
+-- }}}
+-- vim: foldmethod=marker foldlevel=999
