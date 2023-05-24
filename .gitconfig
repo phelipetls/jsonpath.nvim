@@ -30,6 +30,7 @@
     recommit = commit --reedit-message ORIG_HEAD
     track = branch --set-upstream-to
     difft = difftool -t difft
+    pushf = push --force-with-lease
 [credential]
     helper = cache
 [credential "https://github.com"]
