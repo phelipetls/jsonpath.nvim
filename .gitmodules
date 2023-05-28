@@ -130,10 +130,6 @@
 	path = .config/nvim/pack/plugins/opt/treesj
 	url = https://github.com/Wansmer/treesj
 	ignore = dirty
-[submodule "nvim-pqf"]
-	path = .config/nvim/pack/plugins/opt/nvim-pqf
-	url = https://github.com/yorickpeterse/nvim-pqf
-	ignore = dirty
 [submodule "impatient.nvim"]
 	path = .config/nvim/pack/plugins/opt/impatient.nvim
 	url = https://github.com/lewis6991/impatient.nvim

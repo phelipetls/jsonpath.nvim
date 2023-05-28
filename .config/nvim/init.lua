@@ -97,10 +97,6 @@ vim.g.jqplay = {
 -- web development
 vim.cmd("packadd! vim-hugo")
 
--- appearance
-vim.cmd("packadd! nvim-pqf")
-require("pqf").setup()
-
 -- treesitter
 vim.cmd("packadd! nvim-treesitter")
 vim.cmd("packadd! nvim-ts-context-commentstring")
