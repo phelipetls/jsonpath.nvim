@@ -2,7 +2,7 @@ local M = {}
 
 local function get_tablabel(bufname, bufnr)
   if not bufname or bufname == "" then
-    return "[No Name]"
+    return "%f"
   end
 
   local basename = vim.fs.basename(bufname)
