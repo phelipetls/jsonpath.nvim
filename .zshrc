@@ -12,7 +12,7 @@ fi
 
 setopt prompt_subst
 
-export PS1='\
+export PROMPT='\
 %B%F{green}%n %b%f\
 %B%F{yellow}@ %b%f\
 %B%F{blue}%~ %b%f\
