@@ -21,6 +21,10 @@ export PROMPT='\
 %B%F{%(?.black.red)}%# %b%f\
 '
 
+export RPROMPT='\
+%B%F{black}%D %T%b%f\
+'
+
 export EDITOR=nvim
 
 # Use emacs keybindings even if our EDITOR is set to vi
