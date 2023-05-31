@@ -33,10 +33,10 @@ bindkey -e
 # Configure history
 setopt histignorealldups sharehistory
 
-HISTSIZE=50000
-SAVEHIST=50000
-HISTFILE=~/.zsh_history
-HISTORY_IGNORE="(clear|bg|fg|cd|cd -|cd ..|exit|date|w|ls|l|ll|lll)"
+export HISTSIZE=50000
+export SAVEHIST=50000
+export HISTFILE=~/.zsh_history
+export HISTORY_IGNORE="(clear|bg|fg|cd|cd -|cd ..|exit|date|w|ls|l|ll|lll)"
 
 # Use modern completion system
 autoload -Uz compinit
