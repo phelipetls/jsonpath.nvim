@@ -115,4 +115,12 @@ require("nvim-treesitter.configs").setup({
   matchup = {
     enable = true,
   },
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "<BS>",
+      node_incremental = "<BS>",
+      node_decremental = "-",
+    }
+  }
 })
