@@ -189,9 +189,9 @@ vim.keymap.set("i", "<C-u>", function()
   return "<C-u>"
 end, { silent = true, expr = true, nowait = true, desc = "Scroll up within coc floating window" })
 
-vim.keymap.set("n", "<space>cs", "<cmd>CocList -I symbols<CR>", { desc = "Open list with workspace symbols" })
+vim.keymap.set("n", "<space>cs", "<cmd>CocList symbols<CR>", { desc = "Open list with workspace symbols" })
 
-vim.keymap.set("n", "<space>cc", "<cmd>CocList -I commands<CR>", { desc = "Open list with all coc commands" })
+vim.keymap.set("n", "<space>cc", "<cmd>CocList commands<CR>", { desc = "Open list with all coc commands" })
 
 -- }}}
 -- {{{ commands
