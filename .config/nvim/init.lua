@@ -312,8 +312,6 @@ vim.keymap.set("v", "<", "<gv", { silent = true, desc = "Keep selected lines whe
 
 vim.keymap.set("n", "gy", "`[v`]", { silent = true, desc = "Select last modified/yanked text" })
 
-vim.keymap.set("n", "Q", "", { desc = "Disable switching to Ex mode with Q" })
-
 vim.keymap.set("n", "<C-n>", "*Ncgn", { silent = true, desc = "Substitute word under cursor" })
 
 vim.keymap.set("n", "<M-q>", "gwip", { desc = "Format paragraph" })
