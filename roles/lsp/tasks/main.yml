@@ -15,7 +15,6 @@
 
 - name: Install linters and formatters with npm
   loop:
-    - eslint_d
     - prettier
   community.general.npm:
     name: "{{ item }}"

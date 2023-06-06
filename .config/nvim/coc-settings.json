@@ -26,6 +26,20 @@
   "html.filetypes": ["html", "htmlhugo", "htmldjango"],
   "prettier.requireConfig": true,
   "prettier.formatterPriority": 101,
+  "eslint.autoFixOnSave": true,
+  "eslint.alwaysShowStatus": true,
+  "eslint.onIgnoredFiles": "warn",
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "html",
+    "vue",
+    "markdown",
+    "astro",
+    "mdx"
+  ],
   "suggest.noselect": true,
   "html.autoCreateQuotes": false,
   "html.autoClosingTags": false,
@@ -42,14 +56,7 @@
         "zsh",
         "yaml",
         "lua",
-        "python",
-        "javascript",
-        "typescript",
-        "javascriptreact",
-        "typescriptreact",
         "vim",
-        "astro",
-        "mdx"
       ],
       "formatterPriority": 100
     }

@@ -22,15 +22,6 @@ tools:
       - '    %f:%l:%c: %m'
     lint-stdin: true
 
-  eslint_d: &eslint_d
-    lint-command: 'eslint_d -f unix --stdin --stdin-filename ${INPUT}'
-    lint-stdin: true
-    lint-ignore-exit-code: true
-    lint-formats:
-      - '%f:%l:%c: %m'
-    format-command: 'eslint_d --fix-to-stdout --stdin --stdin-filename ${INPUT}'
-    format-stdin: true
-
   vint: &vint
     lint-command: 'vint --enable-neovim --stdin-display-name ${INPUT} -'
     lint-stdin: true
@@ -54,24 +45,6 @@ languages:
   lua:
     - <<: *luacheck
     - <<: *stylua
-
-  javascript:
-    - <<: *eslint_d
-
-  typescript:
-    - <<: *eslint_d
-
-  javascriptreact:
-    - <<: *eslint_d
-
-  typescriptreact:
-    - <<: *eslint_d
-
-  astro:
-    - <<: *eslint_d
-
-  mdx:
-    - <<: *eslint_d
 
   vim:
     - <<: *vint
