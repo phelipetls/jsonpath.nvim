@@ -8,8 +8,6 @@
 - name: Install linters and formatters with pip
   ansible.builtin.pip:
     name:
-      - flake8
-      - black
       - yamllint
       - git+https://github.com/Vimjas/vint@master
     state: present
