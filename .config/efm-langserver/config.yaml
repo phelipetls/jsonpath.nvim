@@ -22,12 +22,6 @@ tools:
       - '    %f:%l:%c: %m'
     lint-stdin: true
 
-  flake8: &flake8
-    lint-command: 'flake8 --stdin-display-name ${INPUT} -'
-    lint-stdin: true
-    lint-formats:
-      - '%f:%l:%c: %m'
-
   eslint_d: &eslint_d
     lint-command: 'eslint_d -f unix --stdin --stdin-filename ${INPUT}'
     lint-stdin: true
@@ -60,9 +54,6 @@ languages:
   lua:
     - <<: *luacheck
     - <<: *stylua
-
-  python:
-    - <<: *flake8
 
   javascript:
     - <<: *eslint_d
