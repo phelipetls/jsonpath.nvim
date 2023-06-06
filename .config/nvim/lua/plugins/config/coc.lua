@@ -8,7 +8,6 @@ vim.g.coc_global_extensions = {
   "coc-css",
   "coc-prettier",
   "coc-syntax",
-  "coc-styled-components",
   "coc-sumneko-lua",
   "coc-rust-analyzer",
   "coc-highlight",
