@@ -62,11 +62,11 @@ vim.keymap.set("i", "<Tab>", function()
 
   return vim.api.nvim_replace_termcodes("<C-n>", true, true, true)
 end, {
-    silent = true,
-    expr = true,
-    replace_keycodes = false,
-    desc = "Navigate to next completion item, unless there is only whitespace before cursor",
-  })
+  silent = true,
+  expr = true,
+  replace_keycodes = false,
+  desc = "Navigate to next completion item, unless there is only whitespace before cursor",
+})
 
 vim.keymap.set("i", "<S-Tab>", function()
   if vim.fn["coc#pum#visible"]() == 1 then
@@ -79,11 +79,11 @@ vim.keymap.set("i", "<S-Tab>", function()
 
   return vim.api.nvim_replace_termcodes("<S-Tab>", true, true, true)
 end, {
-    silent = true,
-    expr = true,
-    replace_keycodes = false,
-    desc = "Navigate to previous completion item",
-  })
+  silent = true,
+  expr = true,
+  replace_keycodes = false,
+  desc = "Navigate to previous completion item",
+})
 
 vim.keymap.set("i", "<C-Space>", function()
   if vim.fn["coc#rpc#ready"]() then
@@ -96,11 +96,11 @@ vim.keymap.set("i", "<C-Space>", function()
 
   return ""
 end, {
-    silent = true,
-    expr = true,
-    replace_keycodes = false,
-    desc = "Show completion items",
-  })
+  silent = true,
+  expr = true,
+  replace_keycodes = false,
+  desc = "Show completion items",
+})
 
 vim.keymap.set("i", "<CR>", function()
   if vim.fn["coc#pum#visible"]() == 1 then
@@ -109,11 +109,11 @@ vim.keymap.set("i", "<CR>", function()
 
   return vim.api.nvim_replace_termcodes("<C-g>u<CR><C-r>=coc#on_enter()<CR>", true, true, true)
 end, {
-    silent = true,
-    expr = true,
-    replace_keycodes = false,
-    desc = "Confirm selection of a completion item with coc",
-  })
+  silent = true,
+  expr = true,
+  replace_keycodes = false,
+  desc = "Confirm selection of a completion item with coc",
+})
 
 vim.keymap.set("n", "K", function()
   if vim.fn.CocHasProvider("hover") then

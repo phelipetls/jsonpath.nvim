@@ -13,7 +13,7 @@
   "diagnostic.hintSign": "▎",
   "diagnostic.infoSign": "▎",
   "[javascript][typescript][javascripreact][typescriptreact]": {
-    "coc.preferences.formatOnSave": true,
+    "coc.preferences.formatOnSave": true
   },
   "typescript.updateImportsOnFileMove.enabled": "always",
   "coc.preferences.useQuickfixForLocations": true,
@@ -52,7 +52,7 @@
         "mdx"
       ],
       "formatterPriority": 100
-    },
+    }
   },
   "Lua.hint.enable": false,
   "sumneko-lua.enableNvimLuaDev": true
