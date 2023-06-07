@@ -508,6 +508,9 @@ for _, char in ipairs({ "_", "-", "/", "*", "," }) do
   )
 end
 
+-- paste without changing unnamed register
+vim.keymap.set("x", "<leader>p", "\"_dP")
+
 -- }}}
 -- {{{ commands
 
