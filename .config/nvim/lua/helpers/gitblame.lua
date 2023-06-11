@@ -18,6 +18,7 @@ end
 M.blame_current_line = function()
   if vim.fn.FugitiveGitDir == "" then
     show_error("Failed to run git blame: not in a git directory")
+    return
   end
 
   local full_path = vim.fn.expand("%:p")
