@@ -120,7 +120,7 @@ require("nvim-treesitter.configs").setup({
     keymaps = {
       init_selection = "<BS>",
       node_incremental = "<BS>",
-      node_decremental = "-",
+      node_decremental = "[<BS>",
     }
   }
 })
