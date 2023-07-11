@@ -37,3 +37,6 @@
       - markdown
       - markdown_inline
   changed_when: false
+
+- name: Generate :help pages
+  shell: nvim --headless -c 'helptags ALL' -c quit
