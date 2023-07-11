@@ -1,1 +1,1 @@
-vim.opt_local.formatprg = 'npx prettier --stdin-filepath %'
+vim.bo.formatprg = 'npx prettier --stdin-filepath %'

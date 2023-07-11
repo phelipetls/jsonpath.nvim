@@ -1,7 +1,6 @@
-vim.opt_local.spell = true
-vim.opt_local.spelllang = { "pt", "en_us" }
-
-vim.opt_local.conceallevel = 0
+vim.wo.spell = true
+vim.bo.spelllang = "pt,en_us"
+vim.wo.conceallevel = 0
 
 vim.opt_local.iskeyword:append({ "'" })
 

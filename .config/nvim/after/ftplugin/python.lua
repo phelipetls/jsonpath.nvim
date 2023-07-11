@@ -10,7 +10,7 @@ vim.b.coc_root_patterns = {
 }
 
 if vim.fn.executable("black") == 1 then
-  vim.opt_local.formatprg = "black --quiet -"
+  vim.bo.formatprg = "black --quiet -"
 end
 
 if vim.fn.executable("python3") == 1 then

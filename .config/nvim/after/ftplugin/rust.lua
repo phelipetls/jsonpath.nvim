@@ -1,1 +1,1 @@
-vim.opt_local.formatprg = 'rustfmt'
+vim.bo.formatprg = 'rustfmt'

@@ -1,6 +1,4 @@
-vim.opt_local.spell = true
-vim.opt_local.spelllang = { "pt", "en_us" }
-
-vim.opt_local.textwidth = 0
-
-vim.opt_local.fileencoding = "iso-8859-2"
+vim.wo.spell = true
+vim.bo.spelllang = "pt,en_us"
+vim.bo.textwidth = 0
+vim.bo.fileencoding = "iso-8859-2"

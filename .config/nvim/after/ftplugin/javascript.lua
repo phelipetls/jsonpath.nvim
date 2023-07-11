@@ -16,7 +16,7 @@ elseif vim.fn.executable("eslint") == 1 then
 end
 
 vim.keymap.set("n", "<F5>", "<cmd>w !node<CR>", { buffer = true })
-vim.opt_local.formatprg = "npx prettier --stdin-filepath %"
+vim.bo.formatprg = "npx prettier --stdin-filepath %"
 
 vim.b[string.format("surround_%s", vim.fn.char2nr("c"))] = "console.log(\r)"
 vim.b[string.format("surround_%s", vim.fn.char2nr("e"))] = "${\r}"
@@ -73,4 +73,4 @@ _G.javascript_node_find = function(target)
   return require("helpers.tsconfig").includeexpr(target)
 end
 
-vim.opt_local.includeexpr = "v:lua.javascript_node_find(v:fname)"
+vim.bo.includeexpr = "v:lua.javascript_node_find(v:fname)"

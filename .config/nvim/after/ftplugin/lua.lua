@@ -1,15 +1,14 @@
-vim.opt_local.makeprg = "luacheck --no-color"
+vim.bo.makeprg = "luacheck --no-color"
 vim.opt_local.errorformat:append({ "%-G%.%#" })
 
-vim.opt_local.formatprg = "stylua --search-parent-directories -"
+vim.bo.formatprg = "stylua --search-parent-directories -"
 
-vim.opt_local.suffixesadd = { ".lua" }
+vim.bo.suffixesadd = ".lua"
 
 -- force Neovim to always use includeexpr
-vim.opt_local.path = ""
+vim.bo.path = ""
 
 local lua_path = table.concat({ vim.go.path, "lua", "./lua" }, ",")
-
 _G.find_lua_file = function(target)
   local file_path = target:gsub("%.", "/")
 
@@ -25,4 +24,4 @@ _G.find_lua_file = function(target)
   return vim.fn.findfile(file_path, lua_path)
 end
 
-vim.opt_local.includeexpr = "v:lua.find_lua_file(v:fname)"
+vim.bo.includeexpr = "v:lua.find_lua_file(v:fname)"
