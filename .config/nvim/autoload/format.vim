@@ -17,9 +17,6 @@ function! format#file() abort
   let w:view = winsaveview()
   keepjumps normal! gg
 
-  let oldformatexpr = &l:formatexpr
-  let &l:formatexpr = ''
-
   set operatorfunc=format#operatorfunc
   keepjumps normal! g@G
 
@@ -27,7 +24,6 @@ function! format#file() abort
     call <SID>HandleError()
   endif
 
-  let &l:formatexpr = oldformatexpr
   keepjumps call winrestview(w:view)
   unlet w:view
 endfunction
