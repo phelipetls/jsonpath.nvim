@@ -577,7 +577,7 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 
     vim.fn.mkdir(vim.fs.dirname(path), "p")
   end,
-  desc = "create intermediate directories automatically before saving file",
+  desc = "Create intermediate directories automatically before saving file",
 })
 
 vim.api.nvim_create_autocmd({ "VimResume", "FocusGained" }, {
