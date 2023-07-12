@@ -358,7 +358,7 @@ vim.keymap.set("i", "<C-g><C-t>", "<C-r>=repeat(complete(col('.'),v:lua.get_form
 })
 
 -- <space> should not move cursor in normal mode
-vim.keymap.set("n", "<leader>", "")
+vim.keymap.set("n", "<space>", "")
 
 vim.keymap.set(
   "c",
@@ -401,7 +401,7 @@ vim.keymap.set("n", "gQ", "<cmd>call format#file()<CR>", { silent = true })
 
 -- git
 for _, lhs in ipairs({ "<leader>gg", "<leader>g<leader>" }) do
-  vim.api.nvim_set_keymap("n", lhs, ":Git<leader>", { noremap = true })
+  vim.api.nvim_set_keymap("n", lhs, ":Git<space>", { noremap = true })
 end
 
 -- unimpaired-like mappings to ignore whitespace in diff
