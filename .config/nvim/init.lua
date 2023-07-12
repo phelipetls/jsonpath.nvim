@@ -554,42 +554,6 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
   desc = "Automatically resize splits when Neovim is resized",
 })
 
-vim.api.nvim_create_autocmd({ "FileType" }, {
-  group = global_autocmds,
-  pattern = {
-    "javascript",
-    "typescript",
-    "javascriptreact",
-    "typescriptreact",
-    "sh",
-    "yaml",
-    "vim",
-    "lua",
-    "json",
-    "html",
-    "css",
-  },
-  callback = function()
-    vim.o.expandtab = true
-    vim.o.shiftwidth = 2
-    vim.o.softtabstop = 2
-  end,
-  desc = "Set up 2-space indentation for some file types",
-})
-
-vim.api.nvim_create_autocmd({ "FileType" }, {
-  group = global_autocmds,
-  pattern = {
-    "python",
-  },
-  callback = function()
-    vim.o.expandtab = true
-    vim.o.shiftwidth = 4
-    vim.o.softtabstop = 4
-  end,
-  desc = "Set up 4-space indentation for some file types",
-})
-
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
   group = global_autocmds,
   pattern = { "*" },
