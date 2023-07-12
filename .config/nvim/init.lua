@@ -142,9 +142,9 @@ require("kanagawa").setup({
   commentStyle = { italic = false },
   keywordStyle = { italic = false },
 })
-vim.api.nvim_create_autocmd({"ColorScheme"}, {
-  pattern = {"kanagawa-wave"},
-  command = "highlight! link EndOfBuffer NonText"
+vim.api.nvim_create_autocmd({ "ColorScheme" }, {
+  pattern = { "kanagawa-wave" },
+  command = "highlight! link EndOfBuffer NonText",
 })
 vim.cmd.colorscheme("kanagawa-wave")
 
