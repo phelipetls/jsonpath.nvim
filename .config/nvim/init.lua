@@ -455,9 +455,6 @@ vim.keymap.set("n", "<leader>l", function()
   loclist.toggle()
 end, { silent = true, desc = "Toggle location list" })
 
--- copy text to system clipboard
-vim.keymap.set({ "x", "n" }, "<leader>y", '"+y', { silent = true })
-
 -- textobjects
 _G.select_number = function()
   vim.fn.search([[\d\([^0-9\.]\|$\)]], "cW")
@@ -503,9 +500,6 @@ for _, char in ipairs({ "_", "-", "/", "*", "," }) do
     { desc = string.format("Operator for everything around character %s", char), silent = true }
   )
 end
-
--- paste without changing unnamed register
-vim.keymap.set("x", "<leader>p", "\"_dP")
 
 -- }}}
 -- {{{ commands
