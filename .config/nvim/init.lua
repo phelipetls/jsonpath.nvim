@@ -455,14 +455,6 @@ vim.keymap.set("n", "<leader>l", function()
   loclist.toggle()
 end, { silent = true, desc = "Toggle location list" })
 
--- close tag
-vim.keymap.set(
-  "i",
-  "<C-x>/",
-  "</<C-r>=v:lua.require('helpers.close_tag').close_tag()<CR><C-r>=v:lua.require('helpers.close_tag').reindent()<CR><C-r>=v:lua.require('helpers.close_tag').cleanup()<CR>",
-  { silent = true }
-)
-
 -- copy text to system clipboard
 vim.keymap.set({ "x", "n" }, "<leader>y", '"+y', { silent = true })
 
