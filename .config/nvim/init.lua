@@ -518,13 +518,6 @@ vim.api.nvim_create_user_command("Hi", function()
   vim.cmd.hi(highlight_name ~= "" and highlight_name or nil)
 end, { desc = "Show information about highlight group under cursor" })
 
-vim.api.nvim_create_user_command("Browse", function(opts)
-  local file = opts.args
-  require("helpers.os").open(file)
-end, { nargs = 1, desc = "Open file/URL with the operating system" })
-
-vim.api.nvim_create_user_command("FormatPrg", "call format#file(<bang>0)", { bang = true })
-
 vim.api.nvim_create_user_command("Redir", function(opts)
   vim.fn["redir#redir"](opts.args, opts.range, opts.line1, opts.line2)
 end, { bar = true, range = true, nargs = 1, complete = "command", desc = "Redirect output of Vim command" })
