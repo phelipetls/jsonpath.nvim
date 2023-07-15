@@ -142,10 +142,16 @@ require("kanagawa").setup({
   commentStyle = { italic = false },
   keywordStyle = { italic = false },
 })
+
+local color_scheme_override_autocmds = vim.api.nvim_create_augroup("ColorSchemeOverride", {
+  clear = true,
+})
 vim.api.nvim_create_autocmd({ "ColorScheme" }, {
-  pattern = { "kanagawa-wave" },
+  group = color_scheme_override_autocmds,
+  pattern = "kanagawa-wave",
   command = "highlight! link EndOfBuffer NonText",
 })
+
 vim.cmd.colorscheme("kanagawa-wave")
 
 -- clipboard
