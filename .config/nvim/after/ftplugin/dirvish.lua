@@ -19,3 +19,10 @@ end, { silent = true, buffer = true, desc = "Rename" })
 vim.keymap.set("n", "X", function()
   dirvish.clear_arglist()
 end, { silent = true, buffer = true, desc = "Clear arglist" })
+
+vim.keymap.set({ "n", "v" }, "gx", function()
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  local current_line = vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]
+
+  require("helpers.os").open(current_line)
+end, { silent = true, desc = "Open file/URL under cursor" })
