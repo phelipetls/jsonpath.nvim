@@ -509,6 +509,10 @@ vim.api.nvim_create_user_command("W", "w<bang>", { bang = true })
 vim.api.nvim_create_user_command("Q", "q<bang>", { bang = true })
 vim.api.nvim_create_user_command("Qall", "qall<bang>", { bang = true })
 
+vim.api.nvim_create_user_command("Browse", function(opts)
+  require("helpers.os").open(opts.fargs[1])
+end, { desc = "Open file/URLs using operating system's preferred program", nargs = 1 })
+
 vim.api.nvim_create_user_command("Hi", function()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
 
