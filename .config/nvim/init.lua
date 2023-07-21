@@ -16,6 +16,14 @@ vim.cmd("packadd! LargeFile")
 -- utilities/dependencies
 vim.cmd("packadd! plenary.nvim")
 vim.cmd("packadd! vim-dispatch")
+vim.cmd("packadd! statuscol.nvim")
+require("statuscol").setup({
+  segments = {
+    { text = { require("statuscol.builtin").lnumfunc }, click = "v:lua.ScLa" },
+    { text = { require("statuscol.builtin").foldfunc }, click = "v:lua.ScFa" },
+    { text = { " " } },
+  },
+})
 
 -- text editing
 vim.cmd("packadd! vim-surround")
@@ -70,6 +78,19 @@ vim.g.dirvish_mode = [[:sort ,^.*[\/],]]
 -- fuzzy finder
 vim.cmd("packadd! fzf-lua")
 require("plugins.config.fzf_lua")
+
+-- folding
+vim.cmd("packadd! promise-async")
+vim.cmd("packadd! nvim-ufo")
+require("ufo").setup({
+  provider_selector = function(_, filetype)
+    if filetype == "gitcommit" then
+      return ""
+    end
+  end,
+})
+vim.keymap.set("n", "zR", require("ufo").openAllFolds)
+vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
 
 -- lsp
 vim.cmd("packadd! coc.nvim")
@@ -276,6 +297,12 @@ vim.env.NO_COLOR = 0
 -- remove -F flag I use in my .profile, that would automatically close terminal
 -- window if output in less is too short
 vim.env.LESS = "RX"
+
+-- folding
+vim.o.foldcolumn = "1"
+vim.o.foldlevel = 99
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
 
 -- }}}
 -- {{{ keymaps

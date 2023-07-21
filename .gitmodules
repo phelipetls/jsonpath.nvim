@@ -162,3 +162,15 @@
 	path = .config/nvim/pack/plugins/opt/vim-test
 	url = https://github.com/vim-test/vim-test
 	ignore = dirty
+[submodule "nvim-ufo"]
+	path = .config/nvim/pack/plugins/opt/nvim-ufo
+	url = https://github.com/kevinhwang91/nvim-ufo
+	ignore = dirty
+[submodule "promise-async"]
+	path = .config/nvim/pack/plugins/opt/promise-async
+	url = https://github.com/kevinhwang91/promise-async
+	ignore = dirty
+[submodule "statuscol.nvim"]
+	path = .config/nvim/pack/plugins/opt/statuscol.nvim
+	url = https://github.com/luukvbaal/statuscol.nvim
+	ignore = dirty
