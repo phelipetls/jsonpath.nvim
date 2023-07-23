@@ -38,9 +38,13 @@ M.blame_current_line = function()
     })
   else
     if vim.startswith(full_path, "fugitive://") then
-      full_path = vim.fn.FugitiveReal()
+      local file_with_revision = vim.fn.FugitiveParse()[1]
 
-      local file_with_revision, _ = vim.fn.FugitiveParse(full_path)
+      if file_with_revision == "" then
+        show_error("Unexpected empty FugitiveParse output.")
+        return
+      end
+
       revision = get_hexadecimal(file_with_revision)
     end
 
