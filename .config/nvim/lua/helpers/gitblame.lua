@@ -37,7 +37,7 @@ M.blame_current_line = function()
       full_path,
     })
   else
-    if vim.startswith(full_path, "fugitve://") then
+    if vim.startswith(full_path, "fugitive://") then
       full_path = vim.fn.FugitiveReal()
 
       local file_with_revision, _ = vim.fn.FugitiveParse(full_path)
