@@ -15,7 +15,10 @@ vim.cmd("packadd! LargeFile")
 
 -- utilities/dependencies
 vim.cmd("packadd! plenary.nvim")
+
 vim.cmd("packadd! vim-dispatch")
+vim.g.dispatch_no_maps = 1
+
 vim.cmd("packadd! statuscol.nvim")
 require("statuscol").setup({
   segments = {
