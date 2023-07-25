@@ -248,7 +248,7 @@ vim.opt.wildignore = {
   "yarn.lock",
 }
 
--- tell neovim where python3, to improves startup time
+-- tell neovim where python3, to improve startup time
 if vim.fn.executable("/usr/bin/python3") == 1 then
   vim.g.loaded_python_provider = 0
   vim.g.python3_host_prog = "/usr/bin/python3"
