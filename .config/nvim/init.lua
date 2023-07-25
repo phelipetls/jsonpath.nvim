@@ -3,6 +3,8 @@
 vim.cmd("packadd! impatient.nvim")
 require("impatient")
 
+vim.g.mapleader = " "
+
 -- prevent loading netrw
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
@@ -309,9 +311,6 @@ vim.o.foldenable = true
 
 -- }}}
 -- {{{ keymaps
-
--- general keymaps
-vim.g.mapleader = " "
 
 vim.keymap.set("n", "gr", "gT", { desc = "Go to previous tab" })
 
