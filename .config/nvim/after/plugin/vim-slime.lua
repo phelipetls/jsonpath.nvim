@@ -1,1 +1,0 @@
-require("plugins.config.slime")

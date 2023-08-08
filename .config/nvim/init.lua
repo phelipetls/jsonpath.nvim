@@ -19,8 +19,16 @@ vim.cmd("packadd! LargeFile")
 vim.cmd("packadd! plenary.nvim")
 
 vim.cmd("packadd! vim-dispatch")
+vim.g.dispatch_no_maps = 1
 
 vim.cmd("packadd! statuscol.nvim")
+require("statuscol").setup({
+  segments = {
+    { text = { require("statuscol.builtin").lnumfunc }, click = "v:lua.ScLa" },
+    { text = { require("statuscol.builtin").foldfunc }, click = "v:lua.ScFa" },
+    { text = { " " } },
+  },
+})
 
 -- text editing
 vim.cmd("packadd! vim-surround")
@@ -31,28 +39,63 @@ vim.cmd("packadd! vim-speeddating")
 vim.cmd("packadd! vim-abolish")
 vim.cmd("packadd! vim-lion")
 vim.cmd("packadd! vim-sleuth")
+
 vim.cmd("packadd! undotree")
+vim.keymap.set("n", "<leader>u", "<cmd>UndotreeToggle<CR>", { silent = true })
+
 vim.cmd("packadd! dsf.vim")
+vim.g.dsf_no_mappings = 1
+vim.keymap.set("n", "dsf", "<Plug>DsfNextDelete")
+vim.keymap.set("n", "csf", "<Plug>DsfNextChange")
+
 vim.cmd("packadd! inline_edit.vim")
+vim.keymap.set("n", "<C-c>", "<cmd>InlineEdit<CR>")
+vim.g.inline_edit_autowrite = 1
+
 vim.cmd("packadd! treesj")
+require("treesj").setup({
+  use_default_keymaps = false,
+})
+vim.keymap.set("n", "gJ", "<cmd>TSJJoin<CR>")
+vim.keymap.set("n", "gS", "<cmd>TSJSplit<CR>")
 
 -- git
 vim.cmd("packadd! vim-fugitive")
+-- avoid showing ansi escape sequences in nvim terminal
+-- such as in lint-staged output before committing
+vim.g.fugitive_pty = 0
+
 vim.cmd("packadd! gv.vim")
 vim.cmd("packadd! vim-rhubarb")
 vim.cmd("packadd! fugitive-gitlab.vim")
 vim.cmd("packadd! vim-fugitive-blame-ext")
+
 vim.cmd("packadd! vim-twiggy")
+vim.g.twiggy_group_locals_by_slash = 0
+vim.g.twiggy_local_branch_sort = "mru"
+vim.g.twiggy_adapt_columns = 0
+vim.g.twiggy_show_full_ui = 0
 
 -- file navigation
 vim.cmd("packadd! vim-dirvish")
+vim.g.dirvish_mode = [[:sort ,^.*[\/],]]
 
 -- fuzzy finder
 vim.cmd("packadd! fzf-lua")
+require("plugins.config.fzf_lua")
 
 -- folding
 vim.cmd("packadd! promise-async")
 vim.cmd("packadd! nvim-ufo")
+require("ufo").setup({
+  provider_selector = function(_, filetype)
+    if filetype == "gitcommit" then
+      return ""
+    end
+  end,
+})
+vim.keymap.set("n", "zR", require("ufo").openAllFolds)
+vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
 
 -- lsp
 vim.cmd("packadd! coc.nvim")
@@ -60,16 +103,22 @@ require("plugins.config.coc")
 
 -- incremental search/substitute highlighting
 vim.cmd("packadd! traces.vim")
+vim.g.traces_abolish_integration = 1
 
 -- session management
 vim.cmd("packadd! vim-obsession")
+vim.g.obsession_no_bufenter = 1
 
 -- repl
 vim.cmd("packadd! vim-slime")
+require("plugins.config.slime")
 
 -- json
 vim.cmd("packadd! jsonpath.nvim")
 vim.cmd("packadd! vim-jqplay")
+vim.g.jqplay = {
+  mods = "vertical",
+}
 
 -- web development
 vim.cmd("packadd! vim-hugo")
@@ -83,6 +132,7 @@ require("plugins.config.treesitter")
 
 -- testing
 vim.cmd("packadd! vim-test")
+vim.g["test#strategy"] = "dispatch"
 
 -- }}}
 -- {{{ settings
