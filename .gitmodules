@@ -174,3 +174,6 @@
 	path = .config/nvim/pack/plugins/opt/statuscol.nvim
 	url = https://github.com/luukvbaal/statuscol.nvim
 	ignore = dirty
+[submodule "vim-lumen"]
+	path = .config/nvim/pack/plugins/opt/vim-lumen
+	url = https://github.com/vimpostor/vim-lumen

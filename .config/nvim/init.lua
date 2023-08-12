@@ -164,11 +164,11 @@ vim.o.sidescroll = 1
 vim.o.sidescrolloff = 1
 
 -- colorscheme
+vim.cmd("packadd! vim-lumen")
 require("kanagawa").setup({
   commentStyle = { italic = false },
   keywordStyle = { italic = false },
 })
-
 local color_scheme_override_autocmds = vim.api.nvim_create_augroup("ColorSchemeOverride", {
   clear = true,
 })
@@ -177,8 +177,7 @@ vim.api.nvim_create_autocmd({ "ColorScheme" }, {
   pattern = "kanagawa-wave",
   command = "highlight! link EndOfBuffer NonText",
 })
-
-vim.cmd.colorscheme("kanagawa-wave")
+vim.cmd.colorscheme("kanagawa")
 
 -- clipboard
 if vim.fn.has("wsl") == 1 then
