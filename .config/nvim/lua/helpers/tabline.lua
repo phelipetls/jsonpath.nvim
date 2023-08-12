@@ -50,8 +50,7 @@ M.get = function()
 
   table.insert(tabline, "%#TabLineFill#")
   table.insert(tabline, "%=")
-  table.insert(tabline, "%#TabLine#")
-  table.insert(tabline, grouped(string.format("%s ", vim.g.coc_status)))
+  table.insert(tabline, grouped("%{coc#status()} "))
 
   return table.concat(tabline, "")
 end
