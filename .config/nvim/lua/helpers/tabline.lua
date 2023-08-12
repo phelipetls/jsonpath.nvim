@@ -25,6 +25,10 @@ local function get_tablabel(bufname, bufnr)
   return basename
 end
 
+local function grouped(s)
+  return "%(" .. s .. "%)"
+end
+
 M.get = function()
   local tabline = {}
 
@@ -46,7 +50,8 @@ M.get = function()
 
   table.insert(tabline, "%#TabLineFill#")
   table.insert(tabline, "%=")
-  table.insert(tabline, vim.g.coc_status)
+  table.insert(tabline, "%#TabLine#")
+  table.insert(tabline, grouped(string.format("%s ", vim.g.coc_status)))
 
   return table.concat(tabline, "")
 end
