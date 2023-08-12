@@ -11,8 +11,6 @@
     tool = nvimdiff
 [mergetool "vscode"]
     cmd = code --wait --merge "$LOCAL" "$REMOTE" "$BASE" "$MERGED"
-[mergetool "diffview"]
-    cmd = nvim -c \"DiffviewOpen -uno\" -c "1tabclose"
 [push]
     default = current
 [rebase]
