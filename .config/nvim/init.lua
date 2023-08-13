@@ -383,12 +383,6 @@ vim.keymap.set("i", "<C-g><C-t>", "<C-r>=repeat(complete(col('.'),v:lua.get_form
 -- <space> should not move cursor in normal mode
 vim.keymap.set("n", "<space>", "")
 
-vim.keymap.set(
-  "c",
-  "<C-r><C-l>",
-  [[<C-R>=substitute(getline('.'), '^\s*', '', '')<CR>]]
-)
-
 vim.keymap.set({ "o", "x" }, "<Tab>", "%", { remap = true })
 
 vim.keymap.set("n", "y<C-p>", function()
