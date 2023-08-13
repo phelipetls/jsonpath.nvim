@@ -311,54 +311,44 @@ vim.o.foldenable = true
 -- }}}
 -- {{{ keymaps
 
-vim.keymap.set("n", "gr", "gT", { desc = "Go to previous tab" })
+vim.keymap.set("n", "gr", "gT")
 
-vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", { silent = true, desc = "Disable highlight search" })
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", { silent = true })
 
-vim.keymap.set("n", "<leader>ev", "<cmd>edit $MYVIMRC<CR>", {
-  silent = true,
-  desc = "Edit Neovim configuration file",
-})
+vim.keymap.set("n", "<leader>ev", "<cmd>edit $MYVIMRC<CR>", { silent = true })
 
-vim.keymap.set("n", "<leader>ss", function()
-  vim.cmd.source("%")
-end, { desc = "Reload current Lua/VimScript file" })
+vim.keymap.set("n", "<leader>ss", "<cmd>source %<CR>")
 
-vim.keymap.set({ "x", "n" }, "k", function()
-  return vim.v.count == 0 and "gk" or "k"
-end, { expr = true, desc = "Skip wrapped lines when using a count to jump lines up" })
+vim.keymap.set({ "x", "n" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
+vim.keymap.set({ "x", "n" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
 
-vim.keymap.set({ "x", "n" }, "j", function()
-  return vim.v.count == 0 and "gj" or "j"
-end, { expr = true, desc = "Skip wrapped lines when using a count to jump lines down" })
+vim.keymap.set("n", "'", "`")
 
-vim.keymap.set("n", "'", "`", { desc = "Jump to exact location of a mark" })
+vim.keymap.set("n", "<C-w><C-q>", "<cmd>close<CR>", { silent = true })
+vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { silent = true })
+vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { silent = true })
+vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { silent = true })
+vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { silent = true })
 
-vim.keymap.set("n", "<C-w><C-q>", "<cmd>close<CR>", { silent = true, desc = "Close split" })
-vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { silent = true, desc = "Move to split below" })
-vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { silent = true, desc = "Move to split above" })
-vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { silent = true, desc = "Move split at the right" })
-vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { silent = true, desc = "Move split at the left" })
+vim.keymap.set("n", "<C-Left>", "<C-w>>", { silent = true })
+vim.keymap.set("n", "<C-Right>", "C-w><", { silent = true })
+vim.keymap.set("n", "<C-Up>", "<C-w>+", { silent = true })
+vim.keymap.set("n", "<C-Down>", "<C-w>-", { silent = true })
 
-vim.keymap.set("n", "<C-Left>", "<C-w>>", { silent = true, desc = "Increase split width" })
-vim.keymap.set("n", "<C-Right>", "C-w><", { silent = true, desc = "Decrease split width" })
-vim.keymap.set("n", "<C-Up>", "<C-w>+", { silent = true, desc = "Increase split height" })
-vim.keymap.set("n", "<C-Down>", "<C-w>-", { silent = true, desc = "Decrease split height" })
+vim.keymap.set("v", ">", ">gv", { silent = true })
+vim.keymap.set("v", "<", "<gv", { silent = true })
 
-vim.keymap.set("v", ">", ">gv", { silent = true, desc = "Keep selected lines when indenting" })
-vim.keymap.set("v", "<", "<gv", { silent = true, desc = "Keep selected lines when deindenting" })
+vim.keymap.set("n", "gy", "`[v`]", { silent = true })
 
-vim.keymap.set("n", "gy", "`[v`]", { silent = true, desc = "Select last modified/yanked text" })
+vim.keymap.set("n", "<C-n>", "*Ncgn", { silent = true })
 
-vim.keymap.set("n", "<C-n>", "*Ncgn", { silent = true, desc = "Substitute word under cursor" })
+vim.keymap.set("n", "<M-q>", "gwip")
 
-vim.keymap.set("n", "<M-q>", "gwip", { desc = "Format paragraph" })
+vim.keymap.set({ "i", "c" }, "<C-a>", "<Home>")
+vim.keymap.set("c", "<C-x><C-a>", "<C-a>")
 
-vim.keymap.set({ "i", "c" }, "<C-a>", "<Home>", { desc = "Go to start of line" })
-vim.keymap.set("c", "<C-x><C-a>", "<C-a>", { desc = "Insert previously inserted text" })
-
-vim.keymap.set("i", "<C-k>", "<C-o>D", { desc = "Delete until end of line" })
-vim.keymap.set("i", "<C-x><C-k>", "<C-k>", { desc = "Insert digraph" })
+vim.keymap.set("i", "<C-k>", "<C-o>D")
+vim.keymap.set("i", "<C-x><C-k>", "<C-k>")
 
 vim.keymap.set("i", "<C-e>", function()
   local line = vim.api.nvim_get_current_line()
@@ -371,7 +361,7 @@ vim.keymap.set("i", "<C-e>", function()
   return "<End>"
 end, {
   expr = true,
-  desc = "Go to end of line, if not already otherwise fallback to built-in behaviour of re-using character in the line above",
+  desc = "Go to end of line if not already there, otherwise insert character in the line above",
 })
 
 -- autocomplete dates
@@ -388,7 +378,6 @@ end
 vim.keymap.set("i", "<C-g><C-t>", "<C-r>=repeat(complete(col('.'),v:lua.get_formatted_dates()),0)<CR>", {
   silent = true,
   nowait = true,
-  desc = "Insert today's date in most common date formats",
 })
 
 -- <space> should not move cursor in normal mode
@@ -397,11 +386,10 @@ vim.keymap.set("n", "<space>", "")
 vim.keymap.set(
   "c",
   "<C-r><C-l>",
-  [[<C-R>=substitute(getline('.'), '^\s*', '', '')<CR>]],
-  { desc = "Use current line in command-line mode, but strip trailing space" }
+  [[<C-R>=substitute(getline('.'), '^\s*', '', '')<CR>]]
 )
 
-vim.keymap.set({ "o", "x" }, "<Tab>", "%", { desc = "Use matchit to go to matching brackets etc.", remap = true })
+vim.keymap.set({ "o", "x" }, "<Tab>", "%", { remap = true })
 
 vim.keymap.set("n", "y<C-p>", function()
   vim.fn.setreg("+", vim.fn.expand("%:p"))
