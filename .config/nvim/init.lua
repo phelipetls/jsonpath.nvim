@@ -429,17 +429,17 @@ local function show_whitespace_in_diff()
   vim.cmd.echomsg("'setlocal diffopt-=iwhite'")
 end
 
-vim.keymap.set("n", "[oi", ignore_whitespace_in_diff, { desc = "Ignore whitespace in diff" })
-
-vim.keymap.set("n", "]oi", show_whitespace_in_diff, { desc = "Don't ignore whitespace in diff" })
-
-vim.keymap.set("n", "yoi", function()
+local function toggle_whitespace_in_diff()
   if vim.o.diffopt:match("iwhite") then
     show_whitespace_in_diff()
   else
     ignore_whitespace_in_diff()
   end
-end, { desc = "Toggle ignoring whitespace in diff" })
+end
+
+vim.keymap.set("n", "[oi", ignore_whitespace_in_diff, { desc = "Ignore whitespace in diff" })
+vim.keymap.set("n", "]oi", show_whitespace_in_diff, { desc = "Don't ignore whitespace in diff" })
+vim.keymap.set("n", "yoi", toggle_whitespace_in_diff, { desc = "Toggle ignoring whitespace in diff" })
 
 -- quickfix and location list
 local qflist = require("helpers.qflist")
