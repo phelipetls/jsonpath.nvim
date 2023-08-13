@@ -313,6 +313,11 @@ vim.o.foldenable = true
 
 vim.keymap.set("n", "gr", "gT")
 
+-- <space> should not move cursor in normal mode
+vim.keymap.set("n", "<space>", "")
+
+vim.keymap.set({ "o", "x" }, "<Tab>", "%", { remap = true })
+
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", { silent = true })
 
 vim.keymap.set("n", "<leader>ev", "<cmd>edit $MYVIMRC<CR>", { silent = true })
@@ -379,11 +384,6 @@ vim.keymap.set("i", "<C-g><C-t>", "<C-r>=repeat(complete(col('.'),v:lua.get_form
   silent = true,
   nowait = true,
 })
-
--- <space> should not move cursor in normal mode
-vim.keymap.set("n", "<space>", "")
-
-vim.keymap.set({ "o", "x" }, "<Tab>", "%", { remap = true })
 
 vim.keymap.set("n", "y<C-p>", function()
   vim.fn.setreg("+", vim.fn.expand("%:p"))
