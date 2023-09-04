@@ -22,12 +22,6 @@ tools:
       - '    %f:%l:%c: %m'
     lint-stdin: true
 
-  vint: &vint
-    lint-command: 'vint --enable-neovim --stdin-display-name ${INPUT} -'
-    lint-stdin: true
-    lint-formats:
-      - '%f:%l:%c: %m'
-
   stylua: &stylua
     format-command: 'stylua --search-parent-directories -'
     format-stdin: true
@@ -45,6 +39,3 @@ languages:
   lua:
     - <<: *luacheck
     - <<: *stylua
-
-  vim:
-    - <<: *vint
