@@ -113,11 +113,12 @@ if is_linux; then
   alias ll='ls -l'
 fi
 
-if is_linux && ! is_wsl; then
-  alias open='xdg-open'
-fi
-if is_wsl; then
-  alias open='wslview'
+if is_linux; then
+  if is_wsl; then
+    alias open='wslview'
+  else
+    alias open='xdg-open'
+  fi
 fi
 
 alias cat='bat'
