@@ -63,6 +63,18 @@
     cmd: cmake --build build/ --target uninstall
   when: nvim_build.stat.exists
 
+- name: Get VIMRUNTIME path
+  shell:
+    cmd: nvim --headless -c 'echo $VIMRUNTIME' -c quit
+  register: nvim_vimruntime
+  changed_when: false
+
+- name: Delete previous installation VIMRUNTIME path
+  become: true
+  file:
+    path: "{{ nvim_vimruntime.stderr }}"
+    state: absent
+
 - name: Install nvim release version in Linux
   become: true
   community.general.make:
