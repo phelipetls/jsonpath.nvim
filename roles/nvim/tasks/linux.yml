@@ -81,7 +81,7 @@
   file:
     path: "{{ nvim_vimruntime.stderr }}"
     state: absent
-  when: nvim_runtime
+  when: nvim_runtime is defined
 
 - name: Install nvim release version in Linux
   become: true
