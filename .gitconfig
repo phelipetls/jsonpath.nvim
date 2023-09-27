@@ -23,7 +23,7 @@
     rh = reset --hard
     rs = reset --soft
     rr = reset --mixed
-    recent = branch -v --sort=-committerdate
+    recent = branch --sort=-committerdate
     undo = reset --soft HEAD^
     recommit = commit --reedit-message ORIG_HEAD
     track = branch --set-upstream-to
