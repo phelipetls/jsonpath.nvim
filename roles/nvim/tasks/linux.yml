@@ -48,6 +48,7 @@
 - name: Check if Neovim is installed
   ansible.builtin.command: nvim -v
   register: nvim
+  ignore_errors: true
   changed_when: false
 
 - name: Get VIMRUNTIME path
@@ -55,7 +56,6 @@
     cmd: nvim --headless -c 'echo $VIMRUNTIME' -c quit
   register: nvim_vimruntime
   when: nvim.rc == 0
-  ignore_errors: true
   changed_when: false
 
 - name: Check if previous build exist
