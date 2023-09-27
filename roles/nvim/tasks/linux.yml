@@ -45,6 +45,19 @@
     cmd: git clean -fdx
   changed_when: false
 
+- name: Check if Neovim is installed
+  ansible.builtin.command: nvim -v
+  register: nvim
+  changed_when: false
+
+- name: Get VIMRUNTIME path
+  shell:
+    cmd: nvim --headless -c 'echo $VIMRUNTIME' -c quit
+  register: nvim_vimruntime
+  when: nvim.rc == 0
+  ignore_errors: true
+  changed_when: false
+
 - name: Check if previous build exist
   ansible.builtin.stat:
     path: deps/nvim/build
@@ -62,12 +75,6 @@
     chdir: deps/nvim
     cmd: cmake --build build/ --target uninstall
   when: nvim_build.stat.exists
-
-- name: Get VIMRUNTIME path
-  shell:
-    cmd: nvim --headless -c 'echo $VIMRUNTIME' -c quit
-  register: nvim_vimruntime
-  changed_when: false
 
 - name: Delete previous installation VIMRUNTIME path
   become: true
