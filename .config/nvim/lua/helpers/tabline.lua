@@ -1,8 +1,14 @@
 local M = {}
 
-local function get_tablabel(bufname, bufnr)
+_G.get_tablabel = function(tabnr)
+  local winnr = vim.fn.tabpagewinnr(tabnr)
+  local buflist = vim.fn.tabpagebuflist(tabnr)
+  local bufnr = buflist[winnr]
+
+  local bufname = vim.api.nvim_buf_get_name(bufnr)
+
   if not bufname or bufname == "" then
-    return "%f"
+    return "[No Name]"
   end
 
   local basename = vim.fs.basename(bufname)
@@ -37,14 +43,9 @@ M.get = function()
 
     local is_selected = tab == vim.fn.tabpagenr()
     table.insert(tabline, "%#" .. (is_selected and "TabLineSel" or "TabLine") .. "#")
+
     table.insert(tabline, " ")
-
-    local tabwinnr = vim.fn.tabpagewinnr(tab)
-    local tabbuflist = vim.fn.tabpagebuflist(tab)
-    local tabbufnr = tabbuflist[tabwinnr]
-    local tabbufname = vim.fn.bufname(tabbufnr)
-    table.insert(tabline, get_tablabel(tabbufname, tabbufnr))
-
+    table.insert(tabline, "%{%v:lua.get_tablabel(" .. tab .. ")%}")
     table.insert(tabline, " ")
   end
 

@@ -208,7 +208,7 @@ if vim.fn.has("wsl") == 1 then
 end
 
 -- tabline
-vim.o.tabline = "%{%v:lua.require('helpers.tabline').get()%}"
+vim.o.tabline = "%!v:lua.require('helpers.tabline').get()"
 
 -- statusline
 local statusline_autocmds = vim.api.nvim_create_augroup("Statusline", {
