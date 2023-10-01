@@ -6,14 +6,14 @@ vim.opt_local.iskeyword:append({ "'" })
 
 -- allow syntax highlight inside code blocks for these languages
 vim.g.markdown_fenced_languages = {
-  'vim',
-  'python',
-  'javascript',
-  'js=javascript',
-  'jsx=javascriptreact',
-  'typescript',
-  'ts=typescript',
-  'tsx=typescriptreact',
+  "vim",
+  "python",
+  "javascript",
+  "js=javascript",
+  "jsx=javascriptreact",
+  "typescript",
+  "ts=typescript",
+  "tsx=typescriptreact",
 }
 
 vim.b[string.format("surround_%s", vim.fn.char2nr("c"))] = "```\r\n```"
