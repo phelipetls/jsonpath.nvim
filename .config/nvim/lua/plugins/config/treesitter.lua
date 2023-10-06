@@ -17,6 +17,25 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 })
 
 require("nvim-treesitter.configs").setup({
+  ensure_installed = {
+    "typescript",
+    "javascript",
+    "tsx",
+    "html",
+    "yaml",
+    "toml",
+    "json",
+    "jsonc",
+    "python",
+    "jsdoc",
+    "lua",
+    "bash",
+    "vim",
+    "scss",
+    "astro",
+    "markdown",
+    "markdown_inline",
+  },
   highlight = {
     enable = true,
     disable = function(_, bufnr)
