@@ -1,7 +1,7 @@
 vim.api.nvim_command([[hi link TSConstructor Function]])
 
-vim.treesitter.language.register('css', { 'scss' })
-vim.treesitter.language.register('markdown', { 'mdx' })
+vim.treesitter.language.register("css", { "scss" })
+vim.treesitter.language.register("markdown", { "mdx" })
 
 local treesitter_augroup = vim.api.nvim_create_augroup("TreesitterAugroup", { clear = true })
 
@@ -140,6 +140,6 @@ require("nvim-treesitter.configs").setup({
       init_selection = "<BS>",
       node_incremental = "[<BS>",
       node_decremental = "]<BS>",
-    }
-  }
+    },
+  },
 })
