@@ -629,6 +629,29 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   end,
 })
 
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+  group = global_autocmds,
+  pattern = { "*" },
+  callback = function(ev)
+    local filetype = vim.api.nvim_buf_get_option(ev.buf, "filetype")
+
+    if
+      filetype == "markdown"
+      or filetype == "mdx"
+      or filetype == "latex"
+      or filetype == "tex"
+      or filetype == "gitcommit"
+    then
+      vim.wo.spell = true
+      vim.bo.spelllang = "pt,en_us"
+    else
+      vim.wo.spell = false
+      vim.bo.spelllang = nil
+    end
+  end,
+  desc = "Activate spellcheck only for specific file types",
+})
+
 local quickfix_autocmds = vim.api.nvim_create_augroup("Quickfix", { clear = true })
 
 vim.api.nvim_create_autocmd({ "QuickFixCmdPost" }, {
