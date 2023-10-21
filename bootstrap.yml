@@ -3,7 +3,9 @@
   hosts: localhost
   tasks:
     - name: Update all submodules
-      tags: submodules
+      tags:
+        - submodules
+        - nvim
       command:
         cmd: git submodule update --force --init --recursive --jobs 4
       changed_when: false
