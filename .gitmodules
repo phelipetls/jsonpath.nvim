@@ -94,10 +94,6 @@
 	path = .config/nvim/pack/plugins/opt/nvim-ts-context-commentstring
 	url = https://github.com/JoosepAlviste/nvim-ts-context-commentstring
 	ignore = dirty
-[submodule "nvim-ts-autotag"]
-	path = .config/nvim/pack/plugins/opt/nvim-ts-autotag
-	url = https://github.com/windwp/nvim-ts-autotag
-	ignore = dirty
 [submodule "LargeFile"]
 	path = .config/nvim/pack/plugins/opt/LargeFile
 	url = https://github.com/vim-scripts/LargeFile

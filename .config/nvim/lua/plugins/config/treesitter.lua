@@ -52,22 +52,6 @@ require("nvim-treesitter.configs").setup({
   context_commentstring = {
     enable = true,
   },
-  autotag = {
-    enable = true,
-    filetypes = {
-      "html",
-      "htmlhugo",
-      "javascript",
-      "typescript",
-      "javascriptreact",
-      "typescriptreact",
-      "svelte",
-      "vue",
-      "tsx",
-      "jsx",
-      "markdown",
-    },
-  },
   textobjects = {
     select = {
       enable = true,

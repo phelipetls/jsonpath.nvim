@@ -126,7 +126,6 @@ vim.cmd("packadd! vim-hugo")
 -- treesitter
 vim.cmd("packadd! nvim-treesitter")
 vim.cmd("packadd! nvim-ts-context-commentstring")
-vim.cmd("packadd! nvim-ts-autotag")
 vim.cmd("packadd! nvim-treesitter-textobjects")
 require("plugins.config.treesitter")
 
