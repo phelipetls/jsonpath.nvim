@@ -94,3 +94,11 @@
 
 - name: Install zoxide
   import_tasks: zoxide.yml
+
+- name: Install CLI tools in npm
+  loop:
+    - strip-ansi-cli
+  community.general.npm:
+    name: "{{ item }}"
+    global: true
+    state: present
