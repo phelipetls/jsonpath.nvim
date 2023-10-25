@@ -132,6 +132,11 @@ require("plugins.config.treesitter")
 -- testing
 vim.cmd("packadd! vim-test")
 vim.g["test#strategy"] = "dispatch"
+vim.g["dispatch_compilers"] = {
+  npx = "",
+  yarn = "",
+  ["node_modules/.bin/"] = "",
+}
 
 -- }}}
 -- {{{ settings
