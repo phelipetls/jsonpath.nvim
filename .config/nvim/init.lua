@@ -300,6 +300,7 @@ end
 
 -- disable colors in deno and nodejs terminal output
 vim.env.NO_COLOR = 0
+vim.env.FORCE_COLOR = 0
 
 -- remove -F flag I use in my .profile, that would automatically close terminal
 -- window if output in less is too short
