@@ -137,6 +137,12 @@ vim.g["dispatch_compilers"] = {
   yarn = "",
   ["node_modules/.bin/"] = "",
 }
+vim.g["test#transformation"] = "playwright"
+vim.g["test#custom_transformations"] = {
+  playwright = function(cmd)
+    return cmd .. " | strip-ansi"
+  end
+}
 
 -- }}}
 -- {{{ settings
