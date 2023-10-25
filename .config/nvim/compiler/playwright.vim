@@ -8,8 +8,8 @@ if exists(':CompilerSet') != 2  " older Vim always used :setlocal
 endif
 
 CompilerSet makeprg=npx\ playwright\ test\ $*\ \\\|\ strip-ansi
-CompilerSet errorformat=%E\ \ %*\\d)\ %.%#\ ›\ %o:%l:%c%.%#,%C\ \ \ \ Error:\ %m,%Z%*[\ ]at\ %f:%*\\d:%*\\d,%+C%*[\ ]Expected%.%#,%+C%*[\ ]Received%.%#,%C%.%#,%-G%.%#
 " CompilerSet makeprg=playwright
+CompilerSet errorformat=%E%.%#\ \ %*\\d)\ %.%#\ ›\ %o:%l:%c%.%#,%C\ \ \ \ Error:\ %m,%Z%*[\ ]at\ %f:%*\\d:%*\\d,%+C%*[\ ]Expected%.%#,%+C%*[\ ]Received%.%#,%C%.%#,%-G%.%#
 
 " Running 2 tests using 2 workers
 
