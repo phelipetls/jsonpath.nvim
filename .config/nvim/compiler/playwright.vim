@@ -1,7 +1,7 @@
 if exists('current_compiler')
   finish
 endif
-let current_compiler = 'flake8'
+let current_compiler = 'playwright'
 
 if exists(':CompilerSet') != 2  " older Vim always used :setlocal
   command -nargs=* CompilerSet setlocal <args>
