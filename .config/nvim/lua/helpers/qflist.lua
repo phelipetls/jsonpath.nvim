@@ -1,7 +1,7 @@
 local M = {}
 
 M.open = function()
-  vim.cmd("botright cwindow 5")
+  vim.cmd("botright cwindow")
 
   if vim.bo.buftype == "quickfix" then
     vim.cmd("wincmd p")
