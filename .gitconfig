@@ -12,7 +12,7 @@
 [mergetool "vscode"]
     cmd = code --wait --merge "$LOCAL" "$REMOTE" "$BASE" "$MERGED"
 [push]
-    default = current
+    autoSetupRemote = true
 [rebase]
     autosquash = true
 [blame]
