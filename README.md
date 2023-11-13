@@ -18,12 +18,31 @@ as `.` for root, `.[0]` for the first array item, `.name` for the property
 
 Using lua:
 ```lua
--- in after/ftplugin/json.lua
+-- in after/ftplugin/json.lua or ~/.config/nvim/init.lua
 
 -- show json path in the winbar
+-- https://github.com/nvim-treesitter/nvim-treesitter
+require'nvim-treesitter.configs'.setup {
+  -- A list of parser names, or "all" (the five listed parsers should always be installed)
+  ensure_installed = { "json" },
+  highlight = {
+    enable = false,
+    additional_vim_regex_highlighting = false,
+  }
+}
+-- option 1
+-- https://github.com/phelipetls/jsonpath.nvim
+vim.api.nvim_create_autocmd({ "BufEnter", "CursorMoved" },{
+  pattern = { "*.json" },
+  callback = function()
+    vim.opt_local.winbar = require("jsonpath").get()
+  end,
+})
+-- option 2
 if vim.fn.exists("+winbar") == 1 then
   vim.opt_local.winbar = "%{%v:lua.require'jsonpath'.get()%}"
 end
+
 
 -- send json path to clipboard
 vim.keymap.set("n", "y<C-p>", function()
