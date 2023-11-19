@@ -141,7 +141,7 @@ vim.g["test#transformation"] = "strip-ansi"
 vim.g["test#custom_transformations"] = {
   ["strip-ansi"] = function(cmd)
     return cmd .. " | strip-ansi"
-  end
+  end,
 }
 
 -- }}}
@@ -647,11 +647,11 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
     local filetype = vim.api.nvim_buf_get_option(ev.buf, "filetype")
 
     if
-        filetype == "markdown"
-        or filetype == "mdx"
-        or filetype == "latex"
-        or filetype == "tex"
-        or filetype == "gitcommit"
+      filetype == "markdown"
+      or filetype == "mdx"
+      or filetype == "latex"
+      or filetype == "tex"
+      or filetype == "gitcommit"
     then
       vim.wo.spell = true
       vim.bo.spelllang = "pt,en_us"
