@@ -173,7 +173,6 @@ vim.o.sidescroll = 1
 vim.o.sidescrolloff = 1
 
 -- colorscheme
-vim.cmd("packadd! vim-lumen")
 vim.cmd("packadd! lush.nvim")
 vim.cmd("packadd! arctic.nvim")
 vim.cmd.colorscheme("arctic")
