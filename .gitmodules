@@ -150,10 +150,6 @@
 	path = .config/nvim/pack/plugins/opt/vim-dispatch
 	url = https://github.com/tpope/vim-dispatch
 	ignore = dirty
-[submodule "kanagawa.nvim"]
-	path = .config/nvim/pack/plugins/start/kanagawa.nvim
-	url = https://github.com/rebelot/kanagawa.nvim
-	ignore = dirty
 [submodule "vim-test"]
 	path = .config/nvim/pack/plugins/opt/vim-test
 	url = https://github.com/vim-test/vim-test
@@ -173,3 +169,9 @@
 [submodule "vim-lumen"]
 	path = .config/nvim/pack/plugins/opt/vim-lumen
 	url = https://github.com/vimpostor/vim-lumen
+[submodule "lush.nvim"]
+	path = .config/nvim/pack/plugins/opt/lush.nvim
+	url = https://github.com/rktjmp/lush.nvim
+[submodule "arctic.nvim"]
+	path = .config/nvim/pack/plugins/opt/arctic.nvim
+	url = https://github.com/rockyzhang24/arctic.nvim
