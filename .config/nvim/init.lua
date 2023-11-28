@@ -84,19 +84,6 @@ vim.g.dirvish_mode = [[:sort ,^.*[\/],]]
 vim.cmd("packadd! fzf-lua")
 require("plugins.config.fzf_lua")
 
--- folding
-vim.cmd("packadd! promise-async")
-vim.cmd("packadd! nvim-ufo")
-require("ufo").setup({
-  provider_selector = function(_, filetype)
-    if filetype == "gitcommit" then
-      return ""
-    end
-  end,
-})
-vim.keymap.set("n", "zR", require("ufo").openAllFolds)
-vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
-
 -- lsp
 vim.cmd("packadd! coc.nvim")
 require("plugins.config.coc")
@@ -300,12 +287,6 @@ vim.env.FORCE_COLOR = 0
 -- remove -F flag I use in my .profile, that would automatically close terminal
 -- window if output in less is too short
 vim.env.LESS = "RX"
-
--- folding
-vim.o.foldcolumn = "1"
-vim.o.foldlevel = 99
-vim.o.foldlevelstart = 99
-vim.o.foldenable = true
 
 -- }}}
 -- {{{ keymaps
