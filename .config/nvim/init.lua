@@ -160,9 +160,8 @@ vim.o.sidescroll = 1
 vim.o.sidescrolloff = 1
 
 -- colorscheme
-vim.cmd("packadd! lush.nvim")
-vim.cmd("packadd! arctic.nvim")
-vim.cmd.colorscheme("arctic")
+vim.cmd("packadd! bamboo.nvim")
+vim.cmd.colorscheme("bamboo")
 
 -- clipboard
 if vim.fn.has("wsl") == 1 then
