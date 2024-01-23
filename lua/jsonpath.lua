@@ -77,7 +77,7 @@ M.get = function(options)
 
   for i, accessor in ipairs(accessors) do
     if i == 1 then
-      if options and options.withRootSeparator then
+      if options and options.withoutRootSeparator then
         path = accessor
       else
         path = path .. "." .. accessor
