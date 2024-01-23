@@ -25,7 +25,7 @@ local contains_special_characters = function(str)
   return str:match("[^a-zA-Z0-9_]")
 end
 
-M.get = function()
+M.get = function(options)
   if not parsers.has_parser() then
     return ""
   end
@@ -77,7 +77,11 @@ M.get = function()
 
   for i, accessor in ipairs(accessors) do
     if i == 1 then
-      path = path .. "." .. accessor
+      if options and options.withRootSeparator then
+        path = accessor
+      else
+        path = path .. "." .. accessor
+      end
     elseif vim.startswith(accessor, "[") then
       path = path .. accessor
     else
