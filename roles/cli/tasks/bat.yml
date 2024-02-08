@@ -14,8 +14,7 @@
 
 - name: Install bat in macOS
   become: true
-  dnf:
-    name:
-      - bat
+  community.general.homebrew:
+    name: bat
     state: present
-  when: ansible_distribution == "Fedora"
+  when: ansible_distribution == "MacOSX"
