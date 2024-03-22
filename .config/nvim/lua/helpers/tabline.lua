@@ -1,5 +1,11 @@
 local M = {}
 
+local function should_show_dirname(basename)
+  local unhelpful_basenames = { "index", "style", "styles" }
+  local basename_without_extension = vim.fn.fnamemodify(basename, ':r')
+  return vim.tbl_contains(unhelpful_basenames, basename_without_extension)
+end
+
 _G.get_tablabel = function(tabnr)
   local winnr = vim.fn.tabpagewinnr(tabnr)
   local buflist = vim.fn.tabpagebuflist(tabnr)
@@ -13,9 +19,9 @@ _G.get_tablabel = function(tabnr)
 
   local basename = vim.fs.basename(bufname)
 
-  if vim.startswith(basename, "index") then
-    local directory = vim.fs.basename(vim.fs.dirname(bufname))
-    return directory .. "/" .. basename
+  if should_show_dirname(basename) then
+    local dirname = vim.fs.basename(vim.fs.dirname(bufname))
+    return dirname .. "/" .. basename
   end
 
   local buffiletype = vim.fn.getbufvar(bufnr, "&filetype")
