@@ -86,6 +86,10 @@ if [ -d "/opt/homebrew/bin" ]; then
   export PATH="$PATH:/opt/homebrew/bin"
 fi
 
+# Add pnpm
+export PNPM_HOME="$HOME/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+
 function is_linux() {
   uname | grep -iq linux
 }
