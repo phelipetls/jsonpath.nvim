@@ -5,7 +5,7 @@
     apply:
       become: true
   vars:
-    nodejs_version: "14.x"
+    nodejs_version: "18.x"
   when: ansible_distribution == "Ubuntu"
 
 - name: Install Node.js in Fedora
