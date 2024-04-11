@@ -4,3 +4,4 @@ git_delta_version: 0.14.0
 bat_version: 0.23.0
 git_absorb_version: "0.6.9"
 zoxide_version: 0.9.1
+win32yank_version: 0.0.4

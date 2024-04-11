@@ -15,7 +15,7 @@
 
 - name: Install win32yank 64-bit from GitHub
   unarchive:
-    src: https://github.com/equalsraf/win32yank/releases/download/v0.0.4/win32yank-x64.zip
+    src: https://github.com/equalsraf/win32yank/releases/download/v{{ win32yank_version }}/win32yank-x64.zip
     dest: "{{ ansible_env.HOME }}/.local/bin"
     remote_src: true
     mode: "u+x"
