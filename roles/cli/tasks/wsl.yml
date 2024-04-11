@@ -6,6 +6,12 @@
     state: present
   when: ansible_distribution == "Ubuntu"
 
+- name: Install keychain in Ubuntu
+  become: true
+  ansible.builtin.apt:
+    name:
+      - keychain
+
 - name: Install wslu in Ubuntu
   become: true
   ansible.builtin.apt:
