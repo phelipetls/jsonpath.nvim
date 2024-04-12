@@ -2,25 +2,9 @@ My configuration files for Linux and macOS.
 
 # Install git
 
-## Ubuntu
-
-```sh
-sudo apt install -y git
-```
-
-## Fedora
-
-```sh
-sudo dnf install -y git
-```
-
-## macOS
-
-Install git with XCode Command Line Tools:
-
-```sh
-xcode-select --install
-```
+| Ubuntu | Fedora | macOS |
+| ------ | ------ | ----- |
+| `sudo apt install -y git` | `sudo dnf install -y git` | `xcode-select --install` |
 
 # Clone the repository
 
