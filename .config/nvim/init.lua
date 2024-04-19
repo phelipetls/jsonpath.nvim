@@ -176,7 +176,7 @@ if vim.fn.has("wsl") == 1 then
         ["+"] = "win32yank.exe -o --lf",
         ["*"] = "win32yank.exe -o --lf",
       },
-      cache_enabled = 1
+      cache_enabled = 0
     }
   else
     vim.g.clipboard = {
