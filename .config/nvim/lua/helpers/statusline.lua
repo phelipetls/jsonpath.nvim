@@ -26,6 +26,10 @@ local grouped = function(s)
 end
 
 M.get = function(opts)
+  if vim.bo.filetype == "qf" then
+    return vim.wo.statusline
+  end
+
   local statusline = {}
 
   table.insert(statusline, grouped(" %f"))

@@ -202,6 +202,8 @@ local statusline_autocmds = vim.api.nvim_create_augroup("Statusline", {
   clear = true,
 })
 
+vim.o.statusline = "%!v:lua.require('helpers.statusline').get()"
+
 vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter" }, {
   group = statusline_autocmds,
   pattern = "*",
