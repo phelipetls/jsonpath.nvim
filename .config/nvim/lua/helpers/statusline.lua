@@ -34,7 +34,7 @@ M.get = function(opts)
   if opts.active then
     table.insert(statusline, "%=")
     table.insert(statusline, grouped(" %{v:lua.get_fugitive_statusline()} |"))
-    table.insert(statusline, grouped(" %l:%L"))
+    table.insert(statusline, grouped(" %l:%L "))
   end
 
   return table.concat(statusline, "")
