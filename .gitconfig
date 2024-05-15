@@ -15,6 +15,7 @@
     default = current
 [rebase]
     autosquash = true
+    autoStash = true
 [blame]
     date = relative
 [alias]
