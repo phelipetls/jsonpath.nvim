@@ -136,7 +136,6 @@ vim.g["test#custom_transformations"] = {
 
 vim.cmd("filetype plugin indent on")
 
-vim.o.termguicolors = true
 vim.o.ruler = false
 vim.o.wildmode = "full"
 vim.o.lazyredraw = true
