@@ -197,27 +197,7 @@ end
 vim.o.tabline = "%!v:lua.require('helpers.tabline').get()"
 
 -- statusline
-local statusline_autocmds = vim.api.nvim_create_augroup("Statusline", {
-  clear = true,
-})
-
 vim.o.statusline = "%!v:lua.require('helpers.statusline').get()"
-
-vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter" }, {
-  group = statusline_autocmds,
-  pattern = "*",
-  callback = function()
-    vim.wo.statusline = require("helpers.statusline").get({ active = true })
-  end,
-})
-
-vim.api.nvim_create_autocmd({ "WinLeave", "BufLeave" }, {
-  group = statusline_autocmds,
-  pattern = "*",
-  callback = function()
-    vim.wo.statusline = require("helpers.statusline").get({ active = false })
-  end,
-})
 
 -- file navigation
 vim.opt.path = { ".", "", ".." }

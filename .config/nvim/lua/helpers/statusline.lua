@@ -25,17 +25,22 @@ local grouped = function(s)
   return "%(" .. s .. "%)"
 end
 
+local quickfix_statusline = " %q%{exists('w:quickfix_title')? ' '.w:quickfix_title : ''}%= [%l/%L] "
+M.quickfix_statusline = quickfix_statusline
+
 M.get = function(opts)
   if vim.bo.filetype == "qf" then
-    return vim.wo.statusline
+    return quickfix_statusline
   end
+
+  local active = vim.g.statusline_winid == vim.fn.win_getid()
 
   local statusline = {}
 
   table.insert(statusline, grouped(" %f"))
   table.insert(statusline, grouped(" %m"))
 
-  if opts.active then
+  if active then
     table.insert(statusline, "%=")
     table.insert(statusline, grouped(" %{v:lua.get_fugitive_statusline()} |"))
     table.insert(statusline, grouped(" %l:%L "))
