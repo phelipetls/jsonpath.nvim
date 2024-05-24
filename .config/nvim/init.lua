@@ -1,7 +1,6 @@
 -- {{{ plugins
 
-vim.cmd("packadd! impatient.nvim")
-require("impatient")
+vim.loader.enable()
 
 vim.g.mapleader = " "
 
