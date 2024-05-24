@@ -35,11 +35,6 @@
       import_role:
         name: nvim
 
-    - name: Hugo
-      tags: hugo
-      import_role:
-        name: hugo
-
     - name: Linux Desktop
       tags: linux
       import_role:
