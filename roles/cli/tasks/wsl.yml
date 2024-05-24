@@ -19,11 +19,8 @@
       - wslu
     update_cache: true
 
-- name: Install win32yank 64-bit from GitHub
-  unarchive:
-    src: https://github.com/equalsraf/win32yank/releases/download/v{{ win32yank_version }}/win32yank-x64.zip
-    dest: "{{ ansible_env.HOME }}/.local/bin"
-    remote_src: true
+- name: Add win32yank wrapper executable script into PATH
+  copy:
+    src: win32yank
+    dest: "{{ ansible_env.HOME }}/.local/bin/win32yank.exe"
     mode: "u+x"
-    include:
-      - win32yank.exe
