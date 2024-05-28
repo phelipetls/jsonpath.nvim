@@ -158,8 +158,7 @@ vim.o.sidescroll = 1
 vim.o.sidescrolloff = 1
 
 -- colorscheme
-vim.cmd("packadd! bamboo.nvim")
-require('bamboo').load()
+vim.cmd.colorscheme('sorbet')
 
 -- clipboard
 if vim.fn.has("wsl") == 1 then

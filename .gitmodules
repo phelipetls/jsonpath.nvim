@@ -162,6 +162,3 @@
 	path = .config/nvim/pack/plugins/opt/statuscol.nvim
 	url = https://github.com/luukvbaal/statuscol.nvim
 	ignore = dirty
-[submodule "bamboo.nvim"]
-	path = .config/nvim/pack/plugins/opt/bamboo.nvim
-	url = https://github.com/ribru17/bamboo.nvim
