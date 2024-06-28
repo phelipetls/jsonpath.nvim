@@ -14,6 +14,7 @@ vim.g.coc_global_extensions = {
   "coc-highlight",
   "@yaegassy/coc-astro",
   "@yaegassy/coc-tailwindcss3",
+  "coc-biome"
 }
 
 vim.o.backup = false
