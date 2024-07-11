@@ -1,16 +1,19 @@
 local M = {}
 
-local parsers = require("nvim-treesitter.parsers")
 local ts_utils = require("nvim-treesitter.ts_utils")
 
-local get_node_text = function(node)
-  return vim.treesitter.get_node_text(node, 0)
+---@param bufnr number The buffer number to use. If none, the current buffer will be used
+local get_node_text = function(node, bufnr)
+    bufnr = bufnr or 0
+  return vim.treesitter.get_node_text(node, bufnr)
 end
 
-local get_string_content = function(node)
+local get_string_content = function(node, bufnr)
+    bufnr = bufnr or 0
+
   for _, child in ipairs(ts_utils.get_named_children(node)) do
     if child:type() == "string_content" then
-      return get_node_text(child)
+      return get_node_text(child, bufnr)
     end
   end
 
@@ -25,12 +28,17 @@ local contains_special_characters = function(str)
   return str:match("[^a-zA-Z0-9_]")
 end
 
-M.get = function()
-  if not parsers.has_parser() then
+---Create a jsonpath based of `node`. 
+---If no node is provided, it will use the node at the cursor for the current buffer.
+---@param start_node unknown The node to create the jsonpath from.
+---@param bufnr number The buffer number to use. If none, the current buffer will be used
+M.get = function(start_node, bufnr)
+    bufnr = bufnr or 0
+  if pcall(function() vim.treesitter.get_parser(bufnr) end) ~= true then
     return ""
   end
 
-  local current_node = ts_utils.get_node_at_cursor()
+  local current_node = start_node or vim.treesitter.get_node()
   if not current_node then
     return ""
   end
@@ -43,7 +51,7 @@ M.get = function()
 
     if node:type() == "pair" then
       local key_node = unpack(node:field("key"))
-      local key = get_string_content(key_node)
+      local key = get_string_content(key_node, bufnr)
 
       if key and starts_with_number(key) or contains_special_characters(key) then
         accessor = string.format('["%s"]', key)
