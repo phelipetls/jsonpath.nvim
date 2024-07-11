@@ -4,12 +4,13 @@ local ts_utils = require("nvim-treesitter.ts_utils")
 
 ---@param bufnr number The buffer number to use. If none, the current buffer will be used
 local get_node_text = function(node, bufnr)
-    bufnr = bufnr or 0
+  bufnr = bufnr or 0
+
   return vim.treesitter.get_node_text(node, bufnr)
 end
 
 local get_string_content = function(node, bufnr)
-    bufnr = bufnr or 0
+  bufnr = bufnr or 0
 
   for _, child in ipairs(ts_utils.get_named_children(node)) do
     if child:type() == "string_content" then
@@ -33,7 +34,8 @@ end
 ---@param start_node unknown The node to create the jsonpath from.
 ---@param bufnr number The buffer number to use. If none, the current buffer will be used
 M.get = function(start_node, bufnr)
-    bufnr = bufnr or 0
+  bufnr = bufnr or 0
+
   if pcall(function() vim.treesitter.get_parser(bufnr) end) ~= true then
     return ""
   end
