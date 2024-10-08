@@ -16,6 +16,8 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   end,
 })
 
+require('ts_context_commentstring').setup()
+
 require("nvim-treesitter.configs").setup({
   ensure_installed = {
     "typescript",
@@ -47,9 +49,6 @@ require("nvim-treesitter.configs").setup({
     additional_vim_regex_highlighting = false,
   },
   indent = {
-    enable = true,
-  },
-  context_commentstring = {
     enable = true,
   },
   textobjects = {

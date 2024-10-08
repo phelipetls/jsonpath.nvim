@@ -31,13 +31,16 @@ require("statuscol").setup({
 
 -- text editing
 vim.cmd("packadd! vim-surround")
-vim.cmd("packadd! vim-commentary")
 vim.cmd("packadd! vim-repeat")
 vim.cmd("packadd! vim-unimpaired")
 vim.cmd("packadd! vim-speeddating")
 vim.cmd("packadd! vim-abolish")
 vim.cmd("packadd! vim-lion")
 vim.cmd("packadd! vim-sleuth")
+
+vim.keymap.del({ "n", "x", "o" }, "gc")
+vim.keymap.del({ "n" }, "gcc")
+vim.cmd("packadd! vim-commentary")
 
 vim.cmd("packadd! undotree")
 vim.keymap.set("n", "<leader>u", "<cmd>UndotreeToggle<CR>", { silent = true })
