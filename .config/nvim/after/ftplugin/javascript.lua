@@ -1,5 +1,7 @@
 vim.b.coc_root_patterns = { "package.json", ".git" }
 
+vim.bo.tabstop = 4
+
 if vim.fn.bufname():match("%.min%.js$") then
   vim.b.coc_enabled = 0
 end
