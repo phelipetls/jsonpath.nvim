@@ -1,7 +1,7 @@
 local M = {}
 
 M.open = function()
-  vim.cmd.lwindow({ mods = { split = "botright" } })
+  vim.cmd.lopen({ mods = { split = "botright" } })
 
   if vim.bo.buftype == "quickfix" then
     vim.cmd.wincmd("p")
