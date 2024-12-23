@@ -16,3 +16,6 @@
 
 - name: Generate :help pages
   shell: nvim --headless -c 'helptags ALL' -c quit
+
+- name: Install Treesitter parsers
+  shell: nvim --headless -c 'TSUpdateSync' -c quit
