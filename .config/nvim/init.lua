@@ -194,6 +194,11 @@ if vim.fn.has("wsl") == 1 then
   end
 end
 
+vim.keymap.set("n", "<space>y", [["+y]])
+vim.keymap.set("n", "<space>p", [["+p]])
+vim.keymap.set("v", "<space>y", [["+y]])
+vim.keymap.set("v", "<space>p", [["+p]])
+
 -- tabline
 vim.o.tabline = "%!v:lua.require('helpers.tabline').get()"
 
