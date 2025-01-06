@@ -204,8 +204,25 @@ end
 
 vim.keymap.set("n", "<space>y", [["+y]])
 vim.keymap.set("n", "<space>p", [["+p]])
-vim.keymap.set("v", "<space>y", [["+y]])
+vim.keymap.set("n", "<space>P", [["+P]])
+
 vim.keymap.set("v", "<space>p", [["+p]])
+vim.keymap.set("v", "<space>y", [["+y]])
+
+vim.keymap.set("n", "<space>[p", [["+[p]], { remap = true })
+vim.keymap.set("n", "<space>[P", [["+[P]], { remap = true })
+
+vim.keymap.set("n", "<space>]p", [["+]p]], { remap = true })
+vim.keymap.set("n", "<space>]P", [["+]P]], { remap = true })
+
+vim.keymap.set("n", "<space><p", [["+<p]], { remap = true })
+vim.keymap.set("n", "<space><P", [["+<P]], { remap = true })
+
+vim.keymap.set("n", "<space>>p", [["+>p]], { remap = true })
+vim.keymap.set("n", "<space>>P", [["+>P]], { remap = true })
+
+vim.keymap.set("n", "<space>=p", [["+=p]], { remap = true })
+vim.keymap.set("n", "<space>=P", [["+=P]], { remap = true })
 
 -- tabline
 vim.o.tabline = "%!v:lua.require('helpers.tabline').get()"
