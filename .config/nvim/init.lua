@@ -203,6 +203,7 @@ if vim.fn.has("wsl") == 1 then
 end
 
 vim.keymap.set("n", "<space>y", [["+y]])
+vim.keymap.set("n", "<space>Y", [["+Y]])
 vim.keymap.set("n", "<space>p", [["+p]])
 vim.keymap.set("n", "<space>P", [["+P]])
 
