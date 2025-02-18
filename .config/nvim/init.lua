@@ -90,10 +90,6 @@ require("plugins.config.fzf_lua")
 vim.cmd("packadd! coc.nvim")
 require("plugins.config.coc")
 
--- incremental search/substitute highlighting
-vim.cmd("packadd! traces.vim")
-vim.g.traces_abolish_integration = 1
-
 -- session management
 vim.cmd("packadd! vim-obsession")
 vim.g.obsession_no_bufenter = 1

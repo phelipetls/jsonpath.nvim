@@ -30,10 +30,6 @@
 	path = .config/nvim/pack/plugins/opt/vim-abolish
 	url = https://github.com/tpope/vim-abolish
 	ignore = dirty
-[submodule "traces.vim"]
-	path = .config/nvim/pack/plugins/opt/traces.vim
-	url = https://github.com/markonm/traces.vim
-	ignore = dirty
 [submodule "vim-slime"]
 	path = .config/nvim/pack/plugins/opt/vim-slime
 	url = https://github.com/jpalardy/vim-slime
