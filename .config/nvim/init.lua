@@ -248,14 +248,16 @@ if vim.fn.executable("/usr/bin/python3") == 1 then
   vim.g.python3_host_prog = "/usr/bin/python3"
 end
 
-vim.opt.diffopt:append({
-  foldcolumn = 2,
-  hiddenoff = true,
-  ["indent-heuristic"] = true,
-  internal = true,
-  algorithm = "patience",
-  linematch = 50
-})
+vim.opt.diffopt = {
+  "closeoff",
+  "filler",
+  "foldcolumn:2",
+  "hiddenoff",
+  "indent-heuristic",
+  "internal",
+  "algorithm:patience",
+  "linematch:50"
+}
 
 -- visually show special characters
 vim.o.list = true
