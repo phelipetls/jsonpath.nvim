@@ -10,5 +10,7 @@ else
 end
 
 vim.keymap.set("n", "<C-c><C-c>", "<Plug>SlimeRegionSend", { silent = true })
-vim.keymap.set("n", "<C-c><C-w>", string.format("<cmd>SlimeSend1 %s<CR>", vim.fn.expand("<cword>")), {})
+vim.keymap.set("n", "<C-c><C-w>", function()
+  vim.cmd(string.format("SlimeSend1 %s<CR>", vim.fn.expand('<cword>')))
+end, { silent = true })
 vim.keymap.set("n", "<C-c>%", "<cmd>%SlimeSend<CR>", { silent = true })
