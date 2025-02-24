@@ -1,0 +1,20 @@
+---
+- name: Install editorconfig-checker on Linux
+  unarchive:
+    src: https://github.com/editorconfig-checker/editorconfig-checker/releases/download/v{{ editorconfig_checker_version }}/ec-linux-amd64.tar.gz
+    dest: "{{ ansible_env.HOME }}/.local/bin"
+    remote_src: true
+    extra_opts:
+      - "--strip-components=1"
+      - "bin/ec-linux-amd64"
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Fedora"
+
+- name: Install editorconfig-checker on macOS
+  unarchive:
+    src: https://github.com/editorconfig-checker/editorconfig-checker/releases/download/v{{ editorconfig_checker_version }}/ec-darwin-arm64.tar.gz
+    dest: "{{ ansible_env.HOME }}/.local/bin"
+    remote_src: true
+    extra_opts:
+      - "--strip-components=1"
+      - "bin/ec-darwin-arm64"
+  when: ansible_distribution == "MacOSX"

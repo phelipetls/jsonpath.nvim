@@ -66,6 +66,9 @@
 - name: Install diffstatic
   import_tasks: diffstatic.yml
 
+- name: Install editorconfig-checker
+  import_tasks: editorconfig.yml
+
 - name: Install ranger
   pip:
     name:
