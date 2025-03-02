@@ -1,6 +1,16 @@
 local M = {}
 
+M.opts = {
+  show_on_winbar = true,
+  reg = "+",
+}
+
 local ts_utils = require("nvim-treesitter.ts_utils")
+require("command")
+
+M.setup = function(opts)
+  M.opts = vim.tbl_extend("force", M.opts, opts or {})
+end
 
 ---@param bufnr number The buffer number to use. If none, the current buffer will be used
 local get_node_text = function(node, bufnr)

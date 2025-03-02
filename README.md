@@ -14,7 +14,24 @@ as `.` for root, `.[0]` for the first array item, `.name` for the property
 
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter/).
 
+# Install
+
+With Lazy:
+
+```lua
+{
+    "phelipetls/jsonpath.nvim",
+    cmd = "JsonPathCopy",
+    opts = { show_on_winbar = true, reg = "+" },
+},
+```
+
 # Usage
+
+Using the lua command:
+```lua
+vim.keymap.set("n", "y<C-p>", "<cmd>JsonPathCopy<CR>", { desc = "copy json path", buffer = true })
+```
 
 Using lua:
 ```lua
