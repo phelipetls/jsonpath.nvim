@@ -37,6 +37,7 @@ require("nvim-treesitter.configs").setup({
     "astro",
     "markdown",
     "markdown_inline",
+    "graphql",
   },
   highlight = {
     enable = true,
