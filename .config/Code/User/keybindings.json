@@ -79,7 +79,7 @@
     "command": "-magit.reset-hard"
   },
   {
-      "key": "ctrl+alt+enter",
-      "command": "workbench.action.toggleMaximizedPanel"
+    "key": "ctrl+alt+enter",
+    "command": "workbench.action.toggleMaximizedPanel"
   }
 ]
