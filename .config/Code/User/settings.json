@@ -19,7 +19,8 @@
   "vim.useSystemClipboard": true,
   "vim.handleKeys": {
     "<C-b>": false,
-    "<C-f>": false
+    "<C-f>": false,
+    "<C-p>": false
   },
   "vim.normalModeKeyBindings": [
     {"before": ["-"], "commands": ["workbench.view.explorer"]},
