@@ -107,6 +107,8 @@ vim.g.jqplay = {
 
 -- web development
 vim.cmd("packadd! vim-hugo")
+vim.cmd("packadd! nvim-colorizer.lua")
+require("plugins.config.colorizer")
 
 -- treesitter
 vim.cmd("packadd! nvim-treesitter")

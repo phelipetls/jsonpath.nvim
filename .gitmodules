@@ -161,3 +161,6 @@
 [submodule "copilot.vim"]
 	path = .config/nvim/pack/plugins/opt/copilot.vim
 	url = https://github.com/github/copilot.vim
+[submodule "nvim-colorizer.lua"]
+	path = .config/nvim/pack/plugins/opt/nvim-colorizer.lua
+	url = https://github.com/catgoose/nvim-colorizer.lua
