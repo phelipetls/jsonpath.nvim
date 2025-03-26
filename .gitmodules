@@ -158,6 +158,3 @@
 	path = .config/nvim/pack/plugins/opt/statuscol.nvim
 	url = https://github.com/luukvbaal/statuscol.nvim
 	ignore = dirty
-[submodule "nvim-colorizer.lua"]
-	path = .config/nvim/pack/plugins/opt/nvim-colorizer.lua
-	url = https://github.com/catgoose/nvim-colorizer.lua
