@@ -102,6 +102,8 @@ fi
 # -M to show a more verbose prompt
 export LESS="FXRM"
 
+export COREPACK_ENABLE_AUTO_PIN=0
+
 alias r='ranger'
 
 if is_linux; then
