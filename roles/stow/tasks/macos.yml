@@ -1,4 +1,6 @@
 - name: Install Stow in macOS
+  environment:
+    PATH: "/opt/Homebrew/bin"
   community.general.homebrew:
     name:
       - stow
