@@ -1,0 +1,7 @@
+#!/bin/bash
+
+set -e
+
+PYTHON_USER_BIN=$(python3 -m site --user-base)/bin
+
+PATH="$PATH:$PYTHON_USER_BIN" ansible-playbook bootstrap.yml
