@@ -10,11 +10,8 @@
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Fedora"
 
 - name: Install efm-langserver in macOS
-  unarchive:
-    src: https://github.com/mattn/efm-langserver/releases/download/v{{ efm_langserver_version }}/efm-langserver_v{{ efm_langserver_version }}_darwin_amd64.zip
-    dest: "{{ ansible_env.HOME }}/.local/bin"
-    include: efm-langserver_v{{ efm_langserver_version }}_darwin_amd64/efm-langserver
-    remote_src: true
-    extra_opts:
-      - "-j"  # do not create any directories
+  community.general.homebrew:
+    name:
+      - efm-langserver
+    state: present
   when: ansible_distribution == "MacOSX"
