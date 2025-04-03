@@ -10,6 +10,12 @@
         cmd: git submodule update --force --init --recursive --jobs 4
       changed_when: false
 
+    - name: Homebrew
+      tags: homebrew
+      import_role:
+        name: homebrew
+      when: ansible_distribution == "MacOSX"
+
     - name: Node.js
       tags: nodejs
       import_role:

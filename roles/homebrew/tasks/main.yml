@@ -1,0 +1,19 @@
+---
+- name: Download Homebrew install script
+  get_url:
+    url: https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
+    dest: /tmp/homebrew_install.sh
+    mode: '0755'
+
+- name: Run Homebrew install script non-interactively
+  environment:
+    NONINTERACTIVE: 1
+  become: true
+  shell: /bin/bash /tmp/homebrew_install.sh
+  args:
+    creates: /opt/homebrew/bin/brew
+
+- name: Clean up install script
+  file:
+    path: /tmp/homebrew_install.sh
+    state: absent
