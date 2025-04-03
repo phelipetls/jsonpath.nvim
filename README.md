@@ -13,15 +13,8 @@ git clone git@github.com:phelipetls/dotfiles.git
 cd dotfiles
 ```
 
-# Install Ansible
+# Install Ansible and run playbook
 
 ```sh
 ./install
-```
-
-# Run playbook
-
-```sh
-# Bootstrap development environntment in Linux, WSL and macOS
-ansible-playbook bootstrap.yml
 ```

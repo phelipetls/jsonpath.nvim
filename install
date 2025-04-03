@@ -4,5 +4,9 @@ set -e
 
 pip3 install ansible
 
-export PATH="$PATH:~/.local/bin"
+PYTHON_USER_BIN=$(python3 -m site --user-base)/bin
+export PATH="$PATH:$PYTHON_USER_BIN"
+
 ansible-galaxy install -r requirements.yml
+
+ansible-playbook bootstrap.yml
