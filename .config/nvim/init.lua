@@ -38,8 +38,6 @@ vim.cmd("packadd! vim-abolish")
 vim.cmd("packadd! vim-lion")
 vim.cmd("packadd! vim-sleuth")
 
-vim.keymap.del({ "n", "x", "o" }, "gc")
-vim.keymap.del({ "n" }, "gcc")
 vim.cmd("packadd! vim-commentary")
 
 vim.cmd("packadd! undotree")
