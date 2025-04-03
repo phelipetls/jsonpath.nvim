@@ -1,5 +1,5 @@
 ---
-- name: Install diffstatic in Linux
+- name: Install difftastic in Linux
   unarchive:
     src: https://github.com/Wilfred/difftastic/releases/download/{{ diffstatic_version }}/difft-x86_64-unknown-linux-gnu.tar.gz
     dest: "{{ ansible_env.HOME }}/.local/bin"
@@ -8,11 +8,9 @@
       - "difft"
   when: ansible_distribution == "Ubuntu" or ansible_distribution == "Fedora"
 
-- name: Install diffstatic in macOS
-  unarchive:
-    src: https://github.com/Wilfred/difftastic/releases/download/{{ diffstatic_version }}/difft-x86_64-apple-darwin.tar.gz
-    dest: "{{ ansible_env.HOME }}/.local/bin"
-    remote_src: true
-    extra_opts:
-      - "difft"
+- name: Install difftastic in macOS
+  community.general.homebrew:
+    name:
+      - difftastic
+    state: present
   when: ansible_distribution == "MacOSX"

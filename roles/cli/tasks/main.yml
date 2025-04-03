@@ -58,8 +58,8 @@
 - name: Install git-delta
   import_tasks: git-delta.yml
 
-- name: Install diffstatic
-  import_tasks: diffstatic.yml
+- name: Install difftastic
+  import_tasks: difftastic.yml
 
 - name: Install editorconfig-checker
   import_tasks: editorconfig.yml
