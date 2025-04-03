@@ -15,9 +15,8 @@
   when: ansible_distribution == "Ubuntu"
 
 - name: Install shellcheck in macOS
-  loop:
-    - shellcheck
   community.general.homebrew:
-    name: "{{ item }}"
+    name:
+      - shellcheck
     state: present
   when: ansible_distribution == "MacOSX"

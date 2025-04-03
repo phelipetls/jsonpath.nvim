@@ -13,8 +13,8 @@
   when: ansible_distribution == "Fedora"
 
 - name: Install bat in macOS
-  become: true
   community.general.homebrew:
-    name: bat
+    name:
+      - bat
     state: present
   when: ansible_distribution == "MacOSX"

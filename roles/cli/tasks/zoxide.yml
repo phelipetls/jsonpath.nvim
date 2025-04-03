@@ -17,9 +17,8 @@
   when: ansible_distribution == "Fedora"
 
 - name: Install CLI tools in macOS
-  loop:
-    - zoxide
   community.general.homebrew:
-    name: "{{ item }}"
+    name:
+      - zoxide
     state: present
   when: ansible_distribution == "MacOSX"

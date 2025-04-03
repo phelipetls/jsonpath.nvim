@@ -42,16 +42,16 @@
   when: ansible_distribution == "Fedora"
 
 - name: Install CLI tools in macOS
-  loop:
-    - tig
-    - tmux
-    - ripgrep
-    - fd
-    - jq
-    - htop
-    - moreutils
   community.general.homebrew:
-    name: "{{ item }}"
+    name:
+      - tig
+      - tmux
+      - ripgrep
+      - fd
+      - jq
+      - htop
+      - moreutils
+      - gnu-tar
     state: present
   when: ansible_distribution == "MacOSX"
 

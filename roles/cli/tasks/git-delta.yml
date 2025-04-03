@@ -15,6 +15,7 @@
 
 - name: Install bat in macOS
   community.general.homebrew:
-    name: git-delta
+    name:
+      - git-delta
     state: present
   when: ansible_distribution == "MacOSX"

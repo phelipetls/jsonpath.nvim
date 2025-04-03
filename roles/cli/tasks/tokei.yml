@@ -19,6 +19,7 @@
 
 - name: Install tokei in macOS
   community.general.homebrew:
-    name: tokei
+    name:
+     - tokei
     state: present
   when: ansible_distribution == "MacOSX"
