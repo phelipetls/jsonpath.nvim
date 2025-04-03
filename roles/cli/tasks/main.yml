@@ -1,9 +1,4 @@
 ---
-- name: Install OSX command line tools
-  include_role:
-    name: elliotweiser.osx-command-line-tools
-  when: ansible_distribution == "MacOSX"
-
 - name: Create directory ~/.local/bin/
   file:
     path: "{{ ansible_env.HOME }}/.local/bin"
