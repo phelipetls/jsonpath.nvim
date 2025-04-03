@@ -16,6 +16,10 @@
 
 - name: Generate :help pages
   shell: nvim --headless -c 'helptags ALL' -c quit
+  environment:
+    PATH: "/opt/Homebrew/bin:{{ ansible_env.PATH }}"
 
 - name: Install Treesitter parsers
   shell: nvim --headless -c 'TSUpdateSync' -c quit
+  environment:
+    PATH: "/opt/Homebrew/bin:{{ ansible_env.PATH }}"

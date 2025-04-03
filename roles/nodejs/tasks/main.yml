@@ -43,3 +43,5 @@
     name: "{{ item }}"
     state: present
     global: true
+  environment:
+    PATH: "/opt/Homebrew/bin:{{ ansible_env.PATH }}"

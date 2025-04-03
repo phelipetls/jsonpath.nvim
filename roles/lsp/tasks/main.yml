@@ -20,6 +20,8 @@
     name: "{{ item }}"
     global: true
     state: present
+  environment:
+    PATH: "/opt/Homebrew/bin:{{ ansible_env.PATH }}"
 
 - name: Install stylua from GitHub releases
   unarchive:
