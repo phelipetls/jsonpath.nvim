@@ -294,7 +294,7 @@ vim.env.LESS = "RX"
 -- }}}
 -- {{{ keymaps
 
-vim.keymap.set("n", "gr", "gT")
+vim.keymap.set("n", "gr", "gT", { nowait = true })
 
 -- <space> should not move cursor in normal mode
 vim.keymap.set("n", "<space>", "")
