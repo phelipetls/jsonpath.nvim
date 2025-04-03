@@ -16,15 +16,15 @@
         name: homebrew
       when: ansible_distribution == "MacOSX"
 
-    - name: Node.js
-      tags: nodejs
-      import_role:
-        name: nodejs
-
     - name: Stow
       tags: stow
       import_role:
         name: stow
+
+    - name: Node.js
+      tags: nodejs
+      import_role:
+        name: nodejs
 
     - name: Command-line
       tags: cli
