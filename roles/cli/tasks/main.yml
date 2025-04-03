@@ -64,13 +64,6 @@
 - name: Install editorconfig-checker
   import_tasks: editorconfig.yml
 
-- name: Install ranger
-  pip:
-    name:
-      - ranger-fm
-    state: present
-    executable: pip3
-
 - name: Install fzf
   command:
     cmd: ./install --bin
