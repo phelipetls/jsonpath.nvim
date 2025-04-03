@@ -8,7 +8,6 @@
 - name: Run Homebrew install script non-interactively
   environment:
     NONINTERACTIVE: 1
-  become: true
   shell: /bin/bash /tmp/homebrew_install.sh
   args:
     creates: /opt/homebrew/bin/brew
