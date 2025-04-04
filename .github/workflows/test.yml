@@ -4,14 +4,17 @@ on:
   - push
 
 jobs:
-  play:
-    runs-on: ubuntu-latest
+  test:
+    name: Test on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
     timeout-minutes: 30
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+      fail-fast: false
     steps:
       - uses: actions/checkout@v3
-
       - name: Install dependencies
         run: ./install
-
       - name: Run Playbook
         run: ./bootstrap
