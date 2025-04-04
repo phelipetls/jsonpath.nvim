@@ -15,6 +15,6 @@ Session.vim
 ^/ansible.cfg
 ^/Vagrantfile
 ^/install
+^/bootstrap
 
 ^/\.stowrc
-^/\.vagrant
