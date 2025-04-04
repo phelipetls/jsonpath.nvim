@@ -104,8 +104,6 @@ export LESS="FXRM"
 
 export COREPACK_ENABLE_AUTO_PIN=0
 
-alias r='ranger'
-
 if is_linux; then
   alias ls='ls -A --color=auto --group-directories-first --time-style=long-iso --human-readable -v'
   alias ll='ls -l'
