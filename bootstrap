@@ -4,4 +4,4 @@ set -e
 
 PYTHON_USER_BIN=$(python3 -m site --user-base)/bin
 
-PATH="$PATH:$PYTHON_USER_BIN" ansible-playbook bootstrap.yml
+PATH="/opt/Homebrew/bin:$PYTHON_USER_BIN:$PATH" ansible-playbook bootstrap.yml
