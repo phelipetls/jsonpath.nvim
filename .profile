@@ -74,8 +74,8 @@ if [ -d "$HOME/git-toolbelt" ]; then
 fi
 
 # Add Homebrew
-if [ -d "/opt/homebrew/bin" ]; then
-  export PATH="$PATH:/opt/homebrew/bin"
+if [ -d "/opt/Homebrew/bin" ]; then
+  export PATH="$PATH:/opt/Homebrew/bin"
 fi
 
 # Add pnpm
