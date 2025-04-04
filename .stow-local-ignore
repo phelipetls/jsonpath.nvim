@@ -10,7 +10,7 @@ Session.vim
 ^/deps
 
 ^/README.md
-^/bootstrap-.*.yml
+^/bootstrap.yml
 ^/requirements.yml
 ^/ansible.cfg
 ^/Vagrantfile
