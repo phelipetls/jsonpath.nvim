@@ -155,6 +155,7 @@ vim.o.sidescroll = 1
 vim.o.sidescrolloff = 1
 
 -- colorscheme
+vim.cmd.set("termguicolors")
 vim.cmd.colorscheme('sorbet')
 
 -- clipboard
