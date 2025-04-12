@@ -28,7 +28,7 @@
     undo = reset --soft HEAD^
     recommit = commit --reedit-message ORIG_HEAD
     track = branch --set-upstream-to
-    difft = difftool -t difft
+    difft = -c diff.external=difft diff
     pushf = push --force-with-lease
 [credential]
     helper = cache
@@ -46,9 +46,3 @@
     side-by-side = true
 [diff]
     colorMoved = default
-[difftool]
-    prompt = false
-[difftool "difft"]
-    cmd = difft "$LOCAL" "$REMOTE"
-[pager]
-    difftool = true
