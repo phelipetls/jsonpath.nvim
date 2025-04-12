@@ -265,7 +265,7 @@ vim.opt.fillchars = {
   vertleft = "┨",
   vertright = "┣",
   verthoriz = "╋",
-  diff = "/",
+  diff = "⣿",
 }
 
 vim.opt.listchars = {
