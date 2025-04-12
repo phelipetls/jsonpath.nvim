@@ -156,8 +156,7 @@ vim.o.sidescrolloff = 1
 
 -- colorscheme
 vim.o.termguicolors = true
-vim.o.background = "dark"
-vim.cmd.colorscheme('sorbet')
+vim.cmd.colorscheme('unokai')
 
 -- clipboard
 if vim.fn.has("wsl") == 1 then
