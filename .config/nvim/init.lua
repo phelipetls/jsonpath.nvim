@@ -597,7 +597,7 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
   group = global_autocmds,
   pattern = { "*" },
   callback = function()
-    vim.highlight.on_yank({ higroup = "Search", on_visual = false })
+    vim.hl.on_yank({ higroup = "Search", timeout = 300, silent = true })
   end,
   desc = "Highlight yanked region",
 })
