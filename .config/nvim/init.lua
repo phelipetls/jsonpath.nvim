@@ -247,7 +247,7 @@ vim.opt.diffopt = {
   "indent-heuristic",
   "internal",
   "algorithm:patience",
-  "linematch:50"
+  "linematch:60"
 }
 
 -- visually show special characters
