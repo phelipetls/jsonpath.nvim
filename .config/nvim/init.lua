@@ -310,9 +310,6 @@ vim.env.LESS = "RX"
 
 vim.keymap.set("n", "gr", "gT", { nowait = true })
 
--- search within visual selection - this is magic
-vim.keymap.set("x", "/", "<Esc>/\\%V")
-
 -- <space> should not move cursor in normal mode
 vim.keymap.set("n", "<space>", "")
 
