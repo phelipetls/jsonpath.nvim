@@ -77,8 +77,11 @@ vim.g.twiggy_adapt_columns = 0
 vim.g.twiggy_show_full_ui = 0
 
 -- file navigation
-vim.cmd("packadd! vim-dirvish")
-vim.g.dirvish_mode = [[:sort ,^.*[\/],]]
+vim.cmd("packadd! oil.nvim")
+require("oil").setup({
+  show_hidden = true,
+})
+vim.keymap.set("n", "-", "<cmd>Oil<CR>", { desc = "Open parent directory" })
 
 -- fuzzy finder
 vim.cmd("packadd! fzf-lua")
