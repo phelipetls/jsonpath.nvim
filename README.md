@@ -31,6 +31,15 @@ vim.keymap.set("n", "y<C-p>", function()
 end, { desc = "copy json path", buffer = true })
 ```
 
+Or use `require("jsonpath").setup()`:
+
+```lua
+-- in init.lua
+require("jsonpath").setup({
+  show_on_winbar = true
+})
+```
+
 Using vim:
 ```vim
 " in after/ftplugin/json.vim
