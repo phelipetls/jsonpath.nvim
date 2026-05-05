@@ -77,12 +77,19 @@ M.get = function(start_node, bufnr)
     end
 
     if node:type() == "array" then
-      accessor = "[]"
-
-      for i, child in ipairs(get_children(node)) do
-        local parent = current_node:parent()
-        if parent == child then
-          accessor = string.format("[%d]", i - 1)
+      local index = 0
+      for child in node:iter_children() do
+        if child:named() then
+          local n = current_node
+          while n and n ~= node do
+            if n == child then
+              accessor = string.format("[%d]", index)
+              break
+            end
+            n = n:parent()
+          end
+          if accessor ~= "" then break end
+          index = index + 1
         end
       end
     end
